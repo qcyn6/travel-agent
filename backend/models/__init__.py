@@ -1,6 +1,15 @@
 from backend.models.attraction import AttractionKnowledgeState, AttractionPOI, KnowledgeStatus
 from backend.models.catalog import City, Province
 from backend.models.city_stay import CityStay
+from backend.models.conversation import (
+    ChatMessageRequest,
+    Conversation,
+    ConversationCreated,
+    ConversationMessage,
+    RequirementConfirmation,
+    RequirementDraft,
+    RequirementDraftPatch,
+)
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TravelRequirement, TravelScope
@@ -29,6 +38,10 @@ __all__ = [
     "CityPlan",
     "CityPlanningRequest",
     "CityPlanningResult",
+    "ChatMessageRequest",
+    "Conversation",
+    "ConversationCreated",
+    "ConversationMessage",
     "DayPlan",
     "DestinationChoiceResponse",
     "KnowledgeStatus",
@@ -36,6 +49,9 @@ __all__ = [
     "HybridSearchRequest",
     "HybridSearchResult",
     "Province",
+    "RequirementConfirmation",
+    "RequirementDraft",
+    "RequirementDraftPatch",
     "TravelRequirement",
     "TravelDay",
     "TravelPlan",

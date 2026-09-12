@@ -22,6 +22,9 @@
 - 中文天数、目的地、兴趣、旅行范围的本地解析
 - 省市名称标准化、省市关系补全、同省校验与跨省拦截
 - FastAPI 接口与单元/API 测试
+- Vue 3 对话式前端、实时旅行画像、需求确认和逐日行程展示
+- MySQL 当前会话与多轮消息持久化
+- SSE 对话增量和旅游规划业务进度
 - 高德地点搜索 2.0 异步客户端、分页、超时重试与错误处理
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
@@ -37,6 +40,16 @@ D:\Miniconda\envs\travel-agent\python.exe -m pytest -q
 D:\Miniconda\envs\travel-agent\python.exe -m uvicorn backend.main:app --reload
 ```
 
+另开一个终端启动前端：
+
+```powershell
+cd D:\travel-agent\frontend
+npm install
+npm run dev
+```
+
+浏览器访问 `http://127.0.0.1:5173`。前端开发服务器会把 `/api` 请求代理到 `http://127.0.0.1:8000`。
+
 启动前需在 `.env` 配置 MySQL 连接，例如：
 
 ```text
@@ -51,6 +64,12 @@ DASHSCOPE_API_KEY=YOUR_DASHSCOPE_KEY
 
 ```text
 GET  /health
+POST /api/v1/conversations
+GET  /api/v1/conversations/{conversation_id}
+POST /api/v1/conversations/{conversation_id}/messages
+PATCH /api/v1/conversations/{conversation_id}/requirement
+POST /api/v1/conversations/{conversation_id}/requirement/confirm
+POST /api/v1/conversations/{conversation_id}/plan
 POST /api/v1/requirements/resolve
 GET  /api/v1/cities/{city}/attractions?limit=30
 GET  /api/v1/attractions/{poi_id}/knowledge/status
@@ -90,3 +109,5 @@ attraction_knowledge  保存已完成网页检索和摘要的景点知识
 Chroma                按城市保存已完成景点知识的向量
 Redis                 后续缓存有时效性的外部 API 查询结果
 ```
+
+当前对话前端只维护一个匿名会话：会话与消息保存在 MySQL，当前会话编号和已生成方案保存在浏览器 `sessionStorage`，因此同一标签页刷新后可以恢复。用户登录、多会话列表和跨用户隔离留待后续实现。

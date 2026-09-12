@@ -1,5 +1,6 @@
 from backend.planner.city import CityPlanningError, DeepSeekCityPlanner, deterministic_city_plan
 from backend.planner.service import CityPlanningService
+from backend.planner.runtime import build_travel_workflow
 from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
 
 __all__ = [
@@ -8,5 +9,6 @@ __all__ = [
     "DeepSeekCityPlanner",
     "DestinationChoiceRequired",
     "TravelPlanningWorkflow",
+    "build_travel_workflow",
     "deterministic_city_plan",
 ]

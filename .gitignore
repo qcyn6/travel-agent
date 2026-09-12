@@ -7,3 +7,6 @@ __pycache__/
 .ruff_cache/
 .codex/
 data/chroma/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
