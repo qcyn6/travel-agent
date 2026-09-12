@@ -81,6 +81,26 @@ async def test_conversation_merges_multiple_turns_and_keeps_memory(catalog_repos
     assert [message.role for message in second.messages] == ["user", "assistant", "user", "assistant"]
 
 
+@pytest.mark.asyncio
+async def test_conversation_switching_province_clears_previous_city(catalog_repository):
+    repository = FakeConversationRepository()
+    service = ConversationService(
+        repository=repository,
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        responder=FailingResponder(),
+    )
+    conversation = service.create()
+
+    first, _, _ = await service.handle_message(conversation.id, "我想去杭州玩三天")
+    second, _, _ = await service.handle_message(conversation.id, "改去云南玩五天")
+
+    assert first.requirement.cities == ["杭州市"]
+    assert second.requirement.province == "云南省"
+    assert second.requirement.cities == []
+    assert second.requirement.days == 5
+
+
 def test_confirmation_requires_core_fields(catalog_repository):
     repository = FakeConversationRepository()
     service = ConversationService(

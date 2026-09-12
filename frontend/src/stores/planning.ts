@@ -97,6 +97,7 @@ export const usePlanningStore = defineStore('planning', () => {
     messages.value.push({ role: 'user', content: clean })
     const assistant: ChatMessage = { role: 'assistant', content: '', streaming: true }
     messages.value.push(assistant)
+    let renderChain = Promise.resolve()
     try {
       await streamEvents(
         `/conversations/${conversationId.value}/messages`,
@@ -104,14 +105,33 @@ export const usePlanningStore = defineStore('planning', () => {
         (event, data) => {
           if (event === 'requirement_updated') requirement.value = data
           if (event === 'suggestions') suggestions.value = data.options || []
-          if (event === 'message_delta') assistant.content += data.text
+          if (event === 'message_delta') {
+            const delta = String(data.text || '')
+            // Preserve the server's real delta order while rendering each chunk visibly.
+            renderChain = renderChain.then(
+              () =>
+                new Promise<void>((resolve) => {
+                  let index = 0
+                  const renderNext = () => {
+                    if (index >= delta.length) {
+                      resolve()
+                      return
+                    }
+                    assistant.content += delta[index++]
+                    window.setTimeout(renderNext, 18)
+                  }
+                  renderNext()
+                }),
+            )
+          }
           if (event === 'message_done') {
-            assistant.streaming = false
             requirementReady.value = Boolean(data.requirement_ready)
           }
           if (event === 'requirement_ready') requirementReady.value = Boolean(data.ready)
         },
       )
+      await renderChain
+      assistant.streaming = false
     } catch (caught) {
       assistant.streaming = false
       if (!assistant.content) messages.value.pop()

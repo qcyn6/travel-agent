@@ -47,8 +47,9 @@ watch(
   async (active) => {
     if (active) return
     await nextTick()
-    inputElement.value?.focus()
+    window.setTimeout(() => inputElement.value?.focus(), 0)
   },
+  { flush: 'post' },
 )
 </script>
 
@@ -71,7 +72,8 @@ watch(
       >
         <div v-if="message.role === 'assistant'" class="avatar">山</div>
         <div class="message-bubble">
-          {{ message.content }}<span v-if="message.streaming" class="typing-caret"></span>
+          <template v-if="message.streaming && !message.content"><span class="streaming-label">正在生成回复</span><span class="typing-dots"><i></i><i></i><i></i></span></template>
+          <template v-else>{{ message.content }}<span v-if="message.streaming" class="typing-caret"></span></template>
         </div>
       </article>
       <article v-if="sending && !messages.at(-1)?.streaming" class="message-row assistant">
@@ -91,12 +93,12 @@ watch(
         ref="inputElement"
         v-model="input"
         rows="2"
-        :disabled="sending"
+        :readonly="sending"
         placeholder="例如：云南玩 5 天，喜欢自然、古城和摄影……"
         aria-label="输入旅行需求"
         @keydown="onKeydown"
       ></textarea>
-      <button class="send-button" type="button" :disabled="!input.trim() || sending" @click="submit()">
+      <button class="send-button" type="button" :disabled="!input.trim() || sending" @mousedown.prevent @click="submit()">
         <span>{{ sending ? '思考中' : '发送' }}</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8 3-8-3-8Zm3.8 7h7.7L6.8 6.7 7.8 11Zm0 2-1 4.3 8.7-4.3H7.8Z"/></svg>
       </button>

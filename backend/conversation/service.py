@@ -168,9 +168,12 @@ class ConversationService:
         scope = parsed.travel_scope
         if scope == "auto" and current.travel_scope != "auto":
             scope = current.travel_scope
+        cities = parsed.cities or current.cities
+        if parsed.province and parsed.province != current.province and not parsed.cities:
+            cities = []
         return RequirementDraft(
             province=parsed.province or current.province,
-            cities=parsed.cities or current.cities,
+            cities=cities,
             days=parsed.days or current.days,
             interests=interests,
             preference_text=parsed.preference_text or current.preference_text,
