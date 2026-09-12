@@ -1,0 +1,25 @@
+[project]
+name = "travel-agent"
+version = "0.1.0"
+description = "个性化旅游规划系统 MVP"
+requires-python = ">=3.11,<3.15"
+dependencies = [
+    "chromadb>=1.5,<2",
+    "fastapi>=0.141,<0.142",
+    "httpx>=0.28,<0.29",
+    "jieba>=0.42,<0.43",
+    "pydantic>=2.13,<3",
+    "pydantic-settings>=2.15,<3",
+    "pymysql>=1.2,<2",
+    "sqlalchemy>=2.0,<3",
+    "uvicorn>=0.52,<0.53",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1,<10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

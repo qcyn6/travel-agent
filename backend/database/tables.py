@@ -1,0 +1,78 @@
+from datetime import datetime
+
+from sqlalchemy import DateTime, Float, ForeignKey, Integer, JSON, String, Text, func
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from backend.database.session import Base
+
+
+class ProvinceRow(Base):
+    __tablename__ = "provinces"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(32), unique=True, index=True)
+    adcode: Mapped[str] = mapped_column(String(6), unique=True)
+    tags: Mapped[list[str]] = mapped_column(JSON, default=list)
+    description: Mapped[str] = mapped_column(Text)
+
+    cities: Mapped[list["CityRow"]] = relationship(back_populates="province")
+
+
+class CityRow(Base):
+    __tablename__ = "cities"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    province_id: Mapped[int] = mapped_column(ForeignKey("provinces.id"), index=True)
+    name: Mapped[str] = mapped_column(String(32), unique=True, index=True)
+    adcode: Mapped[str] = mapped_column(String(6), unique=True)
+    tags: Mapped[list[str]] = mapped_column(JSON, default=list)
+    description: Mapped[str] = mapped_column(Text)
+    suitable_days_min: Mapped[int] = mapped_column(Integer)
+    suitable_days_max: Mapped[int] = mapped_column(Integer)
+
+    province: Mapped[ProvinceRow] = relationship(back_populates="cities")
+    attractions: Mapped[list["AttractionRow"]] = relationship(back_populates="city")
+
+
+class AttractionRow(Base):
+    __tablename__ = "attractions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    poi_id: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    city_id: Mapped[int] = mapped_column(ForeignKey("cities.id"), index=True)
+    name: Mapped[str] = mapped_column(String(128), index=True)
+    category: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    address: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    longitude: Mapped[float | None] = mapped_column(Float, nullable=True)
+    latitude: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rating: Mapped[float | None] = mapped_column(Float, nullable=True)
+    source: Mapped[str] = mapped_column(String(32), default="amap")
+    knowledge_status: Mapped[str] = mapped_column(
+        String(16), default="pending", server_default="pending", index=True
+    )
+    knowledge_error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    first_seen_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+
+    city: Mapped[CityRow] = relationship(back_populates="attractions")
+    knowledge: Mapped["AttractionKnowledgeRow | None"] = relationship(
+        back_populates="attraction",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
+
+
+class AttractionKnowledgeRow(Base):
+    __tablename__ = "attraction_knowledge"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    poi_id: Mapped[str] = mapped_column(ForeignKey("attractions.poi_id"), unique=True, index=True)
+    description: Mapped[str] = mapped_column(Text)
+    source_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
+    )
+
+    attraction: Mapped[AttractionRow] = relationship(back_populates="knowledge")
