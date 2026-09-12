@@ -93,7 +93,6 @@ watch(
         ref="inputElement"
         v-model="input"
         rows="2"
-        :readonly="sending"
         placeholder="例如：云南玩 5 天，喜欢自然、古城和摄影……"
         aria-label="输入旅行需求"
         @keydown="onKeydown"
