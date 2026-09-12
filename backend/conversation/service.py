@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from inspect import isawaitable
 
 from backend.conversation.responder import ConversationResponseError
@@ -12,6 +13,18 @@ class ConversationNotFoundError(LookupError):
 
 class RequirementNotReadyError(ValueError):
     pass
+
+
+@dataclass
+class PreparedConversationTurn:
+    row: object
+    conversation: Conversation
+    user_message: str
+    requirement: RequirementDraft
+    missing: list[str]
+    destination_context: str | None
+    recent_messages: list[dict[str, str]]
+    destination_error: str | None = None
 
 
 class ConversationService:
@@ -31,10 +44,41 @@ class ConversationService:
         return self._to_model(row)
 
     async def handle_message(self, conversation_id: str, message: str) -> tuple[Conversation, str, list[str]]:
+        prepared = await self.prepare_message(conversation_id, message)
+        if prepared.destination_error:
+            reply = (
+                f"{prepared.destination_error}。当前 MVP 支持浙江省、云南省和陕西省，你可以从这些地区中选择。"
+            )
+        elif not (prepared.requirement.province or prepared.requirement.cities):
+            reply = self._fallback_reply(
+                prepared.requirement,
+                prepared.missing,
+                prepared.destination_context,
+            )
+        else:
+            try:
+                reply = await self.responder.respond(
+                    user_message=prepared.user_message,
+                    requirement=prepared.requirement,
+                    missing_fields=prepared.missing,
+                    destination_context=prepared.destination_context,
+                    recent_messages=prepared.recent_messages,
+                )
+            except ConversationResponseError:
+                reply = self._fallback_reply(
+                    prepared.requirement,
+                    prepared.missing,
+                    prepared.destination_context,
+                )
+        conversation = self.finish_message(prepared, reply)
+        return conversation, reply, self.suggestions_for(prepared.missing)
+
+    async def prepare_message(self, conversation_id: str, message: str) -> PreparedConversationTurn:
         row = self.repository.get(conversation_id, with_messages=True)
         if row is None:
             raise ConversationNotFoundError("当前会话不存在或已失效")
-        self.repository.add_message(row, role="user", content=message.strip())
+        clean_message = message.strip()
+        self.repository.add_message(row, role="user", content=clean_message)
 
         current = RequirementDraft.model_validate(row.requirement_draft or {})
         parsed_value = self.parser.parse(message)
@@ -56,22 +100,22 @@ class ConversationService:
             for item in row.messages[-8:]
             if item.role in {"user", "assistant"}
         ]
-        if destination_error:
-            reply = f"{destination_error}。当前 MVP 支持浙江省、云南省和陕西省，你可以从这些地区中选择。"
-        else:
-            try:
-                reply = await self.responder.respond(
-                    user_message=message,
-                    requirement=merged,
-                    missing_fields=missing,
-                    destination_context=context,
-                    recent_messages=recent,
-                )
-            except ConversationResponseError:
-                reply = self._fallback_reply(merged, missing, context)
-        self.repository.add_message(row, role="assistant", content=reply)
-        refreshed = self.repository.get(conversation_id, with_messages=True)
-        return self._to_model(refreshed), reply, self.suggestions_for(missing)
+        recent.append({"role": "user", "content": clean_message})
+        return PreparedConversationTurn(
+            row=row,
+            conversation=self._to_model(self.repository.get(conversation_id, with_messages=True)),
+            user_message=clean_message,
+            requirement=merged,
+            missing=missing,
+            destination_context=context,
+            recent_messages=recent,
+            destination_error=destination_error,
+        )
+
+    def finish_message(self, prepared: PreparedConversationTurn, reply: str) -> Conversation:
+        self.repository.add_message(prepared.row, role="assistant", content=reply)
+        refreshed = self.repository.get(prepared.conversation.id, with_messages=True)
+        return self._to_model(refreshed)
 
     def update_requirement(self, conversation_id: str, changes: dict) -> Conversation:
         row = self.repository.get(conversation_id, with_messages=True)
@@ -148,7 +192,7 @@ class ConversationService:
         if not missing:
             return "你的核心旅行需求已经比较清晰了。请查看右侧需求卡，确认后我就开始生成行程。"
         questions = {
-            "destination": "你想去哪个省份或城市？",
+            "destination": "你想去哪个省份或城市？当前演示支持浙江省、云南省和陕西省。",
             "days": "这次大概准备玩几天？",
             "preferences": "你更喜欢自然、历史文化、美食、摄影，还是轻松慢游？",
         }

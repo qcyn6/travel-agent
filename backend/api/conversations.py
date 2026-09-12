@@ -13,7 +13,7 @@ from backend.conversation import (
     RequirementNotReadyError,
     get_conversation_repository,
 )
-from backend.conversation.responder import DeepSeekConversationResponder
+from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
 from backend.database import get_db
 from backend.destination import DestinationPlanningError, DestinationResolver
 from backend.destination.repository import CatalogRepository
@@ -97,19 +97,51 @@ async def send_message(
 ) -> StreamingResponse:
     service = _conversation_service(repository, CatalogRepository(session), settings)
     try:
-        conversation, reply, suggestions = await service.handle_message(
-            conversation_id,
-            payload.message,
-        )
+        prepared = await service.prepare_message(conversation_id, payload.message)
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        yield _sse("requirement_updated", conversation.requirement.model_dump(mode="json"))
-        yield _sse("suggestions", {"options": suggestions})
-        for index in range(0, len(reply), 4):
-            yield _sse("message_delta", {"text": reply[index : index + 4]})
-            await asyncio.sleep(0.015)
+        yield _sse("requirement_updated", prepared.requirement.model_dump(mode="json"))
+        yield _sse("suggestions", {"options": service.suggestions_for(prepared.missing)})
+        chunks: list[str] = []
+        if prepared.destination_error:
+            reply = f"{prepared.destination_error}。当前 MVP 支持浙江省、云南省和陕西省，你可以从这些地区中选择。"
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif not (prepared.requirement.province or prepared.requirement.cities):
+            reply = service._fallback_reply(
+                prepared.requirement,
+                prepared.missing,
+                prepared.destination_context,
+            )
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        else:
+            try:
+                async for chunk in service.responder.stream(
+                    user_message=prepared.user_message,
+                    requirement=prepared.requirement,
+                    missing_fields=prepared.missing,
+                    destination_context=prepared.destination_context,
+                    recent_messages=prepared.recent_messages,
+                ):
+                    chunks.append(chunk)
+                    yield _sse("message_delta", {"text": chunk})
+            except ConversationResponseError:
+                if not chunks:
+                    fallback = service._fallback_reply(
+                        prepared.requirement,
+                        prepared.missing,
+                        prepared.destination_context,
+                    )
+                    chunks.append(fallback)
+                    yield _sse("message_delta", {"text": fallback})
+                else:
+                    chunks.append("（回复连接中断）")
+                    yield _sse("message_delta", {"text": "（回复连接中断）"})
+        reply = "".join(chunks).strip()
+        conversation = service.finish_message(prepared, reply)
         yield _sse("message_done", {"requirement_ready": conversation.requirement_ready})
         if conversation.requirement_ready:
             yield _sse("requirement_ready", {"ready": True})

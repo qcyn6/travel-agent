@@ -13,6 +13,7 @@ const emit = defineEmits<{
 }>()
 
 const input = ref('')
+const inputElement = ref<HTMLTextAreaElement | null>(null)
 const messageList = ref<HTMLElement | null>(null)
 
 function submit(text = input.value) {
@@ -38,6 +39,15 @@ watch(
   async () => {
     await nextTick()
     messageList.value?.scrollTo({ top: messageList.value.scrollHeight, behavior: 'smooth' })
+  },
+)
+
+watch(
+  () => props.sending,
+  async (active) => {
+    if (active) return
+    await nextTick()
+    inputElement.value?.focus()
   },
 )
 </script>
@@ -78,6 +88,7 @@ watch(
 
     <div class="chat-composer">
       <textarea
+        ref="inputElement"
         v-model="input"
         rows="2"
         :disabled="sending"
