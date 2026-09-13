@@ -4,6 +4,8 @@ from typing import Protocol
 from redis.asyncio import Redis
 from redis.exceptions import RedisError
 
+from backend.cache.wsl import ensure_wsl_service_available
+
 
 class JsonCache(Protocol):
     async def get_json(self, key: str): ...
@@ -60,6 +62,11 @@ class RedisJsonCache:
 def build_cache(settings) -> JsonCache:
     if not settings.redis_url:
         return NullCache()
+    ensure_wsl_service_available(
+        settings.redis_wsl_distro,
+        settings.redis_url,
+        startup_timeout_seconds=settings.redis_wsl_startup_timeout_seconds,
+    )
     return RedisJsonCache(
         settings.redis_url,
         key_prefix=settings.redis_key_prefix,

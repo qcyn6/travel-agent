@@ -37,6 +37,7 @@
 - DeepSeek 局部 Replanner，仅修改有高等级问题的日期，并带确定性保守降级
 - LangGraph 有限反馈闭环，重规划后只刷新受影响数据，最多执行两次以避免无限循环
 - 可选 Redis Cache-Aside：POI 24 小时、路线 3 小时、天气 1 小时、来源搜索 12 小时；缓存不可用不阻断业务
+- Windows + WSL2 开发环境可配置 `REDIS_WSL_DISTRO=Ubuntu`，Python 启动缓存层时会自动保持该发行版运行
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。

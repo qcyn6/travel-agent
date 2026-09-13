@@ -40,6 +40,8 @@ class Settings(BaseSettings):
     redis_route_ttl_seconds: int = 10800
     redis_weather_ttl_seconds: int = 3600
     redis_search_ttl_seconds: int = 43200
+    redis_wsl_distro: str | None = None
+    redis_wsl_startup_timeout_seconds: float = 5.0
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0
