@@ -26,6 +26,7 @@ class TravelPlanningWorkflow:
         weather_enrichment_service,
         attraction_facts_service,
         schedule_builder,
+        evaluator,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -37,6 +38,7 @@ class TravelPlanningWorkflow:
         self.weather_enrichment_service = weather_enrichment_service
         self.attraction_facts_service = attraction_facts_service
         self.schedule_builder = schedule_builder
+        self.evaluator = evaluator
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -95,6 +97,7 @@ class TravelPlanningWorkflow:
                                 name=name,
                                 city=attractions_by_name[name].city,
                                 category=attractions_by_name[name].category,
+                                description=attractions_by_name[name].description,
                                 longitude=attractions_by_name[name].longitude,
                                 latitude=attractions_by_name[name].latitude,
                             )
@@ -132,6 +135,10 @@ class TravelPlanningWorkflow:
         scheduled_days = [self.schedule_builder.build_day(day) for day in plan.itinerary]
         plan = plan.model_copy(update={"itinerary": scheduled_days})
         await self._emit(progress, "schedule", "每日时间表已生成", "completed")
+        await self._emit(progress, "evaluation", "正在检查行程可执行性", "running")
+        evaluation = self.evaluator.evaluate(plan, requirement)
+        plan = plan.model_copy(update={"evaluation": evaluation})
+        await self._emit(progress, "evaluation", "行程可执行性检查完成", "completed")
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 

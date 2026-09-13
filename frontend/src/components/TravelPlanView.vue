@@ -65,6 +65,12 @@ const printPlan = () => window.print()
             <b>{{ currentDay.attractions.length }} 个景点<template v-if="currentDay.schedule"> · {{ currentDay.schedule.start_time }}—{{ currentDay.schedule.end_time }}</template></b>
           </header>
           <p class="day-description">{{ currentDay.description }}</p>
+          <div v-if="result.plan.evaluation?.issues.some((issue) => issue.day === currentDay.day)" class="day-description">
+            <strong>行程检查</strong>
+            <p v-for="issue in result.plan.evaluation.issues.filter((item) => item.day === currentDay.day)" :key="`${issue.type}-${issue.message}`">
+              {{ issue.severity === 'high' ? '⚠' : '提示' }} {{ issue.message }}<template v-if="issue.suggestion">；{{ issue.suggestion }}</template>
+            </p>
+          </div>
           <ol class="attraction-timeline">
             <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
               <span class="time-index">{{ String(index + 1).padStart(2, '0') }}</span>

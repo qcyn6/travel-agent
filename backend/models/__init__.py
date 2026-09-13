@@ -11,6 +11,7 @@ from backend.models.conversation import (
     RequirementDraft,
     RequirementDraftPatch,
 )
+from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
@@ -52,6 +53,8 @@ __all__ = [
     "DayPlan",
     "DaySchedule",
     "DestinationChoiceResponse",
+    "EvaluationIssue",
+    "EvaluationResult",
     "KnowledgeStatus",
     "OpeningHours",
     "OpeningPeriod",

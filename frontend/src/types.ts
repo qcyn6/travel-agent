@@ -96,6 +96,7 @@ export interface AttractionStop {
   name: string
   city: string
   category: string | null
+  description: string | null
   longitude: number | null
   latitude: number | null
   environment: 'indoor' | 'outdoor' | 'mixed' | 'unknown'
@@ -130,7 +131,22 @@ export interface TravelPlanResponse {
     city_stays: CityStay[]
     city_plans: unknown[]
     itinerary: TravelDay[]
+    evaluation: EvaluationResult | null
   }
+}
+
+export interface EvaluationIssue {
+  type: 'preference' | 'schedule_density' | 'route' | 'weather' | 'opening_hours'
+  severity: 'low' | 'medium' | 'high'
+  day: number | null
+  message: string
+  suggestion: string | null
+}
+
+export interface EvaluationResult {
+  passed: boolean
+  issues: EvaluationIssue[]
+  replan_required: boolean
 }
 
 export interface PlanningStep {

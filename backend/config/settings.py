@@ -26,6 +26,12 @@ class Settings(BaseSettings):
     schedule_day_start_time: str = "09:00"
     schedule_meal_minutes: int = 90
     schedule_buffer_minutes: int = 60
+    evaluator_max_day_minutes: int = 600
+    evaluator_max_route_segment_minutes: int = 60
+    evaluator_max_daily_route_minutes: int = 180
+    evaluator_rain_probability_threshold: float = 0.5
+    evaluator_outdoor_ratio_threshold: float = 0.5
+    evaluator_minimum_interest_coverage: float = 0.5
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0

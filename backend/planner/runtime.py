@@ -2,6 +2,7 @@ from backend.attractions import AttractionRepository
 from backend.attraction_facts.runtime import build_attraction_facts_service
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.destination.repository import CatalogRepository
+from backend.evaluator import PlanEvaluator
 from backend.knowledge import KnowledgeRepository
 from backend.knowledge.runtime import build_bootstrap_service
 from backend.planner.city import DeepSeekCityPlanner
@@ -61,5 +62,13 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             day_start_time=settings.schedule_day_start_time,
             meal_minutes=settings.schedule_meal_minutes,
             buffer_minutes=settings.schedule_buffer_minutes,
+        ),
+        evaluator=PlanEvaluator(
+            max_day_minutes=settings.evaluator_max_day_minutes,
+            max_route_segment_minutes=settings.evaluator_max_route_segment_minutes,
+            max_daily_route_minutes=settings.evaluator_max_daily_route_minutes,
+            rain_probability_threshold=settings.evaluator_rain_probability_threshold,
+            outdoor_ratio_threshold=settings.evaluator_outdoor_ratio_threshold,
+            minimum_interest_coverage=settings.evaluator_minimum_interest_coverage,
         ),
     )

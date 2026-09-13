@@ -5,6 +5,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from backend.destination.planner import DestinationPlanResult
 from backend.models.attraction_facts import OpeningHours
+from backend.models.evaluation import EvaluationResult
 from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
@@ -20,6 +21,7 @@ class AttractionStop(BaseModel):
     name: str
     city: str
     category: str | None = None
+    description: str | None = None
     longitude: float | None = None
     latitude: float | None = None
     environment: Literal["indoor", "outdoor", "mixed", "unknown"] = "unknown"
@@ -52,6 +54,7 @@ class TravelPlan(BaseModel):
     city_stays: list[CityStay] = Field(min_length=1, max_length=3)
     city_plans: list[CityPlan] = Field(min_length=1, max_length=3)
     itinerary: list[TravelDay] = Field(min_length=1)
+    evaluation: EvaluationResult | None = None
 
 
 class TravelPlanRequest(BaseModel):
