@@ -56,6 +56,8 @@ class KnowledgeRepository:
                 name=attraction.name,
                 city=city_row.name,
                 category=attraction.category,
+                longitude=attraction.longitude,
+                latitude=attraction.latitude,
                 description=knowledge.description,
                 source_url=knowledge.source_url,
             )

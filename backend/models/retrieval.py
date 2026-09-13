@@ -8,6 +8,8 @@ class AttractionDocument(BaseModel):
     name: str
     city: str
     category: str | None = None
+    longitude: float | None = None
+    latitude: float | None = None
     description: str
     source_url: str | None = None
 
@@ -24,6 +26,8 @@ class VectorSearchResult(BaseModel):
     name: str
     city: str
     category: str | None = None
+    longitude: float | None = None
+    latitude: float | None = None
     description: str
     source_url: str | None = None
     distance: float = Field(ge=0)
@@ -48,6 +52,8 @@ class HybridSearchResult(BaseModel):
     name: str
     city: str
     category: str | None = None
+    longitude: float | None = None
+    latitude: float | None = None
     description: str
     source_url: str | None = None
     bm25_rank: int | None = None

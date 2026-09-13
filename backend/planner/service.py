@@ -21,6 +21,8 @@ class CityPlanningService:
                 name=item.name,
                 city=item.city,
                 category=item.category,
+                longitude=item.longitude,
+                latitude=item.latitude,
                 description=item.description,
                 source_url=item.source_url,
             )

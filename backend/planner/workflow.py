@@ -1,7 +1,8 @@
+from datetime import timedelta
 from inspect import isawaitable
 
 from backend.destination import DestinationPlanner, DestinationResolver
-from backend.models.travel_plan import TravelDay, TravelPlan, TravelPlanResponse
+from backend.models.travel_plan import AttractionStop, TravelDay, TravelPlan, TravelPlanResponse
 
 
 class DestinationChoiceRequired(RuntimeError):
@@ -49,6 +50,7 @@ class TravelPlanningWorkflow:
         await self._emit(progress, "destination", "目的地与停留天数已确定", "completed")
 
         city_plans = []
+        city_results = []
         for city_stay in destination.city_stays:
             city = self.catalog_repository.find_city(city_stay.city)
             await self._emit(progress, "poi_search", f"正在准备{city.name}真实景点", "running")
@@ -60,18 +62,34 @@ class TravelPlanningWorkflow:
                 top_k=10,
             )
             city_plans.append(result.city_plan)
+            city_results.append(result)
             await self._emit(progress, "city_plan", f"{city.name}行程生成完成", "completed")
 
         itinerary = []
         global_day = 1
-        for city_plan in city_plans:
+        for city_plan, city_result in zip(city_plans, city_results, strict=True):
+            attractions_by_name = {item.name: item for item in city_result.attractions}
             for day in city_plan.days:
+                day_date = None
+                if requirement.start_date is not None:
+                    day_date = requirement.start_date + timedelta(days=global_day - 1)
                 itinerary.append(
                     TravelDay(
                         day=global_day,
                         city=city_plan.city,
                         city_day=day.day,
-                        attractions=day.attractions,
+                        date=day_date,
+                        attractions=[
+                            AttractionStop(
+                                poi_id=attractions_by_name[name].poi_id,
+                                name=name,
+                                city=attractions_by_name[name].city,
+                                category=attractions_by_name[name].category,
+                                longitude=attractions_by_name[name].longitude,
+                                latitude=attractions_by_name[name].latitude,
+                            )
+                            for name in day.attractions
+                        ],
                         description=day.description,
                     )
                 )

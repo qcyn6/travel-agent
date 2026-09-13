@@ -12,7 +12,7 @@ from backend.models.conversation import (
 )
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
-from backend.models.requirement import TravelRequirement, TravelScope
+from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
 from backend.models.retrieval import (
     AttractionDocument,
     HybridSearchRequest,
@@ -22,6 +22,7 @@ from backend.models.retrieval import (
 )
 from backend.models.travel_plan import (
     DestinationChoiceResponse,
+    AttractionStop,
     TravelDay,
     TravelPlan,
     TravelPlanRequest,
@@ -33,6 +34,7 @@ __all__ = [
     "AttractionKnowledgeState",
     "AttractionDocument",
     "AttractionPOI",
+    "AttractionStop",
     "City",
     "CityStay",
     "CityPlan",
@@ -58,5 +60,6 @@ __all__ = [
     "TravelPlanRequest",
     "TravelPlanResponse",
     "TravelScope",
+    "TransportMode",
     "VectorSearchResult",
 ]

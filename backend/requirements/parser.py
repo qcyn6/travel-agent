@@ -1,4 +1,5 @@
 import re
+from datetime import date
 
 from backend.models.requirement import TravelRequirement
 
@@ -67,6 +68,23 @@ class RequirementParser:
         if day_match:
             days = _parse_chinese_number(day_match.group(1))
 
+        start_date = None
+        date_match = re.search(r"(20\d{2})[年\-/\.](\d{1,2})[月\-/\.](\d{1,2})日?", query)
+        if date_match:
+            try:
+                start_date = date(*(int(value) for value in date_match.groups()))
+            except ValueError:
+                start_date = None
+
+        if any(word in query for word in ("步行", "徒步")):
+            transport_mode = "walking"
+        elif any(word in query for word in ("公交", "公共交通", "地铁")):
+            transport_mode = "transit"
+        elif any(word in query for word in ("自驾", "驾车", "开车")):
+            transport_mode = "driving"
+        else:
+            transport_mode = "auto"
+
         if len(cities) > 1 or any(word in query for word in ("多个城市", "两三个城市", "2个城市", "3个城市")):
             scope = "multi_city"
         elif len(cities) == 1 or any(word in query for word in ("一个城市", "只在一个城市", "单城市")):
@@ -84,4 +102,6 @@ class RequirementParser:
             interests=interests,
             preference_text=preference_text,
             travel_scope=scope,
+            start_date=start_date,
+            transport_mode=transport_mode,
         )

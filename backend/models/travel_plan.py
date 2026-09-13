@@ -1,3 +1,6 @@
+from datetime import date as Date
+from typing import Literal
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.destination.planner import DestinationPlanResult
@@ -6,13 +9,29 @@ from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
 
 
+class AttractionStop(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    poi_id: str
+    name: str
+    city: str
+    category: str | None = None
+    longitude: float | None = None
+    latitude: float | None = None
+    environment: Literal["indoor", "outdoor", "mixed", "unknown"] = "unknown"
+    estimated_visit_minutes: int | None = Field(default=None, ge=1)
+    start_time: str | None = None
+    end_time: str | None = None
+
+
 class TravelDay(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     day: int = Field(ge=1)
     city: str
     city_day: int = Field(ge=1)
-    attractions: list[str] = Field(min_length=1)
+    date: Date | None = None
+    attractions: list[AttractionStop] = Field(min_length=1)
     description: str
 
 

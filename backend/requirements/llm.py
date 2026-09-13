@@ -36,9 +36,10 @@ class DeepSeekRequirementParser:
             raise RequirementLLMError("未配置 LLM_API_KEY")
         prompt = (
             "将用户旅游需求严格提取为 JSON。字段只能是：province、cities、days、interests、"
-            "preference_text、travel_scope。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
+            "preference_text、travel_scope、start_date、transport_mode。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
             "days 为正整数或 null；interests 为兴趣词列表；preference_text 保留节奏、体验等自由偏好，"
             "没有则为 null；travel_scope 只能是 single_city、multi_city、auto。"
+            "start_date 使用 YYYY-MM-DD 或 null；transport_mode 只能是 auto、walking、transit、driving。"
             "明确一个城市时为 single_city，明确多个城市或想去两三个城市时为 multi_city，信息不足时为 auto。"
             "不得推荐城市、查询景点或规划行程，只输出 JSON。\n\n"
             f"用户输入：{text}"

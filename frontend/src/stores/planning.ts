@@ -18,6 +18,8 @@ const emptyRequirement = (): RequirementDraft => ({
   interests: [],
   preference_text: null,
   travel_scope: 'auto',
+  start_date: null,
+  transport_mode: 'auto',
 })
 
 const welcome: ChatMessage = {

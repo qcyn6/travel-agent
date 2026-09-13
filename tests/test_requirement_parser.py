@@ -29,7 +29,13 @@ def test_parse_keeps_free_form_preference():
     assert result.interests == ["摄影"]
 
 
+def test_parse_extracts_start_date_and_transport_mode():
+    result = RequirementParser().parse("2026年10月3日去杭州玩三天，主要坐地铁")
+
+    assert result.start_date.isoformat() == "2026-10-03"
+    assert result.transport_mode == "transit"
+
+
 def test_parse_rejects_empty_text():
     with pytest.raises(ValueError, match="不能为空"):
         RequirementParser().parse("  ")
-

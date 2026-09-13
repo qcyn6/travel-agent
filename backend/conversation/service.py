@@ -171,6 +171,9 @@ class ConversationService:
         cities = parsed.cities or current.cities
         if parsed.province and parsed.province != current.province and not parsed.cities:
             cities = []
+        transport_mode = parsed.transport_mode
+        if transport_mode == "auto" and current.transport_mode != "auto":
+            transport_mode = current.transport_mode
         return RequirementDraft(
             province=parsed.province or current.province,
             cities=cities,
@@ -178,6 +181,8 @@ class ConversationService:
             interests=interests,
             preference_text=parsed.preference_text or current.preference_text,
             travel_scope=scope,
+            start_date=parsed.start_date or current.start_date,
+            transport_mode=transport_mode,
         )
 
     def _destination_context(self, requirement: RequirementDraft) -> str | None:

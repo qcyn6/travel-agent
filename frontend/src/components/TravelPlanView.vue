@@ -7,7 +7,7 @@ defineEmits<{ restart: []; revise: [] }>()
 
 const activeDay = ref(1)
 const currentDay = computed(() => props.result.plan.itinerary.find((item) => item.day === activeDay.value) || props.result.plan.itinerary[0])
-const totalAttractions = computed(() => new Set(props.result.plan.itinerary.flatMap((item) => item.attractions)).size)
+const totalAttractions = computed(() => new Set(props.result.plan.itinerary.flatMap((item) => item.attractions.map((attraction) => attraction.poi_id))).size)
 const printPlan = () => window.print()
 </script>
 
@@ -66,9 +66,9 @@ const printPlan = () => window.print()
           </header>
           <p class="day-description">{{ currentDay.description }}</p>
           <ol class="attraction-timeline">
-            <li v-for="(attraction, index) in currentDay.attractions" :key="attraction">
+            <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
               <span class="time-index">{{ String(index + 1).padStart(2, '0') }}</span>
-              <div><small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small><strong>{{ attraction }}</strong></div>
+              <div><small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small><strong>{{ attraction.name }}</strong></div>
               <i></i>
             </li>
           </ol>

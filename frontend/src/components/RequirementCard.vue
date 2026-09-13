@@ -9,6 +9,12 @@ const scopeLabel = {
   single_city: '单城市深度游',
   multi_city: '同省多城市',
 }
+const transportLabel = {
+  auto: '由系统推荐',
+  walking: '步行',
+  transit: '公共交通',
+  driving: '驾车',
+}
 </script>
 
 <template>
@@ -31,6 +37,10 @@ const scopeLabel = {
         <span class="field-icon">◷</span>
         <div><small>旅行天数</small><strong>{{ requirement.days ? `${requirement.days} 天` : '暂未确定' }}</strong></div>
       </div>
+      <div class="profile-field" :class="{ empty: !requirement.start_date }">
+        <span class="field-icon">▣</span>
+        <div><small>出发日期</small><strong>{{ requirement.start_date || '暂未确定' }}</strong></div>
+      </div>
       <div class="profile-field" :class="{ empty: !requirement.interests.length }">
         <span class="field-icon">♡</span>
         <div><small>兴趣偏好</small><strong>{{ requirement.interests.join(' / ') || '继续聊聊你的喜好' }}</strong></div>
@@ -42,6 +52,10 @@ const scopeLabel = {
       <div class="profile-field">
         <span class="field-icon">◇</span>
         <div><small>城市模式</small><strong>{{ scopeLabel[requirement.travel_scope] }}</strong></div>
+      </div>
+      <div class="profile-field">
+        <span class="field-icon">⇢</span>
+        <div><small>交通方式</small><strong>{{ transportLabel[requirement.transport_mode] }}</strong></div>
       </div>
     </div>
 

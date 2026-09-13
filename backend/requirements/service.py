@@ -21,6 +21,12 @@ class RequirementParsingService:
                 "days": parsed.days or fallback.days,
                 "interests": interests,
                 "preference_text": parsed.preference_text or fallback.preference_text,
+                "start_date": parsed.start_date or fallback.start_date,
+                "transport_mode": (
+                    fallback.transport_mode
+                    if parsed.transport_mode == "auto" and fallback.transport_mode != "auto"
+                    else parsed.transport_mode
+                ),
                 "travel_scope": (
                     fallback.travel_scope
                     if parsed.travel_scope == "auto" and fallback.travel_scope != "auto"

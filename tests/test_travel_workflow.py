@@ -2,6 +2,7 @@ import pytest
 
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.models.itinerary import CityPlan, CityPlanningResult, DayPlan
+from backend.models.retrieval import HybridSearchResult
 from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
 from backend.requirements import RequirementParser
 
@@ -20,9 +21,23 @@ class CityService:
 
     async def plan(self, *, city_stay, requirement, top_k):
         self.stays.append(city_stay)
+        attractions = [
+            HybridSearchResult(
+                poi_id=f"{city_stay.city}-poi-{day}",
+                name=f"{city_stay.city}景点{day}",
+                city=city_stay.city,
+                category="风景名胜",
+                longitude=120.0 + day / 100,
+                latitude=30.0 + day / 100,
+                description=f"{city_stay.city}第{day}天的测试景点资料。",
+                rrf_score=1 / day,
+                final_rank=day,
+            )
+            for day in range(1, city_stay.days + 1)
+        ]
         return CityPlanningResult(
             city_stay=city_stay,
-            attractions=[],
+            attractions=attractions,
             city_plan=CityPlan(
                 city=city_stay.city,
                 days=[
@@ -69,6 +84,7 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
         "丽江市",
         "丽江市",
     ]
+    assert all(day.attractions[0].poi_id for day in result.plan.itinerary)
 
 
 @pytest.mark.asyncio

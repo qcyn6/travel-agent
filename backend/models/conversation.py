@@ -1,9 +1,9 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from backend.models.requirement import TravelRequirement, TravelScope
+from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
 
 
 ConversationStatus = Literal["draft", "confirmed", "planning", "completed"]
@@ -28,6 +28,8 @@ class RequirementDraftPatch(BaseModel):
     interests: list[str] | None = None
     preference_text: str | None = None
     travel_scope: TravelScope | None = None
+    start_date: date | None = None
+    transport_mode: TransportMode | None = None
 
 
 class ConversationMessage(BaseModel):

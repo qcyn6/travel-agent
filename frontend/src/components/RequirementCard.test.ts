@@ -17,6 +17,8 @@ describe('RequirementCard', () => {
           interests: ['自然', '古城'],
           preference_text: '希望节奏轻松',
           travel_scope: 'multi_city',
+          start_date: null,
+          transport_mode: 'auto',
         },
       },
     })

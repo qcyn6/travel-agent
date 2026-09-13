@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from 'vue'
-import type { RequirementDraft, TravelScope } from '../types'
+import type { RequirementDraft, TransportMode, TravelScope } from '../types'
 
 const props = defineProps<{ open: boolean; requirement: RequirementDraft; saving: boolean }>()
 const emit = defineEmits<{
@@ -16,6 +16,8 @@ const form = reactive({
   interests: [] as string[],
   preference_text: '',
   travel_scope: 'auto' as TravelScope,
+  start_date: '',
+  transport_mode: 'auto' as TransportMode,
 })
 const interestOptions = ['自然', '历史文化', '古城', '古镇', '摄影', '人文', '美食', '休闲']
 
@@ -29,6 +31,8 @@ watch(
     form.interests = [...props.requirement.interests]
     form.preference_text = props.requirement.preference_text || ''
     form.travel_scope = props.requirement.travel_scope
+    form.start_date = props.requirement.start_date || ''
+    form.transport_mode = props.requirement.transport_mode
   },
   { immediate: true, deep: true },
 )
@@ -40,6 +44,8 @@ const draft = computed<RequirementDraft>(() => ({
   interests: [...form.interests],
   preference_text: form.preference_text.trim() || null,
   travel_scope: form.travel_scope,
+  start_date: form.start_date || null,
+  transport_mode: form.transport_mode,
 }))
 const ready = computed(() =>
   Boolean((draft.value.province || draft.value.cities.length) && draft.value.days && (draft.value.interests.length || draft.value.preference_text)),
@@ -65,12 +71,22 @@ function toggleInterest(item: string) {
           <label><span>省份</span><input v-model="form.province" placeholder="例如：云南省" /></label>
           <label><span>城市（可选）</span><input v-model="form.cities" placeholder="多个城市用顿号分隔" /></label>
           <label><span>旅行天数</span><input v-model.number="form.days" type="number" min="1" max="30" placeholder="5" /></label>
+          <label><span>出发日期（可选）</span><input v-model="form.start_date" type="date" /></label>
           <label>
             <span>城市模式</span>
             <select v-model="form.travel_scope">
               <option value="auto">由 AI 推荐</option>
               <option value="single_city">单城市深度游</option>
               <option value="multi_city">同省多城市</option>
+            </select>
+          </label>
+          <label>
+            <span>交通方式</span>
+            <select v-model="form.transport_mode">
+              <option value="auto">由系统推荐</option>
+              <option value="walking">步行</option>
+              <option value="transit">公共交通</option>
+              <option value="driving">驾车</option>
             </select>
           </label>
         </div>

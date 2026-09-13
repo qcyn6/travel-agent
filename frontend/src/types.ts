@@ -1,4 +1,5 @@
 export type TravelScope = 'single_city' | 'multi_city' | 'auto'
+export type TransportMode = 'auto' | 'walking' | 'transit' | 'driving'
 export type AppStage = 'chat' | 'planning' | 'plan'
 
 export interface RequirementDraft {
@@ -8,6 +9,8 @@ export interface RequirementDraft {
   interests: string[]
   preference_text: string | null
   travel_scope: TravelScope
+  start_date: string | null
+  transport_mode: TransportMode
 }
 
 export interface ChatMessage {
@@ -44,8 +47,22 @@ export interface TravelDay {
   day: number
   city: string
   city_day: number
-  attractions: string[]
+  date: string | null
+  attractions: AttractionStop[]
   description: string
+}
+
+export interface AttractionStop {
+  poi_id: string
+  name: string
+  city: string
+  category: string | null
+  longitude: number | null
+  latitude: number | null
+  environment: 'indoor' | 'outdoor' | 'mixed' | 'unknown'
+  estimated_visit_minutes: number | null
+  start_time: string | null
+  end_time: string | null
 }
 
 export interface TravelPlanResponse {

@@ -1,9 +1,11 @@
+from datetime import date
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 TravelScope = Literal["single_city", "multi_city", "auto"]
+TransportMode = Literal["auto", "walking", "transit", "driving"]
 
 
 class TravelRequirement(BaseModel):
@@ -17,6 +19,8 @@ class TravelRequirement(BaseModel):
     interests: list[str] = Field(default_factory=list)
     preference_text: str | None = None
     travel_scope: TravelScope = "auto"
+    start_date: date | None = None
+    transport_mode: TransportMode = "auto"
 
     @field_validator("province", "preference_text", mode="before")
     @classmethod
@@ -35,4 +39,3 @@ class TravelRequirement(BaseModel):
             if normalized and normalized not in result:
                 result.append(normalized)
         return result
-

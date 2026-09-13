@@ -28,6 +28,8 @@ class ChromaAttractionIndex:
                     "name": document.name,
                     "city": document.city,
                     "category": document.category or "",
+                    "longitude": document.longitude if document.longitude is not None else "",
+                    "latitude": document.latitude if document.latitude is not None else "",
                     "description": document.description,
                     "source_url": document.source_url or "",
                 }
@@ -52,6 +54,8 @@ class ChromaAttractionIndex:
                 name=metadata["name"],
                 city=metadata["city"],
                 category=metadata["category"] or None,
+                longitude=float(metadata["longitude"]) if metadata.get("longitude") != "" else None,
+                latitude=float(metadata["latitude"]) if metadata.get("latitude") != "" else None,
                 description=metadata["description"],
                 source_url=metadata["source_url"] or None,
                 distance=max(0.0, float(distance)),
