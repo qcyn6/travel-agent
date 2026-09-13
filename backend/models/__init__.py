@@ -12,6 +12,14 @@ from backend.models.conversation import (
     RequirementDraftPatch,
 )
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
+from backend.models.experiment import (
+    BaselineAttraction,
+    BaselineDay,
+    BaselinePlan,
+    ExperimentCase,
+    ExperimentCaseResult,
+    ExperimentMetrics,
+)
 from backend.models.degradation import DegradationNotice
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
@@ -44,6 +52,9 @@ __all__ = [
     "AttractionDocument",
     "AttractionPOI",
     "AttractionStop",
+    "BaselineAttraction",
+    "BaselineDay",
+    "BaselinePlan",
     "City",
     "CityStay",
     "CityPlan",
@@ -60,6 +71,9 @@ __all__ = [
     "DegradationNotice",
     "EvaluationIssue",
     "EvaluationResult",
+    "ExperimentCase",
+    "ExperimentCaseResult",
+    "ExperimentMetrics",
     "KnowledgeStatus",
     "OpeningHours",
     "OpeningPeriod",

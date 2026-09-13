@@ -41,6 +41,7 @@
 - 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气、开放来源和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
 - MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
+- 24 组固定 A/B 实验集：对比 LLM 直接生成与完整规划系统，使用独立指标代码评分
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
@@ -70,6 +71,15 @@ npm run dev
 ```powershell
 D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
 ```
+
+运行 A/B 实验（建议先用 `--limit 1` 冒烟）：
+
+```powershell
+D:\Miniconda\envs\travel-agent\python.exe scripts\run_ab_experiment.py --limit 1 --output data\experiments\smoke.json
+D:\Miniconda\envs\travel-agent\python.exe scripts\run_ab_experiment.py --start-date 2026-10-01 --output data\experiments\full.json
+```
+
+完整指标口径与运行方法见 `docs/A_B实验运行说明.md`。
 
 启动前需在 `.env` 配置 MySQL 连接，例如：
 
