@@ -4,6 +4,7 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.destination.planner import DestinationPlanResult
+from backend.models.attraction_facts import OpeningHours
 from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
@@ -22,6 +23,7 @@ class AttractionStop(BaseModel):
     latitude: float | None = None
     environment: Literal["indoor", "outdoor", "mixed", "unknown"] = "unknown"
     estimated_visit_minutes: int | None = Field(default=None, ge=1)
+    opening_hours: OpeningHours | None = None
     start_time: str | None = None
     end_time: str | None = None
 

@@ -60,6 +60,11 @@ class AttractionRow(Base):
         uselist=False,
         cascade="all, delete-orphan",
     )
+    facts: Mapped["AttractionFactsRow | None"] = relationship(
+        back_populates="attraction",
+        uselist=False,
+        cascade="all, delete-orphan",
+    )
 
 
 class AttractionKnowledgeRow(Base):
@@ -76,6 +81,27 @@ class AttractionKnowledgeRow(Base):
     )
 
     attraction: Mapped[AttractionRow] = relationship(back_populates="knowledge")
+
+
+class AttractionFactsRow(Base):
+    __tablename__ = "attraction_facts"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    poi_id: Mapped[str] = mapped_column(ForeignKey("attractions.poi_id"), unique=True, index=True)
+    environment: Mapped[str] = mapped_column(String(16), default="unknown")
+    estimated_visit_minutes: Mapped[int] = mapped_column(Integer)
+    duration_source: Mapped[str] = mapped_column(String(32))
+    opening_hours: Mapped[dict] = mapped_column(JSON, default=dict)
+    source_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    confidence: Mapped[str] = mapped_column(String(16), default="unknown")
+    checked_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
+    )
+
+    attraction: Mapped[AttractionRow] = relationship(back_populates="facts")
 
 
 class ConversationRow(Base):

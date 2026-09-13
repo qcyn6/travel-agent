@@ -1,4 +1,5 @@
 from backend.attractions import AttractionRepository
+from backend.attraction_facts.runtime import build_attraction_facts_service
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.destination.repository import CatalogRepository
 from backend.knowledge import KnowledgeRepository
@@ -49,5 +50,10 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 api_host=settings.qweather_api_host,
                 timeout_seconds=settings.qweather_timeout_seconds,
             )
+        ),
+        attraction_facts_service=build_attraction_facts_service(
+            session=session,
+            knowledge_repository=knowledge,
+            settings=settings,
         ),
     )

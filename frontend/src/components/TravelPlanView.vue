@@ -68,7 +68,13 @@ const printPlan = () => window.print()
           <ol class="attraction-timeline">
             <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
               <span class="time-index">{{ String(index + 1).padStart(2, '0') }}</span>
-              <div><small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small><strong>{{ attraction.name }}</strong></div>
+              <div>
+                <small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small>
+                <strong>{{ attraction.name }}</strong>
+                <small v-if="attraction.estimated_visit_minutes">建议游玩约 {{ Math.round(attraction.estimated_visit_minutes / 30) / 2 }} 小时</small>
+                <small v-if="attraction.opening_hours?.status === 'known' && attraction.opening_hours.raw_text">开放时间：{{ attraction.opening_hours.raw_text }}</small>
+                <small v-else>开放时间待出发前核验</small>
+              </div>
               <div v-if="currentDay.routes[index]" class="route-summary">
                 <span v-if="currentDay.routes[index].duration_min !== null">
                   {{ currentDay.routes[index].mode === 'walking' ? '步行' : currentDay.routes[index].mode === 'transit' ? '公共交通' : '驾车' }}

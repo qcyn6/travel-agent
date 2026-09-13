@@ -30,6 +30,8 @@
 - 相邻景点 Route Enrichment；高德失败时使用明确标记的 Haversine 估算降级
 - 结构化行程景点节点，保留 POI ID、城市、经纬度、出发日期和交通方式
 - 和风天气逐日预报补全；无日期时跳过，远期或服务失败时标记为暂不可用
+- 景点开放时间、适用条件、来源可信度和核验时间结构化保存到 MySQL `attraction_facts`
+- 建议游玩时长优先从已核验网页提取，缺失时使用明确标记的景点类别估算
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
@@ -110,6 +112,7 @@ POST /api/v1/travel/plan
 ```text
 attractions           保存所有系统查询过的高德 POI 基础事实
 attraction_knowledge  保存已完成网页检索和摘要的景点知识
+attraction_facts      保存开放时间、建议游玩时长、环境类型与事实来源
 Chroma                按城市保存已完成景点知识的向量
 Redis                 后续缓存有时效性的外部 API 查询结果
 ```

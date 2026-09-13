@@ -1,4 +1,5 @@
 from backend.models.attraction import AttractionKnowledgeState, AttractionPOI, KnowledgeStatus
+from backend.models.attraction_facts import AttractionFacts, OpeningHours, OpeningPeriod
 from backend.models.catalog import City, Province
 from backend.models.city_stay import CityStay
 from backend.models.conversation import (
@@ -33,6 +34,7 @@ from backend.models.weather import WeatherResult
 
 __all__ = [
     "AttractionKnowledge",
+    "AttractionFacts",
     "AttractionKnowledgeState",
     "AttractionDocument",
     "AttractionPOI",
@@ -49,6 +51,8 @@ __all__ = [
     "DayPlan",
     "DestinationChoiceResponse",
     "KnowledgeStatus",
+    "OpeningHours",
+    "OpeningPeriod",
     "IndexBuildResult",
     "HybridSearchRequest",
     "HybridSearchResult",

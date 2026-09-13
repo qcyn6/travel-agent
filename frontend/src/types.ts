@@ -88,8 +88,26 @@ export interface AttractionStop {
   latitude: number | null
   environment: 'indoor' | 'outdoor' | 'mixed' | 'unknown'
   estimated_visit_minutes: number | null
+  opening_hours: OpeningHours | null
   start_time: string | null
   end_time: string | null
+}
+
+export interface OpeningPeriod {
+  weekdays: number[]
+  open_time: string
+  close_time: string
+  last_entry_time: string | null
+}
+
+export interface OpeningHours {
+  status: 'known' | 'unknown'
+  periods: OpeningPeriod[]
+  raw_text: string | null
+  applicability_text: string | null
+  confidence: 'high' | 'medium' | 'low' | 'unknown'
+  source_url: string | null
+  checked_at: string | null
 }
 
 export interface TravelPlanResponse {
