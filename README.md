@@ -65,6 +65,12 @@ npm run dev
 
 浏览器访问 `http://127.0.0.1:5173`。前端开发服务器会把 `/api` 请求代理到 `http://127.0.0.1:8000`。
 
+后端启动后可运行三条真实工作流验收：
+
+```powershell
+D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
+```
+
 启动前需在 `.env` 配置 MySQL 连接，例如：
 
 ```text
