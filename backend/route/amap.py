@@ -34,12 +34,16 @@ class AmapRouteClient:
         timeout_seconds: float = 8.0,
         max_retries: int = 2,
         client: httpx.AsyncClient | None = None,
+        cache=None,
+        cache_ttl_seconds: int = 10800,
     ):
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
         self.max_retries = max(1, max_retries)
         self.client = client
+        self.cache = cache
+        self.cache_ttl_seconds = cache_ttl_seconds
 
     async def get_route(
         self,
@@ -58,6 +62,15 @@ class AmapRouteClient:
             destination.latitude,
         ):
             raise RouteAPIError("路线起点或终点缺少坐标")
+
+        cache_key = f"route:{origin.poi_id}:{destination.poi_id}:{mode}"
+        if self.cache is not None:
+            cached = await self.cache.get_json(cache_key)
+            if isinstance(cached, dict):
+                try:
+                    return RouteSegment.model_validate(cached)
+                except (TypeError, ValueError):
+                    pass
 
         params = {
             "key": self.api_key,
@@ -87,7 +100,7 @@ class AmapRouteClient:
 
         payload = await self._request(self._ENDPOINTS[mode], params)
         distance_m, duration_seconds = _route_values(payload, mode)
-        return RouteSegment(
+        result = RouteSegment(
             origin_poi_id=origin.poi_id,
             origin_name=origin.name,
             destination_poi_id=destination.poi_id,
@@ -101,6 +114,13 @@ class AmapRouteClient:
             mode=mode,
             source="amap",
         )
+        if self.cache is not None:
+            await self.cache.set_json(
+                cache_key,
+                result.model_dump(mode="json"),
+                ttl_seconds=self.cache_ttl_seconds,
+            )
+        return result
 
     async def _request(self, endpoint: str, params: dict[str, str]) -> dict[str, Any]:
         async with self._managed_client() as client:

@@ -33,6 +33,13 @@ class Settings(BaseSettings):
     evaluator_outdoor_ratio_threshold: float = 0.5
     evaluator_minimum_interest_coverage: float = 0.5
     max_replan_count: int = 2
+    redis_url: str | None = None
+    redis_key_prefix: str = "travel-agent"
+    redis_timeout_seconds: float = 1.0
+    redis_poi_ttl_seconds: int = 86400
+    redis_route_ttl_seconds: int = 10800
+    redis_weather_ttl_seconds: int = 3600
+    redis_search_ttl_seconds: int = 43200
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0

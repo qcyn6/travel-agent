@@ -62,16 +62,29 @@ class TavilyGovernmentSourceDiscovery:
         timeout_seconds: float = 15.0,
         max_results: int = 8,
         client=None,
+        cache=None,
+        cache_ttl_seconds: int = 43200,
     ):
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
         self.max_results = max(1, min(max_results, 20))
         self.client = client
+        self.cache = cache
+        self.cache_ttl_seconds = cache_ttl_seconds
 
     async def find_source(self, attraction_name: str, city: str) -> DiscoveredSource:
         if not self.api_key:
             raise SourceNotFoundError("未配置 WEB_SEARCH_API_KEY，无法搜索全国景点权威来源")
+
+        cache_key = f"search:{city}:{attraction_name}"
+        if self.cache is not None:
+            cached = await self.cache.get_json(cache_key)
+            if isinstance(cached, dict) and isinstance(cached.get("url"), str):
+                return DiscoveredSource(
+                    url=cached["url"],
+                    extracted_text=cached.get("extracted_text"),
+                )
 
         payload = {
             "query": f"{city} {attraction_name} 官方 文旅局 景区介绍",
@@ -123,10 +136,17 @@ class TavilyGovernmentSourceDiscovery:
             ):
                 raw_content = result.get("raw_content")
                 extracted_text = raw_content if isinstance(raw_content, str) else content
-                return DiscoveredSource(
+                discovered = DiscoveredSource(
                     url=url,
                     extracted_text=extracted_text[:12000] if extracted_text else None,
                 )
+                if self.cache is not None:
+                    await self.cache.set_json(
+                        cache_key,
+                        {"url": discovered.url, "extracted_text": discovered.extracted_text},
+                        ttl_seconds=self.cache_ttl_seconds,
+                    )
+                return discovered
         raise SourceNotFoundError(f"没有搜索到可验证的政府或文旅来源：{attraction_name}")
 
 

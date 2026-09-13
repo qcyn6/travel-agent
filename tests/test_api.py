@@ -15,7 +15,7 @@ def test_health():
         response = client.get("/health")
 
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "milestone": "Final M7"}
+    assert response.json() == {"status": "ok", "milestone": "Final M8"}
 
 
 def test_parse_and_resolve_api(catalog_repository):

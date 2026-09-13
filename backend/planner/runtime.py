@@ -1,5 +1,6 @@
 from backend.attractions import AttractionRepository
 from backend.attraction_facts.runtime import build_attraction_facts_service
+from backend.cache import build_cache
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.destination.repository import CatalogRepository
 from backend.evaluator import PlanEvaluator
@@ -20,6 +21,7 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
     catalog = CatalogRepository(session)
     attractions = AttractionRepository(session)
     knowledge = KnowledgeRepository(session)
+    cache = build_cache(settings)
     return TravelPlanningWorkflow(
         parser=build_requirement_parser(settings),
         resolver=DestinationResolver(catalog),
@@ -29,6 +31,7 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             attraction_repository=attractions,
             knowledge_repository=knowledge,
             settings=settings,
+            cache=cache,
         ),
         city_planning_service=CityPlanningService(
             retrieval_service=build_hybrid_service(knowledge, settings),
@@ -45,6 +48,8 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 base_url=settings.amap_base_url,
                 timeout_seconds=settings.route_timeout_seconds,
                 max_retries=settings.route_max_retries,
+                cache=cache,
+                cache_ttl_seconds=settings.redis_route_ttl_seconds,
             )
         ),
         weather_enrichment_service=WeatherEnrichmentService(
@@ -52,6 +57,8 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 settings.qweather_api_key,
                 api_host=settings.qweather_api_host,
                 timeout_seconds=settings.qweather_timeout_seconds,
+                cache=cache,
+                cache_ttl_seconds=settings.redis_weather_ttl_seconds,
             )
         ),
         attraction_facts_service=build_attraction_facts_service(

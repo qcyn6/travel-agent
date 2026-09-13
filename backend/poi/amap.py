@@ -99,6 +99,8 @@ class AmapAttractionClient:
         timeout_seconds: float = 8.0,
         max_retries: int = 3,
         client: httpx.AsyncClient | None = None,
+        cache=None,
+        cache_ttl_seconds: int = 86400,
     ):
         if not api_key:
             raise AmapConfigurationError("未配置 AMAP_API_KEY")
@@ -107,10 +109,21 @@ class AmapAttractionClient:
         self._timeout_seconds = timeout_seconds
         self._max_retries = max(1, max_retries)
         self._client = client
+        self._cache = cache
+        self._cache_ttl_seconds = cache_ttl_seconds
 
     async def search_attractions(self, city: str, *, limit: int = 30) -> list[AttractionPOI]:
         if not 1 <= limit <= 50:
             raise ValueError("limit 必须在 1 到 50 之间")
+
+        cache_key = f"poi:{city}:{limit}"
+        if self._cache is not None:
+            cached = await self._cache.get_json(cache_key)
+            if isinstance(cached, list):
+                try:
+                    return [AttractionPOI.model_validate(item) for item in cached]
+                except (TypeError, ValueError):
+                    pass
 
         raw_pois: list[Mapping[str, Any]] = []
         page_count = (limit + 24) // 25
@@ -124,7 +137,14 @@ class AmapAttractionClient:
                 if len(page_pois) < 25:
                     break
 
-        return clean_attractions(raw_pois, city)[:limit]
+        attractions = clean_attractions(raw_pois, city)[:limit]
+        if self._cache is not None:
+            await self._cache.set_json(
+                cache_key,
+                [item.model_dump(mode="json") for item in attractions],
+                ttl_seconds=self._cache_ttl_seconds,
+            )
+        return attractions
 
     def _managed_client(self):
         if self._client is not None:
@@ -183,4 +203,3 @@ class _BorrowedAsyncClient:
 
     async def __aexit__(self, *_: object) -> None:
         return None
-
