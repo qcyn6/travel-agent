@@ -84,7 +84,7 @@ const printPlan = () => window.print()
 
         <aside class="trip-notes">
           <div class="note-card"><span>✦</span><h3>为你推荐</h3><p>这份路线根据你的兴趣和旅行节奏，从已核验的景点知识中个性化生成。</p></div>
-          <div class="note-card warm"><span>⌁</span><h3>温馨提醒</h3><p>出发前请再次确认景点开放时间，并结合当天实际天气灵活调整。</p></div>
+          <div class="note-card warm"><span>⌁</span><h3>天气</h3><p v-if="currentDay.weather?.status === 'available'">{{ currentDay.weather.condition }} · {{ currentDay.weather.temperature_min }}～{{ currentDay.weather.temperature_max }}℃<template v-if="currentDay.weather.precipitation_probability !== null"> · 降水概率 {{ Math.round(currentDay.weather.precipitation_probability * 100) }}%</template></p><p v-else-if="currentDay.weather?.status === 'skipped'">未填写出发日期，本次跳过天气查询。</p><p v-else>当前日期暂时无法获取可靠预报，出发前请再次确认。</p></div>
         </aside>
       </div>
 

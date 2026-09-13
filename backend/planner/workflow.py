@@ -23,6 +23,7 @@ class TravelPlanningWorkflow:
         knowledge_bootstrap,
         city_planning_service,
         route_enrichment_service,
+        weather_enrichment_service,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -31,6 +32,7 @@ class TravelPlanningWorkflow:
         self.knowledge_bootstrap = knowledge_bootstrap
         self.city_planning_service = city_planning_service
         self.route_enrichment_service = route_enrichment_service
+        self.weather_enrichment_service = weather_enrichment_service
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -114,6 +116,10 @@ class TravelPlanningWorkflow:
         ]
         plan = plan.model_copy(update={"itinerary": enriched_days})
         await self._emit(progress, "route_enrichment", "景点间路线已补充", "completed")
+        await self._emit(progress, "weather_enrichment", "正在获取行程天气", "running")
+        weather_days = [await self.weather_enrichment_service.enrich_day(day) for day in plan.itinerary]
+        plan = plan.model_copy(update={"itinerary": weather_days})
+        await self._emit(progress, "weather_enrichment", "行程天气已处理", "completed")
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 

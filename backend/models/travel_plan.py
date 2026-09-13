@@ -8,6 +8,7 @@ from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
 from backend.models.route import RouteSegment
+from backend.models.weather import WeatherResult
 
 
 class AttractionStop(BaseModel):
@@ -35,6 +36,7 @@ class TravelDay(BaseModel):
     date: Date | None = None
     attractions: list[AttractionStop] = Field(min_length=1)
     routes: list[RouteSegment] = Field(default_factory=list)
+    weather: WeatherResult | None = None
     description: str
 
 

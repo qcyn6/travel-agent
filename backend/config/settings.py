@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     route_max_retries: int = 2
     qweather_api_key: str | None = None
     qweather_api_host: str | None = None
+    qweather_timeout_seconds: float = 8.0
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0

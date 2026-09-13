@@ -41,7 +41,7 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
 
     @created_app.get("/health")
     def health() -> dict[str, str]:
-        return {"status": "ok", "milestone": "Final M2"}
+        return {"status": "ok", "milestone": "Final M3"}
 
     return created_app
 

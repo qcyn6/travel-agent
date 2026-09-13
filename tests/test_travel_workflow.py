@@ -61,11 +61,21 @@ class RouteService:
         return day
 
 
+class WeatherService:
+    def __init__(self):
+        self.days = []
+
+    async def enrich_day(self, day):
+        self.days.append(day.day)
+        return day
+
+
 @pytest.mark.asyncio
 async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catalog_repository):
     bootstrap = Bootstrap()
     city_service = CityService()
     route_service = RouteService()
+    weather_service = WeatherService()
     workflow = TravelPlanningWorkflow(
         parser=RequirementParser(),
         resolver=DestinationResolver(catalog_repository),
@@ -74,6 +84,7 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
         knowledge_bootstrap=bootstrap,
         city_planning_service=city_service,
         route_enrichment_service=route_service,
+        weather_enrichment_service=weather_service,
     )
 
     result = await workflow.run("云南玩七天，想去两三个城市，喜欢自然、古城和摄影")
@@ -97,6 +108,7 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
     ]
     assert all(day.attractions[0].poi_id for day in result.plan.itinerary)
     assert route_service.days == [(day, "auto") for day in range(1, 8)]
+    assert weather_service.days == list(range(1, 8))
 
 
 @pytest.mark.asyncio
@@ -109,6 +121,7 @@ async def test_auto_scope_requires_user_choice(catalog_repository):
         knowledge_bootstrap=Bootstrap(),
         city_planning_service=CityService(),
         route_enrichment_service=RouteService(),
+        weather_enrichment_service=WeatherService(),
     )
 
     with pytest.raises(DestinationChoiceRequired):

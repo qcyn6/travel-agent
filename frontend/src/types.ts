@@ -51,7 +51,20 @@ export interface TravelDay {
   date: string | null
   attractions: AttractionStop[]
   routes: RouteSegment[]
+  weather: WeatherResult | null
   description: string
+}
+
+export interface WeatherResult {
+  city: string
+  date: string | null
+  condition: string | null
+  temperature_min: number | null
+  temperature_max: number | null
+  precipitation_probability: number | null
+  wind_level: string | null
+  status: 'available' | 'skipped' | 'unavailable'
+  source: 'qweather' | 'none'
 }
 
 export interface RouteSegment {

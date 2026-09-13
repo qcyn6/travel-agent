@@ -29,6 +29,7 @@ from backend.models.travel_plan import (
     TravelPlanRequest,
     TravelPlanResponse,
 )
+from backend.models.weather import WeatherResult
 
 __all__ = [
     "AttractionKnowledge",
@@ -66,4 +67,5 @@ __all__ = [
     "TravelScope",
     "TransportMode",
     "VectorSearchResult",
+    "WeatherResult",
 ]

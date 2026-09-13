@@ -9,6 +9,7 @@ from backend.planner.workflow import TravelPlanningWorkflow
 from backend.rag.runtime import build_hybrid_service
 from backend.requirements.runtime import build_requirement_parser
 from backend.route import AmapRouteClient, RouteEnrichmentService
+from backend.weather import QWeatherClient, WeatherEnrichmentService
 
 
 def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
@@ -40,6 +41,13 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 base_url=settings.amap_base_url,
                 timeout_seconds=settings.route_timeout_seconds,
                 max_retries=settings.route_max_retries,
+            )
+        ),
+        weather_enrichment_service=WeatherEnrichmentService(
+            QWeatherClient(
+                settings.qweather_api_key,
+                api_host=settings.qweather_api_host,
+                timeout_seconds=settings.qweather_timeout_seconds,
             )
         ),
     )

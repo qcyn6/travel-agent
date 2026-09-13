@@ -1,0 +1,36 @@
+from datetime import date, timedelta
+
+from backend.models.travel_plan import TravelDay
+from backend.models.weather import WeatherResult
+from backend.weather.qweather import QWeatherAPIError, QWeatherConfigurationError
+
+
+class WeatherEnrichmentService:
+    def __init__(self, client, *, today_provider=date.today):
+        self.client = client
+        self.today_provider = today_provider
+
+    async def enrich_day(self, day: TravelDay) -> TravelDay:
+        if day.date is None:
+            return day.model_copy(update={"weather": self._empty(day, "skipped")})
+        today = self.today_provider()
+        if day.date < today or day.date > today + timedelta(days=9):
+            return day.model_copy(update={"weather": self._empty(day, "unavailable")})
+        first = day.attractions[0]
+        if first.longitude is None or first.latitude is None:
+            return day.model_copy(update={"weather": self._empty(day, "unavailable")})
+        try:
+            weather = await self.client.get_weather(
+                city=day.city,
+                target_date=day.date,
+                longitude=first.longitude,
+                latitude=first.latitude,
+            )
+        except (QWeatherAPIError, QWeatherConfigurationError):
+            weather = self._empty(day, "unavailable")
+        return day.model_copy(update={"weather": weather})
+
+    @staticmethod
+    def _empty(day: TravelDay, status: str) -> WeatherResult:
+        return WeatherResult(city=day.city, date=day.date, status=status, source="none")
+
