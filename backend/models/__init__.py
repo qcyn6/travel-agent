@@ -13,6 +13,7 @@ from backend.models.conversation import (
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
+from backend.models.route import RouteMode, RouteSegment, RouteSource
 from backend.models.retrieval import (
     AttractionDocument,
     HybridSearchRequest,
@@ -54,6 +55,9 @@ __all__ = [
     "RequirementConfirmation",
     "RequirementDraft",
     "RequirementDraftPatch",
+    "RouteMode",
+    "RouteSegment",
+    "RouteSource",
     "TravelRequirement",
     "TravelDay",
     "TravelPlan",

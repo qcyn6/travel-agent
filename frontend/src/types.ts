@@ -46,10 +46,24 @@ export interface CityStay {
 export interface TravelDay {
   day: number
   city: string
+  city_adcode: string
   city_day: number
   date: string | null
   attractions: AttractionStop[]
+  routes: RouteSegment[]
   description: string
+}
+
+export interface RouteSegment {
+  origin_poi_id: string
+  origin_name: string
+  destination_poi_id: string
+  destination_name: string
+  distance_m: number | null
+  duration_min: number | null
+  mode: 'walking' | 'transit' | 'driving'
+  source: 'amap' | 'haversine' | 'unavailable'
+  estimated: boolean
 }
 
 export interface AttractionStop {

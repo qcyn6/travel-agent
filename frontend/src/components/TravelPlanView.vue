@@ -69,6 +69,14 @@ const printPlan = () => window.print()
             <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
               <span class="time-index">{{ String(index + 1).padStart(2, '0') }}</span>
               <div><small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small><strong>{{ attraction.name }}</strong></div>
+              <div v-if="currentDay.routes[index]" class="route-summary">
+                <span v-if="currentDay.routes[index].duration_min !== null">
+                  {{ currentDay.routes[index].mode === 'walking' ? '步行' : currentDay.routes[index].mode === 'transit' ? '公共交通' : '驾车' }}
+                  约 {{ currentDay.routes[index].duration_min }} 分钟 · {{ (currentDay.routes[index].distance_m! / 1000).toFixed(1) }} 公里
+                  <em v-if="currentDay.routes[index].estimated">估算</em>
+                </span>
+                <span v-else>下一段路线暂不可用</span>
+              </div>
               <i></i>
             </li>
           </ol>

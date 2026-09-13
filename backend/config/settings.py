@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     amap_base_url: str = "https://restapi.amap.com"
     amap_timeout_seconds: float = 8.0
     amap_max_retries: int = 3
+    route_timeout_seconds: float = 8.0
+    route_max_retries: int = 2
     qweather_api_key: str | None = None
     qweather_api_host: str | None = None
     web_search_api_key: str | None = None

@@ -8,6 +8,7 @@ from backend.planner.service import CityPlanningService
 from backend.planner.workflow import TravelPlanningWorkflow
 from backend.rag.runtime import build_hybrid_service
 from backend.requirements.runtime import build_requirement_parser
+from backend.route import AmapRouteClient, RouteEnrichmentService
 
 
 def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
@@ -32,5 +33,13 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 model=settings.llm_model,
                 timeout_seconds=settings.llm_timeout_seconds,
             ),
+        ),
+        route_enrichment_service=RouteEnrichmentService(
+            AmapRouteClient(
+                settings.amap_api_key,
+                base_url=settings.amap_base_url,
+                timeout_seconds=settings.route_timeout_seconds,
+                max_retries=settings.route_max_retries,
+            )
         ),
     )

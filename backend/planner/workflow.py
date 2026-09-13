@@ -22,6 +22,7 @@ class TravelPlanningWorkflow:
         catalog_repository,
         knowledge_bootstrap,
         city_planning_service,
+        route_enrichment_service,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -29,6 +30,7 @@ class TravelPlanningWorkflow:
         self.catalog_repository = catalog_repository
         self.knowledge_bootstrap = knowledge_bootstrap
         self.city_planning_service = city_planning_service
+        self.route_enrichment_service = route_enrichment_service
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -68,6 +70,7 @@ class TravelPlanningWorkflow:
         itinerary = []
         global_day = 1
         for city_plan, city_result in zip(city_plans, city_results, strict=True):
+            city_record = self.catalog_repository.find_city(city_plan.city)
             attractions_by_name = {item.name: item for item in city_result.attractions}
             for day in city_plan.days:
                 day_date = None
@@ -77,6 +80,7 @@ class TravelPlanningWorkflow:
                     TravelDay(
                         day=global_day,
                         city=city_plan.city,
+                        city_adcode=city_record.adcode,
                         city_day=day.day,
                         date=day_date,
                         attractions=[
@@ -100,6 +104,16 @@ class TravelPlanningWorkflow:
             city_plans=city_plans,
             itinerary=itinerary,
         )
+        await self._emit(progress, "route_enrichment", "正在获取景点间路线", "running")
+        enriched_days = [
+            await self.route_enrichment_service.enrich_day(
+                day,
+                requested_mode=requirement.transport_mode,
+            )
+            for day in plan.itinerary
+        ]
+        plan = plan.model_copy(update={"itinerary": enriched_days})
+        await self._emit(progress, "route_enrichment", "景点间路线已补充", "completed")
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 
