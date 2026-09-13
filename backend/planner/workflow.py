@@ -25,6 +25,7 @@ class TravelPlanningWorkflow:
         route_enrichment_service,
         weather_enrichment_service,
         attraction_facts_service,
+        schedule_builder,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -35,6 +36,7 @@ class TravelPlanningWorkflow:
         self.route_enrichment_service = route_enrichment_service
         self.weather_enrichment_service = weather_enrichment_service
         self.attraction_facts_service = attraction_facts_service
+        self.schedule_builder = schedule_builder
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -126,6 +128,10 @@ class TravelPlanningWorkflow:
         facts_days = [await self.attraction_facts_service.enrich_day(day) for day in plan.itinerary]
         plan = plan.model_copy(update={"itinerary": facts_days})
         await self._emit(progress, "attraction_facts", "景点开放时间与游玩时长已处理", "completed")
+        await self._emit(progress, "schedule", "正在生成每日时间表", "running")
+        scheduled_days = [self.schedule_builder.build_day(day) for day in plan.itinerary]
+        plan = plan.model_copy(update={"itinerary": scheduled_days})
+        await self._emit(progress, "schedule", "每日时间表已生成", "completed")
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 

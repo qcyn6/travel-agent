@@ -5,6 +5,7 @@ from backend.models.itinerary import CityPlan, CityPlanningResult, DayPlan
 from backend.models.retrieval import HybridSearchResult
 from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
 from backend.requirements import RequirementParser
+from backend.schedule import ScheduleBuilder
 
 
 class Bootstrap:
@@ -96,6 +97,7 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
         route_enrichment_service=route_service,
         weather_enrichment_service=weather_service,
         attraction_facts_service=facts_service,
+        schedule_builder=ScheduleBuilder(),
     )
 
     result = await workflow.run("云南玩七天，想去两三个城市，喜欢自然、古城和摄影")
@@ -121,6 +123,8 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
     assert route_service.days == [(day, "auto") for day in range(1, 8)]
     assert weather_service.days == list(range(1, 8))
     assert facts_service.days == list(range(1, 8))
+    assert all(day.schedule is not None for day in result.plan.itinerary)
+    assert all(day.attractions[0].start_time == "09:00" for day in result.plan.itinerary)
 
 
 @pytest.mark.asyncio
@@ -135,6 +139,7 @@ async def test_auto_scope_requires_user_choice(catalog_repository):
         route_enrichment_service=RouteService(),
         weather_enrichment_service=WeatherService(),
         attraction_facts_service=FactsService(),
+        schedule_builder=ScheduleBuilder(),
     )
 
     with pytest.raises(DestinationChoiceRequired):

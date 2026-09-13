@@ -10,6 +10,7 @@ from backend.planner.workflow import TravelPlanningWorkflow
 from backend.rag.runtime import build_hybrid_service
 from backend.requirements.runtime import build_requirement_parser
 from backend.route import AmapRouteClient, RouteEnrichmentService
+from backend.schedule import ScheduleBuilder
 from backend.weather import QWeatherClient, WeatherEnrichmentService
 
 
@@ -55,5 +56,10 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             session=session,
             knowledge_repository=knowledge,
             settings=settings,
+        ),
+        schedule_builder=ScheduleBuilder(
+            day_start_time=settings.schedule_day_start_time,
+            meal_minutes=settings.schedule_meal_minutes,
+            buffer_minutes=settings.schedule_buffer_minutes,
         ),
     )

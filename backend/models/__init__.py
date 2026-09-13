@@ -15,6 +15,7 @@ from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
 from backend.models.route import RouteMode, RouteSegment, RouteSource
+from backend.models.schedule import DaySchedule, ScheduleStatus
 from backend.models.retrieval import (
     AttractionDocument,
     HybridSearchRequest,
@@ -49,6 +50,7 @@ __all__ = [
     "ConversationCreated",
     "ConversationMessage",
     "DayPlan",
+    "DaySchedule",
     "DestinationChoiceResponse",
     "KnowledgeStatus",
     "OpeningHours",
@@ -63,6 +65,7 @@ __all__ = [
     "RouteMode",
     "RouteSegment",
     "RouteSource",
+    "ScheduleStatus",
     "TravelRequirement",
     "TravelDay",
     "TravelPlan",

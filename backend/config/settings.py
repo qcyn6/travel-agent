@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     qweather_api_key: str | None = None
     qweather_api_host: str | None = None
     qweather_timeout_seconds: float = 8.0
+    schedule_day_start_time: str = "09:00"
+    schedule_meal_minutes: int = 90
+    schedule_buffer_minutes: int = 60
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0

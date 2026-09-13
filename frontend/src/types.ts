@@ -52,7 +52,19 @@ export interface TravelDay {
   attractions: AttractionStop[]
   routes: RouteSegment[]
   weather: WeatherResult | null
+  schedule: DaySchedule | null
   description: string
+}
+
+export interface DaySchedule {
+  start_time: string
+  end_time: string
+  visit_minutes: number
+  route_minutes: number
+  meal_minutes: number
+  buffer_minutes: number
+  total_minutes: number
+  status: 'complete' | 'estimated' | 'incomplete'
 }
 
 export interface WeatherResult {
@@ -88,6 +100,7 @@ export interface AttractionStop {
   latitude: number | null
   environment: 'indoor' | 'outdoor' | 'mixed' | 'unknown'
   estimated_visit_minutes: number | null
+  duration_source: 'web_extracted' | 'category_fallback' | null
   opening_hours: OpeningHours | null
   start_time: string | null
   end_time: string | null

@@ -69,6 +69,7 @@ def _apply_facts(stop: AttractionStop, facts: AttractionFacts) -> AttractionStop
         update={
             "environment": facts.environment,
             "estimated_visit_minutes": facts.estimated_visit_minutes,
+            "duration_source": facts.duration_source,
             "opening_hours": facts.opening_hours,
         }
     )

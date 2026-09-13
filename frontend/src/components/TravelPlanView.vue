@@ -62,16 +62,17 @@ const printPlan = () => window.print()
         <article v-if="currentDay" class="day-detail glass-panel">
           <header>
             <div><span>第 {{ currentDay.day }} 天</span><h3>{{ currentDay.city }} · 城市漫游</h3></div>
-            <b>{{ currentDay.attractions.length }} 个景点</b>
+            <b>{{ currentDay.attractions.length }} 个景点<template v-if="currentDay.schedule"> · {{ currentDay.schedule.start_time }}—{{ currentDay.schedule.end_time }}</template></b>
           </header>
           <p class="day-description">{{ currentDay.description }}</p>
           <ol class="attraction-timeline">
             <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
               <span class="time-index">{{ String(index + 1).padStart(2, '0') }}</span>
               <div>
-                <small>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small>
+                <small v-if="attraction.start_time">{{ attraction.start_time }}—{{ attraction.end_time }}</small>
+                <small v-else>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small>
                 <strong>{{ attraction.name }}</strong>
-                <small v-if="attraction.estimated_visit_minutes">建议游玩约 {{ Math.round(attraction.estimated_visit_minutes / 30) / 2 }} 小时</small>
+                <small v-if="attraction.estimated_visit_minutes">建议游玩约 {{ Math.round(attraction.estimated_visit_minutes / 30) / 2 }} 小时<template v-if="attraction.duration_source === 'category_fallback'"> · 类型估算</template></small>
                 <small v-if="attraction.opening_hours?.status === 'known' && attraction.opening_hours.raw_text">开放时间：{{ attraction.opening_hours.raw_text }}</small>
                 <small v-else>开放时间待出发前核验</small>
               </div>

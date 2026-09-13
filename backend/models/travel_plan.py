@@ -9,6 +9,7 @@ from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
 from backend.models.route import RouteSegment
+from backend.models.schedule import DaySchedule
 from backend.models.weather import WeatherResult
 
 
@@ -23,6 +24,7 @@ class AttractionStop(BaseModel):
     latitude: float | None = None
     environment: Literal["indoor", "outdoor", "mixed", "unknown"] = "unknown"
     estimated_visit_minutes: int | None = Field(default=None, ge=1)
+    duration_source: Literal["web_extracted", "category_fallback"] | None = None
     opening_hours: OpeningHours | None = None
     start_time: str | None = None
     end_time: str | None = None
@@ -39,6 +41,7 @@ class TravelDay(BaseModel):
     attractions: list[AttractionStop] = Field(min_length=1)
     routes: list[RouteSegment] = Field(default_factory=list)
     weather: WeatherResult | None = None
+    schedule: DaySchedule | None = None
     description: str
 
 
