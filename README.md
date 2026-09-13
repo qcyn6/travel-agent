@@ -1,6 +1,6 @@
 # 个性化旅游规划系统 MVP
 
-当前已完成 V2 文档定义的 **M1～M6 MVP**。
+当前已完成 V2 文档定义的 **M1～M6 MVP**，以及最终方案 **Final M1～M12**（论文材料 Final M13 按要求暂不制作）。
 
 ## 已实现
 
@@ -46,17 +46,74 @@
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
 
-## 运行
+## 启动项目
 
-项目使用已有的 `travel-agent` Conda 环境：
+下面的流程适用于 Windows PowerShell。项目目录假设为 `D:\travel-agent`，Python 使用已有的 `travel-agent` Conda 环境。
+
+### 1. 检查依赖与配置
+
+先打开 PowerShell，进入项目目录并安装后端依赖：
 
 ```powershell
+cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe -m pip install -e ".[dev]"
-D:\Miniconda\envs\travel-agent\python.exe -m pytest -q
-D:\Miniconda\envs\travel-agent\python.exe -m uvicorn backend.main:app --reload
 ```
 
-另开一个终端启动前端：
+确认本机 MySQL 已启动，并已创建数据库 `travel_agent`。如果数据库还不存在，可以在 MySQL 客户端执行：
+
+```sql
+CREATE DATABASE IF NOT EXISTS travel_agent
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+项目根目录需要有 `.env`。可以从模板复制后再填写：
+
+```powershell
+Copy-Item .env.example .env
+```
+
+至少配置以下项目（值只保存在本机 `.env`，不要提交到 Git）：
+
+```text
+DATABASE_URL=mysql+pymysql://MYSQL_USER:MYSQL_PASSWORD@127.0.0.1:3306/travel_agent?charset=utf8mb4
+LLM_API_KEY=YOUR_DEEPSEEK_KEY
+AMAP_API_KEY=YOUR_AMAP_KEY
+QWEATHER_API_KEY=YOUR_QWEATHER_KEY
+QWEATHER_API_HOST=YOUR_QWEATHER_API_HOST
+WEB_SEARCH_API_KEY=YOUR_TAVILY_KEY
+DASHSCOPE_API_KEY=YOUR_DASHSCOPE_KEY
+REDIS_URL=redis://REDIS_USER:REDIS_PASSWORD@127.0.0.1:6379/0
+REDIS_WSL_DISTRO=Ubuntu
+```
+
+当前本机 Redis 使用 WSL2 中的 Redis 服务。后端第一次创建缓存连接时会自动保持 `Ubuntu` 发行版运行；Redis 服务本身需要已经安装并监听 `127.0.0.1:6379`。
+
+### 2. 启动后端
+
+保持第一个 PowerShell 窗口在项目根目录，执行：
+
+```powershell
+cd D:\travel-agent
+D:\Miniconda\envs\travel-agent\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+后端启动时会自动初始化 MySQL 表和目录数据。看到 `Application startup complete` 后，另开窗口检查：
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/health
+```
+
+正常返回类似：
+
+```text
+status milestone
+------ ---------
+ok     Final M12
+```
+
+### 3. 启动前端
+
+打开第二个 PowerShell 窗口：
 
 ```powershell
 cd D:\travel-agent\frontend
@@ -66,9 +123,31 @@ npm run dev
 
 浏览器访问 `http://127.0.0.1:5173`。前端开发服务器会把 `/api` 请求代理到 `http://127.0.0.1:8000`。
 
-后端启动后可运行三条真实工作流验收：
+### 4. 停止项目
+
+分别回到后端和前端窗口按 `Ctrl+C`。WSL Redis 不需要每次手动关闭；项目会在下次启动时自动检查并连接。
+
+### 5. 验证项目
+
+后端单元/API 测试：
 
 ```powershell
+cd D:\travel-agent
+D:\Miniconda\envs\travel-agent\python.exe -m pytest -q
+```
+
+前端测试和生产构建：
+
+```powershell
+cd D:\travel-agent\frontend
+npm test -- --run
+npm run build
+```
+
+后端启动后，可运行三条真实工作流验收：
+
+```powershell
+cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
 ```
 
@@ -80,16 +159,6 @@ D:\Miniconda\envs\travel-agent\python.exe scripts\run_ab_experiment.py --start-d
 ```
 
 完整指标口径与运行方法见 `docs/A_B实验运行说明.md`。
-
-启动前需在 `.env` 配置 MySQL 连接，例如：
-
-```text
-DATABASE_URL=mysql+pymysql://USER:PASSWORD@127.0.0.1:3306/travel_agent?charset=utf8mb4
-LLM_API_KEY=YOUR_DEEPSEEK_KEY
-AMAP_API_KEY=YOUR_AMAP_KEY
-WEB_SEARCH_API_KEY=YOUR_TAVILY_KEY
-DASHSCOPE_API_KEY=YOUR_DASHSCOPE_KEY
-```
 
 接口：
 
@@ -129,7 +198,7 @@ POST /api/v1/travel/plan
 - 首批人工核验杭州 4 个代表性景点；全国通用来源发现代码已接入 Tavily，实际搜索需配置 `WEB_SEARCH_API_KEY`
 - 通用搜索目前只自动接受与景点名称匹配的中国政府 `.gov.cn` 页面；普通攻略、点评和商业聚合页会被拒绝
 - 已支持单城市单日、单城市多日和同省 2～3 城市多日；跨省多城市不属于 MVP
-- 按文档不实现 Evaluator、Replanner、复杂预算、复杂天气和城市间精确交通优化
+- MVP 阶段不包含 Evaluator、Replanner、复杂预算、复杂天气和城市间精确交通优化；这些已在最终版本增量中实现
 - Redis 是可选加速层，未配置时自动旁路，不影响系统功能
 - 景点知识按实际规划请求逐步构建，不预先导入全国完整景点库
 
