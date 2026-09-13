@@ -1,10 +1,13 @@
 import json
+import logging
 from typing import Protocol
 
 from redis.asyncio import Redis
 from redis.exceptions import RedisError
 
 from backend.cache.wsl import ensure_wsl_service_available
+
+logger = logging.getLogger(__name__)
 
 
 class JsonCache(Protocol):
@@ -36,12 +39,14 @@ class RedisJsonCache:
             socket_connect_timeout=socket_timeout_seconds,
             socket_timeout=socket_timeout_seconds,
         )
+        self._warning_emitted = False
 
     async def get_json(self, key: str):
         try:
             value = await self.client.get(self._key(key))
             return json.loads(value) if value is not None else None
-        except (RedisError, ValueError, TypeError):
+        except (RedisError, ValueError, TypeError) as exc:
+            self._warn_once(exc)
             return None
 
     async def set_json(self, key: str, value, *, ttl_seconds: int) -> bool:
@@ -52,11 +57,17 @@ class RedisJsonCache:
                 json.dumps(value, ensure_ascii=False, separators=(",", ":")),
             )
             return True
-        except (RedisError, ValueError, TypeError):
+        except (RedisError, ValueError, TypeError) as exc:
+            self._warn_once(exc)
             return False
 
     def _key(self, key: str) -> str:
         return f"{self.key_prefix}:{key}"
+
+    def _warn_once(self, exc: Exception) -> None:
+        if not self._warning_emitted:
+            logger.warning("Redis 缓存不可用，本进程将按未命中继续：%s", type(exc).__name__)
+            self._warning_emitted = True
 
 
 def build_cache(settings) -> JsonCache:

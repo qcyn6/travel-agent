@@ -17,6 +17,8 @@ describe('TravelPlanView', () => {
           plan: {
             province: '浙江省', city_stays: [{ city: '杭州市', days: 1 }], city_plans: [],
             replan_count: 1, replan_limit_reached: false,
+            notices: [{ code: 'opening_hours_unknown', level: 'info', day: 1,
+              message: '第 1 天有 1 个景点的开放时间待核验' }],
             evaluation: { passed: true, replan_required: false, issues: [] },
             itinerary: [{
               day: 1, city: '杭州市', city_adcode: '330100', city_day: 1,
@@ -45,5 +47,6 @@ describe('TravelPlanView', () => {
     expect(wrapper.text()).toContain('每日安排合理')
     expect(wrapper.text()).toContain('部分开放时间待出发前核验')
     expect(wrapper.text()).toContain('已自动完成 1 次局部调整')
+    expect(wrapper.text()).toContain('数据说明')
   })
 })

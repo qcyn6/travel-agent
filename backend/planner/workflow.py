@@ -2,6 +2,7 @@ from datetime import timedelta
 from inspect import isawaitable
 
 from backend.destination import DestinationPlanner, DestinationResolver
+from backend.degradation import collect_degradation_notices
 from backend.models.travel_plan import AttractionStop, TravelDay, TravelPlan, TravelPlanResponse
 from backend.planner.refinement_graph import PlanRefinementGraph
 
@@ -153,6 +154,7 @@ class TravelPlanningWorkflow:
             candidates_by_city=candidates_by_city,
             progress=progress,
         )
+        plan = plan.model_copy(update={"notices": collect_degradation_notices(plan)})
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 

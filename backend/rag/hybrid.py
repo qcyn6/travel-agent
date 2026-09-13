@@ -1,7 +1,11 @@
+import logging
+
 from backend.models.retrieval import AttractionDocument, HybridSearchResult
 from backend.rag.bm25 import BM25Retriever, build_preference_query
 from backend.rag.fusion import reciprocal_rank_fusion
 from backend.rag.reranker import RerankingError
+
+logger = logging.getLogger(__name__)
 
 
 class HybridRetrievalService:
@@ -37,7 +41,8 @@ class HybridRetrievalService:
 
         try:
             ordered_ids = await self.reranker.rerank(query=query, candidates=fused_documents)
-        except RerankingError:
+        except RerankingError as exc:
+            logger.warning("DeepSeek 重排不可用，保留 RRF 顺序：%s", type(exc).__name__)
             ordered_ids = [document.poi_id for document in fused_documents]
 
         bm25_rank = {poi_id: rank for rank, poi_id in enumerate(bm25_ids, start=1)}

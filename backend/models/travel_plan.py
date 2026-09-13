@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from backend.destination.planner import DestinationPlanResult
 from backend.models.attraction_facts import OpeningHours
 from backend.models.evaluation import EvaluationResult
+from backend.models.degradation import DegradationNotice
 from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan
 from backend.models.requirement import TravelRequirement, TravelScope
@@ -57,6 +58,7 @@ class TravelPlan(BaseModel):
     evaluation: EvaluationResult | None = None
     replan_count: int = Field(default=0, ge=0)
     replan_limit_reached: bool = False
+    notices: list[DegradationNotice] = Field(default_factory=list)
 
 
 class TravelPlanRequest(BaseModel):

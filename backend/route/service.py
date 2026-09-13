@@ -1,9 +1,12 @@
 import math
+import logging
 
 from backend.models.requirement import TransportMode
 from backend.models.route import RouteMode, RouteSegment
 from backend.models.travel_plan import AttractionStop, TravelDay
 from backend.route.amap import RouteAPIError, RouteConfigurationError
+
+logger = logging.getLogger(__name__)
 
 
 _AVERAGE_SPEED_KMH: dict[RouteMode, float] = {
@@ -31,7 +34,13 @@ class RouteEnrichmentService:
                     mode=mode,
                     city_adcode=day.city_adcode,
                 )
-            except (RouteAPIError, RouteConfigurationError):
+            except (RouteAPIError, RouteConfigurationError) as exc:
+                logger.warning(
+                    "高德路线不可用，使用距离估算：%s -> %s (%s)",
+                    origin.poi_id,
+                    destination.poi_id,
+                    type(exc).__name__,
+                )
                 route = _fallback_segment(origin, destination, mode)
             routes.append(route)
         return day.model_copy(update={"routes": routes})

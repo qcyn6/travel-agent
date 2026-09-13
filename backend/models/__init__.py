@@ -12,6 +12,7 @@ from backend.models.conversation import (
     RequirementDraftPatch,
 )
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
+from backend.models.degradation import DegradationNotice
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
@@ -55,6 +56,7 @@ __all__ = [
     "DaySchedule",
     "DayReplanDecision",
     "DestinationChoiceResponse",
+    "DegradationNotice",
     "EvaluationIssue",
     "EvaluationResult",
     "KnowledgeStatus",

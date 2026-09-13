@@ -134,7 +134,15 @@ export interface TravelPlanResponse {
     evaluation: EvaluationResult | null
     replan_count: number
     replan_limit_reached: boolean
+    notices: DegradationNotice[]
   }
+}
+
+export interface DegradationNotice {
+  code: 'route_estimated' | 'route_unavailable' | 'weather_skipped' | 'weather_unavailable' | 'opening_hours_unknown' | 'schedule_incomplete' | 'replan_limit_reached'
+  level: 'info' | 'warning'
+  day: number | null
+  message: string
 }
 
 export interface EvaluationIssue {

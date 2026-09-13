@@ -1,4 +1,8 @@
+import logging
+
 from pydantic import BaseModel, Field
+
+logger = logging.getLogger(__name__)
 
 
 class KnowledgeBootstrapResult(BaseModel):
@@ -61,7 +65,12 @@ class CityKnowledgeBootstrapService:
                     city=city.name,
                     category=attraction.category,
                 )
-            except Exception:
+            except Exception as exc:
+                logger.warning(
+                    "景点知识增强失败，继续尝试下一候选：%s (%s)",
+                    attraction.poi_id,
+                    type(exc).__name__,
+                )
                 failed += 1
                 continue
             ready += 1

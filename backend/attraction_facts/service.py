@@ -1,4 +1,5 @@
 from datetime import datetime
+import logging
 from typing import Protocol
 
 from backend.attraction_facts.defaults import category_defaults
@@ -6,6 +7,8 @@ from backend.attraction_facts.extractor import FactsExtractionError
 from backend.knowledge.web_fetcher import WebContentError
 from backend.models.attraction_facts import AttractionFacts, OpeningHours
 from backend.models.travel_plan import AttractionStop, TravelDay
+
+logger = logging.getLogger(__name__)
 
 
 class FactsStore(Protocol):
@@ -57,7 +60,12 @@ class AttractionFactsEnrichmentService:
                     source_url=source_url,
                     source_text=source_text,
                 )
-            except (WebContentError, FactsExtractionError):
+            except (WebContentError, FactsExtractionError) as exc:
+                logger.warning(
+                    "景点事实无法从网页提取，使用类别时长且开放时间标记未知：%s (%s)",
+                    stop.poi_id,
+                    type(exc).__name__,
+                )
                 facts = None
         if facts is None:
             facts = _fallback_facts(stop, source_url=source_url, checked_at=self.now_provider())

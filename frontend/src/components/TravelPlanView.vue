@@ -10,6 +10,7 @@ const currentDay = computed(() => props.result.plan.itinerary.find((item) => ite
 const totalAttractions = computed(() => new Set(props.result.plan.itinerary.flatMap((item) => item.attractions.map((attraction) => attraction.poi_id))).size)
 const currentIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === currentDay.value.day) || [])
 const globalIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === null) || [])
+const currentNotices = computed(() => (props.result.plan.notices || []).filter((notice) => notice.day === currentDay.value.day || notice.day === null))
 const routeMinutes = computed(() => currentDay.value.routes.reduce((total, route) => total + (route.duration_min || 0), 0))
 const issueFor = (type: EvaluationIssue['type']) => currentIssues.value.find((issue) => issue.type === type)
 const checkItems = computed(() => [
@@ -123,6 +124,10 @@ const printPlan = () => window.print()
               {{ item.severity === 'ok' ? '✓' : item.severity === 'unknown' ? '○' : '⚠' }} {{ item.message }}
             </p>
             <p v-for="issue in globalIssues" :key="issue.message" :class="`check-${issue.severity}`">⚠ {{ issue.message }}</p>
+          </div>
+          <div v-if="currentNotices.length" class="note-card notice-card">
+            <span>i</span><h3>数据说明</h3>
+            <p v-for="notice in currentNotices" :key="`${notice.code}-${notice.day}`" :class="notice.level">{{ notice.level === 'warning' ? '⚠' : '○' }} {{ notice.message }}</p>
           </div>
         </aside>
       </div>

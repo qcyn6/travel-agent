@@ -1,8 +1,11 @@
 from datetime import date, timedelta
+import logging
 
 from backend.models.travel_plan import TravelDay
 from backend.models.weather import WeatherResult
 from backend.weather.qweather import QWeatherAPIError, QWeatherConfigurationError
+
+logger = logging.getLogger(__name__)
 
 
 class WeatherEnrichmentService:
@@ -26,11 +29,11 @@ class WeatherEnrichmentService:
                 longitude=first.longitude,
                 latitude=first.latitude,
             )
-        except (QWeatherAPIError, QWeatherConfigurationError):
+        except (QWeatherAPIError, QWeatherConfigurationError) as exc:
+            logger.warning("天气服务不可用，跳过天气硬判断：%s (%s)", day.city, type(exc).__name__)
             weather = self._empty(day, "unavailable")
         return day.model_copy(update={"weather": weather})
 
     @staticmethod
     def _empty(day: TravelDay, status: str) -> WeatherResult:
         return WeatherResult(city=day.city, date=day.date, status=status, source="none")
-
