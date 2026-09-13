@@ -151,6 +151,26 @@ cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
 ```
 
+### 6. 常见启动问题
+
+如果看到 `address already in use`、`WinError 10048` 或 Vite 提示端口已占用，说明项目已经启动过，不要再次启动同一个服务。先检查：
+
+```powershell
+Get-NetTCPConnection -LocalPort 8000,5173 -State Listen
+```
+
+如果 `http://127.0.0.1:8000/health` 能返回 `status: ok`，后端已经正常运行；如果浏览器能打开 `http://127.0.0.1:5173`，前端已经正常运行。需要重启时，回到原来的后端或前端终端按 `Ctrl+C`，再重新执行启动命令。
+
+如果端口被异常残留进程占用，先根据上面命令确认 PID，再只结束对应的项目进程：
+
+```powershell
+Stop-Process -Id <PID>
+```
+
+Redis 认证失败时，确认 `.env` 中的 `REDIS_URL` 使用当前 Redis 用户，并确认 WSL Redis 正在监听 `127.0.0.1:6379`。Redis 连接失败不会阻断规划，后端会记录 warning 并旁路缓存。
+
+MySQL 连接失败时，确认 MySQL 已启动、数据库 `travel_agent` 已创建，并检查 `.env` 中 `DATABASE_URL` 的用户名、密码和端口。
+
 运行 A/B 实验（建议先用 `--limit 1` 冒烟）：
 
 ```powershell
