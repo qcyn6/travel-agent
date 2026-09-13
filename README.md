@@ -40,6 +40,7 @@
 - Windows + WSL2 开发环境可配置 `REDIS_WSL_DISTRO=Ubuntu`，Python 启动缓存层时会自动保持该发行版运行
 - 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气、开放来源和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
+- MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
@@ -80,6 +81,7 @@ DASHSCOPE_API_KEY=YOUR_DASHSCOPE_KEY
 GET  /health
 POST /api/v1/conversations
 GET  /api/v1/conversations/{conversation_id}
+GET  /api/v1/conversations/{conversation_id}/plans
 POST /api/v1/conversations/{conversation_id}/messages
 PATCH /api/v1/conversations/{conversation_id}/requirement
 POST /api/v1/conversations/{conversation_id}/requirement/confirm

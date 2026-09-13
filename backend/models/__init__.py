@@ -19,6 +19,7 @@ from backend.models.requirement import TransportMode, TravelRequirement, TravelS
 from backend.models.replanning import DayReplanDecision, ReplanningResult
 from backend.models.route import RouteMode, RouteSegment, RouteSource
 from backend.models.schedule import DaySchedule, ScheduleStatus
+from backend.models.saved_plan import SavedTravelPlan
 from backend.models.retrieval import (
     AttractionDocument,
     HybridSearchRequest,
@@ -74,6 +75,7 @@ __all__ = [
     "RouteSegment",
     "RouteSource",
     "ScheduleStatus",
+    "SavedTravelPlan",
     "TravelRequirement",
     "TravelDay",
     "TravelPlan",

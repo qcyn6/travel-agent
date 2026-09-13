@@ -124,6 +124,11 @@ class ConversationRow(Base):
         cascade="all, delete-orphan",
         order_by="ConversationMessageRow.sequence_number",
     )
+    plans: Mapped[list["TravelPlanRow"]] = relationship(
+        back_populates="conversation",
+        cascade="all, delete-orphan",
+        order_by="TravelPlanRow.version",
+    )
 
 
 class ConversationMessageRow(Base):
@@ -143,3 +148,23 @@ class ConversationMessageRow(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
     conversation: Mapped[ConversationRow] = relationship(back_populates="messages")
+
+
+class TravelPlanRow(Base):
+    __tablename__ = "travel_plans"
+    __table_args__ = (
+        UniqueConstraint("session_id", "version", name="uq_travel_plan_session_version"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    session_id: Mapped[str] = mapped_column(
+        ForeignKey("conversations.id", ondelete="CASCADE"),
+        index=True,
+    )
+    version: Mapped[int] = mapped_column(Integer)
+    requirement_json: Mapped[dict] = mapped_column(JSON)
+    plan_json: Mapped[dict] = mapped_column(JSON)
+    evaluation_json: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    conversation: Mapped[ConversationRow] = relationship(back_populates="plans")

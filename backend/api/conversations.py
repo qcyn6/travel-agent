@@ -28,6 +28,7 @@ from backend.models.conversation import (
 )
 from backend.planner import DestinationChoiceRequired, build_travel_workflow
 from backend.requirements.runtime import build_requirement_parser
+from backend.travel_plans import TravelPlanRepository, get_travel_plan_repository
 
 
 router = APIRouter(prefix="/api/v1/conversations", tags=["conversations"])
@@ -85,6 +86,17 @@ def get_conversation(
         return service.get(conversation_id)
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.get("/{conversation_id}/plans")
+def list_conversation_plans(
+    conversation_id: str,
+    repository: ConversationRepository = Depends(get_conversation_repository),
+    plan_repository: TravelPlanRepository = Depends(get_travel_plan_repository),
+):
+    if repository.get(conversation_id) is None:
+        raise HTTPException(status_code=404, detail="当前会话不存在或已失效")
+    return plan_repository.list_for_session(conversation_id)
 
 
 @router.post("/{conversation_id}/messages")
@@ -196,6 +208,7 @@ async def plan_conversation(
     repository: ConversationRepository = Depends(get_conversation_repository),
     settings: Settings = Depends(get_settings),
     session=Depends(get_db),
+    plan_repository: TravelPlanRepository = Depends(get_travel_plan_repository),
 ) -> StreamingResponse:
     row = repository.get(conversation_id)
     if row is None:
@@ -215,6 +228,7 @@ async def plan_conversation(
             repository.set_status(row, "planning")
             try:
                 result = await workflow.run_requirement(requirement, progress=progress)
+                plan_repository.save(conversation_id, result)
                 repository.set_status(row, "completed")
                 await queue.put(("plan_completed", result.model_dump(mode="json")))
             except DestinationChoiceRequired as exc:
