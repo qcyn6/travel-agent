@@ -66,10 +66,10 @@ CREATE DATABASE IF NOT EXISTS travel_agent
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-项目根目录需要有 `.env`。可以从模板复制后再填写：
+项目根目录需要有 `.env`。如果还没有该文件，可以从模板创建（已存在时不要覆盖）：
 
 ```powershell
-Copy-Item .env.example .env
+if (!(Test-Path .env)) { Copy-Item .env.example .env }
 ```
 
 至少配置以下项目（值只保存在本机 `.env`，不要提交到 Git）：
