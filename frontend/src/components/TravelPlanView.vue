@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { TravelPlanResponse } from '../types'
+import type { EvaluationIssue, TravelPlanResponse } from '../types'
 
 const props = defineProps<{ result: TravelPlanResponse }>()
 defineEmits<{ restart: []; revise: [] }>()
@@ -8,6 +8,20 @@ defineEmits<{ restart: []; revise: [] }>()
 const activeDay = ref(1)
 const currentDay = computed(() => props.result.plan.itinerary.find((item) => item.day === activeDay.value) || props.result.plan.itinerary[0])
 const totalAttractions = computed(() => new Set(props.result.plan.itinerary.flatMap((item) => item.attractions.map((attraction) => attraction.poi_id))).size)
+const currentIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === currentDay.value.day) || [])
+const globalIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === null) || [])
+const routeMinutes = computed(() => currentDay.value.routes.reduce((total, route) => total + (route.duration_min || 0), 0))
+const issueFor = (type: EvaluationIssue['type']) => currentIssues.value.find((issue) => issue.type === type)
+const checkItems = computed(() => [
+  issueFor('schedule_density') || { type: 'schedule_density', severity: 'ok', message: '每日安排合理' },
+  issueFor('route') || { type: 'route', severity: 'ok', message: '路线无明显冲突' },
+  issueFor('weather') || (currentDay.value.weather?.status === 'available'
+    ? { type: 'weather', severity: 'ok', message: '天气与游览场景无明显冲突' }
+    : { type: 'weather', severity: 'unknown', message: '天气待出发前确认' }),
+  issueFor('opening_hours') || (currentDay.value.attractions.some((item) => item.opening_hours?.status === 'unknown')
+    ? { type: 'opening_hours', severity: 'unknown', message: '部分开放时间待出发前核验' }
+    : { type: 'opening_hours', severity: 'ok', message: '无已知开放时间冲突' }),
+])
 const printPlan = () => window.print()
 </script>
 
@@ -22,6 +36,7 @@ const printPlan = () => window.print()
           <div><strong>{{ result.requirement.days }}</strong><span>旅行天数</span></div>
           <div><strong>{{ result.plan.city_stays.length }}</strong><span>目的城市</span></div>
           <div><strong>{{ totalAttractions }}</strong><span>精选景点</span></div>
+          <div><strong>{{ result.plan.evaluation?.passed ? '通过' : '待确认' }}</strong><span>方案检查</span></div>
         </div>
       </div>
       <div class="mountain-art" aria-hidden="true"><span></span><i></i><b></b></div>
@@ -68,11 +83,11 @@ const printPlan = () => window.print()
           <p v-if="result.plan.replan_count" class="day-description">
             已自动完成 {{ result.plan.replan_count }} 次局部调整<template v-if="result.plan.replan_limit_reached">，仍有问题需要你确认</template>。
           </p>
-          <div v-if="result.plan.evaluation?.issues.some((issue) => issue.day === currentDay.day)" class="day-description">
-            <strong>行程检查</strong>
-            <p v-for="issue in result.plan.evaluation.issues.filter((item) => item.day === currentDay.day)" :key="`${issue.type}-${issue.message}`">
-              {{ issue.severity === 'high' ? '⚠' : '提示' }} {{ issue.message }}<template v-if="issue.suggestion">；{{ issue.suggestion }}</template>
-            </p>
+          <div v-if="currentDay.schedule" class="day-metrics">
+            <span>游览 {{ currentDay.schedule.visit_minutes }} 分钟</span>
+            <span>交通 {{ routeMinutes }} 分钟</span>
+            <span>用餐 {{ currentDay.schedule.meal_minutes }} 分钟</span>
+            <span>缓冲 {{ currentDay.schedule.buffer_minutes }} 分钟</span>
           </div>
           <ol class="attraction-timeline">
             <li v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
@@ -84,6 +99,7 @@ const printPlan = () => window.print()
                 <small v-if="attraction.estimated_visit_minutes">建议游玩约 {{ Math.round(attraction.estimated_visit_minutes / 30) / 2 }} 小时<template v-if="attraction.duration_source === 'category_fallback'"> · 类型估算</template></small>
                 <small v-if="attraction.opening_hours?.status === 'known' && attraction.opening_hours.raw_text">开放时间：{{ attraction.opening_hours.raw_text }}</small>
                 <small v-else>开放时间待出发前核验</small>
+                <a v-if="attraction.opening_hours?.source_url" :href="attraction.opening_hours.source_url" target="_blank" rel="noreferrer">查看开放时间来源</a>
               </div>
               <div v-if="currentDay.routes[index]" class="route-summary">
                 <span v-if="currentDay.routes[index].duration_min !== null">
@@ -101,6 +117,13 @@ const printPlan = () => window.print()
         <aside class="trip-notes">
           <div class="note-card"><span>✦</span><h3>为你推荐</h3><p>这份路线根据你的兴趣和旅行节奏，从已核验的景点知识中个性化生成。</p></div>
           <div class="note-card warm"><span>⌁</span><h3>天气</h3><p v-if="currentDay.weather?.status === 'available'">{{ currentDay.weather.condition }} · {{ currentDay.weather.temperature_min }}～{{ currentDay.weather.temperature_max }}℃<template v-if="currentDay.weather.precipitation_probability !== null"> · 降水概率 {{ Math.round(currentDay.weather.precipitation_probability * 100) }}%</template></p><p v-else-if="currentDay.weather?.status === 'skipped'">未填写出发日期，本次跳过天气查询。</p><p v-else>当前日期暂时无法获取可靠预报，出发前请再次确认。</p></div>
+          <div class="note-card evaluation-card">
+            <span>✓</span><h3>方案检查</h3>
+            <p v-for="item in checkItems" :key="item.type" :class="`check-${item.severity}`">
+              {{ item.severity === 'ok' ? '✓' : item.severity === 'unknown' ? '○' : '⚠' }} {{ item.message }}
+            </p>
+            <p v-for="issue in globalIssues" :key="issue.message" :class="`check-${issue.severity}`">⚠ {{ issue.message }}</p>
+          </div>
         </aside>
       </div>
 
