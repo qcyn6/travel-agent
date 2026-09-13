@@ -2,8 +2,10 @@ import pytest
 
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.evaluator import PlanEvaluator
+from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.itinerary import CityPlan, CityPlanningResult, DayPlan
 from backend.models.retrieval import HybridSearchResult
+from backend.models.replanning import ReplanningResult
 from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
 from backend.requirements import RequirementParser
 from backend.schedule import ScheduleBuilder
@@ -81,6 +83,11 @@ class FactsService:
         return day
 
 
+class NoopReplanningService:
+    async def replan(self, **kwargs):
+        raise AssertionError("没有高等级问题时不应调用 Replanner")
+
+
 @pytest.mark.asyncio
 async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catalog_repository):
     bootstrap = Bootstrap()
@@ -100,6 +107,7 @@ async def test_yunnan_workflow_reuses_city_planner_and_flattens_seven_days(catal
         attraction_facts_service=facts_service,
         schedule_builder=ScheduleBuilder(),
         evaluator=PlanEvaluator(),
+        replanning_service=NoopReplanningService(),
     )
 
     result = await workflow.run("云南玩七天，想去两三个城市，喜欢自然、古城和摄影")
@@ -144,7 +152,112 @@ async def test_auto_scope_requires_user_choice(catalog_repository):
         attraction_facts_service=FactsService(),
         schedule_builder=ScheduleBuilder(),
         evaluator=PlanEvaluator(),
+        replanning_service=NoopReplanningService(),
     )
 
     with pytest.raises(DestinationChoiceRequired):
         await workflow.run("云南玩七天，喜欢自然、古城和摄影")
+
+
+class SequenceEvaluator:
+    def __init__(self):
+        self.calls = 0
+
+    def evaluate(self, plan, requirement):
+        self.calls += 1
+        if self.calls == 1:
+            return EvaluationResult(
+                passed=False,
+                replan_required=True,
+                issues=[EvaluationIssue(
+                    type="schedule_density", severity="high", day=1,
+                    message="第 1 天过密", suggestion="减少景点",
+                )],
+            )
+        return EvaluationResult(passed=True, replan_required=False, issues=[])
+
+
+class AlwaysFailEvaluator:
+    def __init__(self):
+        self.calls = 0
+
+    def evaluate(self, plan, requirement):
+        self.calls += 1
+        return EvaluationResult(
+            passed=False,
+            replan_required=True,
+            issues=[EvaluationIssue(
+                type="schedule_density", severity="high", day=1,
+                message="第 1 天仍然过密", suggestion="继续减少景点",
+            )],
+        )
+
+
+class LocalReplanningService:
+    def __init__(self):
+        self.calls = 0
+
+    async def replan(self, *, plan, **kwargs):
+        self.calls += 1
+        return ReplanningResult(plan=plan, changed_days=[1])
+
+
+@pytest.mark.asyncio
+async def test_workflow_replans_and_refreshes_only_affected_day(catalog_repository):
+    route_service = RouteService()
+    facts_service = FactsService()
+    evaluator = SequenceEvaluator()
+    replanning_service = LocalReplanningService()
+    workflow = TravelPlanningWorkflow(
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        destination_planner=DestinationPlanner(catalog_repository),
+        catalog_repository=catalog_repository,
+        knowledge_bootstrap=Bootstrap(),
+        city_planning_service=CityService(),
+        route_enrichment_service=route_service,
+        weather_enrichment_service=WeatherService(),
+        attraction_facts_service=facts_service,
+        schedule_builder=ScheduleBuilder(),
+        evaluator=evaluator,
+        replanning_service=replanning_service,
+        max_replan_count=2,
+    )
+
+    result = await workflow.run("杭州玩一天，喜欢自然", travel_scope="single_city")
+
+    assert replanning_service.calls == 1
+    assert evaluator.calls == 2
+    assert route_service.days == [(1, "auto"), (1, "auto")]
+    assert facts_service.days == [1, 1]
+    assert result.plan.replan_count == 1
+    assert result.plan.replan_limit_reached is False
+
+
+@pytest.mark.asyncio
+async def test_langgraph_stops_after_configured_replan_limit(catalog_repository):
+    evaluator = AlwaysFailEvaluator()
+    replanning_service = LocalReplanningService()
+    workflow = TravelPlanningWorkflow(
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        destination_planner=DestinationPlanner(catalog_repository),
+        catalog_repository=catalog_repository,
+        knowledge_bootstrap=Bootstrap(),
+        city_planning_service=CityService(),
+        route_enrichment_service=RouteService(),
+        weather_enrichment_service=WeatherService(),
+        attraction_facts_service=FactsService(),
+        schedule_builder=ScheduleBuilder(),
+        evaluator=evaluator,
+        replanning_service=replanning_service,
+        max_replan_count=2,
+    )
+
+    result = await workflow.run("杭州玩一天，喜欢自然", travel_scope="single_city")
+
+    assert replanning_service.calls == 2
+    assert evaluator.calls == 3
+    assert result.plan.replan_count == 2
+    assert result.plan.replan_limit_reached is True
+    assert result.plan.evaluation.replan_required is True

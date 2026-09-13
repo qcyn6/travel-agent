@@ -9,6 +9,7 @@ from backend.planner.city import DeepSeekCityPlanner
 from backend.planner.service import CityPlanningService
 from backend.planner.workflow import TravelPlanningWorkflow
 from backend.rag.runtime import build_hybrid_service
+from backend.replanner import DeepSeekDayReplanner, ReplanningService
 from backend.requirements.runtime import build_requirement_parser
 from backend.route import AmapRouteClient, RouteEnrichmentService
 from backend.schedule import ScheduleBuilder
@@ -71,4 +72,14 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             outdoor_ratio_threshold=settings.evaluator_outdoor_ratio_threshold,
             minimum_interest_coverage=settings.evaluator_minimum_interest_coverage,
         ),
+        replanning_service=ReplanningService(
+            DeepSeekDayReplanner(
+                settings.llm_api_key,
+                base_url=settings.llm_base_url,
+                model=settings.llm_model,
+                timeout_seconds=settings.llm_timeout_seconds,
+            ),
+            max_day_minutes=settings.evaluator_max_day_minutes,
+        ),
+        max_replan_count=settings.max_replan_count,
     )

@@ -55,6 +55,8 @@ class TravelPlan(BaseModel):
     city_plans: list[CityPlan] = Field(min_length=1, max_length=3)
     itinerary: list[TravelDay] = Field(min_length=1)
     evaluation: EvaluationResult | None = None
+    replan_count: int = Field(default=0, ge=0)
+    replan_limit_reached: bool = False
 
 
 class TravelPlanRequest(BaseModel):

@@ -3,6 +3,7 @@ from inspect import isawaitable
 
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.models.travel_plan import AttractionStop, TravelDay, TravelPlan, TravelPlanResponse
+from backend.planner.refinement_graph import PlanRefinementGraph
 
 
 class DestinationChoiceRequired(RuntimeError):
@@ -27,6 +28,8 @@ class TravelPlanningWorkflow:
         attraction_facts_service,
         schedule_builder,
         evaluator,
+        replanning_service,
+        max_replan_count: int = 2,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -39,6 +42,8 @@ class TravelPlanningWorkflow:
         self.attraction_facts_service = attraction_facts_service
         self.schedule_builder = schedule_builder
         self.evaluator = evaluator
+        self.replanning_service = replanning_service
+        self.max_replan_count = max_replan_count
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -135,12 +140,36 @@ class TravelPlanningWorkflow:
         scheduled_days = [self.schedule_builder.build_day(day) for day in plan.itinerary]
         plan = plan.model_copy(update={"itinerary": scheduled_days})
         await self._emit(progress, "schedule", "每日时间表已生成", "completed")
-        await self._emit(progress, "evaluation", "正在检查行程可执行性", "running")
-        evaluation = self.evaluator.evaluate(plan, requirement)
-        plan = plan.model_copy(update={"evaluation": evaluation})
-        await self._emit(progress, "evaluation", "行程可执行性检查完成", "completed")
+        candidates_by_city = {result.city_stay.city: result.attractions for result in city_results}
+        plan = await PlanRefinementGraph(
+            evaluator=self.evaluator,
+            replanning_service=self.replanning_service,
+            refresh_changed_days=self._refresh_changed_days,
+            max_replan_count=self.max_replan_count,
+            emit=self._emit,
+        ).run(
+            plan=plan,
+            requirement=requirement,
+            candidates_by_city=candidates_by_city,
+            progress=progress,
+        )
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
+
+    async def _refresh_changed_days(self, plan, *, changed_days, requested_mode):
+        refreshed = []
+        for day in plan.itinerary:
+            if day.day not in changed_days:
+                refreshed.append(day)
+                continue
+            day = await self.route_enrichment_service.enrich_day(
+                day,
+                requested_mode=requested_mode,
+            )
+            day = await self.attraction_facts_service.enrich_day(day)
+            day = self.schedule_builder.build_day(day)
+            refreshed.append(day)
+        return plan.model_copy(update={"itinerary": refreshed})
 
     @staticmethod
     async def _emit(progress, step: str, label: str, status: str) -> None:

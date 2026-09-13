@@ -32,6 +32,7 @@ class Settings(BaseSettings):
     evaluator_rain_probability_threshold: float = 0.5
     evaluator_outdoor_ratio_threshold: float = 0.5
     evaluator_minimum_interest_coverage: float = 0.5
+    max_replan_count: int = 2
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
     web_search_timeout_seconds: float = 15.0

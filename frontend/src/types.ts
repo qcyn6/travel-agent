@@ -132,6 +132,8 @@ export interface TravelPlanResponse {
     city_plans: unknown[]
     itinerary: TravelDay[]
     evaluation: EvaluationResult | null
+    replan_count: number
+    replan_limit_reached: boolean
   }
 }
 

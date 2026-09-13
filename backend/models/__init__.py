@@ -15,6 +15,7 @@ from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
+from backend.models.replanning import DayReplanDecision, ReplanningResult
 from backend.models.route import RouteMode, RouteSegment, RouteSource
 from backend.models.schedule import DaySchedule, ScheduleStatus
 from backend.models.retrieval import (
@@ -52,6 +53,7 @@ __all__ = [
     "ConversationMessage",
     "DayPlan",
     "DaySchedule",
+    "DayReplanDecision",
     "DestinationChoiceResponse",
     "EvaluationIssue",
     "EvaluationResult",
@@ -65,6 +67,7 @@ __all__ = [
     "RequirementConfirmation",
     "RequirementDraft",
     "RequirementDraftPatch",
+    "ReplanningResult",
     "RouteMode",
     "RouteSegment",
     "RouteSource",

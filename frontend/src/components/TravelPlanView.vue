@@ -65,6 +65,9 @@ const printPlan = () => window.print()
             <b>{{ currentDay.attractions.length }} 个景点<template v-if="currentDay.schedule"> · {{ currentDay.schedule.start_time }}—{{ currentDay.schedule.end_time }}</template></b>
           </header>
           <p class="day-description">{{ currentDay.description }}</p>
+          <p v-if="result.plan.replan_count" class="day-description">
+            已自动完成 {{ result.plan.replan_count }} 次局部调整<template v-if="result.plan.replan_limit_reached">，仍有问题需要你确认</template>。
+          </p>
           <div v-if="result.plan.evaluation?.issues.some((issue) => issue.day === currentDay.day)" class="day-description">
             <strong>行程检查</strong>
             <p v-for="issue in result.plan.evaluation.issues.filter((item) => item.day === currentDay.day)" :key="`${issue.type}-${issue.message}`">
