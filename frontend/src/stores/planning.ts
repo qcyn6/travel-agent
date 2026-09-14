@@ -63,8 +63,44 @@ export const usePlanningStore = defineStore('planning', () => {
   const conversationDeleting = ref<string | null>(null)
   const planningElapsedSeconds = ref(0)
   const planningRequestActive = ref(false)
+  const planningEventCursor = ref(0)
+  const planningJobId = ref<string | null>(null)
   let planningStartedAt: number | null = null
   let planningTimer: number | null = null
+
+  function planningStateKey(id: string) {
+    return `travel_planning_state_${id}`
+  }
+
+  function persistPlanningState() {
+    if (!conversationId.value) return
+    sessionStorage.setItem(
+      planningStateKey(conversationId.value),
+      JSON.stringify({ jobId: planningJobId.value, cursor: planningEventCursor.value }),
+    )
+  }
+
+  function loadPlanningState(id: string) {
+    planningEventCursor.value = 0
+    planningJobId.value = null
+    const cached = sessionStorage.getItem(planningStateKey(id))
+    if (!cached) return
+    try {
+      const state = JSON.parse(cached) as { jobId?: unknown; cursor?: unknown }
+      if (typeof state.jobId === 'string' && state.jobId) planningJobId.value = state.jobId
+      if (typeof state.cursor === 'number' && Number.isFinite(state.cursor) && state.cursor >= 0) {
+        planningEventCursor.value = Math.floor(state.cursor)
+      }
+    } catch {
+      sessionStorage.removeItem(planningStateKey(id))
+    }
+  }
+
+  function resetPlanningState() {
+    if (conversationId.value) sessionStorage.removeItem(planningStateKey(conversationId.value))
+    planningEventCursor.value = 0
+    planningJobId.value = null
+  }
 
   function updatePlanningElapsed() {
     if (planningStartedAt === null) return
@@ -102,6 +138,7 @@ export const usePlanningStore = defineStore('planning', () => {
     stopPlanningTimer(true)
     conversationId.value = conversation.id
     sessionStorage.setItem('travel_conversation_id', conversation.id)
+    loadPlanningState(conversation.id)
     requirement.value = conversation.requirement
     messages.value = normalizeMessages(conversation.messages)
     suggestions.value = suggestionsFor(conversation.requirement)
@@ -163,6 +200,7 @@ export const usePlanningStore = defineStore('planning', () => {
     const created = await conversationApi.create()
     conversationId.value = created.id
     sessionStorage.setItem('travel_conversation_id', created.id)
+    resetPlanningState()
     for (const key of Object.keys(sessionStorage)) {
       if (key.startsWith('travel_plan_')) sessionStorage.removeItem(key)
     }
@@ -311,9 +349,22 @@ export const usePlanningStore = defineStore('planning', () => {
     setConversationStatus('planning')
     startPlanningTimer()
     try {
-      await streamEvents(`/conversations/${conversationId.value}/plan`, undefined, (event, data) => {
-        handlePlanningEvent(event, data)
-      })
+      await streamEvents(
+        `/conversations/${conversationId.value}/plan`,
+        undefined,
+        (event, data, sequence) => handlePlanningEvent(event, data, sequence),
+        {
+          after: planningEventCursor.value,
+          jobId: planningJobId.value,
+          onOpen: ({ jobId }) => {
+            if (jobId && jobId !== planningJobId.value) {
+              planningJobId.value = jobId
+              planningEventCursor.value = 0
+              persistPlanningState()
+            }
+          },
+        },
+      )
     } catch (caught) {
       await handlePlanningConnectionError(caught)
     } finally {
@@ -337,9 +388,21 @@ export const usePlanningStore = defineStore('planning', () => {
     setConversationStatus('planning')
     startPlanningTimer()
     try {
-      await streamGetEvents(`/conversations/${conversationId.value}/plan/events`, 0, (event, data) => {
-        handlePlanningEvent(event, data)
-      })
+      await streamGetEvents(
+        `/conversations/${conversationId.value}/plan/events`,
+        planningEventCursor.value,
+        (event, data, sequence) => handlePlanningEvent(event, data, sequence),
+        {
+          jobId: planningJobId.value,
+          onOpen: ({ jobId }) => {
+            if (jobId && jobId !== planningJobId.value) {
+              planningJobId.value = jobId
+              planningEventCursor.value = 0
+              persistPlanningState()
+            }
+          },
+        },
+      )
     } catch (caught) {
       await handlePlanningConnectionError(caught)
     } finally {
@@ -349,7 +412,11 @@ export const usePlanningStore = defineStore('planning', () => {
     }
   }
 
-  function handlePlanningEvent(event: string, data: any) {
+  function handlePlanningEvent(event: string, data: any, sequence?: number) {
+    if (sequence !== undefined && sequence >= planningEventCursor.value) {
+      planningEventCursor.value = sequence
+      persistPlanningState()
+    }
     if (event === 'planning_progress') upsertStep(data)
     if (event === 'plan_completed') {
       plan.value = data

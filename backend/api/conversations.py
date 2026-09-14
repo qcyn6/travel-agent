@@ -51,17 +51,21 @@ def _conversation_service(repository, catalog, settings) -> ConversationService:
     )
 
 
-def _sse(event: str, data) -> str:
+def _sse(event: str, data, *, event_id: int | None = None) -> str:
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
-    return f"event: {event}\ndata: {payload}\n\n"
+    event_id_line = f"id: {event_id}\n" if event_id is not None else ""
+    return f"{event_id_line}event: {event}\ndata: {payload}\n\n"
 
 
-def _stream_headers() -> dict[str, str]:
-    return {
+def _stream_headers(job_id: str | None = None) -> dict[str, str]:
+    headers = {
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
         "X-Accel-Buffering": "no",
     }
+    if job_id:
+        headers["X-Planning-Job-Id"] = job_id
+    return headers
 
 
 @router.post("", response_model=ConversationCreated, status_code=201)
@@ -226,39 +230,54 @@ def confirm_requirement(
 async def plan_conversation(
     conversation_id: str,
     after: int = Query(default=0, ge=0),
+    job_id: str | None = Query(default=None, max_length=36),
     planning_service: PlanningApplicationService = Depends(get_planning_application_service),
 ) -> StreamingResponse:
     try:
         job = planning_service.prepare_conversation(conversation_id)
-        event_stream = planning_service.stream_job_events(job.job_id, after=after)
+        # If the client sends a cursor belonging to an older retry, start the
+        # newly-created job from its first event instead of silently skipping
+        # its short sequence numbers.
+        effective_after = after if job_id in (None, job.job_id) else 0
+        event_stream = planning_service.stream_job_events(job.job_id, after=effective_after)
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except PlanningConflictError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        async for event, data in event_stream:
-            yield _sse(event, data)
+        async for event_id, event, data in event_stream:
+            yield _sse(event, data, event_id=event_id)
 
-    return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())
+    return StreamingResponse(
+        events(),
+        media_type="text/event-stream",
+        headers=_stream_headers(job.job_id),
+    )
 
 
 @router.get("/{conversation_id}/plan/events")
 async def resume_plan_events(
     conversation_id: str,
     after: int = Query(default=0, ge=0),
+    job_id: str | None = Query(default=None, max_length=36),
     planning_service: PlanningApplicationService = Depends(get_planning_application_service),
 ) -> StreamingResponse:
     try:
-        job_id = planning_service.latest_job_id(conversation_id)
-        if job_id is None:
+        latest_job_id = planning_service.latest_job_id(conversation_id)
+        if latest_job_id is None:
             raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
-        event_stream = planning_service.stream_job_events(job_id, after=after)
+        effective_after = after if job_id in (None, latest_job_id) else 0
+        event_stream = planning_service.stream_job_events(latest_job_id, after=effective_after)
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        async for event, data in event_stream:
-            yield _sse(event, data)
+        async for event_id, event, data in event_stream:
+            yield _sse(event, data, event_id=event_id)
 
-    return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())
+    return StreamingResponse(
+        events(),
+        media_type="text/event-stream",
+        headers=_stream_headers(latest_job_id),
+    )

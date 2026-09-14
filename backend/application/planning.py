@@ -19,6 +19,7 @@ from backend.travel_plans import TravelPlanRepository
 
 
 PLANNING_POLL_SECONDS = 0.5
+PLANNING_KEEPALIVE_SECONDS = 15.0
 
 
 class PlanningConflictError(RuntimeError):
@@ -127,7 +128,7 @@ class PlanningApplicationService:
         requirement: RequirementDraft | None = None,
         *,
         after: int = 0,
-    ) -> AsyncIterator[tuple[str, dict]]:
+    ) -> AsyncIterator[tuple[int | None, str, dict]]:
         """Compatibility wrapper that streams the latest job for a conversation."""
 
         with open_session() as session:
@@ -137,23 +138,38 @@ class PlanningApplicationService:
             job_id = job.id
         return self.stream_job_events(job_id, after=after)
 
-    def stream_job_events(self, job_id: str, *, after: int = 0) -> AsyncIterator[tuple[str, dict]]:
+    def stream_job_events(
+        self,
+        job_id: str,
+        *,
+        after: int = 0,
+    ) -> AsyncIterator[tuple[int | None, str, dict]]:
         """Replay committed events and poll until the job reaches a terminal state."""
 
         self._ensure_worker(job_id)
 
-        async def events() -> AsyncIterator[tuple[str, dict]]:
+        async def events() -> AsyncIterator[tuple[int | None, str, dict]]:
             cursor = max(0, int(after))
+            last_keepalive = asyncio.get_running_loop().time()
             while True:
                 status, new_events = self._read_events(job_id, after=cursor)
                 if status is None:
                     raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
                 for sequence, event_type, payload in new_events:
                     cursor = sequence
-                    yield event_type, payload
+                    last_keepalive = asyncio.get_running_loop().time()
+                    yield sequence, event_type, payload
                 if status in TERMINAL_JOB_STATUSES:
                     break
-                await asyncio.sleep(PLANNING_POLL_SECONDS)
+                now = asyncio.get_running_loop().time()
+                if now - last_keepalive >= PLANNING_KEEPALIVE_SECONDS:
+                    last_keepalive = now
+                    yield None, "heartbeat", {"status": status}
+                sleep_seconds = min(
+                    PLANNING_POLL_SECONDS,
+                    max(0.05, PLANNING_KEEPALIVE_SECONDS - (now - last_keepalive)),
+                )
+                await asyncio.sleep(sleep_seconds)
 
         return events()
 

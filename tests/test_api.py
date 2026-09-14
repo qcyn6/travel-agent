@@ -3,6 +3,8 @@ from fastapi.testclient import TestClient
 from types import SimpleNamespace
 
 from backend.attractions import get_attraction_repository
+from backend.api.dependencies import get_planning_application_service
+from backend.api.conversations import _sse
 from backend.config import Settings, get_settings
 from backend.conversation import get_conversation_repository
 from backend.destination.repository import get_catalog_repository
@@ -93,3 +95,35 @@ def test_get_attraction_knowledge_status():
         "knowledge_error": None,
     }
     assert missing.status_code == 404
+
+
+def test_planning_sse_exposes_job_id_and_event_cursor():
+    assert _sse("planning_progress", {"step": "destination"}, event_id=4) == (
+        'id: 4\nevent: planning_progress\ndata: {"step":"destination"}\n\n'
+    )
+
+    class FakePlanningService:
+        def prepare_conversation(self, conversation_id):
+            return SimpleNamespace(job_id="job-new")
+
+        def stream_job_events(self, job_id, *, after):
+            assert job_id == "job-new"
+            assert after == 0
+
+            async def events():
+                yield 1, "job_queued", {"status": "queued"}
+                yield 2, "plan_completed", {"ok": True}
+
+            return events()
+
+    app.dependency_overrides[get_planning_application_service] = lambda: FakePlanningService()
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/conversations/conversation-1/plan?after=7&job_id=job-old"
+        )
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.headers["x-planning-job-id"] == "job-new"
+    assert "id: 1\nevent: job_queued" in response.text
+    assert "id: 2\nevent: plan_completed" in response.text

@@ -9,6 +9,18 @@ import type {
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api/v1'
 
+export interface EventStreamMeta {
+  jobId: string | null
+}
+
+export interface EventStreamOptions {
+  after?: number
+  jobId?: string | null
+  onOpen?: (meta: EventStreamMeta) => void
+}
+
+type EventHandler = (event: string, data: any, sequence?: number) => void
+
 export class ApiError extends Error {
   constructor(message: string, public status: number) {
     super(message)
@@ -53,10 +65,12 @@ export const conversationApi = {
 
 async function consumeEventStream(
   response: Response,
-  onEvent: (event: string, data: any) => void,
+  onEvent: EventHandler,
+  onOpen?: (meta: EventStreamMeta) => void,
 ): Promise<void> {
   if (!response.ok) return decodeError(response)
   if (!response.body) throw new ApiError('浏览器无法读取流式响应', 0)
+  onOpen?.({ jobId: response.headers.get('X-Planning-Job-Id') })
 
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
@@ -68,12 +82,17 @@ async function consumeEventStream(
     buffer = blocks.pop() || ''
     for (const block of blocks) {
       let event = 'message'
+      let eventId: number | undefined
       const dataLines: string[] = []
       for (const line of block.split(/\r?\n/)) {
         if (line.startsWith('event:')) event = line.slice(6).trim()
+        if (line.startsWith('id:')) {
+          const parsed = Number.parseInt(line.slice(3).trim(), 10)
+          if (Number.isFinite(parsed) && parsed >= 0) eventId = parsed
+        }
         if (line.startsWith('data:')) dataLines.push(line.slice(5).trim())
       }
-      if (dataLines.length) onEvent(event, JSON.parse(dataLines.join('\n')))
+      if (dataLines.length) onEvent(event, JSON.parse(dataLines.join('\n')), eventId)
     }
     if (done) break
   }
@@ -82,25 +101,34 @@ async function consumeEventStream(
 export async function streamEvents(
   path: string,
   body: object | undefined,
-  onEvent: (event: string, data: any) => void,
+  onEvent: EventHandler,
+  options: EventStreamOptions = {},
 ): Promise<void> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const separator = path.includes('?') ? '&' : '?'
+  const query = options.after === undefined
+    ? ''
+    : `${separator}after=${Math.max(0, options.after)}${options.jobId ? `&job_id=${encodeURIComponent(options.jobId)}` : ''}`
+  const response = await fetch(`${API_BASE}${path}${query}`, {
+    // Keep the cursor and job identity together. The server resets the
+    // cursor automatically when a retry created a new job.
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
     body: body ? JSON.stringify(body) : undefined,
   })
-  return consumeEventStream(response, onEvent)
+  return consumeEventStream(response, onEvent, options.onOpen)
 }
 
 export async function streamGetEvents(
   path: string,
   after: number,
-  onEvent: (event: string, data: any) => void,
+  onEvent: EventHandler,
+  options: Omit<EventStreamOptions, 'after'> = {},
 ): Promise<void> {
   const separator = path.includes('?') ? '&' : '?'
-  const response = await fetch(`${API_BASE}${path}${separator}after=${Math.max(0, after)}`, {
+  const jobQuery = options.jobId ? `&job_id=${encodeURIComponent(options.jobId)}` : ''
+  const response = await fetch(`${API_BASE}${path}${separator}after=${Math.max(0, after)}${jobQuery}`, {
     method: 'GET',
     headers: { Accept: 'text/event-stream' },
   })
-  return consumeEventStream(response, onEvent)
+  return consumeEventStream(response, onEvent, options.onOpen)
 }

@@ -48,6 +48,36 @@ def test_planning_task_registry_prevents_duplicate_jobs_and_cleans_up():
     asyncio.run(scenario())
 
 
+def test_planning_stream_keeps_event_sequence_and_sends_keepalive(monkeypatch):
+    import backend.application.planning as planning_module
+
+    class ActiveRegistry:
+        def is_running(self, job_id):
+            return True
+
+    async def scenario():
+        service = PlanningApplicationService(settings=object(), task_registry=ActiveRegistry())
+        reads = iter(
+            [
+                ("running", []),
+                ("completed", [(4, "plan_completed", {"ok": True})]),
+            ]
+        )
+        monkeypatch.setattr(service, "_read_events", lambda job_id, *, after: next(reads))
+        monkeypatch.setattr(planning_module, "PLANNING_KEEPALIVE_SECONDS", 0.0)
+        monkeypatch.setattr(planning_module, "PLANNING_POLL_SECONDS", 0.01)
+
+        stream = service.stream_job_events("job-1")
+        first = await anext(stream)
+        second = await anext(stream)
+        await stream.aclose()
+
+        assert first == (None, "heartbeat", {"status": "running"})
+        assert second == (4, "plan_completed", {"ok": True})
+
+    asyncio.run(scenario())
+
+
 def test_standalone_planning_persists_conversation_and_plan(monkeypatch):
     import backend.application.planning as planning_module
 

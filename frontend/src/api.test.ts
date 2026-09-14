@@ -33,22 +33,36 @@ describe('streamEvents', () => {
     const encoder = new TextEncoder()
     const body = new ReadableStream({
       start(controller) {
-        controller.enqueue(encoder.encode('event: planning_progress\ndata: {"step":"destination"}\n\n'))
+        controller.enqueue(encoder.encode('id: 8\nevent: planning_progress\ndata: {"step":"destination"}\n\n'))
         controller.close()
       },
     })
-    const fetchMock = vi.fn().mockResolvedValue(new Response(body, { status: 200 }))
+    const fetchMock = vi.fn().mockResolvedValue(
+      new Response(body, { status: 200, headers: { 'X-Planning-Job-Id': 'job-1' } }),
+    )
     vi.stubGlobal('fetch', fetchMock)
-    const received: Array<[string, unknown]> = []
+    const received: Array<[string, unknown, number | undefined]> = []
+    let openedJobId: string | null = null
 
-    await streamGetEvents('/conversations/demo/plan/events', 7, (event, data) => {
-      received.push([event, data])
-    })
+    await streamGetEvents(
+      '/conversations/demo/plan/events',
+      7,
+      (event, data, sequence) => {
+        received.push([event, data, sequence])
+      },
+      {
+        jobId: 'job-1',
+        onOpen: ({ jobId }) => {
+          openedJobId = jobId
+        },
+      },
+    )
 
     expect(fetchMock).toHaveBeenCalledWith(
-      '/api/v1/conversations/demo/plan/events?after=7',
+      '/api/v1/conversations/demo/plan/events?after=7&job_id=job-1',
       expect.objectContaining({ method: 'GET' }),
     )
-    expect(received).toEqual([['planning_progress', { step: 'destination' }]])
+    expect(openedJobId).toBe('job-1')
+    expect(received).toEqual([['planning_progress', { step: 'destination' }, 8]])
   })
 })
