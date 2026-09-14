@@ -2,6 +2,7 @@ import logging
 
 from backend.models.retrieval import AttractionDocument, HybridSearchResult
 from backend.rag.bm25 import BM25Retriever, build_preference_query
+from backend.rag.embedding import EmbeddingConfigurationError, EmbeddingError
 from backend.rag.fusion import reciprocal_rank_fusion
 from backend.rag.reranker import RerankingError
 
@@ -31,11 +32,23 @@ class HybridRetrievalService:
             query = "适合旅游的代表性景点"
 
         bm25_results = self.bm25.rank(documents, query, limit=10)
-        await self.vector_service.index_city(city)
-        vector_results = await self.vector_service.search(city=city, query=query, limit=10)
         bm25_ids = [poi_id for poi_id, _ in bm25_results]
+        vector_results = []
+        try:
+            await self.vector_service.index_city(city)
+            vector_results = await self.vector_service.search(city=city, query=query, limit=10)
+        except (EmbeddingConfigurationError, EmbeddingError) as exc:
+            logger.warning("向量检索不可用，降级为 BM25：%s", type(exc).__name__)
+
+        # A zero-score BM25 query is still better served by deterministic
+        # catalog order than by returning no candidates when vector search is
+        # unavailable. Keep the actual BM25 ranks separate for observability.
+        bm25_fusion_ids = bm25_ids or [document.poi_id for document in documents[:10]]
         vector_ids = [item.poi_id for item in vector_results]
-        fused = reciprocal_rank_fusion([bm25_ids, vector_ids])
+        rankings = [bm25_fusion_ids]
+        if vector_ids:
+            rankings.append(vector_ids)
+        fused = reciprocal_rank_fusion(rankings)
         document_by_id = {document.poi_id: document for document in documents}
         fused_documents = [document_by_id[poi_id] for poi_id, _ in fused if poi_id in document_by_id]
 

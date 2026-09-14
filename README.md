@@ -152,6 +152,17 @@ cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
 ```
 
+多进程 worker 租约验收需要先启动两个使用同一 MySQL 的后端实例，并为本地演练临时设置较短租约：
+
+```powershell
+$env:PLANNING_HEARTBEAT_SECONDS=1
+$env:PLANNING_WORKER_STALE_SECONDS=6
+python scripts/run_worker_lease_acceptance.py
+python scripts/run_worker_lease_acceptance.py --kill-pid <8000端口实例的进程号>
+```
+
+第二条命令会在任务开始后结束 owner 进程，验证另一个实例接管并最终只写入一条 `plan_completed`。演练完成后重新打开 PowerShell，避免短租约环境影响后续启动。
+
 ### 6. 常见启动问题
 
 如果看到 `address already in use`、`WinError 10048` 或 Vite 提示端口已占用，说明项目已经启动过，不要再次启动同一个服务。先检查：

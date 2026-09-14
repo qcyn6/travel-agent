@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from uuid import uuid4
 
-from sqlalchemy import func, select
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from backend.database.tables import PlanningEventRow, PlanningJobRow
@@ -184,14 +184,26 @@ class PlanningJobRepository:
         event_type: str,
         payload: dict,
     ) -> PlanningEventRow:
+        # Progress events are written from short-lived sessions while the
+        # workflow session may stay open for minutes. Lock the job row and use
+        # a locking read for the latest sequence so MySQL's repeatable-read
+        # snapshot cannot allocate an old sequence number at completion.
+        self.session.flush()
+        self.session.execute(
+            select(PlanningJobRow.id)
+            .where(PlanningJobRow.id == row.id)
+            .with_for_update()
+        )
         next_sequence = self.session.scalar(
-            select(func.coalesce(func.max(PlanningEventRow.sequence_number), 0) + 1).where(
-                PlanningEventRow.job_id == row.id
-            )
+            select(PlanningEventRow.sequence_number)
+            .where(PlanningEventRow.job_id == row.id)
+            .order_by(PlanningEventRow.sequence_number.desc())
+            .limit(1)
+            .with_for_update()
         )
         event = PlanningEventRow(
             job_id=row.id,
-            sequence_number=int(next_sequence or 1),
+            sequence_number=int(next_sequence or 0) + 1,
             event_type=event_type,
             payload=payload,
         )

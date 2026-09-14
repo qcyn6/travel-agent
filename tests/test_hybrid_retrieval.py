@@ -3,6 +3,7 @@ import pytest
 
 from backend.models.retrieval import AttractionDocument, VectorSearchResult
 from backend.rag.bm25 import BM25Retriever, build_preference_query
+from backend.rag.embedding import EmbeddingError
 from backend.rag.fusion import reciprocal_rank_fusion
 from backend.rag.hybrid import HybridRetrievalService
 from backend.rag.reranker import DeepSeekReranker, RerankingError
@@ -128,3 +129,41 @@ async def test_hybrid_search_uses_reranked_order_and_city_documents():
     assert vector_service.indexed is True
     assert [result.poi_id for result in results] == ["A2", "A1"]
     assert [result.final_rank for result in results] == [1, 2]
+
+
+@pytest.mark.asyncio
+async def test_hybrid_search_falls_back_to_bm25_when_embedding_is_unavailable():
+    documents = [
+        doc("A1", "古城", "历史文化遗址"),
+        doc("A2", "湿地", "适合休闲散步和摄影"),
+    ]
+
+    class Repository:
+        def list_documents(self, city):
+            return documents
+
+    class FailingVectorService:
+        async def index_city(self, city):
+            raise EmbeddingError("network down")
+
+        async def search(self, **kwargs):
+            raise AssertionError("search should not run after index failure")
+
+    class Reranker:
+        async def rerank(self, **kwargs):
+            return [item.poi_id for item in kwargs["candidates"]]
+
+    results = await HybridRetrievalService(
+        repository=Repository(),
+        vector_service=FailingVectorService(),
+        reranker=Reranker(),
+    ).search(
+        city="杭州市",
+        interests=["摄影"],
+        preference_text="轻松散步",
+        top_k=2,
+    )
+
+    assert results
+    assert all(result.vector_rank is None for result in results)
+    assert all(result.bm25_rank is not None for result in results)

@@ -1,6 +1,7 @@
 import asyncio
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass
+import logging
 from uuid import uuid4
 
 from backend.config import Settings
@@ -21,6 +22,7 @@ from backend.travel_plans import TravelPlanRepository
 
 PLANNING_POLL_SECONDS = 0.5
 PLANNING_KEEPALIVE_SECONDS = 15.0
+logger = logging.getLogger(__name__)
 
 
 class PlanningConflictError(RuntimeError):
@@ -380,6 +382,7 @@ class PlanningApplicationService:
                         worker_id,
                     )
                 except Exception:
+                    logger.exception("planning job failed during workflow execution: job_id=%s", job_id)
                     self._finish_failure(
                         session,
                         conversation_repository,
