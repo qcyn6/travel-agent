@@ -125,3 +125,32 @@ async def test_vector_service_indexes_name_category_and_description():
     assert "西湖" in embedding_client.texts[0]
     assert "风景名胜" in embedding_client.texts[0]
     assert "慢节奏游览" in embedding_client.texts[0]
+
+
+@pytest.mark.asyncio
+async def test_vector_service_reuses_current_index_without_embedding():
+    documents = [document("HZ1", "西湖", "杭州市")]
+
+    class Repository:
+        def list_documents(self, city):
+            return documents
+
+    class Embeddings:
+        async def embed(self, texts):
+            raise AssertionError(f"embedding should be skipped: {texts}")
+
+    class Index:
+        def is_current(self, current_documents):
+            assert current_documents == documents
+            return True
+
+        def upsert(self, received_documents, embeddings):
+            raise AssertionError("upsert should be skipped")
+
+    count = await VectorRetrievalService(
+        repository=Repository(),
+        embedding_client=Embeddings(),
+        vector_index=Index(),
+    ).index_city("杭州市")
+
+    assert count == 0

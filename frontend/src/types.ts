@@ -38,6 +38,13 @@ export interface ConversationCreated {
   requirement: RequirementDraft
 }
 
+export interface ConversationSummary {
+  id: string
+  title: string
+  status: Conversation['status']
+  updated_at: string
+}
+
 export interface CityStay {
   city: string
   days: number
@@ -138,6 +145,16 @@ export interface TravelPlanResponse {
   }
 }
 
+export interface SavedTravelPlan {
+  id: number
+  session_id: string
+  version: number
+  requirement: RequirementDraft
+  plan: TravelPlanResponse['plan']
+  evaluation: EvaluationResult | null
+  created_at: string
+}
+
 export interface DegradationNotice {
   code: 'route_estimated' | 'route_unavailable' | 'weather_skipped' | 'weather_unavailable' | 'opening_hours_unknown' | 'schedule_incomplete' | 'replan_limit_reached'
   level: 'info' | 'warning'
@@ -162,7 +179,7 @@ export interface EvaluationResult {
 export interface PlanningStep {
   step: string
   label: string
-  status: 'running' | 'completed'
+  status: 'running' | 'completed' | 'failed'
 }
 
 export interface DestinationChoice {

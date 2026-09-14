@@ -2,7 +2,7 @@ import asyncio
 import json
 from collections.abc import AsyncIterator
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
 
 from backend.config import Settings, get_settings
@@ -25,6 +25,7 @@ from backend.models.conversation import (
     RequirementConfirmation,
     RequirementDraft,
     RequirementDraftPatch,
+    ConversationSummary,
 )
 from backend.planner import DestinationChoiceRequired, build_travel_workflow
 from backend.requirements.runtime import build_requirement_parser
@@ -74,6 +75,14 @@ def create_conversation(
     )
 
 
+@router.get("", response_model=list[ConversationSummary])
+def list_conversations(
+    limit: int = Query(default=30, ge=1, le=100),
+    repository: ConversationRepository = Depends(get_conversation_repository),
+) -> list[ConversationSummary]:
+    return [ConversationSummary.model_validate(row) for row in repository.list_recent(limit=limit)]
+
+
 @router.get("/{conversation_id}", response_model=Conversation)
 def get_conversation(
     conversation_id: str,
@@ -86,6 +95,15 @@ def get_conversation(
         return service.get(conversation_id)
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@router.delete("/{conversation_id}", status_code=204)
+def delete_conversation(
+    conversation_id: str,
+    repository: ConversationRepository = Depends(get_conversation_repository),
+) -> None:
+    if not repository.delete(conversation_id):
+        raise HTTPException(status_code=404, detail="当前会话不存在或已失效")
 
 
 @router.get("/{conversation_id}/plans")
@@ -217,15 +235,29 @@ async def plan_conversation(
         raise HTTPException(status_code=409, detail="请先确认旅行需求")
     requirement = RequirementDraft.model_validate(row.requirement_draft or {})
     workflow = build_travel_workflow(session, settings)
+    # Mark the conversation before returning the stream so a sidebar refresh
+    # immediately reflects that generation has started.
+    repository.set_status(row, "planning")
 
     async def events() -> AsyncIterator[str]:
         queue: asyncio.Queue[tuple[str, dict]] = asyncio.Queue()
+        active_step: tuple[str, str] | None = None
 
         async def progress(step: str, label: str, status: str) -> None:
+            nonlocal active_step
+            if status == "running":
+                active_step = (step, label)
+            elif active_step is not None and active_step[0] == step:
+                active_step = None
             await queue.put(("planning_progress", {"step": step, "label": label, "status": status}))
 
+        async def planning_error(message: str) -> None:
+            if active_step is not None:
+                step, label = active_step
+                await progress(step, label, "failed")
+            await queue.put(("planning_error", {"message": message}))
+
         async def run_plan() -> None:
-            repository.set_status(row, "planning")
             try:
                 result = await workflow.run_requirement(requirement, progress=progress)
                 plan_repository.save(conversation_id, result)
@@ -244,13 +276,13 @@ async def plan_conversation(
                 )
             except (ValueError, DestinationPlanningError) as exc:
                 repository.set_status(row, "confirmed")
-                await queue.put(("planning_error", {"message": str(exc)}))
+                await planning_error(str(exc))
             except KnowledgeBootstrapError as exc:
                 repository.set_status(row, "confirmed")
-                await queue.put(("planning_error", {"message": str(exc)}))
+                await planning_error(str(exc))
             except Exception:
                 repository.set_status(row, "confirmed")
-                await queue.put(("planning_error", {"message": "旅游方案生成失败，请稍后重试"}))
+                await planning_error("旅游方案生成失败，请稍后重试")
             finally:
                 await queue.put(("stream_done", {}))
 

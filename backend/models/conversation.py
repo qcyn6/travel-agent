@@ -69,6 +69,15 @@ class ConversationCreated(BaseModel):
     requirement: RequirementDraft
 
 
+class ConversationSummary(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    title: str
+    status: ConversationStatus
+    updated_at: datetime
+
+
 class RequirementConfirmation(BaseModel):
     conversation_id: str
     requirement: RequirementDraft

@@ -1,3 +1,4 @@
+import asyncio
 import re
 from dataclasses import dataclass
 from typing import Protocol
@@ -29,11 +30,14 @@ _CURATED_SOURCES = {
     "西溪国家湿地公园": "https://xixishidi.cn/resume/",
     "良渚古城遗址公园": "https://www.lzsite.cn/",
     "杭州宋城": "https://www.songcn.com/park",
+    "太白山国家森林公园": "https://www.eco.gov.cn/news_info/40438.html",
+    "关山草原景区": "https://lyj.baoji.gov.cn/col1188/202509/t20250904_1205223.html",
 }
 
 _NAME_SUFFIXES = (
     "风景名胜区",
     "国家湿地公园",
+    "国家森林公园",
     "旅游景区",
     "遗址公园",
     "博物馆",
@@ -60,6 +64,7 @@ class TavilyGovernmentSourceDiscovery:
         *,
         base_url: str = "https://api.tavily.com",
         timeout_seconds: float = 15.0,
+        max_retries: int = 2,
         max_results: int = 8,
         client=None,
         cache=None,
@@ -68,6 +73,7 @@ class TavilyGovernmentSourceDiscovery:
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
+        self.max_retries = max(1, max_retries)
         self.max_results = max(1, min(max_results, 20))
         self.client = client
         self.cache = cache
@@ -99,18 +105,11 @@ class TavilyGovernmentSourceDiscovery:
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
-        try:
-            if self.client is not None:
-                response = await self.client.post(
-                    f"{self.base_url}/search", json=payload, headers=headers
-                )
-            else:
-                async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                    response = await client.post(
-                        f"{self.base_url}/search", json=payload, headers=headers
-                    )
-        except httpx.RequestError as exc:
-            raise SourceSearchError("权威来源搜索服务网络请求失败") from exc
+        if self.client is not None:
+            response = await self._post_with_retry(self.client, payload, headers)
+        else:
+            async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                response = await self._post_with_retry(client, payload, headers)
 
         if response.status_code != 200:
             raise SourceSearchError(f"权威来源搜索服务返回 HTTP {response.status_code}")
@@ -148,6 +147,27 @@ class TavilyGovernmentSourceDiscovery:
                     )
                 return discovered
         raise SourceNotFoundError(f"没有搜索到可验证的政府或文旅来源：{attraction_name}")
+
+    async def _post_with_retry(self, client, payload: dict, headers: dict):
+        for attempt in range(self.max_retries):
+            try:
+                response = await client.post(
+                    f"{self.base_url}/search",
+                    json=payload,
+                    headers=headers,
+                )
+            except httpx.RequestError as exc:
+                if attempt + 1 == self.max_retries:
+                    raise SourceSearchError("权威来源搜索服务网络请求失败") from exc
+                await asyncio.sleep(0.2 * (2**attempt))
+                continue
+            if (response.status_code == 429 or response.status_code >= 500) and (
+                attempt + 1 < self.max_retries
+            ):
+                await asyncio.sleep(0.2 * (2**attempt))
+                continue
+            return response
+        raise SourceSearchError("权威来源搜索服务网络请求失败")
 
 
 class NationwideSourceDiscovery:

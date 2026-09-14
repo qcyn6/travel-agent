@@ -42,12 +42,19 @@ class KnowledgeEnrichmentService:
             discovered = await self.sources.find_source(name, city)
             if isinstance(discovered, str):
                 discovered = DiscoveredSource(url=discovered)
-            try:
-                source_text = await self.fetcher.fetch(discovered.url)
-            except WebContentError:
-                if not discovered.extracted_text or len(discovered.extracted_text) < 80:
-                    raise
-                source_text = discovered.extracted_text
+            extracted_text = discovered.extracted_text
+            if isinstance(extracted_text, str) and len(extracted_text.strip()) >= 80:
+                # Tavily already returns the page text for many government sources.
+                # Re-fetching those pages adds a slow, failure-prone request and is
+                # unnecessary when the extracted content is long enough to summarize.
+                source_text = extracted_text
+            else:
+                try:
+                    source_text = await self.fetcher.fetch(discovered.url)
+                except WebContentError:
+                    if not isinstance(extracted_text, str) or len(extracted_text.strip()) < 80:
+                        raise
+                    source_text = extracted_text
             description = await self.summarizer.summarize(
                 name=name,
                 city=city,

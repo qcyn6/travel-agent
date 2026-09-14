@@ -1,4 +1,11 @@
-import type { Conversation, ConversationCreated, RequirementDraft, TravelScope } from './types'
+import type {
+  Conversation,
+  ConversationCreated,
+  ConversationSummary,
+  RequirementDraft,
+  SavedTravelPlan,
+  TravelScope,
+} from './types'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api/v1'
 
@@ -25,12 +32,16 @@ async function jsonRequest<T>(path: string, init?: RequestInit): Promise<T> {
     headers: { 'Content-Type': 'application/json', ...init?.headers },
   })
   if (!response.ok) return decodeError(response)
+  if (response.status === 204) return undefined as T
   return response.json() as Promise<T>
 }
 
 export const conversationApi = {
   create: () => jsonRequest<ConversationCreated>('/conversations', { method: 'POST' }),
+  list: (limit = 30) => jsonRequest<ConversationSummary[]>(`/conversations?limit=${limit}`),
   get: (id: string) => jsonRequest<Conversation>(`/conversations/${id}`),
+  remove: (id: string) => jsonRequest<void>(`/conversations/${id}`, { method: 'DELETE' }),
+  listPlans: (id: string) => jsonRequest<SavedTravelPlan[]>(`/conversations/${id}/plans`),
   updateRequirement: (id: string, draft: RequirementDraft | { travel_scope: TravelScope }) =>
     jsonRequest<Conversation>(`/conversations/${id}/requirement`, {
       method: 'PATCH',

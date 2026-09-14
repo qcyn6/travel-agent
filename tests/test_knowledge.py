@@ -239,6 +239,66 @@ async def test_tavily_source_accepts_relevant_government_result_only():
 
 
 @pytest.mark.asyncio
+async def test_tavily_source_retries_transient_network_failure():
+    attempts = 0
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise httpx.ReadTimeout("timed out", request=request)
+        return httpx.Response(
+            200,
+            json={
+                "results": [
+                    {
+                        "url": "https://lyj.baoji.gov.cn/guanshan.html",
+                        "title": "关山草原",
+                        "content": "关山草原是宝鸡重要的山地草原景区。" * 10,
+                    }
+                ]
+            },
+        )
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        result = await TavilyGovernmentSourceDiscovery(
+            "test-search-key",
+            base_url="https://search.test",
+            client=client,
+            max_retries=2,
+        ).find_source("关山草原景区", "宝鸡市")
+
+    assert result.url == "https://lyj.baoji.gov.cn/guanshan.html"
+    assert attempts == 2
+
+
+@pytest.mark.asyncio
+async def test_tavily_source_matches_specific_forest_park_suffix():
+    async def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "results": [
+                    {
+                        "url": "https://www.eco.gov.cn/news_info/40438.html",
+                        "title": "太白山",
+                        "content": "太白山拥有丰富的自然景观与森林生态资源。" * 10,
+                    }
+                ]
+            },
+        )
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        result = await TavilyGovernmentSourceDiscovery(
+            "test-search-key",
+            base_url="https://search.test",
+            client=client,
+        ).find_source("太白山国家森林公园", "宝鸡市")
+
+    assert result.url == "https://www.eco.gov.cn/news_info/40438.html"
+
+
+@pytest.mark.asyncio
 async def test_tavily_source_rejects_irrelevant_or_non_government_results():
     async def handler(_: httpx.Request) -> httpx.Response:
         return httpx.Response(
@@ -309,4 +369,4 @@ async def test_enrichment_uses_search_extracted_text_when_official_page_blocks_f
     ).enrich(poi_id="A1", name="灵隐寺", city="杭州市", category="寺庙")
 
     assert result.source_url == "https://wgly.hangzhou.gov.cn/lingyin.html"
-    assert [call[0] for call in calls] == ["fetch", "summarize", "upsert"]
+    assert [call[0] for call in calls] == ["summarize", "upsert"]

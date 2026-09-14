@@ -26,6 +26,7 @@ _NON_ATTRACTION_NAME_PARTS = (
     "出入口",
     "入口",
     "出口",
+    "站前广场",
 )
 
 

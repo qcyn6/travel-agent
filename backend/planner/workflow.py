@@ -67,11 +67,44 @@ class TravelPlanningWorkflow:
 
         city_plans = []
         city_results = []
-        for city_stay in destination.city_stays:
+        for city_index, city_stay in enumerate(destination.city_stays):
             city = self.catalog_repository.find_city(city_stay.city)
-            await self._emit(progress, "poi_search", f"正在准备{city.name}真实景点", "running")
-            await self.knowledge_bootstrap.ensure(city=city, target_ready=3, max_attempts=12)
-            await self._emit(progress, "retrieval", f"正在为你筛选{city.name}景点", "running")
+            poi_step = f"poi_search:{city_index}:{city.name}"
+            retrieval_step = f"retrieval:{city_index}:{city.name}"
+            city_plan_step = f"city_plan:{city_index}:{city.name}"
+            await self._emit(progress, poi_step, f"正在准备{city.name}真实景点", "running")
+
+            async def report_bootstrap_progress(
+                ready_count: int,
+                target_count: int,
+                attempted_count: int,
+                candidate_count: int,
+                failed_count: int,
+            ) -> None:
+                if ready_count >= target_count and candidate_count == 0:
+                    label = f"已复用{city.name}现有景点资料（{ready_count}/{target_count}条）"
+                else:
+                    visible_ready_count = min(ready_count, target_count)
+                    label = (
+                        f"正在准备{city.name}真实景点（已准备 {visible_ready_count}/{target_count} 条，"
+                        f"已尝试 {attempted_count}/{candidate_count} 个，失败 {failed_count} 个）"
+                    )
+                await self._emit(progress, poi_step, label, "running")
+
+            bootstrap_result = await self.knowledge_bootstrap.ensure(
+                city=city,
+                target_ready=3,
+                max_attempts=12,
+                progress=report_bootstrap_progress,
+            )
+            ready_count = getattr(bootstrap_result, "ready_count", None)
+            ready_label = (
+                f"{city.name}景点数据已准备（{ready_count}条）"
+                if ready_count is not None
+                else f"{city.name}景点数据已准备"
+            )
+            await self._emit(progress, poi_step, ready_label, "completed")
+            await self._emit(progress, retrieval_step, f"正在为你筛选{city.name}景点", "running")
             result = await self.city_planning_service.plan(
                 city_stay=city_stay,
                 requirement=requirement,
@@ -79,7 +112,8 @@ class TravelPlanningWorkflow:
             )
             city_plans.append(result.city_plan)
             city_results.append(result)
-            await self._emit(progress, "city_plan", f"{city.name}行程生成完成", "completed")
+            await self._emit(progress, retrieval_step, f"{city.name}景点筛选完成", "completed")
+            await self._emit(progress, city_plan_step, f"{city.name}行程生成完成", "completed")
 
         itinerary = []
         global_day = 1

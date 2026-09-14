@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import ChatPanel from './components/ChatPanel.vue'
+import ConversationSidebar from './components/ConversationSidebar.vue'
 import PlanningView from './components/PlanningView.vue'
-import RequirementCard from './components/RequirementCard.vue'
 import RequirementModal from './components/RequirementModal.vue'
 import TravelPlanView from './components/TravelPlanView.vue'
 import { usePlanningStore } from './stores/planning'
@@ -11,6 +11,11 @@ import type { RequirementDraft } from './types'
 const store = usePlanningStore()
 const modalOpen = ref(false)
 const saving = ref(false)
+const sidebarOpen = ref(false)
+const isFreshChat = computed(() => store.messages.length === 0 && !store.sending)
+const activeConversationTitle = computed(() =>
+  store.conversations.find((item) => item.id === store.conversationId)?.title || '新的旅行计划',
+)
 
 onMounted(() => store.initialize())
 
@@ -35,67 +40,119 @@ async function confirmDraft(draft: RequirementDraft) {
 }
 
 async function restart() {
+  sidebarOpen.value = false
+  modalOpen.value = false
   sessionStorage.removeItem('travel_conversation_id')
   await store.createConversation()
+}
+
+async function openConversation(id: string, view: 'chat' | 'plan' = 'chat') {
+  sidebarOpen.value = false
+  await store.openConversation(id, view)
+}
+
+async function deleteConversation(id: string) {
+  const item = store.conversations.find((conversation) => conversation.id === id)
+  const title = item?.title === '新的旅行计划' ? '新的旅行' : item?.title || '这段旅行对话'
+  if (!window.confirm(`确定删除“${title}”吗？删除后无法恢复。`)) return
+  await store.deleteConversation(id)
 }
 </script>
 
 <template>
   <div class="app-shell">
-    <header class="topbar">
-      <button class="brand" type="button" @click="store.stage === 'chat' ? undefined : store.backToChat()">
-        <span class="brand-mark"><i></i></span>
-        <span><strong>山海拾光</strong><small>AI TRAVEL PLANNER</small></span>
-      </button>
-      <div class="topbar-center">让每一次出发，都更懂你</div>
-      <button class="new-plan-button" type="button" :disabled="store.stage === 'planning'" @click="restart">＋ 新的旅行</button>
-    </header>
+    <ConversationSidebar
+      v-if="!store.initializing"
+      :conversations="store.conversations"
+      :active-id="store.conversationId"
+      :stage="store.stage"
+      :has-plan="Boolean(store.plan)"
+      :open="sidebarOpen"
+      :busy="store.conversationLoading || Boolean(store.conversationDeleting) || store.sending || store.stage === 'planning'"
+      :deleting-id="store.conversationDeleting"
+      @new-conversation="restart"
+      @select="openConversation"
+      @delete="deleteConversation"
+      @show-chat="store.backToChat"
+      @show-plan="store.showPlan"
+      @close="sidebarOpen = false"
+    />
+    <div v-if="sidebarOpen" class="sidebar-backdrop" aria-hidden="true" @click="sidebarOpen = false"></div>
+    <button
+      v-if="!store.initializing && !sidebarOpen"
+      class="mobile-sidebar-toggle"
+      type="button"
+      aria-label="打开旅行对话侧边栏"
+      @click="sidebarOpen = true"
+    >
+      <span></span><span></span><span></span>
+    </button>
 
-    <div v-if="store.initializing" class="startup-screen"><span></span><p>正在准备你的旅行空间…</p></div>
+    <div class="app-main">
+      <div v-if="store.initializing" class="startup-screen"><span></span><p>正在准备你的旅行空间…</p></div>
 
-    <template v-else-if="store.stage === 'chat'">
-      <main class="chat-screen">
-        <div class="intro-copy">
-          <span class="eyebrow">START WITH A THOUGHT</span>
-          <h1>从一句想法，抵达<br /><em>属于你的远方</em></h1>
-          <p>不必填写复杂表格，像聊天一样告诉我你的旅行期待。</p>
-        </div>
-        <div class="conversation-layout">
-          <ChatPanel
-            :messages="store.messages"
-            :suggestions="store.suggestions"
-            :sending="store.sending"
-            @send="store.sendMessage"
-            @confirm="modalOpen = true"
-          />
-          <RequirementCard :requirement="store.requirement" :ready="store.requirementReady" @edit="modalOpen = true" />
-        </div>
-        <div v-if="store.error" class="global-error">{{ store.error }}</div>
-      </main>
-      <RequirementModal
-        :open="modalOpen"
-        :requirement="store.requirement"
-        :saving="saving"
-        @close="modalOpen = false"
-        @save="saveDraft"
-        @confirm="confirmDraft"
+      <template v-else-if="store.stage === 'chat'">
+        <main class="solo-chat-screen">
+          <div class="chat-toolbar">
+            <div class="chat-context">
+              <strong>{{ activeConversationTitle === '新的旅行计划' ? '新的旅行' : activeConversationTitle }}</strong>
+              <small>旅行对话</small>
+            </div>
+            <button
+              v-if="store.plan"
+              class="chat-plan-link"
+              type="button"
+              @click="store.showPlan"
+            >
+              查看旅行计划
+              <span aria-hidden="true">→</span>
+            </button>
+            <button v-if="!isFreshChat" class="chat-reset" type="button" aria-label="新的旅行对话" title="新的旅行对话" @click="restart">↻</button>
+          </div>
+
+          <div class="solo-chat-content" :class="{ 'has-messages': !isFreshChat }">
+            <div v-if="isFreshChat" class="solo-welcome">
+              <h1>你今天想去哪里？</h1>
+            </div>
+            <ChatPanel
+              :messages="store.messages"
+              :suggestions="store.suggestions"
+              :sending="store.sending"
+              :empty="isFreshChat"
+              @send="store.sendMessage"
+              @confirm="modalOpen = true"
+            />
+          </div>
+          <div v-if="store.error" class="global-error">{{ store.error }}</div>
+        </main>
+        <RequirementModal
+          :open="modalOpen"
+          :requirement="store.requirement"
+          :saving="saving"
+          @close="modalOpen = false"
+          @save="saveDraft"
+          @confirm="confirmDraft"
+        />
+      </template>
+
+      <PlanningView
+        v-else-if="store.stage === 'planning'"
+        :steps="store.steps"
+        :choice="store.destinationChoice"
+        :error="store.error"
+        :elapsed-seconds="store.planningElapsedSeconds"
+        :busy="store.planningRequestActive"
+        @choose="store.chooseScope"
+        @retry="store.retryPlanning"
+        @back="store.backToChat"
       />
-    </template>
 
-    <PlanningView
-      v-else-if="store.stage === 'planning'"
-      :steps="store.steps"
-      :choice="store.destinationChoice"
-      :error="store.error"
-      @choose="store.chooseScope"
-      @back="store.backToChat"
-    />
-
-    <TravelPlanView
-      v-else-if="store.plan"
-      :result="store.plan"
-      @restart="restart"
-      @revise="store.backToChat"
-    />
+      <TravelPlanView
+        v-else-if="store.plan"
+        :result="store.plan"
+        @restart="restart"
+        @revise="store.backToChat"
+      />
+    </div>
   </div>
 </template>

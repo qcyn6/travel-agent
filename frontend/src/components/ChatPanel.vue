@@ -6,6 +6,7 @@ const props = defineProps<{
   messages: ChatMessage[]
   suggestions: string[]
   sending: boolean
+  empty?: boolean
 }>()
 const emit = defineEmits<{
   send: [text: string]
@@ -38,7 +39,8 @@ watch(
   () => props.messages.map((item) => item.content).join('|'),
   async () => {
     await nextTick()
-    messageList.value?.scrollTo({ top: messageList.value.scrollHeight, behavior: 'smooth' })
+    // 流式回复会频繁触发更新，直接定位到底部，避免连续平滑动画造成滚动滞后。
+    messageList.value?.scrollTo({ top: messageList.value.scrollHeight, behavior: 'auto' })
   },
 )
 
@@ -54,16 +56,8 @@ watch(
 </script>
 
 <template>
-  <section class="chat-panel glass-panel">
-    <div class="panel-heading">
-      <div>
-        <span class="eyebrow">CONVERSATION</span>
-        <h2>和旅行灵感聊一聊</h2>
-      </div>
-      <span class="online-pill"><i></i> AI 在线</span>
-    </div>
-
-    <div ref="messageList" class="message-list" aria-live="polite">
+  <section class="chat-panel" :class="{ 'chat-panel--empty': empty }">
+    <div v-if="!empty" ref="messageList" class="message-list" aria-live="polite">
       <article
         v-for="(message, index) in messages"
         :key="message.id || index"
@@ -82,8 +76,8 @@ watch(
       </article>
     </div>
 
-    <div v-if="suggestions.length" class="suggestions">
-      <button v-for="item in suggestions" :key="item" type="button" @click="submit(item)">
+    <div v-if="!empty && suggestions.length" class="suggestions">
+      <button v-for="item in suggestions" :key="item" type="button" :disabled="sending" @click="submit(item)">
         {{ item }}
       </button>
     </div>
@@ -92,16 +86,14 @@ watch(
       <textarea
         ref="inputElement"
         v-model="input"
-        rows="2"
+        :rows="empty ? 1 : 2"
         placeholder="例如：云南玩 5 天，喜欢自然、古城和摄影……"
         aria-label="输入旅行需求"
         @keydown="onKeydown"
       ></textarea>
-      <button class="send-button" type="button" :disabled="!input.trim() || sending" @mousedown.prevent @click="submit()">
-        <span>{{ sending ? '思考中' : '发送' }}</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8 3-8-3-8Zm3.8 7h7.7L6.8 6.7 7.8 11Zm0 2-1 4.3 8.7-4.3H7.8Z"/></svg>
+      <button class="send-button" type="button" :disabled="!input.trim() || sending" @mousedown.prevent @click="submit()" aria-label="发送">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8-3-8 3-8Zm3.8 7h7.7L6.8 6.7 7.8 11Zm0 2-1 4.3 8.7-4.3H7.8Z"/></svg>
       </button>
     </div>
-    <p class="composer-tip">Enter 发送 · Shift + Enter 换行</p>
   </section>
 </template>

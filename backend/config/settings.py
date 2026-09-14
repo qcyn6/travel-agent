@@ -44,7 +44,9 @@ class Settings(BaseSettings):
     redis_wsl_startup_timeout_seconds: float = 5.0
     web_search_api_key: str | None = None
     web_search_base_url: str = "https://api.tavily.com"
-    web_search_timeout_seconds: float = 15.0
+    web_search_timeout_seconds: float = 10.0
+    web_search_max_retries: int = 2
+    knowledge_max_concurrency: int = 3
     embedding_api_key: str | None = Field(
         default=None,
         validation_alias=AliasChoices("EMBEDDING_API_KEY", "DASHSCOPE_API_KEY"),

@@ -21,6 +21,7 @@ def build_enrichment_service(
                 settings.web_search_api_key,
                 base_url=settings.web_search_base_url,
                 timeout_seconds=settings.web_search_timeout_seconds,
+                max_retries=settings.web_search_max_retries,
                 cache=cache,
                 cache_ttl_seconds=settings.redis_search_ttl_seconds,
             ),
@@ -57,4 +58,5 @@ def build_bootstrap_service(
             settings=settings,
             cache=cache,
         ),
+        max_concurrency=settings.knowledge_max_concurrency,
     )

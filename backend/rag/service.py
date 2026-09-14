@@ -9,6 +9,11 @@ class VectorRetrievalService:
 
     async def index_city(self, city: str) -> int:
         documents: list[AttractionDocument] = self.repository.list_documents(city)
+        if not documents:
+            return 0
+        is_current = getattr(self.vector_index, "is_current", None)
+        if callable(is_current) and is_current(documents):
+            return 0
         embeddings = await self.embedding_client.embed(
             [document.index_text() for document in documents]
         )

@@ -198,7 +198,7 @@ class ConversationService:
     def _fallback_reply(requirement: RequirementDraft, missing: list[str], context: str | None) -> str:
         intro = f"{context[:70]}。" if context else "我会逐步帮你整理这次旅行。"
         if not missing:
-            return "你的核心旅行需求已经比较清晰了。请查看右侧需求卡，确认后我就开始生成行程。"
+            return "你的核心旅行需求已经比较清晰了。请点击“查看并确认旅行需求”，确认后我就开始生成行程。"
         questions = {
             "destination": "你想去哪个省份或城市？当前演示支持浙江省、云南省和陕西省。",
             "days": "这次大概准备玩几天？",

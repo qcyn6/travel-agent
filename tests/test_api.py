@@ -1,8 +1,10 @@
+from datetime import datetime
 from fastapi.testclient import TestClient
 from types import SimpleNamespace
 
 from backend.attractions import get_attraction_repository
 from backend.config import Settings, get_settings
+from backend.conversation import get_conversation_repository
 from backend.destination.repository import get_catalog_repository
 from backend.main import create_app
 
@@ -16,6 +18,40 @@ def test_health():
 
     assert response.status_code == 200
     assert response.json() == {"status": "ok", "milestone": "Final M12"}
+
+
+def test_list_conversations():
+    repository = SimpleNamespace(
+        list_recent=lambda *, limit: [
+            SimpleNamespace(
+                id="conversation-1",
+                title="云南省旅行计划",
+                status="draft",
+                updated_at=datetime(2026, 9, 13, 14, 0),
+            )
+        ]
+    )
+    app.dependency_overrides[get_conversation_repository] = lambda: repository
+    with TestClient(app) as client:
+        response = client.get("/api/v1/conversations?limit=10")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()[0]["title"] == "云南省旅行计划"
+
+
+def test_delete_conversation():
+    repository = SimpleNamespace(
+        delete=lambda conversation_id: conversation_id == "conversation-1"
+    )
+    app.dependency_overrides[get_conversation_repository] = lambda: repository
+    with TestClient(app) as client:
+        response = client.delete("/api/v1/conversations/conversation-1")
+        missing = client.delete("/api/v1/conversations/missing")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 204
+    assert missing.status_code == 404
 
 
 def test_parse_and_resolve_api(catalog_repository):
