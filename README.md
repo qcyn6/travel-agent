@@ -163,6 +163,15 @@ python scripts/run_worker_lease_acceptance.py --kill-pid <8000端口实例的进
 
 第二条命令会在任务开始后结束 owner 进程，验证另一个实例接管并最终只写入一条 `plan_completed`。演练完成后重新打开 PowerShell，避免短租约环境影响后续启动。
 
+完整全链路 E2E 验收会在同一条临时会话中额外检查重复 POST 复用任务、SSE 断线后使用 `after + job_id` 续传、事件序列连续、最终方案 API 可读，以及 Embedding 故障时的 BM25 降级：
+
+```powershell
+python scripts/run_e2e_acceptance.py
+python scripts/run_e2e_acceptance.py --kill-pid <8000端口实例的进程号>
+```
+
+第一条验证正常双进程协作；第二条会结束 owner-A 并验证备用进程接管。脚本会自动删除自己创建的临时会话。两条命令都需要两个后端实例使用同一 MySQL；第二条还需要像上面一样把心跳和租约超时临时调短。
+
 ### 6. 常见启动问题
 
 如果看到 `address already in use`、`WinError 10048` 或 Vite 提示端口已占用，说明项目已经启动过，不要再次启动同一个服务。先检查：
