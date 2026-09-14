@@ -48,6 +48,59 @@ def test_planning_task_registry_prevents_duplicate_jobs_and_cleans_up():
     asyncio.run(scenario())
 
 
+def test_dispatch_job_uses_external_queue_when_available():
+    class Queue:
+        enabled = True
+
+        async def enqueue(self, job_id):
+            assert job_id == "job-1"
+            return True
+
+    class Alerts:
+        calls = []
+
+        async def notify(self, **kwargs):
+            self.calls.append(kwargs)
+
+    service = PlanningApplicationService(
+        settings=object(),
+        queue=Queue(),
+        alert_sink=Alerts(),
+    )
+    service._ensure_worker = lambda job_id: (_ for _ in ()).throw(
+        AssertionError("external queue should not start a local worker")
+    )
+
+    assert asyncio.run(service.dispatch_job("job-1")) is True
+
+
+def test_dispatch_job_falls_back_to_local_worker_on_queue_failure():
+    class Queue:
+        enabled = True
+
+        async def enqueue(self, job_id):
+            return False
+
+    class Alerts:
+        calls = []
+
+        async def notify(self, **kwargs):
+            self.calls.append(kwargs)
+
+    alerts = Alerts()
+    service = PlanningApplicationService(
+        settings=object(),
+        queue=Queue(),
+        alert_sink=alerts,
+    )
+    started = []
+    service._ensure_worker = lambda job_id: started.append(job_id)
+
+    assert asyncio.run(service.dispatch_job("job-1")) is False
+    assert started == ["job-1"]
+    assert alerts.calls[0]["event"] == "planning_queue_unavailable"
+
+
 def test_planning_stream_keeps_event_sequence_and_sends_keepalive(monkeypatch):
     import backend.application.planning as planning_module
 

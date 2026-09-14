@@ -4,6 +4,7 @@ from typing import Any
 import httpx
 
 from backend.models.weather import WeatherResult
+from backend.observability import observe_external_request
 
 
 class QWeatherConfigurationError(RuntimeError):
@@ -38,11 +39,12 @@ class QWeatherClient:
         headers = {"X-QW-Api-Key": self.api_key, "Accept-Encoding": "gzip"}
         params = {"days": "10", "localTime": "true", "lang": "zh"}
         try:
-            if self.client is not None:
-                response = await self.client.get(url, headers=headers, params=params)
-            else:
-                async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                    response = await client.get(url, headers=headers, params=params)
+            async with observe_external_request("qweather", "forecast"):
+                if self.client is not None:
+                    response = await self.client.get(url, headers=headers, params=params)
+                else:
+                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                        response = await client.get(url, headers=headers, params=params)
         except httpx.RequestError as exc:
             raise QWeatherAPIError("和风天气网络请求失败") from exc
         if response.status_code != 200:

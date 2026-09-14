@@ -6,6 +6,7 @@ import httpx
 from pydantic import ValidationError
 
 from backend.models.replanning import DayReplanDecision
+from backend.observability import observe_external_request
 
 
 class ReplannerError(RuntimeError):
@@ -89,11 +90,12 @@ class DeepSeekDayReplanner:
         url = f"{self.base_url}/chat/completions"
         for attempt in range(self.max_retries):
             try:
-                if self.client is not None:
-                    response = await self.client.post(url, headers=headers, json=payload)
-                else:
-                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                        response = await client.post(url, headers=headers, json=payload)
+                async with observe_external_request("deepseek", "day_replanning"):
+                    if self.client is not None:
+                        response = await self.client.post(url, headers=headers, json=payload)
+                    else:
+                        async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                            response = await client.post(url, headers=headers, json=payload)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise ReplannerError("DeepSeek 局部重规划网络请求失败") from exc

@@ -1,5 +1,7 @@
 import httpx
 
+from backend.observability import observe_external_request
+
 
 class EmbeddingConfigurationError(RuntimeError):
     pass
@@ -52,15 +54,16 @@ class OpenAICompatibleEmbeddingClient:
             "Content-Type": "application/json",
         }
         try:
-            if self.client is not None:
-                response = await self.client.post(
-                    f"{self.base_url}/embeddings", json=payload, headers=headers
-                )
-            else:
-                async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                    response = await client.post(
+            async with observe_external_request("dashscope", "embedding"):
+                if self.client is not None:
+                    response = await self.client.post(
                         f"{self.base_url}/embeddings", json=payload, headers=headers
                     )
+                else:
+                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                        response = await client.post(
+                            f"{self.base_url}/embeddings", json=payload, headers=headers
+                        )
         except httpx.RequestError as exc:
             raise EmbeddingError("Embedding 服务网络请求失败") from exc
         if response.status_code != 200:

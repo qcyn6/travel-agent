@@ -172,6 +172,18 @@ python scripts/run_e2e_acceptance.py --kill-pid <8000端口实例的进程号>
 
 第一条验证正常双进程协作；第二条会结束 owner-A 并验证备用进程接管。脚本会自动删除自己创建的临时会话。两条命令都需要两个后端实例使用同一 MySQL；第二条还需要像上面一样把心跳和租约超时临时调短。
 
+生产部署可以启用 Redis Streams 外部规划队列，并单独启动规划 worker：
+
+```powershell
+# 先在项目 .env 中设置 PLANNING_QUEUE_ENABLED=true
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+
+# 另开一个终端，使用同一份 .env 和 MySQL/Redis
+python scripts/run_planning_worker.py
+```
+
+API 进程负责创建任务和提供 SSE，worker 负责从 Redis 取出 `job_id` 执行规划；worker 会定期扫描并补发数据库中尚未入队的 `queued` 任务。队列不可用时 API 会记录告警并回退到进程内 worker。运维指标可从 `GET /metrics` 获取；`ALERT_WEBHOOK_URL` 可选，留空时失败只写结构化日志。
+
 ### 6. 常见启动问题
 
 如果看到 `address already in use`、`WinError 10048` 或 Vite 提示端口已占用，说明项目已经启动过，不要再次启动同一个服务。先检查：

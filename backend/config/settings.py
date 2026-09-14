@@ -59,6 +59,12 @@ class Settings(BaseSettings):
     chroma_collection: str = "attraction_knowledge"
     planning_heartbeat_seconds: float = 10.0
     planning_worker_stale_seconds: float = 90.0
+    planning_queue_enabled: bool = False
+    planning_queue_block_seconds: float = 5.0
+    planning_queue_dedup_ttl_seconds: int = 86400
+    planning_queue_max_length: int = 10000
+    alert_webhook_url: str | None = None
+    alert_timeout_seconds: float = 5.0
 
 
 @lru_cache

@@ -6,6 +6,7 @@ from urllib.parse import unquote, urlparse
 
 import httpx
 
+from backend.observability import observe_external_request
 
 class SourceNotFoundError(LookupError):
     pass
@@ -151,11 +152,12 @@ class TavilyGovernmentSourceDiscovery:
     async def _post_with_retry(self, client, payload: dict, headers: dict):
         for attempt in range(self.max_retries):
             try:
-                response = await client.post(
-                    f"{self.base_url}/search",
-                    json=payload,
-                    headers=headers,
-                )
+                async with observe_external_request("tavily", "source_search"):
+                    response = await client.post(
+                        f"{self.base_url}/search",
+                        json=payload,
+                        headers=headers,
+                    )
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise SourceSearchError("权威来源搜索服务网络请求失败") from exc

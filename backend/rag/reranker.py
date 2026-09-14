@@ -5,6 +5,7 @@ import re
 import httpx
 
 from backend.models.retrieval import AttractionDocument
+from backend.observability import observe_external_request
 
 
 class RerankingError(RuntimeError):
@@ -73,11 +74,12 @@ class DeepSeekReranker:
         url = f"{self.base_url}/chat/completions"
         for attempt in range(self.max_retries):
             try:
-                if self.client is not None:
-                    response = await self.client.post(url, headers=headers, json=payload)
-                else:
-                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                        response = await client.post(url, headers=headers, json=payload)
+                async with observe_external_request("deepseek", "reranking"):
+                    if self.client is not None:
+                        response = await self.client.post(url, headers=headers, json=payload)
+                    else:
+                        async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                            response = await client.post(url, headers=headers, json=payload)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise RerankingError("DeepSeek 重排网络请求失败") from exc

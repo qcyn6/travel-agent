@@ -1,7 +1,9 @@
 from contextlib import asynccontextmanager
+import time
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import PlainTextResponse
 
 from backend.api.attractions import router as attractions_router
 from backend.api.conversations import router as conversations_router
@@ -12,6 +14,7 @@ from backend.api.retrieval import router as retrieval_router
 from backend.api.travel import router as travel_router
 from backend.database import init_database, open_session
 from backend.database.seed import seed_catalog
+from backend.observability import metrics
 
 
 def create_app(*, initialize_database: bool = True) -> FastAPI:
@@ -34,6 +37,29 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
     )
     created_app.include_router(conversations_router)
     created_app.include_router(requirements_router)
+    @created_app.middleware("http")
+    async def observe_http_requests(request, call_next):
+        started = time.perf_counter()
+        status_code = 500
+        try:
+            response = await call_next(request)
+            status_code = response.status_code
+            return response
+        finally:
+            route = request.scope.get("route")
+            route_name = getattr(route, "path", "unmatched")
+            labels = {
+                "method": request.method,
+                "route": route_name,
+                "status": str(status_code),
+            }
+            metrics.inc("travel_agent_http_requests_total", labels)
+            metrics.observe(
+                "travel_agent_http_request_duration_seconds",
+                time.perf_counter() - started,
+                labels,
+            )
+
     created_app.include_router(attractions_router)
     created_app.include_router(knowledge_router)
     created_app.include_router(retrieval_router)
@@ -43,6 +69,13 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
     @created_app.get("/health")
     def health() -> dict[str, str]:
         return {"status": "ok", "milestone": "Final M12"}
+
+    @created_app.get("/metrics", include_in_schema=False)
+    def metrics_endpoint() -> PlainTextResponse:
+        return PlainTextResponse(
+            metrics.render(),
+            media_type="text/plain; version=0.0.4",
+        )
 
     return created_app
 

@@ -63,6 +63,16 @@ class PlanningJobRepository:
         self.session.add(row)
         return row
 
+    def list_queued(self, *, limit: int = 100) -> list[PlanningJobRow]:
+        return list(
+            self.session.scalars(
+                select(PlanningJobRow)
+                .where(PlanningJobRow.status == "queued")
+                .order_by(PlanningJobRow.created_at, PlanningJobRow.id)
+                .limit(max(1, limit))
+            )
+        )
+
     def set_requirement(self, row: PlanningJobRow, requirement: RequirementDraft) -> None:
         row.requirement_json = requirement.model_dump(mode="json")
 

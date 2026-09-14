@@ -2,6 +2,7 @@ import asyncio
 
 import httpx
 
+from backend.observability import observe_external_request
 
 class SummarizationError(RuntimeError):
     pass
@@ -79,7 +80,8 @@ class DeepSeekSummarizer:
         url = f"{self.base_url}/chat/completions"
         for attempt in range(self.max_retries):
             try:
-                response = await client.post(url, headers=headers, json=payload)
+                async with observe_external_request("deepseek", "knowledge_summary"):
+                    response = await client.post(url, headers=headers, json=payload)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise SummarizationError("DeepSeek 摘要网络请求失败") from exc

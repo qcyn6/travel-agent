@@ -7,6 +7,7 @@ import httpx
 
 from backend.models.route import RouteMode, RouteSegment
 from backend.models.travel_plan import AttractionStop
+from backend.observability import observe_external_request
 
 
 class RouteConfigurationError(RuntimeError):
@@ -126,7 +127,11 @@ class AmapRouteClient:
         async with self._managed_client() as client:
             for attempt in range(self.max_retries):
                 try:
-                    response = await client.get(f"{self.base_url}{endpoint}", params=params)
+                    async with observe_external_request("amap", "route"):
+                        response = await client.get(
+                            f"{self.base_url}{endpoint}",
+                            params=params,
+                        )
                 except httpx.RequestError as exc:
                     if attempt + 1 == self.max_retries:
                         raise RouteAPIError("高德路线服务网络请求失败") from exc

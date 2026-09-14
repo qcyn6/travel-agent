@@ -22,6 +22,15 @@ def test_health():
     assert response.json() == {"status": "ok", "milestone": "Final M12"}
 
 
+def test_metrics_endpoint_exposes_prometheus_text():
+    with TestClient(app) as client:
+        response = client.get("/metrics")
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/plain")
+    assert "# TYPE travel_agent_http_requests_total counter" in response.text
+
+
 def test_list_conversations():
     repository = SimpleNamespace(
         list_recent=lambda *, limit: [

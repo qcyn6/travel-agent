@@ -5,6 +5,7 @@ from typing import Any
 import httpx
 
 from backend.models.attraction import AttractionPOI
+from backend.observability import observe_external_request
 
 
 class AmapConfigurationError(RuntimeError):
@@ -164,7 +165,11 @@ class AmapAttractionClient:
         }
         for attempt in range(self._max_retries):
             try:
-                response = await client.get(f"{self._base_url}/v5/place/text", params=params)
+                async with observe_external_request("amap", "poi_search"):
+                    response = await client.get(
+                        f"{self._base_url}/v5/place/text",
+                        params=params,
+                    )
             except httpx.RequestError as exc:
                 if attempt + 1 == self._max_retries:
                     raise AmapAPIError("高德 POI 服务网络请求失败") from exc

@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 
 import httpx
 
+from backend.observability import observe_external_request
 
 class WebContentError(RuntimeError):
     pass
@@ -74,7 +75,8 @@ class WebPageFetcher:
     async def _get_with_retry(self, client, url: str, headers: dict[str, str]):
         for attempt in range(self.max_retries):
             try:
-                response = await client.get(url, headers=headers, follow_redirects=True)
+                async with observe_external_request("web", "source_fetch"):
+                    response = await client.get(url, headers=headers, follow_redirects=True)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise WebContentError("资料网页网络请求失败") from exc

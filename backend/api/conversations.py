@@ -68,6 +68,13 @@ def _stream_headers(job_id: str | None = None) -> dict[str, str]:
     return headers
 
 
+async def _dispatch_job(service, job_id: str) -> bool:
+    dispatcher = getattr(service, "dispatch_job", None)
+    if dispatcher is None:
+        return False
+    return bool(await dispatcher(job_id))
+
+
 @router.post("", response_model=ConversationCreated, status_code=201)
 def create_conversation(
     repository: ConversationRepository = Depends(get_conversation_repository),
@@ -239,7 +246,18 @@ async def plan_conversation(
         # newly-created job from its first event instead of silently skipping
         # its short sequence numbers.
         effective_after = after if job_id in (None, job.job_id) else 0
-        event_stream = planning_service.stream_job_events(job.job_id, after=effective_after)
+        queued_externally = await _dispatch_job(planning_service, job.job_id)
+        if queued_externally:
+            event_stream = planning_service.stream_job_events(
+                job.job_id,
+                after=effective_after,
+                start_local_worker=False,
+            )
+        else:
+            event_stream = planning_service.stream_job_events(
+                job.job_id,
+                after=effective_after,
+            )
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except PlanningConflictError as exc:
@@ -268,7 +286,18 @@ async def resume_plan_events(
         if latest_job_id is None:
             raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
         effective_after = after if job_id in (None, latest_job_id) else 0
-        event_stream = planning_service.stream_job_events(latest_job_id, after=effective_after)
+        queued_externally = await _dispatch_job(planning_service, latest_job_id)
+        if queued_externally:
+            event_stream = planning_service.stream_job_events(
+                latest_job_id,
+                after=effective_after,
+                start_local_worker=False,
+            )
+        else:
+            event_stream = planning_service.stream_job_events(
+                latest_job_id,
+                after=effective_after,
+            )
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 

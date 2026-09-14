@@ -7,6 +7,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from backend.attraction_facts.defaults import category_defaults
 from backend.models.attraction_facts import AttractionFacts, OpeningHours
+from backend.observability import observe_external_request
 
 
 class FactsExtractionError(RuntimeError):
@@ -121,11 +122,12 @@ class DeepSeekAttractionFactsExtractor:
         url = f"{self.base_url}/chat/completions"
         for attempt in range(self.max_retries):
             try:
-                if self.client is not None:
-                    response = await self.client.post(url, headers=headers, json=payload)
-                else:
-                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                        response = await client.post(url, headers=headers, json=payload)
+                async with observe_external_request("deepseek", "facts_extraction"):
+                    if self.client is not None:
+                        response = await self.client.post(url, headers=headers, json=payload)
+                    else:
+                        async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                            response = await client.post(url, headers=headers, json=payload)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise FactsExtractionError("DeepSeek 景点事实提取网络请求失败") from exc

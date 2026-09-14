@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan, DayPlan
+from backend.observability import observe_external_request
 from backend.models.requirement import TravelRequirement
 from backend.models.retrieval import AttractionDocument
 
@@ -98,11 +99,12 @@ class DeepSeekCityPlanner:
         url = f"{self.base_url}/chat/completions"
         for attempt in range(self.max_retries):
             try:
-                if self.client is not None:
-                    response = await self.client.post(url, headers=headers, json=payload)
-                else:
-                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                        response = await client.post(url, headers=headers, json=payload)
+                async with observe_external_request("deepseek", "city_planning"):
+                    if self.client is not None:
+                        response = await self.client.post(url, headers=headers, json=payload)
+                    else:
+                        async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                            response = await client.post(url, headers=headers, json=payload)
             except httpx.RequestError as exc:
                 if attempt + 1 == self.max_retries:
                     raise CityPlanningError("DeepSeek 城市规划网络请求失败") from exc

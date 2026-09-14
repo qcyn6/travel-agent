@@ -4,6 +4,7 @@ from collections.abc import AsyncIterator
 import httpx
 
 from backend.models.conversation import RequirementDraft
+from backend.observability import observe_external_request
 
 
 class ConversationResponseError(RuntimeError):
@@ -96,23 +97,24 @@ class DeepSeekConversationResponder:
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
         url = f"{self.base_url}/chat/completions"
         try:
-            async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                async with client.stream("POST", url, headers=headers, json=payload) as response:
-                    if response.status_code != 200:
-                        raise ConversationResponseError(
-                            f"DeepSeek 对话生成失败，HTTP {response.status_code}"
-                        )
-                    async for line in response.aiter_lines():
-                        if not line.startswith("data:"):
-                            continue
-                        data = line[5:].strip()
-                        if data == "[DONE]":
-                            break
-                        try:
-                            content = json.loads(data)["choices"][0]["delta"].get("content") or ""
-                        except (ValueError, KeyError, IndexError, TypeError, AttributeError) as exc:
-                            raise ConversationResponseError("DeepSeek 流式响应格式异常") from exc
-                        if content:
-                            yield content
+            async with observe_external_request("deepseek", "conversation_stream"):
+                async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                    async with client.stream("POST", url, headers=headers, json=payload) as response:
+                        if response.status_code != 200:
+                            raise ConversationResponseError(
+                                f"DeepSeek 对话生成失败，HTTP {response.status_code}"
+                            )
+                        async for line in response.aiter_lines():
+                            if not line.startswith("data:"):
+                                continue
+                            data = line[5:].strip()
+                            if data == "[DONE]":
+                                break
+                            try:
+                                content = json.loads(data)["choices"][0]["delta"].get("content") or ""
+                            except (ValueError, KeyError, IndexError, TypeError, AttributeError) as exc:
+                                raise ConversationResponseError("DeepSeek 流式响应格式异常") from exc
+                            if content:
+                                yield content
         except httpx.RequestError as exc:
             raise ConversationResponseError("DeepSeek 对话网络请求失败") from exc

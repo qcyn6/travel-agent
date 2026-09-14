@@ -2,6 +2,7 @@ import asyncio
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass
 import logging
+import time
 from uuid import uuid4
 
 from backend.config import Settings
@@ -11,12 +12,14 @@ from backend.destination import DestinationPlanningError
 from backend.knowledge import KnowledgeBootstrapError
 from backend.models.conversation import RequirementDraft
 from backend.models.travel_plan import DestinationChoiceResponse, TravelPlanResponse
+from backend.observability import AlertSink, build_alert_sink, metrics
 from backend.planner import DestinationChoiceRequired, build_travel_workflow
 from backend.planning_jobs import (
     ACTIVE_JOB_STATUSES,
     TERMINAL_JOB_STATUSES,
     PlanningJobRepository,
 )
+from backend.planning_jobs.queue import PlanningQueue, build_planning_queue
 from backend.travel_plans import TravelPlanRepository
 
 
@@ -79,9 +82,18 @@ _planning_tasks = PlanningTaskRegistry()
 class PlanningApplicationService:
     """Application boundary for durable, conversation-backed planning jobs."""
 
-    def __init__(self, settings: Settings, *, task_registry: PlanningTaskRegistry | None = None):
+    def __init__(
+        self,
+        settings: Settings,
+        *,
+        task_registry: PlanningTaskRegistry | None = None,
+        queue: PlanningQueue | None = None,
+        alert_sink: AlertSink | None = None,
+    ):
         self.settings = settings
         self.task_registry = task_registry or _planning_tasks
+        self.queue = queue or build_planning_queue(settings)
+        self.alert_sink = alert_sink or build_alert_sink(settings)
 
     def prepare_conversation(self, conversation_id: str) -> PlanningJobHandle:
         """Create or reuse a durable job and mark the conversation as planning."""
@@ -118,7 +130,44 @@ class PlanningApplicationService:
             job_repository.append_event(job, "job_queued", {"status": "queued"})
             conversation_repository.set_status(conversation, "planning", commit=False)
             session.commit()
+            metrics.inc(
+                "travel_agent_planning_jobs_total",
+                {"status": "queued"},
+            )
             return self._job_handle(job)
+
+    async def dispatch_job(self, job_id: str) -> bool:
+        """Publish a job to the external queue when it is configured.
+
+        A queue outage falls back to the existing local worker so development
+        and single-process deployments remain usable.
+        """
+
+        if not getattr(self.queue, "enabled", False):
+            return False
+        try:
+            accepted = await self.queue.enqueue(job_id)
+        except Exception as exc:
+            logger.exception("planning queue dispatch failed: job_id=%s", job_id)
+            accepted = False
+            error_type = type(exc).__name__
+        else:
+            error_type = "QueueUnavailable"
+        if accepted:
+            return True
+
+        metrics.inc(
+            "travel_agent_planning_queue_enqueues_total",
+            {"outcome": "local_fallback"},
+        )
+        await self._notify_alert(
+            event="planning_queue_unavailable",
+            severity="warning",
+            message="规划任务队列不可用，已回退到进程内 worker",
+            metadata={"job_id": job_id, "error_type": error_type},
+        )
+        self._ensure_worker(job_id)
+        return False
 
     def latest_job_id(self, conversation_id: str) -> str | None:
         with open_session() as session:
@@ -146,39 +195,56 @@ class PlanningApplicationService:
         job_id: str,
         *,
         after: int = 0,
+        start_local_worker: bool = True,
     ) -> AsyncIterator[tuple[int | None, str, dict]]:
         """Replay committed events and poll until the job reaches a terminal state."""
 
-        self._ensure_worker(job_id)
+        if start_local_worker:
+            self._ensure_worker(job_id)
 
         async def events() -> AsyncIterator[tuple[int | None, str, dict]]:
-            cursor = max(0, int(after))
-            last_keepalive = asyncio.get_running_loop().time()
-            while True:
-                status, new_events = self._read_events(job_id, after=cursor)
-                if status is None:
-                    raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
-                for sequence, event_type, payload in new_events:
-                    cursor = sequence
-                    last_keepalive = asyncio.get_running_loop().time()
-                    yield sequence, event_type, payload
-                if status in TERMINAL_JOB_STATUSES:
-                    break
-                # A process that originally owned the job may have died after
-                # the first response was opened. Re-check the lease on every
-                # poll so a different process can reclaim it after timeout.
-                self._ensure_worker(job_id)
-                now = asyncio.get_running_loop().time()
-                if now - last_keepalive >= PLANNING_KEEPALIVE_SECONDS:
-                    last_keepalive = now
-                    yield None, "heartbeat", {"status": status}
-                sleep_seconds = min(
-                    PLANNING_POLL_SECONDS,
-                    max(0.05, PLANNING_KEEPALIVE_SECONDS - (now - last_keepalive)),
+            started = time.perf_counter()
+            metrics.change_gauge("travel_agent_planning_sse_connections", 1)
+            try:
+                cursor = max(0, int(after))
+                last_keepalive = asyncio.get_running_loop().time()
+                while True:
+                    status, new_events = self._read_events(job_id, after=cursor)
+                    if status is None:
+                        raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
+                    for sequence, event_type, payload in new_events:
+                        cursor = sequence
+                        last_keepalive = asyncio.get_running_loop().time()
+                        yield sequence, event_type, payload
+                    if status in TERMINAL_JOB_STATUSES:
+                        break
+                    # A process that originally owned the job may have died after
+                    # the first response was opened. Re-check the lease on every
+                    # poll so a different process can reclaim it after timeout.
+                    if start_local_worker:
+                        self._ensure_worker(job_id)
+                    now = asyncio.get_running_loop().time()
+                    if now - last_keepalive >= PLANNING_KEEPALIVE_SECONDS:
+                        last_keepalive = now
+                        yield None, "heartbeat", {"status": status}
+                    sleep_seconds = min(
+                        PLANNING_POLL_SECONDS,
+                        max(0.05, PLANNING_KEEPALIVE_SECONDS - (now - last_keepalive)),
+                    )
+                    await asyncio.sleep(sleep_seconds)
+            finally:
+                metrics.change_gauge("travel_agent_planning_sse_connections", -1)
+                metrics.observe(
+                    "travel_agent_planning_sse_duration_seconds",
+                    time.perf_counter() - started,
                 )
-                await asyncio.sleep(sleep_seconds)
 
         return events()
+
+    async def run_queued_job(self, job_id: str) -> None:
+        """Run one durable job claimed from the external queue."""
+
+        await self._run_job(job_id)
 
     async def run_standalone(
         self,
@@ -297,12 +363,23 @@ class PlanningApplicationService:
                 raise
 
     async def _run_job(self, job_id: str) -> None:
+        started = time.perf_counter()
         worker_id = uuid4().hex
         if not self._claim_job(job_id, worker_id=worker_id):
+            metrics.inc(
+                "travel_agent_planning_jobs_total",
+                {"status": "not_claimed"},
+            )
             return
 
+        metrics.change_gauge("travel_agent_planning_active_jobs", 1)
+        metrics.inc(
+            "travel_agent_planning_jobs_total",
+            {"status": "running"},
+        )
         heartbeat_task = asyncio.create_task(self._heartbeat_loop(job_id, worker_id))
         active_step: tuple[str, str] | None = None
+        outcome = "aborted"
 
         async def progress(step: str, label: str, status: str) -> None:
             nonlocal active_step
@@ -325,6 +402,7 @@ class PlanningApplicationService:
                 plan_repository = TravelPlanRepository(session)
                 job = job_repository.get(job_id)
                 if job is None:
+                    outcome = "job_missing"
                     return
                 conversation_id = job.conversation_id
 
@@ -352,6 +430,11 @@ class PlanningApplicationService:
                     job_repository.mark_completed(job, worker_id=worker_id)
                     job_repository.append_event(job, "plan_completed", result.model_dump(mode="json"))
                     session.commit()
+                    outcome = "completed"
+                    metrics.inc(
+                        "travel_agent_planning_jobs_total",
+                        {"status": "completed"},
+                    )
                 except DestinationChoiceRequired as exc:
                     self._finish_choice(
                         session,
@@ -361,8 +444,13 @@ class PlanningApplicationService:
                         exc,
                         worker_id,
                     )
+                    outcome = "waiting_for_choice"
+                    metrics.inc(
+                        "travel_agent_planning_jobs_total",
+                        {"status": "waiting_for_choice"},
+                    )
                 except (ValueError, DestinationPlanningError) as exc:
-                    self._finish_failure(
+                    failed = self._finish_failure(
                         session,
                         conversation_repository,
                         job_repository,
@@ -371,8 +459,23 @@ class PlanningApplicationService:
                         active_step,
                         worker_id,
                     )
+                    outcome = "failed" if failed else "lease_lost"
+                    if failed:
+                        metrics.inc(
+                            "travel_agent_planning_jobs_total",
+                            {"status": "failed"},
+                        )
+                        await self._notify_alert(
+                            event="planning_job_failed",
+                            severity="error",
+                            message="规划任务执行失败",
+                            metadata={
+                                "job_id": job_id,
+                                "error_type": type(exc).__name__,
+                            },
+                        )
                 except KnowledgeBootstrapError as exc:
-                    self._finish_failure(
+                    failed = self._finish_failure(
                         session,
                         conversation_repository,
                         job_repository,
@@ -381,9 +484,24 @@ class PlanningApplicationService:
                         active_step,
                         worker_id,
                     )
-                except Exception:
+                    outcome = "failed" if failed else "lease_lost"
+                    if failed:
+                        metrics.inc(
+                            "travel_agent_planning_jobs_total",
+                            {"status": "failed"},
+                        )
+                        await self._notify_alert(
+                            event="planning_job_failed",
+                            severity="error",
+                            message="规划任务执行失败",
+                            metadata={
+                                "job_id": job_id,
+                                "error_type": type(exc).__name__,
+                            },
+                        )
+                except Exception as exc:
                     logger.exception("planning job failed during workflow execution: job_id=%s", job_id)
-                    self._finish_failure(
+                    failed = self._finish_failure(
                         session,
                         conversation_repository,
                         job_repository,
@@ -392,12 +510,33 @@ class PlanningApplicationService:
                         active_step,
                         worker_id,
                     )
+                    outcome = "failed" if failed else "lease_lost"
+                    if failed:
+                        metrics.inc(
+                            "travel_agent_planning_jobs_total",
+                            {"status": "failed"},
+                        )
+                        await self._notify_alert(
+                            event="planning_job_failed",
+                            severity="error",
+                            message="规划任务执行失败",
+                            metadata={
+                                "job_id": job_id,
+                                "error_type": type(exc).__name__,
+                            },
+                        )
         finally:
             heartbeat_task.cancel()
             try:
                 await heartbeat_task
             except asyncio.CancelledError:
                 pass
+            metrics.change_gauge("travel_agent_planning_active_jobs", -1)
+            metrics.observe(
+                "travel_agent_planning_job_duration_seconds",
+                time.perf_counter() - started,
+                {"status": outcome},
+            )
 
     def _claim_job(self, job_id: str, *, worker_id: str) -> bool:
         with open_session() as session:
@@ -413,6 +552,8 @@ class PlanningApplicationService:
                 return False
             repository.append_event(job, "job_started", {"status": "running"})
             session.commit()
+            if job.retry_count > 1:
+                metrics.inc("travel_agent_planning_lease_reclaims_total")
             return True
 
     async def _heartbeat_loop(self, job_id: str, worker_id: str) -> None:
@@ -467,6 +608,24 @@ class PlanningApplicationService:
     def _heartbeat_seconds(self) -> float:
         return max(0.5, float(getattr(self.settings, "planning_heartbeat_seconds", 10.0)))
 
+    async def _notify_alert(
+        self,
+        *,
+        event: str,
+        severity: str,
+        message: str,
+        metadata: dict[str, object],
+    ) -> None:
+        try:
+            await self.alert_sink.notify(
+                event=event,
+                severity=severity,
+                message=message,
+                metadata=metadata,
+            )
+        except Exception:
+            logger.exception("operator alert delivery failed: event=%s", event)
+
     @staticmethod
     def _finish_choice(
         session,
@@ -515,18 +674,18 @@ class PlanningApplicationService:
         message: str,
         active_step: tuple[str, str] | None,
         worker_id: str,
-    ) -> None:
+    ) -> bool:
         session.rollback()
         job = job_repository.get(job_id)
         if job is None or not job_repository.owns(job, worker_id):
-            return
+            return False
         conversation = conversation_repository.get(job.conversation_id, for_update=True)
         if conversation is not None:
             recovery_status = "confirmed" if conversation.requirement_confirmed else "draft"
             conversation_repository.set_status(conversation, recovery_status, commit=False)
         job = job_repository.get(job_id, for_update=True)
         if job is None or not job_repository.owns(job, worker_id):
-            return
+            return False
         if active_step is not None:
             step, label = active_step
             job_repository.record_progress(
@@ -537,9 +696,10 @@ class PlanningApplicationService:
                 worker_id=worker_id,
             )
         if not job_repository.mark_failed(job, message, worker_id=worker_id):
-            return
+            return False
         job_repository.append_event(job, "planning_error", {"message": message})
         session.commit()
+        return True
 
     @staticmethod
     def _job_handle(job) -> PlanningJobHandle:
