@@ -2,19 +2,24 @@ from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from backend.database.catalog import CITY_ALIASES, PROVINCE_ALIASES
 from backend.database import get_db
 from backend.database.tables import CityRow, ProvinceRow
 
 
 def canonical_province_name(name: str) -> str:
     value = name.strip()
+    if value in PROVINCE_ALIASES:
+        return PROVINCE_ALIASES[value]
     return value if value.endswith(("省", "市", "自治区")) else f"{value}省"
 
 
 def canonical_city_name(name: str) -> str:
     value = name.strip()
+    if value in CITY_ALIASES:
+        return CITY_ALIASES[value][0]
     # “杭州/兰州”中的“州”是名称的一部分，不能据此判断行政区后缀。
-    return value if value.endswith(("市", "自治州", "地区", "盟")) else f"{value}市"
+    return value if value.endswith(("市", "自治州", "地区", "盟", "林区", "县", "区")) else f"{value}市"
 
 
 class CatalogRepository:

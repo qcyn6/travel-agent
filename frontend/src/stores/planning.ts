@@ -26,7 +26,7 @@ const emptyRequirement = (): RequirementDraft => ({
 })
 
 function suggestionsFor(next: RequirementDraft): string[] {
-  if (!next.province && !next.cities.length) return ['云南省', '浙江省', '陕西省']
+  if (!next.province && !next.cities.length) return ['北京', '上海', '四川省', '云南省', '浙江省']
   if (next.days === null) return ['3天', '5天', '7天', '还没确定']
   if (!next.interests.length && !next.preference_text) {
     return ['自然风光', '历史文化', '古城', '摄影', '美食', '休闲慢游']
@@ -51,7 +51,7 @@ export const usePlanningStore = defineStore('planning', () => {
   const conversations = ref<ConversationSummary[]>([])
   const messages = ref<ChatMessage[]>([])
   const requirement = ref<RequirementDraft>(emptyRequirement())
-  const suggestions = ref(['云南省', '浙江省', '陕西省'])
+  const suggestions = ref(['北京', '上海', '四川省', '云南省', '浙江省'])
   const stage = ref<AppStage>('chat')
   const sending = ref(false)
   const initializing = ref(true)

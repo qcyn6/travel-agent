@@ -39,3 +39,20 @@ def test_parse_extracts_start_date_and_transport_mode():
 def test_parse_rejects_empty_text():
     with pytest.raises(ValueError, match="不能为空"):
         RequirementParser().parse("  ")
+
+
+@pytest.mark.parametrize(
+    ("text", "province", "cities"),
+    [
+        ("北京玩三天，喜欢历史文化", "北京市", ["北京"]),
+        ("四川成都玩三天，喜欢自然", "四川省", ["成都"]),
+        ("广西桂林玩五天，喜欢自然和摄影", "广西壮族自治区", ["桂林"]),
+        ("新疆乌鲁木齐玩三天，喜欢摄影", "新疆维吾尔自治区", ["乌鲁木齐"]),
+        ("海南省玩三天，喜欢海滨", "海南省", []),
+    ],
+)
+def test_parse_nationwide_province_and_city_aliases(text, province, cities):
+    result = RequirementParser().parse(text)
+
+    assert result.province == province
+    assert result.cities == cities

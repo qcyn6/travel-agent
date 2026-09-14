@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from inspect import isawaitable
 
 from backend.conversation.responder import ConversationResponseError
+from backend.database.catalog import DESTINATION_SCOPE_HINT, DESTINATION_SUGGESTIONS
 from backend.destination import DestinationResolutionError, DestinationResolver
 from backend.models.conversation import Conversation, ConversationMessage, RequirementDraft
 from backend.requirements.parser import canonicalize_interests
@@ -46,9 +47,7 @@ class ConversationService:
     async def handle_message(self, conversation_id: str, message: str) -> tuple[Conversation, str, list[str]]:
         prepared = await self.prepare_message(conversation_id, message)
         if prepared.destination_error:
-            reply = (
-                f"{prepared.destination_error}。当前 MVP 支持浙江省、云南省和陕西省，你可以从这些地区中选择。"
-            )
+            reply = f"{prepared.destination_error}。{DESTINATION_SCOPE_HINT}，你可以换一个省份或城市。"
         elif not (prepared.requirement.province or prepared.requirement.cities):
             reply = self._fallback_reply(
                 prepared.requirement,
@@ -157,7 +156,7 @@ class ConversationService:
         if not missing:
             return ["查看并确认旅行需求", "我还想补充"]
         if missing[0] == "destination":
-            return ["云南省", "浙江省", "陕西省"]
+            return list(DESTINATION_SUGGESTIONS)
         if missing[0] == "days":
             return ["3天", "5天", "7天", "还没确定"]
         return ["自然风光", "历史文化", "古城", "摄影", "美食", "休闲慢游"]
@@ -200,7 +199,7 @@ class ConversationService:
         if not missing:
             return "你的核心旅行需求已经比较清晰了。请点击“查看并确认旅行需求”，确认后我就开始生成行程。"
         questions = {
-            "destination": "你想去哪个省份或城市？当前演示支持浙江省、云南省和陕西省。",
+            "destination": f"你想去哪个省份或城市？{DESTINATION_SCOPE_HINT}。",
             "days": "这次大概准备玩几天？",
             "preferences": "你更喜欢自然、历史文化、美食、摄影，还是轻松慢游？",
         }

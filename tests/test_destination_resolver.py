@@ -43,3 +43,29 @@ def test_rejects_conflicting_province_and_city(catalog_repository):
 def test_rejects_unknown_city(catalog_repository):
     with pytest.raises(DestinationResolutionError, match="无法识别城市"):
         resolver(catalog_repository).resolve(TravelRequirement(cities=["不存在"] , days=1))
+
+
+@pytest.mark.parametrize(
+    ("province", "city", "canonical_province", "canonical_city", "city_adcode"),
+    [
+        ("北京", "北京", "北京市", "北京市", "110000"),
+        ("四川", "成都", "四川省", "成都市", "510100"),
+        ("广西", "桂林", "广西壮族自治区", "桂林市", "450300"),
+        ("新疆", "乌鲁木齐", "新疆维吾尔自治区", "乌鲁木齐市", "650100"),
+    ],
+)
+def test_resolves_nationwide_catalog_aliases(
+    catalog_repository,
+    province,
+    city,
+    canonical_province,
+    canonical_city,
+    city_adcode,
+):
+    result = resolver(catalog_repository).resolve(
+        TravelRequirement(province=province, cities=[city], days=3)
+    )
+
+    assert result.requirement.province == canonical_province
+    assert result.requirement.cities == [canonical_city]
+    assert result.city_adcodes == [city_adcode]

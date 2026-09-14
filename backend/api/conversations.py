@@ -19,6 +19,7 @@ from backend.conversation import (
 )
 from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
 from backend.database import get_db
+from backend.database.catalog import DESTINATION_SCOPE_HINT
 from backend.destination import DestinationResolver
 from backend.destination.repository import CatalogRepository
 from backend.models.conversation import (
@@ -149,7 +150,7 @@ async def send_message(
         yield _sse("suggestions", {"options": service.suggestions_for(prepared.missing)})
         chunks: list[str] = []
         if prepared.destination_error:
-            reply = f"{prepared.destination_error}。当前 MVP 支持浙江省、云南省和陕西省，你可以从这些地区中选择。"
+            reply = f"{prepared.destination_error}。{DESTINATION_SCOPE_HINT}，你可以换一个省份或城市。"
             chunks.append(reply)
             yield _sse("message_delta", {"text": reply})
         elif not (prepared.requirement.province or prepared.requirement.cities):
