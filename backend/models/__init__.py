@@ -11,6 +11,7 @@ from backend.models.conversation import (
     RequirementDraft,
     RequirementDraftPatch,
 )
+from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.experiment import (
     BaselineAttraction,
@@ -68,6 +69,7 @@ __all__ = [
     "DaySchedule",
     "DayReplanDecision",
     "DestinationChoiceResponse",
+    "DestinationPlanResult",
     "DegradationNotice",
     "EvaluationIssue",
     "EvaluationResult",

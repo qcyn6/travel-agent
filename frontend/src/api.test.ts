@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { streamEvents } from './api'
+import { streamEvents, streamGetEvents } from './api'
 
 
 describe('streamEvents', () => {
@@ -27,5 +27,28 @@ describe('streamEvents', () => {
       ['message_delta', { text: '云' }],
       ['message_done', { requirement_ready: true }],
     ])
+  })
+
+  it('reconnects to a replay endpoint with an event cursor', async () => {
+    const encoder = new TextEncoder()
+    const body = new ReadableStream({
+      start(controller) {
+        controller.enqueue(encoder.encode('event: planning_progress\ndata: {"step":"destination"}\n\n'))
+        controller.close()
+      },
+    })
+    const fetchMock = vi.fn().mockResolvedValue(new Response(body, { status: 200 }))
+    vi.stubGlobal('fetch', fetchMock)
+    const received: Array<[string, unknown]> = []
+
+    await streamGetEvents('/conversations/demo/plan/events', 7, (event, data) => {
+      received.push([event, data])
+    })
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/v1/conversations/demo/plan/events?after=7',
+      expect.objectContaining({ method: 'GET' }),
+    )
+    expect(received).toEqual([['planning_progress', { step: 'destination' }]])
   })
 })

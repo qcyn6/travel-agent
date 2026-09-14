@@ -51,16 +51,10 @@ export const conversationApi = {
     jsonRequest(`/conversations/${id}/requirement/confirm`, { method: 'POST' }),
 }
 
-export async function streamEvents(
-  path: string,
-  body: object | undefined,
+async function consumeEventStream(
+  response: Response,
   onEvent: (event: string, data: any) => void,
 ): Promise<void> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
-    body: body ? JSON.stringify(body) : undefined,
-  })
   if (!response.ok) return decodeError(response)
   if (!response.body) throw new ApiError('浏览器无法读取流式响应', 0)
 
@@ -83,4 +77,30 @@ export async function streamEvents(
     }
     if (done) break
   }
+}
+
+export async function streamEvents(
+  path: string,
+  body: object | undefined,
+  onEvent: (event: string, data: any) => void,
+): Promise<void> {
+  const response = await fetch(`${API_BASE}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+    body: body ? JSON.stringify(body) : undefined,
+  })
+  return consumeEventStream(response, onEvent)
+}
+
+export async function streamGetEvents(
+  path: string,
+  after: number,
+  onEvent: (event: string, data: any) => void,
+): Promise<void> {
+  const separator = path.includes('?') ? '&' : '?'
+  const response = await fetch(`${API_BASE}${path}${separator}after=${Math.max(0, after)}`, {
+    method: 'GET',
+    headers: { Accept: 'text/event-stream' },
+  })
+  return consumeEventStream(response, onEvent)
 }

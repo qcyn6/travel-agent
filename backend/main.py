@@ -30,6 +30,7 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-Conversation-Id"],
     )
     created_app.include_router(conversations_router)
     created_app.include_router(requirements_router)

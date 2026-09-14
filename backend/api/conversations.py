@@ -1,10 +1,14 @@
-import asyncio
 import json
 from collections.abc import AsyncIterator
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
 
+from backend.application import (
+    PlanningApplicationService,
+    PlanningConflictError,
+)
+from backend.api.dependencies import get_planning_application_service
 from backend.config import Settings, get_settings
 from backend.conversation import (
     ConversationNotFoundError,
@@ -15,9 +19,8 @@ from backend.conversation import (
 )
 from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
 from backend.database import get_db
-from backend.destination import DestinationPlanningError, DestinationResolver
+from backend.destination import DestinationResolver
 from backend.destination.repository import CatalogRepository
-from backend.knowledge import KnowledgeBootstrapError
 from backend.models.conversation import (
     ChatMessageRequest,
     Conversation,
@@ -27,7 +30,6 @@ from backend.models.conversation import (
     RequirementDraftPatch,
     ConversationSummary,
 )
-from backend.planner import DestinationChoiceRequired, build_travel_workflow
 from backend.requirements.runtime import build_requirement_parser
 from backend.travel_plans import TravelPlanRepository, get_travel_plan_repository
 
@@ -223,77 +225,40 @@ def confirm_requirement(
 @router.post("/{conversation_id}/plan")
 async def plan_conversation(
     conversation_id: str,
-    repository: ConversationRepository = Depends(get_conversation_repository),
-    settings: Settings = Depends(get_settings),
-    session=Depends(get_db),
-    plan_repository: TravelPlanRepository = Depends(get_travel_plan_repository),
+    after: int = Query(default=0, ge=0),
+    planning_service: PlanningApplicationService = Depends(get_planning_application_service),
 ) -> StreamingResponse:
-    row = repository.get(conversation_id)
-    if row is None:
-        raise HTTPException(status_code=404, detail="当前会话不存在或已失效")
-    if not row.requirement_confirmed:
-        raise HTTPException(status_code=409, detail="请先确认旅行需求")
-    requirement = RequirementDraft.model_validate(row.requirement_draft or {})
-    workflow = build_travel_workflow(session, settings)
-    # Mark the conversation before returning the stream so a sidebar refresh
-    # immediately reflects that generation has started.
-    repository.set_status(row, "planning")
+    try:
+        job = planning_service.prepare_conversation(conversation_id)
+        event_stream = planning_service.stream_job_events(job.job_id, after=after)
+    except ConversationNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except PlanningConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        queue: asyncio.Queue[tuple[str, dict]] = asyncio.Queue()
-        active_step: tuple[str, str] | None = None
+        async for event, data in event_stream:
+            yield _sse(event, data)
 
-        async def progress(step: str, label: str, status: str) -> None:
-            nonlocal active_step
-            if status == "running":
-                active_step = (step, label)
-            elif active_step is not None and active_step[0] == step:
-                active_step = None
-            await queue.put(("planning_progress", {"step": step, "label": label, "status": status}))
+    return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())
 
-        async def planning_error(message: str) -> None:
-            if active_step is not None:
-                step, label = active_step
-                await progress(step, label, "failed")
-            await queue.put(("planning_error", {"message": message}))
 
-        async def run_plan() -> None:
-            try:
-                result = await workflow.run_requirement(requirement, progress=progress)
-                plan_repository.save(conversation_id, result)
-                repository.set_status(row, "completed")
-                await queue.put(("plan_completed", result.model_dump(mode="json")))
-            except DestinationChoiceRequired as exc:
-                repository.set_status(row, "confirmed")
-                await queue.put(
-                    (
-                        "destination_choice_required",
-                        {
-                            "requirement": exc.requirement.model_dump(mode="json"),
-                            "options": exc.options.model_dump(mode="json"),
-                        },
-                    )
-                )
-            except (ValueError, DestinationPlanningError) as exc:
-                repository.set_status(row, "confirmed")
-                await planning_error(str(exc))
-            except KnowledgeBootstrapError as exc:
-                repository.set_status(row, "confirmed")
-                await planning_error(str(exc))
-            except Exception:
-                repository.set_status(row, "confirmed")
-                await planning_error("旅游方案生成失败，请稍后重试")
-            finally:
-                await queue.put(("stream_done", {}))
+@router.get("/{conversation_id}/plan/events")
+async def resume_plan_events(
+    conversation_id: str,
+    after: int = Query(default=0, ge=0),
+    planning_service: PlanningApplicationService = Depends(get_planning_application_service),
+) -> StreamingResponse:
+    try:
+        job_id = planning_service.latest_job_id(conversation_id)
+        if job_id is None:
+            raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
+        event_stream = planning_service.stream_job_events(job_id, after=after)
+    except ConversationNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
 
-        task = asyncio.create_task(run_plan())
-        try:
-            while True:
-                event, data = await queue.get()
-                if event == "stream_done":
-                    break
-                yield _sse(event, data)
-        finally:
-            await task
+    async def events() -> AsyncIterator[str]:
+        async for event, data in event_stream:
+            yield _sse(event, data)
 
     return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())

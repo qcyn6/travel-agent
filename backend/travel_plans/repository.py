@@ -3,7 +3,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
-from backend.database.tables import TravelPlanRow
+from backend.database.tables import ConversationRow, TravelPlanRow
 from backend.models.evaluation import EvaluationResult
 from backend.models.requirement import TravelRequirement
 from backend.models.saved_plan import SavedTravelPlan
@@ -14,7 +14,20 @@ class TravelPlanRepository:
     def __init__(self, session: Session):
         self.session = session
 
-    def save(self, session_id: str, result: TravelPlanResponse) -> SavedTravelPlan:
+    def save(
+        self,
+        session_id: str,
+        result: TravelPlanResponse,
+        *,
+        commit: bool = True,
+    ) -> SavedTravelPlan:
+        # Lock the owning conversation so version allocation is serialized even
+        # when more than one API worker generates a plan for the same session.
+        self.session.scalar(
+            select(ConversationRow.id)
+            .where(ConversationRow.id == session_id)
+            .with_for_update()
+        )
         latest = self.session.scalar(
             select(func.max(TravelPlanRow.version)).where(TravelPlanRow.session_id == session_id)
         )
@@ -31,7 +44,10 @@ class TravelPlanRepository:
         )
         try:
             self.session.add(row)
-            self.session.commit()
+            if commit:
+                self.session.commit()
+            else:
+                self.session.flush()
             self.session.refresh(row)
         except Exception:
             self.session.rollback()

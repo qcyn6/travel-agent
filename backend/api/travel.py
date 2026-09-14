@@ -1,8 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import APIRouter, Depends, HTTPException, Response
 
-from backend.config import Settings, get_settings
-from backend.database import get_db
+from backend.application import PlanningApplicationService
+from backend.api.dependencies import get_planning_application_service
 from backend.destination import DestinationPlanningError
 from backend.knowledge import KnowledgeBootstrapError
 from backend.models.travel_plan import (
@@ -10,7 +9,6 @@ from backend.models.travel_plan import (
     TravelPlanRequest,
     TravelPlanResponse,
 )
-from backend.planner import DestinationChoiceRequired, build_travel_workflow
 
 
 router = APIRouter(prefix="/api/v1/travel", tags=["travel"])
@@ -22,17 +20,16 @@ router = APIRouter(prefix="/api/v1/travel", tags=["travel"])
 )
 async def create_travel_plan(
     request: TravelPlanRequest,
-    session: Session = Depends(get_db),
-    settings: Settings = Depends(get_settings),
+    response: Response,
+    planning_service: PlanningApplicationService = Depends(get_planning_application_service),
 ) -> TravelPlanResponse | DestinationChoiceResponse:
-    workflow = build_travel_workflow(session, settings)
     try:
-        return await workflow.run(request.text, travel_scope=request.travel_scope)
-    except DestinationChoiceRequired as exc:
-        return DestinationChoiceResponse(
-            requirement=exc.requirement,
-            destination_options=exc.options,
+        execution = await planning_service.run_standalone(
+            request.text,
+            travel_scope=request.travel_scope,
         )
+        response.headers["X-Conversation-Id"] = execution.conversation_id
+        return execution.response
     except (ValueError, DestinationPlanningError) as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     except KnowledgeBootstrapError as exc:

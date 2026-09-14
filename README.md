@@ -25,6 +25,7 @@
 - Vue 3 对话式前端、实时旅行画像、需求确认和逐日行程展示
 - MySQL 当前会话与多轮消息持久化
 - SSE 对话增量和旅游规划业务进度
+- 旅行规划任务与进度事件持久化到 MySQL，支持重复提交复用任务、刷新后回放进度和断线后继续观察
 - 高德地点搜索 2.0 异步客户端、分页、超时重试与错误处理
 - 高德路径规划 2.0，支持步行、公交和驾车路线的真实距离与耗时
 - 相邻景点 Route Enrichment；高德失败时使用明确标记的 Haversine 估算降级
@@ -191,6 +192,7 @@ POST /api/v1/conversations/{conversation_id}/messages
 PATCH /api/v1/conversations/{conversation_id}/requirement
 POST /api/v1/conversations/{conversation_id}/requirement/confirm
 POST /api/v1/conversations/{conversation_id}/plan
+GET  /api/v1/conversations/{conversation_id}/plan/events?after=0
 POST /api/v1/requirements/resolve
 GET  /api/v1/cities/{city}/attractions?limit=30
 GET  /api/v1/attractions/{poi_id}/knowledge/status
@@ -232,4 +234,6 @@ Chroma                按城市保存已完成景点知识的向量
 Redis                 按 TTL 缓存有时效性的外部 API 查询结果，不保存景点主数据
 ```
 
-当前对话前端只维护一个匿名会话：会话与消息保存在 MySQL，当前会话编号和已生成方案保存在浏览器 `sessionStorage`，因此同一标签页刷新后可以恢复。用户登录、多会话列表和跨用户隔离留待后续实现。
+当前对话前端维护一个当前匿名会话，但会话与消息都保存在 MySQL，侧边栏可以切换多个匿名历史会话；当前会话编号和已生成方案保存在浏览器 `sessionStorage`，因此同一标签页刷新后可以恢复。用户登录和跨用户隔离留待后续实现。
+
+旅行规划执行状态保存在 MySQL 的 `planning_jobs` 和 `planning_events` 表中。前端连接中断后会通过 `GET /api/v1/conversations/{conversation_id}/plan/events` 回放事件；当前 MVP 的执行器仍是单进程 worker，服务重启后会在下一次打开/恢复该会话时接管未完成任务。多进程部署前需要再增加 worker lease 或外部队列。

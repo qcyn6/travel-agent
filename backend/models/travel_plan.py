@@ -3,8 +3,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from backend.destination.planner import DestinationPlanResult
 from backend.models.attraction_facts import OpeningHours
+from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import EvaluationResult
 from backend.models.degradation import DegradationNotice
 from backend.models.city_stay import CityStay

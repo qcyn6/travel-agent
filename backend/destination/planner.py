@@ -1,21 +1,12 @@
 from itertools import combinations
 
-from pydantic import BaseModel, ConfigDict, Field
-
 from backend.models.city_stay import CityStay
+from backend.models.destination import DestinationPlanResult
 from backend.models.requirement import TravelRequirement
 
 
 class DestinationPlanningError(ValueError):
     pass
-
-
-class DestinationPlanResult(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    city_stays: list[CityStay] = Field(min_length=1, max_length=3)
-    alternative_city_stays: list[CityStay] | None = None
-    requires_choice: bool = False
 
 
 class DestinationPlanner:

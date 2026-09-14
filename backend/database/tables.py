@@ -129,6 +129,11 @@ class ConversationRow(Base):
         cascade="all, delete-orphan",
         order_by="TravelPlanRow.version",
     )
+    planning_jobs: Mapped[list["PlanningJobRow"]] = relationship(
+        back_populates="conversation",
+        cascade="all, delete-orphan",
+        order_by="PlanningJobRow.created_at",
+    )
 
 
 class ConversationMessageRow(Base):
@@ -148,6 +153,61 @@ class ConversationMessageRow(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
 
     conversation: Mapped[ConversationRow] = relationship(back_populates="messages")
+
+
+class PlanningJobRow(Base):
+    """Durable execution state for one conversation plan generation."""
+
+    __tablename__ = "planning_jobs"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    conversation_id: Mapped[str] = mapped_column(
+        ForeignKey("conversations.id", ondelete="CASCADE"),
+        index=True,
+    )
+    status: Mapped[str] = mapped_column(
+        String(24),
+        default="queued",
+        server_default="queued",
+        index=True,
+    )
+    requirement_json: Mapped[dict] = mapped_column(JSON)
+    current_step: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    progress_json: Mapped[dict] = mapped_column(JSON, default=dict)
+    error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    retry_count: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    started_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    heartbeat_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
+    conversation: Mapped[ConversationRow] = relationship(back_populates="planning_jobs")
+    events: Mapped[list["PlanningEventRow"]] = relationship(
+        back_populates="job",
+        cascade="all, delete-orphan",
+        order_by="PlanningEventRow.sequence_number",
+    )
+
+
+class PlanningEventRow(Base):
+    """Append-only progress/event history used for SSE replay."""
+
+    __tablename__ = "planning_events"
+    __table_args__ = (
+        UniqueConstraint("job_id", "sequence_number", name="uq_planning_event_sequence"),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    job_id: Mapped[str] = mapped_column(
+        ForeignKey("planning_jobs.id", ondelete="CASCADE"),
+        index=True,
+    )
+    sequence_number: Mapped[int] = mapped_column(Integer)
+    event_type: Mapped[str] = mapped_column(String(48))
+    payload: Mapped[dict] = mapped_column(JSON, default=dict)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    job: Mapped[PlanningJobRow] = relationship(back_populates="events")
 
 
 class TravelPlanRow(Base):

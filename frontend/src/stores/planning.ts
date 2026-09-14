@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { ApiError, conversationApi, streamEvents } from '../api'
+import { ApiError, conversationApi, streamEvents, streamGetEvents } from '../api'
 import type {
   AppStage,
   ChatMessage,
@@ -105,6 +105,7 @@ export const usePlanningStore = defineStore('planning', () => {
     requirement.value = conversation.requirement
     messages.value = normalizeMessages(conversation.messages)
     suggestions.value = suggestionsFor(conversation.requirement)
+    stage.value = 'chat'
     steps.value = []
     destinationChoice.value = null
     error.value = ''
@@ -145,6 +146,7 @@ export const usePlanningStore = defineStore('planning', () => {
         const conversation = await conversationApi.get(saved)
         applyConversation(conversation)
         await restorePlan(conversation)
+        if (conversation.status === 'planning') await resumePlanning()
         await refreshConversations()
         initializing.value = false
         return
@@ -256,7 +258,8 @@ export const usePlanningStore = defineStore('planning', () => {
       const conversation = await conversationApi.get(id)
       applyConversation(conversation)
       await restorePlan(conversation)
-      if (view === 'chat') stage.value = 'chat'
+      if (conversation.status === 'planning') await resumePlanning()
+      else if (view === 'chat') stage.value = 'chat'
       await refreshConversations()
     } catch (caught) {
       error.value = readableError(caught)
@@ -309,27 +312,10 @@ export const usePlanningStore = defineStore('planning', () => {
     startPlanningTimer()
     try {
       await streamEvents(`/conversations/${conversationId.value}/plan`, undefined, (event, data) => {
-        if (event === 'planning_progress') upsertStep(data)
-        if (event === 'plan_completed') {
-          plan.value = data
-          sessionStorage.setItem(`travel_plan_${conversationId.value}`, JSON.stringify(data))
-          setConversationStatus('completed')
-          stage.value = 'plan'
-        }
-        if (event === 'destination_choice_required') {
-          destinationChoice.value = data
-          setConversationStatus('confirmed')
-        }
-        if (event === 'planning_error') {
-          error.value = data.message
-          setConversationStatus('confirmed')
-          failRunningSteps()
-        }
+        handlePlanningEvent(event, data)
       })
     } catch (caught) {
-      error.value = readableError(caught)
-      setConversationStatus('confirmed')
-      failRunningSteps()
+      await handlePlanningConnectionError(caught)
     } finally {
       stopPlanningTimer()
       planningRequestActive.value = false
@@ -338,6 +324,69 @@ export const usePlanningStore = defineStore('planning', () => {
       // record into the travel-plan history immediately.
       await refreshConversations()
     }
+  }
+
+  async function resumePlanning() {
+    if (planningRequestActive.value || !conversationId.value) return
+    planningRequestActive.value = true
+    stage.value = 'planning'
+    error.value = ''
+    steps.value = []
+    plan.value = null
+    destinationChoice.value = null
+    setConversationStatus('planning')
+    startPlanningTimer()
+    try {
+      await streamGetEvents(`/conversations/${conversationId.value}/plan/events`, 0, (event, data) => {
+        handlePlanningEvent(event, data)
+      })
+    } catch (caught) {
+      await handlePlanningConnectionError(caught)
+    } finally {
+      stopPlanningTimer()
+      planningRequestActive.value = false
+      await refreshConversations()
+    }
+  }
+
+  function handlePlanningEvent(event: string, data: any) {
+    if (event === 'planning_progress') upsertStep(data)
+    if (event === 'plan_completed') {
+      plan.value = data
+      sessionStorage.setItem(`travel_plan_${conversationId.value}`, JSON.stringify(data))
+      setConversationStatus('completed')
+      stage.value = 'plan'
+    }
+    if (event === 'destination_choice_required') {
+      destinationChoice.value = data
+      setConversationStatus('confirmed')
+    }
+    if (event === 'planning_error') {
+      error.value = data.message
+      setConversationStatus('confirmed')
+      failRunningSteps()
+    }
+  }
+
+  async function handlePlanningConnectionError(caught: unknown) {
+    try {
+      const current = await conversationApi.get(conversationId.value)
+      if (current.status === 'completed') {
+        applyConversation(current)
+        await restorePlan(current)
+        return
+      }
+      if (current.status === 'planning') {
+        error.value = '连接暂时中断，规划任务仍在后台运行；点击“重新尝试”可恢复进度。'
+        setConversationStatus('planning')
+        return
+      }
+    } catch {
+      // Fall through to the local error when the status cannot be refreshed.
+    }
+    error.value = readableError(caught)
+    setConversationStatus('confirmed')
+    failRunningSteps()
   }
 
   async function chooseScope(scope: Exclude<TravelScope, 'auto'>) {
@@ -414,6 +463,7 @@ export const usePlanningStore = defineStore('planning', () => {
     saveRequirement,
     confirmAndPlan,
     retryPlanning,
+    resumePlanning,
     chooseScope,
     backToChat,
   }

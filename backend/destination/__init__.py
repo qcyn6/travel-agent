@@ -1,3 +1,4 @@
+from backend.models.destination import DestinationPlanResult
 from backend.destination.resolver import (
     DestinationResolutionError,
     DestinationResolver,
@@ -6,7 +7,6 @@ from backend.destination.resolver import (
 from backend.destination.planner import (
     DestinationPlanner,
     DestinationPlanningError,
-    DestinationPlanResult,
 )
 
 __all__ = [
