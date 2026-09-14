@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from uuid import uuid4
 
 from sqlalchemy import func, select
@@ -66,7 +66,43 @@ class PlanningJobRepository:
     def set_requirement(self, row: PlanningJobRow, requirement: RequirementDraft) -> None:
         row.requirement_json = requirement.model_dump(mode="json")
 
-    def mark_running(self, row: PlanningJobRow) -> None:
+    @staticmethod
+    def is_stale(
+        row: PlanningJobRow,
+        *,
+        stale_after_seconds: float,
+        now: datetime | None = None,
+    ) -> bool:
+        if row.status != "running":
+            return False
+        heartbeat = row.heartbeat_at or row.started_at or row.created_at
+        if heartbeat is None:
+            return True
+        current_time = now or datetime.now()
+        return current_time - heartbeat >= timedelta(seconds=max(0.1, stale_after_seconds))
+
+    def claim(
+        self,
+        row: PlanningJobRow,
+        *,
+        worker_id: str,
+        stale_after_seconds: float,
+    ) -> bool:
+        if row.status in TERMINAL_JOB_STATUSES:
+            return False
+        if row.status == "running" and not self.is_stale(
+            row,
+            stale_after_seconds=stale_after_seconds,
+        ):
+            return False
+        self.mark_running(row, worker_id=worker_id)
+        return True
+
+    @staticmethod
+    def owns(row: PlanningJobRow, worker_id: str) -> bool:
+        return row.worker_id == worker_id
+
+    def mark_running(self, row: PlanningJobRow, *, worker_id: str | None = None) -> None:
         now = datetime.now()
         row.status = "running"
         row.started_at = row.started_at or now
@@ -74,6 +110,7 @@ class PlanningJobRepository:
         row.finished_at = None
         row.error = None
         row.retry_count = (row.retry_count or 0) + 1
+        row.worker_id = worker_id
 
     def record_progress(
         self,
@@ -82,7 +119,10 @@ class PlanningJobRepository:
         step: str,
         label: str,
         status: str,
-    ) -> PlanningEventRow:
+        worker_id: str | None = None,
+    ) -> PlanningEventRow | None:
+        if worker_id is not None and not self.owns(row, worker_id):
+            return None
         row.current_step = step
         row.progress_json = {"step": step, "label": label, "status": status}
         row.heartbeat_at = datetime.now()
@@ -92,27 +132,51 @@ class PlanningJobRepository:
             {"step": step, "label": label, "status": status},
         )
 
-    def mark_completed(self, row: PlanningJobRow) -> None:
+    def touch_heartbeat(self, row: PlanningJobRow, *, worker_id: str) -> bool:
+        if row.status not in ACTIVE_JOB_STATUSES or not self.owns(row, worker_id):
+            return False
+        row.heartbeat_at = datetime.now()
+        return True
+
+    def mark_completed(self, row: PlanningJobRow, *, worker_id: str | None = None) -> bool:
+        if worker_id is not None and not self.owns(row, worker_id):
+            return False
         now = datetime.now()
         row.status = "completed"
         row.current_step = "complete"
         row.heartbeat_at = now
         row.finished_at = now
         row.error = None
+        row.worker_id = None
+        return True
 
-    def mark_waiting_for_choice(self, row: PlanningJobRow) -> None:
+    def mark_waiting_for_choice(self, row: PlanningJobRow, *, worker_id: str | None = None) -> bool:
+        if worker_id is not None and not self.owns(row, worker_id):
+            return False
         now = datetime.now()
         row.status = "waiting_for_choice"
         row.heartbeat_at = now
         row.finished_at = now
         row.error = None
+        row.worker_id = None
+        return True
 
-    def mark_failed(self, row: PlanningJobRow, message: str) -> None:
+    def mark_failed(
+        self,
+        row: PlanningJobRow,
+        message: str,
+        *,
+        worker_id: str | None = None,
+    ) -> bool:
+        if worker_id is not None and not self.owns(row, worker_id):
+            return False
         now = datetime.now()
         row.status = "failed"
         row.heartbeat_at = now
         row.finished_at = now
         row.error = message[:2000]
+        row.worker_id = None
+        return True
 
     def append_event(
         self,

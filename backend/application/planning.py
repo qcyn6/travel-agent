@@ -1,6 +1,7 @@
 import asyncio
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass
+from uuid import uuid4
 
 from backend.config import Settings
 from backend.conversation import ConversationNotFoundError, ConversationRepository
@@ -161,6 +162,10 @@ class PlanningApplicationService:
                     yield sequence, event_type, payload
                 if status in TERMINAL_JOB_STATUSES:
                     break
+                # A process that originally owned the job may have died after
+                # the first response was opened. Re-check the lease on every
+                # poll so a different process can reclaim it after timeout.
+                self._ensure_worker(job_id)
                 now = asyncio.get_running_loop().time()
                 if now - last_keepalive >= PLANNING_KEEPALIVE_SECONDS:
                     last_keepalive = now
@@ -267,10 +272,18 @@ class PlanningApplicationService:
         if self.task_registry.is_running(job_id):
             return
         with open_session() as session:
-            job = PlanningJobRepository(session).get(job_id)
+            repository = PlanningJobRepository(session)
+            job = repository.get(job_id)
             if job is None:
                 raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
             if job.status not in ACTIVE_JOB_STATUSES:
+                return
+            if job.status == "running" and not repository.is_stale(
+                job,
+                stale_after_seconds=self._worker_stale_seconds(),
+            ):
+                # Another process currently owns a fresh lease. The polling
+                # loop will try again after the lease expires if needed.
                 return
         try:
             self.task_registry.start(job_id, lambda: self._run_job(job_id))
@@ -282,9 +295,11 @@ class PlanningApplicationService:
                 raise
 
     async def _run_job(self, job_id: str) -> None:
-        if not self._claim_job(job_id):
+        worker_id = uuid4().hex
+        if not self._claim_job(job_id, worker_id=worker_id):
             return
 
+        heartbeat_task = asyncio.create_task(self._heartbeat_loop(job_id, worker_id))
         active_step: tuple[str, str] | None = None
 
         async def progress(step: str, label: str, status: str) -> None:
@@ -293,98 +308,161 @@ class PlanningApplicationService:
                 active_step = (step, label)
             elif active_step is not None and active_step[0] == step:
                 active_step = None
-            self._record_progress(job_id, step=step, label=label, status=status)
+            self._record_progress(
+                job_id,
+                worker_id=worker_id,
+                step=step,
+                label=label,
+                status=status,
+            )
 
-        with open_session() as session:
-            conversation_repository = ConversationRepository(session)
-            job_repository = PlanningJobRepository(session)
-            plan_repository = TravelPlanRepository(session)
-            job = job_repository.get(job_id)
-            if job is None:
-                return
-            conversation_id = job.conversation_id
-
-            try:
-                requirement = RequirementDraft.model_validate(job.requirement_json or {})
-                workflow = build_travel_workflow(session, self.settings)
-                result = await workflow.run_requirement(requirement, progress=progress)
-
-                # Keep lock order consistent with prepare_conversation: owning
-                # conversation first, then its planning job.
-                conversation = conversation_repository.get(conversation_id, for_update=True)
-                if conversation is None:
-                    raise ConversationNotFoundError("当前会话不存在或已失效")
-                job = job_repository.get(job_id, for_update=True)
+        try:
+            with open_session() as session:
+                conversation_repository = ConversationRepository(session)
+                job_repository = PlanningJobRepository(session)
+                plan_repository = TravelPlanRepository(session)
+                job = job_repository.get(job_id)
                 if job is None:
-                    raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
-                plan_repository.save(conversation_id, result, commit=False)
-                conversation_repository.set_status(conversation, "completed", commit=False)
-                job_repository.set_requirement(
-                    job,
-                    RequirementDraft.model_validate(result.requirement.model_dump()),
-                )
-                job_repository.mark_completed(job)
-                job_repository.append_event(job, "plan_completed", result.model_dump(mode="json"))
-                session.commit()
-            except DestinationChoiceRequired as exc:
-                self._finish_choice(
-                    session,
-                    conversation_repository,
-                    job_repository,
-                    job_id,
-                    exc,
-                )
-            except (ValueError, DestinationPlanningError) as exc:
-                self._finish_failure(
-                    session,
-                    conversation_repository,
-                    job_repository,
-                    job_id,
-                    str(exc),
-                    active_step,
-                )
-            except KnowledgeBootstrapError as exc:
-                self._finish_failure(
-                    session,
-                    conversation_repository,
-                    job_repository,
-                    job_id,
-                    str(exc),
-                    active_step,
-                )
-            except Exception:
-                self._finish_failure(
-                    session,
-                    conversation_repository,
-                    job_repository,
-                    job_id,
-                    "旅游方案生成失败，请稍后重试",
-                    active_step,
-                )
+                    return
+                conversation_id = job.conversation_id
 
-    def _claim_job(self, job_id: str) -> bool:
+                try:
+                    requirement = RequirementDraft.model_validate(job.requirement_json or {})
+                    workflow = build_travel_workflow(session, self.settings)
+                    result = await workflow.run_requirement(requirement, progress=progress)
+
+                    # Keep lock order consistent with prepare_conversation: owning
+                    # conversation first, then its planning job.
+                    conversation = conversation_repository.get(conversation_id, for_update=True)
+                    if conversation is None:
+                        raise ConversationNotFoundError("当前会话不存在或已失效")
+                    job = job_repository.get(job_id, for_update=True)
+                    if job is None or not job_repository.owns(job, worker_id):
+                        # A stale worker must never publish a result after a
+                        # different process has reclaimed the lease.
+                        return
+                    plan_repository.save(conversation_id, result, commit=False)
+                    conversation_repository.set_status(conversation, "completed", commit=False)
+                    job_repository.set_requirement(
+                        job,
+                        RequirementDraft.model_validate(result.requirement.model_dump()),
+                    )
+                    job_repository.mark_completed(job, worker_id=worker_id)
+                    job_repository.append_event(job, "plan_completed", result.model_dump(mode="json"))
+                    session.commit()
+                except DestinationChoiceRequired as exc:
+                    self._finish_choice(
+                        session,
+                        conversation_repository,
+                        job_repository,
+                        job_id,
+                        exc,
+                        worker_id,
+                    )
+                except (ValueError, DestinationPlanningError) as exc:
+                    self._finish_failure(
+                        session,
+                        conversation_repository,
+                        job_repository,
+                        job_id,
+                        str(exc),
+                        active_step,
+                        worker_id,
+                    )
+                except KnowledgeBootstrapError as exc:
+                    self._finish_failure(
+                        session,
+                        conversation_repository,
+                        job_repository,
+                        job_id,
+                        str(exc),
+                        active_step,
+                        worker_id,
+                    )
+                except Exception:
+                    self._finish_failure(
+                        session,
+                        conversation_repository,
+                        job_repository,
+                        job_id,
+                        "旅游方案生成失败，请稍后重试",
+                        active_step,
+                        worker_id,
+                    )
+        finally:
+            heartbeat_task.cancel()
+            try:
+                await heartbeat_task
+            except asyncio.CancelledError:
+                pass
+
+    def _claim_job(self, job_id: str, *, worker_id: str) -> bool:
         with open_session() as session:
             repository = PlanningJobRepository(session)
             job = repository.get(job_id, for_update=True)
-            if job is None or job.status in TERMINAL_JOB_STATUSES:
+            if job is None:
                 return False
-            # The MVP runs one local worker process. PlanningTaskRegistry
-            # serializes workers inside that process; a new process is allowed
-            # to reclaim a running row after restart so a fresh heartbeat from
-            # the dead process cannot leave the stream waiting forever.
-            repository.mark_running(job)
+            if not repository.claim(
+                job,
+                worker_id=worker_id,
+                stale_after_seconds=self._worker_stale_seconds(),
+            ):
+                return False
             repository.append_event(job, "job_started", {"status": "running"})
             session.commit()
             return True
 
-    def _record_progress(self, job_id: str, *, step: str, label: str, status: str) -> None:
+    async def _heartbeat_loop(self, job_id: str, worker_id: str) -> None:
+        interval = self._heartbeat_seconds()
+        while True:
+            await asyncio.sleep(interval)
+            try:
+                with open_session() as session:
+                    repository = PlanningJobRepository(session)
+                    job = repository.get(job_id, for_update=True)
+                    if job is None or not repository.touch_heartbeat(job, worker_id=worker_id):
+                        return
+                    session.commit()
+            except asyncio.CancelledError:
+                raise
+            except Exception:
+                # A transient heartbeat failure must not cancel the planning
+                # workflow. The lease will naturally expire if the database
+                # remains unavailable.
+                continue
+
+    def _record_progress(
+        self,
+        job_id: str,
+        *,
+        worker_id: str,
+        step: str,
+        label: str,
+        status: str,
+    ) -> None:
         with open_session() as session:
             repository = PlanningJobRepository(session)
             job = repository.get(job_id, for_update=True)
-            if job is None or job.status not in ACTIVE_JOB_STATUSES:
+            if (
+                job is None
+                or job.status not in ACTIVE_JOB_STATUSES
+                or not repository.owns(job, worker_id)
+            ):
                 return
-            repository.record_progress(job, step=step, label=label, status=status)
+            repository.record_progress(
+                job,
+                step=step,
+                label=label,
+                status=status,
+                worker_id=worker_id,
+            )
             session.commit()
+
+    def _worker_stale_seconds(self) -> float:
+        return max(1.0, float(getattr(self.settings, "planning_worker_stale_seconds", 90.0)))
+
+    def _heartbeat_seconds(self) -> float:
+        return max(0.5, float(getattr(self.settings, "planning_heartbeat_seconds", 10.0)))
 
     @staticmethod
     def _finish_choice(
@@ -393,10 +471,11 @@ class PlanningApplicationService:
         job_repository: PlanningJobRepository,
         job_id: str,
         choice: DestinationChoiceRequired,
+        worker_id: str,
     ) -> None:
         session.rollback()
         job = job_repository.get(job_id)
-        if job is None:
+        if job is None or not job_repository.owns(job, worker_id):
             return
         conversation = conversation_repository.get(job.conversation_id, for_update=True)
         if conversation is None:
@@ -409,10 +488,11 @@ class PlanningApplicationService:
             commit=False,
         )
         job = job_repository.get(job_id, for_update=True)
-        if job is None:
+        if job is None or not job_repository.owns(job, worker_id):
             return
         job_repository.set_requirement(job, requirement)
-        job_repository.mark_waiting_for_choice(job)
+        if not job_repository.mark_waiting_for_choice(job, worker_id=worker_id):
+            return
         job_repository.append_event(
             job,
             "destination_choice_required",
@@ -431,22 +511,30 @@ class PlanningApplicationService:
         job_id: str,
         message: str,
         active_step: tuple[str, str] | None,
+        worker_id: str,
     ) -> None:
         session.rollback()
         job = job_repository.get(job_id)
-        if job is None:
+        if job is None or not job_repository.owns(job, worker_id):
             return
         conversation = conversation_repository.get(job.conversation_id, for_update=True)
         if conversation is not None:
             recovery_status = "confirmed" if conversation.requirement_confirmed else "draft"
             conversation_repository.set_status(conversation, recovery_status, commit=False)
         job = job_repository.get(job_id, for_update=True)
-        if job is None:
+        if job is None or not job_repository.owns(job, worker_id):
             return
         if active_step is not None:
             step, label = active_step
-            job_repository.record_progress(job, step=step, label=label, status="failed")
-        job_repository.mark_failed(job, message)
+            job_repository.record_progress(
+                job,
+                step=step,
+                label=label,
+                status="failed",
+                worker_id=worker_id,
+            )
+        if not job_repository.mark_failed(job, message, worker_id=worker_id):
+            return
         job_repository.append_event(job, "planning_error", {"message": message})
         session.commit()
 

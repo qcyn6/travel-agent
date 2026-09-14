@@ -1,4 +1,5 @@
 from contextlib import contextmanager
+from datetime import datetime, timedelta
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
@@ -33,6 +34,54 @@ def test_planning_job_events_are_replayable_in_sequence():
         ]
         assert repository.list_events(job.id, after=1)[0].event_type == "job_started"
         assert repository.active_for_conversation(conversation.id).id == job.id
+
+
+def test_planning_job_lease_rejects_fresh_competitor_and_reclaims_stale_worker():
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+
+    with Session(engine, expire_on_commit=False) as session:
+        conversation = ConversationRepository(session).create()
+        repository = PlanningJobRepository(session)
+        job = repository.create(conversation.id, RequirementDraft())
+        session.flush()
+
+        assert repository.claim(
+            job,
+            worker_id="worker-a",
+            stale_after_seconds=30,
+        ) is True
+        session.commit()
+
+        assert repository.claim(
+            job,
+            worker_id="worker-b",
+            stale_after_seconds=30,
+        ) is False
+        assert repository.owns(job, "worker-a") is True
+
+        job.heartbeat_at = datetime.now() - timedelta(seconds=31)
+        assert repository.claim(
+            job,
+            worker_id="worker-b",
+            stale_after_seconds=30,
+        ) is True
+        assert repository.owns(job, "worker-b") is True
+        assert repository.owns(job, "worker-a") is False
+        assert repository.record_progress(
+            job,
+            step="old-worker",
+            label="should be ignored",
+            status="running",
+            worker_id="worker-a",
+        ) is None
+        assert repository.record_progress(
+            job,
+            step="new-worker",
+            label="accepted",
+            status="running",
+            worker_id="worker-b",
+        ) is not None
 
 
 def test_prepare_conversation_reuses_the_active_job(monkeypatch):

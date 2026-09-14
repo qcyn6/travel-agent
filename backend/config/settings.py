@@ -57,6 +57,8 @@ class Settings(BaseSettings):
     embedding_timeout_seconds: float = 30.0
     chroma_path: str = "data/chroma"
     chroma_collection: str = "attraction_knowledge"
+    planning_heartbeat_seconds: float = 10.0
+    planning_worker_stale_seconds: float = 90.0
 
 
 @lru_cache
