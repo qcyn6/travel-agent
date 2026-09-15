@@ -5,6 +5,7 @@ from backend.conversation.responder import ConversationResponseError
 from backend.database.catalog import DESTINATION_SCOPE_HINT, DESTINATION_SUGGESTIONS
 from backend.destination import DestinationResolutionError, DestinationResolver
 from backend.models.conversation import Conversation, ConversationMessage, RequirementDraft
+from backend.requirements.dates import format_date_zh
 from backend.requirements.parser import canonicalize_interests
 
 
@@ -25,6 +26,7 @@ class PreparedConversationTurn:
     missing: list[str]
     destination_context: str | None
     recent_messages: list[dict[str, str]]
+    should_summarize: bool = False
     destination_error: str | None = None
 
 
@@ -48,6 +50,8 @@ class ConversationService:
         prepared = await self.prepare_message(conversation_id, message)
         if prepared.destination_error:
             reply = f"{prepared.destination_error}。{DESTINATION_SCOPE_HINT}，你可以换一个省份或城市。"
+        elif prepared.should_summarize:
+            reply = self.summary_reply(prepared.requirement)
         elif not (prepared.requirement.province or prepared.requirement.cities):
             reply = self._fallback_reply(
                 prepared.requirement,
@@ -84,6 +88,7 @@ class ConversationService:
         parsed = await parsed_value if isawaitable(parsed_value) else parsed_value
         parsed_draft = RequirementDraft.model_validate(parsed.model_dump())
         merged = self._merge(current, parsed_draft)
+        was_ready = current.is_ready()
         destination_error = None
         if merged.province or merged.cities:
             try:
@@ -108,6 +113,11 @@ class ConversationService:
             missing=missing,
             destination_context=context,
             recent_messages=recent,
+            should_summarize=(
+                destination_error is None
+                and merged.is_ready()
+                and (not was_ready or merged != current)
+            ),
             destination_error=destination_error,
         )
 
@@ -154,7 +164,7 @@ class ConversationService:
     @staticmethod
     def suggestions_for(missing: list[str]) -> list[str]:
         if not missing:
-            return ["查看并确认旅行需求", "我还想补充"]
+            return ["确认需求并生成计划", "我还想补充"]
         if missing[0] == "destination":
             return list(DESTINATION_SUGGESTIONS)
         if missing[0] == "days":
@@ -194,10 +204,41 @@ class ConversationService:
         return None
 
     @staticmethod
+    def summary_reply(requirement: RequirementDraft) -> str:
+        destination = "、".join(requirement.cities) if requirement.cities else requirement.province or "待补充"
+        interests = "、".join(requirement.interests) if requirement.interests else requirement.preference_text or "待补充"
+        start_date = (
+            format_date_zh(requirement.start_date)
+            if requirement.start_date
+            else "暂未指定（可在确认时补充）"
+        )
+        scope = {
+            "single_city": "单城市深度游",
+            "multi_city": "同省多城市",
+            "auto": "由系统根据天数推荐",
+        }[requirement.travel_scope]
+        transport = {
+            "walking": "步行",
+            "transit": "公共交通",
+            "driving": "驾车",
+            "auto": "由系统推荐",
+        }[requirement.transport_mode]
+        return (
+            "我帮你把这次旅行需求整理好了，请确认一下：\n"
+            f"目的地：{destination}\n"
+            f"旅行天数：{requirement.days}天\n"
+            f"出发日期：{start_date}\n"
+            f"兴趣偏好：{interests}\n"
+            f"城市安排：{scope}\n"
+            f"交通方式：{transport}\n\n"
+            "如果内容没问题，点击“确认需求并生成计划”；想调整任何一项，直接告诉我就好。"
+        )
+
+    @staticmethod
     def _fallback_reply(requirement: RequirementDraft, missing: list[str], context: str | None) -> str:
         intro = f"{context[:70]}。" if context else "我会逐步帮你整理这次旅行。"
         if not missing:
-            return "你的核心旅行需求已经比较清晰了。请点击“查看并确认旅行需求”，确认后我就开始生成行程。"
+            return ConversationService.summary_reply(requirement)
         questions = {
             "destination": f"你想去哪个省份或城市？{DESTINATION_SCOPE_HINT}。",
             "days": "这次大概准备玩几天？",

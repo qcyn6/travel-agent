@@ -20,7 +20,7 @@ const messageList = ref<HTMLElement | null>(null)
 function submit(text = input.value) {
   const clean = text.trim()
   if (!clean || props.sending) return
-  if (clean === '查看并确认旅行需求') {
+  if (clean === '确认需求并生成计划' || clean === '查看并确认旅行需求') {
     emit('confirm')
   } else {
     emit('send', clean)
@@ -77,7 +77,14 @@ watch(
     </div>
 
     <div v-if="!empty && suggestions.length" class="suggestions">
-      <button v-for="item in suggestions" :key="item" type="button" :disabled="sending" @click="submit(item)">
+      <button
+        v-for="item in suggestions"
+        :key="item"
+        type="button"
+        :class="{ 'suggestion-primary': item === '确认需求并生成计划' }"
+        :disabled="sending"
+        @click="submit(item)"
+      >
         {{ item }}
       </button>
     </div>

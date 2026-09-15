@@ -1,5 +1,8 @@
+from datetime import date, timedelta
+
 import pytest
 
+from backend.requirements.dates import format_date_zh, resolve_start_date
 from backend.requirements import RequirementParser
 
 
@@ -56,3 +59,30 @@ def test_parse_nationwide_province_and_city_aliases(text, province, cities):
 
     assert result.province == province
     assert result.cities == cities
+
+
+@pytest.mark.parametrize(
+    ("phrase", "expected"),
+    [
+        ("今天出发", date(2026, 9, 15)),
+        ("明天出发", date(2026, 9, 16)),
+        ("后天出发", date(2026, 9, 17)),
+        ("大后天出发", date(2026, 9, 18)),
+        ("下周一出发", date(2026, 9, 21)),
+        ("下下周三出发", date(2026, 9, 30)),
+        ("这个周末出发", date(2026, 9, 19)),
+        ("9月20日出发", date(2026, 9, 20)),
+    ],
+)
+def test_resolves_relative_dates(phrase, expected):
+    assert resolve_start_date(phrase, reference_date=date(2026, 9, 15)) == expected
+
+
+def test_parser_normalizes_relative_date_for_downstream_planning():
+    result = RequirementParser().parse(
+        "明天去杭州玩三天，喜欢自然",
+        reference_date=date(2026, 9, 15),
+    )
+
+    assert result.start_date == date(2026, 9, 16)
+    assert format_date_zh(result.start_date) == "2026年9月16日（周三）"

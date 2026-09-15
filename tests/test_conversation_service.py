@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from types import SimpleNamespace
 
 import pytest
@@ -77,6 +77,8 @@ async def test_conversation_merges_multiple_turns_and_keeps_memory(catalog_repos
     assert second.requirement.interests == ["自然", "古城"]
     assert second.requirement.preference_text is not None
     assert second.requirement_ready is True
+    assert "我帮你把这次旅行需求整理好了" in reply
+    assert "确认需求并生成计划" in reply
     assert "确认" in reply
     assert [message.role for message in second.messages] == ["user", "assistant", "user", "assistant"]
 
@@ -138,3 +140,23 @@ def test_manual_requirement_update_can_be_confirmed(catalog_repository):
     assert updated.requirement.province == "浙江省"
     assert confirmed.requirement_confirmed is True
     assert confirmed.status == "confirmed"
+
+
+@pytest.mark.asyncio
+async def test_complete_requirement_summary_includes_resolved_relative_date(catalog_repository):
+    repository = FakeConversationRepository()
+    service = ConversationService(
+        repository=repository,
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        responder=FailingResponder(),
+    )
+    conversation = service.create()
+
+    _, reply, suggestions = await service.handle_message(
+        conversation.id,
+        "明天去杭州玩三天，喜欢自然",
+    )
+
+    assert f"出发日期：{date.today().year}年" in reply
+    assert suggestions[0] == "确认需求并生成计划"

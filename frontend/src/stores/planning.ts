@@ -31,7 +31,7 @@ function suggestionsFor(next: RequirementDraft): string[] {
   if (!next.interests.length && !next.preference_text) {
     return ['自然风光', '历史文化', '古城', '摄影', '美食', '休闲慢游']
   }
-  return ['查看并确认旅行需求', '我还想补充']
+  return ['确认需求并生成计划', '我还想补充']
 }
 
 function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
@@ -40,8 +40,9 @@ function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
     return {
       ...message,
       content: message.content
-        .replaceAll('查看并确认右侧旅行需求卡', '点击“查看并确认旅行需求”按钮')
-        .replace(/(?:查看|看看|看)右侧旅行需求卡(?:并确认)?(?:一下)?/g, '点击“查看并确认旅行需求”按钮'),
+        .replaceAll('查看并确认右侧旅行需求卡', '点击“确认需求并生成计划”按钮')
+        .replaceAll('查看并确认旅行需求', '确认需求并生成计划')
+        .replace(/(?:查看|看看|看)右侧旅行需求卡(?:并确认)?(?:一下)?/g, '点击“确认需求并生成计划”按钮'),
     }
   })
 }

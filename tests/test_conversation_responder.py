@@ -60,5 +60,5 @@ async def test_deepseek_responder_consumes_upstream_stream(monkeypatch):
     assert FakeAsyncClient.last_payload["stream"] is True
     system_message = FakeAsyncClient.last_payload["messages"][0]["content"]
     assert "当前支持全国省级行政区和目录中的城市" in system_message
-    assert "查看并确认旅行需求" in system_message
+    assert "确认需求并生成计划" in system_message
     assert "右侧旅行需求卡" not in FakeAsyncClient.last_payload["messages"][-1]["content"]

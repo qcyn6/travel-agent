@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 import httpx
 import pytest
 
@@ -76,3 +78,24 @@ async def test_requirement_service_normalizes_synonyms_and_fills_explicit_prefer
 
     assert result.interests == ["摄影"]
     assert "轻松" in result.preference_text
+
+
+@pytest.mark.asyncio
+async def test_requirement_service_prefers_local_relative_date_over_llm_date():
+    class LLM:
+        async def parse(self, text):
+            from backend.models.requirement import TravelRequirement
+
+            return TravelRequirement(
+                cities=["杭州"],
+                days=1,
+                interests=["自然"],
+                start_date=date(2030, 1, 1),
+                travel_scope="single_city",
+            )
+
+    result = await RequirementParsingService(
+        llm_parser=LLM(), fallback_parser=RequirementParser()
+    ).parse("明天去杭州玩一天，喜欢自然")
+
+    assert result.start_date == date.today() + timedelta(days=1)

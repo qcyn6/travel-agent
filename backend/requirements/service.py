@@ -21,7 +21,9 @@ class RequirementParsingService:
                 "days": parsed.days or fallback.days,
                 "interests": interests,
                 "preference_text": parsed.preference_text or fallback.preference_text,
-                "start_date": parsed.start_date or fallback.start_date,
+                # Relative dates are resolved locally from the server date. Prefer
+                # that deterministic result over an LLM guess for “明天”等表达。
+                "start_date": fallback.start_date or parsed.start_date,
                 "transport_mode": (
                     fallback.transport_mode
                     if parsed.transport_mode == "auto" and fallback.transport_mode != "auto"

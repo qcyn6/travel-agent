@@ -3,6 +3,7 @@ from datetime import date
 
 from backend.database.catalog import CITY_ALIASES, PROVINCE_ALIASES
 from backend.models.requirement import TravelRequirement
+from backend.requirements.dates import resolve_start_date
 
 
 _INTEREST_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
@@ -73,7 +74,7 @@ def _parse_chinese_number(value: str) -> int | None:
 class RequirementParser:
     """Deterministic M1 parser; an LLM adapter can later implement the same contract."""
 
-    def parse(self, text: str) -> TravelRequirement:
+    def parse(self, text: str, *, reference_date: date | None = None) -> TravelRequirement:
         query = text.strip()
         if not query:
             raise ValueError("旅游需求不能为空")
@@ -99,13 +100,7 @@ class RequirementParser:
         if day_match:
             days = _parse_chinese_number(day_match.group(1))
 
-        start_date = None
-        date_match = re.search(r"(20\d{2})[年\-/\.](\d{1,2})[月\-/\.](\d{1,2})日?", query)
-        if date_match:
-            try:
-                start_date = date(*(int(value) for value in date_match.groups()))
-            except ValueError:
-                start_date = None
+        start_date = resolve_start_date(query, reference_date=reference_date)
 
         if any(word in query for word in ("步行", "徒步")):
             transport_mode = "walking"

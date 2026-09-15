@@ -153,6 +153,10 @@ async def send_message(
             reply = f"{prepared.destination_error}。{DESTINATION_SCOPE_HINT}，你可以换一个省份或城市。"
             chunks.append(reply)
             yield _sse("message_delta", {"text": reply})
+        elif prepared.should_summarize:
+            reply = service.summary_reply(prepared.requirement)
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
         elif not (prepared.requirement.province or prepared.requirement.cities):
             reply = service._fallback_reply(
                 prepared.requirement,
