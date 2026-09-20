@@ -4,6 +4,7 @@ import pytest
 
 from backend.planner.dynamic_scheduler import calculate_priority
 from backend.models.itinerary import CityPlan, DayPlan
+from experiments.ablation import run_retrieval_ablation, write_retrieval_ablation_results
 from experiments.cases import make_experiment_cases
 from experiments.baselines import (
     LLMBaselineAdapter,
@@ -13,7 +14,7 @@ from experiments.baselines import (
 )
 from experiments.runner import run_matrix, run_variant, write_results
 from experiments.tool_acceptance import run_fixture_acceptance
-from experiments.variants import EXPERIMENT_VARIANTS
+from experiments.variants import EXPERIMENT_VARIANTS, RETRIEVAL_ABLATION_VARIANTS
 
 
 def test_experiment_matrix_contains_product_and_failure_cases():
@@ -167,3 +168,35 @@ async def test_fixture_tool_acceptance_covers_success_and_degradation_paths():
     assert by_case["route-missing-coordinates"].source == "unavailable"
     assert by_case["weather-success"].source == "qweather"
     assert by_case["weather-unavailable-fallback"].source == "none"
+
+
+def test_experiment_candidates_keep_independent_semantic_and_keyword_scores():
+    candidates = make_experiment_cases()[0].cities[0].candidates
+    assert all(candidate.semantic_score is not None for candidate in candidates)
+    assert any(
+        candidate.semantic_score != candidate.keyword_score for candidate in candidates
+    )
+    assert all(0 <= candidate.preference_score <= 1 for candidate in candidates)
+
+
+@pytest.mark.asyncio
+async def test_retrieval_ablation_uses_one_scheduler_and_separates_selection_order(tmp_path):
+    case = make_experiment_cases()[0]
+    results = await run_retrieval_ablation([case], RETRIEVAL_ABLATION_VARIANTS)
+    assert [result.variant_id for result in results] == [
+        "semantic_only",
+        "keyword_only",
+        "semantic_keyword_hybrid",
+    ]
+    assert all(result.metrics["feasible"] is True for result in results)
+    assert results[0].metrics["selection_signature"] != results[1].metrics[
+        "selection_signature"
+    ]
+    assert results[1].metrics["route_minutes"] < results[0].metrics["route_minutes"]
+    assert results[2].semantic_weight == pytest.approx(0.7)
+    assert results[2].keyword_weight == pytest.approx(0.3)
+
+    paths = write_retrieval_ablation_results(results, tmp_path)
+    assert paths["json"].name == "retrieval_ablation.json"
+    assert "semantic_weight" in paths["csv"].read_text(encoding="utf-8-sig").splitlines()[0]
+    assert "检索权重消融实验结果" in paths["markdown"].read_text(encoding="utf-8")

@@ -8,6 +8,12 @@
 python -m experiments.runner --output experiments/outputs
 ```
 
+运行 Semantic/Keyword 检索权重消融：
+
+```powershell
+python -m experiments.ablation --output experiments/outputs
+```
+
 默认只运行本地固定案例，不访问外部服务。配置 `LLM_API_KEY` 后，如需显式运行
 LLM 直接生成 Baseline，追加参数：
 
@@ -37,6 +43,7 @@ python -m experiments.tool_acceptance --mode live `
 - `outputs/results.json`：每条案例和算法变体的完整指标、选点签名和决策统计；
 - `outputs/results.csv`：适合导入表格或绘图工具的扁平指标；
 - `outputs/summary.md`：便于快速检查的汇总表。
+- `outputs/retrieval_ablation.json`、`retrieval_ablation.csv`、`retrieval_ablation.md`：语义-only、关键词-only 和 0.7/0.3 混合消融结果。
 - `outputs/tool_acceptance.json`：fixture 路线成功、估算降级、缺少坐标和天气降级验收记录。
 - `outputs/llm_baseline.*`：显式运行 LLM Baseline 后生成的结果，不作为离线默认输出。
 
@@ -47,6 +54,9 @@ python -m experiments.tool_acceptance --mode live `
 - `distance_heavy`：距离敏感消融，权重 `0.5 / 0.5`。
 
 权重实验只改变排程器的运行时参数，不增加数据库字段，也不改变生产默认配置。
+
+检索消融只重算运行时 `preference_score`，三组变体随后使用同一个动态排程器和路线矩阵，
+因此可以区分“检索排序差异”和“排程算法差异”。
 
 Baseline 评估会额外统计候选有效率、未知景点、重复景点、路线不可用和时间窗口违规，
 与确定性变体使用同一套固定候选和路线矩阵，便于论文进行公平比较。

@@ -170,17 +170,27 @@ def _build_city_case(city: str, *, days: int, longitude_base: float) -> Experime
             name,
             longitude=longitude_base + offset,
             latitude=30.20 + index * 0.025,
-            preference_score=score,
+            preference_score=preference_score,
+            semantic_score=semantic_score,
+            keyword_score=keyword_score,
             tags=tags,
             duration=duration,
         )
-        for index, (name, offset, score, tags, duration) in enumerate(
+        for index, (
+            name,
+            offset,
+            preference_score,
+            semantic_score,
+            keyword_score,
+            tags,
+            duration,
+        ) in enumerate(
             (
-                ("中心湖景", 0.000, 0.96, ["自然", "摄影"], 100),
-                ("城市古迹", 0.012, 0.84, ["历史文化", "人文"], 90),
-                ("远郊山景", 0.180, 0.91, ["自然", "摄影"], 110),
-                ("街区美食", 0.025, 0.78, ["美食", "休闲"], 90),
-                ("古镇慢游", 0.045, 0.73, ["古城", "休闲"], 120),
+                ("中心湖景", 0.000, 0.96, 0.88, 1.00, ["自然", "摄影"], 100),
+                ("城市古迹", 0.012, 0.84, 0.94, 0.84, ["历史文化", "人文"], 90),
+                ("远郊山景", 0.180, 0.91, 0.97, 0.72, ["自然", "摄影"], 110),
+                ("街区美食", 0.025, 0.78, 0.76, 0.95, ["美食", "休闲"], 90),
+                ("古镇慢游", 0.045, 0.73, 0.70, 0.76, ["古城", "休闲"], 120),
             ),
             start=1,
         )
@@ -207,6 +217,8 @@ def _candidate(
     longitude: float,
     latitude: float,
     preference_score: float,
+    semantic_score: float,
+    keyword_score: float,
     tags: list[str],
     duration: int,
 ) -> PlanningCandidate:
@@ -221,7 +233,8 @@ def _candidate(
         description=f"{city}{name}固定实验候选。",
         visit_duration_minutes=duration,
         tag_match_count=len(tags),
-        keyword_score=preference_score,
+        semantic_score=semantic_score,
+        keyword_score=keyword_score,
         preference_score=preference_score,
     )
 

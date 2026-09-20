@@ -237,6 +237,12 @@ MySQL 连接失败时，确认 MySQL 已启动、数据库 `travel_agent` 已创
 D:\Miniconda\envs\travel-agent\python.exe -m experiments.runner --output experiments\outputs
 ```
 
+运行 Semantic/Keyword 检索权重消融：
+
+```powershell
+D:\Miniconda\envs\travel-agent\python.exe -m experiments.ablation --output experiments\outputs
+```
+
 默认实验不访问外部服务。配置 `LLM_API_KEY` 后，如需显式运行 LLM 直接生成 Baseline：
 
 ```powershell
@@ -250,7 +256,7 @@ D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode 
 D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode live --output experiments\outputs\tool_acceptance-live.json
 ```
 
-完整指标口径与运行方法见 `experiments\README.md`。LLM Baseline 适配器和工具联调入口均不修改景点表结构。
+完整指标口径与运行方法见 `experiments\README.md`。LLM Baseline、检索消融和工具联调入口均不修改景点表结构。
 
 接口：
 

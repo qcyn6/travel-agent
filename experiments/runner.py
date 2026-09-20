@@ -25,15 +25,22 @@ class ExperimentResult:
     variant_id: str
     variant_label: str
     metrics: dict[str, object]
+    semantic_weight: float | None = None
+    keyword_weight: float | None = None
 
     def to_dict(self) -> dict[str, object]:
-        return {
+        payload = {
             "case_id": self.case_id,
             "case_title": self.case_title,
             "variant_id": self.variant_id,
             "variant_label": self.variant_label,
             "metrics": self.metrics,
         }
+        if self.semantic_weight is not None:
+            payload["semantic_weight"] = self.semantic_weight
+        if self.keyword_weight is not None:
+            payload["keyword_weight"] = self.keyword_weight
+        return payload
 
 
 class FixedRouteService:
@@ -94,15 +101,16 @@ async def run_variant(case: ExperimentCase, variant: ExperimentVariant) -> Exper
     selected_by_day: list[list[str]] = []
 
     for city_case in case.cities:
+        candidates = _apply_retrieval_weights(city_case.candidates, variant)
         result = await scheduler.plan_with_routes(
             city_stay=city_case.city_stay,
             requirement=requirement,
-            candidates=city_case.candidates,
+            candidates=candidates,
             city_adcode="experiment",
             route_service=FixedRouteService(city_case),
             schedule_builder=schedule_builder,
         )
-        candidate_by_id = {candidate.poi_id: candidate for candidate in city_case.candidates}
+        candidate_by_id = {candidate.poi_id: candidate for candidate in candidates}
         for day in result.city_plan.days:
             selected_by_day.append(list(day.attractions))
             selected_candidates.extend(
@@ -151,6 +159,29 @@ async def run_variant(case: ExperimentCase, variant: ExperimentVariant) -> Exper
         variant_id=variant.variant_id,
         variant_label=variant.label,
         metrics=metrics,
+        semantic_weight=variant.semantic_weight,
+        keyword_weight=variant.keyword_weight,
+    )
+
+
+def _apply_retrieval_weights(
+    candidates: tuple,
+    variant: ExperimentVariant,
+) -> tuple:
+    """Recompute preference scores for retrieval ablations only."""
+
+    if variant.semantic_weight is None or variant.keyword_weight is None:
+        return candidates
+    return tuple(
+        candidate.model_copy(
+            update={
+                "preference_score": (
+                    variant.semantic_weight * float(candidate.semantic_score or 0.0)
+                    + variant.keyword_weight * float(candidate.keyword_score or 0.0)
+                )
+            }
+        )
+        for candidate in candidates
     )
 
 
@@ -167,15 +198,22 @@ async def run_matrix(
     return results
 
 
-def write_results(results: Iterable[ExperimentResult], output_dir: str | Path) -> dict[str, Path]:
+def write_results(
+    results: Iterable[ExperimentResult],
+    output_dir: str | Path,
+    *,
+    file_stem: str = "results",
+) -> dict[str, Path]:
     """Write JSON, CSV and a short Markdown summary for paper preparation."""
 
     directory = Path(output_dir)
     directory.mkdir(parents=True, exist_ok=True)
     items = [result.to_dict() for result in results]
-    json_path = directory / "results.json"
-    csv_path = directory / "results.csv"
-    markdown_path = directory / "summary.md"
+    json_path = directory / f"{file_stem}.json"
+    csv_path = directory / f"{file_stem}.csv"
+    markdown_path = directory / (
+        "summary.md" if file_stem == "results" else f"{file_stem}.md"
+    )
     json_path.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8")
 
     fields = [
@@ -197,6 +235,8 @@ def write_results(results: Iterable[ExperimentResult], output_dir: str | Path) -
         "feasible",
         "elapsed_ms",
     ]
+    if any("semantic_weight" in item for item in items):
+        fields[4:4] = ["semantic_weight", "keyword_weight"]
     with csv_path.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
         writer.writeheader()
@@ -209,10 +249,20 @@ def write_results(results: Iterable[ExperimentResult], output_dir: str | Path) -
                 }
             )
 
+    title = "规划算法离线实验结果"
+    note = "固定候选景点与路线矩阵由 `experiments/cases.py` 提供；实验不访问数据库或外部 API。"
+    if file_stem == "retrieval_ablation":
+        title = "# Semantic/Keyword 检索权重消融实验结果"
+        note = (
+            "固定候选景点同时保存语义分数和关键词分数；仅改变检索偏好分数，"
+            "后续统一进入同一个动态排程器。实验不访问数据库或外部 API。"
+        )
+    else:
+        title = f"# {title}"
     lines = [
-        "# 规划算法离线实验结果",
+        title,
         "",
-        "固定候选景点与路线矩阵由 `experiments/cases.py` 提供；实验不访问数据库或外部 API。",
+        note,
         "",
         "| 案例 | 变体 | 兴趣覆盖率 | 景点数 | 交通分钟 | 估算路线比例 | 被拒候选 |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: |",

@@ -9,6 +9,8 @@ class ExperimentVariant:
     label: str
     preference_weight: float
     distance_weight: float
+    semantic_weight: float | None = None
+    keyword_weight: float | None = None
 
 
 EXPERIMENT_VARIANTS: tuple[ExperimentVariant, ...] = (
@@ -33,4 +35,36 @@ EXPERIMENT_VARIANTS: tuple[ExperimentVariant, ...] = (
 )
 
 
-__all__ = ["EXPERIMENT_VARIANTS", "ExperimentVariant"]
+RETRIEVAL_ABLATION_VARIANTS: tuple[ExperimentVariant, ...] = (
+    ExperimentVariant(
+        variant_id="semantic_only",
+        label="仅语义检索",
+        preference_weight=0.7,
+        distance_weight=0.3,
+        semantic_weight=1.0,
+        keyword_weight=0.0,
+    ),
+    ExperimentVariant(
+        variant_id="keyword_only",
+        label="仅关键词检索",
+        preference_weight=0.7,
+        distance_weight=0.3,
+        semantic_weight=0.0,
+        keyword_weight=1.0,
+    ),
+    ExperimentVariant(
+        variant_id="semantic_keyword_hybrid",
+        label="语义/关键词混合 0.7/0.3",
+        preference_weight=0.7,
+        distance_weight=0.3,
+        semantic_weight=0.7,
+        keyword_weight=0.3,
+    ),
+)
+
+
+__all__ = [
+    "EXPERIMENT_VARIANTS",
+    "RETRIEVAL_ABLATION_VARIANTS",
+    "ExperimentVariant",
+]
