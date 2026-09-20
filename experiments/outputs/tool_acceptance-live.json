@@ -1,0 +1,24 @@
+[
+  {
+    "case_id": "route-live",
+    "tool": "route",
+    "status": "pass",
+    "source": "amap_mcp",
+    "details": {
+      "duration_min": 85,
+      "distance_m": 6335,
+      "estimated": false
+    }
+  },
+  {
+    "case_id": "weather-live",
+    "tool": "weather",
+    "status": "pass",
+    "source": "qweather",
+    "details": {
+      "status": "available",
+      "condition": "少云",
+      "date": "2026-09-21"
+    }
+  }
+]

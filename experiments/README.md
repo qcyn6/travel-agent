@@ -45,7 +45,8 @@ python -m experiments.tool_acceptance --mode live `
 - `outputs/summary.md`：便于快速检查的汇总表。
 - `outputs/retrieval_ablation.json`、`retrieval_ablation.csv`、`retrieval_ablation.md`：语义-only、关键词-only 和 0.7/0.3 混合消融结果。
 - `outputs/tool_acceptance.json`：fixture 路线成功、估算降级、缺少坐标和天气降级验收记录。
-- `outputs/llm_baseline.*`：显式运行 LLM Baseline 后生成的结果，不作为离线默认输出。
+- `outputs/llm_baseline.*`：显式运行 LLM Baseline 后生成的结果；当前真实运行结果已归档。
+- `outputs/tool_acceptance-live.json`：显式 live 联调后的高德和和风天气结果。
 
 当前变体：
 

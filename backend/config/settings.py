@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     llm_provider: str = "deepseek"
     llm_api_key: str | None = None
     llm_base_url: str = "https://api.deepseek.com"
-    llm_model: str = "deepseek-v4-flash"
+    llm_model: str = "deepseek-flash"
     llm_timeout_seconds: float = 30.0
     amap_api_key: str | None = None
     amap_timeout_seconds: float = 8.0

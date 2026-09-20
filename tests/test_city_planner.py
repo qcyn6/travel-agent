@@ -106,6 +106,40 @@ async def test_city_planner_rejects_invented_attraction():
             )
 
 
+@pytest.mark.asyncio
+async def test_city_planner_can_keep_raw_output_for_experiment_scoring():
+    async def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {
+                        "message": {
+                            "content": '{"city":"杭州市","days":['
+                            '{"day":1,"attractions":["模型注释后的西湖"],'
+                            '"description":"保留原始模型输出供实验评估使用。"}]}'
+                        }
+                    }
+                ]
+            },
+        )
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        result = await DeepSeekCityPlanner(
+            "test-key",
+            base_url="https://deepseek.test",
+            model="test-model",
+            client=client,
+            validate_candidates=False,
+        ).plan(
+            city_stay=CityStay(city="杭州市", days=1),
+            requirement=requirement(1),
+            candidates=[candidate("A1", "西湖")],
+        )
+
+    assert result.days[0].attractions == ["模型注释后的西湖"]
+
+
 def test_same_deterministic_planner_supports_one_and_three_days():
     candidates = [candidate(f"A{i}", name) for i, name in enumerate(["西湖", "雷峰塔", "良渚", "西溪", "宋城"], 1)]
 

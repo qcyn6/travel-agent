@@ -14,6 +14,7 @@ No network request is made on import.  The live adapter is only constructed by
 from __future__ import annotations
 
 import csv
+import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -216,6 +217,9 @@ def build_live_llm_baseline(settings: Settings | None = None) -> LLMBaselineAdap
         base_url=configured.llm_base_url,
         model=configured.llm_model,
         timeout_seconds=configured.llm_timeout_seconds,
+        # The experiment must score raw model output, including unknown or
+        # repeated names. Production planning keeps the strict default.
+        validate_candidates=False,
     )
     return LLMBaselineAdapter(planner=planner)
 
@@ -292,7 +296,7 @@ def _score_city_plan(
     schedule_builder: ScheduleBuilder,
 ) -> dict[str, object]:
     candidate_by_name = {
-        normalize_attraction_name(candidate.name): candidate
+        _baseline_name_key(candidate.name): candidate
         for candidate in city_case.candidates
     }
     selected_by_day: list[list[str]] = []
@@ -310,7 +314,7 @@ def _score_city_plan(
         stops: list[AttractionStop] = []
         day_has_unknown = False
         for name in names:
-            normalized = normalize_attraction_name(name)
+            normalized = _baseline_name_key(name)
             if normalized in used_names:
                 duplicate_count += 1
             if normalized:
@@ -391,6 +395,19 @@ def _candidate_stop(candidate: PlanningCandidate) -> AttractionStop:
         latitude=candidate.latitude,
         visit_duration_minutes=candidate.visit_duration_minutes,
     )
+
+
+def _baseline_name_key(name: str) -> str:
+    """Match harmless model annotations without accepting arbitrary names.
+
+    The fixed experiment prompt asks for names such as ``杭州市中心湖景``.
+    Models sometimes append a parenthetical annotation like ``（实验景点）``.
+    Removing only that suffix keeps candidate validation strict while avoiding
+    a false invalid result caused by presentation punctuation.
+    """
+
+    base_name = re.split(r"[（(]", str(name), maxsplit=1)[0]
+    return normalize_attraction_name(base_name)
 
 
 __all__ = [

@@ -32,7 +32,7 @@
         "杭州市街区美食",
         "杭州市古镇慢游"
       ],
-      "elapsed_ms": 0.483,
+      "elapsed_ms": 0.475,
       "feasible": true
     }
   },
@@ -69,7 +69,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.291,
+      "elapsed_ms": 0.289,
       "feasible": true
     }
   },
@@ -106,7 +106,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.269,
+      "elapsed_ms": 0.283,
       "feasible": true
     }
   },
@@ -145,7 +145,7 @@
         "北京市街区美食",
         "北京市古镇慢游"
       ],
-      "elapsed_ms": 0.235,
+      "elapsed_ms": 0.232,
       "feasible": true
     }
   },
@@ -184,7 +184,7 @@
         "北京市古镇慢游",
         "北京市远郊山景"
       ],
-      "elapsed_ms": 0.233,
+      "elapsed_ms": 0.224,
       "feasible": true
     }
   },
@@ -223,7 +223,7 @@
         "北京市古镇慢游",
         "北京市远郊山景"
       ],
-      "elapsed_ms": 0.222,
+      "elapsed_ms": 0.219,
       "feasible": true
     }
   },
@@ -264,7 +264,7 @@
         "成都市街区美食",
         "成都市古镇慢游"
       ],
-      "elapsed_ms": 0.195,
+      "elapsed_ms": 0.19,
       "feasible": true
     }
   },
@@ -305,7 +305,7 @@
         "成都市远郊山景",
         "成都市古镇慢游"
       ],
-      "elapsed_ms": 0.189,
+      "elapsed_ms": 0.193,
       "feasible": true
     }
   },
@@ -346,7 +346,7 @@
         "成都市远郊山景",
         "成都市古镇慢游"
       ],
-      "elapsed_ms": 0.19,
+      "elapsed_ms": 0.232,
       "feasible": true
     }
   },
@@ -399,7 +399,7 @@
         "大理市街区美食",
         "大理市古镇慢游"
       ],
-      "elapsed_ms": 0.427,
+      "elapsed_ms": 0.425,
       "feasible": true
     }
   },
@@ -452,7 +452,7 @@
         "大理市古镇慢游",
         "大理市远郊山景"
       ],
-      "elapsed_ms": 0.429,
+      "elapsed_ms": 0.439,
       "feasible": true
     }
   },
@@ -505,7 +505,7 @@
         "大理市古镇慢游",
         "大理市远郊山景"
       ],
-      "elapsed_ms": 0.426,
+      "elapsed_ms": 0.421,
       "feasible": true
     }
   },
@@ -574,7 +574,7 @@
         "丽江市街区美食",
         "丽江市古镇慢游"
       ],
-      "elapsed_ms": 0.604,
+      "elapsed_ms": 0.606,
       "feasible": true
     }
   },
@@ -643,7 +643,7 @@
         "丽江市古镇慢游",
         "丽江市远郊山景"
       ],
-      "elapsed_ms": 0.617,
+      "elapsed_ms": 0.603,
       "feasible": true
     }
   },
@@ -712,7 +712,7 @@
         "丽江市古镇慢游",
         "丽江市远郊山景"
       ],
-      "elapsed_ms": 0.61,
+      "elapsed_ms": 0.609,
       "feasible": true
     }
   },
@@ -741,7 +741,7 @@
       "selection_signature": [
         "杭州市中心湖景"
       ],
-      "elapsed_ms": 0.078,
+      "elapsed_ms": 0.077,
       "feasible": true
     }
   },
@@ -770,7 +770,7 @@
       "selection_signature": [
         "杭州市中心湖景"
       ],
-      "elapsed_ms": 0.077,
+      "elapsed_ms": 0.072,
       "feasible": true
     }
   },
@@ -799,7 +799,7 @@
       "selection_signature": [
         "杭州市中心湖景"
       ],
-      "elapsed_ms": 0.073,
+      "elapsed_ms": 0.071,
       "feasible": true
     }
   },
@@ -836,7 +836,7 @@
         "杭州市街区美食",
         "杭州市古镇慢游"
       ],
-      "elapsed_ms": 0.267,
+      "elapsed_ms": 0.256,
       "feasible": true
     }
   },
@@ -873,7 +873,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.249,
+      "elapsed_ms": 0.253,
       "feasible": true
     }
   },
@@ -910,7 +910,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.246,
+      "elapsed_ms": 0.244,
       "feasible": true
     }
   },
@@ -947,7 +947,7 @@
         "杭州市街区美食",
         "杭州市古镇慢游"
       ],
-      "elapsed_ms": 0.243,
+      "elapsed_ms": 0.249,
       "feasible": true
     }
   },
@@ -984,7 +984,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.244,
+      "elapsed_ms": 0.245,
       "feasible": true
     }
   },
@@ -1021,7 +1021,7 @@
         "杭州市古镇慢游",
         "杭州市远郊山景"
       ],
-      "elapsed_ms": 0.25,
+      "elapsed_ms": 0.248,
       "feasible": true
     }
   }

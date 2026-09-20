@@ -256,7 +256,7 @@ D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode 
 D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode live --output experiments\outputs\tool_acceptance-live.json
 ```
 
-完整指标口径与运行方法见 `experiments\README.md`。LLM Baseline、检索消融和工具联调入口均不修改景点表结构。
+完整指标口径与运行方法见 `experiments\README.md`。本地已验证 `deepseek-flash`、高德 MCP 和和风天气联调；这些入口均不修改景点表结构。
 
 接口：
 

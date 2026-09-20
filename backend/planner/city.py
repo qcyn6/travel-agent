@@ -28,6 +28,7 @@ class DeepSeekCityPlanner:
         timeout_seconds: float = 45.0,
         max_retries: int = 2,
         client=None,
+        validate_candidates: bool = True,
     ):
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
@@ -35,6 +36,7 @@ class DeepSeekCityPlanner:
         self.timeout_seconds = timeout_seconds
         self.max_retries = max(1, max_retries)
         self.client = client
+        self.validate_candidates = bool(validate_candidates)
 
     async def plan(
         self,
@@ -85,7 +87,8 @@ class DeepSeekCityPlanner:
             plan = CityPlan.model_validate(json.loads(match.group(0) if match else content))
         except (ValueError, KeyError, IndexError, TypeError, AttributeError, ValidationError) as exc:
             raise CityPlanningError("DeepSeek 城市规划结果格式异常") from exc
-        self._validate_plan(plan, city_stay, candidates)
+        if self.validate_candidates:
+            self._validate_plan(plan, city_stay, candidates)
         return plan
 
     @staticmethod
