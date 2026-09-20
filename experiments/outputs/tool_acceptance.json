@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "route-success",
+    "tool": "route",
+    "status": "pass",
+    "source": "amap_mcp",
+    "details": {
+      "duration_min": 24,
+      "distance_m": 7200,
+      "estimated": false
+    }
+  },
+  {
+    "case_id": "route-estimated-fallback",
+    "tool": "route",
+    "status": "pass",
+    "source": "haversine",
+    "details": {
+      "duration_min": 27,
+      "distance_m": 5967,
+      "estimated": true
+    }
+  },
+  {
+    "case_id": "route-missing-coordinates",
+    "tool": "route",
+    "status": "pass",
+    "source": "unavailable",
+    "details": {
+      "duration_min": null,
+      "distance_m": null,
+      "estimated": false
+    }
+  },
+  {
+    "case_id": "weather-success",
+    "tool": "weather",
+    "status": "pass",
+    "source": "qweather",
+    "details": {
+      "status": "available",
+      "condition": "晴",
+      "date": "2026-09-21"
+    }
+  },
+  {
+    "case_id": "weather-unavailable-fallback",
+    "tool": "weather",
+    "status": "pass",
+    "source": "none",
+    "details": {
+      "status": "unavailable",
+      "date": "2026-09-21"
+    }
+  }
+]

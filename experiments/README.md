@@ -8,11 +8,37 @@
 python -m experiments.runner --output experiments/outputs
 ```
 
+默认只运行本地固定案例，不访问外部服务。配置 `LLM_API_KEY` 后，如需显式运行
+LLM 直接生成 Baseline，追加参数：
+
+```powershell
+python -m experiments.runner --output experiments/outputs --include-llm-baseline
+```
+
+该参数会调用 `DeepSeekCityPlanner`，并生成 `llm_baseline.json`、
+`llm_baseline.csv` 和 `llm_baseline.md`；未显式传入时不会发起 LLM 请求。
+
+路线与天气工具联调默认使用 fixture：
+
+```powershell
+python -m experiments.tool_acceptance --mode fixture `
+  --output experiments/outputs/tool_acceptance.json
+```
+
+只有明确选择 `--mode live`，且已配置高德和和风天气密钥时，才会调用真实服务：
+
+```powershell
+python -m experiments.tool_acceptance --mode live `
+  --output experiments/outputs/tool_acceptance-live.json
+```
+
 输出文件：
 
 - `outputs/results.json`：每条案例和算法变体的完整指标、选点签名和决策统计；
 - `outputs/results.csv`：适合导入表格或绘图工具的扁平指标；
 - `outputs/summary.md`：便于快速检查的汇总表。
+- `outputs/tool_acceptance.json`：fixture 路线成功、估算降级、缺少坐标和天气降级验收记录。
+- `outputs/llm_baseline.*`：显式运行 LLM Baseline 后生成的结果，不作为离线默认输出。
 
 当前变体：
 
@@ -21,3 +47,6 @@ python -m experiments.runner --output experiments/outputs
 - `distance_heavy`：距离敏感消融，权重 `0.5 / 0.5`。
 
 权重实验只改变排程器的运行时参数，不增加数据库字段，也不改变生产默认配置。
+
+Baseline 评估会额外统计候选有效率、未知景点、重复景点、路线不可用和时间窗口违规，
+与确定性变体使用同一套固定候选和路线矩阵，便于论文进行公平比较。

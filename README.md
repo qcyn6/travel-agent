@@ -45,7 +45,7 @@
 - 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
 - MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
-- 独立离线实验矩阵：8 个固定案例 × 3 个排程变体，输出 JSON、CSV 和 Markdown 指标；LLM 直接生成 Baseline 仍在补充
+- 独立离线实验矩阵：8 个固定案例 × 3 个排程变体，输出 JSON、CSV 和 Markdown 指标；另有显式开启的 LLM 直接生成 Baseline 与工具 fixture 验收
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
@@ -237,7 +237,20 @@ MySQL 连接失败时，确认 MySQL 已启动、数据库 `travel_agent` 已创
 D:\Miniconda\envs\travel-agent\python.exe -m experiments.runner --output experiments\outputs
 ```
 
-完整指标口径与运行方法见 `experiments\README.md`。
+默认实验不访问外部服务。配置 `LLM_API_KEY` 后，如需显式运行 LLM 直接生成 Baseline：
+
+```powershell
+D:\Miniconda\envs\travel-agent\python.exe -m experiments.runner --output experiments\outputs --include-llm-baseline
+```
+
+路线与天气联调默认使用 fixture；只有显式使用 `--mode live` 才会调用真实服务：
+
+```powershell
+D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode fixture --output experiments\outputs\tool_acceptance.json
+D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode live --output experiments\outputs\tool_acceptance-live.json
+```
+
+完整指标口径与运行方法见 `experiments\README.md`。LLM Baseline 适配器和工具联调入口均不修改景点表结构。
 
 接口：
 

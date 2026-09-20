@@ -241,12 +241,33 @@ def main() -> None:
         default="experiments/outputs",
         help="实验结果输出目录",
     )
+    parser.add_argument(
+        "--include-llm-baseline",
+        action="store_true",
+        help="显式调用已配置的 LLM，追加直接生成 Baseline 结果",
+    )
     args = parser.parse_args()
-    results = asyncio.run(run_matrix())
+    baseline_adapter = None
+    if args.include_llm_baseline:
+        from experiments.baselines import build_live_llm_baseline
+
+        baseline_adapter = build_live_llm_baseline()
+        if baseline_adapter is None:
+            parser.error("--include-llm-baseline 需要配置 LLM_API_KEY")
+    cases = make_experiment_cases()
+    results = asyncio.run(run_matrix(cases))
     paths = write_results(results, args.output)
     print(f"完成 {len(results)} 条实验记录")
     for path in paths.values():
         print(path)
+    if args.include_llm_baseline:
+        from experiments.baselines import run_baseline_matrix, write_baseline_results
+
+        baseline_results = asyncio.run(run_baseline_matrix(cases, baseline_adapter))
+        baseline_paths = write_baseline_results(baseline_results, args.output)
+        print(f"完成 {len(baseline_results)} 条 LLM Baseline 记录")
+        for path in baseline_paths.values():
+            print(path)
 
 
 if __name__ == "__main__":
