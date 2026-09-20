@@ -31,7 +31,7 @@ class CityPlanningRequest(BaseModel):
 
     requirement: TravelRequirement
     city_stay: CityStay
-    top_k: int = Field(default=10, ge=1, le=20)
+    top_k: int = Field(default=20, ge=1, le=20)
 
 
 class CityPlanningResult(BaseModel):

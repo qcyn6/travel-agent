@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 
 from scripts.run_national_acceptance import (
     REPRESENTATIVE_CITIES,
@@ -38,6 +38,8 @@ def test_build_request_uses_reproducible_single_city_workload():
 
 
 def test_validate_plan_shape_accepts_expected_one_day_plan():
+    start_date = date.today() + timedelta(days=1)
+    start_date_text = start_date.isoformat()
     body = {
         "requirement": {
             "province": "四川省",
@@ -46,7 +48,7 @@ def test_validate_plan_shape_accepts_expected_one_day_plan():
             "interests": ["自然"],
             "preference_text": "行程轻松",
             "travel_scope": "single_city",
-            "start_date": "2026-09-20",
+            "start_date": start_date_text,
             "transport_mode": "auto",
         },
         "plan": {
@@ -64,7 +66,7 @@ def test_validate_plan_shape_accepts_expected_one_day_plan():
                     "city": "成都市",
                     "city_adcode": "510100",
                     "city_day": 1,
-                    "date": "2026-09-20",
+                    "date": start_date_text,
                     "attractions": [
                         {
                             "poi_id": "p1",
@@ -78,7 +80,7 @@ def test_validate_plan_shape_accepts_expected_one_day_plan():
                     "routes": [],
                     "weather": {
                         "city": "成都市",
-                        "date": "2026-09-20",
+                            "date": start_date_text,
                         "status": "unavailable",
                         "source": "none",
                     },
@@ -103,5 +105,5 @@ def test_validate_plan_shape_accepts_expected_one_day_plan():
     assert validate_plan_shape(
         result,
         RepresentativeCity("四川省", "成都市"),
-        date(2026, 9, 20),
+        start_date,
     ) == []

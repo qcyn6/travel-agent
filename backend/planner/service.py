@@ -1,6 +1,6 @@
 from backend.attractions.dedupe import dedupe_attractions
 from backend.models.itinerary import CityPlanningResult
-from backend.models.retrieval import AttractionDocument
+from backend.models.planning import PlanningCandidate
 from backend.planner.city import (
     CityPlanningError,
     deduplicate_city_plan,
@@ -13,7 +13,7 @@ class CityPlanningService:
         self.retrieval_service = retrieval_service
         self.planner = planner
 
-    async def plan(self, *, city_stay, requirement, top_k: int = 10) -> CityPlanningResult:
+    async def plan(self, *, city_stay, requirement, top_k: int = 20) -> CityPlanningResult:
         attractions = dedupe_attractions(await self.retrieval_service.search(
             city=city_stay.city,
             interests=requirement.interests,
@@ -21,7 +21,7 @@ class CityPlanningService:
             top_k=top_k,
         ))
         candidates = [
-            AttractionDocument(
+            PlanningCandidate(
                 poi_id=item.poi_id,
                 name=item.name,
                 city=item.city,
@@ -32,6 +32,10 @@ class CityPlanningService:
                 description=item.description,
                 source_url=item.source_url,
                 visit_duration_minutes=item.visit_duration_minutes,
+                tag_match_count=item.tag_match_count,
+                semantic_score=item.preference_similarity,
+                keyword_score=item.keyword_score,
+                preference_score=item.preference_score,
             )
             for item in attractions
         ]

@@ -122,7 +122,7 @@ class TravelPlanningWorkflow:
             result = await self.city_planning_service.plan(
                 city_stay=city_stay,
                 requirement=requirement,
-                top_k=10,
+                top_k=20,
             )
             unique_attractions = dedupe_attractions(result.attractions)
             if self.attraction_enrichment_service is not None and unique_attractions:

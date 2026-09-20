@@ -5,6 +5,7 @@ import pytest
 from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan, DayPlan
 from backend.models.requirement import TravelRequirement
+from backend.models.planning import PlanningCandidate
 from backend.models.retrieval import AttractionDocument, HybridSearchResult
 from backend.planner.city import CityPlanningError, DeepSeekCityPlanner, deterministic_city_plan
 from backend.planner.service import CityPlanningService
@@ -156,6 +157,10 @@ async def test_city_planning_service_keeps_catalog_tags_for_downstream_planning(
         **candidate("A1", "西湖")
         .model_copy(update={"interest_tags": ["自然", "摄影"]})
         .model_dump(),
+        tag_match_count=2,
+        preference_similarity=0.8,
+        keyword_score=0.6,
+        preference_score=0.74,
         rrf_score=0.1,
         final_rank=1,
     )
@@ -166,7 +171,13 @@ async def test_city_planning_service_keeps_catalog_tags_for_downstream_planning(
 
     class Planner:
         async def plan(self, **kwargs):
-            assert kwargs["candidates"][0].interest_tags == ["自然", "摄影"]
+            planning_candidate = kwargs["candidates"][0]
+            assert isinstance(planning_candidate, PlanningCandidate)
+            assert planning_candidate.interest_tags == ["自然", "摄影"]
+            assert planning_candidate.tag_match_count == 2
+            assert planning_candidate.semantic_score == pytest.approx(0.8)
+            assert planning_candidate.keyword_score == pytest.approx(0.6)
+            assert planning_candidate.preference_score == pytest.approx(0.74)
             return deterministic_city_plan(
                 city_stay=kwargs["city_stay"],
                 requirement=kwargs["requirement"],

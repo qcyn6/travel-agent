@@ -10,7 +10,7 @@ from backend.models.city_stay import CityStay
 from backend.models.itinerary import CityPlan, DayPlan
 from backend.observability import observe_external_request
 from backend.models.requirement import TravelRequirement
-from backend.models.retrieval import AttractionDocument
+from backend.models.planning import PlanningCandidate
 
 
 class CityPlanningError(RuntimeError):
@@ -40,7 +40,7 @@ class DeepSeekCityPlanner:
         *,
         city_stay: CityStay,
         requirement: TravelRequirement,
-        candidates: list[AttractionDocument],
+        candidates: list[PlanningCandidate],
     ) -> CityPlan:
         if not self.api_key:
             raise CityPlanningError("未配置 LLM_API_KEY")
@@ -91,7 +91,7 @@ class DeepSeekCityPlanner:
     def _validate_plan(
         plan: CityPlan,
         city_stay: CityStay,
-        candidates: list[AttractionDocument],
+        candidates: list[PlanningCandidate],
     ) -> None:
         if plan.city != city_stay.city or len(plan.days) != city_stay.days:
             raise CityPlanningError("城市规划结果的城市或天数不正确")
@@ -130,7 +130,7 @@ def deterministic_city_plan(
     *,
     city_stay: CityStay,
     requirement: TravelRequirement,
-    candidates: list[AttractionDocument],
+    candidates: list[PlanningCandidate],
 ) -> CityPlan:
     candidates = dedupe_attractions(candidates)
     if not candidates:
@@ -155,7 +155,7 @@ def deterministic_city_plan(
     )
 
 
-def deduplicate_city_plan(*, plan: CityPlan, candidates: list[AttractionDocument]) -> CityPlan:
+def deduplicate_city_plan(*, plan: CityPlan, candidates: list[PlanningCandidate]) -> CityPlan:
     """Repair repeated names while keeping every day usable.
 
     The model is asked not to repeat attractions, but the final boundary must

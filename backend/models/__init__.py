@@ -17,6 +17,7 @@ from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.degradation import DegradationNotice
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
+from backend.models.planning import PlanningCandidate
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
 from backend.models.route import RouteMode, RouteSegment, RouteSource
 from backend.models.schedule import DaySchedule, ScheduleStatus
@@ -49,6 +50,7 @@ __all__ = [
     "CityPlan",
     "CityPlanningRequest",
     "CityPlanningResult",
+    "PlanningCandidate",
     "ChatMessageRequest",
     "Conversation",
     "ConversationCreated",
