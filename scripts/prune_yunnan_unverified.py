@@ -34,7 +34,17 @@ DELETE_POIS: dict[str, str] = {
     "B037300OF0": "街心花园",
     "B036D00DO5": "抚仙湖公园",
     "B037613IHQ": "兰坪县中心广场",
+    "B0KRB7TUDG": "西昌卫星发射基地景区大理办事处",
+    "B0LU1DFJX5": "尼珠河大峡谷景区曲靖办事处",
 }
+
+# 前一轮已经完成并留有完整备份的目标。再次运行本脚本时，这些 POI
+# 不应被当成异常缺失；本轮只会处理仍存在的记录。
+KNOWN_ABSENT_POIS = frozenset({
+    "B037300OF0",
+    "B036D00DO5",
+    "B037613IHQ",
+})
 
 
 def _backup_path(directory: Path) -> Path:
@@ -69,6 +79,7 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
         )
         found = {row.poi_id: (row, city.name) for row, city in pairs}
         missing = [poi_id for poi_id in DELETE_POIS if poi_id not in found]
+        unexpected_missing = [poi_id for poi_id in missing if poi_id not in KNOWN_ABSENT_POIS]
         mismatched = [
             {
                 "poi_id": poi_id,
@@ -78,15 +89,15 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
             for poi_id, expected_name in DELETE_POIS.items()
             if poi_id in found and found[poi_id][0].name != expected_name
         ]
-        if missing or mismatched:
+        if unexpected_missing or mismatched:
             raise RuntimeError(
                 json.dumps(
-                    {"missing": missing, "name_mismatches": mismatched},
+                    {"missing": unexpected_missing, "name_mismatches": mismatched},
                     ensure_ascii=False,
                 )
             )
 
-        rows = [found[poi_id][0] for poi_id in DELETE_POIS]
+        rows = [found[poi_id][0] for poi_id in DELETE_POIS if poi_id in found]
         candidates = [
             {
                 "id": row.id,
@@ -105,6 +116,7 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
                 "mode": "preview",
                 "delete_count": len(rows),
                 "candidates": candidates,
+                "already_absent": [poi_id for poi_id in missing if poi_id in KNOWN_ABSENT_POIS],
                 "backup_path": None,
                 "vectors_deleted": 0,
                 "message": "仅预览；传入 --commit 才会备份并删除。",
@@ -117,7 +129,7 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
                     "created_at": datetime.now().isoformat(timespec="seconds"),
                     "province": YUNNAN,
                     "reason": "public-verification-unresolved",
-                    "delete_pois": DELETE_POIS,
+                    "delete_pois": {poi_id: DELETE_POIS[poi_id] for poi_id in DELETE_POIS if poi_id in found},
                     "rows": [_payload(row) for row in rows],
                 },
                 ensure_ascii=False,
@@ -140,8 +152,8 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
     try:
         # Chroma 删除不存在的 id 是幂等的；因此即使某条记录原本没有向量，
         # 数据库删除也不会被重复运行阻塞。
-        index.collection.delete(ids=list(DELETE_POIS))
-        vectors_deleted = len(DELETE_POIS)
+        index.collection.delete(ids=[row.poi_id for row in rows])
+        vectors_deleted = len(rows)
     except Exception as exc:  # pragma: no cover - depends on local Chroma state
         vector_error = f"{type(exc).__name__}: {exc}"
 
@@ -150,6 +162,7 @@ def prune(*, commit: bool, backup_dir: Path) -> dict[str, Any]:
         "mode": "commit",
         "delete_count": len(rows),
         "candidates": candidates,
+        "already_absent": [poi_id for poi_id in missing if poi_id in KNOWN_ABSENT_POIS],
         "backup_path": str(backup_path),
         "vectors_deleted": vectors_deleted,
         "vector_error": vector_error,
