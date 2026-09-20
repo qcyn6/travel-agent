@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from backend.attractions.dedupe import dedupe_attractions
 from backend.database import get_db
-from backend.database.tables import AttractionRow
+from backend.database.tables import AttractionRow, CityRow
 from backend.models.attraction import AttractionPOI
 from backend.tag_matching import tag_match_score
 from backend.tag_vocabulary import canonicalize_tags
@@ -74,6 +74,41 @@ class AttractionRepository:
                 AttractionRow.poi_id == poi_id,
             )
         )
+
+    def find_place(self, name: str) -> tuple[AttractionRow, CityRow] | None:
+        """Resolve an ordinary-chat place name from the local POI catalog."""
+
+        normalized = name.strip()
+        if not normalized:
+            return None
+        statement = select(AttractionRow, CityRow).join(
+            CityRow,
+            CityRow.id == AttractionRow.city_id,
+        )
+        exact = self.session.execute(
+            statement.where(AttractionRow.name == normalized).limit(1)
+        ).first()
+        if exact is not None:
+            return exact
+        partial = self.session.execute(
+            statement.where(AttractionRow.name.contains(normalized)).limit(1)
+        ).first()
+        return partial if partial is not None else None
+
+    def first_located_for_city(self, city_id: int) -> tuple[AttractionRow, CityRow] | None:
+        """Return one coordinate-bearing POI as a city weather reference."""
+
+        return self.session.execute(
+            select(AttractionRow, CityRow)
+            .join(CityRow, CityRow.id == AttractionRow.city_id)
+            .where(
+                AttractionRow.city_id == city_id,
+                AttractionRow.longitude.is_not(None),
+                AttractionRow.latitude.is_not(None),
+            )
+            .order_by(AttractionRow.id)
+            .limit(1)
+        ).first()
 
     def list_for_city(
         self,

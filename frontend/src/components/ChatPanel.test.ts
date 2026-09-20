@@ -65,6 +65,8 @@ describe('ChatPanel', () => {
 
     expect(wrapper.find('.conversation-mode').exists()).toBe(false)
     expect(wrapper.find('.conversation-mode-tabs').exists()).toBe(false)
+    expect(wrapper.get('textarea').attributes('placeholder')).toContain('杭州明天天气')
+    expect(wrapper.get('textarea').attributes('placeholder')).toContain('怎么走')
   })
 
   it('keeps ordinary mode free of planning profile and confirmation actions', async () => {

@@ -18,7 +18,7 @@ const emit = defineEmits<{
 const input = ref('')
 const inputElement = ref<HTMLTextAreaElement | null>(null)
 const messageList = ref<HTMLElement | null>(null)
-const generalInputPlaceholder = '例如：介绍一下云南、你能做什么，或者聊聊旅行灵感……'
+const generalInputPlaceholder = '例如：杭州明天天气、杭州东站到西湖怎么走，或者介绍一下云南……'
 const planningInputPlaceholder = '告诉我想去哪里、玩几天、哪天出发，以及你喜欢怎样的旅行……'
 const modePlaceholder = computed(() => props.mode === 'planning' ? planningInputPlaceholder : generalInputPlaceholder)
 const inputPlaceholder = ref(modePlaceholder.value)

@@ -93,6 +93,67 @@ class KnowledgeRepository:
             for attraction, city_row in rows
         ]
 
+    def search_documents(
+        self,
+        query: str,
+        *,
+        city_names: Sequence[str] | None = None,
+        limit: int = 5,
+    ) -> list[AttractionDocument]:
+        """Search existing attraction facts for ordinary-chat answers.
+
+        This is deliberately read-only and uses the current attraction table
+        as its source of truth. It does not create a second knowledge store.
+        """
+
+        if limit <= 0 or not query.strip():
+            return []
+        statement = select(AttractionRow, CityRow).join(
+            CityRow,
+            CityRow.id == AttractionRow.city_id,
+        )
+        names = [name.strip() for name in (city_names or []) if name.strip()]
+        if names:
+            statement = statement.where(CityRow.name.in_(names))
+        rows = list(self.session.execute(statement).all())
+        normalized_query = query.strip().lower()
+
+        def score(item) -> tuple[int, int]:
+            attraction, _ = item
+            value = 0
+            name = attraction.name.strip().lower()
+            if name and name in normalized_query:
+                value += 100
+            if normalized_query and normalized_query in name:
+                value += 80
+            for tag in attraction.tags or []:
+                if str(tag).strip().lower() in normalized_query:
+                    value += 12
+            category = (attraction.category or "").strip().lower()
+            if category and any(part in normalized_query for part in category.split(";")):
+                value += 6
+            if names:
+                value += 1
+            return value, -attraction.id
+
+        ranked = sorted(rows, key=score, reverse=True)
+        matched = [item for item in ranked if score(item)[0] > 0][:limit]
+        return [
+            AttractionDocument(
+                poi_id=attraction.poi_id,
+                name=attraction.name,
+                city=city.name,
+                category=attraction.category,
+                interest_tags=list(attraction.tags or []),
+                longitude=attraction.longitude,
+                latitude=attraction.latitude,
+                description=attraction.description or "",
+                source_url=None,
+                visit_duration_minutes=attraction.visit_duration_minutes,
+            )
+            for attraction, city in matched
+        ]
+
 
 def get_knowledge_repository(
     session: Session = Depends(get_db),

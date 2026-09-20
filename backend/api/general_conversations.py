@@ -11,10 +11,12 @@ from backend.conversation.general_repository import (
     get_general_conversation_repository,
 )
 from backend.conversation.general_service import GeneralConversationService
+from backend.conversation.general_tools import build_general_travel_tools
 from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
 from backend.database import get_db
 from backend.destination import DestinationResolver
 from backend.destination.repository import CatalogRepository
+from backend.knowledge import KnowledgeRepository
 from backend.models.conversation import (
     ConversationSummary,
     GeneralChatMessageRequest,
@@ -31,6 +33,8 @@ def _general_service(repository, session, settings: Settings) -> GeneralConversa
         repository=repository,
         resolver=DestinationResolver(CatalogRepository(session)),
         knowledge_retriever=build_knowledge_retrieval_service(settings),
+        knowledge_repository=KnowledgeRepository(session),
+        travel_tools=build_general_travel_tools(session, settings),
     )
 
 
@@ -108,10 +112,14 @@ async def send_general_message(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        yield _sse("suggestions", {"options": ["你能做什么？", "介绍一个目的地"]})
+        yield _sse("suggestions", {"options": prepared.suggestions or []})
         chunks: list[str] = []
         if prepared.boundary_reply:
             reply = prepared.boundary_reply
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.tool_reply:
+            reply = prepared.tool_reply
             chunks.append(reply)
             yield _sse("message_delta", {"text": reply})
         elif prepared.quick_reply:

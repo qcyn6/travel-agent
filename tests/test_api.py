@@ -7,6 +7,7 @@ from backend.api.dependencies import get_planning_application_service
 from backend.api.conversations import _sse
 from backend.config import Settings, get_settings
 from backend.conversation import get_conversation_repository, get_general_conversation_repository
+from backend.database import get_db
 from backend.destination.repository import get_catalog_repository
 from backend.knowledge import KnowledgeBootstrapError, get_knowledge_repository
 from backend.main import create_app
@@ -72,6 +73,48 @@ def test_list_general_conversations_marks_records_as_general():
     assert response.status_code == 200
     assert response.json()[0]["mode"] == "general"
     assert response.json()[0]["status"] == "active"
+
+
+def test_general_tool_reply_is_streamed_without_calling_llm(monkeypatch):
+    from backend.api import general_conversations as general_api
+
+    class Service:
+        async def prepare_message(self, conversation_id, message):
+            assert conversation_id == "general-1"
+            assert message == "从杭州东站到西湖怎么走"
+            return SimpleNamespace(
+                suggestions=[],
+                boundary_reply=None,
+                tool_reply="杭州东站到西湖建议公共交通，预计32分钟。",
+                quick_reply=None,
+                user_message=message,
+                destination_context=None,
+            )
+
+        def finish_message(self, prepared, reply):
+            assert "32分钟" in reply
+
+    class Responder:
+        async def stream(self, **kwargs):
+            raise AssertionError("工具回复不应调用大模型")
+            yield  # pragma: no cover
+
+    app.dependency_overrides[get_general_conversation_repository] = lambda: object()
+    app.dependency_overrides[get_settings] = lambda: Settings()
+    app.dependency_overrides[get_db] = lambda: object()
+    monkeypatch.setattr(general_api, "_general_service", lambda *args: Service())
+    monkeypatch.setattr(general_api, "_general_responder", lambda settings: Responder())
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/general-conversations/general-1/messages",
+            json={"message": "从杭州东站到西湖怎么走"},
+        )
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert "event: message_delta" in response.text
+    assert "杭州东站到西湖建议公共交通" in response.text
+    assert 'event: message_done' in response.text
 
 
 def test_planning_endpoint_rejects_general_mode():

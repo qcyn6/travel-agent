@@ -15,6 +15,7 @@ from backend.models.conversation import (
 from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import DayEvaluationMetric, EvaluationIssue, EvaluationResult
 from backend.models.degradation import DegradationNotice
+from backend.models.general_chat import GeneralIntent, GeneralIntentDecision, GeneralMissingField
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.planning import CandidateDecision, PlanningCandidate
@@ -58,6 +59,9 @@ __all__ = [
     "ConversationMessage",
     "GeneralChatMessageRequest",
     "GeneralConversation",
+    "GeneralIntent",
+    "GeneralIntentDecision",
+    "GeneralMissingField",
     "DayPlan",
     "DaySchedule",
     "DestinationChoiceResponse",

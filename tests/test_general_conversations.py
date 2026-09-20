@@ -5,7 +5,10 @@ from sqlalchemy.orm import Session
 from backend.conversation.general_repository import GeneralConversationRepository
 from backend.conversation.general_service import GeneralConversationService
 from backend.database.session import Base
-from backend.database.tables import ConversationRow
+from backend.database.tables import AttractionRow, CityRow, ConversationRow, ProvinceRow
+from backend.destination import DestinationResolver
+from backend.destination.repository import CatalogRepository
+from backend.knowledge import KnowledgeRepository
 
 
 @pytest.fixture
@@ -75,3 +78,87 @@ async def test_general_service_keeps_out_of_range_trip_length_inside_general_bou
 
     assert prepared.boundary_reply is not None
     assert "规划模式" in prepared.boundary_reply
+
+
+@pytest.mark.anyio
+async def test_general_service_executes_route_tool_without_calling_planning(database_session):
+    class TravelTools:
+        decisions = []
+
+        async def execute(self, decision):
+            self.decisions.append(decision)
+            return "杭州东站到西湖：建议公共交通，预计32分钟。"
+
+    repository = GeneralConversationRepository(database_session)
+    conversation = repository.to_model(repository.create())
+    tools = TravelTools()
+    service = GeneralConversationService(repository=repository, travel_tools=tools)
+
+    prepared = await service.prepare_message(conversation.id, "从杭州东站到西湖怎么走")
+
+    assert prepared.intent == "route"
+    assert prepared.tool_reply == "杭州东站到西湖：建议公共交通，预计32分钟。"
+    assert prepared.boundary_reply is None
+    assert tools.decisions[0].origin == "杭州东站"
+    assert tools.decisions[0].destination == "西湖"
+    assert database_session.query(ConversationRow).count() == 0
+
+
+@pytest.mark.anyio
+async def test_general_service_asks_only_for_missing_weather_city(database_session):
+    repository = GeneralConversationRepository(database_session)
+    conversation = repository.to_model(repository.create())
+    service = GeneralConversationService(repository=repository)
+
+    prepared = await service.prepare_message(conversation.id, "明天天气怎么样")
+
+    assert prepared.intent == "weather"
+    assert "还需要查询天气的城市" in prepared.tool_reply
+    assert prepared.suggestions == ["杭州", "北京", "成都"]
+
+
+@pytest.mark.anyio
+async def test_general_knowledge_context_includes_existing_attraction_rows(database_session):
+    province = ProvinceRow(
+        id=1,
+        name="浙江省",
+        adcode="330000",
+        tags=["自然"],
+        description="浙江山水与人文兼具。",
+    )
+    city = CityRow(
+        id=1,
+        province_id=1,
+        name="杭州市",
+        adcode="330100",
+        tags=["自然"],
+        description="杭州以西湖闻名。",
+    )
+    attraction = AttractionRow(
+        poi_id="A1",
+        city_id=1,
+        name="西湖",
+        category="自然风光",
+        tags=["自然", "摄影"],
+        description="西湖是杭州代表性的湖泊景观。",
+        longitude=120.14,
+        latitude=30.25,
+        visit_duration_minutes=180,
+    )
+    database_session.add_all([province, city, attraction])
+    database_session.commit()
+
+    repository = GeneralConversationRepository(database_session)
+    conversation = repository.to_model(repository.create())
+    catalog = CatalogRepository(database_session)
+    service = GeneralConversationService(
+        repository=repository,
+        resolver=DestinationResolver(catalog),
+        knowledge_repository=KnowledgeRepository(database_session),
+    )
+
+    prepared = await service.prepare_message(conversation.id, "杭州有哪些自然景点")
+
+    assert prepared.intent == "knowledge"
+    assert "【景点资料：西湖（杭州市）】" in prepared.destination_context
+    assert "西湖是杭州代表性的湖泊景观" in prepared.destination_context
