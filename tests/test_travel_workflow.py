@@ -5,6 +5,9 @@ from backend.evaluator import PlanEvaluator
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.itinerary import CityPlan, CityPlanningResult, DayPlan
 from backend.models.retrieval import HybridSearchResult
+from backend.models.route import RouteSegment
+from backend.planner.city import CityPlanningError
+from backend.planner.service import CityPlanningService
 from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
 from backend.requirements import RequirementParser
 from backend.schedule import ScheduleBuilder
@@ -62,6 +65,28 @@ class RouteService:
     async def enrich_day(self, day, *, requested_mode):
         self.days.append((day.day, requested_mode))
         return day
+
+
+class RouteAwareRouteService(RouteService):
+    def __init__(self):
+        super().__init__()
+        self.resolve_calls = []
+
+    async def resolve_segment(self, origin, destination, **kwargs):
+        self.resolve_calls.append((origin.name, destination.name))
+        return RouteSegment(
+            origin_poi_id=origin.poi_id,
+            origin_name=origin.name,
+            destination_poi_id=destination.poi_id,
+            destination_name=destination.name,
+            mode="walking",
+            source="amap_mcp",
+            distance_m=1000,
+            duration_min=15,
+        )
+
+    async def enrich_day(self, day, *, requested_mode):
+        raise AssertionError("路线感知排程完成后不应重复调用 enrich_day")
 
 
 class WeatherService:
@@ -177,3 +202,72 @@ async def test_workflow_evaluates_once_and_keeps_issues_for_user(catalog_reposit
     assert evaluator.calls == 1
     assert route_service.days == [(1, "auto")]
     assert result.plan.evaluation.issues[0].message == "第 1 天行程过密"
+
+
+@pytest.mark.asyncio
+async def test_workflow_reuses_routes_validated_before_attraction_selection(catalog_repository):
+    route_service = RouteAwareRouteService()
+
+    class Retrieval:
+        async def search(self, **kwargs):
+            return [
+                HybridSearchResult(
+                    poi_id="A1",
+                    name="西湖",
+                    city="杭州市",
+                    category="景区",
+                    longitude=120.1,
+                    latitude=30.2,
+                    description="西湖的测试景点资料。",
+                    preference_score=0.9,
+                    keyword_score=0.9,
+                    preference_similarity=0.9,
+                    rrf_score=0.9,
+                    final_rank=1,
+                ),
+                HybridSearchResult(
+                    poi_id="A2",
+                    name="灵隐寺",
+                    city="杭州市",
+                    category="景区",
+                    longitude=120.11,
+                    latitude=30.21,
+                    description="灵隐寺的测试景点资料。",
+                    preference_score=0.8,
+                    keyword_score=0.8,
+                    preference_similarity=0.8,
+                    rrf_score=0.8,
+                    final_rank=2,
+                ),
+            ]
+
+    class Narrator:
+        async def plan(self, **kwargs):
+            raise CityPlanningError("测试中跳过 LLM 说明")
+
+    city_service = CityPlanningService(
+        retrieval_service=Retrieval(),
+        planner=Narrator(),
+        route_enrichment_service=route_service,
+        schedule_builder=ScheduleBuilder(meal_minutes=0, buffer_minutes=0),
+    )
+    workflow = TravelPlanningWorkflow(
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        destination_planner=DestinationPlanner(catalog_repository),
+        catalog_repository=catalog_repository,
+        knowledge_bootstrap=Bootstrap(),
+        city_planning_service=city_service,
+        route_enrichment_service=route_service,
+        weather_enrichment_service=WeatherService(),
+        schedule_builder=ScheduleBuilder(meal_minutes=0, buffer_minutes=0),
+        evaluator=PlanEvaluator(),
+    )
+
+    result = await workflow.run("杭州玩一天，喜欢自然", travel_scope="single_city")
+
+    assert route_service.resolve_calls == [("西湖", "灵隐寺")]
+    assert route_service.days == []
+    assert len(result.plan.itinerary[0].routes) == 1
+    assert result.plan.itinerary[0].routes[0].source == "amap_mcp"
+    assert result.plan.itinerary[0].schedule is not None

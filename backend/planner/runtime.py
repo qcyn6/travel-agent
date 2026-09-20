@@ -42,6 +42,10 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
         )
     except RouteConfigurationError:
         route_client = None
+    route_enrichment_service = RouteEnrichmentService(
+        route_client,
+        max_concurrency=settings.route_enrichment_concurrency,
+    )
 
     qweather_client = QWeatherClient(
         settings.qweather_api_key,
@@ -49,6 +53,11 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
         timeout_seconds=settings.qweather_timeout_seconds,
         cache=cache,
         cache_ttl_seconds=settings.redis_weather_ttl_seconds,
+    )
+    schedule_builder = ScheduleBuilder(
+        day_start_time=settings.schedule_day_start_time,
+        meal_minutes=settings.schedule_meal_minutes,
+        buffer_minutes=settings.schedule_buffer_minutes,
     )
     return TravelPlanningWorkflow(
         parser=build_requirement_parser(settings),
@@ -71,20 +80,15 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
                 model=settings.llm_model,
                 timeout_seconds=settings.llm_timeout_seconds,
             ),
+            route_enrichment_service=route_enrichment_service,
+            schedule_builder=schedule_builder,
         ),
-        route_enrichment_service=RouteEnrichmentService(
-            route_client,
-            max_concurrency=settings.route_enrichment_concurrency,
-        ),
+        route_enrichment_service=route_enrichment_service,
         weather_enrichment_service=WeatherEnrichmentService(
             qweather_client,
             max_concurrency=settings.weather_enrichment_concurrency,
         ),
-        schedule_builder=ScheduleBuilder(
-            day_start_time=settings.schedule_day_start_time,
-            meal_minutes=settings.schedule_meal_minutes,
-            buffer_minutes=settings.schedule_buffer_minutes,
-        ),
+        schedule_builder=schedule_builder,
         evaluator=PlanEvaluator(
             max_day_minutes=settings.evaluator_max_day_minutes,
             max_route_segment_minutes=settings.evaluator_max_route_segment_minutes,

@@ -72,7 +72,15 @@ class TravelPlanningWorkflow:
 
         city_plans = []
         city_results = []
+        precomputed_routes_by_city = []
         partial_knowledge_cities = []
+        supports_route_aware_planning = all(
+            callable(getattr(self.city_planning_service, method, None))
+            for method in ("retrieve_candidates", "plan_with_routes")
+        ) and all(
+            getattr(self.city_planning_service, attribute, None) is not None
+            for attribute in ("route_enrichment_service", "schedule_builder")
+        )
         for city_index, city_stay in enumerate(destination.city_stays):
             city = self.catalog_repository.find_city(city_stay.city)
             poi_step = f"poi_search:{city_index}:{city.name}"
@@ -119,12 +127,22 @@ class TravelPlanningWorkflow:
             )
             await self._emit(progress, poi_step, ready_label, "completed")
             await self._emit(progress, retrieval_step, f"正在为你筛选{city.name}景点", "running")
-            result = await self.city_planning_service.plan(
-                city_stay=city_stay,
-                requirement=requirement,
-                top_k=20,
-            )
-            unique_attractions = dedupe_attractions(result.attractions)
+            if supports_route_aware_planning:
+                unique_attractions = dedupe_attractions(
+                    await self.city_planning_service.retrieve_candidates(
+                        city_stay=city_stay,
+                        requirement=requirement,
+                        top_k=20,
+                    )
+                )
+            else:
+                result = await self.city_planning_service.plan(
+                    city_stay=city_stay,
+                    requirement=requirement,
+                    top_k=20,
+                )
+                unique_attractions = dedupe_attractions(result.attractions)
+
             if self.attraction_enrichment_service is not None and unique_attractions:
                 detail_step = f"amap_detail:{city_index}:{city.name}"
                 await self._emit(
@@ -143,15 +161,33 @@ class TravelPlanningWorkflow:
                     f"{city.name}已筛选景点详情补充完成",
                     "completed",
                 )
-            result = result.model_copy(
-                update={
-                    "attractions": unique_attractions,
-                    "city_plan": deduplicate_city_plan(
-                        plan=result.city_plan,
-                        candidates=unique_attractions,
-                    ),
-                }
-            )
+
+            if supports_route_aware_planning:
+                await self._emit(
+                    progress,
+                    city_plan_step,
+                    f"正在验证{city.name}景点路线和时间窗口",
+                    "running",
+                )
+                route_result = await self.city_planning_service.plan_with_routes(
+                    city_stay=city_stay,
+                    requirement=requirement,
+                    city_adcode=city.adcode,
+                    attractions=unique_attractions,
+                )
+                result = route_result.city_result
+                precomputed_routes_by_city.append(route_result.routes_by_day)
+            else:
+                result = result.model_copy(
+                    update={
+                        "attractions": unique_attractions,
+                        "city_plan": deduplicate_city_plan(
+                            plan=result.city_plan,
+                            candidates=unique_attractions,
+                        ),
+                    }
+                )
+                precomputed_routes_by_city.append(None)
             city_plans.append(result.city_plan)
             city_results.append(result)
             await self._emit(progress, retrieval_step, f"{city.name}景点筛选完成", "completed")
@@ -159,13 +195,22 @@ class TravelPlanningWorkflow:
 
         itinerary = []
         global_day = 1
-        for city_plan, city_result in zip(city_plans, city_results, strict=True):
+        for city_index, (city_plan, city_result) in enumerate(
+            zip(city_plans, city_results, strict=True)
+        ):
             city_record = self.catalog_repository.find_city(city_plan.city)
             attractions_by_name = {item.name: item for item in city_result.attractions}
-            for day in city_plan.days:
+            precomputed_routes = precomputed_routes_by_city[city_index]
+            for local_day_index, day in enumerate(city_plan.days):
                 day_date = None
                 if requirement.start_date is not None:
                     day_date = requirement.start_date + timedelta(days=global_day - 1)
+                routes = (
+                    precomputed_routes[local_day_index]
+                    if precomputed_routes is not None
+                    and local_day_index < len(precomputed_routes)
+                    else []
+                )
                 itinerary.append(
                     TravelDay(
                         day=global_day,
@@ -186,6 +231,7 @@ class TravelPlanningWorkflow:
                             )
                             for name in day.attractions
                         ],
+                        routes=routes,
                         description=day.description,
                     )
                 )
@@ -200,7 +246,11 @@ class TravelPlanningWorkflow:
         await self._emit(
             progress,
             "route_enrichment",
-            "正在获取景点间路线（高德 MCP）",
+            (
+                "景点入选时已完成路线验证"
+                if all(item is not None for item in precomputed_routes_by_city)
+                else "正在获取景点间路线（高德 MCP）"
+            ),
             "running",
         )
         await self._emit(
@@ -210,13 +260,21 @@ class TravelPlanningWorkflow:
             "running",
         )
 
-        route_days, weather_days = await asyncio.gather(
-            self._enrich_routes(
-                plan.itinerary,
-                requested_mode=requirement.transport_mode,
-            ),
-            self._enrich_weather(plan.itinerary),
+        has_precomputed_routes = all(
+            item is not None for item in precomputed_routes_by_city
         )
+        if has_precomputed_routes:
+            route_days, weather_days = plan.itinerary, await self._enrich_weather(
+                plan.itinerary
+            )
+        else:
+            route_days, weather_days = await asyncio.gather(
+                self._enrich_routes(
+                    plan.itinerary,
+                    requested_mode=requirement.transport_mode,
+                ),
+                self._enrich_weather(plan.itinerary),
+            )
         enriched_days = [
             route_day.model_copy(
                 update={
@@ -230,14 +288,29 @@ class TravelPlanningWorkflow:
             )
         ]
         plan = plan.model_copy(update={"itinerary": enriched_days})
-        await self._emit(progress, "route_enrichment", "景点间路线已补充", "completed")
+        await self._emit(
+            progress,
+            "route_enrichment",
+            "景点入选时已完成路线验证"
+            if has_precomputed_routes
+            else "景点间路线已补充",
+            "completed",
+        )
         await self._emit(progress, "weather_enrichment", "行程天气已处理", "completed")
         await self._emit(progress, "schedule", "正在生成每日时间表", "running")
         scheduled_days = [
-            self.schedule_builder.build_day(
-                day,
-                day_start_time=requirement.daily_start_time,
-                day_end_time=requirement.daily_end_time,
+            (
+                self.schedule_builder.build_day_exact(
+                    day,
+                    day_start_time=requirement.daily_start_time,
+                    day_end_time=requirement.daily_end_time,
+                )
+                if has_precomputed_routes
+                else self.schedule_builder.build_day(
+                    day,
+                    day_start_time=requirement.daily_start_time,
+                    day_end_time=requirement.daily_end_time,
+                )
             )
             for day in plan.itinerary
         ]
