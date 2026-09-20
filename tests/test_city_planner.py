@@ -195,6 +195,88 @@ async def test_city_planning_service_keeps_catalog_tags_for_downstream_planning(
 
 
 @pytest.mark.asyncio
+async def test_city_planning_service_keeps_scheduler_order_when_llm_reorders_candidates():
+    first = HybridSearchResult(
+        **candidate("A1", "首站高偏好")
+        .model_copy(update={"longitude": 120.0, "latitude": 30.0})
+        .model_dump(),
+        preference_similarity=0.9,
+        keyword_score=0.9,
+        preference_score=0.9,
+        rrf_score=0.9,
+        final_rank=1,
+    )
+    near = HybridSearchResult(
+        **candidate("A2", "近处次高偏好")
+        .model_copy(update={"longitude": 120.01, "latitude": 30.0})
+        .model_dump(),
+        preference_similarity=0.8,
+        keyword_score=0.8,
+        preference_score=0.8,
+        rrf_score=0.8,
+        final_rank=2,
+    )
+    far = HybridSearchResult(
+        **candidate("A3", "远处高偏好")
+        .model_copy(update={"longitude": 120.3, "latitude": 30.0})
+        .model_dump(),
+        preference_similarity=0.82,
+        keyword_score=0.82,
+        preference_score=0.82,
+        rrf_score=0.7,
+        final_rank=3,
+    )
+
+    class Retrieval:
+        async def search(self, **kwargs):
+            return [first, near, far]
+
+    class Planner:
+        async def plan(self, **kwargs):
+            # This deliberately proposes a different order. The optional
+            # narrator must not regain ownership of attraction selection.
+            return CityPlan(
+                city="杭州市",
+                days=[
+                    DayPlan(
+                        day=1,
+                        attractions=["远处高偏好", "首站高偏好"],
+                        description="这是由语言模型生成的主题说明，不负责决定景点顺序。",
+                    )
+                ],
+            )
+
+    result = await CityPlanningService(
+        retrieval_service=Retrieval(), planner=Planner()
+    ).plan(
+        city_stay=CityStay(city="杭州市", days=1),
+        requirement=requirement(1),
+    )
+
+    assert result.city_plan.days[0].attractions[:2] == ["首站高偏好", "近处次高偏好"]
+    assert result.city_plan.days[0].description.startswith("这是由语言模型")
+
+
+@pytest.mark.asyncio
+async def test_city_planning_service_reports_empty_candidate_pool_as_planning_error():
+    class Retrieval:
+        async def search(self, **kwargs):
+            return []
+
+    class Planner:
+        async def plan(self, **kwargs):
+            pytest.fail("LLM planner should not run without local candidates")
+
+    with pytest.raises(CityPlanningError, match="没有可用于规划的景点知识"):
+        await CityPlanningService(
+            retrieval_service=Retrieval(), planner=Planner()
+        ).plan(
+            city_stay=CityStay(city="杭州市", days=1),
+            requirement=requirement(1),
+        )
+
+
+@pytest.mark.asyncio
 async def test_city_planning_service_deduplicates_retrieval_and_plan_attractions():
     first = HybridSearchResult(
         **candidate("A1", "西湖").model_dump(),

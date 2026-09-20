@@ -11,6 +11,7 @@ from backend.models.itinerary import CityPlan, DayPlan
 from backend.observability import observe_external_request
 from backend.models.requirement import TravelRequirement
 from backend.models.planning import PlanningCandidate
+from backend.planner.dynamic_scheduler import dynamic_city_plan
 
 
 class CityPlanningError(RuntimeError):
@@ -132,27 +133,14 @@ def deterministic_city_plan(
     requirement: TravelRequirement,
     candidates: list[PlanningCandidate],
 ) -> CityPlan:
-    candidates = dedupe_attractions(candidates)
-    if not candidates:
-        raise CityPlanningError(f"{city_stay.city} 没有可用于规划的景点知识")
-    assignments: list[list[str]] = [[] for _ in range(city_stay.days)]
-    for index, candidate in enumerate(candidates):
-        assignments[index % city_stay.days].append(candidate.name)
-    for index, names in enumerate(assignments):
-        if not names:
-            names.append(candidates[index % len(candidates)].name)
-    preference = "、".join(requirement.interests) or "综合体验"
-    return CityPlan(
-        city=city_stay.city,
-        days=[
-            DayPlan(
-                day=index + 1,
-                attractions=names,
-                description=f"围绕{preference}安排当天游览，兼顾节奏与景点体验。",
-            )
-            for index, names in enumerate(assignments)
-        ],
-    )
+    try:
+        return dynamic_city_plan(
+            city_stay=city_stay,
+            requirement=requirement,
+            candidates=dedupe_attractions(candidates),
+        ).city_plan
+    except ValueError as exc:
+        raise CityPlanningError(str(exc)) from exc
 
 
 def deduplicate_city_plan(*, plan: CityPlan, candidates: list[PlanningCandidate]) -> CityPlan:

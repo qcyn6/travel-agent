@@ -5,7 +5,7 @@ retrieval response.  They form the contract that carries retrieval scores into
 the planner without adding any columns to ``attractions``.
 """
 
-from pydantic import Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from backend.models.retrieval import AttractionDocument
 
@@ -19,4 +19,21 @@ class PlanningCandidate(AttractionDocument):
     preference_score: float = Field(default=0, ge=0)
 
 
-__all__ = ["PlanningCandidate"]
+class CandidateDecision(BaseModel):
+    """One deterministic scheduler decision for an attraction candidate."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    day: int = Field(ge=1)
+    poi_id: str
+    name: str
+    preference_score: float = Field(default=0, ge=0)
+    distance_m: float | None = Field(default=None, ge=0)
+    distance_score: float = Field(default=0, ge=0)
+    priority_score: float = Field(default=0, ge=0)
+    feasible: bool
+    selected: bool = False
+    rejected_reason: str | None = None
+
+
+__all__ = ["CandidateDecision", "PlanningCandidate"]
