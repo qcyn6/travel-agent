@@ -1,0 +1,1028 @@
+[
+  {
+    "case_id": "hangzhou-1d",
+    "case_title": "杭州 1 天自然摄影",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 107,
+      "route_segments": 4,
+      "average_route_minutes": 26.75,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市远郊山景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市远郊山景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游"
+      ],
+      "elapsed_ms": 0.485,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-1d",
+    "case_title": "杭州 1 天自然摄影",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.302,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-1d",
+    "case_title": "杭州 1 天自然摄影",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.265,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "beijing-2d",
+    "case_title": "北京 2 天历史文化",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 99,
+      "route_segments": 3,
+      "average_route_minutes": 33.0,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "北京市中心湖景",
+          "北京市远郊山景",
+          "北京市城市古迹",
+          "北京市街区美食"
+        ],
+        [
+          "北京市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "北京市中心湖景",
+        "北京市远郊山景",
+        "北京市城市古迹",
+        "北京市街区美食",
+        "北京市古镇慢游"
+      ],
+      "elapsed_ms": 0.234,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "beijing-2d",
+    "case_title": "北京 2 天历史文化",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 24,
+      "route_segments": 3,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "北京市中心湖景",
+          "北京市城市古迹",
+          "北京市街区美食",
+          "北京市古镇慢游"
+        ],
+        [
+          "北京市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "北京市中心湖景",
+        "北京市城市古迹",
+        "北京市街区美食",
+        "北京市古镇慢游",
+        "北京市远郊山景"
+      ],
+      "elapsed_ms": 0.23,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "beijing-2d",
+    "case_title": "北京 2 天历史文化",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 24,
+      "route_segments": 3,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "北京市中心湖景",
+          "北京市城市古迹",
+          "北京市街区美食",
+          "北京市古镇慢游"
+        ],
+        [
+          "北京市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "北京市中心湖景",
+        "北京市城市古迹",
+        "北京市街区美食",
+        "北京市古镇慢游",
+        "北京市远郊山景"
+      ],
+      "elapsed_ms": 0.227,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "chengdu-3d",
+    "case_title": "成都 3 天美食休闲",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 91,
+      "route_segments": 2,
+      "average_route_minutes": 45.5,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "成都市中心湖景",
+          "成都市远郊山景",
+          "成都市城市古迹"
+        ],
+        [
+          "成都市街区美食"
+        ],
+        [
+          "成都市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "成都市中心湖景",
+        "成都市远郊山景",
+        "成都市城市古迹",
+        "成都市街区美食",
+        "成都市古镇慢游"
+      ],
+      "elapsed_ms": 0.198,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "chengdu-3d",
+    "case_title": "成都 3 天美食休闲",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 16,
+      "route_segments": 2,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "成都市中心湖景",
+          "成都市城市古迹",
+          "成都市街区美食"
+        ],
+        [
+          "成都市远郊山景"
+        ],
+        [
+          "成都市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "成都市中心湖景",
+        "成都市城市古迹",
+        "成都市街区美食",
+        "成都市远郊山景",
+        "成都市古镇慢游"
+      ],
+      "elapsed_ms": 0.193,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "chengdu-3d",
+    "case_title": "成都 3 天美食休闲",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 16,
+      "route_segments": 2,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "成都市中心湖景",
+          "成都市城市古迹",
+          "成都市街区美食"
+        ],
+        [
+          "成都市远郊山景"
+        ],
+        [
+          "成都市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "成都市中心湖景",
+        "成都市城市古迹",
+        "成都市街区美食",
+        "成都市远郊山景",
+        "成都市古镇慢游"
+      ],
+      "elapsed_ms": 0.197,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-4d",
+    "case_title": "云南 4 天同省多城市",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 10,
+      "route_minutes": 198,
+      "route_segments": 6,
+      "average_route_minutes": 33.0,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 10,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市远郊山景",
+          "昆明市城市古迹",
+          "昆明市街区美食"
+        ],
+        [
+          "昆明市古镇慢游"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市远郊山景",
+          "大理市城市古迹",
+          "大理市街区美食"
+        ],
+        [
+          "大理市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市远郊山景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "大理市中心湖景",
+        "大理市远郊山景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市古镇慢游"
+      ],
+      "elapsed_ms": 0.452,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-4d",
+    "case_title": "云南 4 天同省多城市",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 10,
+      "route_minutes": 48,
+      "route_segments": 6,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 10,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市城市古迹",
+          "昆明市街区美食",
+          "昆明市古镇慢游"
+        ],
+        [
+          "昆明市远郊山景"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市城市古迹",
+          "大理市街区美食",
+          "大理市古镇慢游"
+        ],
+        [
+          "大理市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "昆明市远郊山景",
+        "大理市中心湖景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市古镇慢游",
+        "大理市远郊山景"
+      ],
+      "elapsed_ms": 0.436,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-4d",
+    "case_title": "云南 4 天同省多城市",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 10,
+      "route_minutes": 48,
+      "route_segments": 6,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 10,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市城市古迹",
+          "昆明市街区美食",
+          "昆明市古镇慢游"
+        ],
+        [
+          "昆明市远郊山景"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市城市古迹",
+          "大理市街区美食",
+          "大理市古镇慢游"
+        ],
+        [
+          "大理市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "昆明市远郊山景",
+        "大理市中心湖景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市古镇慢游",
+        "大理市远郊山景"
+      ],
+      "elapsed_ms": 0.438,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-7d",
+    "case_title": "云南 7 天同省多城市",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 15,
+      "route_minutes": 289,
+      "route_segments": 8,
+      "average_route_minutes": 36.125,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 15,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市远郊山景",
+          "昆明市城市古迹",
+          "昆明市街区美食"
+        ],
+        [
+          "昆明市古镇慢游"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市远郊山景",
+          "大理市城市古迹"
+        ],
+        [
+          "大理市街区美食"
+        ],
+        [
+          "大理市古镇慢游"
+        ],
+        [
+          "丽江市中心湖景",
+          "丽江市远郊山景",
+          "丽江市城市古迹",
+          "丽江市街区美食"
+        ],
+        [
+          "丽江市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市远郊山景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "大理市中心湖景",
+        "大理市远郊山景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市古镇慢游",
+        "丽江市中心湖景",
+        "丽江市远郊山景",
+        "丽江市城市古迹",
+        "丽江市街区美食",
+        "丽江市古镇慢游"
+      ],
+      "elapsed_ms": 0.632,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-7d",
+    "case_title": "云南 7 天同省多城市",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 15,
+      "route_minutes": 64,
+      "route_segments": 8,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 15,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市城市古迹",
+          "昆明市街区美食",
+          "昆明市古镇慢游"
+        ],
+        [
+          "昆明市远郊山景"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市城市古迹",
+          "大理市街区美食"
+        ],
+        [
+          "大理市远郊山景"
+        ],
+        [
+          "大理市古镇慢游"
+        ],
+        [
+          "丽江市中心湖景",
+          "丽江市城市古迹",
+          "丽江市街区美食",
+          "丽江市古镇慢游"
+        ],
+        [
+          "丽江市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "昆明市远郊山景",
+        "大理市中心湖景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市远郊山景",
+        "大理市古镇慢游",
+        "丽江市中心湖景",
+        "丽江市城市古迹",
+        "丽江市街区美食",
+        "丽江市古镇慢游",
+        "丽江市远郊山景"
+      ],
+      "elapsed_ms": 0.643,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "yunnan-7d",
+    "case_title": "云南 7 天同省多城市",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 15,
+      "route_minutes": 64,
+      "route_segments": 8,
+      "average_route_minutes": 8.0,
+      "max_route_minutes": 8,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 15,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "昆明市中心湖景",
+          "昆明市城市古迹",
+          "昆明市街区美食",
+          "昆明市古镇慢游"
+        ],
+        [
+          "昆明市远郊山景"
+        ],
+        [
+          "大理市中心湖景",
+          "大理市城市古迹",
+          "大理市街区美食"
+        ],
+        [
+          "大理市远郊山景"
+        ],
+        [
+          "大理市古镇慢游"
+        ],
+        [
+          "丽江市中心湖景",
+          "丽江市城市古迹",
+          "丽江市街区美食",
+          "丽江市古镇慢游"
+        ],
+        [
+          "丽江市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "昆明市中心湖景",
+        "昆明市城市古迹",
+        "昆明市街区美食",
+        "昆明市古镇慢游",
+        "昆明市远郊山景",
+        "大理市中心湖景",
+        "大理市城市古迹",
+        "大理市街区美食",
+        "大理市远郊山景",
+        "大理市古镇慢游",
+        "丽江市中心湖景",
+        "丽江市城市古迹",
+        "丽江市街区美食",
+        "丽江市古镇慢游",
+        "丽江市远郊山景"
+      ],
+      "elapsed_ms": 0.63,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-short-window",
+    "case_title": "杭州短时间窗口",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 1,
+      "route_minutes": 0,
+      "route_segments": 0,
+      "average_route_minutes": 0.0,
+      "max_route_minutes": 0,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 4,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 4,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景"
+      ],
+      "elapsed_ms": 0.081,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-short-window",
+    "case_title": "杭州短时间窗口",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 1,
+      "route_minutes": 0,
+      "route_segments": 0,
+      "average_route_minutes": 0.0,
+      "max_route_minutes": 0,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 4,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 4,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景"
+      ],
+      "elapsed_ms": 0.077,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-short-window",
+    "case_title": "杭州短时间窗口",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 1,
+      "route_minutes": 0,
+      "route_segments": 0,
+      "average_route_minutes": 0.0,
+      "max_route_minutes": 0,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 4,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 4,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景"
+      ],
+      "elapsed_ms": 0.073,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-route-unavailable",
+    "case_title": "杭州路线不可用降级",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 100,
+      "route_segments": 4,
+      "average_route_minutes": 25.0,
+      "max_route_minutes": 44,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 6,
+      "rejected_candidate_count": 1,
+      "route_unavailable_rejections": 1,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市远郊山景",
+          "杭州市街区美食",
+          "杭州市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市远郊山景",
+        "杭州市街区美食",
+        "杭州市古镇慢游"
+      ],
+      "elapsed_ms": 0.262,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-route-unavailable",
+    "case_title": "杭州路线不可用降级",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.255,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-route-unavailable",
+    "case_title": "杭州路线不可用降级",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.255,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-estimated-route",
+    "case_title": "杭州估算路线降级",
+    "variant_id": "preference_only",
+    "variant_label": "偏好排序基线",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 107,
+      "route_segments": 4,
+      "average_route_minutes": 26.75,
+      "max_route_minutes": 47,
+      "estimated_route_ratio": 0.25,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市远郊山景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市远郊山景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游"
+      ],
+      "elapsed_ms": 0.249,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-estimated-route",
+    "case_title": "杭州估算路线降级",
+    "variant_id": "balanced",
+    "variant_label": "完整算法 0.7/0.3",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.246,
+      "feasible": true
+    }
+  },
+  {
+    "case_id": "hangzhou-estimated-route",
+    "case_title": "杭州估算路线降级",
+    "variant_id": "distance_heavy",
+    "variant_label": "距离敏感 0.5/0.5",
+    "metrics": {
+      "preference_coverage": 1.0,
+      "attraction_count": 5,
+      "route_minutes": 59,
+      "route_segments": 4,
+      "average_route_minutes": 14.75,
+      "max_route_minutes": 35,
+      "estimated_route_ratio": 0.0,
+      "decision_count": 5,
+      "rejected_candidate_count": 0,
+      "route_unavailable_rejections": 0,
+      "time_window_rejections": 0,
+      "selected_by_day": [
+        [
+          "杭州市中心湖景",
+          "杭州市城市古迹",
+          "杭州市街区美食",
+          "杭州市古镇慢游",
+          "杭州市远郊山景"
+        ]
+      ],
+      "selection_signature": [
+        "杭州市中心湖景",
+        "杭州市城市古迹",
+        "杭州市街区美食",
+        "杭州市古镇慢游",
+        "杭州市远郊山景"
+      ],
+      "elapsed_ms": 0.247,
+      "feasible": true
+    }
+  }
+]

@@ -33,8 +33,8 @@
 - SSE 对话增量和旅游规划业务进度
 - 旅行规划任务与进度事件持久化到 MySQL，支持重复提交复用任务、刷新后回放进度和断线后继续观察
 - 高德 MCP Streamable HTTP 景点搜索、详情补齐、超时处理与本地数据库回退（兼容 `use_amap=false` 强制本地读取）
-- 高德 MCP 路线规划，支持步行、公交和驾车路线的真实距离与耗时；MCP 失败时标记路线不可用
-- 相邻景点 Route Enrichment；路线和 `auto` 模式距离判断只使用高德 MCP，不伪造本地估算结果
+- 高德 MCP 路线规划，支持步行、公交和驾车路线的真实距离与耗时；MCP 失败时使用明确标记的本地距离估算或不可用状态
+- 相邻景点 Route Enrichment；路线和 `auto` 模式优先使用高德 MCP，估算结果会在方案和实验指标中明确标记
 - 结构化行程景点节点，保留 POI ID、城市、经纬度和出发日期；景点之间的路线由高德地图工具补充
 - 和风天气 API 城市逐日预报；天气接口失败或未配置时标记为暂不可用，无日期时跳过，不阻断规划
 - 景点游玩时长直接保存在 MySQL `attractions`，用于生成每日时间线
@@ -45,7 +45,7 @@
 - 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
 - MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
-- 24 组固定 A/B 实验集：对比 LLM 直接生成与完整规划系统，使用独立指标代码评分
+- 独立离线实验矩阵：8 个固定案例 × 3 个排程变体，输出 JSON、CSV 和 Markdown 指标；LLM 直接生成 Baseline 仍在补充
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
 需求解析默认使用 DeepSeek 输出 `TravelRequirement`，并通过确定性解析器完成同义词规范和明确字段补全；LLM 暂时不可用时自动使用本地解析器降级。
@@ -231,14 +231,13 @@ Redis 认证失败时，确认 `.env` 中的 `REDIS_URL` 使用当前 Redis 用�
 
 MySQL 连接失败时，确认 MySQL 已启动、数据库 `travel_agent` 已创建，并检查 `.env` 中 `DATABASE_URL` 的用户名、密码和端口。
 
-运行 A/B 实验（建议先用 `--limit 1` 冒烟）：
+运行规划算法离线实验：
 
 ```powershell
-D:\Miniconda\envs\travel-agent\python.exe scripts\run_ab_experiment.py --limit 1 --output data\experiments\smoke.json
-D:\Miniconda\envs\travel-agent\python.exe scripts\run_ab_experiment.py --start-date 2026-10-01 --output data\experiments\full.json
+D:\Miniconda\envs\travel-agent\python.exe -m experiments.runner --output experiments\outputs
 ```
 
-完整指标口径与运行方法见 `docs/A_B实验运行说明.md`。
+完整指标口径与运行方法见 `experiments\README.md`。
 
 接口：
 
@@ -253,6 +252,7 @@ POST /api/v1/conversations/{conversation_id}/requirement/confirm
 POST /api/v1/conversations/{conversation_id}/plan
 GET  /api/v1/conversations/{conversation_id}/plan/events?after=0&job_id=<job_id>
 POST /api/v1/requirements/resolve
+POST /api/v1/general-conversations/{conversation_id}/messages
 GET  /api/v1/cities/{city}/attractions?limit=30
 GET  /api/v1/attractions/{poi_id}/knowledge/status
 POST /api/v1/attractions/{poi_id}/knowledge

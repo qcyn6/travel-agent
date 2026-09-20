@@ -88,10 +88,20 @@ def calculate_distance_score(
     return max(0.0, min(1.0, 1.0 - distance_m / max_distance_m))
 
 
-def calculate_priority(preference_score: float, distance_score: float) -> float:
-    """Apply the report-defined 0.7/0.3 priority formula."""
+def calculate_priority(
+    preference_score: float,
+    distance_score: float,
+    *,
+    preference_weight: float = PREFERENCE_WEIGHT,
+    distance_weight: float = DISTANCE_WEIGHT,
+) -> float:
+    """Apply configurable preference/distance weights.
 
-    return PREFERENCE_WEIGHT * max(0.0, preference_score) + DISTANCE_WEIGHT * max(
+    The defaults remain the report-defined ``0.7/0.3`` formula. Experiments
+    can vary the weights without changing the production scheduling path.
+    """
+
+    return preference_weight * max(0.0, preference_score) + distance_weight * max(
         0.0, distance_score
     )
 
@@ -136,6 +146,8 @@ class DynamicCityScheduler:
         buffer_minutes: int = 20,
         day_start_time: str = DEFAULT_DAY_START,
         day_end_time: str = DEFAULT_DAY_END,
+        preference_weight: float = PREFERENCE_WEIGHT,
+        distance_weight: float = DISTANCE_WEIGHT,
     ):
         self.meal_minutes = max(0, int(meal_minutes))
         self.buffer_minutes = max(0, int(buffer_minutes))
@@ -143,6 +155,12 @@ class DynamicCityScheduler:
         self.day_end_minutes = _parse_time(day_end_time)
         if self.day_start_minutes >= self.day_end_minutes:
             raise ValueError("每日结束时间必须晚于开始时间")
+        if preference_weight < 0 or distance_weight < 0:
+            raise ValueError("评分权重不能为负数")
+        if preference_weight == 0 and distance_weight == 0:
+            raise ValueError("至少需要一个非零评分权重")
+        self.preference_weight = float(preference_weight)
+        self.distance_weight = float(distance_weight)
 
     def plan(
         self,
@@ -491,6 +509,8 @@ class DynamicCityScheduler:
                         if current is not None
                         else 0.0
                     ),
+                    preference_weight=self.preference_weight,
+                    distance_weight=self.distance_weight,
                 ),
             )
             for index, (candidate, distance) in enumerate(zip(candidates, distances, strict=True))
@@ -580,10 +600,15 @@ def dynamic_city_plan(
     city_stay: CityStay,
     requirement: TravelRequirement,
     candidates: Iterable[PlanningCandidate],
+    preference_weight: float = PREFERENCE_WEIGHT,
+    distance_weight: float = DISTANCE_WEIGHT,
 ) -> DynamicPlanningResult:
     """Convenience wrapper for the default deterministic scheduler."""
 
-    return DynamicCityScheduler().plan(
+    return DynamicCityScheduler(
+        preference_weight=preference_weight,
+        distance_weight=distance_weight,
+    ).plan(
         city_stay=city_stay,
         requirement=requirement,
         candidates=candidates,
@@ -599,10 +624,15 @@ async def dynamic_city_plan_with_routes(
     route_service,
     schedule_builder: ScheduleBuilder,
     max_route_attempts_per_step: int = 5,
+    preference_weight: float = PREFERENCE_WEIGHT,
+    distance_weight: float = DISTANCE_WEIGHT,
 ) -> RouteAwarePlanningResult:
     """Convenience wrapper for route-aware dynamic scheduling."""
 
-    return await DynamicCityScheduler().plan_with_routes(
+    return await DynamicCityScheduler(
+        preference_weight=preference_weight,
+        distance_weight=distance_weight,
+    ).plan_with_routes(
         city_stay=city_stay,
         requirement=requirement,
         candidates=candidates,
