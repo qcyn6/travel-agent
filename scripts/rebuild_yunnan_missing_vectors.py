@@ -1,7 +1,7 @@
-"""为云南数据库中缺少向量的景点补建 Chroma 向量。
+"""补建或刷新云南数据库对应的 Chroma 向量。
 
-只处理当前数据库属于云南省、且在景点集合中没有向量的记录；不会调用高德，
-不会改写 MySQL，也不会重建已经存在的向量。嵌入服务失败时不会写入半批结果。
+只处理当前数据库属于云南省、且没有向量或向量内容哈希已经过期的记录；
+不会调用高德，也不会改写 MySQL。嵌入服务失败时不会写入半批结果。
 """
 
 from __future__ import annotations
@@ -22,13 +22,16 @@ from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow, ProvinceRow  # noqa: E402
 from backend.knowledge.repository import KnowledgeRepository  # noqa: E402
 from backend.rag.embedding import OpenAICompatibleEmbeddingClient  # noqa: E402
-from backend.rag.vector_store import ChromaAttractionIndex  # noqa: E402
+from backend.rag.vector_store import (  # noqa: E402
+    ChromaAttractionIndex,
+    _content_hash,
+)
 
 
 YUNNAN = "云南省"
 
 
-def _load_missing():
+def _load_needs_rebuild():
     init_database()
     settings = get_settings()
     with open_session() as session:
@@ -56,19 +59,44 @@ def _load_missing():
         settings.chroma_path,
         collection_name=settings.chroma_collection,
     )
-    existing_ids = set(index.collection.get(include=[]).get("ids", []))
-    missing = [document for document in documents if document.poi_id not in existing_ids]
-    return settings, index, missing
+    current_ids = [document.poi_id for document in documents]
+    stored = index.collection.get(ids=current_ids, include=["metadatas"])
+    metadata_by_id = {
+        poi_id: metadata
+        for poi_id, metadata in zip(
+            stored.get("ids", []),
+            stored.get("metadatas", []),
+            strict=False,
+        )
+        if isinstance(metadata, dict)
+    }
+    needs_rebuild = [
+        document
+        for document in documents
+        if (
+            document.poi_id not in metadata_by_id
+            or metadata_by_id[document.poi_id].get("content_hash") != _content_hash(document)
+            or metadata_by_id[document.poi_id].get("scope") != "all"
+        )
+    ]
+    missing = [
+        document for document in needs_rebuild if document.poi_id not in metadata_by_id
+    ]
+    stale = [
+        document for document in needs_rebuild if document.poi_id in metadata_by_id
+    ]
+    return settings, index, needs_rebuild, missing, stale
 
 
 async def rebuild() -> dict:
-    settings, index, missing = _load_missing()
-    if not missing:
+    settings, index, needs_rebuild, missing, stale = _load_needs_rebuild()
+    if not needs_rebuild:
         return {
             "province": YUNNAN,
             "missing_before": 0,
+            "stale_before": 0,
             "embedded": 0,
-            "message": "云南景点向量已经齐全。",
+            "message": "云南景点向量已经齐全且与数据库内容一致。",
         }
     client = OpenAICompatibleEmbeddingClient(
         settings.embedding_api_key,
@@ -78,18 +106,19 @@ async def rebuild() -> dict:
         timeout_seconds=settings.embedding_timeout_seconds,
         batch_size=10,
     )
-    embeddings = await client.embed([document.index_text() for document in missing])
-    indexed = index.upsert(missing, embeddings)
-    stored = set(index.collection.get(ids=[document.poi_id for document in missing], include=[]).get("ids", []))
+    embeddings = await client.embed([document.index_text() for document in needs_rebuild])
+    indexed = index.upsert(needs_rebuild, embeddings)
+    stored = set(index.collection.get(ids=[document.poi_id for document in needs_rebuild], include=[]).get("ids", []))
     return {
         "province": YUNNAN,
         "missing_before": len(missing),
+        "stale_before": len(stale),
         "embedded": indexed,
         "verified_present_after": len(stored),
-        "poi_ids": [document.poi_id for document in missing],
+        "poi_ids": [document.poi_id for document in needs_rebuild],
         "model": settings.embedding_model,
         "dimensions": settings.embedding_dimensions,
-        "message": "已补建云南缺失景点向量；未调用高德。",
+        "message": "已补建或刷新云南景点向量；未调用高德。",
     }
 
 
@@ -100,8 +129,8 @@ def main() -> None:
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     if not args.commit:
-        _settings, _index, missing = _load_missing()
-        print(json.dumps({"province": YUNNAN, "mode": "preview", "missing": len(missing), "poi_ids": [document.poi_id for document in missing]}, ensure_ascii=False, indent=2))
+        _settings, _index, needs_rebuild, missing, stale = _load_needs_rebuild()
+        print(json.dumps({"province": YUNNAN, "mode": "preview", "missing": len(missing), "stale": len(stale), "rebuild": len(needs_rebuild), "poi_ids": [document.poi_id for document in needs_rebuild]}, ensure_ascii=False, indent=2))
         return
     print(json.dumps(asyncio.run(rebuild()), ensure_ascii=False, indent=2))
 
