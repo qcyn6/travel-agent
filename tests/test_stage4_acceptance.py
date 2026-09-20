@@ -11,6 +11,7 @@ import pytest
 
 from backend.destination import DestinationPlanner, DestinationResolver
 from backend.evaluator import PlanEvaluator
+from backend.models.evaluation import EvaluationResult
 from backend.models.retrieval import HybridSearchResult
 from backend.models.route import RouteSegment
 from backend.planner.city import CityPlanningError
@@ -33,6 +34,16 @@ class _Weather:
 class _Narrator:
     async def plan(self, **kwargs):
         raise CityPlanningError("acceptance case uses deterministic descriptions")
+
+
+class _ContextEvaluator:
+    def __init__(self):
+        self.tags_by_poi = None
+
+    def evaluate_with_context(self, plan, requirement, *, interest_tags_by_poi):
+        del plan, requirement
+        self.tags_by_poi = interest_tags_by_poi
+        return EvaluationResult(passed=True, issues=[])
 
 
 class _RouteService:
@@ -94,7 +105,7 @@ class _Retrieval:
         ]
 
 
-def _workflow(catalog_repository, route_service):
+def _workflow(catalog_repository, route_service, evaluator=None):
     route_aware_service = CityPlanningService(
         retrieval_service=_Retrieval(),
         planner=_Narrator(),
@@ -111,7 +122,7 @@ def _workflow(catalog_repository, route_service):
         route_enrichment_service=route_service,
         weather_enrichment_service=_Weather(),
         schedule_builder=ScheduleBuilder(meal_minutes=0, buffer_minutes=0),
-        evaluator=PlanEvaluator(),
+        evaluator=evaluator or PlanEvaluator(),
     )
 
 
@@ -159,3 +170,19 @@ async def test_short_window_and_unavailable_route_keep_flow_safe(catalog_reposit
     assert len(result.plan.itinerary[0].attractions) == 1
     assert result.plan.itinerary[0].routes == []
     assert route_service.resolve_calls
+
+
+@pytest.mark.asyncio
+async def test_workflow_passes_retrieval_tags_to_evaluator_without_persisting_them(
+    catalog_repository,
+):
+    route_service = _RouteService()
+    evaluator = _ContextEvaluator()
+    result = await _workflow(catalog_repository, route_service, evaluator).run(
+        "杭州玩一天，喜欢自然，明天出发，每天08:00到18:00"
+    )
+
+    assert result.plan.evaluation is not None
+    assert evaluator.tags_by_poi
+    assert all(isinstance(tags, list) for tags in evaluator.tags_by_poi.values())
+    assert all("interest_tags" not in stop.model_dump() for day in result.plan.itinerary for stop in day.attractions)

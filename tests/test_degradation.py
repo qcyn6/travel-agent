@@ -46,3 +46,33 @@ def test_degradation_notices_explain_partial_external_data():
     messages = {notice.code: notice.message for notice in notices}
     assert "相关交通时间未计入时间表" in messages["route_unavailable"]
     assert "当天结束时间仅供参考" in messages["schedule_incomplete"]
+
+
+def test_degradation_notices_mark_estimated_routes_and_deduplicate_entries():
+    first = AttractionStop(poi_id="A1", name="甲", city="杭州市")
+    second = AttractionStop(poi_id="A2", name="乙", city="杭州市")
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        attractions=[first, second],
+        routes=[RouteSegment(
+            origin_poi_id="A1", origin_name="甲", destination_poi_id="A2", destination_name="乙",
+            mode="walking", source="amap", estimated=True, duration_min=20,
+        )],
+        description="估算路线测试",
+    )
+    plan = TravelPlan(
+        province="浙江省",
+        city_stays=[{"city": "杭州市", "days": 1}],
+        city_plans=[{"city": "杭州市", "days": [{
+            "day": 1, "attractions": ["甲", "乙"], "description": "这是用于验证估算路线去重的测试说明。",
+        }]}],
+        itinerary=[day],
+        partial_knowledge_cities=["杭州市", "杭州市"],
+    )
+
+    notices = collect_degradation_notices(plan)
+
+    assert [notice.code for notice in notices] == ["route_estimated", "knowledge_partial"]

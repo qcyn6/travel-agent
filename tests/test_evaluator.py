@@ -124,3 +124,33 @@ def test_preference_coverage_is_a_soft_issue():
 
     issue = next(issue for issue in result.issues if issue.type == "preference")
     assert issue.severity == "medium"
+
+
+def test_preference_coverage_prefers_transient_catalogue_tags():
+    plan = _plan(_day(stops=[
+        AttractionStop(poi_id="A1", name="无关名称", city="杭州市"),
+    ]))
+
+    result = PlanEvaluator().evaluate_with_context(
+        plan,
+        _requirement(["自然", "历史文化", "美食"]),
+        interest_tags_by_poi={"A1": ["自然"]},
+    )
+
+    issue = next(issue for issue in result.issues if issue.type == "preference")
+    assert "33%" in issue.message
+
+
+def test_evaluator_deduplicates_identical_issues():
+    first = AttractionStop(poi_id="A1", name="甲", city="杭州市")
+    second = AttractionStop(poi_id="A2", name="乙", city="杭州市")
+    route = RouteSegment(
+        origin_poi_id="A1", origin_name="甲", destination_poi_id="A2", destination_name="乙",
+        duration_min=80, mode="transit", source="amap",
+    )
+    day = _day(stops=[first, second], routes=[route], total_minutes=690)
+    plan = _plan(day.model_copy(update={"day": 1}))
+    result = PlanEvaluator().evaluate(plan, _requirement())
+
+    keys = [(issue.type, issue.day, issue.message) for issue in result.issues]
+    assert len(keys) == len(set(keys))

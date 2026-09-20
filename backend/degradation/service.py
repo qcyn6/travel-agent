@@ -2,14 +2,25 @@ from backend.models.degradation import DegradationNotice
 
 
 def collect_degradation_notices(plan) -> list[DegradationNotice]:
-    notices = []
+    notices: list[DegradationNotice] = []
+    seen: set[tuple[str, int | None]] = set()
+
+    def add_notice(notice: DegradationNotice) -> None:
+        key = (notice.code, notice.day)
+        if key in seen:
+            return
+        seen.add(key)
+        notices.append(notice)
+
     for day in plan.itinerary:
         # Historical snapshots may contain estimated routes. New planning
         # runs never create them; they are kept here only for compatibility.
-        estimated_routes = sum(route.source == "haversine" for route in day.routes)
+        estimated_routes = sum(
+            route.estimated or route.source == "haversine" for route in day.routes
+        )
         unavailable_routes = sum(route.source == "unavailable" for route in day.routes)
         if estimated_routes:
-            notices.append(
+            add_notice(
                 DegradationNotice(
                     code="route_estimated",
                     level="info",
@@ -21,7 +32,7 @@ def collect_degradation_notices(plan) -> list[DegradationNotice]:
                 )
             )
         if unavailable_routes:
-            notices.append(
+            add_notice(
                 DegradationNotice(
                     code="route_unavailable",
                     level="warning",
@@ -33,7 +44,7 @@ def collect_degradation_notices(plan) -> list[DegradationNotice]:
                 )
             )
         if day.weather is not None and day.weather.status == "skipped":
-            notices.append(
+            add_notice(
                 DegradationNotice(
                     code="weather_skipped",
                     level="info",
@@ -42,7 +53,7 @@ def collect_degradation_notices(plan) -> list[DegradationNotice]:
                 )
             )
         elif day.weather is not None and day.weather.status == "unavailable":
-            notices.append(
+            add_notice(
                 DegradationNotice(
                     code="weather_unavailable",
                     level="warning",
@@ -51,7 +62,7 @@ def collect_degradation_notices(plan) -> list[DegradationNotice]:
                 )
             )
         if day.schedule is not None and day.schedule.status == "incomplete":
-            notices.append(
+            add_notice(
                 DegradationNotice(
                     code="schedule_incomplete",
                     level="warning",
@@ -62,8 +73,8 @@ def collect_degradation_notices(plan) -> list[DegradationNotice]:
                     ),
                 )
             )
-    for city in getattr(plan, "partial_knowledge_cities", []):
-        notices.append(
+    for city in dict.fromkeys(getattr(plan, "partial_knowledge_cities", [])):
+        add_notice(
             DegradationNotice(
                 code="knowledge_partial",
                 level="warning",

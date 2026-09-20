@@ -317,7 +317,22 @@ class TravelPlanningWorkflow:
         plan = plan.model_copy(update={"itinerary": scheduled_days})
         await self._emit(progress, "schedule", "每日时间表已生成", "completed")
         await self._emit(progress, "evaluation", "正在检查行程可执行性", "running")
-        evaluation = self.evaluator.evaluate(plan, requirement)
+        interest_tags_by_poi = {
+            attraction.poi_id: list(getattr(attraction, "interest_tags", ()) or ())
+            for city_result in city_results
+            for attraction in city_result.attractions
+        }
+        evaluate_with_context = getattr(self.evaluator, "evaluate_with_context", None)
+        if callable(evaluate_with_context):
+            evaluation = evaluate_with_context(
+                plan,
+                requirement,
+                interest_tags_by_poi=interest_tags_by_poi,
+            )
+        else:
+            # Keep lightweight/custom evaluators used by older integrations
+            # compatible with the workflow's original two-argument contract.
+            evaluation = self.evaluator.evaluate(plan, requirement)
         plan = plan.model_copy(update={"evaluation": evaluation})
         await self._emit(progress, "evaluation", "行程可执行性已检查", "completed")
         plan = synchronize_plan_overviews(plan)

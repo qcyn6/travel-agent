@@ -41,6 +41,7 @@ describe('TravelPlanView', () => {
 
     expect(wrapper.text()).toContain('09:00—15:50')
     expect(wrapper.text()).toContain('交通 0 分钟')
+    expect(wrapper.text()).toContain('兴趣匹配符合需求')
     expect(wrapper.text()).toContain('每日安排合理')
     expect(wrapper.text()).toContain('游玩时长：240 分钟')
     expect(wrapper.text()).toContain('自然漫步')

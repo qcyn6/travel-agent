@@ -48,6 +48,7 @@ const currentDayReason = computed(() => dayReason(currentDay.value))
 const recommendationText = computed(() => `第 ${currentDay.value.day} 天围绕${preferenceLabel.value || '你的综合偏好'}安排了 ${currentDay.value.attractions.length} 处景点，${routeMinutes.value > 0 ? `预计移动 ${routeMinutes.value} 分钟，` : ''}整体节奏留有调整空间。`)
 const issueFor = (type: EvaluationIssue['type']) => currentIssues.value.find((issue) => issue.type === type)
 const checkItems = computed(() => [
+  issueFor('preference') || { type: 'preference', severity: 'ok', message: '兴趣匹配符合需求' },
   issueFor('schedule_density') || { type: 'schedule_density', severity: 'ok', message: '每日安排合理' },
   issueFor('route') || { type: 'route', severity: 'ok', message: '路线无明显冲突' },
   issueFor('weather') || (currentDay.value.weather?.status === 'available'
@@ -143,7 +144,8 @@ const checkItems = computed(() => [
                   前往下一站 ·
                   {{ currentDay.routes[index].mode === 'walking' ? '步行' : currentDay.routes[index].mode === 'transit' ? '公共交通' : '驾车' }}
                   约 {{ currentDay.routes[index].duration_min }} 分钟 · {{ (currentDay.routes[index].distance_m! / 1000).toFixed(1) }} 公里
-                  <em v-if="currentDay.routes[index].estimated">估算</em>
+                  <em v-if="currentDay.routes[index].estimated || currentDay.routes[index].source === 'haversine'">估算路线</em>
+                  <em v-else>真实路线</em>
                 </span>
                 <span v-else>下一段路线暂不可用</span>
               </div>

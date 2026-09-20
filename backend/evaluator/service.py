@@ -1,3 +1,5 @@
+from collections.abc import Mapping, Sequence
+
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.travel_plan import TravelDay, TravelPlan
 
@@ -17,11 +19,36 @@ class PlanEvaluator:
         self.minimum_interest_coverage = minimum_interest_coverage
 
     def evaluate(self, plan: TravelPlan, requirement) -> EvaluationResult:
+        """Evaluate a plan using the public, backwards-compatible contract."""
+
+        return self.evaluate_with_context(plan, requirement)
+
+    def evaluate_with_context(
+        self,
+        plan: TravelPlan,
+        requirement,
+        *,
+        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
+    ) -> EvaluationResult:
+        """Evaluate with transient retrieval context when it is available.
+
+        The tag mapping belongs to one planning run only. It is intentionally
+        not persisted on ``AttractionStop`` or in the attractions table, while
+        allowing the evaluator to use the same vocabulary as retrieval.
+        """
+
         issues: list[EvaluationIssue] = []
         for day in plan.itinerary:
             issues.extend(self._evaluate_schedule(day))
             issues.extend(self._evaluate_routes(day))
-        issues.extend(self._evaluate_preferences(plan, requirement.interests))
+        issues.extend(
+            self._evaluate_preferences(
+                plan,
+                requirement.interests,
+                interest_tags_by_poi=interest_tags_by_poi,
+            )
+        )
+        issues = self._deduplicate_issues(issues)
         hard_issue_exists = any(issue.severity == "high" for issue in issues)
         return EvaluationResult(
             passed=not hard_issue_exists,
@@ -71,15 +98,35 @@ class PlanEvaluator:
                 )
         return issues
 
-    def _evaluate_preferences(self, plan: TravelPlan, interests: list[str]) -> list[EvaluationIssue]:
+    def _evaluate_preferences(
+        self,
+        plan: TravelPlan,
+        interests: list[str],
+        *,
+        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
+    ) -> list[EvaluationIssue]:
         if not interests:
             return []
-        searchable = " ".join(
-            f"{stop.name} {stop.category or ''} {stop.description or ''}"
-            for day in plan.itinerary
-            for stop in day.attractions
-        ).lower()
-        covered = sum(_interest_matches(interest, searchable) for interest in interests)
+        if interest_tags_by_poi is not None:
+            covered = sum(
+                any(
+                    _interest_matches_stop(
+                        interest,
+                        stop,
+                        interest_tags_by_poi=interest_tags_by_poi,
+                    )
+                    for day in plan.itinerary
+                    for stop in day.attractions
+                )
+                for interest in interests
+            )
+        else:
+            searchable = " ".join(
+                f"{stop.name} {stop.category or ''} {stop.description or ''}"
+                for day in plan.itinerary
+                for stop in day.attractions
+            ).lower()
+            covered = sum(_interest_matches(interest, searchable) for interest in interests)
         coverage = covered / len(interests)
         if coverage >= self.minimum_interest_coverage:
             return []
@@ -91,6 +138,18 @@ class PlanEvaluator:
                 suggestion="优先补充与用户兴趣更匹配的景点",
             )
         ]
+
+    @staticmethod
+    def _deduplicate_issues(issues: list[EvaluationIssue]) -> list[EvaluationIssue]:
+        result: list[EvaluationIssue] = []
+        seen: set[tuple[str, int | None, str]] = set()
+        for issue in issues:
+            key = (issue.type, issue.day, issue.message)
+            if key in seen:
+                continue
+            seen.add(key)
+            result.append(issue)
+        return result
 
 
 _INTEREST_ALIASES = {
@@ -107,3 +166,27 @@ def _interest_matches(interest: str, searchable: str) -> bool:
     normalized = interest.strip().lower()
     aliases = next((values for key, values in _INTEREST_ALIASES.items() if key in normalized), (normalized,))
     return any(alias in searchable for alias in aliases)
+
+
+def _interest_matches_tags(interest: str, tags: Sequence[str]) -> bool:
+    normalized = interest.strip().lower()
+    aliases = next(
+        (values for key, values in _INTEREST_ALIASES.items() if key in normalized),
+        (normalized,),
+    )
+    clean_tags = [str(tag).strip().lower() for tag in tags if str(tag).strip()]
+    return any(
+        alias.lower() == tag or alias.lower() in tag or tag in alias.lower()
+        for alias in aliases
+        for tag in clean_tags
+    )
+
+
+def _interest_matches_stop(interest: str, stop, *, interest_tags_by_poi: Mapping[str, Sequence[str]]) -> bool:
+    tags = interest_tags_by_poi.get(stop.poi_id, ())
+    if tags:
+        return _interest_matches_tags(interest, tags)
+    # Historical or partially enriched plans may not have a tag entry. Keep
+    # the old text-based fallback for those individual stops only.
+    searchable = f"{stop.name} {stop.category or ''} {stop.description or ''}".lower()
+    return _interest_matches(interest, searchable)
