@@ -13,7 +13,7 @@ from backend.models.conversation import (
     RequirementDraftPatch,
 )
 from backend.models.destination import DestinationPlanResult
-from backend.models.evaluation import EvaluationIssue, EvaluationResult
+from backend.models.evaluation import DayEvaluationMetric, EvaluationIssue, EvaluationResult
 from backend.models.degradation import DegradationNotice
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
@@ -63,6 +63,7 @@ __all__ = [
     "DestinationChoiceResponse",
     "DestinationPlanResult",
     "DegradationNotice",
+    "DayEvaluationMetric",
     "EvaluationIssue",
     "EvaluationResult",
     "KnowledgeStatus",

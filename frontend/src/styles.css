@@ -269,6 +269,8 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   .inline-error-actions { justify-content: flex-start; }
 }
 
+.attraction-timeline .attraction-reason { color:#557d70; font-size:12px; }
+
 @media print {
   .conversation-sidebar,.mobile-sidebar-toggle,.sidebar-backdrop,.toolbar-actions,.restart-link,.day-tabs,.trip-notes { display:none !important; }
   .app-shell { display:block; }

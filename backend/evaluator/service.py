@@ -1,6 +1,6 @@
 from collections.abc import Mapping, Sequence
 
-from backend.models.evaluation import EvaluationIssue, EvaluationResult
+from backend.models.evaluation import DayEvaluationMetric, EvaluationIssue, EvaluationResult
 from backend.models.travel_plan import TravelDay, TravelPlan
 
 
@@ -53,6 +53,11 @@ class PlanEvaluator:
         return EvaluationResult(
             passed=not hard_issue_exists,
             issues=issues,
+            daily_metrics=self._daily_metrics(
+                plan,
+                requirement.interests,
+                interest_tags_by_poi=interest_tags_by_poi,
+            ),
         )
 
     def _evaluate_schedule(self, day: TravelDay) -> list[EvaluationIssue]:
@@ -139,6 +144,47 @@ class PlanEvaluator:
             )
         ]
 
+    def _daily_metrics(
+        self,
+        plan: TravelPlan,
+        interests: list[str],
+        *,
+        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
+    ) -> list[DayEvaluationMetric]:
+        metrics: list[DayEvaluationMetric] = []
+        for day in plan.itinerary:
+            covered = (
+                sum(
+                    any(
+                        _interest_matches_stop(
+                            interest,
+                            stop,
+                            interest_tags_by_poi=interest_tags_by_poi,
+                        )
+                        for stop in day.attractions
+                    )
+                    for interest in interests
+                )
+                if interests
+                else 0
+            )
+            route_count = len(day.routes)
+            estimated_count = sum(
+                route.estimated or route.source == "haversine"
+                for route in day.routes
+            )
+            metrics.append(
+                DayEvaluationMetric(
+                    day=day.day,
+                    attraction_count=len(day.attractions),
+                    preference_coverage=(covered / len(interests)) if interests else 1.0,
+                    route_minutes=sum(route.duration_min or 0 for route in day.routes),
+                    route_segments=route_count,
+                    estimated_route_ratio=(estimated_count / route_count) if route_count else 0.0,
+                )
+            )
+        return metrics
+
     @staticmethod
     def _deduplicate_issues(issues: list[EvaluationIssue]) -> list[EvaluationIssue]:
         result: list[EvaluationIssue] = []
@@ -182,8 +228,13 @@ def _interest_matches_tags(interest: str, tags: Sequence[str]) -> bool:
     )
 
 
-def _interest_matches_stop(interest: str, stop, *, interest_tags_by_poi: Mapping[str, Sequence[str]]) -> bool:
-    tags = interest_tags_by_poi.get(stop.poi_id, ())
+def _interest_matches_stop(
+    interest: str,
+    stop,
+    *,
+    interest_tags_by_poi: Mapping[str, Sequence[str]] | None,
+) -> bool:
+    tags = interest_tags_by_poi.get(stop.poi_id, ()) if interest_tags_by_poi is not None else ()
     if tags:
         return _interest_matches_tags(interest, tags)
     # Historical or partially enriched plans may not have a tag entry. Keep

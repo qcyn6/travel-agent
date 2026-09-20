@@ -18,7 +18,7 @@ describe('TravelPlanView', () => {
           plan: {
             province: '浙江省', city_stays: [{ city: '杭州市', days: 1 }], city_plans: [],
             notices: [],
-            evaluation: { passed: true, issues: [] },
+            evaluation: { passed: true, issues: [], daily_metrics: [{ day: 1, attraction_count: 1, preference_coverage: 1, route_minutes: 0, route_segments: 0, estimated_route_ratio: 0 }] },
             itinerary: [{
               day: 1, city: '杭州市', city_adcode: '330100', city_day: 1,
               date: '2026-09-20', description: '围绕西湖安排轻松的一日游览行程。',
@@ -42,8 +42,10 @@ describe('TravelPlanView', () => {
     expect(wrapper.text()).toContain('09:00—15:50')
     expect(wrapper.text()).toContain('交通 0 分钟')
     expect(wrapper.text()).toContain('兴趣匹配符合需求')
+    expect(wrapper.text()).toContain('兴趣覆盖 100%')
     expect(wrapper.text()).toContain('每日安排合理')
     expect(wrapper.text()).toContain('游玩时长：240 分钟')
+    expect(wrapper.text()).toContain('与“自然”偏好相关')
     expect(wrapper.text()).toContain('自然漫步')
     expect(wrapper.get('.toolbar-actions').text()).not.toContain('重新生成规划')
     expect(wrapper.get('.day-focus').text()).toContain('今日重点')

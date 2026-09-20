@@ -47,6 +47,8 @@ def test_dense_schedule_is_reported_for_user_confirmation():
     assert result.passed is False
     assert result.issues[0].type == "schedule_density"
     assert result.issues[0].severity == "high"
+    assert result.daily_metrics[0].attraction_count == 1
+    assert result.daily_metrics[0].route_minutes == 0
 
 
 def test_long_route_is_reported_by_rules():
@@ -139,6 +141,32 @@ def test_preference_coverage_prefers_transient_catalogue_tags():
 
     issue = next(issue for issue in result.issues if issue.type == "preference")
     assert "33%" in issue.message
+    assert result.daily_metrics[0].preference_coverage == 1 / 3
+
+
+def test_daily_metrics_report_estimated_route_ratio():
+    first = AttractionStop(poi_id="A1", name="甲", city="杭州市")
+    second = AttractionStop(poi_id="A2", name="乙", city="杭州市")
+    third = AttractionStop(poi_id="A3", name="丙", city="杭州市")
+    routes = [
+        RouteSegment(
+            origin_poi_id="A1", origin_name="甲", destination_poi_id="A2", destination_name="乙",
+            duration_min=20, mode="walking", source="haversine", estimated=True,
+        ),
+        RouteSegment(
+            origin_poi_id="A2", origin_name="乙", destination_poi_id="A3", destination_name="丙",
+            duration_min=10, mode="walking", source="amap_mcp",
+        ),
+    ]
+    result = PlanEvaluator().evaluate(
+        _plan(_day(stops=[first, second, third], routes=routes)),
+        _requirement(),
+    )
+
+    metric = result.daily_metrics[0]
+    assert metric.route_minutes == 30
+    assert metric.route_segments == 2
+    assert metric.estimated_route_ratio == 0.5
 
 
 def test_evaluator_deduplicates_identical_issues():

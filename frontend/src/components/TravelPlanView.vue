@@ -11,6 +11,7 @@ const totalAttractions = computed(() => new Set(props.result.plan.itinerary.flat
 const currentIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === currentDay.value.day) || [])
 const globalIssues = computed(() => props.result.plan.evaluation?.issues.filter((issue) => issue.day === null) || [])
 const currentNotices = computed(() => (props.result.plan.notices || []).filter((notice) => notice.day === currentDay.value.day || notice.day === null))
+const currentMetric = computed(() => props.result.plan.evaluation?.daily_metrics?.find((metric) => metric.day === currentDay.value.day))
 const routeMinutes = computed(() => currentDay.value.routes.reduce((total, route) => total + (route.duration_min || 0), 0))
 const preferenceLabel = computed(() => props.result.requirement.interests.join('、') || props.result.requirement.preference_text || '')
 const preferenceLine = computed(() => preferenceLabel.value ? `${preferenceLabel.value} · 按你的节奏安排` : '按你的偏好安排 · 留出自由调整空间')
@@ -41,6 +42,18 @@ function dayReason(day: TravelDay) {
     ? `景点之间预计移动 ${routeMinutes.value} 分钟`
     : '景点之间按游览节奏自然衔接'
   return `围绕${interest}安排 ${day.attractions.length} 处景点，${movement}，中间留出游览和休息的空间。`
+}
+
+function attractionReason(attraction: TravelDay['attractions'][number], index: number) {
+  const text = `${attraction.name} ${attraction.category || ''} ${attraction.description || ''}`
+  const matchedInterest = props.result.requirement.interests.find((interest) => text.includes(interest))
+  if (matchedInterest) return `与“${matchedInterest}”偏好相关`
+  if (index === 0) return '作为当天首站，优先满足当天的游览主题'
+  const route = currentDay.value.routes[index - 1]
+  if (route?.duration_min !== null && route?.duration_min !== undefined) {
+    return `与上一站约 ${route.duration_min} 分钟衔接${route.estimated || route.source === 'haversine' ? '（估算）' : ''}`
+  }
+  return '按当天时间窗口和游览节奏衔接'
 }
 
 const currentDayTheme = computed(() => dayTheme(currentDay.value))
@@ -120,6 +133,8 @@ const checkItems = computed(() => [
             <span>交通 {{ routeMinutes }} 分钟</span>
             <span>用餐 {{ currentDay.schedule.meal_minutes }} 分钟</span>
             <span>缓冲 {{ currentDay.schedule.buffer_minutes }} 分钟</span>
+            <span v-if="currentMetric">兴趣覆盖 {{ Math.round(currentMetric.preference_coverage * 100) }}%</span>
+            <span v-if="currentMetric && currentMetric.route_segments">估算路线 {{ Math.round(currentMetric.estimated_route_ratio * 100) }}%</span>
           </div>
           <div v-if="currentDay.attractions.length > 1" class="day-route-track" aria-label="当天游览顺序">
             <template v-for="(attraction, index) in currentDay.attractions" :key="attraction.poi_id">
@@ -138,6 +153,7 @@ const checkItems = computed(() => [
                 <small class="attraction-time" v-else>{{ index === 0 ? '上午出发' : index === currentDay.attractions.length - 1 ? '傍晚时分' : '继续探索' }}</small>
                 <div class="attraction-title"><strong>{{ attraction.name }}</strong><span v-if="attraction.category" class="attraction-category">{{ attraction.category }}</span></div>
                 <small class="attraction-meta-line">游玩时长：{{ attraction.visit_duration_minutes }} 分钟</small>
+                <small class="attraction-reason">{{ attractionReason(attraction, index) }}</small>
               </div>
               <div v-if="currentDay.routes[index]" class="route-summary">
                 <span v-if="currentDay.routes[index].duration_min !== null">

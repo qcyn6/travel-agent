@@ -169,6 +169,16 @@ export interface EvaluationIssue {
 export interface EvaluationResult {
   passed: boolean
   issues: EvaluationIssue[]
+  daily_metrics?: DayEvaluationMetric[]
+}
+
+export interface DayEvaluationMetric {
+  day: number
+  attraction_count: number
+  preference_coverage: number
+  route_minutes: number
+  route_segments: number
+  estimated_route_ratio: number
 }
 
 export interface PlanningStep {
