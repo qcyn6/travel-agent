@@ -1,7 +1,11 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.destination.repository import CatalogRepository
-from backend.models.requirement import MAX_TRIP_CITIES, TravelRequirement
+from backend.models.requirement import (
+    MAX_TRIP_CITIES,
+    TravelRequirement,
+    validate_scope_day_boundary,
+)
 from backend.tag_matching import normalize_interest_tags
 
 
@@ -49,6 +53,15 @@ class DestinationResolver:
             raise DestinationResolutionError(
                 "当前指定了多个城市，城市模式请选择同省多城市或由 AI 推荐"
             )
+
+        try:
+            validate_scope_day_boundary(
+                requirement.days,
+                requirement.travel_scope,
+                city_count=len(cities),
+            )
+        except ValueError as exc:
+            raise DestinationResolutionError(str(exc)) from exc
 
         province_ids = {city.province_id for city in cities}
         if len(province_ids) > 1:

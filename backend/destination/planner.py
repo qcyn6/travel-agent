@@ -7,7 +7,9 @@ from backend.models.requirement import (
     MAX_TRAVEL_DAYS,
     MAX_TRIP_CITIES,
     MIN_MULTI_CITY_DAYS,
+    MIN_MULTI_CITY_TRIP_DAYS,
     TravelRequirement,
+    validate_scope_day_boundary,
 )
 from backend.tag_matching import normalize_interest_tags, tag_match_score
 
@@ -28,12 +30,18 @@ class DestinationPlanner:
             raise DestinationPlanningError(
                 f"总行程目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_TRAVEL_DAYS}天"
             )
-        if requirement.days > MAX_SINGLE_CITY_DAYS and (
-            requirement.travel_scope == "single_city" or len(requirement.cities) == 1
-        ):
+        try:
+            validate_scope_day_boundary(
+                requirement.days,
+                requirement.travel_scope,
+                city_count=len(requirement.cities),
+            )
+        except ValueError as exc:
+            raise DestinationPlanningError(str(exc)) from exc
+        if requirement.days > MAX_SINGLE_CITY_DAYS and len(requirement.cities) == 1:
             raise DestinationPlanningError(
                 f"单城市规划目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
-                "4～7天必须改为同省多城市"
+                f"{MIN_MULTI_CITY_TRIP_DAYS}～{MAX_TRAVEL_DAYS}天必须改为同省多城市"
             )
         if requirement.cities:
             cities = [self._require_city(name) for name in requirement.cities]

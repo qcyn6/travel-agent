@@ -7,6 +7,7 @@ from backend.models.requirement import (
     MAX_TRAVEL_DAYS,
     MIN_TRAVEL_DAYS,
     TravelRequirement,
+    scope_day_boundary_error,
 )
 from backend.requirements.dates import resolve_start_date
 from backend.time_utils import extract_daily_time_window
@@ -207,15 +208,13 @@ class RequirementParser:
         else:
             scope = "auto"
 
-        if scope == "single_city" and days is not None and days > MAX_SINGLE_CITY_DAYS:
-            raise RequirementBoundaryError(
-                f"单城市规划目前只支持{MIN_TRAVEL_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
-                "超过3天请改为同省多城市"
-            )
-        if len(cities) >= 2 and days is not None and days < len(cities):
-            raise RequirementBoundaryError(
-                "多城市规划至少需要为每个城市安排1天：2个城市至少2天，3个城市至少3天"
-            )
+        boundary_error = scope_day_boundary_error(
+            days,
+            scope,
+            city_count=len(cities),
+        )
+        if boundary_error:
+            raise RequirementBoundaryError(boundary_error)
 
         preference_markers = ("轻松", "慢一点", "慢慢", "紧凑", "不赶", "适合拍照")
         preference_text = query if any(marker in query for marker in preference_markers) else None

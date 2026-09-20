@@ -54,6 +54,11 @@ def test_parser_auto_selects_multi_city_for_four_to_seven_days():
     assert result.travel_scope == "multi_city"
 
 
+def test_parser_rejects_short_multi_city_trip():
+    with pytest.raises(RequirementBoundaryError, match="只支持单城市"):
+        RequirementParser().parse("杭州和绍兴玩3天，喜欢历史文化")
+
+
 def test_arrival_transport_does_not_fill_local_attraction_transport_mode():
     result = RequirementParser().parse("坐飞机去杭州玩三天，喜欢自然")
 

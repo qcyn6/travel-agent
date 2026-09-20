@@ -88,6 +88,18 @@ def test_rejects_city_scope_conflict(catalog_repository):
         )
 
 
+def test_resolver_rejects_short_auto_multi_city_requirement(catalog_repository):
+    requirement = TravelRequirement.model_construct(
+        cities=["杭州", "绍兴"],
+        days=3,
+        travel_scope="auto",
+        interests=[],
+    )
+
+    with pytest.raises(DestinationResolutionError, match="只支持单城市"):
+        resolver(catalog_repository).resolve(requirement)
+
+
 @pytest.mark.parametrize(
     ("province", "city", "canonical_province", "canonical_city", "city_adcode"),
     [

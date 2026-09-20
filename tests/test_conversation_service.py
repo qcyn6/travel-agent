@@ -212,6 +212,21 @@ def test_five_day_scope_never_offers_single_city(catalog_repository):
     assert "必须安排同省多城市" in service._fallback_reply(requirement, ["travel_scope"], None)
 
 
+def test_invalid_short_multi_city_scope_only_suggests_longer_trip(catalog_repository):
+    repository = FakeConversationRepository()
+    service = ConversationService(
+        repository=repository,
+        parser=RequirementParser(),
+        resolver=DestinationResolver(catalog_repository),
+        responder=FailingResponder(),
+    )
+
+    assert service.validation_suggestions(
+        "1～3天只支持单城市规划；同省多城市至少需要4天",
+        RequirementDraft(),
+    ) == ["4天", "5天", "6天", "7天"]
+
+
 @pytest.mark.asyncio
 async def test_five_day_boundary_does_not_allow_responder_to_offer_single_city(catalog_repository):
     repository = FakeConversationRepository()

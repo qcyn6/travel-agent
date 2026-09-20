@@ -21,6 +21,10 @@ TransportMode = Literal["auto", "walking", "transit", "driving"]
 MIN_TRAVEL_DAYS = 1
 MAX_TRAVEL_DAYS = 7
 MAX_SINGLE_CITY_DAYS = 3
+# A multi-city plan is intentionally a different product mode from a short
+# single-city stay. Keep this boundary next to the other product limits so the
+# parser, conversation flow, destination planner and API do not drift apart.
+MIN_MULTI_CITY_TRIP_DAYS = MAX_SINGLE_CITY_DAYS + 1
 MIN_MULTI_CITY_DAYS = 1
 MAX_TRIP_CITIES = 3
 
@@ -74,6 +78,56 @@ def validate_start_date(
     if candidate is not None and candidate <= (reference_date or date.today()):
         raise ValueError("出发日期必须从明天开始")
     return value
+
+
+def scope_day_boundary_error(
+    days: int | None,
+    travel_scope: TravelScope,
+    *,
+    city_count: int = 0,
+) -> str | None:
+    """Return the shared travel-scope/day validation message, if invalid.
+
+    ``auto`` without a resolved city list is deliberately left permissive
+    because it represents an unfinished conversation. Callers that already
+    resolved one or more cities pass ``city_count`` so the same strict product
+    boundary applies before execution.
+    """
+
+    if days is None:
+        return None
+    effective_scope = travel_scope
+    if travel_scope == "auto" and city_count == 1:
+        effective_scope = "single_city"
+    elif travel_scope == "auto" and city_count >= 2:
+        effective_scope = "multi_city"
+    if effective_scope == "single_city" and days > MAX_SINGLE_CITY_DAYS:
+        return (
+            f"单城市规划目前只支持{MIN_TRAVEL_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
+            f"{MIN_MULTI_CITY_TRIP_DAYS}～{MAX_TRAVEL_DAYS}天请改为同省多城市"
+        )
+    if effective_scope == "multi_city" and days < MIN_MULTI_CITY_TRIP_DAYS:
+        return (
+            f"{MIN_TRAVEL_DAYS}～{MAX_SINGLE_CITY_DAYS}天只支持单城市规划；"
+            f"同省多城市至少需要{MIN_MULTI_CITY_TRIP_DAYS}天，"
+            f"请把天数增加到{MIN_MULTI_CITY_TRIP_DAYS}～{MAX_TRAVEL_DAYS}天"
+        )
+    if city_count >= 2 and days < city_count:
+        return "多城市规划至少需要为每个城市安排1天：2个城市至少2天，3个城市至少3天"
+    return None
+
+
+def validate_scope_day_boundary(
+    days: int | None,
+    travel_scope: TravelScope,
+    *,
+    city_count: int = 0,
+) -> None:
+    """Raise ``ValueError`` when a settled scope violates the product rule."""
+
+    message = scope_day_boundary_error(days, travel_scope, city_count=city_count)
+    if message:
+        raise ValueError(message)
 
 
 class TravelRequirement(BaseModel):
@@ -143,17 +197,23 @@ class TravelRequirement(BaseModel):
             raise ValueError("每日结束时间必须晚于开始时间，且不支持跨日安排")
         if self.days is None:
             return self
-        is_explicit_single_city = self.travel_scope == "single_city"
-        is_one_city_auto_scope = len(self.cities) == 1 and self.travel_scope == "auto"
-        if (is_explicit_single_city or is_one_city_auto_scope) and self.days > MAX_SINGLE_CITY_DAYS:
-            raise ValueError(
-                f"单城市规划目前只支持{MIN_TRAVEL_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
-                "超过3天请改为同省多城市"
-            )
-        if len(self.cities) >= 2 and self.days < len(self.cities):
-            raise ValueError(
-                "多城市规划至少需要为每个城市安排1天：2个城市至少2天，3个城市至少3天"
-            )
+        # A single named city with ``auto`` is already an implicit single-city
+        # choice. Keep that historical convenience while applying the shared
+        # boundary to explicit ``single_city``/``multi_city`` selections.
+        settled_scope = self.travel_scope
+        if settled_scope == "auto" and len(self.cities) == 1:
+            settled_scope = "single_city"
+        # Keep the resolver's more specific “one city vs multi-city” error for
+        # direct callers that construct this legacy-conflicting combination.
+        # Parsed user text is still rejected earlier by RequirementParser, and
+        # the resolver/planner enforce the same boundary before execution.
+        if settled_scope == "multi_city" and len(self.cities) == 1:
+            settled_scope = "auto"
+        validate_scope_day_boundary(
+            self.days,
+            settled_scope,
+            city_count=len(self.cities) if settled_scope != "auto" else 0,
+        )
         return self
 
     @field_validator("start_date", mode="before")

@@ -39,7 +39,7 @@ class DeepSeekRequirementParser:
         prompt = (
             "将用户旅游需求严格提取为 JSON。字段只能是：province、cities、province_preference_confirmed、city_preference_confirmed、days、interests、"
             "preference_text、travel_scope、start_date、daily_start_time、daily_end_time、transport_mode。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
-            "days 为 1～7 的正整数或 null；单城市只支持1～3天，同省多城市支持1～7天；interests 为兴趣词列表；preference_text 保留节奏、体验等自由偏好，"
+            "days 为 1～7 的正整数或 null；1～3天只支持单城市，4～7天必须安排同省多城市（最多3个城市）；interests 为兴趣词列表；preference_text 保留节奏、体验等自由偏好，"
             "没有则为 null；travel_scope 只能是 single_city、multi_city、auto。"
             "city_preference_confirmed 表示单城市安排下是否已经确认具体城市：用户说出城市名，或明确说没有指定城市、让 AI 推荐时为 true；否则为 false。"
             "province_preference_confirmed 表示用户没有指定省份、明确让 AI 根据兴趣和偏好推荐省份时为 true；用户明确说出省份时也为 true；否则为 false。"

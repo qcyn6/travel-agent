@@ -73,6 +73,11 @@ def load_requirement_draft(value: object) -> RequirementDraft:
                 # decision instead of failing to load the conversation.
                 data["days"] = None
                 data["travel_scope"] = "auto"
+            elif scope == "multi_city" and numeric_days <= MAX_SINGLE_CITY_DAYS:
+                # Older drafts could explicitly store a short multi-city
+                # choice. Preserve the user's other answers, but reopen the
+                # scope decision under the current 1～3/4～7 product boundary.
+                data["travel_scope"] = "auto"
             elif len(cities) >= 2 and numeric_days < len(cities):
                 data["days"] = None
         start_date = data.get("start_date")

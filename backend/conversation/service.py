@@ -146,7 +146,10 @@ class ConversationService:
             intent=prepared.intent,
         )
         if prepared.validation_error and prepared.intent == "planning":
-            suggestions = self._day_suggestions(prepared.requirement)
+            suggestions = self.validation_suggestions(
+                prepared.validation_error,
+                prepared.requirement,
+            )
         return conversation, reply, suggestions
 
     @staticmethod
@@ -280,6 +283,8 @@ class ConversationService:
             return f"{message}。请提供同一天内的开始和结束时间，例如每天08:00到21:00。"
         if "单城市" in message:
             return f"{message}。4～7天请改为同省多城市安排。"
+        if "多城市" in message:
+            return f"{message}。1～3天请按一个城市安排；如果要游多个城市，请把天数增加到4天以上。"
         return f"{message}。请改成1～7天以内的行程；单城市最多3天，超过3天请选择同省多城市。"
 
     def finish_message(self, prepared: PreparedConversationTurn, reply: str) -> Conversation:
@@ -373,11 +378,26 @@ class ConversationService:
 
     @staticmethod
     def _day_suggestions(requirement: RequirementDraft | None) -> list[str]:
+        if requirement is not None and requirement.travel_scope == "multi_city":
+            return ["4天", "5天", "6天", "7天"]
         if requirement is not None and (
             requirement.travel_scope == "single_city" or len(requirement.cities) == 1
         ):
             return ["1天", "2天", "3天"]
         return ["1天", "2天", "3天", "4天", "5天", "6天", "7天"]
+
+    @staticmethod
+    def validation_suggestions(
+        message: str,
+        requirement: RequirementDraft | None = None,
+    ) -> list[str]:
+        """Keep correction chips aligned with the failed scope boundary."""
+
+        if "多城市" in message and ("只支持单城市" in message or "至少需要" in message):
+            return ["4天", "5天", "6天", "7天"]
+        if "单城市规划目前只支持" in message:
+            return ["4天", "5天", "6天", "7天"]
+        return ConversationService._day_suggestions(requirement)
 
     @classmethod
     def mode_boundary_reply(

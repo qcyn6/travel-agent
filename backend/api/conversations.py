@@ -162,8 +162,9 @@ async def send_message(
             intent=prepared.intent,
         )
         if prepared.validation_error and prepared.intent == "planning":
-            options = service.suggestions_for(
-                ["days"], prepared.requirement, intent="planning"
+            options = service.validation_suggestions(
+                prepared.validation_error,
+                prepared.requirement,
             )
         yield _sse(
             "suggestions",

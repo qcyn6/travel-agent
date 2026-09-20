@@ -73,6 +73,9 @@ function suggestionsFor(next: RequirementDraft, mode: ConversationMode = 'planni
     return ['北京', '上海', '四川省', '云南省', '浙江省', '你来推荐一个省份']
   }
   if (next.days === null) {
+    if (next.travel_scope === 'multi_city') {
+      return ['4天', '5天', '6天', '7天']
+    }
     return next.travel_scope === 'single_city' || next.cities.length === 1
       ? ['1天', '2天', '3天']
       : ['1天', '2天', '3天', '4天', '5天', '6天', '7天']
@@ -81,6 +84,9 @@ function suggestionsFor(next: RequirementDraft, mode: ConversationMode = 'planni
     return next.days !== null && next.days <= MAX_SINGLE_CITY_DAYS
       ? ['一个城市深度游', '增加到4天以上游多个城市']
       : ['同省多城市']
+  }
+  if (next.travel_scope === 'multi_city' && next.days <= MAX_SINGLE_CITY_DAYS) {
+    return ['4天', '5天', '6天', '7天']
   }
   if (!next.cities.length && !next.city_preference_confirmed) {
     return ['没有指定城市，你来推荐']
