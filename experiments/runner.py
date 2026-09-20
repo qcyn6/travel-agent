@@ -145,6 +145,9 @@ async def run_variant(case: ExperimentCase, variant: ExperimentVariant) -> Exper
         "route_unavailable_rejections": sum(
             decision.rejected_reason == "route_unavailable" for decision in rejected
         ),
+        "route_not_verified_rejections": sum(
+            decision.rejected_reason == "route_not_verified" for decision in rejected
+        ),
         "time_window_rejections": sum(
             decision.rejected_reason == "time_window" for decision in rejected
         ),
@@ -231,6 +234,7 @@ def write_results(
         "decision_count",
         "rejected_candidate_count",
         "route_unavailable_rejections",
+        "route_not_verified_rejections",
         "time_window_rejections",
         "feasible",
         "elapsed_ms",

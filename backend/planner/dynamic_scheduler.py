@@ -296,7 +296,7 @@ class DynamicCityScheduler:
         city_adcode: str,
         route_service,
         schedule_builder: ScheduleBuilder,
-        max_route_attempts_per_step: int = 5,
+        max_route_attempts_per_step: int | None = None,
     ) -> RouteAwarePlanningResult:
         """Select attractions while validating each candidate's route first.
 
@@ -309,7 +309,7 @@ class DynamicCityScheduler:
         unique_candidates = _unique_candidates(candidates, city_stay.city)
         if not unique_candidates:
             raise DynamicSchedulingError(f"{city_stay.city} 没有可用于规划的景点知识")
-        if max_route_attempts_per_step < 1:
+        if max_route_attempts_per_step is not None and max_route_attempts_per_step < 1:
             raise ValueError("max_route_attempts_per_step 必须大于0")
         if not hasattr(route_service, "resolve_segment"):
             raise DynamicSchedulingError("路线服务不支持单段路线校验")
@@ -326,20 +326,30 @@ class DynamicCityScheduler:
             # A new day starts without a hotel or station coordinate.  The
             # first stop therefore uses preference only; distance is applied
             # again after that day's first selection.
-            previous_selected: PlanningCandidate | None = None
+            current_location: PlanningCandidate | None = None
+            current_time = requirement.daily_start_time or _format_time(
+                schedule_builder.day_start_minutes
+            )
 
             while unused:
                 if selected and len(unused) <= city_stay.days - day:
                     break
-                ranked = self._rank(unused, previous_selected)
-                attempted = ranked if previous_selected is None else ranked[:max_route_attempts_per_step]
+                ranked = self._rank(unused, current_location)
+                attempted = (
+                    ranked
+                    if current_location is None or max_route_attempts_per_step is None
+                    else ranked[:max_route_attempts_per_step]
+                )
                 chosen: _ScoredCandidate | None = None
                 chosen_route: RouteSegment | None = None
+                chosen_schedule: TravelDay | None = None
 
                 for scored in attempted:
                     trial_candidates = [*selected, scored.candidate]
-                    if not self._rough_visit_fits(
-                        trial_candidates,
+                    if not self._quick_visit_fits(
+                        scored.candidate,
+                        current_time=current_time,
+                        has_previous=bool(selected),
                         requirement=requirement,
                         schedule_builder=schedule_builder,
                     ):
@@ -355,10 +365,10 @@ class DynamicCityScheduler:
                         continue
                     route: RouteSegment | None = None
                     trial_routes = list(selected_routes)
-                    if previous_selected is not None:
+                    if current_location is not None:
                         try:
                             route = await route_service.resolve_segment(
-                                _candidate_stop(previous_selected),
+                                _candidate_stop(current_location),
                                 _candidate_stop(scored.candidate),
                                 requested_mode=requirement.transport_mode,
                                 city_adcode=city_adcode,
@@ -376,6 +386,17 @@ class DynamicCityScheduler:
                                 )
                             )
                             continue
+                        if route.estimated or route.source not in {"amap_mcp", "amap"}:
+                            decisions.append(
+                                self._decision(
+                                    day=day,
+                                    scored=scored,
+                                    feasible=False,
+                                    selected=False,
+                                    rejected_reason="route_not_verified",
+                                )
+                            )
+                            continue
                         trial_routes.append(route)
 
                     trial_day = _trial_day(
@@ -385,11 +406,12 @@ class DynamicCityScheduler:
                         routes=trial_routes,
                         description=f"围绕{preference}安排当天游览。",
                     )
-                    if schedule_builder.try_build_day_exact(
+                    scheduled_trial = schedule_builder.try_build_day_exact(
                         trial_day,
                         day_start_time=requirement.daily_start_time,
                         day_end_time=requirement.daily_end_time,
-                    ) is None:
+                    )
+                    if scheduled_trial is None:
                         decisions.append(
                             self._decision(
                                 day=day,
@@ -403,6 +425,7 @@ class DynamicCityScheduler:
 
                     chosen = scored
                     chosen_route = route
+                    chosen_schedule = scheduled_trial
                     decisions.append(
                         self._decision(
                             day=day,
@@ -424,7 +447,10 @@ class DynamicCityScheduler:
                 selected.append(chosen.candidate)
                 if chosen_route is not None:
                     selected_routes.append(chosen_route)
-                previous_selected = chosen.candidate
+                current_location = chosen.candidate
+                if chosen_schedule is None or chosen_schedule.schedule is None:
+                    raise DynamicSchedulingError("景点通过校验后缺少精确时间表")
+                current_time = chosen_schedule.schedule.end_time
 
             if not selected:
                 fallback = unique_candidates[(day - 1) % len(unique_candidates)]
@@ -444,7 +470,7 @@ class DynamicCityScheduler:
                         f"{city_stay.city} 第{day}天没有符合时间窗口的景点"
                     )
                 selected.append(fallback)
-                fallback_scored = self._rank([fallback], previous_selected)[0]
+                fallback_scored = self._rank([fallback], current_location)[0]
                 decisions.append(
                     self._decision(
                         day=day,
@@ -454,7 +480,7 @@ class DynamicCityScheduler:
                         rejected_reason="candidate_pool_exhausted_reused",
                     )
                 )
-                previous_selected = fallback
+                current_location = fallback
 
             day_plans.append(
                 DayPlan(
@@ -527,29 +553,24 @@ class DynamicCityScheduler:
         return scored
 
     @staticmethod
-    def _rough_visit_fits(
-        candidates: list[PlanningCandidate],
+    def _quick_visit_fits(
+        candidate: PlanningCandidate,
         *,
+        current_time: str,
+        has_previous: bool,
         requirement: TravelRequirement,
         schedule_builder: ScheduleBuilder,
     ) -> bool:
-        """Reject impossible visit-only combinations before a route call."""
+        """Reject an impossible next visit before spending a route request."""
 
-        start = (
-            _parse_time(requirement.daily_start_time)
-            if requirement.daily_start_time
-            else schedule_builder.day_start_minutes
-        )
+        start = _parse_time(current_time)
         end = (
             _parse_time(requirement.daily_end_time)
             if requirement.daily_end_time
             else DAY_END_MINUTES
         )
-        visit_minutes = sum(
-            max(1, int(candidate.visit_duration_minutes or 90))
-            for candidate in candidates
-        )
-        buffer_minutes = schedule_builder.buffer_minutes * max(0, len(candidates) - 1)
+        visit_minutes = max(1, int(candidate.visit_duration_minutes or 90))
+        buffer_minutes = schedule_builder.buffer_minutes if has_previous else 0
         return visit_minutes + buffer_minutes <= end - start
 
     def _additional_minutes(
@@ -623,7 +644,7 @@ async def dynamic_city_plan_with_routes(
     city_adcode: str,
     route_service,
     schedule_builder: ScheduleBuilder,
-    max_route_attempts_per_step: int = 5,
+    max_route_attempts_per_step: int | None = None,
     preference_weight: float = PREFERENCE_WEIGHT,
     distance_weight: float = DISTANCE_WEIGHT,
 ) -> RouteAwarePlanningResult:

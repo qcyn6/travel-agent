@@ -35,7 +35,7 @@ class HybridRetrievalService:
         city: str,
         interests: list[str],
         preference_text: str | None,
-        top_k: int,
+        top_k: int | None,
     ) -> list[HybridSearchResult]:
         try:
             documents: list[AttractionDocument] = self.repository.list_documents(
@@ -86,7 +86,11 @@ class HybridRetrievalService:
                 vector_results = await self.vector_service.search(
                     city=city,
                     query=preference_query,
-                    limit=min(len(documents), max(top_k * 5, top_k)),
+                    limit=(
+                        len(documents)
+                        if top_k is None
+                        else min(len(documents), max(top_k * 5, top_k))
+                    ),
                 )
             except (EmbeddingConfigurationError, EmbeddingError) as exc:
                 logger.warning("偏好向量检索不可用，保留标签匹配顺序：%s", type(exc).__name__)
@@ -136,6 +140,9 @@ class HybridRetrievalService:
             for rank, document in enumerate(ordered_documents, start=1)
         }
 
+        selected_documents = (
+            ordered_documents if top_k is None else ordered_documents[:top_k]
+        )
         return [
             HybridSearchResult(
                 **document.model_dump(),
@@ -151,5 +158,5 @@ class HybridRetrievalService:
                 rrf_score=0,
                 final_rank=rank,
             )
-            for rank, document in enumerate(ordered_documents[:top_k], start=1)
+            for rank, document in enumerate(selected_documents, start=1)
         ]

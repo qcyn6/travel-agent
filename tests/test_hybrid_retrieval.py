@@ -440,3 +440,33 @@ async def test_hybrid_search_returns_empty_when_no_interest_tag_matches():
     )
 
     assert results == []
+
+
+@pytest.mark.asyncio
+async def test_planning_search_can_keep_every_tag_matched_attraction():
+    documents = [
+        doc(f"A{index}", f"自然景点{index}", f"第{index}个自然景点。")
+        .model_copy(update={"interest_tags": ["自然"]})
+        for index in range(25)
+    ]
+
+    class Repository:
+        def list_documents(self, city, *, interests):
+            return documents
+
+    class UnusedVectorService:
+        async def index_city(self, city):
+            raise AssertionError("没有自由偏好时不应调用向量服务")
+
+    results = await HybridRetrievalService(
+        repository=Repository(), vector_service=UnusedVectorService()
+    ).search(
+        city="杭州市",
+        interests=["自然"],
+        preference_text=None,
+        top_k=None,
+    )
+
+    assert len(results) == 25
+    assert all(result.tag_match_count == 1 for result in results)
+    assert all(result.preference_score == 0 for result in results)

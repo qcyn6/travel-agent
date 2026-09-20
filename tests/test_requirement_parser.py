@@ -121,6 +121,16 @@ def test_parser_extracts_daily_play_window_from_chinese_time_range():
     assert result.daily_end_time == "21:00"
 
 
+def test_parser_does_not_treat_relaxed_wording_as_one_oclock():
+    result = RequirementParser().parse(
+        "2026年10月3日去杭州玩两天，希望轻松一点，每天9:00到18:00",
+        reference_date=date(2026, 9, 20),
+    )
+
+    assert result.daily_start_time == "09:00"
+    assert result.daily_end_time == "18:00"
+
+
 def test_parser_supports_partial_daily_time_updates():
     result = RequirementParser().parse("每天8点开始")
 

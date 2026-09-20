@@ -132,14 +132,14 @@ class TravelPlanningWorkflow:
                     await self.city_planning_service.retrieve_candidates(
                         city_stay=city_stay,
                         requirement=requirement,
-                        top_k=20,
+                        top_k=None,
                     )
                 )
             else:
                 result = await self.city_planning_service.plan(
                     city_stay=city_stay,
                     requirement=requirement,
-                    top_k=20,
+                    top_k=None,
                 )
                 unique_attractions = dedupe_attractions(result.attractions)
 

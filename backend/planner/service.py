@@ -31,20 +31,24 @@ class CityPlanningService:
         planner,
         route_enrichment_service=None,
         schedule_builder=None,
-        max_route_attempts_per_step: int = 5,
+        max_route_attempts_per_step: int | None = None,
     ):
         self.retrieval_service = retrieval_service
         self.planner = planner
         self.route_enrichment_service = route_enrichment_service
         self.schedule_builder = schedule_builder
-        self.max_route_attempts_per_step = max(1, int(max_route_attempts_per_step))
+        self.max_route_attempts_per_step = (
+            None
+            if max_route_attempts_per_step is None
+            else max(1, int(max_route_attempts_per_step))
+        )
 
     async def retrieve_candidates(
         self,
         *,
         city_stay,
         requirement,
-        top_k: int = 20,
+        top_k: int | None = None,
     ) -> list[HybridSearchResult]:
         """Retrieve and stably deduplicate the local candidate pool."""
 
@@ -57,7 +61,13 @@ class CityPlanningService:
             )
         )
 
-    async def plan(self, *, city_stay, requirement, top_k: int = 20) -> CityPlanningResult:
+    async def plan(
+        self,
+        *,
+        city_stay,
+        requirement,
+        top_k: int | None = None,
+    ) -> CityPlanningResult:
         attractions = await self.retrieve_candidates(
             city_stay=city_stay,
             requirement=requirement,

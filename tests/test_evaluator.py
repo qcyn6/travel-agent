@@ -167,6 +167,28 @@ def test_daily_metrics_report_estimated_route_ratio():
     assert metric.route_minutes == 30
     assert metric.route_segments == 2
     assert metric.estimated_route_ratio == 0.5
+    assert any(
+        issue.type == "route" and "不是地图真实路线" in issue.message
+        for issue in result.issues
+    )
+
+
+def test_evaluator_reports_unavailable_weather_as_external_degradation():
+    weather = WeatherResult(
+        city="杭州市",
+        date=date(2026, 9, 14),
+        status="unavailable",
+        source="none",
+    )
+
+    result = PlanEvaluator().evaluate(
+        _plan(_day(weather=weather)),
+        _requirement(),
+    )
+
+    issue = next(issue for issue in result.issues if issue.type == "weather")
+    assert issue.severity == "low"
+    assert result.passed is True
 
 
 def test_evaluator_deduplicates_identical_issues():

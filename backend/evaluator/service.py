@@ -41,6 +41,7 @@ class PlanEvaluator:
         for day in plan.itinerary:
             issues.extend(self._evaluate_schedule(day))
             issues.extend(self._evaluate_routes(day))
+            issues.extend(self._evaluate_external_status(day))
         issues.extend(
             self._evaluate_preferences(
                 plan,
@@ -101,6 +102,48 @@ class PlanEvaluator:
                         suggestion="优先替换为距离更近的景点或调整顺序",
                     )
                 )
+        return issues
+
+    @staticmethod
+    def _evaluate_external_status(day: TravelDay) -> list[EvaluationIssue]:
+        """Expose route/weather degradation inside the rule-based review."""
+
+        issues: list[EvaluationIssue] = []
+        estimated_routes = sum(
+            route.estimated or route.source == "haversine" for route in day.routes
+        )
+        unavailable_routes = sum(route.source == "unavailable" for route in day.routes)
+        if estimated_routes:
+            issues.append(
+                EvaluationIssue(
+                    type="route",
+                    severity="medium",
+                    day=day.day,
+                    message=f"第 {day.day} 天有 {estimated_routes} 段路线不是地图真实路线",
+                    suggestion="重新获取地图路线后再确认交通时间",
+                )
+            )
+        if unavailable_routes:
+            issues.append(
+                EvaluationIssue(
+                    type="route",
+                    severity="high",
+                    day=day.day,
+                    message=f"第 {day.day} 天有 {unavailable_routes} 段路线无法获取",
+                    suggestion="更换景点组合或稍后重新获取路线",
+                )
+            )
+        if day.weather is not None and day.weather.status != "available":
+            label = "未查询" if day.weather.status == "skipped" else "暂不可用"
+            issues.append(
+                EvaluationIssue(
+                    type="weather",
+                    severity="low",
+                    day=day.day,
+                    message=f"第 {day.day} 天天气预报{label}",
+                    suggestion="出发前再次确认天气",
+                )
+            )
         return issues
 
     def _evaluate_preferences(

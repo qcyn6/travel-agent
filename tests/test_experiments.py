@@ -52,7 +52,7 @@ async def test_complete_variant_reduces_route_minutes_in_fixed_case():
 
 
 @pytest.mark.asyncio
-async def test_failure_cases_expose_rejections_and_estimated_routes():
+async def test_failure_cases_expose_unavailable_and_unverified_route_rejections():
     cases = make_experiment_cases()
     unavailable_case = next(case for case in cases if case.case_id == "hangzhou-route-unavailable")
     estimated_case = next(case for case in cases if case.case_id == "hangzhou-estimated-route")
@@ -61,7 +61,8 @@ async def test_failure_cases_expose_rejections_and_estimated_routes():
     estimated = await run_variant(estimated_case, EXPERIMENT_VARIANTS[0])
 
     assert unavailable.metrics["route_unavailable_rejections"] >= 1
-    assert estimated.metrics["estimated_route_ratio"] > 0
+    assert estimated.metrics["estimated_route_ratio"] == 0
+    assert estimated.metrics["route_not_verified_rejections"] >= 1
 
 
 @pytest.mark.asyncio

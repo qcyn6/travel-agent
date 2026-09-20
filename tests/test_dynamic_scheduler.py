@@ -175,7 +175,6 @@ async def test_route_aware_scheduler_skips_route_that_would_exceed_window():
     assert route_service.calls == [
         ("首站", "高偏好但很远"),
         ("首站", "路线可行的备选"),
-        ("路线可行的备选", "高偏好但很远"),
     ]
     assert result.routes_by_day[0][0].duration_min == 30
     rejected = next(
@@ -207,3 +206,62 @@ async def test_route_aware_scheduler_stops_when_following_route_is_unavailable()
         decision for decision in result.decisions if decision.name == "无可用路线"
     )
     assert rejected.rejected_reason == "route_unavailable"
+
+
+@pytest.mark.asyncio
+async def test_route_aware_scheduler_rejects_estimates_and_tries_all_candidates():
+    class RouteService:
+        def __init__(self):
+            self.calls = []
+
+        async def resolve_segment(self, origin, destination, **kwargs):
+            self.calls.append(destination.name)
+            if destination.name == "第六候选真实路线":
+                return _route(origin, destination, 15)
+            return RouteSegment(
+                origin_poi_id=origin.poi_id,
+                origin_name=origin.name,
+                destination_poi_id=destination.poi_id,
+                destination_name=destination.name,
+                mode="walking",
+                source="haversine",
+                distance_m=1000,
+                duration_min=15,
+                estimated=True,
+            )
+
+    route_service = RouteService()
+    result = await DynamicCityScheduler().plan_with_routes(
+        city_stay=CityStay(city="杭州市", days=1),
+        requirement=requirement(1, start="08:00", end="18:00"),
+        candidates=[
+            candidate("A", "首站", preference_score=0.99, duration=60),
+            *[
+                candidate(
+                    f"B{index}",
+                    f"第{index}候选估算路线",
+                    preference_score=0.9 - index / 100,
+                    longitude=120.0 + index / 1000,
+                    duration=60,
+                )
+                for index in range(1, 6)
+            ],
+            candidate(
+                "B6",
+                "第六候选真实路线",
+                preference_score=0.8,
+                longitude=120.006,
+                duration=60,
+            ),
+        ],
+        city_adcode="330100",
+        route_service=route_service,
+        schedule_builder=ScheduleBuilder(meal_minutes=0, buffer_minutes=0),
+    )
+
+    assert result.city_plan.days[0].attractions[:2] == ["首站", "第六候选真实路线"]
+    assert "第六候选真实路线" in route_service.calls
+    estimated = [
+        item for item in result.decisions if item.rejected_reason == "route_not_verified"
+    ]
+    assert len(estimated) >= 5

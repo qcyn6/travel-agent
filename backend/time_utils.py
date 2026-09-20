@@ -46,6 +46,8 @@ def extract_daily_time_window(text: str) -> tuple[str | None, str | None]:
 
     matches = []
     for match in _TIME_TOKEN.finditer(text):
+        if not _is_time_expression(text, match):
+            continue
         hour = _parse_number(match.group("hour"))
         minute_text = match.group("minute")
         minute = _parse_number(minute_text) if minute_text else 0
@@ -90,6 +92,23 @@ def extract_daily_time_window(text: str) -> tuple[str | None, str | None]:
     if end is None and unlabelled:
         end = unlabelled.pop(0)
     return start, end
+
+
+def _is_time_expression(text: str, match: re.Match[str]) -> bool:
+    """Reject ordinary wording such as ``轻松一点`` from clock parsing.
+
+    A colon or a day-period word is unambiguously a clock. Chinese ``点/时``
+    expressions additionally need an adjacent time-window marker; otherwise
+    words like ``一点``, ``有点`` and ``差一点`` would become 01:00.
+    """
+
+    if match.group("period") or match.group("separator") in {":", "："}:
+        return True
+    before = text[max(0, match.start() - 8):match.start()].rstrip()
+    after = text[match.end():min(len(text), match.end() + 8)].lstrip()
+    return before.endswith(("每天", "每日", "从", "自", "于", "到", "至")) or after.startswith(
+        ("开始", "结束", "截止", "之前", "以后", "出发", "到", "至", "起")
+    )
 
 
 def _parse_number(value: str | None) -> int | None:
