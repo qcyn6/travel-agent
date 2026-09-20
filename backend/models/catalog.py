@@ -20,6 +20,3 @@ class City(BaseModel):
     adcode: str
     tags: list[str] = Field(default_factory=list)
     description: str
-    suitable_days_min: int
-    suitable_days_max: int
-

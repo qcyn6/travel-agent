@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Final
 
+from backend.database.city_profiles import CITY_PROFILES
+
 
 # 行政区基础目录来源：
 # https://raw.githubusercontent.com/modood/Administrative-divisions-of-China/master/dist/pc-code.json
@@ -486,16 +488,16 @@ _PROVINCE_PROFILES: Final[dict[str, tuple[list[str], str]]] = {
     "澳门特别行政区": (["历史文化", "美食", "休闲"], "历史街区、城市休闲与地方美食体验集中。"),
 }
 
-_CURATED_CITIES: Final[dict[tuple[str, str], tuple[str, list[str], str, int, int]]] = {
-    ("浙江省", "杭州市"): ("330100", ["自然", "历史文化", "摄影", "休闲"], "西湖山水与宋韵文化名城。", 1, 4),
-    ("浙江省", "绍兴市"): ("330600", ["历史文化", "古镇", "人文"], "水乡、黄酒与名人文化名城。", 1, 3),
-    ("浙江省", "宁波市"): ("330200", ["海滨", "历史文化", "美食"], "港城文化与山海体验兼备。", 1, 3),
-    ("云南省", "昆明市"): ("530100", ["自然", "人文", "美食"], "四季宜游的高原春城。", 1, 3),
-    ("云南省", "大理市"): ("532901", ["自然", "古城", "摄影", "休闲"], "苍山洱海与古城慢生活目的地。", 2, 4),
-    ("云南省", "丽江市"): ("530700", ["自然", "古城", "摄影", "人文"], "雪山、古城与纳西文化目的地。", 2, 4),
-    ("陕西省", "西安市"): ("610100", ["历史文化", "人文", "美食"], "古都遗址与城市文化体验丰富。", 2, 5),
-    ("陕西省", "宝鸡市"): ("610300", ["历史文化", "自然"], "周秦文化与秦岭风光目的地。", 1, 3),
-    ("陕西省", "延安市"): ("610600", ["历史文化", "人文", "自然"], "红色文化与黄土高原风貌目的地。", 1, 3),
+_CURATED_CITIES: Final[dict[tuple[str, str], tuple[str, list[str], str]]] = {
+    ("浙江省", "杭州市"): ("330100", ["自然", "历史文化", "摄影", "休闲"], "西湖山水与宋韵文化名城。"),
+    ("浙江省", "绍兴市"): ("330600", ["历史文化", "古镇", "人文"], "水乡、黄酒与名人文化名城。"),
+    ("浙江省", "宁波市"): ("330200", ["海滨", "历史文化", "美食"], "港城文化与山海体验兼备。"),
+    ("云南省", "昆明市"): ("530100", ["自然", "人文", "美食"], "四季宜游的高原春城。"),
+    ("云南省", "大理市"): ("532901", ["自然", "古城", "摄影", "休闲"], "苍山洱海与古城慢生活目的地。"),
+    ("云南省", "丽江市"): ("530700", ["自然", "古城", "摄影", "人文"], "雪山、古城与纳西文化目的地。"),
+    ("陕西省", "西安市"): ("610100", ["历史文化", "人文", "美食"], "古都遗址与城市文化体验丰富。"),
+    ("陕西省", "宝鸡市"): ("610300", ["历史文化", "自然"], "周秦文化与秦岭风光目的地。"),
+    ("陕西省", "延安市"): ("610600", ["历史文化", "人文", "自然"], "红色文化与黄土高原风貌目的地。"),
 }
 
 _CURATED_ORDER: Final[dict[str, tuple[str, ...]]] = {
@@ -573,17 +575,30 @@ def _build_catalog() -> tuple[dict, ...]:
             for name, _ in raw_cities
             if name not in ordered_names and name != "大理白族自治州"
         )
-        cities: list[tuple[str, str, list[str], str, int, int]] = []
+        cities: list[tuple[str, str, list[str], str]] = []
         for city_name in ordered_names:
             curated = _CURATED_CITIES.get((province_name, city_name))
             if curated:
-                adcode, tags, description, min_days, max_days = curated
+                adcode, curated_tags, curated_description = curated
+                profile = CITY_PROFILES.get((province_name, city_name))
+                if profile:
+                    tags, description = profile
+                else:
+                    tags, description = curated_tags, curated_description
             else:
                 adcode = raw_by_name[city_name]
-                tags = ["自然", "人文"]
-                description = f"{province_name}{city_name}适合结合当地自然、人文与美食体验安排行程。"
-                min_days, max_days = 1, 3
-            cities.append((city_name, adcode, tags, description, min_days, max_days))
+                profile = CITY_PROFILES.get((province_name, city_name))
+                if profile:
+                    tags, description = profile
+                else:
+                    # Keep a safe fallback for future administrative additions;
+                    # the current nationwide catalog is fully covered by
+                    # CITY_PROFILES and therefore does not use this branch.
+                    tags = ["自然", "人文", "美食"]
+                    description = (
+                        f"{province_name}{city_name}适合结合当地自然、人文与美食体验安排行程。"
+                    )
+            cities.append((city_name, adcode, tags, description))
         profile_tags, profile_description = _PROVINCE_PROFILES.get(
             province_name,
             (["自然", "人文"], f"{province_name}适合结合当地自然与人文体验安排行程。"),
@@ -603,7 +618,7 @@ def _build_catalog() -> tuple[dict, ...]:
 CATALOG: Final[tuple[dict, ...]] = _build_catalog()
 
 DESTINATION_SCOPE_HINT: Final[str] = (
-    "当前支持全国省级行政区和目录中的城市，景点数据会在规划时按需查询"
+    "可以按已收录的国内省份或城市来规划，景点信息来自项目数据库"
 )
 DESTINATION_SUGGESTIONS: Final[tuple[str, ...]] = (
     "北京",

@@ -15,4 +15,4 @@ class WeatherResult(BaseModel):
     precipitation_probability: float | None = Field(default=None, ge=0, le=1)
     wind_level: str | None = None
     status: Literal["available", "skipped", "unavailable"]
-    source: Literal["qweather", "none"]
+    source: Literal["amap_mcp", "qweather", "none"]

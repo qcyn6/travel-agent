@@ -1,11 +1,13 @@
-from backend.route.amap import AmapRouteClient, RouteAPIError, RouteConfigurationError
-from backend.route.service import RouteEnrichmentService, haversine_distance_m
+from backend.route.amap_mcp import (
+    AmapMcpRouteClient,
+    RouteAPIError,
+    RouteConfigurationError,
+)
+from backend.route.service import RouteEnrichmentService
 
 __all__ = [
-    "AmapRouteClient",
+    "AmapMcpRouteClient",
     "RouteAPIError",
     "RouteConfigurationError",
     "RouteEnrichmentService",
-    "haversine_distance_m",
 ]
-

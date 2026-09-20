@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
-import type { ChatMessage } from '../types'
+import { computed, nextTick, ref, watch } from 'vue'
+import type { ChatMessage, ConversationMode } from '../types'
 
 const props = defineProps<{
   messages: ChatMessage[]
   suggestions: string[]
   sending: boolean
+  modeSwitching?: boolean
+  mode: ConversationMode
   empty?: boolean
 }>()
 const emit = defineEmits<{
@@ -16,16 +18,48 @@ const emit = defineEmits<{
 const input = ref('')
 const inputElement = ref<HTMLTextAreaElement | null>(null)
 const messageList = ref<HTMLElement | null>(null)
+const generalInputPlaceholder = '例如：介绍一下云南、你能做什么，或者聊聊旅行灵感……'
+const planningInputPlaceholder = '告诉我想去哪里、玩几天、哪天出发，以及你喜欢怎样的旅行……'
+const modePlaceholder = computed(() => props.mode === 'planning' ? planningInputPlaceholder : generalInputPlaceholder)
+const inputPlaceholder = ref(modePlaceholder.value)
+
+const confirmationAvailable = computed(() => Boolean(
+  props.mode === 'planning' && props.suggestions.includes('确认生成计划'),
+))
+
+function isConfirmationPhrase(text: string) {
+  const normalized = text.replace(/[，。！？、,.!?；;：:\s]/g, '')
+  return [
+    '确认生成计划',
+    '确认并生成计划',
+    '确认开始规划',
+    '开始生成计划',
+    '开始规划',
+    '就这样生成',
+    '确认',
+    '可以开始',
+    '可以生成',
+    '可以了',
+    '好的开始吧',
+    '好开始吧',
+    '没问题开始吧',
+    '没问题生成吧',
+  ].includes(normalized)
+}
 
 function submit(text = input.value) {
   const clean = text.trim()
-  if (!clean || props.sending) return
-  if (clean === '确认需求并生成计划' || clean === '查看并确认旅行需求') {
+  if (!clean || props.sending || props.modeSwitching) return
+  if (
+    confirmationAvailable.value
+    && isConfirmationPhrase(clean)
+  ) {
     emit('confirm')
   } else {
     emit('send', clean)
   }
   input.value = ''
+  inputPlaceholder.value = modePlaceholder.value
 }
 
 function onKeydown(event: KeyboardEvent) {
@@ -34,6 +68,11 @@ function onKeydown(event: KeyboardEvent) {
     submit()
   }
 }
+
+watch(
+  () => props.mode,
+  () => { inputPlaceholder.value = modePlaceholder.value },
+)
 
 watch(
   () => props.messages.map((item) => item.content).join('|'),
@@ -77,12 +116,12 @@ watch(
     </div>
 
     <div v-if="!empty && suggestions.length" class="suggestions">
-      <button
-        v-for="item in suggestions"
-        :key="item"
-        type="button"
-        :class="{ 'suggestion-primary': item === '确认需求并生成计划' }"
-        :disabled="sending"
+        <button
+          v-for="item in suggestions"
+          :key="item"
+          type="button"
+          :class="{ 'suggestion-primary': mode === 'planning' && item === '确认生成计划' }"
+        :disabled="sending || modeSwitching"
         @click="submit(item)"
       >
         {{ item }}
@@ -94,11 +133,11 @@ watch(
         ref="inputElement"
         v-model="input"
         :rows="empty ? 1 : 2"
-        placeholder="例如：云南玩 5 天，喜欢自然、古城和摄影……"
-        aria-label="输入旅行需求"
+        :placeholder="inputPlaceholder"
+        :aria-label="mode === 'general' ? '输入普通对话内容' : '输入旅行信息'"
         @keydown="onKeydown"
       ></textarea>
-      <button class="send-button" type="button" :disabled="!input.trim() || sending" @mousedown.prevent @click="submit()" aria-label="发送">
+      <button class="send-button" type="button" :disabled="!input.trim() || sending || modeSwitching" @mousedown.prevent @click="submit()" aria-label="发送">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8-3-8 3-8Zm3.8 7h7.7L6.8 6.7 7.8 11Zm0 2-1 4.3 8.7-4.3H7.8Z"/></svg>
       </button>
     </div>

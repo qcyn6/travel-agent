@@ -1,4 +1,5 @@
 from backend.requirements.llm import RequirementLLMError
+from backend.models.requirement import MAX_SINGLE_CITY_DAYS
 from backend.requirements.parser import canonicalize_interests
 
 
@@ -12,27 +13,52 @@ class RequirementParsingService:
         try:
             parsed = await self.llm_parser.parse(text)
         except RequirementLLMError:
-            return fallback
+            return fallback.model_copy(update={"transport_mode": "auto"})
         interests = canonicalize_interests(parsed.interests + fallback.interests)
-        return parsed.model_copy(
+        merged = parsed.model_copy(
             update={
                 "province": parsed.province or fallback.province,
                 "cities": parsed.cities or fallback.cities,
+                "province_preference_confirmed": (
+                    fallback.province_preference_confirmed
+                    or parsed.province_preference_confirmed
+                    or bool(parsed.province)
+                    or bool(fallback.province)
+                ),
+                "city_preference_confirmed": (
+                    fallback.city_preference_confirmed
+                    or bool(parsed.cities)
+                    or bool(fallback.cities)
+                ),
                 "days": parsed.days or fallback.days,
                 "interests": interests,
                 "preference_text": parsed.preference_text or fallback.preference_text,
                 # Relative dates are resolved locally from the server date. Prefer
                 # that deterministic result over an LLM guess for “明天”等表达。
                 "start_date": fallback.start_date or parsed.start_date,
-                "transport_mode": (
-                    fallback.transport_mode
-                    if parsed.transport_mode == "auto" and fallback.transport_mode != "auto"
-                    else parsed.transport_mode
-                ),
+                # The deterministic parser also handles common Chinese clock
+                # expressions such as “早上8点到晚上9点”.
+                "daily_start_time": fallback.daily_start_time or parsed.daily_start_time,
+                "daily_end_time": fallback.daily_end_time or parsed.daily_end_time,
+                # Route mode is internal. Do not infer a user preference from
+                # words such as “自驾” or “坐地铁”; the map tool recommends
+                # transport per attraction segment.
+                "transport_mode": "auto",
                 "travel_scope": (
                     fallback.travel_scope
-                    if parsed.travel_scope == "auto" and fallback.travel_scope != "auto"
+                    if (
+                        fallback.travel_scope != "auto"
+                        and (
+                            parsed.travel_scope == "auto"
+                            or (
+                                fallback.travel_scope == "multi_city"
+                                and fallback.days is not None
+                                and fallback.days > MAX_SINGLE_CITY_DAYS
+                            )
+                        )
+                    )
                     else parsed.travel_scope
                 ),
             }
         )
+        return type(parsed).model_validate(merged.model_dump())

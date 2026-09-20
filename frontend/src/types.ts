@@ -1,15 +1,20 @@
 export type TravelScope = 'single_city' | 'multi_city' | 'auto'
 export type TransportMode = 'auto' | 'walking' | 'transit' | 'driving'
+export type ConversationMode = 'general' | 'planning'
 export type AppStage = 'chat' | 'planning' | 'plan'
 
 export interface RequirementDraft {
   province: string | null
   cities: string[]
+  province_preference_confirmed: boolean
+  city_preference_confirmed: boolean
   days: number | null
   interests: string[]
   preference_text: string | null
   travel_scope: TravelScope
   start_date: string | null
+  daily_start_time: string | null
+  daily_end_time: string | null
   transport_mode: TransportMode
 }
 
@@ -25,6 +30,7 @@ export interface Conversation {
   id: string
   title: string
   status: 'draft' | 'confirmed' | 'planning' | 'completed'
+  mode: 'planning'
   requirement: RequirementDraft
   requirement_ready: boolean
   requirement_confirmed: boolean
@@ -41,7 +47,17 @@ export interface ConversationCreated {
 export interface ConversationSummary {
   id: string
   title: string
-  status: Conversation['status']
+  status: Conversation['status'] | 'active'
+  mode: ConversationMode
+  updated_at: string
+}
+
+export interface GeneralConversation {
+  id: string
+  title: string
+  status: 'active'
+  messages: ChatMessage[]
+  created_at: string
   updated_at: string
 }
 
@@ -83,7 +99,7 @@ export interface WeatherResult {
   precipitation_probability: number | null
   wind_level: string | null
   status: 'available' | 'skipped' | 'unavailable'
-  source: 'qweather' | 'none'
+  source: 'amap_mcp' | 'qweather' | 'none'
 }
 
 export interface RouteSegment {
@@ -94,7 +110,8 @@ export interface RouteSegment {
   distance_m: number | null
   duration_min: number | null
   mode: 'walking' | 'transit' | 'driving'
-  source: 'amap' | 'haversine' | 'unavailable'
+  // Legacy values are accepted when rendering historical saved plans.
+  source: 'amap_mcp' | 'amap' | 'haversine' | 'unavailable'
   estimated: boolean
 }
 
@@ -106,29 +123,9 @@ export interface AttractionStop {
   description: string | null
   longitude: number | null
   latitude: number | null
-  environment: 'indoor' | 'outdoor' | 'mixed' | 'unknown'
-  estimated_visit_minutes: number | null
-  duration_source: 'web_extracted' | 'category_fallback' | null
-  opening_hours: OpeningHours | null
+  visit_duration_minutes: number
   start_time: string | null
   end_time: string | null
-}
-
-export interface OpeningPeriod {
-  weekdays: number[]
-  open_time: string
-  close_time: string
-  last_entry_time: string | null
-}
-
-export interface OpeningHours {
-  status: 'known' | 'unknown'
-  periods: OpeningPeriod[]
-  raw_text: string | null
-  applicability_text: string | null
-  confidence: 'high' | 'medium' | 'low' | 'unknown'
-  source_url: string | null
-  checked_at: string | null
 }
 
 export interface TravelPlanResponse {
@@ -138,9 +135,8 @@ export interface TravelPlanResponse {
     city_stays: CityStay[]
     city_plans: unknown[]
     itinerary: TravelDay[]
+    partial_knowledge_cities?: string[]
     evaluation: EvaluationResult | null
-    replan_count: number
-    replan_limit_reached: boolean
     notices: DegradationNotice[]
   }
 }
@@ -156,14 +152,14 @@ export interface SavedTravelPlan {
 }
 
 export interface DegradationNotice {
-  code: 'route_estimated' | 'route_unavailable' | 'weather_skipped' | 'weather_unavailable' | 'opening_hours_unknown' | 'schedule_incomplete' | 'replan_limit_reached'
+  code: 'route_estimated' | 'route_unavailable' | 'weather_skipped' | 'weather_unavailable' | 'knowledge_partial' | 'schedule_incomplete'
   level: 'info' | 'warning'
   day: number | null
   message: string
 }
 
 export interface EvaluationIssue {
-  type: 'preference' | 'schedule_density' | 'route' | 'weather' | 'opening_hours'
+  type: 'preference' | 'schedule_density' | 'route' | 'weather'
   severity: 'low' | 'medium' | 'high'
   day: number | null
   message: string
@@ -173,7 +169,6 @@ export interface EvaluationIssue {
 export interface EvaluationResult {
   passed: boolean
   issues: EvaluationIssue[]
-  replan_required: boolean
 }
 
 export interface PlanningStep {

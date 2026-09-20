@@ -1,5 +1,5 @@
 import asyncio
-from datetime import date
+from datetime import date, timedelta
 
 import pytest
 
@@ -19,10 +19,20 @@ def _response() -> TravelPlanResponse:
         days=1,
         interests=["自然"],
         travel_scope="single_city",
-        start_date=date(2026, 9, 14),
+        start_date=date.today() + timedelta(days=1),
     )
     plan = TravelPlan.model_construct()
     return TravelPlanResponse(requirement=requirement, plan=plan)
+
+
+def test_planning_failure_message_keeps_specific_exception_reason():
+    assert (
+        PlanningApplicationService._failure_message(RuntimeError("昆明市景点向量检索失败"))
+        == "昆明市景点向量检索失败"
+    )
+    assert "服务未返回具体错误信息" in PlanningApplicationService._failure_message(
+        RuntimeError()
+    )
 
 
 def test_planning_task_registry_prevents_duplicate_jobs_and_cleans_up():

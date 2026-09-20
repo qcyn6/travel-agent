@@ -1,3 +1,3 @@
-from backend.services.attraction import AttractionService
+from backend.services.attraction import AttractionService, FallbackAttractionProvider
 
-__all__ = ["AttractionService"]
+__all__ = ["AttractionService", "FallbackAttractionProvider"]

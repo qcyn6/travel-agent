@@ -7,6 +7,7 @@ from fastapi.responses import PlainTextResponse
 
 from backend.api.attractions import router as attractions_router
 from backend.api.conversations import router as conversations_router
+from backend.api.general_conversations import router as general_conversations_router
 from backend.api.knowledge import router as knowledge_router
 from backend.api.planning import router as planning_router
 from backend.api.requirements import router as requirements_router
@@ -36,6 +37,7 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
         expose_headers=["X-Conversation-Id", "X-Planning-Job-Id"],
     )
     created_app.include_router(conversations_router)
+    created_app.include_router(general_conversations_router)
     created_app.include_router(requirements_router)
     @created_app.middleware("http")
     async def observe_http_requests(request, call_next):

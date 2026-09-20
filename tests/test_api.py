@@ -6,9 +6,11 @@ from backend.attractions import get_attraction_repository
 from backend.api.dependencies import get_planning_application_service
 from backend.api.conversations import _sse
 from backend.config import Settings, get_settings
-from backend.conversation import get_conversation_repository
+from backend.conversation import get_conversation_repository, get_general_conversation_repository
 from backend.destination.repository import get_catalog_repository
+from backend.knowledge import KnowledgeBootstrapError, get_knowledge_repository
 from backend.main import create_app
+from backend.models.attraction import AttractionPOI
 
 
 app = create_app(initialize_database=False)
@@ -51,6 +53,38 @@ def test_list_conversations():
     assert response.json()[0]["title"] == "云南省旅行计划"
 
 
+def test_list_general_conversations_marks_records_as_general():
+    repository = SimpleNamespace(
+        list_recent=lambda *, limit: [
+            SimpleNamespace(
+                id="general-1",
+                title="介绍云南",
+                status="active",
+                updated_at=datetime(2026, 9, 13, 15, 0),
+            )
+        ]
+    )
+    app.dependency_overrides[get_general_conversation_repository] = lambda: repository
+    with TestClient(app) as client:
+        response = client.get("/api/v1/general-conversations?limit=10")
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()[0]["mode"] == "general"
+    assert response.json()[0]["status"] == "active"
+
+
+def test_planning_endpoint_rejects_general_mode():
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/conversations/not-a-planning-session/messages",
+            json={"message": "介绍云南", "mode": "general"},
+        )
+
+    assert response.status_code == 409
+    assert "general-conversations" in response.json()["detail"]
+
+
 def test_delete_conversation():
     repository = SimpleNamespace(
         delete=lambda conversation_id: conversation_id == "conversation-1"
@@ -63,6 +97,25 @@ def test_delete_conversation():
 
     assert response.status_code == 204
     assert missing.status_code == 404
+
+
+def test_standalone_error_exposes_conversation_id():
+    class FailingPlanningService:
+        async def run_standalone(self, text, *, travel_scope=None):
+            error = KnowledgeBootstrapError("知识准备失败")
+            error.conversation_id = "conversation-failed"
+            raise error
+
+    app.dependency_overrides[get_planning_application_service] = lambda: FailingPlanningService()
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/travel/plan",
+            json={"text": "去台北玩一天", "travel_scope": "single_city"},
+        )
+    app.dependency_overrides.clear()
+
+    assert response.status_code == 502
+    assert response.headers["x-conversation-id"] == "conversation-failed"
 
 
 def test_parse_and_resolve_api(catalog_repository):
@@ -90,7 +143,11 @@ def test_get_attraction_knowledge_status():
         knowledge_error=None,
     )
     repository = SimpleNamespace(find_by_poi_id=lambda poi_id: attraction if poi_id == "A1" else None)
+    knowledge_repository = SimpleNamespace(
+        find=lambda poi_id: object() if poi_id == "A1" else None
+    )
     app.dependency_overrides[get_attraction_repository] = lambda: repository
+    app.dependency_overrides[get_knowledge_repository] = lambda: knowledge_repository
     with TestClient(app) as client:
         response = client.get("/api/v1/attractions/A1/knowledge/status")
         missing = client.get("/api/v1/attractions/missing/knowledge/status")
@@ -104,6 +161,73 @@ def test_get_attraction_knowledge_status():
         "knowledge_error": None,
     }
     assert missing.status_code == 404
+
+
+def test_attraction_endpoint_filters_local_pois_then_enriches_with_mcp(monkeypatch):
+    city = SimpleNamespace(id=1, name="杭州市")
+    catalog = SimpleNamespace(find_city=lambda name: city if name in {"杭州", "杭州市"} else None)
+    stored = []
+
+    class AttractionRepository:
+        def __init__(self):
+            self.rows = [
+                AttractionPOI(
+                    poi_id="LOCAL-1",
+                    name="西湖",
+                    city="杭州市",
+                    category="自然山水",
+                    tags=["自然"],
+                    description="本地景点描述",
+                    visit_duration_minutes=120,
+                )
+            ]
+
+        def list_for_city(self, city_id, *, interests=None, statuses=None, limit=30):
+            del city_id, interests, statuses
+            return [
+                SimpleNamespace(
+                    poi_id=item.poi_id,
+                    name=item.name,
+                    category=item.category,
+                    tags=item.tags,
+                    description=item.description,
+                    visit_duration_minutes=item.visit_duration_minutes,
+                    longitude=item.longitude,
+                    latitude=item.latitude,
+                )
+                for item in self.rows[:limit]
+            ]
+
+        def upsert_many(self, city_id, attractions):
+            stored.append((city_id, attractions))
+            return len(attractions)
+
+    class FakeMcpClient:
+        def __init__(self, *args, **kwargs):
+            del args, kwargs
+
+        async def enrich_attractions(self, attractions):
+            assert [item.poi_id for item in attractions] == ["LOCAL-1"]
+            return [
+                attractions[0].model_copy(
+                    update={"longitude": 120.148, "latitude": 30.243}
+                )
+            ]
+
+    monkeypatch.setattr("backend.api.attractions.AmapMcpAttractionClient", FakeMcpClient)
+    app.dependency_overrides[get_catalog_repository] = lambda: catalog
+    app.dependency_overrides[get_attraction_repository] = AttractionRepository
+    app.dependency_overrides[get_settings] = lambda: Settings(amap_api_key="test-key")
+    try:
+        with TestClient(app) as client:
+            response = client.get("/api/v1/cities/杭州市/attractions?limit=1")
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert response.json()[0]["poi_id"] == "LOCAL-1"
+    assert response.json()[0]["longitude"] == 120.148
+    assert stored[0][0] == 1
 
 
 def test_planning_sse_exposes_job_id_and_event_cursor():

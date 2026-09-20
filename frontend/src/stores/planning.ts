@@ -1,12 +1,20 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { ApiError, conversationApi, streamEvents, streamGetEvents } from '../api'
+import {
+  ApiError,
+  conversationApi,
+  generalConversationApi,
+  streamEvents,
+  streamGetEvents,
+} from '../api'
 import type {
   AppStage,
   ChatMessage,
+  ConversationMode,
   Conversation,
   ConversationSummary,
   DestinationChoice,
+  GeneralConversation,
   PlanningStep,
   RequirementDraft,
   SavedTravelPlan,
@@ -17,21 +25,74 @@ import type {
 const emptyRequirement = (): RequirementDraft => ({
   province: null,
   cities: [],
+  province_preference_confirmed: false,
+  city_preference_confirmed: false,
   days: null,
   interests: [],
   preference_text: null,
   travel_scope: 'auto',
   start_date: null,
+  daily_start_time: null,
+  daily_end_time: null,
   transport_mode: 'auto',
 })
 
-function suggestionsFor(next: RequirementDraft): string[] {
-  if (!next.province && !next.cities.length) return ['北京', '上海', '四川省', '云南省', '浙江省']
-  if (next.days === null) return ['3天', '5天', '7天', '还没确定']
+const MAX_SINGLE_CITY_DAYS = 3
+
+function sameList(left: string[], right: string[]) {
+  return left.length === right.length && left.every((value, index) => value === right[index])
+}
+
+function isPlanCompatible(candidate: TravelPlanResponse, conversation: Conversation) {
+  const current = conversation.requirement
+  const saved = candidate.requirement
+  if (current.days === null || saved.days !== current.days) return false
+  if (saved.province !== current.province) return false
+  if (!sameList(saved.cities, current.cities)) return false
+  if (saved.province_preference_confirmed !== current.province_preference_confirmed) return false
+  if (saved.city_preference_confirmed !== current.city_preference_confirmed) return false
+  if (!sameList(saved.interests, current.interests)) return false
+  if (saved.preference_text !== current.preference_text) return false
+  if (saved.start_date !== current.start_date) return false
+  if (!current.daily_start_time || !current.daily_end_time) return false
+  if (saved.daily_start_time !== current.daily_start_time) return false
+  if (saved.daily_end_time !== current.daily_end_time) return false
+  if (saved.travel_scope !== current.travel_scope) return false
+  if (!Array.isArray(candidate.plan?.city_stays)) return false
+  // A cached result from the old single-city branch must not survive a
+  // 4～7-day requirement, even when the requirement fields themselves match.
+  if (current.days > MAX_SINGLE_CITY_DAYS && candidate.plan.city_stays.length < 2) return false
+  return true
+}
+
+function suggestionsFor(next: RequirementDraft, mode: ConversationMode = 'planning'): string[] {
+  if (mode === 'general') {
+    return ['你能做什么？', '介绍一个目的地']
+  }
+  if (!next.province && !next.cities.length && !next.province_preference_confirmed) {
+    return ['北京', '上海', '四川省', '云南省', '浙江省', '你来推荐一个省份']
+  }
+  if (next.days === null) {
+    return next.travel_scope === 'single_city' || next.cities.length === 1
+      ? ['1天', '2天', '3天']
+      : ['1天', '2天', '3天', '4天', '5天', '6天', '7天']
+  }
+  if (next.travel_scope === 'auto') {
+    return next.days !== null && next.days <= MAX_SINGLE_CITY_DAYS
+      ? ['一个城市深度游', '增加到4天以上游多个城市']
+      : ['同省多城市']
+  }
+  if (!next.cities.length && !next.city_preference_confirmed) {
+    return ['没有指定城市，你来推荐']
+  }
   if (!next.interests.length && !next.preference_text) {
     return ['自然风光', '历史文化', '古城', '摄影', '美食', '休闲慢游']
   }
-  return ['确认需求并生成计划', '我还想补充']
+  if (!next.start_date) return ['明天出发', '后天出发', '下周一出发']
+  if (!next.daily_start_time || !next.daily_end_time) {
+    return ['每天08:00到21:00', '每天09:00到18:00', '每天10:00到20:00']
+  }
+  return ['确认生成计划']
 }
 
 function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
@@ -40,9 +101,16 @@ function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
     return {
       ...message,
       content: message.content
-        .replaceAll('查看并确认右侧旅行需求卡', '点击“确认需求并生成计划”按钮')
-        .replaceAll('查看并确认旅行需求', '确认需求并生成计划')
-        .replace(/(?:查看|看看|看)右侧旅行需求卡(?:并确认)?(?:一下)?/g, '点击“确认需求并生成计划”按钮'),
+        .replaceAll('查看并确认右侧旅行需求卡', '回复“确认生成计划”')
+        .replaceAll('查看并确认旅行需求', '确认生成计划')
+        .replace(/(?:查看|看看|看)右侧旅行需求卡(?:并确认)?(?:一下)?/g, '回复“确认生成计划”')
+        .replaceAll('出发时间还没确定也没关系，之后补上即可。', '出发日期还需要确定。')
+        .replaceAll('出发时间还没确定也没关系，之后补上即可', '出发日期还需要确定')
+        .replaceAll('景点之间怎么移动？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
+        .replaceAll('景点之间你打算怎么走？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
+        .replaceAll('你打算怎么在景点之间移动？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
+        .replaceAll('景点之间准备怎么出行？请选择公共交通、自驾或步行。', '景点间路线将由地图工具根据实际位置自动推荐。')
+        .replaceAll('景点之间准备怎么移动？请选择景点间公共交通、景点间自驾或景点间步行。到达目的地的飞机、高铁不用填写。', '景点间路线将由地图工具根据实际位置自动推荐。'),
     }
   })
 }
@@ -52,7 +120,8 @@ export const usePlanningStore = defineStore('planning', () => {
   const conversations = ref<ConversationSummary[]>([])
   const messages = ref<ChatMessage[]>([])
   const requirement = ref<RequirementDraft>(emptyRequirement())
-  const suggestions = ref(['北京', '上海', '四川省', '云南省', '浙江省'])
+  const conversationMode = ref<ConversationMode>('general')
+  const suggestions = ref(['北京', '上海', '四川省', '云南省', '浙江省', '你来推荐一个省份'])
   const stage = ref<AppStage>('chat')
   const sending = ref(false)
   const initializing = ref(true)
@@ -61,6 +130,7 @@ export const usePlanningStore = defineStore('planning', () => {
   const plan = ref<TravelPlanResponse | null>(null)
   const destinationChoice = ref<DestinationChoice | null>(null)
   const conversationLoading = ref(false)
+  const conversationCreating = ref(false)
   const conversationDeleting = ref<string | null>(null)
   const planningElapsedSeconds = ref(0)
   const planningRequestActive = ref(false)
@@ -71,6 +141,20 @@ export const usePlanningStore = defineStore('planning', () => {
 
   function planningStateKey(id: string) {
     return `travel_planning_state_${id}`
+  }
+
+  const modeSwitching = ref(false)
+  const activeModeStorageKey = 'travel_active_conversation_mode'
+
+  function conversationStorageKey(mode: ConversationMode) {
+    return mode === 'general' ? 'travel_general_conversation_id' : 'travel_conversation_id'
+  }
+
+  function setActiveConversation(mode: ConversationMode, id: string) {
+    conversationMode.value = mode
+    conversationId.value = id
+    sessionStorage.setItem(activeModeStorageKey, mode)
+    sessionStorage.setItem(conversationStorageKey(mode), id)
   }
 
   function persistPlanningState() {
@@ -103,6 +187,11 @@ export const usePlanningStore = defineStore('planning', () => {
     planningJobId.value = null
   }
 
+  function resetPlanningRuntime() {
+    planningEventCursor.value = 0
+    planningJobId.value = null
+  }
+
   function updatePlanningElapsed() {
     if (planningStartedAt === null) return
     planningElapsedSeconds.value = Math.max(0, Math.floor((Date.now() - planningStartedAt) / 1000))
@@ -128,25 +217,105 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   async function refreshConversations() {
-    try {
-      conversations.value = await conversationApi.list()
-    } catch {
-      // History is optional; keep the active conversation usable if it is unavailable.
-    }
+    const [planningResult, generalResult] = await Promise.allSettled([
+      conversationApi.list(),
+      generalConversationApi.list(),
+    ])
+    const previous = conversations.value
+    const planning = planningResult.status === 'fulfilled'
+      ? planningResult.value.map((item) => ({ ...item, mode: 'planning' as const }))
+      : previous.filter((item) => item.mode === 'planning')
+    const general = generalResult.status === 'fulfilled'
+      ? generalResult.value.map((item) => ({ ...item, mode: 'general' as const }))
+      : previous.filter((item) => item.mode === 'general')
+    if (planningResult.status === 'rejected' && generalResult.status === 'rejected') return
+    conversations.value = [...planning, ...general].sort(
+      (left, right) => new Date(right.updated_at).getTime() - new Date(left.updated_at).getTime(),
+    )
   }
 
   function applyConversation(conversation: Conversation) {
     stopPlanningTimer(true)
-    conversationId.value = conversation.id
-    sessionStorage.setItem('travel_conversation_id', conversation.id)
+    setActiveConversation('planning', conversation.id)
     loadPlanningState(conversation.id)
     requirement.value = conversation.requirement
     messages.value = normalizeMessages(conversation.messages)
-    suggestions.value = suggestionsFor(conversation.requirement)
+    suggestions.value = suggestionsFor(conversation.requirement, 'planning')
     stage.value = 'chat'
     steps.value = []
+    plan.value = null
     destinationChoice.value = null
     error.value = ''
+  }
+
+  function applyGeneralConversation(conversation: GeneralConversation) {
+    stopPlanningTimer(true)
+    setActiveConversation('general', conversation.id)
+    resetPlanningRuntime()
+    requirement.value = emptyRequirement()
+    messages.value = normalizeMessages(conversation.messages)
+    suggestions.value = suggestionsFor(requirement.value, 'general')
+    stage.value = 'chat'
+    steps.value = []
+    plan.value = null
+    destinationChoice.value = null
+    error.value = ''
+  }
+
+  async function setConversationMode(
+    mode: ConversationMode,
+    options: { createNew?: boolean } = {},
+  ) {
+    if (mode === conversationMode.value || modeSwitching.value || conversationCreating.value) return
+    modeSwitching.value = true
+    error.value = ''
+    try {
+      // The welcome-page mode selector means “start a new conversation in
+      // this mode”. History recovery remains the default behavior below.
+      if (options.createNew) {
+        await createConversation(mode)
+        return
+      }
+      const savedId = sessionStorage.getItem(conversationStorageKey(mode))
+      if (savedId) {
+        try {
+          if (mode === 'general') {
+            applyGeneralConversation(await generalConversationApi.get(savedId))
+          } else {
+            const conversation = await conversationApi.get(savedId)
+            applyConversation(conversation)
+            await restorePlan(conversation)
+            if (conversation.status === 'planning') await resumePlanning()
+            else stage.value = 'chat'
+          }
+          await refreshConversations()
+          return
+        } catch {
+          sessionStorage.removeItem(conversationStorageKey(mode))
+        }
+      }
+
+      const latest = conversations.value.find((item) => item.mode === mode)
+      if (latest) {
+        if (mode === 'general') {
+          applyGeneralConversation(await generalConversationApi.get(latest.id))
+        } else {
+          const conversation = await conversationApi.get(latest.id)
+          applyConversation(conversation)
+          await restorePlan(conversation)
+          if (conversation.status === 'planning') await resumePlanning()
+          else stage.value = 'chat'
+        }
+        await refreshConversations()
+        return
+      }
+
+      await createConversation(mode)
+    } catch (caught) {
+      error.value = readableError(caught)
+    } finally {
+      modeSwitching.value = false
+    }
   }
 
   async function restorePlan(conversation: Conversation) {
@@ -155,9 +324,13 @@ export const usePlanningStore = defineStore('planning', () => {
     const cached = sessionStorage.getItem(`travel_plan_${conversation.id}`)
     if (cached) {
       try {
-        plan.value = JSON.parse(cached) as TravelPlanResponse
-        stage.value = 'plan'
-        return
+        const cachedPlan = JSON.parse(cached) as TravelPlanResponse
+        if (isPlanCompatible(cachedPlan, conversation)) {
+          plan.value = cachedPlan
+          stage.value = 'plan'
+          return
+        }
+        sessionStorage.removeItem(`travel_plan_${conversation.id}`)
       } catch {
         sessionStorage.removeItem(`travel_plan_${conversation.id}`)
       }
@@ -165,7 +338,12 @@ export const usePlanningStore = defineStore('planning', () => {
     if (conversation.status !== 'completed') return
     try {
       const savedPlans: SavedTravelPlan[] = await conversationApi.listPlans(conversation.id)
-      const latest = savedPlans[0]
+      const latest = savedPlans.find((savedPlan) =>
+        isPlanCompatible(
+          { requirement: savedPlan.requirement, plan: savedPlan.plan },
+          conversation,
+        ),
+      )
       if (!latest) return
       plan.value = { requirement: latest.requirement, plan: latest.plan }
       sessionStorage.setItem(`travel_plan_${conversation.id}`, JSON.stringify(plan.value))
@@ -178,60 +356,95 @@ export const usePlanningStore = defineStore('planning', () => {
   async function initialize() {
     initializing.value = true
     error.value = ''
-    const saved = sessionStorage.getItem('travel_conversation_id')
+    const storedMode = sessionStorage.getItem(activeModeStorageKey)
+    const savedMode: ConversationMode = storedMode === 'planning'
+      ? 'planning'
+      : storedMode === 'general'
+        ? 'general'
+        : sessionStorage.getItem('travel_conversation_id')
+          ? 'planning'
+          : 'general'
+    const saved = sessionStorage.getItem(conversationStorageKey(savedMode))
     if (saved) {
       try {
-        const conversation = await conversationApi.get(saved)
-        applyConversation(conversation)
-        await restorePlan(conversation)
-        if (conversation.status === 'planning') await resumePlanning()
+        if (savedMode === 'general') {
+          applyGeneralConversation(await generalConversationApi.get(saved))
+        } else {
+          const conversation = await conversationApi.get(saved)
+          applyConversation(conversation)
+          await restorePlan(conversation)
+          if (conversation.status === 'planning') await resumePlanning()
+        }
         await refreshConversations()
         initializing.value = false
         return
       } catch {
-        sessionStorage.removeItem('travel_conversation_id')
+        sessionStorage.removeItem(conversationStorageKey(savedMode))
       }
     }
-    await createConversation()
+    await createConversation(savedMode)
     initializing.value = false
   }
 
-  async function createConversation() {
-    stopPlanningTimer(true)
-    const created = await conversationApi.create()
-    conversationId.value = created.id
-    sessionStorage.setItem('travel_conversation_id', created.id)
-    resetPlanningState()
-    for (const key of Object.keys(sessionStorage)) {
-      if (key.startsWith('travel_plan_')) sessionStorage.removeItem(key)
+  async function createConversation(mode: ConversationMode = conversationMode.value) {
+    if (
+      conversationCreating.value
+      || conversationLoading.value
+      || sending.value
+      || stage.value === 'planning'
+    ) return
+    conversationCreating.value = true
+    try {
+      stopPlanningTimer(true)
+      if (mode === 'general') {
+        applyGeneralConversation(await generalConversationApi.create())
+      } else {
+        const created = await conversationApi.create()
+        setActiveConversation('planning', created.id)
+        resetPlanningState()
+        messages.value = []
+        requirement.value = created.requirement
+        suggestions.value = suggestionsFor(created.requirement, 'planning')
+        stage.value = 'chat'
+        steps.value = []
+        plan.value = null
+        sessionStorage.removeItem(`travel_plan_${created.id}`)
+        destinationChoice.value = null
+        error.value = ''
+      }
+      await refreshConversations()
+    } finally {
+      conversationCreating.value = false
     }
-    messages.value = []
-    requirement.value = created.requirement
-    suggestions.value = suggestionsFor(created.requirement)
-    stage.value = 'chat'
-    steps.value = []
-    plan.value = null
-    sessionStorage.removeItem(`travel_plan_${conversationId.value}`)
-    destinationChoice.value = null
-    error.value = ''
-    await refreshConversations()
   }
 
   async function sendMessage(text: string) {
     const clean = text.trim()
     if (!clean || sending.value || !conversationId.value) return
+    const mode = conversationMode.value
     sending.value = true
     error.value = ''
+    if (mode === 'planning' && conversationId.value && (plan.value || stage.value === 'plan')) {
+      plan.value = null
+      stage.value = 'chat'
+      sessionStorage.removeItem(`travel_plan_${conversationId.value}`)
+    }
     messages.value.push({ role: 'user', content: clean })
     messages.value.push({ role: 'assistant', content: '', streaming: true })
     const assistantIndex = messages.value.length - 1
     let renderChain = Promise.resolve()
     try {
+      const path = mode === 'general'
+        ? `/general-conversations/${conversationId.value}/messages`
+        : `/conversations/${conversationId.value}/messages`
+      const body = mode === 'general'
+        ? { message: clean }
+        : { message: clean, mode: 'planning' }
       await streamEvents(
-        `/conversations/${conversationId.value}/messages`,
-        { message: clean },
+        path,
+        body,
         (event, data) => {
-          if (event === 'requirement_updated') requirement.value = data
+          if (mode === 'planning' && event === 'requirement_updated') requirement.value = data
           if (event === 'suggestions') suggestions.value = data.options || []
           if (event === 'message_delta') {
             const delta = String(data.text || '')
@@ -276,17 +489,13 @@ export const usePlanningStore = defineStore('planning', () => {
     }
   }
 
-  async function saveRequirement(draft: RequirementDraft) {
-    error.value = ''
-    const conversation = await conversationApi.updateRequirement(conversationId.value, draft)
-    requirement.value = conversation.requirement
-    suggestions.value = suggestionsFor(conversation.requirement)
-    await refreshConversations()
-  }
-
-  async function openConversation(id: string, view: 'chat' | 'plan' = 'chat') {
+  async function openConversation(
+    id: string,
+    mode: ConversationMode = conversations.value.find((item) => item.id === id)?.mode || 'planning',
+    view: 'chat' | 'plan' = 'chat',
+  ) {
     if (conversationLoading.value || sending.value || stage.value === 'planning') return
-    if (id === conversationId.value) {
+    if (id === conversationId.value && mode === conversationMode.value) {
       if (view === 'plan') showPlan()
       else backToChat()
       return
@@ -294,11 +503,15 @@ export const usePlanningStore = defineStore('planning', () => {
     conversationLoading.value = true
     error.value = ''
     try {
-      const conversation = await conversationApi.get(id)
-      applyConversation(conversation)
-      await restorePlan(conversation)
-      if (conversation.status === 'planning') await resumePlanning()
-      else if (view === 'chat') stage.value = 'chat'
+      if (mode === 'general') {
+        applyGeneralConversation(await generalConversationApi.get(id))
+      } else {
+        const conversation = await conversationApi.get(id)
+        applyConversation(conversation)
+        await restorePlan(conversation)
+        if (conversation.status === 'planning') await resumePlanning()
+        else if (view === 'chat') stage.value = 'chat'
+      }
       await refreshConversations()
     } catch (caught) {
       error.value = readableError(caught)
@@ -312,15 +525,25 @@ export const usePlanningStore = defineStore('planning', () => {
     conversationDeleting.value = id
     error.value = ''
     try {
-      await conversationApi.remove(id)
-      sessionStorage.removeItem(`travel_plan_${id}`)
+      const item = conversations.value.find((conversation) => conversation.id === id)
+      const mode: ConversationMode = item?.mode || (id === conversationId.value ? conversationMode.value : 'planning')
+      if (mode === 'general') await generalConversationApi.remove(id)
+      else await conversationApi.remove(id)
+      if (mode === 'planning') {
+        sessionStorage.removeItem(`travel_plan_${id}`)
+        sessionStorage.removeItem(planningStateKey(id))
+      }
+      sessionStorage.removeItem(`travel_conversation_mode_${id}`)
+      if (sessionStorage.getItem(conversationStorageKey(mode)) === id) {
+        sessionStorage.removeItem(conversationStorageKey(mode))
+      }
       const wasActive = id === conversationId.value
       conversations.value = conversations.value.filter((item) => item.id !== id)
       if (!wasActive) return
 
-      const next = conversations.value[0]
-      if (next) await openConversation(next.id)
-      else await createConversation()
+      const next = conversations.value.find((item) => item.mode === conversationMode.value) || conversations.value[0]
+      if (next) await openConversation(next.id, next.mode)
+      else await createConversation(conversationMode.value)
     } catch (caught) {
       error.value = readableError(caught)
     } finally {
@@ -328,9 +551,13 @@ export const usePlanningStore = defineStore('planning', () => {
     }
   }
 
-  async function confirmAndPlan(draft: RequirementDraft) {
+  async function confirmAndPlan() {
+    if (conversationMode.value !== 'planning') {
+      const blocked = new Error('请先切换到规划模式，再生成旅行计划')
+      error.value = blocked.message
+      throw blocked
+    }
     try {
-      await saveRequirement(draft)
       await conversationApi.confirm(conversationId.value)
       await startPlanning()
     } catch (caught) {
@@ -510,6 +737,7 @@ export const usePlanningStore = defineStore('planning', () => {
     conversations,
     messages,
     requirement,
+    conversationMode,
     suggestions,
     stage,
     sending,
@@ -519,16 +747,18 @@ export const usePlanningStore = defineStore('planning', () => {
     plan,
     destinationChoice,
     conversationLoading,
+    conversationCreating,
     conversationDeleting,
+    modeSwitching,
     planningElapsedSeconds,
     planningRequestActive,
     initialize,
     createConversation,
+    setConversationMode,
     sendMessage,
     openConversation,
     deleteConversation,
     showPlan,
-    saveRequirement,
     confirmAndPlan,
     retryPlanning,
     resumePlanning,

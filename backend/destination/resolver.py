@@ -1,7 +1,8 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from backend.destination.repository import CatalogRepository
-from backend.models.requirement import TravelRequirement
+from backend.models.requirement import MAX_TRIP_CITIES, TravelRequirement
+from backend.tag_matching import normalize_interest_tags
 
 
 class DestinationResolutionError(ValueError):
@@ -21,6 +22,7 @@ class DestinationResolver:
         self.repository = repository
 
     def resolve(self, requirement: TravelRequirement) -> ResolvedDestination:
+        normalized_interests, _ = self._normalize_interests(requirement.interests)
         province = None
         if requirement.province:
             province = self.repository.find_province(requirement.province)
@@ -33,6 +35,20 @@ class DestinationResolver:
             if city is None:
                 raise DestinationResolutionError(f"暂不支持或无法识别城市：{city_name}")
             cities.append(city)
+
+        if len(cities) > MAX_TRIP_CITIES:
+            raise DestinationResolutionError(
+                f"一次规划最多支持{MAX_TRIP_CITIES}个城市，请选择同一省份内的1～{MAX_TRIP_CITIES}个城市"
+            )
+
+        if len(cities) == 1 and requirement.travel_scope == "multi_city":
+            raise DestinationResolutionError(
+                "当前只指定了1个城市，城市模式请选择单城市深度游或由 AI 推荐"
+            )
+        if len(cities) > 1 and requirement.travel_scope == "single_city":
+            raise DestinationResolutionError(
+                "当前指定了多个城市，城市模式请选择同省多城市或由 AI 推荐"
+            )
 
         province_ids = {city.province_id for city in cities}
         if len(province_ids) > 1:
@@ -48,6 +64,7 @@ class DestinationResolver:
             update={
                 "province": province.name if province else None,
                 "cities": [city.name for city in cities],
+                "interests": normalized_interests,
             }
         )
         return ResolvedDestination(
@@ -56,3 +73,19 @@ class DestinationResolver:
             city_adcodes=[city.adcode for city in cities],
         )
 
+    def _normalize_interests(self, interests: list[str]) -> tuple[list[str], list[str]]:
+        """Normalize against the live repository, with test-double fallback."""
+
+        normalizer = getattr(self.repository, "normalize_interest_tags", None)
+        if callable(normalizer):
+            return normalizer(interests)
+
+        # Keep lightweight repository doubles and older integrations working.
+        # The production SQL repository takes the faster query-based path
+        # above.
+        tags: list[str] = []
+        for province in self.repository.list_provinces():
+            tags.extend(province.tags or [])
+            for city in self.repository.list_cities_by_province(province.name):
+                tags.extend(city.tags or [])
+        return normalize_interest_tags(interests, tags)

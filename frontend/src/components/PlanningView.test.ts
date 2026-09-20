@@ -15,14 +15,37 @@ describe('PlanningView', () => {
         choice: null,
         error: '宝鸡市仅准备好2条景点知识，目标为3条',
         elapsedSeconds: 42,
+        requirement: {
+          province: '陕西省',
+          cities: ['宝鸡市'],
+          province_preference_confirmed: false,
+          city_preference_confirmed: true,
+          days: 3,
+          interests: ['历史文化'],
+          preference_text: null,
+          travel_scope: 'single_city',
+          start_date: null,
+          daily_start_time: null,
+          daily_end_time: null,
+          transport_mode: 'auto',
+        },
       },
     })
 
     expect(wrapper.get('h1').text()).toBe('旅程准备遇到问题')
     expect(wrapper.find('.compass-loader').exists()).toBe(false)
     expect(wrapper.get('.progress-list li.failed').text()).toContain('需要重试')
+    expect(wrapper.get('.progress-list li.failed').text()).toContain('宝鸡市的景点资料需要重试')
+    expect(wrapper.text()).not.toContain('真实景点')
+    expect(wrapper.get('.planning-profile').text()).toContain('宝鸡市')
     expect(wrapper.get('.planning-meta').text()).toContain('已用时 42 秒')
     expect(wrapper.get('.inline-error').text()).toContain('还需要 1 个')
+    expect(wrapper.get('.error-details').text()).toContain('查看失败原因')
+    expect(wrapper.find('.failure-detail').exists()).toBe(false)
+
+    await wrapper.get('.error-details').trigger('click')
+    expect(wrapper.get('.failure-detail').text()).toContain('宝鸡市仅准备好2条景点知识')
+    expect(wrapper.get('.error-details').text()).toContain('收起失败原因')
 
     await wrapper.get('button.retry').trigger('click')
     expect(wrapper.emitted('retry')).toHaveLength(1)

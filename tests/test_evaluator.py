@@ -1,7 +1,6 @@
 from datetime import date
 
 from backend.evaluator import PlanEvaluator
-from backend.models.attraction_facts import OpeningHours, OpeningPeriod
 from backend.models.requirement import TravelRequirement
 from backend.models.route import RouteSegment
 from backend.models.schedule import DaySchedule
@@ -42,11 +41,10 @@ def _day(*, stops=None, routes=None, total_minutes=300, weather=None):
     )
 
 
-def test_dense_schedule_requires_replanning():
+def test_dense_schedule_is_reported_for_user_confirmation():
     result = PlanEvaluator().evaluate(_plan(_day(total_minutes=690)), _requirement())
 
     assert result.passed is False
-    assert result.replan_required is True
     assert result.issues[0].type == "schedule_density"
     assert result.issues[0].severity == "high"
 
@@ -66,10 +64,10 @@ def test_long_route_is_reported_by_rules():
     assert any(issue.type == "route" and issue.severity == "medium" for issue in result.issues)
 
 
-def test_rain_with_mostly_outdoor_stops_is_reported():
+def test_weather_does_not_add_an_attraction_conflict_without_environment_data():
     stops = [
-        AttractionStop(poi_id="A1", name="西湖", city="杭州市", environment="outdoor"),
-        AttractionStop(poi_id="A2", name="公园", city="杭州市", environment="outdoor"),
+        AttractionStop(poi_id="A1", name="西湖", city="杭州市"),
+        AttractionStop(poi_id="A2", name="公园", city="杭州市"),
     ]
     weather = WeatherResult(
         city="杭州市", date=date(2026, 9, 14), condition="大雨",
@@ -80,31 +78,43 @@ def test_rain_with_mostly_outdoor_stops_is_reported():
         _plan(_day(stops=stops, weather=weather)), _requirement()
     )
 
-    assert any(issue.type == "weather" and issue.severity == "high" for issue in result.issues)
+    assert all(issue.type != "weather" for issue in result.issues)
+    assert result.passed is True
 
 
-def test_known_last_entry_conflict_is_hard_but_unknown_is_ignored():
-    known = OpeningHours(
-        status="known",
-        periods=[OpeningPeriod(weekdays=[1], open_time="09:00", close_time="17:00", last_entry_time="16:30")],
-        confidence="high",
+def test_weather_does_not_hide_another_hard_issue():
+    stops = [
+        AttractionStop(poi_id="A1", name="西湖", city="杭州市"),
+        AttractionStop(poi_id="A2", name="公园", city="杭州市"),
+    ]
+    weather = WeatherResult(
+        city="杭州市", date=date(2026, 9, 14), condition="大雨",
+        precipitation_probability=0.8, status="available", source="qweather",
     )
+
+    result = PlanEvaluator().evaluate(
+        _plan(_day(stops=stops, total_minutes=690, weather=weather)), _requirement()
+    )
+
+    assert all(issue.type != "weather" for issue in result.issues)
+    assert any(issue.type == "schedule_density" for issue in result.issues)
+
+
+def test_evaluator_does_not_check_opening_hours():
     stops = [
         AttractionStop(
             poi_id="A1", name="博物馆", city="杭州市", start_time="16:55",
-            end_time="18:00", opening_hours=known,
+            end_time="18:00",
         ),
         AttractionStop(
             poi_id="A2", name="公园", city="杭州市", start_time="18:10",
-            end_time="19:00", opening_hours=OpeningHours(status="unknown"),
+            end_time="19:00",
         ),
     ]
 
     result = PlanEvaluator().evaluate(_plan(_day(stops=stops)), _requirement())
 
-    opening_issues = [issue for issue in result.issues if issue.type == "opening_hours"]
-    assert len(opening_issues) == 1
-    assert opening_issues[0].severity == "high"
+    assert all(issue.type != "opening_hours" for issue in result.issues)
 
 
 def test_preference_coverage_is_a_soft_issue():
@@ -114,4 +124,3 @@ def test_preference_coverage_is_a_soft_issue():
 
     issue = next(issue for issue in result.issues if issue.type == "preference")
     assert issue.severity == "medium"
-    assert result.replan_required is False

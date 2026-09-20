@@ -92,6 +92,29 @@ def test_chroma_search_is_filtered_by_city(tmp_path):
     assert results[0].city == "杭州市"
 
 
+def test_chroma_metadata_does_not_store_source_url(tmp_path):
+    index = ChromaAttractionIndex(str(tmp_path / "chroma"), "test_metadata_attractions")
+    index.upsert([document("HZ1", "西湖", "杭州市")], [[1.0, 0.0]])
+
+    stored = index.collection.get(ids=["HZ1"], include=["metadatas"])
+
+    assert "source_url" not in stored["metadatas"][0]
+    assert stored["metadatas"][0]["content_hash"]
+
+
+def test_core_chroma_search_excludes_legacy_non_core_vectors(tmp_path):
+    path = str(tmp_path / "chroma")
+    collection = "test_scoped_attractions"
+    legacy_index = ChromaAttractionIndex(path, collection)
+    legacy_index.upsert([document("OLD1", "老景点", "杭州市")], [[1.0, 0.0]])
+
+    core_index = ChromaAttractionIndex(path, collection, core_only=True)
+    core_index.upsert([document("CORE1", "核心景点", "杭州市")], [[0.0, 1.0]])
+    results = core_index.search(city="杭州市", query_embedding=[0.0, 1.0], limit=10)
+
+    assert [result.poi_id for result in results] == ["CORE1"]
+
+
 @pytest.mark.asyncio
 async def test_vector_service_indexes_name_category_and_description():
     documents = [document("HZ1", "西湖", "杭州市")]

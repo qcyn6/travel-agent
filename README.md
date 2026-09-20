@@ -6,41 +6,43 @@
 
 - `TravelRequirement`、`Province`、`City`、`CityStay` 数据模型
 - 全国 34 个省级行政区、372 个城市/地区入口的目录数据及幂等初始化
-- MySQL 关系数据存储与 `attraction_knowledge` 景点知识表
-- 高德 POI 查询结果通过 `poi_id` 增量写入或更新 `attractions` 表
-- 每个景点通过 `knowledge_status` 明确记录知识增强进度与失败原因
-- 全国景点来源采用“人工核验来源优先 + Tavily 搜索政府/文旅页面”的按需发现策略
-- 政府网页无法直连时，可降级使用 Tavily 从同一来源 URL 提取的正文，来源地址保持可追溯
+- 372 个城市均有独立的兴趣标签和主题描述，画像维护在 backend/database/city_profiles.py
+- MySQL 关系数据存储与本地景点目录；景点描述直接保存在 `attractions` 主表
+- 景点演示目录预置在 MySQL `attractions` 表；规划先从本地景点目录按标签和偏好筛选，高德 MCP 只补充已筛选景点的真实详情
+- 景点与省份、城市使用同一套标签交集规则筛选，命中标签数量越多优先级越高
+- 全国景点演示数据由本地生成脚本批量写入 MySQL，作为规划候选景点的主目录
+- 3450 条演示景点统一进入本地规划目录，不再维护 4A/5A 核心范围开关
+- 景点知识、兴趣标签和游玩时长用于演示流程；天气与路线仍可调用真实外部能力
 - 已建立 `name + category + description` 的 Embedding 与 Chroma Vector Search 链路
 - Vector Search 强制使用城市 metadata 过滤，不会跨城市混入候选景点
-- BM25、偏好词扩展、RRF 与 DeepSeek Rerank 个性化景点检索
-- 同一个 City Planner 支持单城市 1 日与多日行程
-- Destination Planner 支持同省 2～3 城市组合和可解释天数分配
+- 普通模式接入独立的省份/城市 RAG：`data/knowledge/` 下的 34 个省份和 372 个城市知识块使用 BM25 + Chroma 语义检索，检索结果只作为普通对话上下文，不进入规划需求
+- BM25、偏好词扩展、RRF 与阿里云 `qwen3-rerank` 个性化景点检索；接口失败时保留 RRF 降级
+- 同一个 City Planner 支持单城市 1～3 日行程
+- Destination Planner 支持同省 2～3 城市组合；总行程限制为1～7天，每个选中城市至少安排1天并均衡分配
 - 自然语言到最终单城市/同省多城市旅游方案的统一 API
-- 权威网页正文提取、DeepSeek 景点摘要和知识命中复用
-- 杭州西湖、西溪湿地、良渚古城遗址公园和杭州宋城的真实知识数据
+- 已准备的景点知识可被 BM25、向量检索和规划流程复用
+- 全国景点演示知识、兴趣标签和游玩时长均可由本地脚本批量生成
 - 中文天数、目的地、兴趣、旅行范围的本地解析
-- 需求采集完成后自动生成可确认的需求总结；支持“今天、明天、后天、下周一、这个周末”等相对日期并换算为具体日期
+- 规划模式通过多轮自然语言对话收集目的地、天数、偏好、出发日期和城市安排方式；1～3天默认建议单城市，想游多个城市时建议增加到4天以上；4～7天只按同省多城市规划；单城市还会确认具体城市或交给 AI 推荐；景点之间的路线由高德地图工具根据实际位置自动推荐；全部明确后才生成可确认的行程摘要，支持“明天、后天、下周一、这个周末”等相对日期并换算为具体日期，出发日期不能早于明天
 - 省市名称标准化、省市关系补全、同省校验与跨省拦截
 - FastAPI 接口与单元/API 测试
-- Vue 3 对话式前端、实时旅行画像、需求确认和逐日行程展示
+- Vue 3 纯对话式前端；目的地、天数和偏好都在聊天中收集，确认后展示逐日行程
 - MySQL 当前会话与多轮消息持久化
+- 普通对话与规划会话完全隔离：普通消息写入 `general_conversations`，规划消息继续写入 `conversations` 与 `conversation_messages`；前端历史按普通对话、旅行对话、旅游方案分栏
+- 普通对话接口为 `/api/v1/general-conversations`，旅行规划接口为 `/api/v1/conversations`；规划接口拒绝普通模式消息
 - SSE 对话增量和旅游规划业务进度
 - 旅行规划任务与进度事件持久化到 MySQL，支持重复提交复用任务、刷新后回放进度和断线后继续观察
-- 高德地点搜索 2.0 异步客户端、分页、超时重试与错误处理
-- 高德路径规划 2.0，支持步行、公交和驾车路线的真实距离与耗时
-- 相邻景点 Route Enrichment；高德失败时使用明确标记的 Haversine 估算降级
-- 结构化行程景点节点，保留 POI ID、城市、经纬度、出发日期和交通方式
-- 和风天气逐日预报补全；无日期时跳过，远期或服务失败时标记为暂不可用
-- 景点开放时间、适用条件、来源可信度和核验时间结构化保存到 MySQL `attraction_facts`
-- 建议游玩时长优先从已核验网页提取，缺失时使用明确标记的景点类别估算
+- 高德 MCP Streamable HTTP 景点搜索、详情补齐、超时处理与本地数据库回退（兼容 `use_amap=false` 强制本地读取）
+- 高德 MCP 路线规划，支持步行、公交和驾车路线的真实距离与耗时；MCP 失败时标记路线不可用
+- 相邻景点 Route Enrichment；路线和 `auto` 模式距离判断只使用高德 MCP，不伪造本地估算结果
+- 结构化行程景点节点，保留 POI ID、城市、经纬度和出发日期；景点之间的路线由高德地图工具补充
+- 和风天气 API 城市逐日预报；天气接口失败或未配置时标记为暂不可用，无日期时跳过，不阻断规划
+- 景点游玩时长直接保存在 MySQL `attractions`，用于生成每日时间线
 - 确定性日内时间表生成，综合游览、路线、用餐和缓冲时间，并标记估算或不完整数据
-- 规则型行程评估器，覆盖时间密度、路线、天气、开放时间和用户兴趣，并返回结构化问题与修改建议
-- DeepSeek 局部 Replanner，仅修改有高等级问题的日期，并带确定性保守降级
-- LangGraph 有限反馈闭环，重规划后只刷新受影响数据，最多执行两次以避免无限循环
+- 规则型行程评估器，覆盖时间密度、路线、天气和用户兴趣，并返回结构化问题与修改建议；问题交由用户确认，不自动修改行程
 - 可选 Redis Cache-Aside：POI 24 小时、路线 3 小时、天气 1 小时、来源搜索 12 小时；缓存不可用不阻断业务
 - Windows + WSL2 开发环境可配置 `REDIS_WSL_DISTRO=Ubuntu`，Python 启动缓存层时会自动保持该发行版运行
-- 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气、开放来源和人类可读的方案检查结果
+- 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
 - MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
 - 24 组固定 A/B 实验集：对比 LLM 直接生成与完整规划系统，使用独立指标代码评分
@@ -80,13 +82,15 @@ if (!(Test-Path .env)) { Copy-Item .env.example .env }
 DATABASE_URL=mysql+pymysql://MYSQL_USER:MYSQL_PASSWORD@127.0.0.1:3306/travel_agent?charset=utf8mb4
 LLM_API_KEY=YOUR_DEEPSEEK_KEY
 AMAP_API_KEY=YOUR_AMAP_KEY
+# 路线和距离使用高德 MCP；天气直接使用和风天气 API
 QWEATHER_API_KEY=YOUR_QWEATHER_KEY
 QWEATHER_API_HOST=YOUR_QWEATHER_API_HOST
-WEB_SEARCH_API_KEY=YOUR_TAVILY_KEY
 DASHSCOPE_API_KEY=YOUR_DASHSCOPE_KEY
 REDIS_URL=redis://REDIS_USER:REDIS_PASSWORD@127.0.0.1:6379/0
 REDIS_WSL_DISTRO=Ubuntu
 ```
+
+景点重排默认使用阿里云百炼 `qwen3-rerank`，复用 `DASHSCOPE_API_KEY`。如需单独配置，可在 `.env` 中设置 `RERANK_API_KEY`、`RERANK_BASE_URL`、`RERANK_MODEL`；默认地址为 `https://dashscope.aliyuncs.com/compatible-api/v1`。重排只处理混合召回后的候选景点，不会把全国景点全部发送给模型。
 
 当前本机 Redis 使用 WSL2 中的 Redis 服务。后端第一次创建缓存连接时会自动保持 `Ubuntu` 发行版运行；Redis 服务本身需要已经安装并监听 `127.0.0.1:6379`。
 
@@ -119,7 +123,6 @@ ok     Final M12
 
 ```powershell
 cd D:\travel-agent\frontend
-npm install
 npm run dev
 ```
 
@@ -138,6 +141,19 @@ cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe -m pytest -q
 ```
 
+省份/城市知识库首次使用或 Markdown 内容更新后，执行一次向量索引构建：
+
+```powershell
+cd D:\travel-agent
+python scripts\rebuild_travel_knowledge_index.py
+```
+
+该命令会读取 `data/knowledge/province_travel_knowledge.md` 和
+`data/knowledge/city_travel_knowledge.md`，生成 406 个知识块并写入 Chroma 的
+`travel_knowledge` 集合。普通模式检索时同时使用本地 BM25 和该集合的语义向量；
+Embedding 服务不可用时自动降级为 BM25。修改知识文档后重新执行即可增量更新，
+不会影响景点专用的 `attraction_knowledge` 集合。
+
 前端测试和生产构建：
 
 ```powershell
@@ -152,6 +168,16 @@ npm run build
 cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe scripts\run_acceptance.py
 ```
+
+全国代表城市真实验收矩阵会按统一的一日需求顺序验证 34 个省级地区，记录城市标准化、真实 POI、路线、天气、评估结果和耗时；每个请求结束后会删除临时会话。默认报告写入 `data/acceptance/`，该目录已加入 Git 忽略：
+
+```powershell
+python scripts/run_national_acceptance.py
+python scripts/run_national_acceptance.py --dry-run
+python scripts/run_national_acceptance.py --city 成都 --date 2026-09-20
+```
+
+矩阵中的 `passed` 表示规则评估通过，`needs_confirmation` 表示接口和结构正常但仍有天气、路线或行程密度提示；只有 `error` 或 `structure_error` 才表示该城市请求没有完成。验收报告会保留每个城市的降级信号，便于修复后对比。
 
 多进程 worker 租约验收需要先启动两个使用同一 MySQL 的后端实例，并为本地演练临时设置较短租约：
 
@@ -237,6 +263,8 @@ POST /api/v1/planning/city
 POST /api/v1/travel/plan
 ```
 
+其中 `GET /api/v1/cities/{city}/attractions` 先读取本地景点目录，再默认用高德 MCP 为这些本地结果补充详情；高德 MCP 超时、报错或未配置时保留本地结果。重复传入 `interests` 会影响本地标签排序；传 `use_amap=false` 可强制只读本地目录。`POST /api/v1/attractions/{poi_id}/knowledge` 仅兼容读取已经存在的本地景点描述，不会触发外部搜索或自动补全。
+
 请求示例：
 
 ```json
@@ -245,29 +273,32 @@ POST /api/v1/travel/plan
 }
 ```
 
-向量检索使用 DashScope OpenAI 兼容 Embedding API，默认模型为 `text-embedding-v3`、维度为 1024，需要配置 `DASHSCOPE_API_KEY`。
+向量检索使用 DashScope OpenAI 兼容 Embedding API，默认模型为 `text-embedding-v3`、维度为 1024，需要配置 `DASHSCOPE_API_KEY`。候选景点随后由 DashScope 专用 `qwen3-rerank` API 按用户偏好进行二次排序；如果 API 不可用，系统保留 RRF 顺序继续规划。
 
 ## 当前范围与边界
 
-- 目的地目录覆盖全国 34 个省级行政区及当前目录中的 372 个城市/地区入口；杭州、云南、陕西九个城市仍保留较完整的人工核验与真实验收基线
-- 首批人工核验杭州 4 个代表性景点；全国通用来源发现代码已接入 Tavily，实际搜索需配置 `WEB_SEARCH_API_KEY`
-- 通用搜索目前只自动接受与景点名称匹配的中国政府 `.gov.cn` 页面；普通攻略、点评和商业聚合页会被拒绝
-- 已支持单城市单日、单城市多日和同省 2～3 城市多日；跨省多城市不属于 MVP
-- MVP 阶段不包含 Evaluator、Replanner、复杂预算、复杂天气和城市间精确交通优化；这些已在最终版本增量中实现
+- 目的地目录覆盖全国 34 个省级行政区及当前目录中的 372 个城市/地区入口；全国代表城市矩阵已用于验证目录覆盖之外的真实规划链路
+- 景点主数据采用本地演示目录：当前数据库共 3450 条景点记录，包含所属城市、名称、分类、标签、描述和经纬度，全部可用于规划
+- 景点规划采用“MySQL/向量库先筛选、高德 MCP 后补充详情”；高德只更新已选景点的分类、坐标等事实字段，景点表中的标签、描述和游玩时长仍是规划依据
+- 规划中的步行、公交、驾车路线和 `auto` 模式距离判断均只使用高德 MCP；MCP 失败时标记路线不可用，不使用旧版路线 API 或本地 Haversine 估算
+- 天气直接使用和风天气 API；天气服务不可用时标记为暂不可用，不阻断规划
+- 已支持单城市 1～3天、同省多城市 1～7天；多城市保持2～3个城市且跨省多城市不属于 MVP
+- 每天景点规划时间默认 08:00～21:00，也可在对话中由用户指定同一天内的开始和结束时间；超出窗口的景点不会排入当天，也不会显示为次日行程
+- MVP 阶段不包含复杂预算、复杂天气和城市间精确交通优化；当前版本保留规则型方案检查，但不自动修改行程
 - Redis 是可选加速层，未配置时自动旁路，不影响系统功能
-- 景点知识按实际规划请求逐步构建，不预先导入全国完整景点库
+- 全国演示景点描述和规划时长已批量落库，当前以本地景点表数据用于演示规划流程
 
-行政区目录是目的地识别与同省校验的基础索引，不等同于全国景点主数据。城市进入规划后，系统才会按需调用高德、天气、网页知识和向量检索链路；行政区名称或代码发生调整时，应按目录来源重新核对并执行幂等初始化。
+行政区目录是目的地识别与同省校验的基础索引，不等同于全国景点主数据。景点主数据由本地 MySQL 管理；城市进入规划后，系统按需调用路线、天气和向量检索链路。行政区名称或代码发生调整时，应按目录来源重新核对并执行幂等初始化。
 
 景点数据分层：
 
 ```text
-attractions           保存所有系统查询过的高德 POI 基础事实
-attraction_knowledge  保存已完成网页检索和摘要的景点知识
-attraction_facts      保存开放时间、建议游玩时长、环境类型与事实来源
-Chroma                按城市保存已完成景点知识的向量
+attractions           保存所属城市、名称、分类、标签、描述、经纬度和游玩时长等规划数据
+Chroma                按城市保存景点描述与标签的向量
 Redis                 按 TTL 缓存有时效性的外部 API 查询结果，不保存景点主数据
 ```
+
+景点筛选先将用户的 `interests` 与景点的 `tags` 做精确交集计分，再结合 `preference_text`、分类、描述和 BM25/向量检索结果。兴趣命中的景点会优先于没有命中的中性候选。
 
 当前对话前端维护一个当前匿名会话，但会话与消息都保存在 MySQL，侧边栏可以切换多个匿名历史会话；当前会话编号和已生成方案保存在浏览器 `sessionStorage`，因此同一标签页刷新后可以恢复。用户登录和跨用户隔离留待后续实现。
 

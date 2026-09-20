@@ -1,9 +1,7 @@
 from datetime import date as Date
-from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from backend.models.attraction_facts import OpeningHours
 from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import EvaluationResult
 from backend.models.degradation import DegradationNotice
@@ -25,12 +23,34 @@ class AttractionStop(BaseModel):
     description: str | None = None
     longitude: float | None = None
     latitude: float | None = None
-    environment: Literal["indoor", "outdoor", "mixed", "unknown"] = "unknown"
-    estimated_visit_minutes: int | None = Field(default=None, ge=1)
-    duration_source: Literal["web_extracted", "category_fallback"] | None = None
-    opening_hours: OpeningHours | None = None
+    visit_duration_minutes: int = Field(default=90, ge=1, le=720)
     start_time: str | None = None
     end_time: str | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def migrate_legacy_duration_fields(cls, value):
+        """Read old saved plans without bringing facts back into the model."""
+
+        if not isinstance(value, dict):
+            return value
+        data = dict(value)
+        if not data.get("visit_duration_minutes") and data.get("estimated_visit_minutes"):
+            data["visit_duration_minutes"] = data["estimated_visit_minutes"]
+        for legacy_key in (
+            "estimated_visit_minutes",
+            "duration_source",
+            "opening_hours",
+            "environment",
+        ):
+            data.pop(legacy_key, None)
+        return data
+
+    @property
+    def estimated_visit_minutes(self) -> int:
+        """Compatibility accessor for older internal callers and saved plans."""
+
+        return self.visit_duration_minutes
 
 
 class TravelDay(BaseModel):
@@ -55,10 +75,26 @@ class TravelPlan(BaseModel):
     city_stays: list[CityStay] = Field(min_length=1, max_length=3)
     city_plans: list[CityPlan] = Field(min_length=1, max_length=3)
     itinerary: list[TravelDay] = Field(min_length=1)
+    partial_knowledge_cities: list[str] = Field(default_factory=list)
     evaluation: EvaluationResult | None = None
-    replan_count: int = Field(default=0, ge=0)
-    replan_limit_reached: bool = False
     notices: list[DegradationNotice] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def drop_legacy_replanning_fields(cls, value):
+        if not isinstance(value, dict):
+            return value
+        data = dict(value)
+        for key in ("replanned_days", "replan_count", "replan_limit_reached"):
+            data.pop(key, None)
+        if isinstance(data.get("notices"), list):
+            data["notices"] = [
+                notice
+                for notice in data["notices"]
+                if not isinstance(notice, dict)
+                or notice.get("code") != "replan_limit_reached"
+            ]
+        return data
 
 
 class TravelPlanRequest(BaseModel):

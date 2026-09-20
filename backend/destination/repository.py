@@ -5,6 +5,8 @@ from sqlalchemy.orm import Session
 from backend.database.catalog import CITY_ALIASES, PROVINCE_ALIASES
 from backend.database import get_db
 from backend.database.tables import CityRow, ProvinceRow
+from backend.tag_matching import normalize_interest_tags
+from backend.tag_vocabulary import canonicalize_tags
 
 
 def canonical_province_name(name: str) -> str:
@@ -32,6 +34,31 @@ class CatalogRepository:
 
     def list_provinces(self) -> list[ProvinceRow]:
         return list(self.session.scalars(select(ProvinceRow).order_by(ProvinceRow.id)))
+
+    def list_interest_tags(self) -> list[str]:
+        """Return the de-duplicated interest vocabulary stored in the DB.
+
+        Destination-level interests are allowed to use tags from either the
+        province row or the city row.  The database remains the source of
+        truth; the seed catalogue is not consulted here.
+        """
+
+        values: list[str] = []
+        for tags in self.session.scalars(select(ProvinceRow.tags)):
+            values.extend(tags or [])
+        for tags in self.session.scalars(select(CityRow.tags)):
+            values.extend(tags or [])
+        result: list[str] = []
+        for tag in canonicalize_tags(values):
+            if tag not in result:
+                result.append(tag)
+        return result
+
+    def normalize_interest_tags(
+        self,
+        interests: list[str] | None,
+    ) -> tuple[list[str], list[str]]:
+        return normalize_interest_tags(interests, self.list_interest_tags())
 
     def find_city(self, name: str) -> CityRow | None:
         canonical = canonical_city_name(name)

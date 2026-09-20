@@ -17,6 +17,22 @@ def test_resolves_and_completes_single_city(catalog_repository):
     assert result.city_adcodes == ["330100"]
 
 
+def test_rewrites_interest_to_exact_catalog_tag(catalog_repository):
+    result = resolver(catalog_repository).resolve(
+        TravelRequirement(cities=["杭州"], days=1, interests=["自然风光"])
+    )
+
+    assert result.requirement.interests == ["自然"]
+
+
+def test_drops_interest_that_is_not_in_catalog_tag_vocabulary(catalog_repository):
+    result = resolver(catalog_repository).resolve(
+        TravelRequirement(cities=["杭州"], days=1, interests=["不存在的兴趣"])
+    )
+
+    assert result.requirement.interests == []
+
+
 def test_resolves_same_province_cities_in_user_order(catalog_repository):
     requirement = TravelRequirement(cities=["绍兴", "杭州"], days=4, travel_scope="multi_city")
 
@@ -43,6 +59,33 @@ def test_rejects_conflicting_province_and_city(catalog_repository):
 def test_rejects_unknown_city(catalog_repository):
     with pytest.raises(DestinationResolutionError, match="无法识别城市"):
         resolver(catalog_repository).resolve(TravelRequirement(cities=["不存在"] , days=1))
+
+
+def test_rejects_more_than_three_cities(catalog_repository):
+    requirement = TravelRequirement(
+        cities=["杭州", "绍兴", "宁波", "温州"],
+        days=7,
+        travel_scope="multi_city",
+    )
+
+    with pytest.raises(DestinationResolutionError, match="最多支持3个城市"):
+        resolver(catalog_repository).resolve(requirement)
+
+
+def test_rejects_city_scope_conflict(catalog_repository):
+    with pytest.raises(DestinationResolutionError, match="1个城市"):
+        resolver(catalog_repository).resolve(
+            TravelRequirement(cities=["杭州"], days=3, travel_scope="multi_city")
+        )
+
+    with pytest.raises(DestinationResolutionError, match="多个城市"):
+        resolver(catalog_repository).resolve(
+            TravelRequirement(
+                cities=["杭州", "绍兴"],
+                days=3,
+                travel_scope="single_city",
+            )
+        )
 
 
 @pytest.mark.parametrize(

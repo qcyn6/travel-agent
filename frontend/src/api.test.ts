@@ -16,10 +16,11 @@ describe('streamEvents', () => {
         controller.close()
       },
     })
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(body, { status: 200 })))
+    const fetchMock = vi.fn().mockResolvedValue(new Response(body, { status: 200 }))
+    vi.stubGlobal('fetch', fetchMock)
     const received: Array<[string, unknown]> = []
 
-    await streamEvents('/conversations/demo/messages', { message: '云南' }, (event, data) => {
+    await streamEvents('/conversations/demo/messages', { message: '云南', mode: 'planning' }, (event, data) => {
       received.push([event, data])
     })
 
@@ -27,6 +28,10 @@ describe('streamEvents', () => {
       ['message_delta', { text: '云' }],
       ['message_done', { requirement_ready: true }],
     ])
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/v1/conversations/demo/messages',
+      expect.objectContaining({ body: JSON.stringify({ message: '云南', mode: 'planning' }) }),
+    )
   })
 
   it('reconnects to a replay endpoint with an event cursor', async () => {

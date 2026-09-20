@@ -1,4 +1,5 @@
 import hashlib
+import json
 from pathlib import Path
 
 import chromadb
@@ -6,14 +7,38 @@ import chromadb
 from backend.models.retrieval import AttractionDocument, VectorSearchResult
 
 
+VECTOR_METADATA_FIELDS = frozenset(
+    {
+        "name",
+        "city",
+        "category",
+        "interest_tags",
+        "longitude",
+        "latitude",
+        "description",
+        "visit_duration_minutes",
+        "content_hash",
+        "scope",
+    }
+)
+REDUNDANT_VECTOR_METADATA_FIELDS = frozenset({"source_url"})
+
+
 class ChromaAttractionIndex:
-    def __init__(self, path: str, collection_name: str = "attraction_knowledge"):
+    def __init__(
+        self,
+        path: str,
+        collection_name: str = "attraction_knowledge",
+        *,
+        core_only: bool = False,
+    ):
         Path(path).mkdir(parents=True, exist_ok=True)
         self.client = chromadb.PersistentClient(path=path)
         self.collection = self.client.get_or_create_collection(
             name=collection_name,
             metadata={"hnsw:space": "cosine"},
         )
+        self.core_only = core_only
 
     def upsert(self, documents: list[AttractionDocument], embeddings: list[list[float]]) -> int:
         if len(documents) != len(embeddings):
@@ -25,16 +50,7 @@ class ChromaAttractionIndex:
             documents=[document.index_text() for document in documents],
             embeddings=embeddings,
             metadatas=[
-                {
-                    "name": document.name,
-                    "city": document.city,
-                    "category": document.category or "",
-                    "longitude": document.longitude if document.longitude is not None else "",
-                    "latitude": document.latitude if document.latitude is not None else "",
-                    "description": document.description,
-                    "source_url": document.source_url or "",
-                    "content_hash": _content_hash(document),
-                }
+                _metadata_for_document(document, core_only=self.core_only)
                 for document in documents
             ],
         )
@@ -64,14 +80,21 @@ class ChromaAttractionIndex:
         return all(
             metadata_by_id.get(document.poi_id, {}).get("content_hash")
             == _content_hash(document)
+            and metadata_by_id.get(document.poi_id, {}).get("scope")
+            == ("core" if self.core_only else "all")
             for document in documents
         )
 
     def search(self, *, city: str, query_embedding: list[float], limit: int) -> list[VectorSearchResult]:
+        where = {"city": city}
+        if self.core_only:
+            # Older vectors may not have a scope field.  Requiring the explicit
+            # marker keeps legacy non-core vectors out of normal planning.
+            where = {"$and": [{"city": city}, {"scope": "core"}]}
         result = self.collection.query(
             query_embeddings=[query_embedding],
             n_results=limit,
-            where={"city": city},
+            where=where,
             include=["metadatas", "distances"],
         )
         ids = result.get("ids", [[]])[0]
@@ -83,10 +106,16 @@ class ChromaAttractionIndex:
                 name=metadata["name"],
                 city=metadata["city"],
                 category=metadata["category"] or None,
-                longitude=float(metadata["longitude"]) if metadata.get("longitude") != "" else None,
+                interest_tags=_parse_interest_tags(metadata.get("interest_tags")),
+                longitude=(
+                    float(metadata["longitude"])
+                    if metadata.get("longitude") != ""
+                    else None
+                ),
                 latitude=float(metadata["latitude"]) if metadata.get("latitude") != "" else None,
                 description=metadata["description"],
-                source_url=metadata["source_url"] or None,
+                source_url=metadata.get("source_url") or None,
+                visit_duration_minutes=int(metadata.get("visit_duration_minutes") or 90),
                 distance=max(0.0, float(distance)),
             )
             for poi_id, metadata, distance in zip(ids, metadatas, distances, strict=True)
@@ -95,3 +124,35 @@ class ChromaAttractionIndex:
 
 def _content_hash(document: AttractionDocument) -> str:
     return hashlib.sha256(document.index_text().encode("utf-8")).hexdigest()
+
+
+def _metadata_for_document(document: AttractionDocument, *, core_only: bool) -> dict:
+    """Build the complete, intentionally small per-vector metadata payload."""
+    return {
+        "name": document.name,
+        "city": document.city,
+        "category": document.category or "",
+        "interest_tags": json.dumps(document.interest_tags, ensure_ascii=False),
+        "longitude": document.longitude if document.longitude is not None else "",
+        "latitude": document.latitude if document.latitude is not None else "",
+        "description": document.description,
+        "visit_duration_minutes": document.visit_duration_minutes,
+        "content_hash": _content_hash(document),
+        "scope": "core" if core_only else "all",
+    }
+
+
+def _parse_interest_tags(value) -> list[str]:
+    if isinstance(value, list):
+        return [str(item) for item in value if str(item).strip()]
+    if not isinstance(value, str) or not value.strip():
+        return []
+    try:
+        parsed = json.loads(value)
+    except (TypeError, ValueError):
+        return []
+    return (
+        [str(item) for item in parsed if str(item).strip()]
+        if isinstance(parsed, list)
+        else []
+    )

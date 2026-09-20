@@ -27,8 +27,6 @@ class CityRow(Base):
     adcode: Mapped[str] = mapped_column(String(6), unique=True)
     tags: Mapped[list[str]] = mapped_column(JSON, default=list)
     description: Mapped[str] = mapped_column(Text)
-    suitable_days_min: Mapped[int] = mapped_column(Integer)
-    suitable_days_max: Mapped[int] = mapped_column(Integer)
 
     province: Mapped[ProvinceRow] = relationship(back_populates="cities")
     attractions: Mapped[list["AttractionRow"]] = relationship(back_populates="city")
@@ -42,66 +40,47 @@ class AttractionRow(Base):
     city_id: Mapped[int] = mapped_column(ForeignKey("cities.id"), index=True)
     name: Mapped[str] = mapped_column(String(128), index=True)
     category: Mapped[str | None] = mapped_column(String(255), nullable=True)
-    address: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    tags: Mapped[list[str]] = mapped_column(JSON, default=list, nullable=False)
+    description: Mapped[str] = mapped_column(Text, default="", nullable=False)
     longitude: Mapped[float | None] = mapped_column(Float, nullable=True)
     latitude: Mapped[float | None] = mapped_column(Float, nullable=True)
-    rating: Mapped[float | None] = mapped_column(Float, nullable=True)
-    source: Mapped[str] = mapped_column(String(32), default="amap")
-    knowledge_status: Mapped[str] = mapped_column(
-        String(16), default="pending", server_default="pending", index=True
+    # Coordinate provenance is separate from the POI's general data source:
+    # a curated row may still have an approximate city-anchor coordinate.
+    coordinate_source: Mapped[str] = mapped_column(
+        String(32), default="unknown", server_default="unknown", index=True
     )
-    knowledge_error: Mapped[str | None] = mapped_column(Text, nullable=True)
-    first_seen_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), onupdate=func.now())
+    # Optional parent for an umbrella scenic area. Child rows remain auditable
+    # but can be de-prioritized to avoid scheduling overlapping visits.
+    parent_poi_id: Mapped[str | None] = mapped_column(
+        String(64), nullable=True, index=True
+    )
+    visit_duration_minutes: Mapped[int] = mapped_column(
+        Integer,
+        default=90,
+        server_default="90",
+        nullable=False,
+    )
+    # Provenance and curation fields are kept on the canonical row so that
+    # local matching can remain database-first while later provider enrichment
+    # is still auditable.
+    data_source: Mapped[str] = mapped_column(
+        String(24), default="unknown", server_default="unknown", index=True
+    )
+    description_origin: Mapped[str] = mapped_column(
+        String(24), default="missing", server_default="missing"
+    )
+    duration_origin: Mapped[str] = mapped_column(
+        String(24), default="missing", server_default="missing"
+    )
+    quality_status: Mapped[str] = mapped_column(
+        String(24), default="active", server_default="active", index=True
+    )
+    quality_flags: Mapped[list[str]] = mapped_column(JSON, default=list, nullable=False)
+    is_active: Mapped[bool] = mapped_column(
+        Boolean, default=True, server_default="1", nullable=False, index=True
+    )
 
     city: Mapped[CityRow] = relationship(back_populates="attractions")
-    knowledge: Mapped["AttractionKnowledgeRow | None"] = relationship(
-        back_populates="attraction",
-        uselist=False,
-        cascade="all, delete-orphan",
-    )
-    facts: Mapped["AttractionFactsRow | None"] = relationship(
-        back_populates="attraction",
-        uselist=False,
-        cascade="all, delete-orphan",
-    )
-
-
-class AttractionKnowledgeRow(Base):
-    __tablename__ = "attraction_knowledge"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    poi_id: Mapped[str] = mapped_column(ForeignKey("attractions.poi_id"), unique=True, index=True)
-    description: Mapped[str] = mapped_column(Text)
-    source_url: Mapped[str | None] = mapped_column(Text, nullable=True)
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        server_default=func.now(),
-        onupdate=func.now(),
-    )
-
-    attraction: Mapped[AttractionRow] = relationship(back_populates="knowledge")
-
-
-class AttractionFactsRow(Base):
-    __tablename__ = "attraction_facts"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    poi_id: Mapped[str] = mapped_column(ForeignKey("attractions.poi_id"), unique=True, index=True)
-    environment: Mapped[str] = mapped_column(String(16), default="unknown")
-    estimated_visit_minutes: Mapped[int] = mapped_column(Integer)
-    duration_source: Mapped[str] = mapped_column(String(32))
-    opening_hours: Mapped[dict] = mapped_column(JSON, default=dict)
-    source_url: Mapped[str | None] = mapped_column(Text, nullable=True)
-    confidence: Mapped[str] = mapped_column(String(16), default="unknown")
-    checked_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        server_default=func.now(),
-        onupdate=func.now(),
-    )
-
-    attraction: Mapped[AttractionRow] = relationship(back_populates="facts")
 
 
 class ConversationRow(Base):
@@ -133,6 +112,25 @@ class ConversationRow(Base):
         back_populates="conversation",
         cascade="all, delete-orphan",
         order_by="PlanningJobRow.created_at",
+    )
+
+
+class GeneralConversationRow(Base):
+    """Standalone ordinary-chat session; it never carries planning fields."""
+
+    __tablename__ = "general_conversations"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    title: Mapped[str] = mapped_column(String(128), default="新的对话")
+    status: Mapped[str] = mapped_column(String(24), default="active", index=True)
+    # Keep ordinary messages in this table so they cannot enter the planning
+    # conversation/message tables. The JSON shape is {role, content}.
+    messages: Mapped[list[dict]] = mapped_column(JSON, default=list, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
     )
 
 

@@ -5,7 +5,7 @@ from datetime import date
 import httpx
 from pydantic import ValidationError
 
-from backend.models.requirement import TravelRequirement
+from backend.models.requirement import TravelRequirement, validate_start_date
 from backend.observability import observe_external_request
 
 
@@ -37,13 +37,17 @@ class DeepSeekRequirementParser:
         if not self.api_key:
             raise RequirementLLMError("未配置 LLM_API_KEY")
         prompt = (
-            "将用户旅游需求严格提取为 JSON。字段只能是：province、cities、days、interests、"
-            "preference_text、travel_scope、start_date、transport_mode。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
-            "days 为正整数或 null；interests 为兴趣词列表；preference_text 保留节奏、体验等自由偏好，"
+            "将用户旅游需求严格提取为 JSON。字段只能是：province、cities、province_preference_confirmed、city_preference_confirmed、days、interests、"
+            "preference_text、travel_scope、start_date、daily_start_time、daily_end_time、transport_mode。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
+            "days 为 1～7 的正整数或 null；单城市只支持1～3天，同省多城市支持1～7天；interests 为兴趣词列表；preference_text 保留节奏、体验等自由偏好，"
             "没有则为 null；travel_scope 只能是 single_city、multi_city、auto。"
-            f"start_date 使用 YYYY-MM-DD 或 null；今天是 {date.today().isoformat()}，用户说“今天、明天、后天、下周一”等相对日期时请尽量换算为具体日期；"
-            "transport_mode 只能是 auto、walking、transit、driving。"
-            "明确一个城市时为 single_city，明确多个城市或想去两三个城市时为 multi_city，信息不足时为 auto。"
+            "city_preference_confirmed 表示单城市安排下是否已经确认具体城市：用户说出城市名，或明确说没有指定城市、让 AI 推荐时为 true；否则为 false。"
+            "province_preference_confirmed 表示用户没有指定省份、明确让 AI 根据兴趣和偏好推荐省份时为 true；用户明确说出省份时也为 true；否则为 false。"
+            f"start_date 使用 YYYY-MM-DD 或 null；今天是 {date.today().isoformat()}，出发日期至少从明天开始；用户说“明天、后天、下周一”等相对日期时请尽量换算为具体日期；"
+            "daily_start_time 和 daily_end_time 使用 HH:MM 或 null，表示每天景点游玩的开始和结束时间；不允许跨日，用户未明确时必须为 null；"
+            "transport_mode 是系统内部字段，始终输出 auto；不要从用户如何到达目的地或任何景点移动描述中提取交通偏好，景点间路线由地图工具自动推荐。"
+            "明确一个城市时为 single_city，明确多个城市或想去两三个城市时为 multi_city，信息不足时为 auto；不得替用户猜测缺失字段。"
+            "未明确出发日期时必须为 null，未明确城市安排方式时必须为 auto。"
             "不得推荐城市、查询景点或规划行程，只输出 JSON。\n\n"
             f"用户输入：{text}"
         )
@@ -64,7 +68,9 @@ class DeepSeekRequirementParser:
         try:
             content = response.json()["choices"][0]["message"]["content"]
             match = re.search(r"\{[\s\S]*\}", content)
-            return TravelRequirement.model_validate_json(match.group(0) if match else content)
+            result = TravelRequirement.model_validate_json(match.group(0) if match else content)
+            validate_start_date(result.start_date)
+            return result
         except (ValueError, KeyError, IndexError, TypeError, AttributeError, ValidationError) as exc:
             raise RequirementLLMError("DeepSeek 需求解析结果格式异常") from exc
 

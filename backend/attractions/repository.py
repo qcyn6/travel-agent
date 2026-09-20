@@ -1,47 +1,84 @@
 from collections.abc import Sequence
 
 from fastapi import Depends
-from sqlalchemy import func, select
+from sqlalchemy import and_, false, func, or_, select
 from sqlalchemy.dialects.mysql import insert
 from sqlalchemy.orm import Session
 
+from backend.attractions.dedupe import dedupe_attractions
+from backend.attractions.quality import (
+    description_origin,
+    duration_origin,
+    infer_data_source,
+    quality_flags,
+)
 from backend.database import get_db
 from backend.database.tables import AttractionRow
 from backend.models.attraction import AttractionPOI
+from backend.tag_matching import tag_match_score
+from backend.tag_vocabulary import canonicalize_tags
 
 
 def build_attraction_upsert(city_id: int, attractions: Sequence[AttractionPOI]):
-    rows = [
-        {
-            "poi_id": item.poi_id,
-            "city_id": city_id,
-            "name": item.name,
-            "category": item.category,
-            "address": item.address,
-            "longitude": item.longitude,
-            "latitude": item.latitude,
-            "rating": item.rating,
-            "source": "amap",
-        }
-        for item in attractions
-    ]
+    """Build a POI upsert without overwriting local tags or descriptions.
+
+    Amap REST/MCP is optional at the repository boundary and only supplies
+    basic POI coordinates/category data. Locally prepared tags and
+    descriptions are the source used by planning, so an external refresh must
+    not erase them with empty provider fields.
+    """
+
+    rows = []
+    for item in attractions:
+        tags = canonicalize_tags(item.tags)
+        flags = quality_flags(item.model_copy(update={"tags": tags}))
+        is_non_attraction = "non_attraction_name" in flags
+        rows.append(
+            {
+                "poi_id": item.poi_id,
+                "city_id": city_id,
+                "name": item.name,
+                "category": item.category,
+                "tags": tags,
+                "description": item.description or "",
+                "longitude": item.longitude,
+                "latitude": item.latitude,
+                "coordinate_source": (
+                    "amap"
+                    if item.longitude is not None and item.latitude is not None
+                    else "unknown"
+                ),
+                "visit_duration_minutes": item.visit_duration_minutes or 90,
+                "data_source": infer_data_source(item.poi_id),
+                "description_origin": description_origin(item.description),
+                "duration_origin": duration_origin(item.visit_duration_minutes),
+                "quality_status": (
+                    "excluded"
+                    if is_non_attraction
+                    else ("review" if flags else "active")
+                ),
+                "quality_flags": flags,
+                "is_active": not is_non_attraction,
+            }
+        )
     statement = insert(AttractionRow).values(rows)
     return statement.on_duplicate_key_update(
         city_id=statement.inserted.city_id,
         name=statement.inserted.name,
         category=statement.inserted.category,
-        address=statement.inserted.address,
         longitude=statement.inserted.longitude,
         latitude=statement.inserted.latitude,
-        rating=statement.inserted.rating,
-        source=statement.inserted.source,
-        updated_at=func.now(),
     )
 
 
 class AttractionRepository:
-    def __init__(self, session: Session):
+    def __init__(self, session: Session, *, core_only: bool = False):
+        # "core_only" is accepted for compatibility with older callers. The
+        # 4A/5A scope column was removed; the local catalog is now one unified
+        # demo dataset.
+        del core_only
         self.session = session
+        self.core_only = False
 
     def upsert_many(self, city_id: int, attractions: Sequence[AttractionPOI]) -> int:
         if not attractions:
@@ -55,57 +92,83 @@ class AttractionRepository:
         return len(attractions)
 
     def find_by_poi_id(self, poi_id: str) -> AttractionRow | None:
-        return self.session.scalar(select(AttractionRow).where(AttractionRow.poi_id == poi_id))
+        return self.session.scalar(
+            select(AttractionRow).where(
+                AttractionRow.poi_id == poi_id,
+                AttractionRow.is_active.is_(True),
+            )
+        )
 
     def list_for_city(
         self,
         city_id: int,
         *,
+        interests: Sequence[str] | None = None,
         statuses: set[str] | None = None,
         limit: int = 30,
     ) -> list[AttractionRow]:
-        statement = (
-            select(AttractionRow)
-            .where(AttractionRow.city_id == city_id)
-            .order_by(AttractionRow.rating.desc(), AttractionRow.id)
-            .limit(limit)
+        """List attractions ranked by exact shared interest tags.
+
+        This deliberately mirrors destination selection: each matching tag is
+        one point, ties are stable by the catalog row id, and neutral items
+        remain as a fallback when no tag matches.
+        """
+
+        statement = select(AttractionRow).where(
+            AttractionRow.city_id == city_id,
+            AttractionRow.is_active.is_(True),
         )
         if statuses:
-            statement = statement.where(AttractionRow.knowledge_status.in_(statuses))
-        return list(self.session.scalars(statement))
+            ready = and_(
+                AttractionRow.description.is_not(None),
+                AttractionRow.description != "",
+            )
+            missing = or_(
+                AttractionRow.description.is_(None),
+                AttractionRow.description == "",
+            )
+            wants_ready = "ready" in statuses
+            wants_missing = bool(statuses & {"pending", "processing", "staged", "failed"})
+            if wants_ready and wants_missing:
+                statement = statement.where(or_(ready, missing))
+            elif wants_ready:
+                statement = statement.where(ready)
+            elif wants_missing:
+                statement = statement.where(missing)
+            else:
+                statement = statement.where(false())
+
+        rows = list(self.session.scalars(statement))
+        normalized_interests = list(interests or [])
+        rows.sort(
+            key=lambda row: (
+                -tag_match_score(row.tags, normalized_interests),
+                1 if row.quality_status == "secondary" else 0,
+                row.id,
+            )
+        )
+        return dedupe_attractions(rows)[:limit]
 
     def count_ready_for_city(self, city_id: int) -> int:
-        return int(
-            self.session.scalar(
-                select(func.count())
-                .select_from(AttractionRow)
-                .where(
-                    AttractionRow.city_id == city_id,
-                    AttractionRow.knowledge_status == "ready",
-                )
+        statement = (
+            select(func.count())
+            .select_from(AttractionRow)
+            .where(
+                AttractionRow.city_id == city_id,
+                AttractionRow.is_active.is_(True),
+                AttractionRow.description.is_not(None),
+                AttractionRow.description != "",
             )
-            or 0
         )
+        return int(self.session.scalar(statement) or 0)
 
-    def mark_knowledge_status(
-        self,
-        poi_id: str,
-        status: str,
-        error: str | None = None,
-    ) -> None:
-        if status not in {"pending", "processing", "ready", "failed"}:
-            raise ValueError(f"unsupported knowledge status: {status}")
-        attraction = self.find_by_poi_id(poi_id)
-        if attraction is None:
-            raise LookupError(f"景点 POI 不存在：{poi_id}")
-        attraction.knowledge_status = status
-        attraction.knowledge_error = error[:500] if error else None
-        try:
-            self.session.commit()
-        except Exception:
-            self.session.rollback()
-            raise
-
+    def has_description(self, poi_id: str) -> bool:
+        statement = select(AttractionRow.description).where(
+            AttractionRow.poi_id == poi_id,
+            AttractionRow.is_active.is_(True),
+        )
+        description = self.session.scalar(statement)
+        return bool(description and description.strip())
 
 
 def get_attraction_repository(session: Session = Depends(get_db)) -> AttractionRepository:

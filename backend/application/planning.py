@@ -10,7 +10,7 @@ from backend.conversation import ConversationNotFoundError, ConversationReposito
 from backend.database import open_session
 from backend.destination import DestinationPlanningError
 from backend.knowledge import KnowledgeBootstrapError
-from backend.models.conversation import RequirementDraft
+from backend.models.conversation import RequirementDraft, load_requirement_draft
 from backend.models.travel_plan import DestinationChoiceResponse, TravelPlanResponse
 from backend.observability import AlertSink, build_alert_sink, metrics
 from backend.planner import DestinationChoiceRequired, build_travel_workflow
@@ -125,7 +125,10 @@ class PlanningApplicationService:
                 session.commit()
                 raise PlanningConflictError("请先确认旅行需求")
 
-            requirement = RequirementDraft.model_validate(conversation.requirement_draft or {})
+            requirement = load_requirement_draft(conversation.requirement_draft or {})
+            if not requirement.is_ready():
+                session.commit()
+                raise PlanningConflictError("当前旅行需求尚未完整，请先在对话中补充所有出行条件")
             job = job_repository.create(conversation_id, requirement)
             job_repository.append_event(job, "job_queued", {"status": "queued"})
             conversation_repository.set_status(conversation, "planning", commit=False)
@@ -319,7 +322,7 @@ class PlanningApplicationService:
                         destination_options=exc.options,
                     ),
                 )
-            except Exception:
+            except Exception as exc:
                 session.rollback()
                 conversation = conversation_repository.get(conversation_id, for_update=True)
                 if conversation is not None:
@@ -327,13 +330,17 @@ class PlanningApplicationService:
                     conversation_repository.set_status(conversation, recovery_status, commit=False)
                 job = job_repository.get(job.id, for_update=True)
                 if job is not None:
-                    job_repository.mark_failed(job, "旅游方案生成失败，请稍后重试")
+                    message = self._failure_message(exc)
+                    job_repository.mark_failed(job, message)
                     job_repository.append_event(
                         job,
                         "planning_error",
-                        {"message": "旅游方案生成失败，请稍后重试"},
+                        {"message": message},
                     )
                 session.commit()
+                # Preserve the durable identity for callers that need to
+                # clean up a disposable request or inspect its failed job.
+                setattr(exc, "conversation_id", conversation_id)
                 raise
 
     def _ensure_worker(self, job_id: str) -> None:
@@ -407,7 +414,7 @@ class PlanningApplicationService:
                 conversation_id = job.conversation_id
 
                 try:
-                    requirement = RequirementDraft.model_validate(job.requirement_json or {})
+                    requirement = load_requirement_draft(job.requirement_json or {})
                     workflow = build_travel_workflow(session, self.settings)
                     result = await workflow.run_requirement(requirement, progress=progress)
 
@@ -501,12 +508,13 @@ class PlanningApplicationService:
                         )
                 except Exception as exc:
                     logger.exception("planning job failed during workflow execution: job_id=%s", job_id)
+                    message = self._failure_message(exc)
                     failed = self._finish_failure(
                         session,
                         conversation_repository,
                         job_repository,
                         job_id,
-                        "旅游方案生成失败，请稍后重试",
+                        message,
                         active_step,
                         worker_id,
                     )
@@ -569,7 +577,7 @@ class PlanningApplicationService:
                     session.commit()
             except asyncio.CancelledError:
                 raise
-            except Exception:
+            except Exception as exc:
                 # A transient heartbeat failure must not cancel the planning
                 # workflow. The lease will naturally expire if the database
                 # remains unavailable.
@@ -604,6 +612,21 @@ class PlanningApplicationService:
 
     def _worker_stale_seconds(self) -> float:
         return max(1.0, float(getattr(self.settings, "planning_worker_stale_seconds", 90.0)))
+
+    @staticmethod
+    def _failure_message(exc: Exception) -> str:
+        """Return a useful, bounded reason for the user-facing failure panel.
+
+        Known workflow errors already carry a Chinese product message. For
+        uncategorized errors, keeping the exception text is more useful than
+        replacing every failure with the same generic sentence. The database
+        repository still applies its 2000-character limit when persisting it.
+        """
+
+        message = str(exc).strip()
+        if message:
+            return message
+        return f"{type(exc).__name__}：服务未返回具体错误信息"
 
     def _heartbeat_seconds(self) -> float:
         return max(0.5, float(getattr(self.settings, "planning_heartbeat_seconds", 10.0)))
@@ -706,7 +729,7 @@ class PlanningApplicationService:
         return PlanningJobHandle(
             job_id=job.id,
             conversation_id=job.conversation_id,
-            requirement=RequirementDraft.model_validate(job.requirement_json or {}),
+            requirement=load_requirement_draft(job.requirement_json or {}),
         )
 
     @staticmethod

@@ -1,9 +1,9 @@
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, model_validator
 
 
-IssueType = Literal["preference", "schedule_density", "route", "weather", "opening_hours"]
+IssueType = Literal["preference", "schedule_density", "route", "weather"]
 IssueSeverity = Literal["low", "medium", "high"]
 
 
@@ -22,4 +22,12 @@ class EvaluationResult(BaseModel):
 
     passed: bool
     issues: list[EvaluationIssue]
-    replan_required: bool
+
+    @model_validator(mode="before")
+    @classmethod
+    def drop_legacy_replanning_field(cls, value):
+        if not isinstance(value, dict):
+            return value
+        data = dict(value)
+        data.pop("replan_required", None)
+        return data

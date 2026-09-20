@@ -1,5 +1,3 @@
-from datetime import date
-
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
 from backend.models.travel_plan import TravelDay, TravelPlan
 
@@ -11,15 +9,11 @@ class PlanEvaluator:
         max_day_minutes: int = 600,
         max_route_segment_minutes: int = 60,
         max_daily_route_minutes: int = 180,
-        rain_probability_threshold: float = 0.5,
-        outdoor_ratio_threshold: float = 0.5,
         minimum_interest_coverage: float = 0.5,
     ):
         self.max_day_minutes = max_day_minutes
         self.max_route_segment_minutes = max_route_segment_minutes
         self.max_daily_route_minutes = max_daily_route_minutes
-        self.rain_probability_threshold = rain_probability_threshold
-        self.outdoor_ratio_threshold = outdoor_ratio_threshold
         self.minimum_interest_coverage = minimum_interest_coverage
 
     def evaluate(self, plan: TravelPlan, requirement) -> EvaluationResult:
@@ -27,14 +21,11 @@ class PlanEvaluator:
         for day in plan.itinerary:
             issues.extend(self._evaluate_schedule(day))
             issues.extend(self._evaluate_routes(day))
-            issues.extend(self._evaluate_weather(day))
-            issues.extend(self._evaluate_opening_hours(day))
         issues.extend(self._evaluate_preferences(plan, requirement.interests))
         hard_issue_exists = any(issue.severity == "high" for issue in issues)
         return EvaluationResult(
             passed=not hard_issue_exists,
             issues=issues,
-            replan_required=hard_issue_exists,
         )
 
     def _evaluate_schedule(self, day: TravelDay) -> list[EvaluationIssue]:
@@ -80,84 +71,6 @@ class PlanEvaluator:
                 )
         return issues
 
-    def _evaluate_weather(self, day: TravelDay) -> list[EvaluationIssue]:
-        weather = day.weather
-        if weather is None or weather.status != "available":
-            return []
-        rainy = (
-            weather.precipitation_probability is not None
-            and weather.precipitation_probability >= self.rain_probability_threshold
-        ) or any(word in (weather.condition or "") for word in ("雨", "雪", "雷"))
-        if not rainy:
-            return []
-        outdoor_weight = sum(
-            1 if stop.environment == "outdoor" else 0.5 if stop.environment == "mixed" else 0
-            for stop in day.attractions
-        )
-        if outdoor_weight / len(day.attractions) <= self.outdoor_ratio_threshold:
-            return []
-        severity = (
-            "high"
-            if weather.precipitation_probability is not None
-            and weather.precipitation_probability >= 0.7
-            else "medium"
-        )
-        return [
-            EvaluationIssue(
-                type="weather",
-                severity=severity,
-                day=day.day,
-                message=f"第 {day.day} 天可能有{weather.condition or '降水'}，但主要安排为户外景点",
-                suggestion="增加室内景点或调整游览日期",
-            )
-        ]
-
-    def _evaluate_opening_hours(self, day: TravelDay) -> list[EvaluationIssue]:
-        issues = []
-        for stop in day.attractions:
-            opening = stop.opening_hours
-            arrival = _clock_minutes(stop.start_time)
-            if opening is None or opening.status != "known" or arrival is None:
-                continue
-            periods = _applicable_periods(opening.periods, day.date)
-            if not periods:
-                issues.append(
-                    EvaluationIssue(
-                        type="opening_hours",
-                        severity="high",
-                        day=day.day,
-                        message=f"{stop.name}在计划日期没有可用开放时段",
-                        suggestion="调整游览日期或替换景点",
-                    )
-                )
-                continue
-            latest_entry = max(
-                _clock_minutes(period.last_entry_time or period.close_time) or 0
-                for period in periods
-            )
-            earliest_open = min(_clock_minutes(period.open_time) or 0 for period in periods)
-            if arrival > latest_entry:
-                issues.append(
-                    EvaluationIssue(
-                        type="opening_hours",
-                        severity="high",
-                        day=day.day,
-                        message=f"预计到达{stop.name}的时间晚于最后入园时间",
-                        suggestion="调整景点顺序或替换景点",
-                    )
-                )
-            elif arrival < earliest_open:
-                issues.append(
-                    EvaluationIssue(
-                        type="opening_hours",
-                        severity="medium",
-                        day=day.day,
-                        message=f"预计到达{stop.name}时景点尚未开放",
-                        suggestion="推迟到达时间或调整景点顺序",
-                    )
-                )
-        return issues
-
     def _evaluate_preferences(self, plan: TravelPlan, interests: list[str]) -> list[EvaluationIssue]:
         if not interests:
             return []
@@ -178,23 +91,6 @@ class PlanEvaluator:
                 suggestion="优先补充与用户兴趣更匹配的景点",
             )
         ]
-
-
-def _clock_minutes(value: str | None) -> int | None:
-    if not value or "日" in value:
-        return None
-    try:
-        hour, minute = map(int, value.split(":"))
-    except ValueError:
-        return None
-    return hour * 60 + minute
-
-
-def _applicable_periods(periods, target_date: date | None):
-    if target_date is None:
-        return periods
-    weekday = target_date.isoweekday()
-    return [period for period in periods if not period.weekdays or weekday in period.weekdays]
 
 
 _INTEREST_ALIASES = {

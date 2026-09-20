@@ -14,6 +14,13 @@ from backend.models.travel_plan import (
 router = APIRouter(prefix="/api/v1/travel", tags=["travel"])
 
 
+def _conversation_error_headers(error: Exception) -> dict[str, str] | None:
+    conversation_id = getattr(error, "conversation_id", None)
+    if isinstance(conversation_id, str) and conversation_id:
+        return {"X-Conversation-Id": conversation_id}
+    return None
+
+
 @router.post(
     "/plan",
     response_model=TravelPlanResponse | DestinationChoiceResponse,
@@ -31,8 +38,20 @@ async def create_travel_plan(
         response.headers["X-Conversation-Id"] = execution.conversation_id
         return execution.response
     except (ValueError, DestinationPlanningError) as exc:
-        raise HTTPException(status_code=422, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=422,
+            detail=str(exc),
+            headers=_conversation_error_headers(exc),
+        ) from exc
     except KnowledgeBootstrapError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=502,
+            detail=str(exc),
+            headers=_conversation_error_headers(exc),
+        ) from exc
     except Exception as exc:
-        raise HTTPException(status_code=500, detail="旅游方案生成失败") from exc
+        raise HTTPException(
+            status_code=500,
+            detail="旅游方案生成失败",
+            headers=_conversation_error_headers(exc),
+        ) from exc

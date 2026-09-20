@@ -1,5 +1,6 @@
 import math
 import re
+from collections.abc import Callable
 from collections import Counter
 
 import jieba
@@ -46,10 +47,14 @@ class BM25Retriever:
         query: str,
         *,
         limit: int = 10,
+        text_getter: Callable[[object], str] | None = None,
     ) -> list[tuple[str, float]]:
         if not documents or not query.strip():
             return []
-        corpus = [tokenize(document.index_text()) for document in documents]
+        corpus = [
+            tokenize(text_getter(document) if text_getter else document.index_text())
+            for document in documents
+        ]
         query_tokens = tokenize(query)
         average_length = sum(map(len, corpus)) / len(corpus)
         document_frequency = Counter(
@@ -70,5 +75,17 @@ class BM25Retriever:
                 )
                 score += inverse_frequency * frequency * (self.k1 + 1) / denominator
             if score > 0:
-                scores.append((document.poi_id, score))
+                scores.append((_document_id(document), score))
         return sorted(scores, key=lambda item: (-item[1], item[0]))[:limit]
+
+
+def _document_id(document) -> str:
+    """Support both attraction documents and Markdown RAG chunks."""
+
+    poi_id = getattr(document, "poi_id", None)
+    if poi_id:
+        return str(poi_id)
+    doc_id = getattr(document, "doc_id", None)
+    if doc_id:
+        return str(doc_id)
+    raise AttributeError("检索文档缺少 poi_id 或 doc_id")

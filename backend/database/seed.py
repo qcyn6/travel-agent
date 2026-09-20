@@ -3,10 +3,15 @@ from sqlalchemy.orm import Session
 
 from backend.database.catalog import CATALOG
 from backend.database.tables import CityRow, ProvinceRow
+from backend.tag_vocabulary import canonicalize_tags
 
 
 def seed_catalog(session: Session) -> None:
-    """Insert or refresh the nationwide destination catalog without duplicating rows."""
+    """Insert or refresh the nationwide destination catalog without duplicating rows.
+
+    City tags and descriptions come from backend.database.city_profiles via
+    CATALOG and are refreshed idempotently on application startup.
+    """
 
     provinces_by_adcode = {
         item.adcode: item for item in session.scalars(select(ProvinceRow))
@@ -27,7 +32,7 @@ def seed_catalog(session: Session) -> None:
             province = ProvinceRow(
                 name=item["name"],
                 adcode=item["adcode"],
-                tags=item["tags"],
+                tags=canonicalize_tags(item["tags"]),
                 description=item["description"],
             )
             session.add(province)
@@ -37,20 +42,18 @@ def seed_catalog(session: Session) -> None:
         else:
             province.name = item["name"]
             province.adcode = item["adcode"]
-            province.tags = item["tags"]
+            province.tags = canonicalize_tags(item["tags"])
             province.description = item["description"]
 
-        for name, adcode, tags, description, min_days, max_days in item["cities"]:
+        for name, adcode, tags, description in item["cities"]:
             city = cities_by_adcode.get(adcode) or cities_by_name.get(name)
             if city is None:
                 city = CityRow(
                     province_id=province.id,
                     name=name,
                     adcode=adcode,
-                    tags=tags,
+                    tags=canonicalize_tags(tags),
                     description=description,
-                    suitable_days_min=min_days,
-                    suitable_days_max=max_days,
                 )
                 session.add(city)
                 session.flush()
@@ -60,10 +63,8 @@ def seed_catalog(session: Session) -> None:
                 city.province_id = province.id
                 city.name = name
                 city.adcode = adcode
-                city.tags = tags
+                city.tags = canonicalize_tags(tags)
                 city.description = description
-                city.suitable_days_min = min_days
-                city.suitable_days_max = max_days
 
     session.commit()
 

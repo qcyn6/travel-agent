@@ -4,7 +4,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 RouteMode = Literal["walking", "transit", "driving"]
-RouteSource = Literal["amap", "haversine", "unavailable"]
+# `amap` is retained for historical plan snapshots. New plans use the MCP
+# result when available and a haversine-based estimate as a bounded fallback.
+RouteSource = Literal["amap_mcp", "amap", "haversine", "unavailable"]
 
 
 class RouteSegment(BaseModel):
@@ -23,4 +25,3 @@ class RouteSegment(BaseModel):
     mode: RouteMode
     source: RouteSource
     estimated: bool = False
-

@@ -1,9 +1,11 @@
-from datetime import date
+import asyncio
+from datetime import date, timedelta
 
 import httpx
 import pytest
 
 from backend.models.travel_plan import AttractionStop, TravelDay
+from backend.models.weather import WeatherResult
 from backend.weather import QWeatherClient, WeatherEnrichmentService
 
 
@@ -86,3 +88,41 @@ async def test_weather_service_marks_far_date_unavailable_without_call():
 
     assert result.weather.status == "unavailable"
 
+
+@pytest.mark.asyncio
+async def test_weather_enrichment_runs_days_with_a_bound():
+    class Client:
+        def __init__(self):
+            self.active = 0
+            self.max_active = 0
+
+        async def get_weather(self, *, city, target_date, **_kwargs):
+            self.active += 1
+            self.max_active = max(self.max_active, self.active)
+            try:
+                await asyncio.sleep(0.02)
+                return WeatherResult(
+                    city=city,
+                    date=target_date,
+                    condition="晴",
+                    temperature_min=20,
+                    temperature_max=30,
+                    status="available",
+                    source="qweather",
+                )
+            finally:
+                self.active -= 1
+
+    client = Client()
+    today = date(2026, 9, 17)
+    days = [day(today + timedelta(days=index)) for index in range(4)]
+    service = WeatherEnrichmentService(
+        client,
+        max_concurrency=2,
+        today_provider=lambda: today,
+    )
+
+    results = await asyncio.gather(*(service.enrich_day(item) for item in days))
+
+    assert client.max_active == 2
+    assert [item.weather.source for item in results] == ["qweather"] * 4

@@ -32,8 +32,7 @@ def test_degradation_notices_explain_partial_external_data():
             "day": 1, "attractions": ["甲", "乙"], "description": "用于测试统一降级说明的当天行程。",
         }]}],
         itinerary=[day],
-        replan_count=2,
-        replan_limit_reached=True,
+        partial_knowledge_cities=["杭州市"],
     )
 
     notices = collect_degradation_notices(plan)
@@ -41,7 +40,9 @@ def test_degradation_notices_explain_partial_external_data():
     assert {notice.code for notice in notices} == {
         "route_unavailable",
         "weather_unavailable",
-        "opening_hours_unknown",
+        "knowledge_partial",
         "schedule_incomplete",
-        "replan_limit_reached",
     }
+    messages = {notice.code: notice.message for notice in notices}
+    assert "相关交通时间未计入时间表" in messages["route_unavailable"]
+    assert "当天结束时间仅供参考" in messages["schedule_incomplete"]

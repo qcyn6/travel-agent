@@ -1,5 +1,4 @@
 from backend.models.attraction import AttractionKnowledgeState, AttractionPOI, KnowledgeStatus
-from backend.models.attraction_facts import AttractionFacts, OpeningHours, OpeningPeriod
 from backend.models.catalog import City, Province
 from backend.models.city_stay import CityStay
 from backend.models.conversation import (
@@ -7,25 +6,18 @@ from backend.models.conversation import (
     Conversation,
     ConversationCreated,
     ConversationMessage,
+    GeneralChatMessageRequest,
+    GeneralConversation,
     RequirementConfirmation,
     RequirementDraft,
     RequirementDraftPatch,
 )
 from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import EvaluationIssue, EvaluationResult
-from backend.models.experiment import (
-    BaselineAttraction,
-    BaselineDay,
-    BaselinePlan,
-    ExperimentCase,
-    ExperimentCaseResult,
-    ExperimentMetrics,
-)
 from backend.models.degradation import DegradationNotice
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
-from backend.models.replanning import DayReplanDecision, ReplanningResult
 from backend.models.route import RouteMode, RouteSegment, RouteSource
 from backend.models.schedule import DaySchedule, ScheduleStatus
 from backend.models.saved_plan import SavedTravelPlan
@@ -48,14 +40,10 @@ from backend.models.weather import WeatherResult
 
 __all__ = [
     "AttractionKnowledge",
-    "AttractionFacts",
     "AttractionKnowledgeState",
     "AttractionDocument",
     "AttractionPOI",
     "AttractionStop",
-    "BaselineAttraction",
-    "BaselineDay",
-    "BaselinePlan",
     "City",
     "CityStay",
     "CityPlan",
@@ -65,17 +53,15 @@ __all__ = [
     "Conversation",
     "ConversationCreated",
     "ConversationMessage",
+    "GeneralChatMessageRequest",
+    "GeneralConversation",
     "DayPlan",
     "DaySchedule",
-    "DayReplanDecision",
     "DestinationChoiceResponse",
     "DestinationPlanResult",
     "DegradationNotice",
     "EvaluationIssue",
     "EvaluationResult",
-    "ExperimentCase",
-    "ExperimentCaseResult",
-    "ExperimentMetrics",
     "KnowledgeStatus",
     "OpeningHours",
     "OpeningPeriod",
@@ -86,7 +72,6 @@ __all__ = [
     "RequirementConfirmation",
     "RequirementDraft",
     "RequirementDraftPatch",
-    "ReplanningResult",
     "RouteMode",
     "RouteSegment",
     "RouteSource",

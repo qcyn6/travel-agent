@@ -3,59 +3,53 @@ import { computed, onMounted, ref } from 'vue'
 import ChatPanel from './components/ChatPanel.vue'
 import ConversationSidebar from './components/ConversationSidebar.vue'
 import PlanningView from './components/PlanningView.vue'
-import RequirementModal from './components/RequirementModal.vue'
 import TravelPlanView from './components/TravelPlanView.vue'
 import { usePlanningStore } from './stores/planning'
-import type { RequirementDraft } from './types'
+import type { ConversationMode } from './types'
 
 const store = usePlanningStore()
-const modalOpen = ref(false)
-const saving = ref(false)
 const sidebarOpen = ref(false)
 const isFreshChat = computed(() => store.messages.length === 0 && !store.sending)
 const activeConversationTitle = computed(() =>
-  store.conversations.find((item) => item.id === store.conversationId)?.title || '新的旅行计划',
+  store.conversations.find((item) => item.id === store.conversationId)?.title
+    || (store.conversationMode === 'general' ? '新的对话' : '新的旅行计划'),
 )
 
 onMounted(() => store.initialize())
 
-async function saveDraft(draft: RequirementDraft) {
-  saving.value = true
-  try {
-    await store.saveRequirement(draft)
-    modalOpen.value = false
-  } finally {
-    saving.value = false
-  }
-}
-
-async function confirmDraft(draft: RequirementDraft) {
-  saving.value = true
-  try {
-    await store.confirmAndPlan(draft)
-    modalOpen.value = false
-  } finally {
-    saving.value = false
-  }
-}
-
 async function restart() {
   sidebarOpen.value = false
-  modalOpen.value = false
-  sessionStorage.removeItem('travel_conversation_id')
   await store.createConversation()
 }
 
-async function openConversation(id: string, view: 'chat' | 'plan' = 'chat') {
+async function openConversation(
+  id: string,
+  mode: ConversationMode,
+  view: 'chat' | 'plan' = 'chat',
+) {
   sidebarOpen.value = false
-  await store.openConversation(id, view)
+  await store.openConversation(id, mode, view)
 }
 
 async function deleteConversation(id: string) {
   const item = store.conversations.find((conversation) => conversation.id === id)
-  const title = item?.title === '新的旅行计划' ? '新的旅行' : item?.title || '这段旅行对话'
+  const title = item?.title === '新的旅行计划'
+    ? '新的旅行'
+    : item?.title === '新的对话'
+      ? '新的对话'
+      : item?.title || '这段记录'
   if (!window.confirm(`确定删除“${title}”吗？删除后无法恢复。`)) return
   await store.deleteConversation(id)
+}
+
+async function selectHomeMode(mode: ConversationMode) {
+  if (
+    mode === store.conversationMode
+    || store.modeSwitching
+    || store.conversationCreating
+    || store.conversationLoading
+  ) return
+  await store.setConversationMode(mode, { createNew: true })
 }
 </script>
 
@@ -67,8 +61,9 @@ async function deleteConversation(id: string) {
       :active-id="store.conversationId"
       :stage="store.stage"
       :has-plan="Boolean(store.plan)"
+      :mode="store.conversationMode"
       :open="sidebarOpen"
-      :busy="store.conversationLoading || Boolean(store.conversationDeleting) || store.sending || store.stage === 'planning'"
+      :busy="store.conversationLoading || store.conversationCreating || Boolean(store.conversationDeleting) || store.sending || store.modeSwitching || store.stage === 'planning'"
       :deleting-id="store.conversationDeleting"
       @new-conversation="restart"
       @select="openConversation"
@@ -96,7 +91,7 @@ async function deleteConversation(id: string) {
           <div class="chat-toolbar">
             <div class="chat-context">
               <strong>{{ activeConversationTitle === '新的旅行计划' ? '新的旅行' : activeConversationTitle }}</strong>
-              <small>旅行对话</small>
+              <small>AI 对话</small>
             </div>
             <button
               v-if="store.plan"
@@ -107,32 +102,49 @@ async function deleteConversation(id: string) {
               查看旅行计划
               <span aria-hidden="true">→</span>
             </button>
-            <button v-if="!isFreshChat" class="chat-reset" type="button" aria-label="新的旅行对话" title="新的旅行对话" @click="restart">↻</button>
+            <button v-if="!isFreshChat" class="chat-reset" type="button" aria-label="新的旅行对话" title="新的旅行对话" :disabled="store.conversationLoading || store.conversationCreating || store.sending || store.modeSwitching" @click="restart">↻</button>
           </div>
 
           <div class="solo-chat-content" :class="{ 'has-messages': !isFreshChat }">
             <div v-if="isFreshChat" class="solo-welcome">
-              <h1>你今天想去哪里？</h1>
+              <h1>想聊点什么？</h1>
+              <p>目的地、旅行灵感，或者其他问题都可以。</p>
+              <div class="welcome-mode-switch" role="radiogroup" aria-label="选择对话模式">
+                <button
+                  type="button"
+                  role="radio"
+                  :aria-checked="store.conversationMode === 'general'"
+                  :class="{ active: store.conversationMode === 'general' }"
+                  :disabled="store.modeSwitching || store.conversationCreating || store.conversationLoading"
+                  @click="selectHomeMode('general')"
+                >
+                  普通模式
+                </button>
+                <button
+                  type="button"
+                  role="radio"
+                  :aria-checked="store.conversationMode === 'planning'"
+                  :class="{ active: store.conversationMode === 'planning' }"
+                  :disabled="store.modeSwitching || store.conversationCreating || store.conversationLoading"
+                  @click="selectHomeMode('planning')"
+                >
+                  规划模式
+                </button>
+              </div>
             </div>
             <ChatPanel
               :messages="store.messages"
               :suggestions="store.suggestions"
               :sending="store.sending"
+              :mode-switching="store.modeSwitching"
+              :mode="store.conversationMode"
               :empty="isFreshChat"
               @send="store.sendMessage"
-              @confirm="modalOpen = true"
+              @confirm="store.confirmAndPlan"
             />
           </div>
           <div v-if="store.error" class="global-error">{{ store.error }}</div>
         </main>
-        <RequirementModal
-          :open="modalOpen"
-          :requirement="store.requirement"
-          :saving="saving"
-          @close="modalOpen = false"
-          @save="saveDraft"
-          @confirm="confirmDraft"
-        />
       </template>
 
       <PlanningView
@@ -142,6 +154,7 @@ async function deleteConversation(id: string) {
         :error="store.error"
         :elapsed-seconds="store.planningElapsedSeconds"
         :busy="store.planningRequestActive"
+        :requirement="store.requirement"
         @choose="store.chooseScope"
         @retry="store.retryPlanning"
         @back="store.backToChat"

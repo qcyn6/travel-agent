@@ -2,7 +2,14 @@ from itertools import combinations
 
 from backend.models.city_stay import CityStay
 from backend.models.destination import DestinationPlanResult
-from backend.models.requirement import TravelRequirement
+from backend.models.requirement import (
+    MAX_SINGLE_CITY_DAYS,
+    MAX_TRAVEL_DAYS,
+    MAX_TRIP_CITIES,
+    MIN_MULTI_CITY_DAYS,
+    TravelRequirement,
+)
+from backend.tag_matching import normalize_interest_tags, tag_match_score
 
 
 class DestinationPlanningError(ValueError):
@@ -14,16 +21,29 @@ class DestinationPlanner:
         self.repository = repository
 
     def plan(self, requirement: TravelRequirement) -> DestinationPlanResult:
+        interests = self._normalize_interests(requirement.interests)
         if not requirement.days:
             raise DestinationPlanningError("缺少旅行总天数")
+        if not MIN_MULTI_CITY_DAYS <= requirement.days <= MAX_TRAVEL_DAYS:
+            raise DestinationPlanningError(
+                f"总行程目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_TRAVEL_DAYS}天"
+            )
+        if requirement.days > MAX_SINGLE_CITY_DAYS and (
+            requirement.travel_scope == "single_city" or len(requirement.cities) == 1
+        ):
+            raise DestinationPlanningError(
+                f"单城市规划目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
+                "4～7天必须改为同省多城市"
+            )
         if requirement.cities:
             cities = [self._require_city(name) for name in requirement.cities]
             if len(cities) == 1:
+                self._validate_single_city_days(requirement.days)
                 return DestinationPlanResult(
                     city_stays=[CityStay(city=cities[0].name, days=requirement.days)]
                 )
             return DestinationPlanResult(
-                city_stays=self._allocate(cities, requirement.days, requirement.interests)
+                city_stays=self._allocate(cities, requirement.days, interests)
             )
         province_name = requirement.province
         if not province_name:
@@ -33,7 +53,7 @@ class DestinationPlanner:
             province = max(
                 provinces,
                 key=lambda item: (
-                    len(set(requirement.interests) & set(item.tags or [])),
+                    tag_match_score(item.tags, interests),
                     -item.id,
                 ),
             )
@@ -44,33 +64,26 @@ class DestinationPlanner:
             raise DestinationPlanningError(f"{province_name} 暂无候选城市")
         ranked = sorted(
             candidates,
-            key=lambda city: (-self._match_score(city, requirement.interests), city.id),
+            key=lambda city: (-self._match_score(city, interests), city.id),
         )
-        single = [CityStay(city=ranked[0].name, days=requirement.days)]
         if requirement.travel_scope == "single_city" or (
-            requirement.travel_scope == "auto" and requirement.days <= 3
+            requirement.travel_scope == "auto" and requirement.days <= MAX_SINGLE_CITY_DAYS
         ):
-            return DestinationPlanResult(city_stays=single)
+            self._validate_single_city_days(requirement.days)
+            return DestinationPlanResult(
+                city_stays=[CityStay(city=ranked[0].name, days=requirement.days)]
+            )
 
         multi = self._choose_multi_city(
-            ranked, requirement.days, requirement.interests
+            ranked, requirement.days, interests
         )
-        if requirement.travel_scope == "auto":
-            return DestinationPlanResult(
-                city_stays=single,
-                alternative_city_stays=multi,
-                requires_choice=True,
-            )
         return DestinationPlanResult(city_stays=multi)
 
     def _choose_multi_city(self, ranked, total_days: int, interests: list[str]) -> list[CityStay]:
         for size in (3, 2):
-            feasible = [
-                group
-                for group in combinations(ranked, size)
-                if sum(city.suitable_days_min for city in group) <= total_days
-                <= sum(city.suitable_days_max for city in group)
-            ]
+            if total_days < size:
+                continue
+            feasible = list(combinations(ranked, size))
             if feasible:
                 best = max(
                     feasible,
@@ -81,29 +94,42 @@ class DestinationPlanner:
                 )
                 selected = sorted(best, key=lambda city: city.id)
                 return self._allocate(selected, total_days, interests)
-        raise DestinationPlanningError("总天数与同省 2～3 个候选城市的建议天数不匹配")
+        raise DestinationPlanningError(
+            "多城市规划至少需要为每个城市安排1天：2个城市至少2天，3个城市至少3天"
+        )
 
     def _allocate(self, cities, total_days: int, interests: list[str]) -> list[CityStay]:
-        if not 2 <= len(cities) <= 3:
-            raise DestinationPlanningError("多城市 MVP 只支持同省 2～3 个城市")
+        if not 2 <= len(cities) <= MAX_TRIP_CITIES:
+            raise DestinationPlanningError(
+                f"多城市规划只支持同省2～{MAX_TRIP_CITIES}个城市"
+            )
         province_ids = {city.province_id for city in cities}
         if len(province_ids) != 1:
-            raise DestinationPlanningError("多城市 MVP 只支持同一省份")
-        minimum = sum(city.suitable_days_min for city in cities)
-        maximum = sum(city.suitable_days_max for city in cities)
-        if not minimum <= total_days <= maximum:
-            raise DestinationPlanningError("总天数不满足所选城市组合的建议天数范围")
-
-        allocated = [city.suitable_days_min for city in cities]
-        scores = [self._match_score(city, interests) for city in cities]
-        for _ in range(total_days - minimum):
-            available = [index for index, city in enumerate(cities) if allocated[index] < city.suitable_days_max]
-            chosen = max(
-                available,
-                key=lambda index: (scores[index] / (1 + allocated[index] - cities[index].suitable_days_min), -index),
+            raise DestinationPlanningError("多城市规划只支持同一省份")
+        if total_days < len(cities):
+            raise DestinationPlanningError(
+                "多城市规划至少需要为每个城市安排1天：2个城市至少2天，3个城市至少3天"
             )
-            allocated[chosen] += 1
+        if total_days > MAX_TRAVEL_DAYS:
+            raise DestinationPlanningError(
+                f"多城市规划目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_TRAVEL_DAYS}天"
+            )
+
+        # City profiles no longer carry hidden day ranges. Every selected city
+        # receives one day first; remaining days are distributed evenly so a
+        # longer trip cannot silently turn into a single-city plan.
+        allocated = [1] * len(cities)
+        for offset in range(total_days - len(cities)):
+            allocated[offset % len(cities)] += 1
         return [CityStay(city=city.name, days=days) for city, days in zip(cities, allocated, strict=True)]
+
+    @staticmethod
+    def _validate_single_city_days(total_days: int) -> None:
+        if not MIN_MULTI_CITY_DAYS <= total_days <= MAX_SINGLE_CITY_DAYS:
+            raise DestinationPlanningError(
+                f"单城市规划目前只支持{MIN_MULTI_CITY_DAYS}～{MAX_SINGLE_CITY_DAYS}天；"
+                "超过3天请改为同省多城市"
+            )
 
     def _require_city(self, name: str):
         city = self.repository.find_city(name)
@@ -113,4 +139,17 @@ class DestinationPlanner:
 
     @staticmethod
     def _match_score(city, interests: list[str]) -> int:
-        return len(set(interests) & set(city.tags or []))
+        return tag_match_score(city.tags, interests)
+
+    def _normalize_interests(self, interests: list[str]) -> list[str]:
+        normalizer = getattr(self.repository, "normalize_interest_tags", None)
+        if callable(normalizer):
+            normalized, _ = normalizer(interests)
+            return normalized
+        tags: list[str] = []
+        for province in self.repository.list_provinces():
+            tags.extend(province.tags or [])
+            for city in self.repository.list_cities_by_province(province.name):
+                tags.extend(city.tags or [])
+        normalized, _ = normalize_interest_tags(interests, tags)
+        return normalized

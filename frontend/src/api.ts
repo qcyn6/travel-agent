@@ -2,6 +2,7 @@ import type {
   Conversation,
   ConversationCreated,
   ConversationSummary,
+  GeneralConversation,
   RequirementDraft,
   SavedTravelPlan,
   TravelScope,
@@ -116,6 +117,13 @@ export async function streamEvents(
     body: body ? JSON.stringify(body) : undefined,
   })
   return consumeEventStream(response, onEvent, options.onOpen)
+}
+
+export const generalConversationApi = {
+  create: () => jsonRequest<GeneralConversation>('/general-conversations', { method: 'POST' }),
+  list: (limit = 30) => jsonRequest<ConversationSummary[]>(`/general-conversations?limit=${limit}`),
+  get: (id: string) => jsonRequest<GeneralConversation>(`/general-conversations/${id}`),
+  remove: (id: string) => jsonRequest<void>(`/general-conversations/${id}`, { method: 'DELETE' }),
 }
 
 export async function streamGetEvents(

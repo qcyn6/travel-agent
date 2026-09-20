@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
@@ -91,7 +91,17 @@ def test_prepare_conversation_reuses_the_active_job(monkeypatch):
     Base.metadata.create_all(engine)
     with Session(engine, expire_on_commit=False) as session:
         conversation = ConversationRepository(session).create()
-        requirement = RequirementDraft(province="浙江省", days=1, interests=["自然"])
+        requirement = RequirementDraft(
+                province="浙江省",
+                days=1,
+                interests=["自然"],
+                travel_scope="single_city",
+                city_preference_confirmed=True,
+                start_date=date.today() + timedelta(days=1),
+            daily_start_time="08:00",
+            daily_end_time="21:00",
+            transport_mode="transit",
+        )
         row = ConversationRepository(session).get(conversation.id)
         ConversationRepository(session).save_requirement(row, requirement, confirmed=True)
 

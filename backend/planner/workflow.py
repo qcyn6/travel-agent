@@ -1,10 +1,14 @@
+import asyncio
 from datetime import timedelta
 from inspect import isawaitable
 
-from backend.destination import DestinationPlanner, DestinationResolver
+from backend.attractions.dedupe import dedupe_attractions
+from backend.destination import DestinationPlanner, DestinationPlanningError, DestinationResolver
 from backend.degradation import collect_degradation_notices
 from backend.models.travel_plan import AttractionStop, TravelDay, TravelPlan, TravelPlanResponse
-from backend.planner.refinement_graph import PlanRefinementGraph
+from backend.models.requirement import MAX_SINGLE_CITY_DAYS
+from backend.planner.city import deduplicate_city_plan
+from backend.plan_overview import synchronize_plan_overviews
 
 
 class DestinationChoiceRequired(RuntimeError):
@@ -26,11 +30,9 @@ class TravelPlanningWorkflow:
         city_planning_service,
         route_enrichment_service,
         weather_enrichment_service,
-        attraction_facts_service,
         schedule_builder,
         evaluator,
-        replanning_service,
-        max_replan_count: int = 2,
+        attraction_enrichment_service=None,
     ):
         self.parser = parser
         self.resolver = resolver
@@ -40,11 +42,9 @@ class TravelPlanningWorkflow:
         self.city_planning_service = city_planning_service
         self.route_enrichment_service = route_enrichment_service
         self.weather_enrichment_service = weather_enrichment_service
-        self.attraction_facts_service = attraction_facts_service
         self.schedule_builder = schedule_builder
         self.evaluator = evaluator
-        self.replanning_service = replanning_service
-        self.max_replan_count = max_replan_count
+        self.attraction_enrichment_service = attraction_enrichment_service
 
     async def run(self, text: str, *, travel_scope=None) -> TravelPlanResponse:
         parsed = self.parser.parse(text)
@@ -55,9 +55,14 @@ class TravelPlanningWorkflow:
 
     async def run_requirement(self, requirement, *, progress=None) -> TravelPlanResponse:
         await self._emit(progress, "requirement", "已确认旅行需求", "completed")
+        # Route mode is no longer a user-facing requirement. Every plan lets
+        # the map tool choose the transport mode for each adjacent attraction.
+        requirement = requirement.model_copy(update={"transport_mode": "auto"})
         requirement = self.resolver.resolve(requirement).requirement
         await self._emit(progress, "destination", "正在匹配适合的目的地", "running")
         destination = self.destination_planner.plan(requirement)
+        if requirement.days and requirement.days > MAX_SINGLE_CITY_DAYS and len(destination.city_stays) < 2:
+            raise DestinationPlanningError("4～7天必须安排同省多城市，不能生成单城市方案")
         if not requirement.province:
             first_city = self.catalog_repository.find_city(destination.city_stays[0].city)
             requirement = requirement.model_copy(update={"province": first_city.province.name})
@@ -67,12 +72,18 @@ class TravelPlanningWorkflow:
 
         city_plans = []
         city_results = []
+        partial_knowledge_cities = []
         for city_index, city_stay in enumerate(destination.city_stays):
             city = self.catalog_repository.find_city(city_stay.city)
             poi_step = f"poi_search:{city_index}:{city.name}"
             retrieval_step = f"retrieval:{city_index}:{city.name}"
             city_plan_step = f"city_plan:{city_index}:{city.name}"
-            await self._emit(progress, poi_step, f"正在准备{city.name}真实景点", "running")
+            await self._emit(
+                progress,
+                poi_step,
+                f"正在检查{city.name}本地景点资料",
+                "running",
+            )
 
             async def report_bootstrap_progress(
                 ready_count: int,
@@ -82,11 +93,11 @@ class TravelPlanningWorkflow:
                 failed_count: int,
             ) -> None:
                 if ready_count >= target_count and candidate_count == 0:
-                    label = f"已复用{city.name}现有景点资料（{ready_count}/{target_count}条）"
+                    label = f"已准备{city.name}景点资料（{ready_count}/{target_count}条）"
                 else:
                     visible_ready_count = min(ready_count, target_count)
                     label = (
-                        f"正在准备{city.name}真实景点（已准备 {visible_ready_count}/{target_count} 条，"
+                        f"正在准备{city.name}景点（已准备 {visible_ready_count}/{target_count} 条，"
                         f"已尝试 {attempted_count}/{candidate_count} 个，失败 {failed_count} 个）"
                     )
                 await self._emit(progress, poi_step, label, "running")
@@ -95,13 +106,16 @@ class TravelPlanningWorkflow:
                 city=city,
                 target_ready=3,
                 max_attempts=12,
+                allow_partial=True,
                 progress=report_bootstrap_progress,
             )
             ready_count = getattr(bootstrap_result, "ready_count", None)
+            if getattr(bootstrap_result, "partial", False):
+                partial_knowledge_cities.append(city.name)
             ready_label = (
-                f"{city.name}景点数据已准备（{ready_count}条）"
+                f"{city.name}本地景点资料已准备（{ready_count}条）"
                 if ready_count is not None
-                else f"{city.name}景点数据已准备"
+                else f"{city.name}本地景点资料已准备"
             )
             await self._emit(progress, poi_step, ready_label, "completed")
             await self._emit(progress, retrieval_step, f"正在为你筛选{city.name}景点", "running")
@@ -109,6 +123,34 @@ class TravelPlanningWorkflow:
                 city_stay=city_stay,
                 requirement=requirement,
                 top_k=10,
+            )
+            unique_attractions = dedupe_attractions(result.attractions)
+            if self.attraction_enrichment_service is not None and unique_attractions:
+                detail_step = f"amap_detail:{city_index}:{city.name}"
+                await self._emit(
+                    progress,
+                    detail_step,
+                    f"正在用高德补充已筛选的{city.name}景点详情",
+                    "running",
+                )
+                unique_attractions = await self.attraction_enrichment_service.enrich(
+                    city=city.name,
+                    candidates=unique_attractions,
+                )
+                await self._emit(
+                    progress,
+                    detail_step,
+                    f"{city.name}已筛选景点详情补充完成",
+                    "completed",
+                )
+            result = result.model_copy(
+                update={
+                    "attractions": unique_attractions,
+                    "city_plan": deduplicate_city_plan(
+                        plan=result.city_plan,
+                        candidates=unique_attractions,
+                    ),
+                }
             )
             city_plans.append(result.city_plan)
             city_results.append(result)
@@ -140,6 +182,7 @@ class TravelPlanningWorkflow:
                                 description=attractions_by_name[name].description,
                                 longitude=attractions_by_name[name].longitude,
                                 latitude=attractions_by_name[name].latitude,
+                                visit_duration_minutes=attractions_by_name[name].visit_duration_minutes,
                             )
                             for name in day.attractions
                         ],
@@ -152,60 +195,78 @@ class TravelPlanningWorkflow:
             city_stays=destination.city_stays,
             city_plans=city_plans,
             itinerary=itinerary,
+            partial_knowledge_cities=partial_knowledge_cities,
         )
-        await self._emit(progress, "route_enrichment", "正在获取景点间路线", "running")
-        enriched_days = [
-            await self.route_enrichment_service.enrich_day(
-                day,
+        await self._emit(
+            progress,
+            "route_enrichment",
+            "正在获取景点间路线（高德 MCP）",
+            "running",
+        )
+        await self._emit(
+            progress,
+            "weather_enrichment",
+            "正在获取行程天气（和风天气 API）",
+            "running",
+        )
+
+        route_days, weather_days = await asyncio.gather(
+            self._enrich_routes(
+                plan.itinerary,
                 requested_mode=requirement.transport_mode,
+            ),
+            self._enrich_weather(plan.itinerary),
+        )
+        enriched_days = [
+            route_day.model_copy(
+                update={
+                    "weather": weather_day.weather,
+                }
             )
-            for day in plan.itinerary
+            for route_day, weather_day in zip(
+                route_days,
+                weather_days,
+                strict=True,
+            )
         ]
         plan = plan.model_copy(update={"itinerary": enriched_days})
         await self._emit(progress, "route_enrichment", "景点间路线已补充", "completed")
-        await self._emit(progress, "weather_enrichment", "正在获取行程天气", "running")
-        weather_days = [await self.weather_enrichment_service.enrich_day(day) for day in plan.itinerary]
-        plan = plan.model_copy(update={"itinerary": weather_days})
         await self._emit(progress, "weather_enrichment", "行程天气已处理", "completed")
-        await self._emit(progress, "attraction_facts", "正在核验开放时间与游玩时长", "running")
-        facts_days = [await self.attraction_facts_service.enrich_day(day) for day in plan.itinerary]
-        plan = plan.model_copy(update={"itinerary": facts_days})
-        await self._emit(progress, "attraction_facts", "景点开放时间与游玩时长已处理", "completed")
         await self._emit(progress, "schedule", "正在生成每日时间表", "running")
-        scheduled_days = [self.schedule_builder.build_day(day) for day in plan.itinerary]
+        scheduled_days = [
+            self.schedule_builder.build_day(
+                day,
+                day_start_time=requirement.daily_start_time,
+                day_end_time=requirement.daily_end_time,
+            )
+            for day in plan.itinerary
+        ]
         plan = plan.model_copy(update={"itinerary": scheduled_days})
         await self._emit(progress, "schedule", "每日时间表已生成", "completed")
-        candidates_by_city = {result.city_stay.city: result.attractions for result in city_results}
-        plan = await PlanRefinementGraph(
-            evaluator=self.evaluator,
-            replanning_service=self.replanning_service,
-            refresh_changed_days=self._refresh_changed_days,
-            max_replan_count=self.max_replan_count,
-            emit=self._emit,
-        ).run(
-            plan=plan,
-            requirement=requirement,
-            candidates_by_city=candidates_by_city,
-            progress=progress,
-        )
+        await self._emit(progress, "evaluation", "正在检查行程可执行性", "running")
+        evaluation = self.evaluator.evaluate(plan, requirement)
+        plan = plan.model_copy(update={"evaluation": evaluation})
+        await self._emit(progress, "evaluation", "行程可执行性已检查", "completed")
+        plan = synchronize_plan_overviews(plan)
         plan = plan.model_copy(update={"notices": collect_degradation_notices(plan)})
         await self._emit(progress, "complete", "完整旅行方案已生成", "completed")
         return TravelPlanResponse(requirement=requirement, plan=plan)
 
-    async def _refresh_changed_days(self, plan, *, changed_days, requested_mode):
-        refreshed = []
-        for day in plan.itinerary:
-            if day.day not in changed_days:
-                refreshed.append(day)
-                continue
-            day = await self.route_enrichment_service.enrich_day(
-                day,
-                requested_mode=requested_mode,
+    async def _enrich_routes(self, days, *, requested_mode):
+        return await asyncio.gather(
+            *(
+                self.route_enrichment_service.enrich_day(
+                    day,
+                    requested_mode=requested_mode,
+                )
+                for day in days
             )
-            day = await self.attraction_facts_service.enrich_day(day)
-            day = self.schedule_builder.build_day(day)
-            refreshed.append(day)
-        return plan.model_copy(update={"itinerary": refreshed})
+        )
+
+    async def _enrich_weather(self, days):
+        return await asyncio.gather(
+            *(self.weather_enrichment_service.enrich_day(day) for day in days)
+        )
 
     @staticmethod
     async def _emit(progress, step: str, label: str, status: str) -> None:

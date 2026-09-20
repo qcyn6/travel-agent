@@ -68,7 +68,12 @@ def _to_model(row: TravelPlanRow) -> SavedTravelPlan:
         id=row.id,
         session_id=row.session_id,
         version=row.version,
-        requirement=TravelRequirement.model_validate(row.requirement_json),
+        # Historical demo plans may predate the 1～7 day input boundary. Keep
+        # them readable; new conversation and planning inputs remain strict.
+        requirement=TravelRequirement.model_validate(
+            row.requirement_json,
+            context={"allow_legacy_days": True},
+        ),
         plan=TravelPlan.model_validate(row.plan_json),
         evaluation=(
             EvaluationResult.model_validate(row.evaluation_json)

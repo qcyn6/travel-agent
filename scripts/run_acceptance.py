@@ -57,8 +57,7 @@ def validate_case(body: dict, case: dict) -> TravelPlanResponse:
         for stop in day.attractions:
             assert stop.poi_id
             assert stop.start_time and stop.end_time
-            assert stop.estimated_visit_minutes
-            assert stop.opening_hours is not None
+            assert stop.visit_duration_minutes
     return result
 
 

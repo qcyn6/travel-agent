@@ -19,7 +19,6 @@ from backend.conversation import (
 )
 from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
 from backend.database import get_db
-from backend.database.catalog import DESTINATION_SCOPE_HINT
 from backend.destination import DestinationResolver
 from backend.destination.repository import CatalogRepository
 from backend.models.conversation import (
@@ -139,25 +138,106 @@ async def send_message(
     settings: Settings = Depends(get_settings),
     session=Depends(get_db),
 ) -> StreamingResponse:
+    if payload.mode != "planning":
+        raise HTTPException(
+            status_code=409,
+            detail="普通模式请使用 /api/v1/general-conversations；当前接口仅处理规划模式。",
+        )
     service = _conversation_service(repository, CatalogRepository(session), settings)
     try:
-        prepared = await service.prepare_message(conversation_id, payload.message)
+        prepared = await service.prepare_message(
+            conversation_id,
+            payload.message,
+            mode=payload.mode,
+        )
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     async def events() -> AsyncIterator[str]:
-        yield _sse("requirement_updated", prepared.requirement.model_dump(mode="json"))
-        yield _sse("suggestions", {"options": service.suggestions_for(prepared.missing)})
+        if prepared.intent == "planning" and not prepared.mode_boundary and not prepared.validation_error:
+            yield _sse("requirement_updated", prepared.requirement.model_dump(mode="json"))
+        options = service.suggestions_for(
+            prepared.missing,
+            prepared.requirement,
+            intent=prepared.intent,
+        )
+        if prepared.validation_error and prepared.intent == "planning":
+            options = service.suggestions_for(
+                ["days"], prepared.requirement, intent="planning"
+            )
+        yield _sse(
+            "suggestions",
+            {"options": options},
+        )
         chunks: list[str] = []
-        if prepared.destination_error:
-            reply = f"{prepared.destination_error}。{DESTINATION_SCOPE_HINT}，你可以换一个省份或城市。"
+        if prepared.mode_boundary:
+            reply = prepared.mode_boundary
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.validation_error:
+            reply = prepared.validation_error
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.destination_error:
+            reply = (
+                f"{prepared.destination_error}。换一个已收录的国内省份或城市试试，"
+                "也可以让我根据你的兴趣和偏好推荐一个省份。"
+            )
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.should_invite_more:
+            reply = service.more_details_reply(prepared.requirement)
             chunks.append(reply)
             yield _sse("message_delta", {"text": reply})
         elif prepared.should_summarize:
-            reply = service.summary_reply(prepared.requirement)
+            reply = service.summary_reply(
+                prepared.requirement,
+                changed_fields=prepared.changed_fields,
+                was_ready=prepared.was_ready,
+            )
             chunks.append(reply)
             yield _sse("message_delta", {"text": reply})
-        elif not (prepared.requirement.province or prepared.requirement.cities):
+        elif service.should_explain_multi_city_boundary(prepared):
+            reply = service._fallback_reply(
+                prepared.requirement,
+                prepared.missing,
+                prepared.destination_context,
+            )
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.intent == "general":
+            try:
+                async for chunk in service.responder.stream(
+                    user_message=prepared.user_message,
+                    **service.responder_inputs(prepared),
+                    recent_messages=prepared.recent_messages,
+                    conversation_mode="general",
+                ):
+                    chunks.append(chunk)
+                    yield _sse("message_delta", {"text": chunk})
+            except ConversationResponseError:
+                if not chunks:
+                    fallback = service._general_fallback_reply(
+                        prepared.user_message,
+                        prepared.destination_context,
+                    )
+                    chunks.append(fallback)
+                    yield _sse("message_delta", {"text": fallback})
+                else:
+                    chunks.append("（回复连接中断）")
+                    yield _sse("message_delta", {"text": "（回复连接中断）"})
+        elif (
+            not (prepared.requirement.province or prepared.requirement.cities)
+            and not prepared.requirement.province_preference_confirmed
+        ):
+            reply = service._fallback_reply(
+                prepared.requirement,
+                prepared.missing,
+                prepared.destination_context,
+            )
+            chunks.append(reply)
+            yield _sse("message_delta", {"text": reply})
+        elif prepared.missing and prepared.missing[0] == "city_preference":
             reply = service._fallback_reply(
                 prepared.requirement,
                 prepared.missing,
@@ -173,6 +253,7 @@ async def send_message(
                     missing_fields=prepared.missing,
                     destination_context=prepared.destination_context,
                     recent_messages=prepared.recent_messages,
+                    changed_fields=prepared.changed_fields,
                 ):
                     chunks.append(chunk)
                     yield _sse("message_delta", {"text": chunk})
@@ -190,8 +271,17 @@ async def send_message(
                     yield _sse("message_delta", {"text": "（回复连接中断）"})
         reply = "".join(chunks).strip()
         conversation = service.finish_message(prepared, reply)
-        yield _sse("message_done", {"requirement_ready": conversation.requirement_ready})
-        if conversation.requirement_ready:
+        requirement_ready = (
+            conversation.requirement_ready
+            if (
+                prepared.intent == "planning"
+                and not prepared.mode_boundary
+                and not prepared.validation_error
+            )
+            else False
+        )
+        yield _sse("message_done", {"requirement_ready": requirement_ready})
+        if requirement_ready:
             yield _sse("requirement_ready", {"ready": True})
 
     return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())

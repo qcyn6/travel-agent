@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import type { AppStage, ConversationSummary } from '../types'
+import type { AppStage, ConversationMode, ConversationSummary } from '../types'
 
 const props = defineProps<{
   conversations: ConversationSummary[]
   activeId: string
   stage: AppStage
   hasPlan: boolean
+  mode: ConversationMode
   open?: boolean
   busy?: boolean
   deletingId?: string | null
@@ -14,7 +15,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   newConversation: []
-  select: [id: string, view: 'chat' | 'plan']
+  select: [id: string, mode: ConversationMode, view: 'chat' | 'plan']
   delete: [id: string]
   showChat: []
   showPlan: []
@@ -22,15 +23,24 @@ const emit = defineEmits<{
 }>()
 
 const collapsedLimit = 10
-const recordType = ref<'conversation' | 'plan'>('conversation')
+type SidebarRecordType = ConversationMode | 'plan'
+
+const recordType = ref<SidebarRecordType>('general')
 const showAll = ref(false)
 const openMenuId = ref<string | null>(null)
 
-// A completed session still contains a complete conversation. Keep it in the
-// conversation history; the plan tab is a second, plan-focused entry point.
-const conversationRecords = computed(() => props.conversations)
-const planRecords = computed(() => props.conversations.filter((item) => item.status === 'completed'))
-const filteredRecords = computed(() => recordType.value === 'plan' ? planRecords.value : conversationRecords.value)
+const generalRecords = computed(() => props.conversations.filter((item) => item.mode === 'general'))
+const travelConversationRecords = computed(() => props.conversations.filter(
+  (item) => item.mode === 'planning',
+))
+const planRecords = computed(() => props.conversations.filter(
+  (item) => item.mode === 'planning' && item.status === 'completed',
+))
+const filteredRecords = computed(() => {
+  if (recordType.value === 'general') return generalRecords.value
+  if (recordType.value === 'planning') return travelConversationRecords.value
+  return planRecords.value
+})
 
 const visibleRecords = computed(() => {
   if (showAll.value) return filteredRecords.value
@@ -50,12 +60,24 @@ const groupedConversations = computed(() => {
 
 const hasOverflow = computed(() => filteredRecords.value.length > collapsedLimit)
 const hiddenCount = computed(() => Math.max(0, filteredRecords.value.length - collapsedLimit))
-const emptyLabel = computed(() => recordType.value === 'plan' ? '还没有生成的旅行计划' : '还没有保存的旅行对话')
+const emptyLabel = computed(() => {
+  if (recordType.value === 'general') return '还没有保存的普通对话'
+  if (recordType.value === 'planning') return '还没有旅行对话'
+  return '还没有生成的旅游方案'
+})
 
 watch(
-  () => [props.conversations.find((item) => item.id === props.activeId)?.status, props.stage] as const,
-  ([status, stage]) => {
-    recordType.value = status === 'completed' && stage === 'plan' ? 'plan' : 'conversation'
+  () => [
+    props.conversations.find((item) => item.id === props.activeId)?.mode,
+    props.mode,
+    props.stage,
+  ] as const,
+  ([activeMode, mode, stage]) => {
+    if (stage === 'plan') {
+      recordType.value = 'plan'
+    } else {
+      recordType.value = activeMode || mode
+    }
     showAll.value = false
     openMenuId.value = null
   },
@@ -76,6 +98,7 @@ function dayGroup(value: string) {
 }
 
 function displayTitle(item: ConversationSummary) {
+  if (item.title === '新的对话') return '新的对话'
   if (item.title === '新的旅行计划') return '新的旅行'
   if (item.status !== 'completed' && item.title.endsWith('旅行计划')) {
     return item.title.replace(/[省市]?旅行计划$/, '之旅')
@@ -86,6 +109,7 @@ function displayTitle(item: ConversationSummary) {
 function statusLabel(status: ConversationSummary['status']) {
   return {
     draft: '',
+    active: '',
     confirmed: '待规划',
     planning: '生成中',
     completed: '已生成',
@@ -113,7 +137,12 @@ function metadataLabel(item: ConversationSummary) {
 
 function selectConversation(id: string) {
   openMenuId.value = null
-  emit('select', id, recordType.value === 'plan' ? 'plan' : 'chat')
+  const item = props.conversations.find((conversation) => conversation.id === id)
+  if (!item) return
+  const view = recordType.value === 'plan' && item.mode === 'planning' && item.status === 'completed'
+    ? 'plan'
+    : 'chat'
+  emit('select', id, item.mode, view)
 }
 
 function toggleMenu(id: string) {
@@ -125,7 +154,7 @@ function requestDelete(id: string) {
   emit('delete', id)
 }
 
-function selectRecordType(next: 'conversation' | 'plan') {
+function selectRecordType(next: SidebarRecordType) {
   recordType.value = next
   showAll.value = false
   openMenuId.value = null
@@ -144,7 +173,7 @@ function selectRecordType(next: 'conversation' | 'plan') {
 
     <button class="sidebar-new" type="button" :disabled="busy" @click="$emit('newConversation')">
       <span class="sidebar-new-icon">＋</span>
-      <span>新的旅行</span>
+      <span>{{ mode === 'general' ? '新的对话' : '新的旅行' }}</span>
     </button>
 
     <nav class="sidebar-navigation" aria-label="项目页面">
@@ -159,7 +188,7 @@ function selectRecordType(next: 'conversation' | 'plan') {
         <span class="sidebar-nav-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2h9A2.5 2.5 0 0 1 19 4.5v8a2.5 2.5 0 0 1-2.5 2.5H12l-4.5 4v-4H7.5A2.5 2.5 0 0 1 5 12.5v-8ZM7.5 4a.8.8 0 0 0-.8.8v7a.8.8 0 0 0 .8.8h1.7v2l2.2-2h5.1a.8.8 0 0 0 .8-.8v-7a.8.8 0 0 0-.8-.8h-9Z"/></svg>
         </span>
-        <span>旅行对话</span>
+        <span>{{ mode === 'general' ? '普通对话' : '旅行对话' }}</span>
       </button>
       <button
         v-if="hasPlan"
@@ -186,13 +215,23 @@ function selectRecordType(next: 'conversation' | 'plan') {
       <div class="history-filter" role="tablist" aria-label="历史记录类型">
         <button
           class="history-filter-button"
-          :class="{ active: recordType === 'conversation' }"
+          :class="{ active: recordType === 'general' }"
           type="button"
           role="tab"
-          :aria-selected="recordType === 'conversation'"
-          @click="selectRecordType('conversation')"
+          :aria-selected="recordType === 'general'"
+          @click="selectRecordType('general')"
         >
-          <span>对话</span><small>{{ conversationRecords.length }}</small>
+          <span>普通对话</span><small>{{ generalRecords.length }}</small>
+        </button>
+        <button
+          class="history-filter-button"
+          :class="{ active: recordType === 'planning' }"
+          type="button"
+          role="tab"
+          :aria-selected="recordType === 'planning'"
+          @click="selectRecordType('planning')"
+        >
+          <span>旅行对话</span><small>{{ travelConversationRecords.length }}</small>
         </button>
         <button
           class="history-filter-button"
@@ -202,7 +241,7 @@ function selectRecordType(next: 'conversation' | 'plan') {
           :aria-selected="recordType === 'plan'"
           @click="selectRecordType('plan')"
         >
-          <span>旅行计划</span><small>{{ planRecords.length }}</small>
+          <span>旅游方案</span><small>{{ planRecords.length }}</small>
         </button>
       </div>
 

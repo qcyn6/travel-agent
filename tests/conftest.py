@@ -20,7 +20,7 @@ def catalog_repository():
         )
         provinces[province.name] = province
         for city_id, city_data in enumerate(item["cities"], start=len(cities) + 1):
-            name, adcode, tags, description, min_days, max_days = city_data
+            name, adcode, tags, description = city_data
             cities[name] = SimpleNamespace(
                 id=city_id,
                 province_id=province_id,
@@ -29,8 +29,6 @@ def catalog_repository():
                 adcode=adcode,
                 tags=tags,
                 description=description,
-                suitable_days_min=min_days,
-                suitable_days_max=max_days,
             )
 
     class FakeCatalogRepository:

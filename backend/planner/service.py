@@ -1,6 +1,11 @@
+from backend.attractions.dedupe import dedupe_attractions
 from backend.models.itinerary import CityPlanningResult
 from backend.models.retrieval import AttractionDocument
-from backend.planner.city import CityPlanningError, deterministic_city_plan
+from backend.planner.city import (
+    CityPlanningError,
+    deduplicate_city_plan,
+    deterministic_city_plan,
+)
 
 
 class CityPlanningService:
@@ -9,22 +14,24 @@ class CityPlanningService:
         self.planner = planner
 
     async def plan(self, *, city_stay, requirement, top_k: int = 10) -> CityPlanningResult:
-        attractions = await self.retrieval_service.search(
+        attractions = dedupe_attractions(await self.retrieval_service.search(
             city=city_stay.city,
             interests=requirement.interests,
             preference_text=requirement.preference_text,
             top_k=top_k,
-        )
+        ))
         candidates = [
             AttractionDocument(
                 poi_id=item.poi_id,
                 name=item.name,
                 city=item.city,
                 category=item.category,
+                interest_tags=list(item.interest_tags),
                 longitude=item.longitude,
                 latitude=item.latitude,
                 description=item.description,
                 source_url=item.source_url,
+                visit_duration_minutes=item.visit_duration_minutes,
             )
             for item in attractions
         ]
@@ -40,6 +47,7 @@ class CityPlanningService:
                 requirement=requirement,
                 candidates=candidates,
             )
+        city_plan = deduplicate_city_plan(plan=city_plan, candidates=candidates)
         return CityPlanningResult(
             city_stay=city_stay,
             attractions=attractions,

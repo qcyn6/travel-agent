@@ -94,6 +94,38 @@ async def test_bootstrap_fails_when_minimum_knowledge_cannot_be_reached():
 
 
 @pytest.mark.asyncio
+async def test_bootstrap_can_continue_with_partial_knowledge_when_enabled():
+    city = SimpleNamespace(id=1, name="台北市")
+
+    class Repository:
+        ready = 0
+
+        def count_ready_for_city(self, city_id):
+            return self.ready
+
+        def list_for_city(self, city_id, *, statuses=None, limit=30):
+            return [
+                SimpleNamespace(poi_id="A1", name="台北一景", category=None),
+                SimpleNamespace(poi_id="A2", name="台北二景", category=None),
+            ]
+
+    repository = Repository()
+
+    class Enrichment:
+        async def enrich(self, **kwargs):
+            repository.ready += 1
+
+    result = await CityKnowledgeBootstrapService(
+        poi_service=None,
+        attraction_repository=repository,
+        enrichment_service=Enrichment(),
+    ).ensure(city=city, target_ready=3, max_attempts=2, allow_partial=True)
+
+    assert result.ready_count == 2
+    assert result.partial is True
+
+
+@pytest.mark.asyncio
 async def test_bootstrap_retries_candidates_that_failed_from_network_errors():
     city = SimpleNamespace(id=1, name="宝鸡市")
     candidate = SimpleNamespace(
@@ -102,7 +134,7 @@ async def test_bootstrap_retries_candidates_that_failed_from_network_errors():
         category="景区",
         rating=4.7,
         knowledge_status="failed",
-        knowledge_error="权威来源搜索服务网络请求失败",
+        knowledge_error="来源网页网络请求失败",
     )
 
     class Repository:
@@ -128,3 +160,53 @@ async def test_bootstrap_retries_candidates_that_failed_from_network_errors():
 
     assert result.ready_count == 1
     assert result.attempted_count == 1
+
+
+@pytest.mark.asyncio
+async def test_db_only_bootstrap_does_not_try_to_acquire_missing_attraction_data():
+    city = SimpleNamespace(id=1, name="成都市")
+
+    class Repository:
+        def count_ready_for_city(self, city_id):
+            return 0
+
+        def list_for_city(self, city_id, *, statuses=None, limit=30):
+            return [SimpleNamespace(poi_id="A1", name="宽窄巷子", category="古镇")]
+
+    with pytest.raises(KnowledgeBootstrapError, match="不会自动联网补充"):
+        await CityKnowledgeBootstrapService(
+            poi_service=None,
+            attraction_repository=Repository(),
+            enrichment_service=None,
+        ).ensure(city=city, target_ready=3, max_attempts=1)
+
+
+@pytest.mark.asyncio
+async def test_external_preference_refreshes_even_when_local_catalog_is_ready():
+    city = SimpleNamespace(id=1, name="丽江市")
+
+    class Repository:
+        def count_ready_for_city(self, city_id):
+            return 3
+
+        def list_for_city(self, city_id, *, statuses=None, limit=30):
+            return [SimpleNamespace(poi_id="L1", name="丽江古城", category="古镇")]
+
+    class POIService:
+        called = False
+
+        async def search_and_store(self, **kwargs):
+            self.called = True
+            assert kwargs == {"city_id": 1, "city_name": "丽江市", "limit": 30}
+            return []
+
+    provider = POIService()
+    result = await CityKnowledgeBootstrapService(
+        poi_service=provider,
+        attraction_repository=Repository(),
+        enrichment_service=None,
+        prefer_external=True,
+    ).ensure(city=city, target_ready=3)
+
+    assert provider.called is True
+    assert result.ready_count == 3

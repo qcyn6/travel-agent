@@ -8,9 +8,8 @@ DegradationCode = Literal[
     "route_unavailable",
     "weather_skipped",
     "weather_unavailable",
-    "opening_hours_unknown",
+    "knowledge_partial",
     "schedule_incomplete",
-    "replan_limit_reached",
 ]
 
 
