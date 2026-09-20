@@ -146,11 +146,6 @@ def _prepare_candidates(
                 ),
                 longitude=item.longitude,
                 latitude=item.latitude,
-                coordinate_source=(
-                    "amap"
-                    if item.longitude is not None and item.latitude is not None
-                    else "unknown"
-                ),
                 visit_duration_minutes=duration,
             )
         )

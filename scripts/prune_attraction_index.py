@@ -23,7 +23,7 @@ def prune() -> dict[str, int]:
     with open_session() as session:
         active_ids = set(
             session.scalars(
-                select(AttractionRow.poi_id).where(AttractionRow.is_active.is_(True))
+                select(AttractionRow.poi_id)
             )
         )
     # The repository is not used for embedding here; a lightweight object keeps

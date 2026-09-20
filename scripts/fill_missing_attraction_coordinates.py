@@ -205,7 +205,6 @@ def main() -> None:
                 row.longitude = longitude
             if row.latitude is None:
                 row.latitude = latitude
-            row.coordinate_source = "amap"
             updated.append(
                 {
                     "poi_id": row.poi_id,

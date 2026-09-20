@@ -44,41 +44,15 @@ class AttractionRow(Base):
     description: Mapped[str] = mapped_column(Text, default="", nullable=False)
     longitude: Mapped[float | None] = mapped_column(Float, nullable=True)
     latitude: Mapped[float | None] = mapped_column(Float, nullable=True)
-    # Coordinate provenance is separate from the POI's general data source:
-    # a curated row may still have an approximate city-anchor coordinate.
-    coordinate_source: Mapped[str] = mapped_column(
-        String(32), default="unknown", server_default="unknown", index=True
-    )
-    # Optional parent for an umbrella scenic area. Child rows remain auditable
-    # but can be de-prioritized to avoid scheduling overlapping visits.
-    parent_poi_id: Mapped[str | None] = mapped_column(
-        String(64), nullable=True, index=True
-    )
     visit_duration_minutes: Mapped[int] = mapped_column(
         Integer,
         default=90,
         server_default="90",
         nullable=False,
     )
-    # Provenance and curation fields are kept on the canonical row so that
-    # local matching can remain database-first while later provider enrichment
-    # is still auditable.
-    data_source: Mapped[str] = mapped_column(
-        String(24), default="unknown", server_default="unknown", index=True
-    )
-    description_origin: Mapped[str] = mapped_column(
-        String(24), default="missing", server_default="missing"
-    )
-    duration_origin: Mapped[str] = mapped_column(
-        String(24), default="missing", server_default="missing"
-    )
-    quality_status: Mapped[str] = mapped_column(
-        String(24), default="active", server_default="active", index=True
-    )
-    quality_flags: Mapped[list[str]] = mapped_column(JSON, default=list, nullable=False)
-    is_active: Mapped[bool] = mapped_column(
-        Boolean, default=True, server_default="1", nullable=False, index=True
-    )
+    # Keep the attraction table intentionally small and planning-focused.
+    # Do not add provenance, quality, lifecycle, or parent/child columns here
+    # without an explicit product decision and a corresponding schema change.
 
     city: Mapped[CityRow] = relationship(back_populates="attractions")
 

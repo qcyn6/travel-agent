@@ -6,12 +6,6 @@ from sqlalchemy.dialects.mysql import insert
 from sqlalchemy.orm import Session
 
 from backend.attractions.dedupe import dedupe_attractions
-from backend.attractions.quality import (
-    description_origin,
-    duration_origin,
-    infer_data_source,
-    quality_flags,
-)
 from backend.database import get_db
 from backend.database.tables import AttractionRow
 from backend.models.attraction import AttractionPOI
@@ -31,8 +25,6 @@ def build_attraction_upsert(city_id: int, attractions: Sequence[AttractionPOI]):
     rows = []
     for item in attractions:
         tags = canonicalize_tags(item.tags)
-        flags = quality_flags(item.model_copy(update={"tags": tags}))
-        is_non_attraction = "non_attraction_name" in flags
         rows.append(
             {
                 "poi_id": item.poi_id,
@@ -43,22 +35,7 @@ def build_attraction_upsert(city_id: int, attractions: Sequence[AttractionPOI]):
                 "description": item.description or "",
                 "longitude": item.longitude,
                 "latitude": item.latitude,
-                "coordinate_source": (
-                    "amap"
-                    if item.longitude is not None and item.latitude is not None
-                    else "unknown"
-                ),
                 "visit_duration_minutes": item.visit_duration_minutes or 90,
-                "data_source": infer_data_source(item.poi_id),
-                "description_origin": description_origin(item.description),
-                "duration_origin": duration_origin(item.visit_duration_minutes),
-                "quality_status": (
-                    "excluded"
-                    if is_non_attraction
-                    else ("review" if flags else "active")
-                ),
-                "quality_flags": flags,
-                "is_active": not is_non_attraction,
             }
         )
     statement = insert(AttractionRow).values(rows)
@@ -95,7 +72,6 @@ class AttractionRepository:
         return self.session.scalar(
             select(AttractionRow).where(
                 AttractionRow.poi_id == poi_id,
-                AttractionRow.is_active.is_(True),
             )
         )
 
@@ -116,7 +92,6 @@ class AttractionRepository:
 
         statement = select(AttractionRow).where(
             AttractionRow.city_id == city_id,
-            AttractionRow.is_active.is_(True),
         )
         if statuses:
             ready = and_(
@@ -143,7 +118,6 @@ class AttractionRepository:
         rows.sort(
             key=lambda row: (
                 -tag_match_score(row.tags, normalized_interests),
-                1 if row.quality_status == "secondary" else 0,
                 row.id,
             )
         )
@@ -155,7 +129,6 @@ class AttractionRepository:
             .select_from(AttractionRow)
             .where(
                 AttractionRow.city_id == city_id,
-                AttractionRow.is_active.is_(True),
                 AttractionRow.description.is_not(None),
                 AttractionRow.description != "",
             )
@@ -165,7 +138,6 @@ class AttractionRepository:
     def has_description(self, poi_id: str) -> bool:
         statement = select(AttractionRow.description).where(
             AttractionRow.poi_id == poi_id,
-            AttractionRow.is_active.is_(True),
         )
         description = self.session.scalar(statement)
         return bool(description and description.strip())

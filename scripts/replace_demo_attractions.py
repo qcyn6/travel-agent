@@ -3,8 +3,8 @@
 The command is a maintenance import, not part of candidate retrieval.  It
 queries Amap once per city containing demo rows, keeps only provider POIs that
 are not already in the catalog, and updates the synthetic rows in place.  If a
-city returns fewer candidates, unresolved demo rows are retained in the backup
-but excluded from matching instead of being presented as real attractions.
+city returns fewer candidates, unresolved demo rows are reported and retained;
+the attraction table no longer has a lifecycle field with which to hide them.
 
 Preview is the default.  Pass ``--commit`` to write the replacement and a
 complete backup under ``data/backups``.
@@ -31,7 +31,6 @@ from backend.attractions.metadata import (  # noqa: E402
     infer_attraction_category,
     infer_interest_tags,
 )
-from backend.attractions.quality import quality_flags  # noqa: E402
 from backend.config import get_settings  # noqa: E402
 from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
@@ -115,7 +114,7 @@ def _prepare_updates(
 ) -> tuple[list[dict], list[dict], list[AttractionRow], list[dict]]:
     updates: list[dict] = []
     insertions: list[dict] = []
-    retired_demo_rows: list[AttractionRow] = []
+    retained_demo_rows: list[AttractionRow] = []
     unresolved: list[dict] = []
     reserved_ids = set(existing_ids)
     reserved_names = set(existing_names)
@@ -196,7 +195,7 @@ def _prepare_updates(
         # A non-exact provider result is inserted as its own POI rather than
         # being assigned a synthetic attraction's identity.  This avoids
         # turning (for example) a museum row into an unrelated city park.
-        retired_demo_rows.extend(unresolved_rows)
+        retained_demo_rows.extend(unresolved_rows)
         for candidate in candidates:
             if not unresolved_rows:
                 break
@@ -247,7 +246,7 @@ def _prepare_updates(
             if record["row"].id in remaining_ids
         )
 
-    return updates, insertions, retired_demo_rows, unresolved
+    return updates, insertions, retained_demo_rows, unresolved
 
 
 def _apply_update(item: dict) -> None:
@@ -259,16 +258,7 @@ def _apply_update(item: dict) -> None:
     row.description = item["description"]
     row.longitude = item["longitude"]
     row.latitude = item["latitude"]
-    row.coordinate_source = "amap" if item["longitude"] is not None and item["latitude"] is not None else "unknown"
     row.visit_duration_minutes = item["visit_duration_minutes"]
-    row.data_source = "amap"
-    row.description_origin = "derived"
-    row.duration_origin = "heuristic"
-    row.quality_flags = quality_flags(row)
-    row.quality_status = "excluded" if "non_attraction_name" in row.quality_flags else (
-        "review" if row.quality_flags else "active"
-    )
-    row.is_active = "non_attraction_name" not in row.quality_flags
 
 
 def _new_row(item: dict) -> AttractionRow:
@@ -279,16 +269,7 @@ def _new_row(item: dict) -> AttractionRow:
     row.description = item["description"]
     row.longitude = item["longitude"]
     row.latitude = item["latitude"]
-    row.coordinate_source = "amap" if item["longitude"] is not None and item["latitude"] is not None else "unknown"
     row.visit_duration_minutes = item["visit_duration_minutes"]
-    row.data_source = "amap"
-    row.description_origin = "derived"
-    row.duration_origin = "heuristic"
-    row.quality_flags = quality_flags(row)
-    row.quality_status = "excluded" if "non_attraction_name" in row.quality_flags else (
-        "review" if row.quality_flags else "active"
-    )
-    row.is_active = "non_attraction_name" not in row.quality_flags
     return row
 
 
@@ -307,7 +288,7 @@ async def replace_demo(
             session.execute(
                 select(AttractionRow, CityRow)
                 .join(CityRow, CityRow.id == AttractionRow.city_id)
-                .where(AttractionRow.data_source == "demo")
+                .where(AttractionRow.poi_id.like("demo-%"))
                 .order_by(AttractionRow.city_id, AttractionRow.id)
             ).all()
         )
@@ -315,36 +296,12 @@ async def replace_demo(
             return {"demo_rows": 0, "replacements": 0, "unresolved": 0}
 
         if retire_only:
-            active_rows = [row for row, _city in joined if row.is_active]
-            backup_path = None
-            if commit and active_rows:
-                backup_path = _backup_path(backup_dir)
-                backup_path.write_text(
-                    json.dumps(
-                        {
-                            "created_at": datetime.now().isoformat(timespec="seconds"),
-                            "rows": [
-                                _row_payload(row)
-                                for row in session.scalars(
-                                    select(AttractionRow).order_by(AttractionRow.id)
-                                )
-                            ],
-                        },
-                        ensure_ascii=False,
-                        indent=2,
-                    ),
-                    encoding="utf-8",
-                )
-                for row in active_rows:
-                    row.quality_status = "excluded"
-                    row.quality_flags = ["retired_demo_record"]
-                    row.is_active = False
-                session.commit()
             return {
                 "demo_rows": len(joined),
-                "retired_demo_rows": len(active_rows),
-                "committed": commit,
-                "backup_path": str(backup_path) if backup_path else None,
+                "retained_demo_rows": len(joined),
+                "committed": False,
+                "backup_path": None,
+                "message": "景点表已移除生命周期字段，不能仅停用 demo 行；请改用替换或人工清理。",
             }
 
         demo_by_city: dict[int, list[AttractionRow]] = defaultdict(list)
@@ -356,7 +313,7 @@ async def replace_demo(
         existing_ids: set[str] = set()
         existing_names: set[tuple[int, str]] = set()
         for row in session.scalars(
-            select(AttractionRow).where(AttractionRow.data_source != "demo")
+            select(AttractionRow).where(~AttractionRow.poi_id.like("demo-%"))
         ):
             existing_ids.add(row.poi_id.strip().casefold())
             normalized = normalize_attraction_name(row.name)
@@ -374,7 +331,7 @@ async def replace_demo(
             limit=limit_per_city,
             concurrency=concurrency,
         )
-        updates, insertions, retired_demo_rows, unresolved = _prepare_updates(
+        updates, insertions, retained_demo_rows, unresolved = _prepare_updates(
             demo_by_city,
             cities_by_id,
             fetched,
@@ -405,10 +362,6 @@ async def replace_demo(
                 _apply_update(item)
             for item in insertions:
                 session.add(_new_row(item))
-            for row in retired_demo_rows:
-                row.quality_status = "excluded"
-                row.quality_flags = ["retired_demo_record"]
-                row.is_active = False
             session.commit()
 
         return {
@@ -417,7 +370,7 @@ async def replace_demo(
             "provider_results": sum(len(items) for items in fetched.values()),
             "exact_replacements": len(updates),
             "real_poi_insertions": len(insertions),
-            "retired_demo_rows": len(retired_demo_rows),
+            "retained_demo_rows": len(retained_demo_rows),
             "unresolved": len(unresolved),
             "provider_errors": errors,
             "unresolved_records": [

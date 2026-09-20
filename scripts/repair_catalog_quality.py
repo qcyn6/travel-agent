@@ -1,9 +1,10 @@
 """Repair residual attraction quality issues using local deterministic rules.
 
 This command recalculates categories, tags, heuristic visit windows and
-source-transparent descriptions. It excludes clear service/noise POIs and
-records high-confidence umbrella/child relationships without deleting source
-rows. Preview is the default; ``--commit`` writes a complete backup first.
+source-transparent descriptions. It reports clear service/noise POIs and
+high-confidence umbrella/child relationships without persisting quality or
+parent/lifecycle fields. Preview is the default; ``--commit`` writes canonical
+planning fields after creating a complete backup.
 """
 
 from __future__ import annotations
@@ -24,7 +25,12 @@ sys.path.insert(0, str(ROOT))
 from backend.attractions.descriptions import build_catalog_description  # noqa: E402
 from backend.attractions.dedupe import normalize_attraction_name  # noqa: E402
 from backend.attractions.metadata import infer_attraction_category, infer_interest_tags  # noqa: E402
-from backend.attractions.quality import public_space_kind, quality_flags  # noqa: E402
+from backend.attractions.quality import (  # noqa: E402
+    description_origin,
+    infer_data_source,
+    public_space_kind,
+    quality_flags,
+)
 from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
 from backend.tag_vocabulary import canonicalize_tags  # noqa: E402
@@ -108,11 +114,11 @@ def _infer_parent_relations(rows: list[AttractionRow]) -> dict[int, str]:
     # records after approximate coordinates have been corrected.
     groups: dict[tuple[int, float, float], list[AttractionRow]] = defaultdict(list)
     for row in rows:
-        if not row.is_active or row.longitude is None or row.latitude is None:
+        if row.longitude is None or row.latitude is None:
             continue
         groups[(row.city_id, round(float(row.longitude), 5), round(float(row.latitude), 5))].append(row)
     for group in groups.values():
-        if len(group) < 2 or not any(row.data_source == "curated" for row in group):
+        if len(group) < 2 or not any(infer_data_source(row.poi_id) == "curated" for row in group):
             continue
         parent = _select_parent(group)
         for row in group:
@@ -141,7 +147,7 @@ def repair(*, commit: bool, backup_dir: Path) -> dict:
         secondary = 0
 
         for row, city in pairs:
-            if row.data_source == "demo" or "retired_demo_record" in (row.quality_flags or []) or "unresolved_demo_record" in (row.quality_flags or []):
+            if infer_data_source(row.poi_id) == "demo":
                 continue
 
             category = _MANUAL_CATEGORY_OVERRIDES.get(row.name) or infer_attraction_category(
@@ -150,7 +156,7 @@ def repair(*, commit: bool, backup_dir: Path) -> dict:
             tags = canonicalize_tags(infer_interest_tags(row.name, category))
             duration = estimate_duration(category, tags, row.name)
             description = row.description
-            if row.description_origin in {"template", "derived"}:
+            if description_origin(row.description) in {"template", "derived"}:
                 description = build_catalog_description(
                     city=city.name,
                     name=row.name,
@@ -163,10 +169,7 @@ def repair(*, commit: bool, backup_dir: Path) -> dict:
                 "tags": list(row.tags or []),
                 "duration": row.visit_duration_minutes,
                 "description": row.description,
-                "parent_poi_id": row.parent_poi_id,
-                "quality_status": row.quality_status,
-                "quality_flags": list(row.quality_flags or []),
-                "is_active": row.is_active,
+                "parent_relation": parent_relations.get(row.id),
             }
 
             row.category = category
@@ -174,7 +177,6 @@ def repair(*, commit: bool, backup_dir: Path) -> dict:
             row.visit_duration_minutes = duration
             if description != row.description:
                 row.description = description
-                row.description_origin = "derived"
                 description_changes += 1
             if before["category"] != category:
                 category_changes += 1
@@ -186,35 +188,29 @@ def repair(*, commit: bool, backup_dir: Path) -> dict:
                 if "non_attraction_name" not in flags:
                     flags.append("non_attraction_name")
             parent_id = parent_relations.get(row.id)
-            row.parent_poi_id = parent_id
             if parent_id:
                 flags.append("parent_child_overlap")
-            row.quality_flags = sorted(set(flags))
+            flags = sorted(set(flags))
 
-            if "non_attraction_name" in row.quality_flags:
-                row.quality_status = "excluded"
-                row.is_active = False
+            if "non_attraction_name" in flags:
+                selection_status = "excluded"
                 excluded += 1
             elif parent_id or public_space_kind(row.name, row.category) in {"urban_park", "urban_square"}:
-                row.quality_status = "secondary"
-                row.is_active = True
+                selection_status = "secondary"
                 secondary += 1
-            elif row.quality_flags:
-                row.quality_status = "review"
-                row.is_active = True
+            elif flags:
+                selection_status = "review"
             else:
-                row.quality_status = "active"
-                row.is_active = True
+                selection_status = "active"
 
             after = {
                 "category": row.category,
                 "tags": list(row.tags or []),
                 "duration": row.visit_duration_minutes,
                 "description": row.description,
-                "parent_poi_id": row.parent_poi_id,
-                "quality_status": row.quality_status,
-                "quality_flags": list(row.quality_flags or []),
-                "is_active": row.is_active,
+                "parent_relation": parent_id,
+                "selection_status": selection_status,
+                "quality_flags": flags,
             }
             if before != after:
                 changes.append(

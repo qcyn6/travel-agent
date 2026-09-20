@@ -26,6 +26,18 @@ def sample_attraction(name="西湖风景名胜区", rating=4.9):
 
 def test_mysql_schema_keeps_only_planning_fields_on_attraction():
     attraction_sql = str(CreateTable(AttractionRow.__table__).compile(dialect=mysql.dialect()))
+    assert set(AttractionRow.__table__.columns.keys()) == {
+        "id",
+        "poi_id",
+        "city_id",
+        "name",
+        "category",
+        "tags",
+        "description",
+        "longitude",
+        "latitude",
+        "visit_duration_minutes",
+    }
 
     assert "CREATE TABLE attractions" in attraction_sql
     assert "longitude" in attraction_sql
@@ -33,12 +45,17 @@ def test_mysql_schema_keeps_only_planning_fields_on_attraction():
     assert "tags" in attraction_sql
     assert "description" in attraction_sql
     assert "visit_duration_minutes" in attraction_sql
-    assert "data_source" in attraction_sql
-    assert "description_origin" in attraction_sql
-    assert "duration_origin" in attraction_sql
-    assert "quality_status" in attraction_sql
-    assert "quality_flags" in attraction_sql
-    assert "is_active" in attraction_sql
+    for removed in (
+        "data_source",
+        "description_origin",
+        "duration_origin",
+        "quality_status",
+        "quality_flags",
+        "is_active",
+        "coordinate_source",
+        "parent_poi_id",
+    ):
+        assert removed not in attraction_sql
     for removed in (
         "interest_tags",
         "address",

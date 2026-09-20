@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from backend.attractions.descriptions import build_catalog_description  # noqa: E402
-from backend.attractions.quality import quality_flags  # noqa: E402
+from backend.attractions.quality import description_origin  # noqa: E402
 from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
 
@@ -46,13 +46,14 @@ def refresh(*, commit: bool, backup_dir: Path, sample_limit: int) -> dict:
             session.execute(
                 select(AttractionRow, CityRow)
                 .join(CityRow, CityRow.id == AttractionRow.city_id)
-                .where(
-                    AttractionRow.is_active.is_(True),
-                    AttractionRow.description_origin == "template",
-                )
                 .order_by(AttractionRow.id)
             ).all()
         )
+        rows = [
+            (row, city)
+            for row, city in rows
+            if description_origin(row.description) == "template"
+        ]
         updates: list[dict] = []
         for row, city in rows:
             description = build_catalog_description(
@@ -95,17 +96,6 @@ def refresh(*, commit: bool, backup_dir: Path, sample_limit: int) -> dict:
             for item in updates:
                 row = item["row"]
                 row.description = item["after"]
-                row.description_origin = "derived"
-                row.quality_flags = quality_flags(row)
-                if "non_attraction_name" in row.quality_flags:
-                    row.quality_status = "excluded"
-                    row.is_active = False
-                elif row.quality_flags:
-                    row.quality_status = "review"
-                    row.is_active = True
-                else:
-                    row.quality_status = "active"
-                    row.is_active = True
             session.commit()
 
         return {

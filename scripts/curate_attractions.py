@@ -1,8 +1,9 @@
 """Curate the local attraction catalog without deleting source rows.
 
-The default mode is a dry run.  Pass ``--commit`` to write provenance,
-quality flags, duplicate decisions, and active/inactive state to MySQL.  A
-complete JSON backup is written before any committed changes.
+The default mode is a dry run.  The command now produces provenance and
+quality decisions only in its JSON report; those fields are deliberately not
+stored on the attraction table.  ``--commit`` is retained for compatibility
+and writes an audit backup without changing the schema.
 """
 
 from __future__ import annotations
@@ -46,12 +47,6 @@ def _row_payload(row: AttractionRow, city: CityRow, province: ProvinceRow) -> di
         "longitude": row.longitude,
         "latitude": row.latitude,
         "visit_duration_minutes": row.visit_duration_minutes,
-        "data_source": row.data_source,
-        "description_origin": row.description_origin,
-        "duration_origin": row.duration_origin,
-        "quality_status": row.quality_status,
-        "quality_flags": list(row.quality_flags or []),
-        "is_active": bool(row.is_active),
     }
 
 
@@ -74,25 +69,6 @@ def _decisions(rows: list[tuple[AttractionRow, CityRow, ProvinceRow]]) -> list[d
     result: list[dict] = []
     for row, city, province in rows:
         flags = quality_flags(row)
-        existing_flags = set(row.quality_flags or [])
-        if existing_flags.intersection({"retired_demo_record", "unresolved_demo_record"}):
-            # Keep explicitly retired synthetic rows out of matching on future
-            # idempotent curation runs.  They remain in the table for audit.
-            flags = sorted(existing_flags | {"demo_record"})
-            result.append(
-                {
-                    "row": row,
-                    "city": city,
-                    "province": province,
-                    "data_source": infer_data_source(row.poi_id),
-                    "description_origin": description_origin(row.description),
-                    "duration_origin": duration_origin(row.visit_duration_minutes),
-                    "quality_status": "excluded",
-                    "quality_flags": flags,
-                    "is_active": False,
-                }
-            )
-            continue
         if row.id in duplicate_losers:
             flags.append("duplicate_name")
         source = infer_data_source(row.poi_id)
@@ -195,15 +171,11 @@ def curate(*, commit: bool, backup_dir: Path, sample_limit: int) -> dict:
         backup_path.write_text(
             json.dumps(backup, ensure_ascii=False, indent=2), encoding="utf-8"
         )
-        for item in decisions:
-            row = item["row"]
-            row.data_source = item["data_source"]
-            row.description_origin = item["description_origin"]
-            row.duration_origin = item["duration_origin"]
-            row.quality_status = item["quality_status"]
-            row.quality_flags = item["quality_flags"]
-            row.is_active = item["is_active"]
-        session.commit()
+        # Quality/provenance/lifecycle columns are intentionally not part of
+        # the attraction schema anymore.  Keep the generated decisions in the
+        # audit JSON, but do not write them back as hidden fields.
+        summary["committed"] = False
+        summary["message"] = "景点表已移除质量与来源字段，本命令仅生成复核报告。"
         summary["backup"] = str(backup_path)
         return summary
 
@@ -213,7 +185,7 @@ def main() -> None:
     parser.add_argument(
         "--commit",
         action="store_true",
-        help="写入质量标记和 active 状态；默认仅预览",
+        help="生成提交前审计备份；质量字段不会写入景点表",
     )
     parser.add_argument(
         "--backup-dir",

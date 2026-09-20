@@ -1,8 +1,8 @@
-"""Attraction catalog provenance and quality rules.
+"""In-memory attraction catalog review helpers.
 
-The catalog is intentionally curated without deleting source rows.  These
-small, deterministic helpers make it possible to explain why a row is active,
-under review, or excluded and to re-run curation after a future import.
+The attraction table deliberately stores only planning fields.  These small,
+deterministic helpers may be used by preview/audit scripts to explain a row,
+but their provenance and quality values must not be persisted as table columns.
 """
 
 from __future__ import annotations

@@ -177,9 +177,6 @@ def main() -> None:
                 attraction.tags = tags
                 attraction.longitude = longitude
                 attraction.latitude = latitude
-                attraction.coordinate_source = (
-                    "approximate_catalog" if coordinate_fills else "unknown"
-                )
 
         result = {
             "selected": len(joined_rows),

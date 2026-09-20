@@ -24,7 +24,6 @@ class KnowledgeRepository:
         row = self.session.scalar(
             select(AttractionRow).where(
                 AttractionRow.poi_id == poi_id,
-                AttractionRow.is_active.is_(True),
             )
         )
         if row is None or not row.description.strip():
@@ -67,7 +66,6 @@ class KnowledgeRepository:
                 .join(CityRow, CityRow.id == AttractionRow.city_id)
                 .where(
                     CityRow.name == city,
-                    AttractionRow.is_active.is_(True),
                     AttractionRow.description.is_not(None),
                     AttractionRow.description != "",
                 )
@@ -76,7 +74,6 @@ class KnowledgeRepository:
         rows.sort(
             key=lambda row_data: (
                 -tag_match_score(row_data[0].tags, interests),
-                1 if row_data[0].quality_status == "secondary" else 0,
                 row_data[0].id,
             )
         )

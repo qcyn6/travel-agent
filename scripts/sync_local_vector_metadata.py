@@ -36,7 +36,6 @@ def sync() -> dict[str, int]:
                 select(CityRow.name)
                 .join(AttractionRow, AttractionRow.city_id == CityRow.id)
                 .where(
-                    AttractionRow.is_active.is_(True),
                     AttractionRow.description.is_not(None),
                     AttractionRow.description != "",
                 )

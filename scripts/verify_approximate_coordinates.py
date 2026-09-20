@@ -1,9 +1,9 @@
 """Verify approximate catalog coordinates with Amap text search.
 
 The catalog previously filled missing coordinates with city anchors and stable
-offsets.  This command classifies that provenance and replaces only high-
-confidence exact-name matches from Amap. Preview is the default; ``--commit``
-writes a complete backup before changing rows.
+offsets.  This command uses the historical backup to identify those rows and
+replaces only high-confidence exact-name matches from Amap. Preview is the
+default; ``--commit`` writes a complete backup before changing rows.
 """
 
 from __future__ import annotations
@@ -244,27 +244,13 @@ async def verify(*, args) -> dict:
                 select(AttractionRow, CityRow, ProvinceRow)
                 .join(CityRow, CityRow.id == AttractionRow.city_id)
                 .join(ProvinceRow, ProvinceRow.id == CityRow.province_id)
-                .where(AttractionRow.is_active.is_(True))
                 .order_by(AttractionRow.id)
             ).all()
         )
-        source_by_id: dict[int, str] = {}
-        for row, _city, _province in joined:
-            source = row.coordinate_source
-            if source == "unknown":
-                if row.poi_id in history_missing or row.data_source == "curated":
-                    source = "approximate_catalog"
-                elif row.data_source == "amap":
-                    source = "amap_import"
-                elif row.data_source == "demo":
-                    source = "demo"
-                else:
-                    source = "catalog_import"
-            source_by_id[row.id] = source
         approximate = [
             item
             for item in joined
-            if source_by_id[item[0].id] == "approximate_catalog"
+            if item[0].poi_id in history_missing
         ]
         if args.limit:
             approximate = approximate[: args.limit]
@@ -293,25 +279,11 @@ async def verify(*, args) -> dict:
                 ),
                 encoding="utf-8",
             )
-            approximate_ids = {
-                row.poi_id
-                for row, _city, _province in joined
-                if source_by_id[row.id] == "approximate_catalog"
-            }
             for row, _city, _province in joined:
                 if row.poi_id in resolved:
                     row.longitude = resolved[row.poi_id]["longitude"]
                     row.latitude = resolved[row.poi_id]["latitude"]
-                    row.coordinate_source = "amap_verified"
-                else:
-                    row.coordinate_source = source_by_id[row.id]
             session.commit()
-        else:
-            for row, _city, _province in joined:
-                if row.poi_id in resolved:
-                    row.coordinate_source = "amap_verified"
-                else:
-                    row.coordinate_source = source_by_id[row.id]
         return {
             "active_rows": len(joined),
             "approximate_selected": len(approximate),

@@ -21,6 +21,28 @@ _LEGACY_CITY_COLUMNS = (
     "suitable_days_max",
 )
 
+# These columns were experimental metadata and are intentionally not part of
+# the attraction planning schema.  Existing installations must drop them;
+# new installations never create them because they are absent from the ORM.
+_REMOVED_ATTRACTION_COLUMNS = (
+    "data_source",
+    "description_origin",
+    "duration_origin",
+    "quality_status",
+    "quality_flags",
+    "is_active",
+    "coordinate_source",
+    "parent_poi_id",
+)
+
+_REMOVED_ATTRACTION_INDEXES = (
+    "ix_attractions_data_source",
+    "ix_attractions_quality_status",
+    "ix_attractions_is_active",
+    "ix_attractions_coordinate_source",
+    "ix_attractions_parent_poi_id",
+)
+
 
 def upgrade_schema(engine: Engine) -> None:
     """Migrate the catalog to the single-table attraction planning model."""
@@ -57,60 +79,6 @@ def upgrade_schema(engine: Engine) -> None:
                         "ADD COLUMN visit_duration_minutes INT NOT NULL DEFAULT 90"
                     )
                 )
-            if "coordinate_source" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN coordinate_source VARCHAR(32) NOT NULL DEFAULT 'unknown'"
-                    )
-                )
-            if "parent_poi_id" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN parent_poi_id VARCHAR(64) NULL"
-                    )
-                )
-            if "data_source" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN data_source VARCHAR(24) NOT NULL DEFAULT 'unknown'"
-                    )
-                )
-            if "description_origin" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN description_origin VARCHAR(24) NOT NULL DEFAULT 'missing'"
-                    )
-                )
-            if "duration_origin" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN duration_origin VARCHAR(24) NOT NULL DEFAULT 'missing'"
-                    )
-                )
-            if "quality_status" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN quality_status VARCHAR(24) NOT NULL DEFAULT 'active'"
-                    )
-                )
-            if "quality_flags" not in columns:
-                connection.execute(
-                    text("ALTER TABLE attractions ADD COLUMN quality_flags JSON NULL")
-                )
-            if "is_active" not in columns:
-                connection.execute(
-                    text(
-                        "ALTER TABLE attractions "
-                        "ADD COLUMN is_active TINYINT(1) NOT NULL DEFAULT 1"
-                    )
-                )
-
             # Copy the old split data before removing the legacy columns/table.
             if "interest_tags" in columns:
                 connection.execute(
@@ -148,12 +116,6 @@ def upgrade_schema(engine: Engine) -> None:
             )
             connection.execute(
                 text(
-                    "UPDATE attractions SET quality_flags = JSON_ARRAY() "
-                    "WHERE quality_flags IS NULL"
-                )
-            )
-            connection.execute(
-                text(
                     "ALTER TABLE attractions "
                     "MODIFY COLUMN tags JSON NOT NULL"
                 )
@@ -164,18 +126,11 @@ def upgrade_schema(engine: Engine) -> None:
                     "MODIFY COLUMN description TEXT NOT NULL"
                 )
             )
-            connection.execute(
-                text(
-                    "ALTER TABLE attractions "
-                    "MODIFY COLUMN quality_flags JSON NOT NULL"
-                )
-            )
-
             current_columns = {
                 column["name"]
                 for column in inspect(connection).get_columns("attractions")
             }
-            for column in _LEGACY_ATTRACTION_COLUMNS:
+            for column in (*_LEGACY_ATTRACTION_COLUMNS, *_REMOVED_ATTRACTION_COLUMNS):
                 if column in current_columns:
                     connection.execute(
                         text(f"ALTER TABLE attractions DROP COLUMN {column}")
@@ -186,8 +141,7 @@ def upgrade_schema(engine: Engine) -> None:
 
             # The former facts table is no longer part of the application
             # model. Preserve the only planning field we still need before
-            # dropping it; the new provenance and quality fields above remain
-            # owned by the canonical attraction row.
+            # dropping it.
             if "attraction_facts" in table_names:
                 facts_columns = {
                     column["name"]
@@ -205,23 +159,15 @@ def upgrade_schema(engine: Engine) -> None:
                     )
                 connection.execute(text("DROP TABLE attraction_facts"))
 
-            # ``create_all`` does not add indexes to an already-existing table.
+            # MySQL normally removes a single-column index with its column,
+            # but explicitly drop leftovers so repeated upgrades are safe.
             attraction_indexes = {
                 index["name"] for index in inspect(connection).get_indexes("attractions")
             }
-            for index_name, column_name in (
-                ("ix_attractions_data_source", "data_source"),
-                ("ix_attractions_quality_status", "quality_status"),
-                ("ix_attractions_is_active", "is_active"),
-                ("ix_attractions_coordinate_source", "coordinate_source"),
-                ("ix_attractions_parent_poi_id", "parent_poi_id"),
-            ):
-                if index_name not in attraction_indexes:
+            for index_name in _REMOVED_ATTRACTION_INDEXES:
+                if index_name in attraction_indexes:
                     connection.execute(
-                        text(
-                            f"CREATE INDEX {index_name} "
-                            f"ON attractions ({column_name})"
-                        )
+                        text(f"ALTER TABLE attractions DROP INDEX {index_name}")
                     )
 
         if "planning_jobs" in table_names:
