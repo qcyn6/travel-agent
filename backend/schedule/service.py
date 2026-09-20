@@ -70,6 +70,70 @@ class ScheduleBuilder:
         if selected is None:
             raise ValueError("每日时间窗口不足以安排当天的景点，请延长游玩时间")
 
+        return self._apply_result(day, selected)
+
+    def build_day_exact(
+        self,
+        day: TravelDay,
+        *,
+        day_start_time: str | None = None,
+        day_end_time: str | None = None,
+    ) -> TravelDay:
+        """Build a day only when every supplied stop and route fits.
+
+        ``build_day`` remains backwards compatible and may trim a legacy
+        itinerary to its longest valid prefix.  The dynamic scheduler uses
+        this strict variant so a candidate is accepted only after its route,
+        visit duration, meal and buffer have all been validated together.
+        """
+
+        window_start = (
+            _parse_time(day_start_time)
+            if day_start_time is not None
+            else self.day_start_minutes
+        )
+        window_end = (
+            _parse_time(day_end_time)
+            if day_end_time is not None
+            else DAY_END_MINUTES
+        )
+        _validate_window(window_start, window_end)
+        expected_route_count = max(0, len(day.attractions) - 1)
+        if len(day.routes) != expected_route_count:
+            raise ValueError("严格时间校验要求每一段相邻景点都有路线")
+        if any(route.duration_min is None for route in day.routes):
+            raise ValueError("严格时间校验无法接受没有耗时的路线")
+
+        result = self._simulate(
+            day.attractions,
+            day.routes,
+            day_start_minutes=window_start,
+            day_end_minutes=window_end,
+        )
+        if not result.fits:
+            raise ValueError("每日时间窗口不足以安排当天的全部景点")
+        return self._apply_result(day, result)
+
+    def try_build_day_exact(
+        self,
+        day: TravelDay,
+        *,
+        day_start_time: str | None = None,
+        day_end_time: str | None = None,
+    ) -> TravelDay | None:
+        """Return a strictly scheduled day, or ``None`` when it does not fit."""
+
+        try:
+            return self.build_day_exact(
+                day,
+                day_start_time=day_start_time,
+                day_end_time=day_end_time,
+            )
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _apply_result(day: TravelDay, selected: _ScheduleResult) -> TravelDay:
         return day.model_copy(
             update={
                 "attractions": selected.stops,

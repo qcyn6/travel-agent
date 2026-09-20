@@ -31,7 +31,7 @@ class RouteEnrichmentService:
     async def enrich_day(self, day: TravelDay, *, requested_mode: TransportMode) -> TravelDay:
         routes = await asyncio.gather(
             *(
-                self._enrich_segment(
+                self.resolve_segment(
                     origin,
                     destination,
                     requested_mode=requested_mode,
@@ -41,6 +41,28 @@ class RouteEnrichmentService:
             )
         )
         return day.model_copy(update={"routes": routes})
+
+    async def resolve_segment(
+        self,
+        origin: AttractionStop,
+        destination: AttractionStop,
+        *,
+        requested_mode: TransportMode,
+        city_adcode: str,
+    ) -> RouteSegment:
+        """Resolve one adjacent-attraction route with the normal fallbacks.
+
+        The public single-segment boundary lets the planner validate a
+        candidate before selecting it.  ``enrich_day`` intentionally reuses
+        the same path so route semantics stay identical in both workflows.
+        """
+
+        return await self._enrich_segment(
+            origin,
+            destination,
+            requested_mode=requested_mode,
+            city_adcode=city_adcode,
+        )
 
     async def _enrich_segment(
         self,

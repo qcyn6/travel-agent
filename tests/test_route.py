@@ -23,6 +23,32 @@ def stop(
 
 
 @pytest.mark.asyncio
+async def test_route_enrichment_exposes_single_segment_resolution():
+    class Client:
+        async def get_route(self, origin, destination, *, mode, **kwargs):
+            return RouteSegment(
+                origin_poi_id=origin.poi_id,
+                origin_name=origin.name,
+                destination_poi_id=destination.poi_id,
+                destination_name=destination.name,
+                mode=mode,
+                source="amap_mcp",
+                distance_m=900,
+                duration_min=12,
+            )
+
+    result = await RouteEnrichmentService(Client()).resolve_segment(
+        stop("A1", "起点", 120.1, 30.2),
+        stop("A2", "终点", 120.11, 30.21),
+        requested_mode="walking",
+        city_adcode="330100",
+    )
+
+    assert result.source == "amap_mcp"
+    assert result.duration_min == 12
+
+
+@pytest.mark.asyncio
 async def test_route_enrichment_uses_distance_estimate_when_mcp_route_fails():
     class FailedClient:
         async def get_route(self, *args, **kwargs):

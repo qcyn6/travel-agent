@@ -125,6 +125,42 @@ def test_schedule_uses_user_selected_same_day_window():
     assert all(stop.end_time <= "18:00" for stop in result.attractions)
 
 
+def test_schedule_exact_rejects_a_route_that_would_exceed_the_window():
+    first = AttractionStop(poi_id="A1", name="起点", city="杭州市", visit_duration_minutes=120)
+    second = AttractionStop(poi_id="A2", name="终点", city="杭州市", visit_duration_minutes=120)
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        attractions=[first, second],
+        routes=[_route(first, second, 30)],
+        description="严格时间窗口测试",
+    )
+
+    assert ScheduleBuilder(meal_minutes=0, buffer_minutes=0).try_build_day_exact(
+        day,
+        day_start_time="10:00",
+        day_end_time="14:00",
+    ) is None
+
+
+def test_schedule_exact_rejects_missing_route_duration():
+    first = AttractionStop(poi_id="A1", name="起点", city="杭州市")
+    second = AttractionStop(poi_id="A2", name="终点", city="杭州市")
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        attractions=[first, second],
+        routes=[_route(first, second, None)],
+        description="严格路线完整性测试",
+    )
+
+    assert ScheduleBuilder().try_build_day_exact(day) is None
+
+
 def test_schedule_marks_category_and_haversine_data_as_estimated():
     first = AttractionStop(
         poi_id="A1", name="公园", city="杭州市", estimated_visit_minutes=120,
