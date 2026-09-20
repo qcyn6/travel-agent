@@ -68,7 +68,7 @@ def infer_data_source(poi_id: str | None) -> str:
     value = str(poi_id or "").strip().casefold()
     if value.startswith("demo-"):
         return "demo"
-    if value.startswith("mct-"):
+    if value.startswith("mct-") or value.startswith("verified-"):
         return "curated"
     if value.startswith("b"):
         return "amap"

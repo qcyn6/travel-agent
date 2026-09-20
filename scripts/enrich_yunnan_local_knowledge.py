@@ -595,7 +595,7 @@ LOCAL_KNOWLEDGE: tuple[LocalAttractionKnowledge, ...] = (
         (98.5842, 24.4394),
     ),
     _item(
-        "demo-533100-03",
+        "verified-yn-rldjdyj",
         "德宏傣族景颇族自治州",
         "滨水景观",
         ("自然", "江河", "热带风光", "民族文化", "摄影", "自驾"),
@@ -604,7 +604,7 @@ LOCAL_KNOWLEDGE: tuple[LocalAttractionKnowledge, ...] = (
         (98.5780, 24.4350),
     ),
     _item(
-        "demo-533100-04",
+        "verified-yn-jiegao",
         "德宏傣族景颇族自治州",
         "古镇与街区",
         ("边境风情", "跨境文化", "商业街", "美食", "城市漫游", "人文"),
@@ -614,7 +614,7 @@ LOCAL_KNOWLEDGE: tuple[LocalAttractionKnowledge, ...] = (
     ),
     # 怒江州：峡谷和丙中洛均是区域性目的地，时长按规划参考估算。
     _item(
-        "demo-533300-01",
+        "verified-yn-nujiang-canyon",
         "怒江傈僳族自治州",
         "自然山水",
         ("自然", "峡谷", "江河", "山地", "民族文化", "摄影", "自驾"),
