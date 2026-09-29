@@ -2,6 +2,7 @@ import asyncio
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass
 import logging
+from inspect import Parameter, signature
 import time
 from uuid import uuid4
 
@@ -104,6 +105,39 @@ class PlanningApplicationService:
             conversation = conversation_repository.get(conversation_id, for_update=True)
             if conversation is None:
                 raise ConversationNotFoundError("当前会话不存在或已失效")
+
+            latest_job = job_repository.latest_for_conversation(
+                conversation_id,
+                for_update=True,
+            )
+            if latest_job is not None and latest_job.status == "waiting_for_choice":
+                selected_requirement = load_requirement_draft(
+                    conversation.requirement_draft or {}
+                )
+                if (
+                    conversation.requirement_confirmed
+                    and selected_requirement.is_ready()
+                    and selected_requirement.travel_scope in {"single_city", "multi_city"}
+                    and job_repository.resume_waiting_for_choice(
+                        latest_job,
+                        resume_value=selected_requirement.travel_scope,
+                    )
+                ):
+                    job_repository.append_event(
+                        latest_job,
+                        "job_resumed",
+                        {
+                            "status": "queued",
+                            "resume_value": selected_requirement.travel_scope,
+                        },
+                    )
+                    conversation_repository.set_status(
+                        conversation,
+                        "planning",
+                        commit=False,
+                    )
+                    session.commit()
+                    return self._job_handle(latest_job)
 
             active_job = job_repository.active_for_conversation(
                 conversation_id,
@@ -254,11 +288,16 @@ class PlanningApplicationService:
         text: str,
         *,
         travel_scope=None,
+        user_id: str | None = None,
     ) -> StandalonePlanningResult:
         """Run the legacy one-shot endpoint while keeping the same history/job model."""
 
         with open_session() as session:
-            conversation_repository = ConversationRepository(session)
+            conversation_repository = (
+                ConversationRepository(session, owner_id=user_id)
+                if user_id is not None
+                else ConversationRepository(session)
+            )
             job_repository = PlanningJobRepository(session)
             conversation = conversation_repository.create()
             conversation_id = conversation.id
@@ -274,7 +313,33 @@ class PlanningApplicationService:
 
             try:
                 workflow = build_travel_workflow(session, self.settings)
-                result = await workflow.run(text, travel_scope=travel_scope)
+                async def standalone_progress(step: str, label: str, status: str) -> None:
+                    self._record_progress(
+                        job.id,
+                        worker_id=None,
+                        step=step,
+                        label=label,
+                        status=status,
+                    )
+
+                stream_runner = getattr(workflow, "stream", None)
+                if callable(stream_runner):
+                    result = None
+                    async for event in stream_runner(
+                        text,
+                        travel_scope=travel_scope,
+                        progress=standalone_progress,
+                        thread_id=job.id,
+                    ):
+                        if event.get("type") == "plan_completed":
+                            result = event.get("result")
+                    if result is None:
+                        raise RuntimeError("LangGraph 规划事件流未返回最终方案")
+                else:
+                    run_kwargs = {"travel_scope": travel_scope}
+                    if self._accepts_keyword(workflow.run, "thread_id"):
+                        run_kwargs["thread_id"] = job.id
+                    result = await workflow.run(text, **run_kwargs)
                 requirement = RequirementDraft.model_validate(result.requirement.model_dump())
                 conversation_repository.save_requirement(
                     conversation,
@@ -402,6 +467,27 @@ class PlanningApplicationService:
                 status=status,
             )
 
+        async def consume_graph_event(event: dict) -> None:
+            nonlocal active_step
+            if event.get("type") != "planning_progress":
+                return
+            step = event.get("step")
+            label = event.get("label")
+            status = event.get("status")
+            if not all(isinstance(value, str) for value in (step, label, status)):
+                return
+            if status == "running":
+                active_step = (step, label)
+            elif active_step is not None and active_step[0] == step:
+                active_step = None
+            self._record_progress(
+                job_id,
+                worker_id=worker_id,
+                step=step,
+                label=label,
+                status=status,
+            )
+
         try:
             with open_session() as session:
                 conversation_repository = ConversationRepository(session)
@@ -416,7 +502,26 @@ class PlanningApplicationService:
                 try:
                     requirement = load_requirement_draft(job.requirement_json or {})
                     workflow = build_travel_workflow(session, self.settings)
-                    result = await workflow.run_requirement(requirement, progress=progress)
+                    resume_value = (job.progress_json or {}).get("_resume_value")
+                    stream_runner = getattr(workflow, "stream_requirement", None)
+                    if callable(stream_runner):
+                        result = None
+                        stream_kwargs = {"thread_id": job_id}
+                        if resume_value is not None:
+                            stream_kwargs["resume_value"] = resume_value
+                        async for event in stream_runner(requirement, **stream_kwargs):
+                            await consume_graph_event(event)
+                            if event.get("type") == "plan_completed":
+                                result = event.get("result")
+                        if result is None:
+                            raise RuntimeError("LangGraph 规划事件流未返回最终方案")
+                    else:
+                        # Compatibility for third-party workflow adapters that
+                        # predate the LangGraph event-stream interface.
+                        run_kwargs = {"progress": progress}
+                        if self._accepts_keyword(workflow.run_requirement, "thread_id"):
+                            run_kwargs["thread_id"] = job_id
+                        result = await workflow.run_requirement(requirement, **run_kwargs)
 
                     # Keep lock order consistent with prepare_conversation: owning
                     # conversation first, then its planning job.
@@ -627,6 +732,19 @@ class PlanningApplicationService:
         if message:
             return message
         return f"{type(exc).__name__}：服务未返回具体错误信息"
+
+    @staticmethod
+    def _accepts_keyword(method, keyword: str) -> bool:
+        """Keep application adapters compatible with older workflow fakes."""
+
+        try:
+            parameters = signature(method).parameters
+        except (TypeError, ValueError):
+            return False
+        return keyword in parameters or any(
+            parameter.kind is Parameter.VAR_KEYWORD
+            for parameter in parameters.values()
+        )
 
     def _heartbeat_seconds(self) -> float:
         return max(0.5, float(getattr(self.settings, "planning_heartbeat_seconds", 10.0)))

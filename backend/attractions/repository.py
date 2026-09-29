@@ -9,7 +9,7 @@ from backend.attractions.dedupe import dedupe_attractions
 from backend.database import get_db
 from backend.database.tables import AttractionRow, CityRow
 from backend.models.attraction import AttractionPOI
-from backend.tag_matching import tag_match_score
+from backend.tag_matching import compact_tag_match_score
 from backend.tag_vocabulary import canonicalize_tags
 
 
@@ -152,7 +152,7 @@ class AttractionRepository:
         normalized_interests = list(interests or [])
         rows.sort(
             key=lambda row: (
-                -tag_match_score(row.tags, normalized_interests),
+                -compact_tag_match_score(row.tags, normalized_interests),
                 row.id,
             )
         )

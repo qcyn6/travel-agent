@@ -51,6 +51,32 @@ def upgrade_schema(engine: Engine) -> None:
     table_names = set(inspector.get_table_names())
 
     with engine.begin() as connection:
+        for table_name in ("conversations", "general_conversations"):
+            if table_name not in table_names:
+                continue
+            columns = {
+                column["name"] for column in inspect(connection).get_columns(table_name)
+            }
+            if "user_id" not in columns:
+                connection.execute(
+                    text(f"ALTER TABLE {table_name} ADD COLUMN user_id VARCHAR(36) NULL")
+                )
+                connection.execute(
+                    text(f"CREATE INDEX ix_{table_name}_user_id ON {table_name} (user_id)")
+                )
+            if table_name == "general_conversations":
+                if "memory_summary" not in columns:
+                    connection.execute(
+                        text("ALTER TABLE general_conversations ADD COLUMN memory_summary TEXT NULL")
+                    )
+                if "memory_summary_through" not in columns:
+                    connection.execute(
+                        text(
+                            "ALTER TABLE general_conversations "
+                            "ADD COLUMN memory_summary_through INT NOT NULL DEFAULT 0"
+                        )
+                    )
+
         if "cities" in table_names:
             current_columns = {
                 column["name"] for column in inspect(connection).get_columns("cities")

@@ -39,7 +39,18 @@ class FakeMcp:
 @pytest.mark.parametrize(
     ("mode", "tool", "payload"),
     [
-        ("walking", "maps_direction_walking", {"route": {"paths": [{"distance": "6161", "duration": "4929"}]}}),
+        (
+            "walking",
+            "maps_direction_walking",
+            {"route": {"paths": [{
+                "distance": "6161",
+                "duration": "4929",
+                "steps": [
+                    {"polyline": "120.148,30.242;120.130,30.241"},
+                    {"polyline": "120.130,30.241;120.102,30.241"},
+                ],
+            }]}},
+        ),
         ("driving", "maps_direction_driving", {"paths": [{"distance": "7852", "duration": "1786"}]}),
         ("transit", "maps_direction_transit_integrated", {"distance": "4530", "transits": [{"duration": "3974"}]}),
     ],
@@ -62,10 +73,16 @@ async def test_amap_mcp_route_client_maps_all_transport_modes(mode, tool, payloa
     if mode == "transit":
         assert mcp.calls[0][1]["city"] == "杭州市"
         assert mcp.calls[0][1]["cityd"] == "杭州市"
+    if mode == "walking":
+        assert result.polyline == [
+            (120.148, 30.242),
+            (120.13, 30.241),
+            (120.102, 30.241),
+        ]
 
 
 @pytest.mark.asyncio
-async def test_amap_mcp_distance_is_used_for_auto_mode():
+async def test_local_distance_is_used_for_auto_mode_without_mcp_distance_call():
     class Client:
         def __init__(self):
             self.distance_calls = 0
@@ -73,7 +90,7 @@ async def test_amap_mcp_distance_is_used_for_auto_mode():
 
         async def get_distance(self, *_args, **_kwargs):
             self.distance_calls += 1
-            return 1200
+            raise AssertionError("自动交通方式不应调用高德距离接口")
 
         async def get_route(self, _origin, _destination, *, mode, **_kwargs):
             self.route_modes.append(mode)
@@ -107,8 +124,8 @@ async def test_amap_mcp_distance_is_used_for_auto_mode():
         requested_mode="auto",
     )
 
-    assert client.distance_calls == 1
-    assert client.route_modes == ["walking"]
+    assert client.distance_calls == 0
+    assert client.route_modes == ["transit"]
     assert result.routes[0].source == "amap_mcp"
 
 
@@ -134,11 +151,8 @@ async def test_amap_mcp_distance_client_uses_straight_line_tool():
 
 
 @pytest.mark.asyncio
-async def test_auto_mode_uses_local_distance_when_mcp_distance_fails():
+async def test_auto_mode_uses_local_distance_when_route_fails():
     class Client:
-        async def get_distance(self, *_args, **_kwargs):
-            raise RouteAPIError("distance offline")
-
         async def get_route(self, _origin, _destination, *, mode, **_kwargs):
             raise RouteAPIError("route offline")
 

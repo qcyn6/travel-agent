@@ -1,6 +1,7 @@
 import httpx
 import pytest
 
+from backend.models.attraction import AttractionPOI
 from backend.poi.amap import AmapAPIError, AmapAttractionClient, clean_attractions
 
 
@@ -13,7 +14,11 @@ def test_clean_attractions_normalizes_filters_and_deduplicates():
             "type": "风景名胜;国家级景点",
             "address": "西湖区",
             "location": "120.148,30.243",
-            "business": {"rating": "4.9"},
+            "business": {
+                "rating": "4.9",
+                "opentime_week": "周一至周日:08:00-18:00",
+                "opentime_today": "08:00-18:00",
+            },
         },
         {"id": "A2", "name": "西湖风景名胜区", "location": "120.148,30.243"},
         {"id": "A3", "name": "西湖景区停车场", "location": "120.1,30.2"},
@@ -27,6 +32,69 @@ def test_clean_attractions_normalizes_filters_and_deduplicates():
     assert result[0].longitude == 120.148
     assert result[0].latitude == 30.243
     assert result[0].rating == 4.9
+    assert result[0].opening_hours_weekly == "周一至周日:08:00-18:00"
+    assert result[0].opening_hours_today == "08:00-18:00"
+    assert result[0].opening_hours_status == "available"
+
+
+@pytest.mark.asyncio
+async def test_opening_hours_enrichment_requests_business_fields_and_exact_matches():
+    async def handler(request: httpx.Request) -> httpx.Response:
+        assert request.url.params["keywords"] == "灵隐寺"
+        assert request.url.params["show_fields"] == "business"
+        return httpx.Response(
+            200,
+            json={
+                "status": "1",
+                "pois": [
+                    {
+                        "id": "A1",
+                        "name": "灵隐寺",
+                        "business": {
+                            "opentime_week": "周一至周日:07:00-18:00",
+                            "opentime_today": "07:00-18:00",
+                        },
+                    }
+                ],
+            },
+        )
+
+    transport = httpx.MockTransport(handler)
+    async with httpx.AsyncClient(transport=transport) as http_client:
+        client = AmapAttractionClient("test-key", client=http_client)
+        candidate = AttractionPOI(poi_id="LOCAL1", name="灵隐寺", city="杭州市")
+        result = await client.enrich_opening_hours([candidate])
+
+    assert result[0].opening_hours_weekly == "周一至周日:07:00-18:00"
+    assert result[0].opening_hours_today == "07:00-18:00"
+    assert result[0].opening_hours_status == "available"
+
+
+@pytest.mark.asyncio
+async def test_opening_hours_enrichment_does_not_attach_nearby_name_match():
+    async def handler(_: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            200,
+            json={
+                "status": "1",
+                "pois": [
+                    {
+                        "id": "A2",
+                        "name": "灵隐寺游客中心",
+                        "business": {"opentime_week": "周一至周日:00:00-23:59"},
+                    }
+                ],
+            },
+        )
+
+    transport = httpx.MockTransport(handler)
+    async with httpx.AsyncClient(transport=transport) as http_client:
+        client = AmapAttractionClient("test-key", client=http_client)
+        candidate = AttractionPOI(poi_id="LOCAL1", name="灵隐寺", city="杭州市")
+        result = await client.enrich_opening_hours([candidate])
+
+    assert result[0].opening_hours_weekly is None
+    assert result[0].opening_hours_status == "unavailable"
 
 
 @pytest.mark.asyncio

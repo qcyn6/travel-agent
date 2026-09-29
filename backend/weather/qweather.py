@@ -1,3 +1,5 @@
+import asyncio
+from collections.abc import Sequence
 from datetime import date
 from typing import Any
 
@@ -25,42 +27,102 @@ class QWeatherClient:
         self.cache_ttl_seconds = cache_ttl_seconds
 
     async def get_weather(self, *, city: str, target_date: date, longitude: float, latitude: float) -> WeatherResult:
+        results = await self.get_weather_range(
+            city=city,
+            target_dates=[target_date],
+            longitude=longitude,
+            latitude=latitude,
+        )
+        return results[0]
+
+    async def get_weather_range(
+        self,
+        *,
+        city: str,
+        target_dates: Sequence[date],
+        longitude: float,
+        latitude: float,
+    ) -> list[WeatherResult]:
         if not self.api_key or not self.api_host:
             raise QWeatherConfigurationError("未配置和风天气 API")
-        cache_key = f"weather:{city}:{target_date.isoformat()}"
+        dates = sorted(set(target_dates))
+        if not dates:
+            return []
+
+        cached_results: dict[date, WeatherResult] = {}
+        missing_dates = []
         if self.cache is not None:
-            cached = await self.cache.get_json(cache_key)
-            if isinstance(cached, dict):
+            for target_date in dates:
+                cached = await self.cache.get_json(f"weather:{city}:{target_date.isoformat()}")
+                if isinstance(cached, dict):
+                    try:
+                        result = WeatherResult.model_validate(cached)
+                        if result.date == target_date:
+                            cached_results[target_date] = result
+                            continue
+                    except (TypeError, ValueError):
+                        pass
+                missing_dates.append(target_date)
+        else:
+            missing_dates = dates
+
+        fetched_results: dict[date, WeatherResult] = {}
+        if missing_dates:
+            payload = await self._fetch_daily_payload(longitude=longitude, latitude=latitude)
+            for target_date in missing_dates:
                 try:
-                    return WeatherResult.model_validate(cached)
-                except (TypeError, ValueError):
-                    pass
+                    fetched_results[target_date] = _parse_daily(
+                        payload,
+                        city=city,
+                        target_date=target_date,
+                    )
+                except QWeatherAPIError:
+                    raise
+            if self.cache is not None:
+                for target_date, result in fetched_results.items():
+                    await self.cache.set_json(
+                        f"weather:{city}:{target_date.isoformat()}",
+                        result.model_dump(mode="json"),
+                        ttl_seconds=self.cache_ttl_seconds,
+                    )
+        return [cached_results.get(target_date) or fetched_results[target_date] for target_date in dates]
+
+    async def _fetch_daily_payload(self, *, longitude: float, latitude: float) -> dict[str, Any]:
         url = f"https://{self.api_host}/weather/v1/daily/{latitude:.4f}/{longitude:.4f}"
         headers = {"X-QW-Api-Key": self.api_key, "Accept-Encoding": "gzip"}
         params = {"days": "10", "localTime": "true", "lang": "zh"}
-        try:
-            async with observe_external_request("qweather", "forecast"):
-                if self.client is not None:
-                    response = await self.client.get(url, headers=headers, params=params)
-                else:
-                    async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
-                        response = await client.get(url, headers=headers, params=params)
-        except httpx.RequestError as exc:
-            raise QWeatherAPIError("和风天气网络请求失败") from exc
-        if response.status_code != 200:
+        response = None
+        for attempt in range(2):
+            try:
+                async with observe_external_request("qweather", "forecast"):
+                    if self.client is not None:
+                        response = await self.client.get(url, headers=headers, params=params)
+                    else:
+                        async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
+                            response = await client.get(url, headers=headers, params=params)
+            except httpx.RequestError as exc:
+                if attempt == 0:
+                    await asyncio.sleep(0.25)
+                    continue
+                raise QWeatherAPIError("和风天气网络请求失败") from exc
+
+            retryable_status = response.status_code in {408, 429} or response.status_code >= 500
+            if response.status_code == 200:
+                break
+            if attempt == 0 and retryable_status:
+                await asyncio.sleep(0.25)
+                continue
             raise QWeatherAPIError(f"和风天气返回 HTTP {response.status_code}")
+
+        if response is None or response.status_code != 200:
+            raise QWeatherAPIError("和风天气网络请求失败")
         try:
             payload = response.json()
         except ValueError as exc:
             raise QWeatherAPIError("和风天气返回了无效 JSON") from exc
-        result = _parse_daily(payload, city=city, target_date=target_date)
-        if self.cache is not None:
-            await self.cache.set_json(
-                cache_key,
-                result.model_dump(mode="json"),
-                ttl_seconds=self.cache_ttl_seconds,
-            )
-        return result
+        if not isinstance(payload, dict):
+            raise QWeatherAPIError("和风天气结果格式无效")
+        return payload
 
 
 def _parse_daily(payload: dict[str, Any], *, city: str, target_date: date) -> WeatherResult:

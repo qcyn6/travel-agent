@@ -9,7 +9,7 @@ from backend.database import get_db
 from backend.database.tables import AttractionRow, CityRow
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.retrieval import AttractionDocument
-from backend.tag_matching import tag_match_score
+from backend.tag_matching import compact_tag_match_score
 
 
 class KnowledgeRepository:
@@ -73,7 +73,7 @@ class KnowledgeRepository:
         )
         rows.sort(
             key=lambda row_data: (
-                -tag_match_score(row_data[0].tags, interests),
+                -compact_tag_match_score(row_data[0].tags, interests),
                 row_data[0].id,
             )
         )

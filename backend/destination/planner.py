@@ -11,7 +11,11 @@ from backend.models.requirement import (
     TravelRequirement,
     validate_scope_day_boundary,
 )
-from backend.tag_matching import normalize_interest_tags, tag_match_score
+from backend.tag_matching import (
+    compact_tag_match_score,
+    normalize_interest_tags,
+    tag_match_score,
+)
 
 
 class DestinationPlanningError(ValueError):
@@ -54,25 +58,56 @@ class DestinationPlanner:
                 city_stays=self._allocate(cities, requirement.days, interests)
             )
         province_name = requirement.province
+        candidates = None
+        requires_multi_city = requirement.travel_scope == "multi_city" or (
+            requirement.travel_scope == "auto"
+            and requirement.days > MAX_SINGLE_CITY_DAYS
+        )
         if not province_name:
             provinces = self.repository.list_provinces()
             if not provinces:
                 raise DestinationPlanningError("暂无可推荐的省份")
-            province = max(
-                provinces,
+            province_candidates = []
+            for province in provinces:
+                province_cities = self.repository.list_cities_by_province(
+                    province.name
+                )
+                if requires_multi_city and len(province_cities) < 2:
+                    # Municipalities and special administrative regions are
+                    # valid single-city destinations, but cannot form the
+                    # same-province multi-city itinerary required for 4–7 days.
+                    continue
+                province_candidates.append((province, province_cities))
+            if not province_candidates:
+                raise DestinationPlanningError(
+                    "暂无至少包含2个可规划城市的省份，无法安排同省多城市行程"
+                )
+            province, candidates = max(
+                province_candidates,
                 key=lambda item: (
-                    tag_match_score(item.tags, interests),
-                    -item.id,
+                    compact_tag_match_score(item[0].tags, interests),
+                    tag_match_score(item[0].tags, interests),
+                    -item[0].id,
                 ),
             )
             province_name = province.name
 
-        candidates = self.repository.list_cities_by_province(province_name)
+        if candidates is None:
+            candidates = self.repository.list_cities_by_province(province_name)
         if not candidates:
             raise DestinationPlanningError(f"{province_name} 暂无候选城市")
+        if requires_multi_city and len(candidates) < 2:
+            raise DestinationPlanningError(
+                f"{province_name}属于单城市型省级地区，当前只支持1～3天单城市规划；"
+                "4～7天请选择至少包含2个城市的省份"
+            )
         ranked = sorted(
             candidates,
-            key=lambda city: (-self._match_score(city, interests), city.id),
+            key=lambda city: (
+                -self._match_score(city, interests),
+                -self._exact_match_score(city, interests),
+                city.id,
+            ),
         )
         if requirement.travel_scope == "single_city" or (
             requirement.travel_scope == "auto" and requirement.days <= MAX_SINGLE_CITY_DAYS
@@ -97,6 +132,7 @@ class DestinationPlanner:
                     feasible,
                     key=lambda group: (
                         sum(self._match_score(city, interests) for city in group),
+                        sum(self._exact_match_score(city, interests) for city in group),
                         -sum(city.id for city in group),
                     ),
                 )
@@ -147,6 +183,10 @@ class DestinationPlanner:
 
     @staticmethod
     def _match_score(city, interests: list[str]) -> int:
+        return compact_tag_match_score(city.tags, interests)
+
+    @staticmethod
+    def _exact_match_score(city, interests: list[str]) -> int:
         return tag_match_score(city.tags, interests)
 
     def _normalize_interests(self, interests: list[str]) -> list[str]:

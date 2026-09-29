@@ -1,4 +1,4 @@
-"""Build the ordinary-chat province/city Chroma knowledge index."""
+"""Build the independent travel-topic Chroma index."""
 
 from __future__ import annotations
 
@@ -14,16 +14,13 @@ sys.path.insert(0, str(ROOT))
 
 from backend.config import get_settings  # noqa: E402
 from backend.rag.embedding import EmbeddingError  # noqa: E402
-from backend.rag.runtime import build_knowledge_retrieval_service  # noqa: E402
+from backend.rag.runtime import build_guide_retrieval_service  # noqa: E402
 
 
 async def rebuild() -> int:
     settings = get_settings()
-    service = build_knowledge_retrieval_service(settings)
+    service = build_guide_retrieval_service(settings)
     documents = service.source.list_documents()
-    # Reuse one HTTP connection for the whole rebuild. Opening a new client
-    # for every small embedding batch is slower and more prone to transient
-    # provider connection resets.
     async with httpx.AsyncClient(timeout=settings.embedding_timeout_seconds) as client:
         service.embedding_client.client = client
         indexed_count = 0
@@ -34,12 +31,12 @@ async def rebuild() -> int:
             except EmbeddingError:
                 if attempt == 3:
                     raise
-                print(f"Embedding 请求暂时失败，{2} 秒后重试（{attempt}/3）", flush=True)
+                print(f"Embedding 请求暂时失败，2 秒后重试（{attempt}/3）", flush=True)
                 await asyncio.sleep(2)
     print(
-        "省份/城市知识库索引完成："
+        "旅游主题知识库索引完成："
         f"documents={len(documents)}, indexed={indexed_count}, "
-        f"collection={settings.knowledge_chroma_collection}",
+        f"collection={settings.guide_knowledge_chroma_collection}",
         flush=True,
     )
     return indexed_count
@@ -51,7 +48,7 @@ def main() -> None:
     try:
         asyncio.run(rebuild())
     except Exception as exc:  # noqa: BLE001 - provide a concise CLI failure
-        print(f"知识库索引失败：{type(exc).__name__}: {exc}", file=sys.stderr)
+        print(f"旅游主题知识库索引失败：{type(exc).__name__}: {exc}", file=sys.stderr)
         raise SystemExit(1) from exc
 
 

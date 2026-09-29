@@ -1,83 +1,53 @@
-from collections.abc import Mapping, Sequence
-
 from backend.models.evaluation import DayEvaluationMetric, EvaluationIssue, EvaluationResult
 from backend.models.travel_plan import TravelDay, TravelPlan
+from backend.schedule.opening_hours import (
+    opening_intervals_for_date,
+    visit_fits_opening_hours,
+)
 
 
 class PlanEvaluator:
     def __init__(
         self,
         *,
-        max_day_minutes: int = 600,
         max_route_segment_minutes: int = 60,
         max_daily_route_minutes: int = 180,
-        minimum_interest_coverage: float = 0.5,
     ):
-        self.max_day_minutes = max_day_minutes
-        self.max_route_segment_minutes = max_route_segment_minutes
-        self.max_daily_route_minutes = max_daily_route_minutes
-        self.minimum_interest_coverage = minimum_interest_coverage
+        self.max_route_segment_minutes = max(0, int(max_route_segment_minutes))
+        self.max_daily_route_minutes = max(0, int(max_daily_route_minutes))
 
     def evaluate(self, plan: TravelPlan, requirement) -> EvaluationResult:
-        """Evaluate a plan using the public, backwards-compatible contract."""
-
-        return self.evaluate_with_context(plan, requirement)
-
-    def evaluate_with_context(
-        self,
-        plan: TravelPlan,
-        requirement,
-        *,
-        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
-    ) -> EvaluationResult:
-        """Evaluate with transient retrieval context when it is available.
-
-        The tag mapping belongs to one planning run only. It is intentionally
-        not persisted on ``AttractionStop`` or in the attractions table, while
-        allowing the evaluator to use the same vocabulary as retrieval.
-        """
+        """Review route reliability and schedule constraints without replanning."""
 
         issues: list[EvaluationIssue] = []
         for day in plan.itinerary:
-            issues.extend(self._evaluate_schedule(day))
             issues.extend(self._evaluate_routes(day))
+            issues.extend(self._evaluate_schedule(day, requirement))
             issues.extend(self._evaluate_external_status(day))
-        issues.extend(
-            self._evaluate_preferences(
-                plan,
-                requirement.interests,
-                interest_tags_by_poi=interest_tags_by_poi,
-            )
-        )
+            for warning in _manual_warnings(plan, day.day):
+                if any(issue.day == day.day and issue.message == warning for issue in issues):
+                    continue
+                issues.append(
+                    EvaluationIssue(
+                        type="manual_adjustment",
+                        severity="medium",
+                        day=day.day,
+                        message=warning,
+                        suggestion="这是你手动选择后的提示；请按实际情况决定是否保留。",
+                    )
+                )
         issues = self._deduplicate_issues(issues)
         hard_issue_exists = any(issue.severity == "high" for issue in issues)
         return EvaluationResult(
             passed=not hard_issue_exists,
             issues=issues,
-            daily_metrics=self._daily_metrics(
-                plan,
-                requirement.interests,
-                interest_tags_by_poi=interest_tags_by_poi,
-            ),
+            daily_metrics=self._daily_metrics(plan),
         )
 
-    def _evaluate_schedule(self, day: TravelDay) -> list[EvaluationIssue]:
-        if day.schedule is None or day.schedule.total_minutes <= self.max_day_minutes:
-            return []
-        hours = round(day.schedule.total_minutes / 60, 1)
-        return [
-            EvaluationIssue(
-                type="schedule_density",
-                severity="high",
-                day=day.day,
-                message=f"第 {day.day} 天预计总耗时约 {hours} 小时，行程过密",
-                suggestion="减少一个景点或缩短部分景点游览时间",
-            )
-        ]
-
     def _evaluate_routes(self, day: TravelDay) -> list[EvaluationIssue]:
-        issues = []
-        route_minutes = sum(route.duration_min or 0 for route in day.routes)
+        issues: list[EvaluationIssue] = []
+        routes = _scheduled_routes(day)
+        route_minutes = sum(route.duration_min or 0 for route in routes)
         if route_minutes > self.max_daily_route_minutes:
             issues.append(
                 EvaluationIssue(
@@ -88,8 +58,11 @@ class PlanEvaluator:
                     suggestion="减少远距离景点或调整景点组合",
                 )
             )
-        for route in day.routes:
-            if route.duration_min is not None and route.duration_min > self.max_route_segment_minutes:
+        for route in routes:
+            if (
+                route.duration_min is not None
+                and route.duration_min > self.max_route_segment_minutes
+            ):
                 issues.append(
                     EvaluationIssue(
                         type="route",
@@ -99,20 +72,117 @@ class PlanEvaluator:
                             f"{route.origin_name}到{route.destination_name}预计需要"
                             f" {route.duration_min} 分钟"
                         ),
-                        suggestion="优先替换为距离更近的景点或调整顺序",
+                        suggestion="可考虑手动更换景点；系统不会自动改动你的行程",
+                    )
+                )
+        return issues
+
+    @staticmethod
+    def _evaluate_schedule(day: TravelDay, requirement) -> list[EvaluationIssue]:
+        issues: list[EvaluationIssue] = []
+        window_start = _clock_minutes(getattr(requirement, "daily_start_time", None))
+        window_end = _clock_minutes(getattr(requirement, "daily_end_time", None))
+
+        if window_end is not None:
+            end_time = (
+                _clock_minutes(day.schedule.end_time)
+                if day.schedule is not None
+                else None
+            )
+            outside_stops = [
+                stop for stop in day.attractions
+                if (stop_end := _clock_minutes(stop.end_time)) is not None
+                and stop_end > window_end
+            ]
+            if end_time is not None and end_time > window_end:
+                # Keep the message identical to manual replacement previews so
+                # the evaluator can de-duplicate the same warning cleanly.
+                issues.append(
+                    EvaluationIssue(
+                        type="schedule",
+                        severity="medium",
+                        day=day.day,
+                        message=(
+                            f"第{day.day}天预计到{day.schedule.end_time}结束，"
+                            f"超过你设置的{getattr(requirement, 'daily_end_time')}。"
+                        ),
+                        suggestion="行程仍保留，请确认是否接受超出时间窗口。",
+                    )
+                )
+            elif outside_stops:
+                names = "、".join(stop.name for stop in outside_stops)
+                issues.append(
+                    EvaluationIssue(
+                        type="schedule",
+                        severity="medium",
+                        day=day.day,
+                        message=f"第 {day.day} 天{names}的游览结束时间超出每日时间窗口",
+                        suggestion="请核对景点游览时长或手动调整行程。",
+                    )
+                )
+
+        if window_start is not None:
+            early_stops = [
+                stop for stop in day.attractions
+                if (stop_start := _clock_minutes(stop.start_time)) is not None
+                and stop_start < window_start
+            ]
+            if early_stops:
+                names = "、".join(stop.name for stop in early_stops)
+                issues.append(
+                    EvaluationIssue(
+                        type="schedule",
+                        severity="medium",
+                        day=day.day,
+                        message=f"第 {day.day} 天{names}的游览开始时间早于每日时间窗口",
+                        suggestion="请核对酒店到首站的交通时间和当天开始时间。",
+                    )
+                )
+
+        for stop in day.attractions:
+            if (
+                not stop.opening_hours_weekly
+                or not stop.start_time
+                or opening_intervals_for_date(stop.opening_hours_weekly, day.date) is None
+            ):
+                continue
+            start = _clock_minutes(stop.start_time)
+            end = _clock_minutes(stop.end_time)
+            duration = stop.visit_duration_minutes
+            if start is None:
+                continue
+            if end is not None:
+                duration = max(0, end - start)
+            if not visit_fits_opening_hours(
+                stop.opening_hours_weekly,
+                day.date,
+                start,
+                duration,
+            ):
+                issues.append(
+                    EvaluationIssue(
+                        type="schedule",
+                        severity="medium",
+                        day=day.day,
+                        message=(
+                            f"{stop.name}预计{stop.start_time or '到达时'}游览，"
+                            "可能不在已知营业时间内。"
+                        ),
+                        suggestion="高德营业时间仅供参考，请核实后决定是否保留。",
                     )
                 )
         return issues
 
     @staticmethod
     def _evaluate_external_status(day: TravelDay) -> list[EvaluationIssue]:
-        """Expose route/weather degradation inside the rule-based review."""
+        """Expose route degradation as user-visible notices."""
 
         issues: list[EvaluationIssue] = []
+        routes = _scheduled_routes(day)
         estimated_routes = sum(
-            route.estimated or route.source == "haversine" for route in day.routes
+            route.estimated or route.source == "haversine" for route in routes
         )
-        unavailable_routes = sum(route.source == "unavailable" for route in day.routes)
+        unavailable_routes = sum(route.source == "unavailable" for route in routes)
         if estimated_routes:
             issues.append(
                 EvaluationIssue(
@@ -120,7 +190,7 @@ class PlanEvaluator:
                     severity="medium",
                     day=day.day,
                     message=f"第 {day.day} 天有 {estimated_routes} 段路线不是地图真实路线",
-                    suggestion="重新获取地图路线后再确认交通时间",
+                    suggestion="出发前用地图再次确认交通时间",
                 )
             )
         if unavailable_routes:
@@ -130,7 +200,7 @@ class PlanEvaluator:
                     severity="high",
                     day=day.day,
                     message=f"第 {day.day} 天有 {unavailable_routes} 段路线无法获取",
-                    suggestion="更换景点组合或稍后重新获取路线",
+                    suggestion="出发前确认这段交通方式和耗时",
                 )
             )
         if day.weather is not None and day.weather.status != "available":
@@ -146,82 +216,23 @@ class PlanEvaluator:
             )
         return issues
 
-    def _evaluate_preferences(
-        self,
-        plan: TravelPlan,
-        interests: list[str],
-        *,
-        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
-    ) -> list[EvaluationIssue]:
-        if not interests:
-            return []
-        if interest_tags_by_poi is not None:
-            covered = sum(
-                any(
-                    _interest_matches_stop(
-                        interest,
-                        stop,
-                        interest_tags_by_poi=interest_tags_by_poi,
-                    )
-                    for day in plan.itinerary
-                    for stop in day.attractions
-                )
-                for interest in interests
-            )
-        else:
-            searchable = " ".join(
-                f"{stop.name} {stop.category or ''} {stop.description or ''}"
-                for day in plan.itinerary
-                for stop in day.attractions
-            ).lower()
-            covered = sum(_interest_matches(interest, searchable) for interest in interests)
-        coverage = covered / len(interests)
-        if coverage >= self.minimum_interest_coverage:
-            return []
-        return [
-            EvaluationIssue(
-                type="preference",
-                severity="medium",
-                message=f"当前行程对明确兴趣的覆盖率约为 {round(coverage * 100)}%",
-                suggestion="优先补充与用户兴趣更匹配的景点",
-            )
-        ]
-
-    def _daily_metrics(
-        self,
-        plan: TravelPlan,
-        interests: list[str],
-        *,
-        interest_tags_by_poi: Mapping[str, Sequence[str]] | None = None,
-    ) -> list[DayEvaluationMetric]:
+    def _daily_metrics(self, plan: TravelPlan) -> list[DayEvaluationMetric]:
         metrics: list[DayEvaluationMetric] = []
         for day in plan.itinerary:
-            covered = (
-                sum(
-                    any(
-                        _interest_matches_stop(
-                            interest,
-                            stop,
-                            interest_tags_by_poi=interest_tags_by_poi,
-                        )
-                        for stop in day.attractions
-                    )
-                    for interest in interests
-                )
-                if interests
-                else 0
-            )
-            route_count = len(day.routes)
+            scheduled_routes = _scheduled_routes(day)
+            displayed_routes = _map_routes(day)
+            route_count = len(displayed_routes)
             estimated_count = sum(
                 route.estimated or route.source == "haversine"
-                for route in day.routes
+                for route in displayed_routes
             )
             metrics.append(
                 DayEvaluationMetric(
                     day=day.day,
                     attraction_count=len(day.attractions),
-                    preference_coverage=(covered / len(interests)) if interests else 1.0,
-                    route_minutes=sum(route.duration_min or 0 for route in day.routes),
+                    # The end-of-day hotel leg is visible on the map, but is
+                    # intentionally outside the day's schedule and travel total.
+                    route_minutes=sum(route.duration_min or 0 for route in scheduled_routes),
                     route_segments=route_count,
                     estimated_route_ratio=(estimated_count / route_count) if route_count else 0.0,
                 )
@@ -241,46 +252,33 @@ class PlanEvaluator:
         return result
 
 
-_INTEREST_ALIASES = {
-    "摄影": ("摄影", "拍照", "风景", "古城", "古镇"),
-    "拍照": ("摄影", "拍照", "风景", "古城", "古镇"),
-    "历史": ("历史", "文化", "遗址", "古城", "古镇", "博物馆"),
-    "文化": ("文化", "人文", "历史", "博物馆", "古城", "古镇"),
-    "自然": ("自然", "山", "湖", "湿地", "森林", "公园", "风景"),
-    "美食": ("美食", "餐饮", "小吃"),
-}
+def _manual_warnings(plan: TravelPlan, day: int) -> list[str]:
+    warnings = plan.manual_adjustment_warnings.get(day)
+    if warnings is None:
+        warnings = plan.manual_adjustment_warnings.get(str(day), [])
+    return [warning.strip() for warning in warnings if isinstance(warning, str) and warning.strip()]
 
 
-def _interest_matches(interest: str, searchable: str) -> bool:
-    normalized = interest.strip().lower()
-    aliases = next((values for key, values in _INTEREST_ALIASES.items() if key in normalized), (normalized,))
-    return any(alias in searchable for alias in aliases)
+def _clock_minutes(value: str | None) -> int | None:
+    if not isinstance(value, str):
+        return None
+    try:
+        day_offset = 1440 if value.startswith("次日") else 0
+        clock_value = value.removeprefix("次日")
+        hour, minute = clock_value.split(":", 1)
+        hour_value, minute_value = int(hour), int(minute)
+        if not 0 <= hour_value <= 23 or not 0 <= minute_value <= 59:
+            return None
+        return day_offset + hour_value * 60 + minute_value
+    except (AttributeError, TypeError, ValueError):
+        return None
 
 
-def _interest_matches_tags(interest: str, tags: Sequence[str]) -> bool:
-    normalized = interest.strip().lower()
-    aliases = next(
-        (values for key, values in _INTEREST_ALIASES.items() if key in normalized),
-        (normalized,),
-    )
-    clean_tags = [str(tag).strip().lower() for tag in tags if str(tag).strip()]
-    return any(
-        alias.lower() == tag or alias.lower() in tag or tag in alias.lower()
-        for alias in aliases
-        for tag in clean_tags
-    )
+def _scheduled_routes(day: TravelDay):
+    return ([day.start_hotel_route] if day.start_hotel_route is not None else []) + day.routes
 
 
-def _interest_matches_stop(
-    interest: str,
-    stop,
-    *,
-    interest_tags_by_poi: Mapping[str, Sequence[str]] | None,
-) -> bool:
-    tags = interest_tags_by_poi.get(stop.poi_id, ()) if interest_tags_by_poi is not None else ()
-    if tags:
-        return _interest_matches_tags(interest, tags)
-    # Historical or partially enriched plans may not have a tag entry. Keep
-    # the old text-based fallback for those individual stops only.
-    searchable = f"{stop.name} {stop.category or ''} {stop.description or ''}".lower()
-    return _interest_matches(interest, searchable)
+def _map_routes(day: TravelDay):
+    """Return every route segment displayed on the day's map."""
+
+    return _scheduled_routes(day) + ([day.hotel_route] if day.hotel_route is not None else [])

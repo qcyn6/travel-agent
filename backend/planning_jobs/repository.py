@@ -24,13 +24,21 @@ class PlanningJobRepository:
             query = query.with_for_update()
         return self.session.scalar(query)
 
-    def latest_for_conversation(self, conversation_id: str) -> PlanningJobRow | None:
-        return self.session.scalar(
+    def latest_for_conversation(
+        self,
+        conversation_id: str,
+        *,
+        for_update: bool = False,
+    ) -> PlanningJobRow | None:
+        query = (
             select(PlanningJobRow)
             .where(PlanningJobRow.conversation_id == conversation_id)
             .order_by(PlanningJobRow.created_at.desc(), PlanningJobRow.id.desc())
             .limit(1)
         )
+        if for_update:
+            query = query.with_for_update()
+        return self.session.scalar(query)
 
     def active_for_conversation(
         self,
@@ -121,6 +129,23 @@ class PlanningJobRepository:
         row.error = None
         row.retry_count = (row.retry_count or 0) + 1
         row.worker_id = worker_id
+
+    def resume_waiting_for_choice(self, row: PlanningJobRow, *, resume_value: str) -> bool:
+        """Put a checkpointed human-choice job back on the worker queue."""
+
+        if row.status != "waiting_for_choice":
+            return False
+        row.status = "queued"
+        row.started_at = None
+        row.heartbeat_at = None
+        row.finished_at = None
+        row.error = None
+        row.worker_id = None
+        row.current_step = None
+        # Keep this marker until the worker reads it. Progress events will
+        # replace the public progress payload once the resumed graph starts.
+        row.progress_json = {"_resume_value": resume_value}
+        return True
 
     def record_progress(
         self,

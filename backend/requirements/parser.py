@@ -11,15 +11,14 @@ from backend.models.requirement import (
 )
 from backend.requirements.dates import resolve_start_date
 from backend.time_utils import extract_daily_time_window
+from backend.tag_vocabulary import canonicalize_interest
 
 
 _INTEREST_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
-    ("历史文化", ("历史文化", "历史", "文化")),
+    ("历史文化", ("历史文化", "历史", "文化", "人文")),
     ("自然", ("自然", "自然风光", "山水", "风景")),
-    ("古城", ("古城",)),
-    ("古镇", ("古镇",)),
+    ("古城", ("古城", "古镇")),
     ("摄影", ("摄影", "拍照", "出片")),
-    ("人文", ("人文",)),
     ("美食", ("美食", "吃", "小吃")),
     ("休闲", ("休闲", "慢慢玩", "慢游")),
 )
@@ -98,7 +97,7 @@ def canonicalize_interests(values: list[str]) -> list[str]:
     result: list[str] = []
     for value in values:
         normalized = value.strip()
-        canonical = next(
+        canonical = canonicalize_interest(normalized, fallback=None) or next(
             (
                 name
                 for name, aliases in _INTEREST_ALIASES
@@ -216,9 +215,21 @@ class RequirementParser:
         if boundary_error:
             raise RequirementBoundaryError(boundary_error)
 
-        preference_markers = ("轻松", "慢一点", "慢慢", "紧凑", "不赶", "适合拍照")
-        preference_text = query if any(marker in query for marker in preference_markers) else None
         compact_query = re.sub(r"[，。！？、\s]+", "", query)
+        preference_markers = (
+            "轻松",
+            "慢一点",
+            "慢慢",
+            "紧凑",
+            "不赶",
+            "适合拍照",
+            "喜欢拍照",
+            "深度体验",
+            "沉浸体验",
+            "优先游览",
+            "代表性景点",
+        )
+        preference_text = query if any(marker in query for marker in preference_markers) else None
         city_preference_confirmed = bool(cities) or any(
             marker in compact_query for marker in _CITY_PREFERENCE_CONFIRMATION_MARKERS
         ) or compact_query in {"没有", "无", "都行", "都可以", "你定"}

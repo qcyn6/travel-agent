@@ -99,3 +99,37 @@ async def test_requirement_service_prefers_local_relative_date_over_llm_date():
     ).parse("明天去杭州玩一天，喜欢自然")
 
     assert result.start_date == date.today() + timedelta(days=1)
+
+
+@pytest.mark.asyncio
+async def test_requirement_service_forwards_conversation_context_to_llm():
+    captured = {}
+
+    class LLM:
+        async def parse(self, text, *, conversation_history):
+            captured["text"] = text
+            captured["history"] = conversation_history
+            from backend.models.requirement import TravelRequirement
+
+            return TravelRequirement(
+                province="云南省",
+                cities=["大理市", "昆明市", "丽江市"],
+                days=7,
+                interests=["自然"],
+                travel_scope="multi_city",
+            )
+
+    history = [
+        {"role": "user", "content": "我想去云南"},
+        {"role": "assistant", "content": "你准备玩几天？"},
+    ]
+    result = await RequirementParsingService(
+        llm_parser=LLM(), fallback_parser=RequirementParser()
+    ).parse(
+        "等会，我突然想再加一个丽江",
+        conversation_history=history,
+    )
+
+    assert result.cities == ["大理市", "昆明市", "丽江市"]
+    assert captured["text"] == "等会，我突然想再加一个丽江"
+    assert captured["history"] == history

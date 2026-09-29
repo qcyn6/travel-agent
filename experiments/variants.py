@@ -22,15 +22,15 @@ EXPERIMENT_VARIANTS: tuple[ExperimentVariant, ...] = (
     ),
     ExperimentVariant(
         variant_id="balanced",
-        label="完整算法 0.7/0.3",
-        preference_weight=0.7,
-        distance_weight=0.3,
+        label="生产算法 偏好0.4/距离0.6",
+        preference_weight=0.4,
+        distance_weight=0.6,
     ),
     ExperimentVariant(
         variant_id="distance_heavy",
-        label="距离敏感 0.5/0.5",
-        preference_weight=0.5,
-        distance_weight=0.5,
+        label="路线优先 偏好0.2/距离0.8",
+        preference_weight=0.2,
+        distance_weight=0.8,
     ),
 )
 

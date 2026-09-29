@@ -3,6 +3,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from backend.models.route import RouteSegment
 from backend.models.requirement import (
     MAX_SINGLE_CITY_DAYS,
     MAX_TRAVEL_DAYS,
@@ -13,6 +14,7 @@ from backend.models.requirement import (
     validate_start_date,
     validate_travel_days,
 )
+from backend.requirements.preferences import is_meaningful_preference_text
 from backend.time_utils import normalize_clock_time
 
 
@@ -28,7 +30,13 @@ class RequirementDraft(TravelRequirement):
 
     def is_ready(self) -> bool:
         has_destination = bool(self.province or self.cities or self.province_preference_confirmed)
-        has_preference = bool(self.interests or self.preference_text)
+        # Tags decide candidate eligibility; free-form preference text ranks
+        # the matched candidates. Both inputs must be explicitly settled.
+        has_interests = bool(self.interests)
+        has_preference_text = is_meaningful_preference_text(
+            self.preference_text,
+            self.interests,
+        )
         # Both single-city and multi-city plans must settle whether the user
         # names the cities or explicitly lets the planner recommend them.
         has_city_preference = bool(self.cities) or self.city_preference_confirmed
@@ -38,7 +46,8 @@ class RequirementDraft(TravelRequirement):
         return (
             has_destination
             and self.days is not None
-            and has_preference
+            and has_interests
+            and has_preference_text
             and self.start_date is not None
             and self.daily_start_time is not None
             and self.daily_end_time is not None
@@ -56,6 +65,14 @@ def load_requirement_draft(value: object) -> RequirementDraft:
         # that may have captured a user-selected mode before auto routing was
         # introduced, so every newly generated plan uses map recommendations.
         data["transport_mode"] = "auto"
+        if not is_meaningful_preference_text(
+            data.get("preference_text"),
+            data.get("interests") or [],
+        ):
+            # Older conversations may have accidentally stored an interest
+            # tag, date or time answer as the free-form preference. Reopen
+            # that step instead of treating the corrupted value as complete.
+            data["preference_text"] = None
         days = data.get("days")
         numeric_days: int | None = None
         if isinstance(days, int) and not isinstance(days, bool):
@@ -138,6 +155,7 @@ class ConversationMessage(BaseModel):
     sequence_number: int
     role: MessageRole
     content: str
+    card: dict[str, object] | None = None
     created_at: datetime
 
 
@@ -197,6 +215,23 @@ class GeneralChatMessageRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     message: str = Field(min_length=1, max_length=2000)
+
+
+class GeneralRouteChatCard(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    type: Literal["route"]
+    route: RouteSegment
+
+
+class GeneralChatCardUpdateRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    card: GeneralRouteChatCard
+
+
+class GeneralChatCardUpdateResponse(BaseModel):
+    content: str
 
 
 class RequirementConfirmation(BaseModel):

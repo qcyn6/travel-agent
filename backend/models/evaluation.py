@@ -3,7 +3,16 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
-IssueType = Literal["preference", "schedule_density", "route", "weather"]
+# Preference and schedule-density values remain accepted for old persisted plans.
+IssueType = Literal[
+    "preference",
+    "schedule_density",
+    "route",
+    "weather",
+    "schedule",
+    "manual_adjustment",
+    "review",
+]
 IssueSeverity = Literal["low", "medium", "high"]
 
 
@@ -24,7 +33,7 @@ class DayEvaluationMetric(BaseModel):
 
     day: int = Field(ge=1)
     attraction_count: int = Field(ge=0)
-    preference_coverage: float = Field(ge=0, le=1)
+    preference_coverage: float | None = Field(default=None, ge=0, le=1)
     route_minutes: int = Field(ge=0)
     route_segments: int = Field(ge=0)
     estimated_route_ratio: float = Field(ge=0, le=1)

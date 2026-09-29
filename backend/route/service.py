@@ -3,6 +3,7 @@ import logging
 import math
 
 from backend.models.requirement import TransportMode
+from backend.models.hotel import HotelStay
 from backend.models.route import RouteMode, RouteSegment
 from backend.models.travel_plan import AttractionStop, TravelDay
 from backend.route.amap_mcp import RouteAPIError, RouteConfigurationError
@@ -11,6 +12,8 @@ logger = logging.getLogger(__name__)
 
 _EARTH_RADIUS_M = 6_371_000
 _ROAD_DETOUR_FACTOR = 1.35
+_AUTO_WALK_MAX_DISTANCE_M = 1_500
+_AUTO_TRANSIT_MAX_DISTANCE_M = 10_000
 _ESTIMATE_SPEED_KMH = {
     "walking": 4.5,
     "transit": 22.0,
@@ -44,8 +47,8 @@ class RouteEnrichmentService:
 
     async def resolve_segment(
         self,
-        origin: AttractionStop,
-        destination: AttractionStop,
+        origin: AttractionStop | HotelStay,
+        destination: AttractionStop | HotelStay,
         *,
         requested_mode: TransportMode,
         city_adcode: str,
@@ -66,8 +69,8 @@ class RouteEnrichmentService:
 
     async def _enrich_segment(
         self,
-        origin: AttractionStop,
-        destination: AttractionStop,
+        origin: AttractionStop | HotelStay,
+        destination: AttractionStop | HotelStay,
         *,
         requested_mode: TransportMode,
         city_adcode: str,
@@ -88,20 +91,7 @@ class RouteEnrichmentService:
                     _fallback_mode(requested_mode, origin, destination),
                 )
 
-            mode = await _resolve_mode_with_client(
-                origin,
-                destination,
-                requested_mode,
-                self.client,
-            )
-            if mode is None:
-                mode = _fallback_mode(requested_mode, origin, destination)
-                logger.warning(
-                    "高德 MCP 距离不可用，使用本地距离估算交通方式：%s -> %s (%s)",
-                    origin.poi_id,
-                    destination.poi_id,
-                    mode,
-                )
+            mode = _resolve_mode(origin, destination, requested_mode)
             try:
                 return await self.client.get_route(
                     origin,
@@ -127,48 +117,29 @@ class RouteEnrichmentService:
                 return _estimated_segment(origin, destination, mode)
 
 
-async def _resolve_mode_with_client(
-    origin: AttractionStop,
-    destination: AttractionStop,
+def _resolve_mode(
+    origin: AttractionStop | HotelStay,
+    destination: AttractionStop | HotelStay,
     requested_mode: TransportMode,
-    client,
-) -> RouteMode | None:
-    """Resolve ``auto`` only through the Amap MCP distance operation."""
+) -> RouteMode:
+    """Choose the route mode from the local Haversine distance.
+
+    The map provider is reserved for the real route lookup.  This avoids a
+    separate distance request for every candidate and prevents short scenic
+    segments from being forced through unusually slow transit results.
+    """
 
     if requested_mode != "auto":
         return requested_mode
-    if not _has_coordinates(origin, destination) or client is None:
-        return None
-    get_distance = getattr(client, "get_distance", None)
-    if get_distance is None:
-        logger.warning(
-            "高德 MCP 客户端不支持距离操作，使用本地距离估算交通方式：%s -> %s",
-            origin.poi_id,
-            destination.poi_id,
-        )
-        return None
-    try:
-        distance = float(await get_distance(origin, destination))
-    except (RouteAPIError, RouteConfigurationError) as exc:
-        logger.warning(
-            "高德 MCP 距离不可用，使用本地距离估算交通方式：%s -> %s (%s)",
-            origin.poi_id,
-            destination.poi_id,
-            type(exc).__name__,
-        )
-        return None
-    except Exception as exc:
-        logger.warning(
-            "高德 MCP 距离出现未预期错误，使用本地距离估算交通方式：%s -> %s (%s)",
-            origin.poi_id,
-            destination.poi_id,
-            type(exc).__name__,
-        )
-        return None
-    return "walking" if distance <= 1_500 else "transit"
+    distance = _straight_line_distance_m(origin, destination)
+    if distance <= _AUTO_WALK_MAX_DISTANCE_M:
+        return "walking"
+    if distance <= _AUTO_TRANSIT_MAX_DISTANCE_M:
+        return "transit"
+    return "driving"
 
 
-def _has_coordinates(origin: AttractionStop, destination: AttractionStop) -> bool:
+def _has_coordinates(origin: AttractionStop | HotelStay, destination: AttractionStop | HotelStay) -> bool:
     return None not in (
         origin.longitude,
         origin.latitude,
@@ -185,25 +156,23 @@ def _display_mode(requested_mode: TransportMode) -> RouteMode:
 
 def _fallback_mode(
     requested_mode: TransportMode,
-    origin: AttractionStop,
-    destination: AttractionStop,
+    origin: AttractionStop | HotelStay,
+    destination: AttractionStop | HotelStay,
 ) -> RouteMode:
-    if requested_mode != "auto":
-        return requested_mode
-    return "walking" if _straight_line_distance_m(origin, destination) <= 1_500 else "transit"
+    return _resolve_mode(origin, destination, requested_mode)
 
 
 def _unavailable_segment(
-    origin: AttractionStop,
-    destination: AttractionStop,
+    origin: AttractionStop | HotelStay,
+    destination: AttractionStop | HotelStay,
     mode: RouteMode,
 ) -> RouteSegment:
     return _segment(origin, destination, mode, source="unavailable")
 
 
 def _estimated_segment(
-    origin: AttractionStop,
-    destination: AttractionStop,
+    origin: AttractionStop | HotelStay,
+    destination: AttractionStop | HotelStay,
     mode: RouteMode,
 ) -> RouteSegment:
     straight_line_distance_m = _straight_line_distance_m(origin, destination)
@@ -225,7 +194,7 @@ def _estimated_segment(
     )
 
 
-def _straight_line_distance_m(origin: AttractionStop, destination: AttractionStop) -> float:
+def _straight_line_distance_m(origin: AttractionStop | HotelStay, destination: AttractionStop | HotelStay) -> float:
     longitude_delta = math.radians(destination.longitude - origin.longitude)
     latitude_delta = math.radians(destination.latitude - origin.latitude)
     origin_latitude = math.radians(origin.latitude)
@@ -240,8 +209,8 @@ def _straight_line_distance_m(origin: AttractionStop, destination: AttractionSto
 
 
 def _segment(
-    origin: AttractionStop,
-    destination: AttractionStop,
+    origin: AttractionStop | HotelStay,
+    destination: AttractionStop | HotelStay,
     mode: RouteMode,
     *,
     source: str,
@@ -258,6 +227,8 @@ def _segment(
         origin_latitude=origin.latitude,
         destination_longitude=destination.longitude,
         destination_latitude=destination.latitude,
+        origin_city=origin.city,
+        destination_city=destination.city,
         distance_m=distance_m,
         duration_min=duration_min,
         mode=mode,

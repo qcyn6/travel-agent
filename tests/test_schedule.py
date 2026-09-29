@@ -1,3 +1,6 @@
+from datetime import date
+
+from backend.models.hotel import HotelStay
 from backend.models.route import RouteSegment
 from backend.models.travel_plan import AttractionStop, TravelDay
 from backend.schedule import ScheduleBuilder
@@ -51,6 +54,72 @@ def test_schedule_combines_visits_routes_meal_and_buffer():
         ("10:50", "12:20"),
         ("13:40", "14:40"),
     ]
+
+
+def test_schedule_counts_previous_hotel_transfer_but_not_same_day_hotel_transfer():
+    first = AttractionStop(
+        poi_id="A1", name="首站", city="杭州市", visit_duration_minutes=90
+    )
+    previous_hotel = HotelStay(
+        poi_id="H0", name="前一晚酒店", city="杭州市", longitude=120.0, latitude=30.0
+    )
+    end_hotel = HotelStay(
+        poi_id="H1", name="当晚酒店", city="杭州市", longitude=120.2, latitude=30.2
+    )
+    day = TravelDay(
+        day=2,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=2,
+        attractions=[first],
+        start_hotel=previous_hotel,
+        start_hotel_route=_route(previous_hotel, first, 45),
+        hotel=end_hotel,
+        hotel_route=_route(first, end_hotel, 25),
+        description="酒店到次日首站路线纳入当天时间窗口",
+    )
+
+    result = ScheduleBuilder(meal_minutes=0, buffer_minutes=0).build_day(day)
+
+    assert result.attractions[0].start_time == "08:45"
+    assert result.attractions[0].end_time == "10:15"
+    assert result.schedule.route_minutes == 45
+    assert result.schedule.total_minutes == 135
+    assert result.start_hotel_route == day.start_hotel_route
+    assert result.hotel_route == day.hotel_route
+
+
+def test_overnight_transfer_trims_late_stops_to_respect_daily_window():
+    first = AttractionStop(
+        poi_id="A1", name="首站", city="杭州市", visit_duration_minutes=120
+    )
+    second = AttractionStop(
+        poi_id="A2", name="次站", city="杭州市", visit_duration_minutes=120
+    )
+    previous_hotel = HotelStay(
+        poi_id="H0", name="前一晚酒店", city="杭州市", longitude=120.0, latitude=30.0
+    )
+    day = TravelDay(
+        day=2,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=2,
+        attractions=[first, second],
+        routes=[_route(first, second, 30)],
+        start_hotel=previous_hotel,
+        start_hotel_route=_route(previous_hotel, first, 60),
+        description="次日酒店转场受时间窗口约束",
+    )
+
+    result = ScheduleBuilder(meal_minutes=0, buffer_minutes=0).build_day(
+        day,
+        day_start_time="08:00",
+        day_end_time="11:30",
+    )
+
+    assert [stop.name for stop in result.attractions] == ["首站"]
+    assert result.schedule.route_minutes == 60
+    assert result.schedule.end_time == "11:00"
 
 
 def test_schedule_does_not_add_buffer_after_final_attraction():
@@ -159,6 +228,84 @@ def test_schedule_exact_rejects_missing_route_duration():
     )
 
     assert ScheduleBuilder().try_build_day_exact(day) is None
+
+
+def test_schedule_rejects_attraction_before_opening_without_shifting_time():
+    stop = AttractionStop(
+        poi_id="A1",
+        name="博物馆",
+        city="杭州市",
+        visit_duration_minutes=90,
+        opening_hours_weekly="周一至周五:10:00-16:00；周六至周日:09:00-17:00",
+        opening_hours_status="available",
+    )
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        date=date(2026, 9, 21),
+        attractions=[stop],
+        description="营业时间直接校验测试",
+    )
+
+    result = ScheduleBuilder(meal_minutes=0, buffer_minutes=0).try_build_day_exact(day)
+
+    assert result is None
+
+
+def test_schedule_accepts_attraction_when_planned_time_is_open():
+    stop = AttractionStop(
+        poi_id="A1",
+        name="博物馆",
+        city="杭州市",
+        visit_duration_minutes=90,
+        opening_hours_weekly="周一至周五:10:00-16:00；周六至周日:09:00-17:00",
+        opening_hours_status="available",
+    )
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        date=date(2026, 9, 21),
+        attractions=[stop],
+        description="营业时间内游览测试",
+    )
+
+    result = ScheduleBuilder(meal_minutes=0, buffer_minutes=0).build_day_exact(
+        day,
+        day_start_time="10:00",
+        day_end_time="12:00",
+    )
+
+    assert result.attractions[0].start_time == "10:00"
+    assert result.attractions[0].end_time == "11:30"
+    assert result.attractions[0].opening_hours_applied is True
+
+
+def test_schedule_keeps_unverified_hours_unconstrained_and_marks_them():
+    stop = AttractionStop(
+        poi_id="A1",
+        name="景区",
+        city="杭州市",
+        visit_duration_minutes=90,
+        opening_hours_status="unavailable",
+    )
+    day = TravelDay(
+        day=1,
+        city="杭州市",
+        city_adcode="330100",
+        city_day=1,
+        date=date(2026, 9, 21),
+        attractions=[stop],
+        description="营业时间缺失测试",
+    )
+
+    result = ScheduleBuilder(meal_minutes=0, buffer_minutes=0).build_day_exact(day)
+
+    assert result.attractions[0].start_time == "08:00"
+    assert result.attractions[0].opening_hours_applied is False
 
 
 def test_schedule_marks_category_and_haversine_data_as_estimated():

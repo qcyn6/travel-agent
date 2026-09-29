@@ -12,6 +12,7 @@ from backend.destination.repository import get_catalog_repository
 from backend.knowledge import KnowledgeBootstrapError, get_knowledge_repository
 from backend.main import create_app
 from backend.models.attraction import AttractionPOI
+from backend.models.conversation import RequirementDraft
 
 
 app = create_app(initialize_database=False)
@@ -75,7 +76,7 @@ def test_list_general_conversations_marks_records_as_general():
     assert response.json()[0]["status"] == "active"
 
 
-def test_general_tool_reply_is_streamed_without_calling_llm(monkeypatch):
+def test_general_agent_reply_is_streamed_through_the_api(monkeypatch):
     from backend.api import general_conversations as general_api
 
     class Service:
@@ -84,20 +85,33 @@ def test_general_tool_reply_is_streamed_without_calling_llm(monkeypatch):
             assert message == "从杭州东站到西湖怎么走"
             return SimpleNamespace(
                 suggestions=[],
-                boundary_reply=None,
-                tool_reply="杭州东站到西湖建议公共交通，预计32分钟。",
-                quick_reply=None,
                 user_message=message,
                 destination_context=None,
+                recent_messages=[],
+                memory_summary=None,
             )
 
-        def finish_message(self, prepared, reply):
-            assert "32分钟" in reply
+        @staticmethod
+        def responder_inputs(prepared):
+            return {
+                "requirement": RequirementDraft(),
+                "missing_fields": [],
+                "destination_context": prepared.destination_context,
+                "recent_messages": prepared.recent_messages,
+                "conversation_summary": prepared.memory_summary,
+                "changed_fields": [],
+                "conversation_mode": "general",
+            }
+
+        def finish_message(self, prepared, reply, *, card=None):
+            assert reply == "我来帮你查一下这条路线。"
+            assert card is None
 
     class Responder:
         async def stream(self, **kwargs):
-            raise AssertionError("工具回复不应调用大模型")
-            yield  # pragma: no cover
+            assert kwargs["user_message"] == "从杭州东站到西湖怎么走"
+            assert kwargs["conversation_mode"] == "general"
+            yield "我来帮你查一下这条路线。"
 
     app.dependency_overrides[get_general_conversation_repository] = lambda: object()
     app.dependency_overrides[get_settings] = lambda: Settings()
@@ -113,7 +127,7 @@ def test_general_tool_reply_is_streamed_without_calling_llm(monkeypatch):
 
     assert response.status_code == 200
     assert "event: message_delta" in response.text
-    assert "杭州东站到西湖建议公共交通" in response.text
+    assert "我来帮你查一下这条路线" in response.text
     assert 'event: message_done' in response.text
 
 
@@ -126,6 +140,68 @@ def test_planning_endpoint_rejects_general_mode():
 
     assert response.status_code == 409
     assert "general-conversations" in response.json()["detail"]
+
+
+def test_planning_sse_uses_ai_guidance_reply(monkeypatch):
+    """Planning turns emit the guarded AI guidance selected by the service."""
+
+    from backend.api import conversations as conversations_api
+
+    class Service:
+        async def prepare_message(self, conversation_id, message, *, mode):
+            assert conversation_id == "planning-1"
+            assert message == "自然风光"
+            assert mode == "planning"
+            return SimpleNamespace(
+                intent="planning",
+                mode_boundary=None,
+                validation_error=None,
+                destination_error=None,
+                should_invite_more=False,
+                should_summarize=False,
+                requirement=RequirementDraft(),
+                missing=["preferences"],
+                destination_context=None,
+                user_message=message,
+                recent_messages=[],
+                changed_fields=[],
+                was_ready=False,
+            )
+
+        def suggestions_for(self, missing, requirement, *, intent):
+            assert missing == ["preferences"]
+            assert intent == "planning"
+            return ["自然风光"]
+
+        def suggestions_for_reply(self, prepared, reply):
+            assert "更偏爱" in reply
+            return ["自然风光"]
+
+        async def planning_reply(self, prepared):
+            assert prepared.missing == ["preferences"]
+            return "为了更懂你，这次更偏爱自然、古城、摄影，还是其他体验？"
+
+        @staticmethod
+        def finish_message(prepared, reply):
+            assert "更偏爱" in reply
+            return SimpleNamespace(requirement_ready=False)
+
+    app.dependency_overrides[get_conversation_repository] = lambda: object()
+    app.dependency_overrides[get_settings] = lambda: Settings()
+    app.dependency_overrides[get_db] = lambda: object()
+    monkeypatch.setattr(conversations_api, "_conversation_service", lambda *args: Service())
+    try:
+        with TestClient(app) as client:
+            response = client.post(
+                "/api/v1/conversations/planning-1/messages",
+                json={"message": "自然风光", "mode": "planning"},
+            )
+    finally:
+        app.dependency_overrides.clear()
+
+    assert response.status_code == 200
+    assert "为了更懂你" in response.text
+    assert "回复连接中断" not in response.text
 
 
 def test_delete_conversation():

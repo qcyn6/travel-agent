@@ -89,6 +89,9 @@ async def run_variant(case: ExperimentCase, variant: ExperimentVariant) -> Exper
         day_end_time=requirement.daily_end_time or "21:00",
         preference_weight=variant.preference_weight,
         distance_weight=variant.distance_weight,
+        # Keep the frozen paper ablation on the original greedy scheduler.
+        # Production enables whole-day route ordering separately.
+        optimize_day_order=False,
     )
     schedule_builder = ScheduleBuilder(
         day_start_time=requirement.daily_start_time or "08:00",

@@ -95,6 +95,7 @@ def test_prepare_conversation_reuses_the_active_job(monkeypatch):
                 province="浙江省",
                 days=1,
                 interests=["自然"],
+                preference_text="节奏轻松",
                 travel_scope="single_city",
                 city_preference_confirmed=True,
                 start_date=date.today() + timedelta(days=1),
@@ -121,3 +122,58 @@ def test_prepare_conversation_reuses_the_active_job(monkeypatch):
         job = PlanningJobRepository(session).get(first.job_id)
         assert job.status == "queued"
         assert [event.event_type for event in job.events] == ["job_queued"]
+
+
+def test_prepare_conversation_resumes_the_checkpointed_choice_job(monkeypatch):
+    import backend.application.planning as planning_module
+
+    engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(engine)
+    with Session(engine, expire_on_commit=False) as session:
+        conversation = ConversationRepository(session).create()
+        original = RequirementDraft(
+            province="浙江省",
+            days=2,
+            interests=["自然"],
+            preference_text="节奏轻松",
+            travel_scope="auto",
+            province_preference_confirmed=True,
+            city_preference_confirmed=True,
+            start_date=date.today() + timedelta(days=1),
+            daily_start_time="08:00",
+            daily_end_time="21:00",
+            transport_mode="auto",
+        )
+        selected = original.model_copy(update={"travel_scope": "single_city"})
+        conversation = ConversationRepository(session).get(conversation.id)
+        ConversationRepository(session).save_requirement(
+            conversation,
+            selected,
+            confirmed=True,
+        )
+        repository = PlanningJobRepository(session)
+        job = repository.create(conversation.id, original)
+        repository.mark_waiting_for_choice(job)
+        repository.append_event(
+            job,
+            "destination_choice_required",
+            {"options": {"requires_choice": True}},
+        )
+        session.commit()
+
+    @contextmanager
+    def sessions():
+        with Session(engine, expire_on_commit=False) as session:
+            yield session
+
+    monkeypatch.setattr(planning_module, "open_session", sessions)
+    service = PlanningApplicationService(settings=object())
+
+    resumed = service.prepare_conversation(conversation.id)
+
+    assert resumed.job_id == job.id
+    with Session(engine) as session:
+        row = PlanningJobRepository(session).get(job.id)
+        assert row.status == "queued"
+        assert row.progress_json == {"_resume_value": "single_city"}
+        assert row.events[-1].event_type == "job_resumed"

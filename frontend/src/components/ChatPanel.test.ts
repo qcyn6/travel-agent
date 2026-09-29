@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { nextTick } from 'vue'
+import { describe, expect, it, vi } from 'vitest'
 
 import ChatPanel from './ChatPanel.vue'
 
@@ -86,5 +87,45 @@ describe('ChatPanel', () => {
     await wrapper.get('textarea').trigger('keydown', { key: 'Enter' })
     expect(wrapper.emitted('confirm')).toBeUndefined()
     expect(wrapper.emitted('send')).toEqual([['确认生成计划']])
+  })
+
+  it('scrolls again when a delayed weather card is attached to the reply', async () => {
+    const wrapper = mount(ChatPanel, {
+      props: {
+        messages: [{ role: 'assistant', content: '福州未来三天天气如下：' }],
+        suggestions: [],
+        sending: false,
+        mode: 'general',
+      },
+    })
+    const messageList = wrapper.get('.message-list').element as HTMLElement
+    const scrollTo = vi.fn()
+    messageList.scrollTo = scrollTo
+
+    await wrapper.setProps({
+      messages: [{
+        role: 'assistant',
+        content: '福州未来三天天气如下：',
+        card: {
+          type: 'weather',
+          weather: [{
+            city: '福州市',
+            date: '2026-09-23',
+            condition: '多云',
+            temperature_min: 25,
+            temperature_max: 32,
+            precipitation_probability: 0.03,
+            wind_level: '2',
+            status: 'available',
+            source: 'qweather',
+          }],
+        },
+      }],
+    })
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.weather-calendar-card').exists()).toBe(true)
+    expect(scrollTo).toHaveBeenCalled()
   })
 })

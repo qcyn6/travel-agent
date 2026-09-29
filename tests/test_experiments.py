@@ -35,7 +35,7 @@ def test_experiment_matrix_contains_product_and_failure_cases():
 
 
 def test_priority_weights_keep_production_default_and_allow_ablation():
-    assert calculate_priority(0.8, 0.2) == pytest.approx(0.62)
+    assert calculate_priority(0.8, 0.2) == pytest.approx(0.44)
     assert calculate_priority(0.8, 0.2, preference_weight=1.0, distance_weight=0.0) == pytest.approx(0.8)
 
 

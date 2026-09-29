@@ -22,12 +22,17 @@ def _title_from_message(content: str) -> str:
 
 
 class ConversationRepository:
-    def __init__(self, session: Session):
+    def __init__(self, session: Session, *, owner_id: str | None = None):
         self.session = session
+        self.owner_id = owner_id
+
+    def scoped(self, owner_id: str) -> "ConversationRepository":
+        return ConversationRepository(self.session, owner_id=owner_id)
 
     def create(self) -> ConversationRow:
         row = ConversationRow(
             id=str(uuid4()),
+            user_id=self.owner_id,
             title=DEFAULT_CONVERSATION_TITLE,
             requirement_draft=RequirementDraft().model_dump(mode="json"),
         )
@@ -44,6 +49,8 @@ class ConversationRepository:
         for_update: bool = False,
     ) -> ConversationRow | None:
         query = select(ConversationRow).where(ConversationRow.id == conversation_id)
+        if self.owner_id is not None:
+            query = query.where(ConversationRow.user_id == self.owner_id)
         if with_messages:
             query = query.options(selectinload(ConversationRow.messages))
         if for_update:
@@ -54,10 +61,13 @@ class ConversationRepository:
         has_messages = select(ConversationMessageRow.id).where(
             ConversationMessageRow.conversation_id == ConversationRow.id
         ).exists()
+        filters = [or_(has_messages, ConversationRow.status != "draft")]
+        if self.owner_id is not None:
+            filters.append(ConversationRow.user_id == self.owner_id)
         query = (
             select(ConversationRow)
             .options(selectinload(ConversationRow.messages))
-            .where(or_(has_messages, ConversationRow.status != "draft"))
+            .where(*filters)
             .order_by(ConversationRow.updated_at.desc(), ConversationRow.created_at.desc())
             .limit(limit)
         )

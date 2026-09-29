@@ -1,4 +1,4 @@
-"""Markdown-backed province and city knowledge source for ordinary-chat RAG."""
+"""Markdown-backed knowledge sources for ordinary-chat topic RAG."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ class KnowledgeSourceError(RuntimeError):
 
 @dataclass(frozen=True, slots=True)
 class KnowledgeChunk:
-    """One independently retrievable province or city knowledge block."""
+    """One independently retrievable knowledge block."""
 
     doc_id: str
     entity_type: str
@@ -22,6 +22,7 @@ class KnowledgeChunk:
     region_level: str
     source_file: str
     content: str
+    keywords: tuple[str, ...] = ()
 
     def index_text(self) -> str:
         return "\n".join(
@@ -31,107 +32,119 @@ class KnowledgeChunk:
         )
 
 
-_PROVINCE_HEADING = re.compile(r"^## (?P<code>\d{2})｜(?P<name>.+?)\s*$")
-_CITY_HEADING = re.compile(r"^### (?P<code>\d{2}-\d{2})｜(?P<name>.+?)\s*$")
+_GUIDE_SECTION_HEADING = re.compile(r"^## (?P<name>.+?)\s*$")
+_KEYWORD_METADATA = re.compile(r"^关键词\s*[:：]\s*(?P<value>.+?)\s*$")
+_OTHER_METADATA = re.compile(r"^(主题|适用范围)\s*[:：]")
 
 
-class MarkdownKnowledgeSource:
-    """Load the project's province and city Markdown knowledge files.
-
-    The parser deliberately uses the numbered headings as stable IDs. This
-    keeps the vector IDs unchanged when a paragraph is edited and lets Chroma
-    upsert changed content without creating duplicates.
-    """
+class TravelGuideKnowledgeSource:
+    """Load topic guides as independently retrievable Markdown sections."""
 
     def __init__(self, directory: str | Path):
         self.directory = Path(directory)
 
     def list_documents(self) -> list[KnowledgeChunk]:
-        province_path = self.directory / "province_travel_knowledge.md"
-        city_path = self.directory / "city_travel_knowledge.md"
-        if not province_path.is_file() or not city_path.is_file():
-            missing = [
-                str(path)
-                for path in (province_path, city_path)
-                if not path.is_file()
-            ]
-            raise KnowledgeSourceError("知识库文件不存在：" + "、".join(missing))
+        if not self.directory.is_dir():
+            raise KnowledgeSourceError(f"主题知识库目录不存在：{self.directory}")
 
-        documents = self._parse_provinces(province_path)
-        documents.extend(self._parse_cities(city_path))
+        documents: list[KnowledgeChunk] = []
+        for path in sorted(self.directory.glob("*.md")):
+            if path.name.lower() == "readme.md":
+                continue
+            documents.extend(self._parse_file(path))
         if not documents:
-            raise KnowledgeSourceError("知识库文件中没有找到省份或城市知识块")
+            raise KnowledgeSourceError(f"主题知识库目录中没有 Markdown 文档：{self.directory}")
         return documents
 
+    def retrieval_keywords(self) -> tuple[str, ...]:
+        """Return the unique retrieval triggers declared by guide documents."""
+
+        keywords: list[str] = []
+        for document in self.list_documents():
+            keywords.extend(document.keywords)
+        return _unique(keywords)
+
     @staticmethod
-    def _parse_provinces(path: Path) -> list[KnowledgeChunk]:
+    def _parse_file(path: Path) -> list[KnowledgeChunk]:
         lines = path.read_text(encoding="utf-8").splitlines()
-        documents: list[KnowledgeChunk] = []
+        title = next(
+            (line[2:].strip() for line in lines if line.startswith("# ")),
+            path.stem,
+        )
+        metadata: list[str] = []
+        keywords: list[str] = []
+        body_start = 0
         for index, line in enumerate(lines):
-            match = _PROVINCE_HEADING.match(line)
-            if not match:
+            if _GUIDE_SECTION_HEADING.match(line):
+                body_start = index
+                break
+            stripped = line.strip()
+            keyword_match = _KEYWORD_METADATA.match(stripped)
+            if keyword_match:
+                metadata.append(stripped)
+                keywords.extend(_split_keywords(keyword_match.group("value")))
+            elif _OTHER_METADATA.match(stripped):
+                metadata.append(stripped)
+
+        sections: list[tuple[str, list[str]]] = []
+        current_name: str | None = None
+        current_lines: list[str] = []
+        for line in lines[body_start:]:
+            match = _GUIDE_SECTION_HEADING.match(line)
+            if match:
+                if current_name is not None:
+                    sections.append((current_name, current_lines))
+                current_name = match.group("name").strip()
+                current_lines = []
                 continue
-            end = _next_section_start(lines, index + 1, level=2)
-            content = _body(lines[index + 1 : end])
+            if current_name is not None:
+                current_lines.append(line)
+        if current_name is not None:
+            sections.append((current_name, current_lines))
+
+        slug = re.sub(r"[^\w\u4e00-\u9fff]+", "-", path.stem).strip("-")
+        documents: list[KnowledgeChunk] = []
+        for index, (section_name, section_lines) in enumerate(sections, start=1):
+            content_parts = [
+                *metadata,
+                f"章节：{section_name}",
+                "\n".join(section_lines).strip(),
+            ]
+            content = "\n".join(part for part in content_parts if part).strip()
             if not content:
                 continue
-            name = match.group("name").strip()
             documents.append(
                 KnowledgeChunk(
-                    doc_id=f"province:{match.group('code')}",
-                    entity_type="province",
-                    name=name,
-                    province=name,
-                    region_level="province",
+                    doc_id=f"guide:{slug}:{index:02d}",
+                    entity_type="guide",
+                    name=title,
+                    province="全国",
+                    region_level="guide",
                     source_file=path.name,
                     content=content,
+                    keywords=_unique(keywords),
                 )
             )
         return documents
 
-    @staticmethod
-    def _parse_cities(path: Path) -> list[KnowledgeChunk]:
-        lines = path.read_text(encoding="utf-8").splitlines()
-        documents: list[KnowledgeChunk] = []
-        current_province: str | None = None
-        for index, line in enumerate(lines):
-            province_match = _PROVINCE_HEADING.match(line)
-            if province_match:
-                current_province = province_match.group("name").strip()
-                continue
 
-            city_match = _CITY_HEADING.match(line)
-            if not city_match or current_province is None:
-                continue
-            end = _next_section_start(lines, index + 1, level=3)
-            content = _body(lines[index + 1 : end])
-            if not content:
-                continue
-            documents.append(
-                KnowledgeChunk(
-                    doc_id=f"city:{city_match.group('code')}",
-                    entity_type="city",
-                    name=city_match.group("name").strip(),
-                    province=current_province,
-                    region_level="city",
-                    source_file=path.name,
-                    content=content,
-                )
-            )
-        return documents
+def _split_keywords(value: str) -> tuple[str, ...]:
+    return _unique(re.split(r"[、,，；;|/]+", value))
 
 
-def _next_section_start(lines: list[str], start: int, *, level: int) -> int:
-    prefix = "#" * level + " "
-    for index in range(start, len(lines)):
-        if lines[index].startswith(prefix):
-            return index
-    return len(lines)
+def _unique(values) -> tuple[str, ...]:
+    result: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        clean = str(value).strip()
+        if clean and clean not in seen:
+            seen.add(clean)
+            result.append(clean)
+    return tuple(result)
 
 
-def _body(lines: list[str]) -> str:
-    content = "\n".join(lines).strip()
-    return content.strip("- ").strip() if content == "-" else content
-
-
-__all__ = ["KnowledgeChunk", "KnowledgeSourceError", "MarkdownKnowledgeSource"]
+__all__ = [
+    "KnowledgeChunk",
+    "KnowledgeSourceError",
+    "TravelGuideKnowledgeSource",
+]

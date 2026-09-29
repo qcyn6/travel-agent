@@ -32,7 +32,11 @@ const destinationLabel = computed(() => {
 })
 const preferenceLabel = computed(() => {
   if (!props.requirement) return ''
-  return props.requirement.interests.join('、') || props.requirement.preference_text || ''
+  const parts = [props.requirement.interests.join('、')].filter(Boolean)
+  if (props.requirement.preference_text && props.requirement.preference_text !== '没有额外体验偏好') {
+    parts.push(props.requirement.preference_text)
+  }
+  return parts.join(' · ') || props.requirement.preference_text || ''
 })
 
 function elapsedText(seconds: number) {
@@ -77,10 +81,15 @@ function displayStepLabel(item: PlanningStep) {
       return running ? `正在整理${city}的景点` : item.status === 'failed' ? `${city}的景点资料需要重试` : `已整理${city}的景点`
     case 'retrieval':
       return running ? `正在挑选符合偏好的${city}景点` : item.status === 'failed' ? `${city}的景点筛选失败` : `已挑选${city}景点`
+    case 'attraction_details':
+      return running ? `正在由 AI 补充${city}景点介绍` : item.status === 'failed' ? `${city}的景点介绍补充失败` : `已补充${city}景点介绍`
     case 'city_plan':
       return running ? `正在安排${city}的每日行程` : item.status === 'failed' ? `${city}的每日行程安排失败` : `已安排${city}的每日行程`
     case 'route_enrichment':
       return running ? '正在检查景点之间的移动' : item.status === 'failed' ? '景点之间的路线检查失败' : '景点之间的路线已检查'
+    case 'hotel_enrichment':
+      if (!running && (item.label.includes('暂不可用') || item.label.includes('暂未找到'))) return item.label
+      return running ? '正在为每天最后一站匹配附近酒店' : item.status === 'failed' ? '酒店信息获取失败' : '每天最后一站酒店与收尾路线已补充'
     case 'weather_enrichment':
       return running ? '正在查看每天的天气' : item.status === 'failed' ? '天气信息获取失败' : '每天的天气信息已处理'
     case 'schedule':

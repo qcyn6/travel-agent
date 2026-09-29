@@ -8,6 +8,7 @@ from backend.amap_mcp import (
     AmapMcpClient,
     AmapMcpConfigurationError,
 )
+from backend.models.hotel import HotelStay
 from backend.models.route import RouteMode, RouteSegment
 from backend.models.travel_plan import AttractionStop
 
@@ -54,8 +55,8 @@ class AmapMcpRouteClient:
 
     async def get_route(
         self,
-        origin: AttractionStop,
-        destination: AttractionStop,
+        origin: AttractionStop | HotelStay,
+        destination: AttractionStop | HotelStay,
         *,
         mode: RouteMode,
         city_adcode: str,
@@ -67,7 +68,11 @@ class AmapMcpRouteClient:
             cached = await self._cache.get_json(cache_key)
             if isinstance(cached, dict):
                 try:
-                    return RouteSegment.model_validate(cached)
+                    cached_segment = RouteSegment.model_validate(cached)
+                    return cached_segment.model_copy(update={
+                        "origin_city": origin.city,
+                        "destination_city": destination.city,
+                    })
                 except (TypeError, ValueError):
                     pass
 
@@ -93,7 +98,7 @@ class AmapMcpRouteClient:
         except AmapMcpAPIError as exc:
             raise RouteAPIError("高德 MCP 路线服务不可用") from exc
 
-        distance_m, duration_seconds = _route_values(payload, mode)
+        distance_m, duration_seconds, polyline = _route_values(payload, mode)
         result = RouteSegment(
             origin_poi_id=origin.poi_id,
             origin_name=origin.name,
@@ -103,10 +108,13 @@ class AmapMcpRouteClient:
             origin_latitude=origin.latitude,
             destination_longitude=destination.longitude,
             destination_latitude=destination.latitude,
+            origin_city=origin.city,
+            destination_city=destination.city,
             distance_m=distance_m,
             duration_min=max(1, math.ceil(duration_seconds / 60)),
             mode=mode,
             source="amap_mcp",
+            polyline=polyline,
         )
         if self._cache is not None:
             await self._cache.set_json(
@@ -116,7 +124,7 @@ class AmapMcpRouteClient:
             )
         return result
 
-    async def get_distance(self, origin: AttractionStop, destination: AttractionStop) -> int:
+    async def get_distance(self, origin: AttractionStop | HotelStay, destination: AttractionStop | HotelStay) -> int:
         """Return the MCP straight-line distance used by automatic mode choice."""
 
         _require_coordinates(origin, destination)
@@ -153,7 +161,7 @@ class AmapMcpRouteClient:
         return distance_m
 
 
-def _require_coordinates(origin: AttractionStop, destination: AttractionStop) -> None:
+def _require_coordinates(origin: AttractionStop | HotelStay, destination: AttractionStop | HotelStay) -> None:
     if None in (
         origin.longitude,
         origin.latitude,
@@ -167,7 +175,10 @@ def _coordinate(longitude: float, latitude: float) -> str:
     return f"{longitude:.6f},{latitude:.6f}"
 
 
-def _route_values(payload: Mapping[str, object], mode: RouteMode) -> tuple[int, int]:
+def _route_values(
+    payload: Mapping[str, object],
+    mode: RouteMode,
+) -> tuple[int, int, list[tuple[float, float]]]:
     root = payload.get("route")
     if not isinstance(root, Mapping):
         root = payload
@@ -185,7 +196,44 @@ def _route_values(payload: Mapping[str, object], mode: RouteMode) -> tuple[int, 
         duration_seconds = _number(cost.get("duration"))
     if distance_m is None or duration_seconds is None:
         raise RouteAPIError("高德 MCP 路线结果缺少距离或耗时")
-    return round(distance_m), round(duration_seconds)
+    return round(distance_m), round(duration_seconds), _route_polyline(choice)
+
+
+def _route_polyline(value: object) -> list[tuple[float, float]]:
+    """Collect provider step polylines in response order.
+
+    Walking and driving responses expose ``steps[].polyline`` while transit
+    responses may nest walking and bus sections several levels deeper. A
+    recursive collector keeps the adapter compatible with both shapes without
+    retaining the complete provider payload in saved plans.
+    """
+
+    raw_polylines: list[str] = []
+
+    def collect(item: object) -> None:
+        if isinstance(item, Mapping):
+            polyline = item.get("polyline")
+            if isinstance(polyline, str) and polyline.strip():
+                raw_polylines.append(polyline)
+            for key, child in item.items():
+                if key != "polyline":
+                    collect(child)
+        elif isinstance(item, list):
+            for child in item:
+                collect(child)
+
+    collect(value)
+    points: list[tuple[float, float]] = []
+    for raw in raw_polylines:
+        for pair in raw.split(";"):
+            try:
+                longitude_text, latitude_text = pair.split(",", 1)
+                point = (float(longitude_text), float(latitude_text))
+            except (TypeError, ValueError):
+                continue
+            if not points or point != points[-1]:
+                points.append(point)
+    return points
 
 
 def _distance_value(payload: Mapping[str, object]) -> int:

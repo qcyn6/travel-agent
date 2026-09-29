@@ -18,6 +18,7 @@ from backend.models.degradation import DegradationNotice
 from backend.models.general_chat import GeneralIntent, GeneralIntentDecision, GeneralMissingField
 from backend.models.knowledge import AttractionKnowledge
 from backend.models.itinerary import CityPlan, CityPlanningRequest, CityPlanningResult, DayPlan
+from backend.models.hotel import HotelStay
 from backend.models.planning import CandidateDecision, PlanningCandidate
 from backend.models.requirement import TransportMode, TravelRequirement, TravelScope
 from backend.models.route import RouteMode, RouteSegment, RouteSource
@@ -31,6 +32,9 @@ from backend.models.retrieval import (
     VectorSearchResult,
 )
 from backend.models.travel_plan import (
+    AttractionReplacementOption,
+    AttractionReplacementPreview,
+    AttractionReplacementRequest,
     DestinationChoiceResponse,
     AttractionStop,
     TravelDay,
@@ -46,8 +50,12 @@ __all__ = [
     "AttractionDocument",
     "AttractionPOI",
     "AttractionStop",
+    "AttractionReplacementOption",
+    "AttractionReplacementPreview",
+    "AttractionReplacementRequest",
     "City",
     "CityStay",
+    "HotelStay",
     "CityPlan",
     "CityPlanningRequest",
     "CityPlanningResult",

@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 
 from backend.api.attractions import router as attractions_router
+from backend.api.admin import router as admin_router
+from backend.api.auth import router as auth_router
 from backend.api.conversations import router as conversations_router
 from backend.api.general_conversations import router as general_conversations_router
 from backend.api.knowledge import router as knowledge_router
@@ -15,6 +17,8 @@ from backend.api.retrieval import router as retrieval_router
 from backend.api.travel import router as travel_router
 from backend.database import init_database, open_session
 from backend.database.seed import seed_catalog
+from backend.auth import UserRepository
+from backend.config import get_settings
 from backend.observability import metrics
 
 
@@ -25,9 +29,18 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
             init_database()
             with open_session() as session:
                 seed_catalog(session)
+                settings = get_settings()
+                if settings.bootstrap_admin_username and settings.bootstrap_admin_password:
+                    UserRepository(session).ensure_bootstrap_admin(
+                        username=settings.bootstrap_admin_username,
+                        password=settings.bootstrap_admin_password,
+                    )
         yield
 
     created_app = FastAPI(title="个性化旅游规划系统 API", version="0.1.0", lifespan=lifespan)
+    # Test applications are created without a database and retain the legacy
+    # anonymous behavior so the API test suite can use repository doubles.
+    created_app.state.auth_bypass = not initialize_database
     created_app.add_middleware(
         CORSMiddleware,
         allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
@@ -38,6 +51,8 @@ def create_app(*, initialize_database: bool = True) -> FastAPI:
     )
     created_app.include_router(conversations_router)
     created_app.include_router(general_conversations_router)
+    created_app.include_router(auth_router)
+    created_app.include_router(admin_router)
     created_app.include_router(requirements_router)
     @created_app.middleware("http")
     async def observe_http_requests(request, call_next):

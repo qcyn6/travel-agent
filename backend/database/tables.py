@@ -57,10 +57,38 @@ class AttractionRow(Base):
     city: Mapped[CityRow] = relationship(back_populates="attractions")
 
 
+class UserRow(Base):
+    __tablename__ = "users"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    email: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    password_hash: Mapped[str] = mapped_column(String(512))
+    display_name: Mapped[str] = mapped_column(String(64), default="用户")
+    role: Mapped[str] = mapped_column(String(16), default="user", index=True)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
+    )
+
+    @property
+    def username(self) -> str:
+        """User-facing username kept in the legacy email column."""
+
+        return self.email
+
+
 class ConversationRow(Base):
     __tablename__ = "conversations"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    user_id: Mapped[str | None] = mapped_column(
+        ForeignKey("users.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
     title: Mapped[str] = mapped_column(String(128), default="新的旅行计划")
     status: Mapped[str] = mapped_column(String(24), default="draft", index=True)
     requirement_draft: Mapped[dict] = mapped_column(JSON, default=dict)
@@ -95,11 +123,25 @@ class GeneralConversationRow(Base):
     __tablename__ = "general_conversations"
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    user_id: Mapped[str | None] = mapped_column(
+        ForeignKey("users.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
     title: Mapped[str] = mapped_column(String(128), default="新的对话")
     status: Mapped[str] = mapped_column(String(24), default="active", index=True)
     # Keep ordinary messages in this table so they cannot enter the planning
-    # conversation/message tables. The JSON shape is {role, content}.
+    # conversation/message tables. The JSON shape is {role, content, card?}.
     messages: Mapped[list[dict]] = mapped_column(JSON, default=list, nullable=False)
+    # Conversation-scoped long-term context for ordinary chat only. The raw
+    # messages remain intact; this summary is internal Agent context.
+    memory_summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+    memory_summary_through: Mapped[int] = mapped_column(
+        Integer,
+        default=0,
+        server_default="0",
+        nullable=False,
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime,

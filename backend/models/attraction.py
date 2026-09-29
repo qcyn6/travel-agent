@@ -4,6 +4,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 KnowledgeStatus = Literal["pending", "processing", "staged", "ready", "failed"]
+OpeningHoursStatus = Literal["available", "unavailable", "not_checked"]
 
 
 class AttractionPOI(BaseModel):
@@ -26,6 +27,9 @@ class AttractionPOI(BaseModel):
     longitude: float | None = None
     latitude: float | None = None
     rating: float | None = None
+    opening_hours_weekly: str | None = None
+    opening_hours_today: str | None = None
+    opening_hours_status: OpeningHoursStatus = "not_checked"
 
 
 class AttractionKnowledgeState(BaseModel):

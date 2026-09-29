@@ -49,6 +49,47 @@ async def test_route_enrichment_exposes_single_segment_resolution():
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("destination_longitude", "expected_mode"),
+    [
+        (0.01, "walking"),
+        (0.02, "transit"),
+        (0.30, "driving"),
+    ],
+)
+async def test_auto_mode_uses_local_distance_thresholds(
+    destination_longitude,
+    expected_mode,
+):
+    class Client:
+        def __init__(self):
+            self.mode = None
+
+        async def get_route(self, origin, destination, *, mode, **kwargs):
+            self.mode = mode
+            return RouteSegment(
+                origin_poi_id=origin.poi_id,
+                origin_name=origin.name,
+                destination_poi_id=destination.poi_id,
+                destination_name=destination.name,
+                mode=mode,
+                source="amap_mcp",
+                distance_m=1000,
+                duration_min=10,
+            )
+
+    client = Client()
+    await RouteEnrichmentService(client).resolve_segment(
+        stop("A1", "起点", 0.0, 0.0),
+        stop("A2", "终点", destination_longitude, 0.0),
+        requested_mode="auto",
+        city_adcode="330100",
+    )
+
+    assert client.mode == expected_mode
+
+
+@pytest.mark.asyncio
 async def test_route_enrichment_uses_distance_estimate_when_mcp_route_fails():
     class FailedClient:
         async def get_route(self, *args, **kwargs):

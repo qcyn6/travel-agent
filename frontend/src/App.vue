@@ -1,21 +1,50 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
+import AdminPanel from './components/AdminPanel.vue'
 import ChatPanel from './components/ChatPanel.vue'
 import ConversationSidebar from './components/ConversationSidebar.vue'
+import LoginPanel from './components/LoginPanel.vue'
 import PlanningView from './components/PlanningView.vue'
 import TravelPlanView from './components/TravelPlanView.vue'
+import { authApi, clearAccessToken, getAccessToken, type AuthUser } from './api'
 import { usePlanningStore } from './stores/planning'
 import type { ConversationMode } from './types'
+import chatBackgroundUrl from '../../data/images/chat.png'
 
 const store = usePlanningStore()
 const sidebarOpen = ref(false)
+const currentUser = ref<AuthUser | null>(null)
+const adminMode = ref(false)
 const isFreshChat = computed(() => store.messages.length === 0 && !store.sending)
 const activeConversationTitle = computed(() =>
   store.conversations.find((item) => item.id === store.conversationId)?.title
     || (store.conversationMode === 'general' ? '新的对话' : '新的旅行计划'),
 )
 
-onMounted(() => store.initialize())
+async function initializeApp() {
+  if (!getAccessToken()) return
+  try {
+    currentUser.value = await authApi.me()
+    adminMode.value = currentUser.value.role === 'admin'
+    if (!adminMode.value) await store.initialize()
+  } catch {
+    clearAccessToken()
+  }
+}
+
+async function handleAuthenticated(user: AuthUser) {
+  currentUser.value = user
+  adminMode.value = user.role === 'admin'
+  if (!adminMode.value) await store.initialize()
+}
+
+function logout() {
+  authApi.logout()
+  currentUser.value = null
+  adminMode.value = false
+}
+
+onMounted(initializeApp)
 
 async function restart() {
   sidebarOpen.value = false
@@ -54,7 +83,20 @@ async function selectHomeMode(mode: ConversationMode) {
 </script>
 
 <template>
-  <div class="app-shell">
+  <LoginPanel v-if="!currentUser" @authenticated="handleAuthenticated" />
+  <div v-else-if="adminMode" class="admin-shell">
+    <div class="admin-topbar"><strong>游迹 · 管理后台</strong><div><button type="button" @click="logout">退出登录</button></div></div>
+    <AdminPanel />
+  </div>
+  <div v-else class="app-shell">
+    <div v-if="store.stage === 'chat'" class="chat-scene" :style="{ backgroundImage: `url(${chatBackgroundUrl})` }" aria-hidden="true">
+      <span class="chat-scene-haze"></span>
+      <span class="chat-scene-cloud chat-scene-cloud-one"></span>
+      <span class="chat-scene-cloud chat-scene-cloud-two"></span>
+      <span class="chat-scene-leaf chat-scene-leaf-one"></span>
+      <span class="chat-scene-leaf chat-scene-leaf-two"></span>
+      <span class="chat-scene-water"></span>
+    </div>
     <ConversationSidebar
       v-if="!store.initializing"
       :conversations="store.conversations"
@@ -92,6 +134,10 @@ async function selectHomeMode(mode: ConversationMode) {
             <div class="chat-context">
               <strong>{{ activeConversationTitle === '新的旅行计划' ? '新的旅行' : activeConversationTitle }}</strong>
               <small>AI 对话</small>
+            </div>
+            <div class="chat-toolbar-actions">
+              <button v-if="currentUser?.role === 'admin'" class="chat-admin-link" type="button" @click="adminMode = true">管理后台</button>
+              <button class="chat-user-link" type="button" @click="logout">{{ currentUser?.display_name }} · 退出</button>
             </div>
             <button
               v-if="store.plan"
@@ -141,6 +187,7 @@ async function selectHomeMode(mode: ConversationMode) {
               :empty="isFreshChat"
               @send="store.sendMessage"
               @confirm="store.confirmAndPlan"
+              @card-updated="store.updateGeneralCard"
             />
           </div>
           <div v-if="store.error" class="global-error">{{ store.error }}</div>
@@ -163,6 +210,8 @@ async function selectHomeMode(mode: ConversationMode) {
       <TravelPlanView
         v-else-if="store.plan"
         :result="store.plan"
+        :conversation-id="store.conversationId"
+        @update-result="store.updatePlan"
         @restart="restart"
         @revise="store.backToChat"
       />

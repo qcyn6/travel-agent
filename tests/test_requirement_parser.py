@@ -183,6 +183,31 @@ def test_requirement_contract_rejects_out_of_range_days():
         TravelRequirement(days=365)
 
 
+def test_no_extra_preference_does_not_satisfy_required_free_preference():
+    parsed = RequirementParser().parse("没有额外体验偏好")
+
+    assert parsed.preference_text is None
+
+
+def test_legacy_draft_reopens_when_date_was_saved_as_preference():
+    draft = load_requirement_draft(
+        {
+            "cities": ["大理市", "丽江市"],
+            "days": 5,
+            "interests": ["古城"],
+            "preference_text": "明天",
+            "travel_scope": "multi_city",
+            "start_date": date.today() + timedelta(days=1),
+            "daily_start_time": "09:00",
+            "daily_end_time": "18:00",
+            "city_preference_confirmed": True,
+        }
+    )
+
+    assert draft.preference_text is None
+    assert draft.is_ready() is False
+
+
 def test_legacy_conversation_draft_is_reopened_as_incomplete():
     draft = load_requirement_draft(
         {"province": "浙江省", "cities": [], "days": 365, "interests": ["自然"]}

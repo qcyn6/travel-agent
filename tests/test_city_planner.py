@@ -9,6 +9,7 @@ from backend.models.planning import PlanningCandidate
 from backend.models.retrieval import AttractionDocument, HybridSearchResult
 from backend.planner.city import CityPlanningError, DeepSeekCityPlanner, deterministic_city_plan
 from backend.planner.service import CityPlanningService
+from backend.schedule import ScheduleBuilder
 
 
 def candidate(poi_id: str, name: str) -> AttractionDocument:
@@ -226,6 +227,69 @@ async def test_city_planning_service_keeps_catalog_tags_for_downstream_planning(
     )
 
     assert result.city_plan.days[0].attractions == ["西湖"]
+
+
+@pytest.mark.asyncio
+async def test_route_aware_city_planner_applies_enriched_opening_hours_before_selection():
+    candidates = [
+        HybridSearchResult(
+            **candidate("A1", "偏好最高但闭馆").model_dump(),
+            preference_score=0.95,
+            rrf_score=0.9,
+            final_rank=1,
+        ),
+        HybridSearchResult(
+            **candidate("A2", "偏好次高且开放").model_dump(),
+            preference_score=0.85,
+            rrf_score=0.8,
+            final_rank=2,
+        ),
+    ]
+
+    class OpeningHours:
+        async def enrich_opening_hours(self, attractions):
+            return [
+                item.model_copy(
+                    update={
+                        "opening_hours_weekly": (
+                            "周一至周日:闭馆"
+                            if item.poi_id == "A1"
+                            else "周一至周日:08:00-17:00"
+                        ),
+                        "opening_hours_status": "available",
+                    }
+                )
+                for item in attractions
+            ]
+
+    class RouteService:
+        async def resolve_segment(self, *args, **kwargs):
+            pytest.fail("首站选择不需要查询景点间路线")
+
+    class Planner:
+        async def plan(self, **kwargs):
+            return deterministic_city_plan(
+                city_stay=kwargs["city_stay"],
+                requirement=kwargs["requirement"],
+                candidates=kwargs["candidates"],
+            )
+
+    result = await CityPlanningService(
+        retrieval_service=object(),
+        planner=Planner(),
+        route_enrichment_service=RouteService(),
+        schedule_builder=ScheduleBuilder(meal_minutes=0, buffer_minutes=0),
+        opening_hours_service=OpeningHours(),
+    ).plan_with_routes(
+        city_stay=CityStay(city="杭州市", days=1),
+        requirement=requirement(1),
+        city_adcode="330100",
+        attractions=candidates,
+        narrate=False,
+    )
+
+    assert result.city_result.city_plan.days[0].attractions == ["偏好次高且开放"]
+    assert result.city_result.attractions[1].opening_hours_status == "available"
 
 
 @pytest.mark.asyncio

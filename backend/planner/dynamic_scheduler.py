@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import timedelta
+from itertools import permutations
 import math
 from typing import Iterable
 
@@ -13,14 +15,16 @@ from backend.models.planning import CandidateDecision, PlanningCandidate
 from backend.models.requirement import TravelRequirement
 from backend.models.route import RouteSegment
 from backend.models.travel_plan import AttractionStop, TravelDay
+from backend.schedule.opening_hours import visit_fits_opening_hours
 from backend.schedule.service import DAY_END_MINUTES, ScheduleBuilder
 
 
 EARTH_RADIUS_M = 6_371_000.0
-PREFERENCE_WEIGHT = 0.7
-DISTANCE_WEIGHT = 0.3
+PREFERENCE_WEIGHT = 0.4
+DISTANCE_WEIGHT = 0.6
 DEFAULT_DAY_START = "08:00"
 DEFAULT_DAY_END = "21:00"
+_EXACT_ROUTE_ORDER_MAX_STOPS = 8
 
 
 class DynamicSchedulingError(ValueError):
@@ -97,8 +101,8 @@ def calculate_priority(
 ) -> float:
     """Apply configurable preference/distance weights.
 
-    The defaults remain the report-defined ``0.7/0.3`` formula. Experiments
-    can vary the weights without changing the production scheduling path.
+    The production defaults favor route proximity at ``0.4/0.6`` (preference /
+    distance). Experiments can vary weights without changing this default.
     """
 
     return preference_weight * max(0.0, preference_score) + distance_weight * max(
@@ -131,12 +135,13 @@ class _ScoredCandidate:
 
 
 class DynamicCityScheduler:
-    """Select candidates by preference and changing current position.
+    """Select candidates by one continuous city-level ranking chain.
 
-    The first version uses visit duration, meal time, and a small inter-stop
-    buffer as a local capacity estimate.  Real route duration is deliberately
-    left to the next stage, where route feasibility can reject and replace a
-    candidate before it enters the final itinerary.
+    The first stop of a city is preference-first.  Every later stop, including
+    the first stop of a later day, is ranked from the previous selected
+    attraction using preference and distance.  Visit duration, meal time, and
+    the daily buffer remain the local capacity estimate; route-aware planning
+    additionally validates real route feasibility before accepting a stop.
     """
 
     def __init__(
@@ -148,6 +153,7 @@ class DynamicCityScheduler:
         day_end_time: str = DEFAULT_DAY_END,
         preference_weight: float = PREFERENCE_WEIGHT,
         distance_weight: float = DISTANCE_WEIGHT,
+        optimize_day_order: bool = True,
     ):
         self.meal_minutes = max(0, int(meal_minutes))
         self.buffer_minutes = max(0, int(buffer_minutes))
@@ -161,6 +167,10 @@ class DynamicCityScheduler:
             raise ValueError("至少需要一个非零评分权重")
         self.preference_weight = float(preference_weight)
         self.distance_weight = float(distance_weight)
+        # Retain this constructor option for callers built against the former
+        # implementation.  The production rule is now always one continuous
+        # preference/distance chain rather than a separate per-day optimizer.
+        self.optimize_day_order = bool(optimize_day_order)
 
     def plan(
         self,
@@ -180,13 +190,19 @@ class DynamicCityScheduler:
         decisions: list[CandidateDecision] = []
         day_plans: list[DayPlan] = []
 
+        # Keep one continuous city-level ranking chain.  A new day resets the
+        # time budget, but not the previous attraction used for distance
+        # scoring.
+        previous_selected: PlanningCandidate | None = None
         for day in range(1, city_stay.days + 1):
+            visit_date = (
+                requirement.start_date + timedelta(days=day - 1)
+                if requirement.start_date is not None
+                else None
+            )
             selected: list[PlanningCandidate] = []
             elapsed = 0
             lunch_taken = False
-            # There is no configured hotel/start coordinate yet, so every day
-            # deliberately chooses its first stop from preference alone.
-            previous_selected: PlanningCandidate | None = None
 
             while unused:
                 # Reserve at least one unique candidate for every future day
@@ -197,6 +213,28 @@ class DynamicCityScheduler:
                 ranked = self._rank(unused, previous_selected)
                 chosen: _ScoredCandidate | None = None
                 for scored in ranked:
+                    visit_start = (
+                        start_minutes
+                        + elapsed
+                        + (self.buffer_minutes if selected else 0)
+                    )
+                    opening_fits = visit_fits_opening_hours(
+                        scored.candidate.opening_hours_weekly,
+                        visit_date,
+                        visit_start,
+                        max(1, int(scored.candidate.visit_duration_minutes or 90)),
+                    )
+                    if not opening_fits:
+                        decisions.append(
+                            self._decision(
+                                day=day,
+                                scored=scored,
+                                feasible=False,
+                                selected=False,
+                                rejected_reason="opening_hours",
+                            )
+                        )
+                        continue
                     additional, would_take_lunch = self._additional_minutes(
                         scored.candidate,
                         elapsed=elapsed,
@@ -234,7 +272,26 @@ class DynamicCityScheduler:
                         # requested window is shorter than every attraction.
                         # The trace records that this stop needs later route /
                         # schedule handling instead of hiding the problem.
-                        forced = ranked[0]
+                        forced = next(
+                            (
+                                scored
+                                for scored in ranked
+                                if visit_fits_opening_hours(
+                                    scored.candidate.opening_hours_weekly,
+                                    visit_date,
+                                    start_minutes,
+                                    max(
+                                        1,
+                                        int(scored.candidate.visit_duration_minutes or 90),
+                                    ),
+                                )
+                            ),
+                            None,
+                        )
+                        if forced is None:
+                            raise DynamicSchedulingError(
+                                f"{city_stay.city} 第{day}天没有营业时间匹配的景点"
+                            )
                         unused.remove(forced.candidate)
                         selected.append(forced.candidate)
                         decisions.append(
@@ -320,13 +377,18 @@ class DynamicCityScheduler:
         routes_by_day: list[list[RouteSegment]] = []
         preference = "、".join(requirement.interests) or "综合体验"
 
+        # Keep the ranking anchor across day boundaries.  The next day's first
+        # attraction is selected from the previous day's last attraction, but
+        # the cross-day transfer is not part of that day's sightseeing route.
+        current_location: PlanningCandidate | None = None
         for day in range(1, city_stay.days + 1):
+            visit_date = (
+                requirement.start_date + timedelta(days=day - 1)
+                if requirement.start_date is not None
+                else None
+            )
             selected: list[PlanningCandidate] = []
             selected_routes: list[RouteSegment] = []
-            # A new day starts without a hotel or station coordinate.  The
-            # first stop therefore uses preference only; distance is applied
-            # again after that day's first selection.
-            current_location: PlanningCandidate | None = None
             current_time = requirement.daily_start_time or _format_time(
                 schedule_builder.day_start_minutes
             )
@@ -337,7 +399,7 @@ class DynamicCityScheduler:
                 ranked = self._rank(unused, current_location)
                 attempted = (
                     ranked
-                    if current_location is None or max_route_attempts_per_step is None
+                    if not selected or max_route_attempts_per_step is None
                     else ranked[:max_route_attempts_per_step]
                 )
                 chosen: _ScoredCandidate | None = None
@@ -363,9 +425,30 @@ class DynamicCityScheduler:
                             )
                         )
                         continue
+                    opening_fits = visit_fits_opening_hours(
+                        scored.candidate.opening_hours_weekly,
+                        visit_date,
+                        _parse_time(current_time),
+                        max(1, int(scored.candidate.visit_duration_minutes or 90)),
+                    )
+                    if not opening_fits:
+                        decisions.append(
+                            self._decision(
+                                day=day,
+                                scored=scored,
+                                feasible=False,
+                                selected=False,
+                                rejected_reason="opening_hours",
+                            )
+                        )
+                        continue
                     route: RouteSegment | None = None
                     trial_routes = list(selected_routes)
-                    if current_location is not None:
+                    # The carried current_location affects the next ranking,
+                    # while a route is required only between attractions on
+                    # the same day.  The overnight/cross-day transfer stays
+                    # outside the sightseeing schedule by design.
+                    if current_location is not None and selected:
                         try:
                             route = await route_service.resolve_segment(
                                 _candidate_stop(current_location),
@@ -405,6 +488,7 @@ class DynamicCityScheduler:
                         candidates=trial_candidates,
                         routes=trial_routes,
                         description=f"围绕{preference}安排当天游览。",
+                        visit_date=visit_date,
                     )
                     scheduled_trial = schedule_builder.try_build_day_exact(
                         trial_day,
@@ -460,6 +544,7 @@ class DynamicCityScheduler:
                     candidates=[fallback],
                     routes=[],
                     description=f"围绕{preference}安排当天游览。",
+                    visit_date=visit_date,
                 )
                 if schedule_builder.try_build_day_exact(
                     trial_day,
@@ -688,7 +773,84 @@ def _candidate_stop(candidate: PlanningCandidate) -> AttractionStop:
         longitude=candidate.longitude,
         latitude=candidate.latitude,
         visit_duration_minutes=candidate.visit_duration_minutes,
+        opening_hours_weekly=candidate.opening_hours_weekly,
+        opening_hours_today=candidate.opening_hours_today,
+        opening_hours_status=candidate.opening_hours_status,
     )
+
+
+def _optimize_day_route_order(
+    candidates: list[PlanningCandidate],
+) -> list[PlanningCandidate]:
+    """Minimize one day's local Haversine path without external API calls.
+
+    Daily plans normally contain three to five stops, so exact permutation is
+    both clearer and faster than introducing a general TSP dependency. A
+    bounded nearest-neighbour fallback prevents factorial work if unusually
+    short visit durations ever produce a much larger day.
+    """
+
+    if len(candidates) < 3:
+        return list(candidates)
+    original_index = {
+        candidate.poi_id: index for index, candidate in enumerate(candidates)
+    }
+    distance_matrix: dict[tuple[str, str], float | None] = {}
+    for origin in candidates:
+        for destination in candidates:
+            if origin.poi_id == destination.poi_id:
+                continue
+            distance_matrix[(origin.poi_id, destination.poi_id)] = haversine_distance_m(
+                origin.longitude,
+                origin.latitude,
+                destination.longitude,
+                destination.latitude,
+            )
+
+    def edge_distance(origin: PlanningCandidate, destination: PlanningCandidate) -> float:
+        distance = distance_matrix.get((origin.poi_id, destination.poi_id))
+        return math.inf if distance is None else distance
+
+    def objective(order: tuple[PlanningCandidate, ...] | list[PlanningCandidate]):
+        total_distance = 0.0
+        for origin, destination in zip(order, order[1:]):
+            distance = edge_distance(origin, destination)
+            if not math.isfinite(distance):
+                return (math.inf, 0.0, ())
+            total_distance += distance
+        # A path and its reverse have the same distance. Prefer the endpoint
+        # with the stronger preference as the first stop, then stay stable.
+        return (
+            total_distance,
+            -float(getattr(order[0], "preference_score", 0.0) or 0.0),
+            tuple(original_index[item.poi_id] for item in order),
+        )
+
+    if len(candidates) <= _EXACT_ROUTE_ORDER_MAX_STOPS:
+        best = min(permutations(candidates), key=objective)
+        if math.isfinite(objective(best)[0]):
+            return list(best)
+        return list(candidates)
+
+    possible_orders: list[list[PlanningCandidate]] = []
+    for start in candidates:
+        order = [start]
+        remaining = [item for item in candidates if item.poi_id != start.poi_id]
+        while remaining:
+            current = order[-1]
+            next_candidate = min(
+                remaining,
+                key=lambda item: (
+                    edge_distance(current, item),
+                    -float(getattr(item, "preference_score", 0.0) or 0.0),
+                    original_index[item.poi_id],
+                ),
+            )
+            order.append(next_candidate)
+            remaining.remove(next_candidate)
+        possible_orders.append(order)
+    best = min(possible_orders, key=objective)
+    return best if math.isfinite(objective(best)[0]) else list(candidates)
 
 
 def _trial_day(
@@ -698,12 +860,14 @@ def _trial_day(
     candidates: list[PlanningCandidate],
     routes: list[RouteSegment],
     description: str,
+    visit_date=None,
 ) -> TravelDay:
     return TravelDay(
         day=day,
         city=city_stay.city,
         city_adcode="",
         city_day=day,
+        date=visit_date,
         attractions=[_candidate_stop(candidate) for candidate in candidates],
         routes=routes,
         description=description,

@@ -60,6 +60,8 @@ def _to_attraction(raw: Mapping[str, Any], requested_city: str) -> AttractionPOI
 
     longitude, latitude = _coordinates(raw.get("location"))
     business = raw.get("business") if isinstance(raw.get("business"), Mapping) else {}
+    opening_hours_weekly = _optional_text(business.get("opentime_week"))
+    opening_hours_today = _optional_text(business.get("opentime_today"))
     city = _optional_text(raw.get("cityname")) or requested_city
     return AttractionPOI(
         poi_id=poi_id,
@@ -70,6 +72,13 @@ def _to_attraction(raw: Mapping[str, Any], requested_city: str) -> AttractionPOI
         longitude=longitude,
         latitude=latitude,
         rating=_optional_float(business.get("rating")),
+        opening_hours_weekly=opening_hours_weekly,
+        opening_hours_today=opening_hours_today,
+        opening_hours_status=(
+            "available"
+            if opening_hours_weekly or opening_hours_today
+            else "unavailable"
+        ),
     )
 
 
@@ -148,10 +157,120 @@ class AmapAttractionClient:
             )
         return attractions
 
+    async def enrich_opening_hours(self, candidates: list[Any]) -> list[Any]:
+        """Look up weekly and current-day hours for an already ranked POI pool.
+
+        Exact-name matching is required before attaching business fields so a
+        similarly named nearby POI cannot donate its opening hours.
+        """
+
+        semaphore = asyncio.Semaphore(5)
+
+        async def enrich(candidate):
+            async with semaphore:
+                try:
+                    hours = await self._lookup_opening_hours(
+                        city=str(getattr(candidate, "city", "") or ""),
+                        name=str(getattr(candidate, "name", "") or ""),
+                    )
+                except Exception:
+                    hours = None
+            hours = hours or {}
+            weekly = _optional_text(hours.get("opening_hours_weekly"))
+            today = _optional_text(hours.get("opening_hours_today"))
+            return candidate.model_copy(
+                update={
+                    "opening_hours_weekly": weekly,
+                    "opening_hours_today": today,
+                    "opening_hours_status": (
+                        "available" if weekly or today else "unavailable"
+                    ),
+                }
+            )
+
+        return list(await asyncio.gather(*(enrich(item) for item in candidates)))
+
+    async def _lookup_opening_hours(self, *, city: str, name: str) -> dict[str, str | None] | None:
+        if not city.strip() or not name.strip():
+            return None
+        cache_key = f"poi:opening-hours:{city.strip()}:{''.join(name.split()).casefold()}"
+        if self._cache is not None:
+            cached = await self._cache.get_json(cache_key)
+            if isinstance(cached, dict):
+                return cached
+
+        params = {
+            "key": self._api_key,
+            "keywords": name,
+            "region": city,
+            "city_limit": "true",
+            "show_fields": "business",
+            "page_size": 10,
+            "page_num": 1,
+        }
+        async with self._managed_client() as client:
+            payload = None
+            for attempt in range(self._max_retries):
+                try:
+                    async with observe_external_request("amap", "opening_hours"):
+                        response = await client.get(
+                            f"{self._base_url}/v5/place/text",
+                            params=params,
+                        )
+                except httpx.RequestError as exc:
+                    if attempt + 1 == self._max_retries:
+                        raise AmapAPIError("高德营业时间查询网络请求失败") from exc
+                    await asyncio.sleep(0.2 * (2**attempt))
+                    continue
+                if response.status_code >= 500 and attempt + 1 < self._max_retries:
+                    await asyncio.sleep(0.2 * (2**attempt))
+                    continue
+                if response.status_code != 200:
+                    raise AmapAPIError(
+                        f"高德营业时间查询返回 HTTP {response.status_code}"
+                    )
+                try:
+                    payload = response.json()
+                except ValueError as exc:
+                    raise AmapAPIError("高德营业时间查询返回了无效 JSON") from exc
+                break
+
+        if not isinstance(payload, dict) or payload.get("status") != "1":
+            return None
+        pois = payload.get("pois")
+        if not isinstance(pois, list):
+            return None
+        expected_name = _normalize_name(name)
+        match = next(
+            (
+                item
+                for item in pois
+                if isinstance(item, Mapping)
+                and _normalize_name(str(item.get("name") or "")) == expected_name
+            ),
+            None,
+        )
+        if match is None:
+            return None
+        business = match.get("business")
+        business = business if isinstance(business, Mapping) else {}
+        result = {
+            "opening_hours_weekly": _optional_text(business.get("opentime_week")),
+            "opening_hours_today": _optional_text(business.get("opentime_today")),
+        }
+        if self._cache is not None:
+            await self._cache.set_json(
+                cache_key,
+                result,
+                ttl_seconds=min(self._cache_ttl_seconds, 43200),
+            )
+        return result
+
     def _managed_client(self):
         if self._client is not None:
             return _BorrowedAsyncClient(self._client)
         return httpx.AsyncClient(timeout=self._timeout_seconds)
+
 
     async def _request_page(self, client: httpx.AsyncClient, *, city: str, page_num: int) -> dict[str, Any]:
         params = {
@@ -196,6 +315,10 @@ class AmapAttractionClient:
                 raise AmapAPIError(f"高德 POI 请求失败：{info}", infocode=infocode)
             return payload
         raise AmapAPIError("高德 POI 服务请求失败")
+
+
+def _normalize_name(value: str) -> str:
+    return "".join(character for character in value.strip().casefold() if character.isalnum())
 
 
 class _BorrowedAsyncClient:

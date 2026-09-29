@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 
-import { conversationApi, generalConversationApi } from '../api'
+import { conversationApi, generalConversationApi, streamEvents } from '../api'
 import { usePlanningStore } from './planning'
 
 vi.mock('../api', () => ({
@@ -120,5 +120,47 @@ describe('planning store conversation lifecycle', () => {
     await Promise.all([first, second])
     expect(store.conversationId).toBe('new-general')
     expect(store.conversationCreating).toBe(false)
+  })
+
+  it('restores an ordinary-mode tool card after switching conversations', async () => {
+    const card = {
+      type: 'weather' as const,
+      weather: [{
+        city: '福州市',
+        date: '2026-09-23',
+        condition: '多云',
+        temperature_min: 25,
+        temperature_max: 32,
+        precipitation_probability: 0,
+        wind_level: '2',
+        status: 'available' as const,
+        source: 'qweather' as const,
+      }],
+    }
+    vi.mocked(generalConversationApi.create).mockResolvedValue(generalConversation('general-1'))
+    vi.mocked(streamEvents).mockImplementation(async (_path, _body, onEvent) => {
+      onEvent('tool_card', card)
+      onEvent('message_delta', { text: '福州天气' })
+    })
+
+    const store = usePlanningStore()
+    await store.createConversation('general')
+    await store.sendMessage('福州明天天气')
+    expect(store.messages[1].card).toEqual(card)
+
+    vi.mocked(generalConversationApi.get).mockImplementation(async (id) =>
+      generalConversation(id),
+    )
+    await store.openConversation('general-2', 'general')
+    vi.mocked(generalConversationApi.get).mockResolvedValue({
+      ...generalConversation('general-1'),
+      messages: [
+        { role: 'user', content: '福州明天天气', id: 1, sequence_number: 1 },
+        { role: 'assistant', content: '福州天气', id: 2, sequence_number: 2 },
+      ],
+    })
+    await store.openConversation('general-1', 'general')
+
+    expect(store.messages[1].card).toEqual(card)
   })
 })

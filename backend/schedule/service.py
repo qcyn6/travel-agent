@@ -3,6 +3,10 @@ from dataclasses import dataclass
 from backend.models.route import RouteSegment
 from backend.models.schedule import DaySchedule
 from backend.models.travel_plan import AttractionStop, TravelDay
+from backend.schedule.opening_hours import (
+    opening_intervals_for_date,
+    visit_fits_opening_hours,
+)
 
 
 DAY_START_MINUTES = 8 * 60
@@ -61,8 +65,10 @@ class ScheduleBuilder:
             candidate = self._simulate(
                 day.attractions[:count],
                 day.routes[: max(0, count - 1)],
+                start_route=day.start_hotel_route,
                 day_start_minutes=window_start,
                 day_end_minutes=window_end,
+                visit_date=day.date,
             )
             if candidate.fits:
                 selected = candidate
@@ -107,8 +113,10 @@ class ScheduleBuilder:
         result = self._simulate(
             day.attractions,
             day.routes,
+            start_route=day.start_hotel_route,
             day_start_minutes=window_start,
             day_end_minutes=window_end,
+            visit_date=day.date,
         )
         if not result.fits:
             raise ValueError("每日时间窗口不足以安排当天的全部景点")
@@ -132,6 +140,42 @@ class ScheduleBuilder:
         except ValueError:
             return None
 
+    def build_day_allowing_manual_conflicts(
+        self,
+        day: TravelDay,
+        *,
+        day_start_time: str | None = None,
+        day_end_time: str | None = None,
+    ) -> TravelDay:
+        """Schedule every stop after a user-confirmed manual replacement.
+
+        Known opening-hour and time-window conflicts are recorded by callers
+        as warnings; they must not silently remove the attraction the user
+        explicitly selected.
+        """
+
+        window_start = (
+            _parse_time(day_start_time)
+            if day_start_time is not None
+            else self.day_start_minutes
+        )
+        window_end = (
+            _parse_time(day_end_time)
+            if day_end_time is not None
+            else DAY_END_MINUTES
+        )
+        _validate_window(window_start, window_end)
+        result = self._simulate(
+            day.attractions,
+            day.routes,
+            start_route=day.start_hotel_route,
+            day_start_minutes=window_start,
+            day_end_minutes=window_end,
+            visit_date=day.date,
+            allow_manual_conflicts=True,
+        )
+        return self._apply_result(day, result)
+
     @staticmethod
     def _apply_result(day: TravelDay, selected: _ScheduleResult) -> TravelDay:
         return day.model_copy(
@@ -147,8 +191,11 @@ class ScheduleBuilder:
         stops: list[AttractionStop],
         routes: list[RouteSegment],
         *,
+        start_route: RouteSegment | None,
         day_start_minutes: int,
         day_end_minutes: int,
+        visit_date,
+        allow_manual_conflicts: bool = False,
     ) -> _ScheduleResult:
         current = day_start_minutes
         lunch_taken = False
@@ -157,6 +204,9 @@ class ScheduleBuilder:
         actual_meal_minutes = 0
         actual_buffer_minutes = 0
         fits = True
+        if start_route is not None and start_route.duration_min is not None:
+            current += start_route.duration_min
+            actual_route_minutes += start_route.duration_min
 
         for index, stop in enumerate(stops):
             if index > 0:
@@ -167,22 +217,41 @@ class ScheduleBuilder:
 
             if not lunch_taken and current >= 12 * 60 and self.meal_minutes:
                 meal_end = current + self.meal_minutes
-                if meal_end <= day_end_minutes:
+                if allow_manual_conflicts or meal_end <= day_end_minutes:
                     current = meal_end
                     actual_meal_minutes += self.meal_minutes
                     lunch_taken = True
 
             duration = stop.visit_duration_minutes or self.fallback_visit_minutes
+            opening_intervals = opening_intervals_for_date(
+                stop.opening_hours_weekly,
+                visit_date,
+            )
+            opening_fits = visit_fits_opening_hours(
+                stop.opening_hours_weekly,
+                visit_date,
+                current,
+                duration,
+            )
+            if not opening_fits:
+                fits = False
+                if not allow_manual_conflicts:
+                    break
+
             start = current
             end = start + duration
             if start < day_start_minutes or end > day_end_minutes:
                 fits = False
-                break
+                if not allow_manual_conflicts:
+                    break
             scheduled_stops.append(
                 stop.model_copy(
                     update={
                         "start_time": _format_time(start),
                         "end_time": _format_time(end),
+                        "opening_hours_applied": (
+                            opening_intervals is not None and opening_fits
+                        ),
                     }
                 )
             )
@@ -192,7 +261,7 @@ class ScheduleBuilder:
             # attractions. The final attraction does not need one after it.
             buffer = self.buffer_minutes if index < len(stops) - 1 else 0
             available = max(0, day_end_minutes - current)
-            used_buffer = min(buffer, available)
+            used_buffer = buffer if allow_manual_conflicts else min(buffer, available)
             current += used_buffer
             actual_buffer_minutes += used_buffer
 
@@ -203,30 +272,34 @@ class ScheduleBuilder:
                 and self.meal_minutes
             ):
                 meal_end = current + self.meal_minutes
-                if meal_end <= day_end_minutes:
+                if allow_manual_conflicts or meal_end <= day_end_minutes:
                     current = meal_end
                     actual_meal_minutes += self.meal_minutes
                     lunch_taken = True
 
         if not lunch_taken and self.meal_minutes:
             available = max(0, day_end_minutes - current)
-            actual_meal_minutes += min(self.meal_minutes, available)
-            current += min(self.meal_minutes, available)
+            meal = self.meal_minutes if allow_manual_conflicts else min(self.meal_minutes, available)
+            actual_meal_minutes += meal
+            current += meal
 
         visit_minutes = sum(
             stop.visit_duration_minutes or self.fallback_visit_minutes
             for stop in stops[: len(scheduled_stops)]
         )
         selected_routes = routes[: max(0, len(scheduled_stops) - 1)]
+        applied_routes = ([start_route] if start_route is not None else []) + selected_routes
         status = "complete"
-        if any(route.duration_min is None for route in selected_routes):
+        if any(route.duration_min is None for route in applied_routes):
             status = "incomplete"
-        elif any(route.estimated for route in selected_routes):
+        elif any(route.estimated for route in applied_routes):
             status = "estimated"
 
         schedule = DaySchedule(
             start_time=_format_time(day_start_minutes),
-            end_time=_format_time(min(current, day_end_minutes)),
+            end_time=_format_time(
+                current if allow_manual_conflicts else min(current, day_end_minutes)
+            ),
             visit_minutes=visit_minutes,
             route_minutes=actual_route_minutes,
             meal_minutes=actual_meal_minutes,
@@ -264,8 +337,7 @@ def _validate_window(start_minutes: int, end_minutes: int) -> None:
 
 
 def _format_time(total_minutes: int) -> str:
-    # New schedules are bounded before formatting. Keep the plain clock format
-    # here so a valid plan can never display a “次日” prefix.
-    _, clock_minutes = divmod(max(0, total_minutes), 24 * 60)
+    day_offset, clock_minutes = divmod(max(0, total_minutes), 24 * 60)
     hour, minute = divmod(clock_minutes, 60)
-    return f"{hour:02d}:{minute:02d}"
+    prefix = "次日" if day_offset else ""
+    return f"{prefix}{hour:02d}:{minute:02d}"

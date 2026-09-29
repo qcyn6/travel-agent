@@ -19,3 +19,9 @@ profiles/
 storages/
 settings.yaml
 .credentials.yaml
+
+# Local presentation work and generated deliverables
+.codex-ppt-work/
+output/
+tmp/
+edit_defense_deck_temp.mjs

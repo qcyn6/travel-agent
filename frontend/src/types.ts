@@ -24,7 +24,51 @@ export interface ChatMessage {
   role: 'user' | 'assistant'
   content: string
   streaming?: boolean
+  card?: ChatToolCard | null
 }
+
+export interface WeatherChatCard {
+  type: 'weather'
+  weather: WeatherResult | WeatherResult[]
+}
+
+export interface RouteChatCard {
+  type: 'route'
+  route: RouteSegment
+}
+
+export interface NearbyPlaceResult {
+  poi_id: string
+  name: string
+  address: string | null
+  category: string | null
+  longitude: number
+  latitude: number
+  distance_m: number | null
+}
+
+export interface NearbySearchResult {
+  center_name: string
+  center_longitude: number
+  center_latitude: number
+  category: string
+  radius_m: number
+  places: NearbyPlaceResult[]
+}
+
+export interface NearbyChatCard {
+  type: 'nearby'
+  nearby: NearbySearchResult
+}
+
+export type SingleChatToolCard = WeatherChatCard | RouteChatCard | NearbyChatCard
+
+export interface ChatToolCardCollection {
+  type: 'collection'
+  cards: SingleChatToolCard[]
+}
+
+export type ChatToolCard = SingleChatToolCard | ChatToolCardCollection
 
 export interface Conversation {
   id: string
@@ -74,9 +118,25 @@ export interface TravelDay {
   date: string | null
   attractions: AttractionStop[]
   routes: RouteSegment[]
+  start_hotel?: HotelStay | null
+  start_hotel_route?: RouteSegment | null
+  hotel?: HotelStay | null
+  hotel_route?: RouteSegment | null
   weather: WeatherResult | null
   schedule: DaySchedule | null
   description: string
+}
+
+export interface HotelStay {
+  poi_id: string
+  name: string
+  city: string
+  address?: string | null
+  rating?: number | null
+  longitude: number | null
+  latitude: number | null
+  image_url?: string | null
+  source: 'amap' | 'amap_mcp' | 'unavailable'
 }
 
 export interface DaySchedule {
@@ -98,6 +158,8 @@ export interface WeatherResult {
   temperature_max: number | null
   precipitation_probability: number | null
   wind_level: string | null
+  travel_advice?: string | null
+  travel_advice_source?: 'ai' | 'rule_based' | null
   status: 'available' | 'skipped' | 'unavailable'
   source: 'amap_mcp' | 'qweather' | 'none'
 }
@@ -109,10 +171,17 @@ export interface RouteSegment {
   destination_name: string
   distance_m: number | null
   duration_min: number | null
+  origin_longitude?: number | null
+  origin_latitude?: number | null
+  destination_longitude?: number | null
+  destination_latitude?: number | null
+  origin_city?: string | null
+  destination_city?: string | null
   mode: 'walking' | 'transit' | 'driving'
   // Legacy values are accepted when rendering historical saved plans.
   source: 'amap_mcp' | 'amap' | 'haversine' | 'unavailable'
   estimated: boolean
+  polyline?: Array<[number, number]>
 }
 
 export interface AttractionStop {
@@ -121,11 +190,41 @@ export interface AttractionStop {
   city: string
   category: string | null
   description: string | null
+  image_url?: string | null
   longitude: number | null
   latitude: number | null
   visit_duration_minutes: number
+  opening_hours_weekly?: string | null
+  opening_hours_today?: string | null
+  opening_hours_status?: 'available' | 'unavailable' | 'not_checked'
+  opening_hours_applied?: boolean
   start_time: string | null
   end_time: string | null
+}
+
+export interface ReplacementCandidate extends AttractionStop {
+  preference_score: number
+  tag_match_count?: number
+  interest_tags?: string[]
+  final_rank?: number
+}
+
+export interface AttractionReplacementOption {
+  candidate: ReplacementCandidate
+  distance_m: number | null
+  distance_score: number
+  priority_score: number
+}
+
+export interface AttractionReplacementRequest {
+  day: number
+  current_poi_id: string
+  replacement_poi_id: string
+}
+
+export interface AttractionReplacementPreview {
+  result: TravelPlanResponse
+  warnings: string[]
 }
 
 export interface TravelPlanResponse {
@@ -135,6 +234,8 @@ export interface TravelPlanResponse {
     city_stays: CityStay[]
     city_plans: unknown[]
     itinerary: TravelDay[]
+    replacement_candidates_by_city?: Record<string, ReplacementCandidate[]>
+    manual_adjustment_warnings?: Record<string, string[]>
     partial_knowledge_cities?: string[]
     evaluation: EvaluationResult | null
     notices: DegradationNotice[]
@@ -159,7 +260,7 @@ export interface DegradationNotice {
 }
 
 export interface EvaluationIssue {
-  type: 'preference' | 'schedule_density' | 'route' | 'weather'
+  type: 'preference' | 'schedule_density' | 'route' | 'weather' | 'schedule' | 'manual_adjustment' | 'review'
   severity: 'low' | 'medium' | 'high'
   day: number | null
   message: string
@@ -175,7 +276,7 @@ export interface EvaluationResult {
 export interface DayEvaluationMetric {
   day: number
   attraction_count: number
-  preference_coverage: number
+  preference_coverage?: number | null
   route_minutes: number
   route_segments: number
   estimated_route_ratio: number

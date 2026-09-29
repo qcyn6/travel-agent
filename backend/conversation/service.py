@@ -1,8 +1,12 @@
 from dataclasses import dataclass
-from inspect import isawaitable
+from inspect import Parameter, isawaitable, signature
 import re
 
-from backend.conversation.responder import ConversationResponseError
+from backend.conversation.responder import (
+    ConversationResponseError,
+    PlanningResponseDecision,
+)
+from backend.conversation.graph import PlanningConversationGraph
 from backend.database.catalog import DESTINATION_SUGGESTIONS
 from backend.destination import DestinationResolutionError, DestinationResolver
 from backend.models.conversation import (
@@ -14,6 +18,7 @@ from backend.models.conversation import (
 from backend.models.requirement import MAX_SINGLE_CITY_DAYS
 from backend.requirements.dates import format_date_zh
 from backend.requirements.parser import RequirementBoundaryError, canonicalize_interests
+from backend.requirements.preferences import is_meaningful_preference_text
 from backend.tag_matching import normalize_interest_tags
 
 
@@ -23,6 +28,9 @@ class ConversationNotFoundError(LookupError):
 
 class RequirementNotReadyError(ValueError):
     pass
+
+
+NO_EXTRA_PREFERENCE_TEXT = "没有额外体验偏好"
 
 
 @dataclass
@@ -50,6 +58,7 @@ class ConversationService:
         self.parser = parser
         self.resolver = resolver
         self.responder = responder
+        self.conversation_graph = PlanningConversationGraph(self)
 
     def create(self) -> Conversation:
         return self._to_model(self.repository.create())
@@ -67,65 +76,44 @@ class ConversationService:
         *,
         mode: str | None = None,
     ) -> tuple[Conversation, str, list[str]]:
-        prepared = await self.prepare_message(conversation_id, message, mode=mode)
-        if prepared.mode_boundary:
-            reply = prepared.mode_boundary
-        elif prepared.validation_error:
-            reply = prepared.validation_error
-        elif prepared.destination_error:
-            reply = (
-                f"{prepared.destination_error}。换一个已收录的国内省份或城市试试，"
-                "也可以让我根据你的兴趣和偏好推荐一个省份。"
-            )
-        elif prepared.should_invite_more:
-            reply = self.more_details_reply(prepared.requirement)
-        elif prepared.should_summarize:
-            reply = self.summary_reply(
-                prepared.requirement,
-                changed_fields=prepared.changed_fields,
-                was_ready=prepared.was_ready,
-            )
-        elif self.should_explain_multi_city_boundary(prepared):
-            reply = self._fallback_reply(
-                prepared.requirement,
-                prepared.missing,
-                prepared.destination_context,
-            )
-        elif prepared.intent == "general":
-            try:
-                response_inputs = self.responder_inputs(prepared)
-                reply = await self.responder.respond(
-                    user_message=prepared.user_message,
-                    **response_inputs,
-                    recent_messages=prepared.recent_messages,
-                    conversation_mode="general",
-                )
-            except ConversationResponseError:
-                reply = self._general_fallback_reply(
-                    prepared.user_message,
-                    prepared.destination_context,
-                )
-        elif (
-            not (prepared.requirement.province or prepared.requirement.cities)
-            and not prepared.requirement.province_preference_confirmed
-        ):
-            reply = self._fallback_reply(
-                prepared.requirement,
-                prepared.missing,
-                prepared.destination_context,
-            )
-        elif prepared.missing and prepared.missing[0] == "city_preference":
-            # Keep the confirmation chip and the assistant text driven by the
-            # same deterministic state. The LLM must not claim that all fields
-            # are complete while the city recommendation choice is pending.
-            reply = self._fallback_reply(
-                prepared.requirement,
-                prepared.missing,
-                prepared.destination_context,
-            )
-        else:
-            try:
-                reply = await self.responder.respond(
+        conversation, reply, suggestions, _ = await self.run_graph(
+            conversation_id,
+            message,
+            mode=mode,
+        )
+        return conversation, reply, suggestions
+
+    async def run_graph(
+        self,
+        conversation_id: str,
+        message: str,
+        *,
+        mode: str | None = None,
+    ) -> tuple[Conversation, str, list[str], PreparedConversationTurn]:
+        """Run one conversation turn through the LangGraph orchestration."""
+
+        return await self.conversation_graph.run(
+            conversation_id,
+            message,
+            mode=mode,
+        )
+
+    async def planning_reply(self, prepared: PreparedConversationTurn) -> str:
+        """Let the LLM guide a planning turn while preserving hard guards."""
+
+        decision = await self.planning_decision(prepared)
+        return decision.reply
+
+    async def planning_decision(
+        self,
+        prepared: PreparedConversationTurn,
+    ) -> PlanningResponseDecision:
+        """Return the AI's structured planning action, with a safe fallback."""
+
+        try:
+            decide = getattr(self.responder, "decide_planning", None)
+            if callable(decide):
+                decision = await decide(
                     user_message=prepared.user_message,
                     requirement=prepared.requirement,
                     missing_fields=prepared.missing,
@@ -133,24 +121,157 @@ class ConversationService:
                     recent_messages=prepared.recent_messages,
                     changed_fields=prepared.changed_fields,
                 )
-            except ConversationResponseError:
-                reply = self._fallback_reply(
-                    prepared.requirement,
-                    prepared.missing,
-                    prepared.destination_context,
+            else:
+                reply = await self.responder.respond(
+                    user_message=prepared.user_message,
+                    requirement=prepared.requirement,
+                    missing_fields=prepared.missing,
+                    destination_context=prepared.destination_context,
+                    recent_messages=prepared.recent_messages,
+                    changed_fields=prepared.changed_fields,
+                    conversation_mode="planning",
                 )
-        conversation = self.finish_message(prepared, reply)
-        suggestions = self.suggestions_for(
-            prepared.missing,
+                decision = PlanningResponseDecision(
+                    action="confirm" if not prepared.missing else "ask",
+                    next_field=self.question_field_for_reply(reply, prepared),
+                    reply=reply,
+                    ready_for_confirmation=not prepared.missing,
+                )
+        except (ConversationResponseError, ValueError, TypeError):
+            return self._planning_fallback_decision(prepared)
+        if self._planning_decision_violates_state(decision, prepared):
+            return self._planning_fallback_decision(prepared)
+        return decision
+
+    def _planning_fallback_decision(
+        self,
+        prepared: PreparedConversationTurn,
+    ) -> PlanningResponseDecision:
+        reply = self._planning_fallback(prepared)
+        return PlanningResponseDecision(
+            action="confirm" if not prepared.missing else "ask",
+            next_field=self.question_field_for_reply(reply, prepared),
+            reply=reply,
+            ready_for_confirmation=not prepared.missing,
+        )
+
+    def _planning_decision_violates_state(
+        self,
+        decision: PlanningResponseDecision,
+        prepared: PreparedConversationTurn,
+    ) -> bool:
+        if prepared.missing:
+            if decision.action != "ask" or decision.ready_for_confirmation:
+                return True
+            if decision.next_field not in prepared.missing:
+                return True
+            return self._planning_reply_violates_state(decision.reply, prepared)
+        if decision.action not in {"confirm", "generate"}:
+            return True
+        if not decision.ready_for_confirmation and decision.action == "confirm":
+            return True
+        return self._planning_reply_violates_state(decision.reply, prepared)
+
+    @staticmethod
+    def question_field_for_reply(
+        reply: str,
+        prepared: PreparedConversationTurn,
+    ) -> str | None:
+        """Map the question actually asked by the assistant back to its UI field."""
+
+        if not prepared.missing:
+            return None
+        compact = re.sub(r"\s+", "", reply)
+        cues = (
+            ("days", ("玩几天", "游玩几天", "旅行几天", "待几天", "多少天")),
+            (
+                "daily_time_window",
+                ("几点开始", "几点结束", "每天游玩时间", "每日游玩时间", "时间段"),
+            ),
+            ("start_date", ("哪天出发", "何时出发", "什么时候出发", "出发日期")),
+            (
+                "preference_text",
+                ("旅行节奏", "游玩节奏", "体验偏好", "旅行风格", "赶时间"),
+            ),
+            (
+                "preferences",
+                ("兴趣标签", "更喜欢什么", "喜欢哪类", "自然风光", "历史文化"),
+            ),
+            (
+                "city_preference",
+                ("想去的城市", "指定城市", "哪个城市", "哪些城市", "推荐城市"),
+            ),
+            ("destination", ("想去的省份", "哪个省份", "推荐一个省份", "目的地")),
+        )
+        for field, markers in cues:
+            if field in prepared.missing and any(marker in compact for marker in markers):
+                return field
+        return prepared.missing[0]
+
+    def suggestions_for_reply(
+        self,
+        prepared: PreparedConversationTurn,
+        reply: str,
+    ) -> list[str]:
+        field = self.question_field_for_reply(reply, prepared)
+        return self.suggestions_for(
+            [field] if field else [],
             prepared.requirement,
             intent=prepared.intent,
         )
-        if prepared.validation_error and prepared.intent == "planning":
-            suggestions = self.validation_suggestions(
-                prepared.validation_error,
+
+    def suggestions_for_decision(
+        self,
+        prepared: PreparedConversationTurn,
+        decision: PlanningResponseDecision,
+    ) -> list[str]:
+        """Build UI options from the same structured field the AI selected."""
+
+        if decision.action in {"confirm", "generate"} and not prepared.missing:
+            return ["确认生成计划"]
+        field = decision.next_field
+        if field not in prepared.missing:
+            return self.suggestions_for_reply(prepared, decision.reply)
+        return self.suggestions_for(
+            [field],
+            prepared.requirement,
+            intent=prepared.intent,
+        )
+
+    @staticmethod
+    def _planning_fallback(prepared: PreparedConversationTurn) -> str:
+        if not prepared.missing:
+            return ConversationService.summary_reply(
                 prepared.requirement,
+                changed_fields=prepared.changed_fields,
+                was_ready=prepared.was_ready,
             )
-        return conversation, reply, suggestions
+        return ConversationService._fallback_reply(
+            prepared.requirement,
+            prepared.missing,
+            prepared.destination_context,
+        )
+
+    @staticmethod
+    def _planning_reply_violates_state(
+        reply: str,
+        prepared: PreparedConversationTurn,
+    ) -> bool:
+        compact = re.sub(r"\s+", "", reply)
+        if prepared.missing and any(
+            marker in compact
+            for marker in ("所有条件都齐", "全部条件都齐", "确认生成计划", "可以生成计划")
+        ):
+            return True
+        if (
+            prepared.requirement.days is not None
+            and prepared.requirement.days > MAX_SINGLE_CITY_DAYS
+            and any(marker in compact for marker in ("单城市", "一个城市深度游"))
+        ):
+            return True
+        if not prepared.missing and "确认" not in compact:
+            return True
+        return False
 
     @staticmethod
     def should_explain_multi_city_boundary(prepared: PreparedConversationTurn) -> bool:
@@ -174,18 +295,89 @@ class ConversationService:
         if row is None:
             raise ConversationNotFoundError("当前会话不存在或已失效")
         clean_message = message.strip()
-        recent = [
+        conversation_history = [
             {"role": item.role, "content": item.content}
-            for item in row.messages[-8:]
+            for item in row.messages
             if item.role in {"user", "assistant"}
         ]
+        recent = conversation_history[-8:]
         self.repository.add_message(row, role="user", content=clean_message)
 
         current = load_requirement_draft(row.requirement_draft or {})
         try:
-            parsed_value = self.parser.parse(message)
+            parsed_value = self._parse_requirement(
+                message,
+                conversation_history=conversation_history,
+            )
             parsed = await parsed_value if isawaitable(parsed_value) else parsed_value
             parsed_draft = RequirementDraft.model_validate(parsed.model_dump())
+            normalized_message = re.sub(r"[，。！？、\s]", "", clean_message)
+            if (
+                mode == "planning"
+                and self.missing_fields(current)[:1] == ["destination"]
+                and normalized_message
+                in {"没有", "没有想好", "不知道", "没想好", "你推荐", "你来推荐"}
+            ):
+                # In the province question, a short “没有” means there is no
+                # preferred province and the user authorizes recommendation.
+                parsed_draft = parsed_draft.model_copy(
+                    update={"province_preference_confirmed": True}
+                )
+            explicit_city_recommendation = (
+                "城市" in normalized_message
+                and self.confirms_city_recommendation(clean_message)
+            )
+            if (
+                mode == "planning"
+                and self.confirms_city_recommendation(clean_message)
+                and (
+                    self.missing_fields(current)[:1] == ["city_preference"]
+                    or explicit_city_recommendation
+                )
+            ):
+                # The current question supplies the meaning of a short answer
+                # such as “你来推荐”.  Prefer this deterministic turn context
+                # over an LLM that may mistake it for a province recommendation
+                # and otherwise cause the same city question to repeat.
+                parsed_draft = parsed_draft.model_copy(
+                    update={
+                        "city_preference_confirmed": True,
+                        "province_preference_confirmed": self.confirms_province_recommendation(
+                            clean_message
+                        ),
+                    }
+                )
+            if (
+                mode == "planning"
+                and self.missing_fields(current)[:1] == ["preference_text"]
+            ):
+                parsed_other_requirement = bool(
+                    parsed_draft.province
+                    or parsed_draft.cities
+                    or parsed_draft.days is not None
+                    or parsed_draft.interests
+                    or parsed_draft.start_date is not None
+                    or parsed_draft.daily_start_time is not None
+                    or parsed_draft.daily_end_time is not None
+                    or parsed_draft.travel_scope != "auto"
+                )
+                explicit_preference = is_meaningful_preference_text(
+                    parsed_draft.preference_text,
+                    current.interests,
+                )
+                parsed_draft = parsed_draft.model_copy(
+                    update={
+                        "preference_text": (
+                            clean_message
+                            if is_meaningful_preference_text(
+                                clean_message,
+                                current.interests,
+                            )
+                            and (explicit_preference or not parsed_other_requirement)
+                            else None
+                        )
+                    }
+                )
         except (RequirementBoundaryError, ValueError) as exc:
             return PreparedConversationTurn(
                 row=row,
@@ -210,7 +402,11 @@ class ConversationService:
             merged = current
         else:
             try:
-                merged = self._merge(current, parsed_draft)
+                merged = self._merge(current, parsed_draft, message=clean_message)
+                if explicit_city_recommendation:
+                    merged = merged.model_copy(
+                        update={"city_preference_confirmed": True}
+                    )
             except ValueError as exc:
                 return PreparedConversationTurn(
                     row=row,
@@ -273,6 +469,31 @@ class ConversationService:
             mode_boundary=mode_boundary,
         )
 
+    def _parse_requirement(
+        self,
+        message: str,
+        *,
+        conversation_history: list[dict[str, str]],
+    ):
+        """Parse one turn with the complete prior conversation as context."""
+
+        parse = self.parser.parse
+        try:
+            parameters = signature(parse).parameters.values()
+        except (TypeError, ValueError):
+            parameters = ()
+        supports_context = any(
+            parameter.name == "conversation_history"
+            or parameter.kind is Parameter.VAR_KEYWORD
+            for parameter in parameters
+        )
+        if supports_context:
+            return parse(message, conversation_history=conversation_history)
+        # Keep legacy deterministic/test parsers that still implement only
+        # parse(text) usable. The production RequirementParsingService accepts
+        # the context and forwards it to the LangChain/DeepSeek parser.
+        return parse(message)
+
     @staticmethod
     def _validation_reply(mode: str | None, message: str) -> str:
         if mode == "general":
@@ -315,6 +536,7 @@ class ConversationService:
                 "destination": "目的地",
                 "days": "旅行天数",
                 "preferences": "兴趣或体验偏好",
+                "preference_text": "旅行节奏或体验偏好",
                 "start_date": "出发日期",
                 "daily_time_window": "每日游玩开始和结束时间",
                 "travel_scope": "城市安排方式",
@@ -335,12 +557,19 @@ class ConversationService:
             missing.append("destination")
         if requirement.days is None:
             missing.append("days")
-        if requirement.travel_scope == "auto":
-            missing.append("travel_scope")
-        elif not requirement.cities and not requirement.city_preference_confirmed:
+        if (
+            requirement.days is not None
+            and not requirement.cities
+            and not requirement.city_preference_confirmed
+        ):
             missing.append("city_preference")
-        if not requirement.interests and not requirement.preference_text:
+        if not requirement.interests:
             missing.append("preferences")
+        elif not is_meaningful_preference_text(
+            requirement.preference_text,
+            requirement.interests,
+        ):
+            missing.append("preference_text")
         if requirement.start_date is None:
             missing.append("start_date")
         if requirement.daily_start_time is None or requirement.daily_end_time is None:
@@ -364,6 +593,12 @@ class ConversationService:
             return ConversationService._day_suggestions(requirement)
         if missing[0] == "preferences":
             return ["自然风光", "历史文化", "古城", "摄影", "美食", "休闲慢游"]
+        if missing[0] == "preference_text":
+            return [
+                "节奏轻松，不赶时间",
+                "喜欢拍照和沉浸体验",
+                "优先游览代表性景点",
+            ]
         if missing[0] == "start_date":
             return ["明天出发", "后天出发", "下周一出发"]
         if missing[0] == "daily_time_window":
@@ -588,12 +823,75 @@ class ConversationService:
         }
 
     @staticmethod
+    def confirms_city_recommendation(message: str) -> bool:
+        """Recognize a city-recommendation answer in the city-choice turn."""
+
+        normalized = re.sub(r"[，。！？、\s]", "", message.strip())
+        if not normalized or ("省份" in normalized and "城市" not in normalized):
+            return False
+        return any(
+            marker in normalized
+            for marker in (
+                "没有指定城市",
+                "没有特别想去的城市",
+                "没有想去的城市",
+                "不指定城市",
+                "不挑城市",
+                "城市都可以",
+                "城市随便",
+                "随便安排城市",
+                "推荐城市",
+                "你来推荐",
+                "由你推荐",
+            )
+        )
+
+    @staticmethod
+    def is_city_addition_message(message: str) -> bool:
+        """Recognize a follow-up that adds a city to existing destinations."""
+
+        # The deterministic parser only sees the current turn. Keep the
+        # previous cities when the user explicitly says that another city is
+        # also/ additionally part of the trip, instead of replacing them with
+        # the one newly mentioned city.
+        normalized = re.sub(r"[，。！？、\s]", "", message.strip())
+        return any(
+            marker in normalized
+            for marker in (
+                "也想去",
+                "也要去",
+                "还想去",
+                "还要去",
+                "另外想去",
+                "另外要去",
+                "再去",
+                "再加",
+                "加上",
+                "加一个",
+                "增加",
+                "顺便去",
+                "一起去",
+            )
+        )
+
+    @staticmethod
+    def confirms_province_recommendation(message: str) -> bool:
+        """Recognize an explicit request for the assistant to choose a province."""
+
+        normalized = re.sub(r"[，。！？、\s]", "", message.strip())
+        return "省份" in normalized and any(
+            marker in normalized
+            for marker in ("你来推荐", "由你推荐", "帮我推荐", "推荐一个省份")
+        )
+
+    @staticmethod
     def more_details_reply(requirement: RequirementDraft) -> str:
         missing = ConversationService.missing_fields(requirement)
         labels = {
             "destination": "目的地",
             "days": "旅行天数",
             "preferences": "兴趣或体验偏好",
+            "preference_text": "旅行节奏或体验偏好",
             "start_date": "出发日期",
             "daily_time_window": "每日游玩开始和结束时间",
             "travel_scope": "城市安排方式",
@@ -605,7 +903,8 @@ class ConversationService:
         prompts = {
             "destination": "你已经想好去哪个省份或城市了吗？如果还没想好，可以回复“你来推荐一个省份”，我会结合你的兴趣和偏好帮你选。",
             "days": "这次准备玩几天？",
-            "preferences": "你更想体验自然风光、历史文化、美食、摄影，还是轻松慢游？",
+            "preferences": "请先选择这次旅行的兴趣标签，例如自然、历史文化、古城、摄影、美食或休闲。",
+            "preference_text": "除了兴趣标签，你希望行程是什么节奏、侧重什么体验？请填写一项明确偏好，例如“节奏轻松，不赶时间”“喜欢拍照和沉浸体验”或“优先游览代表性景点”。",
             "start_date": "计划哪天出发？出发日期至少从明天开始，可以说“明天”“后天”或“下周一”。",
             "daily_time_window": "每天准备几点开始、几点结束游玩？例如“每天早上8点到晚上9点”。",
             "travel_scope": "想在一个城市深度游，还是安排同省多个城市？",
@@ -641,16 +940,33 @@ class ConversationService:
         )
         return [field for field in fields if getattr(before, field) != getattr(after, field)]
 
-    def _merge(self, current: RequirementDraft, parsed: RequirementDraft) -> RequirementDraft:
+    def _merge(
+        self,
+        current: RequirementDraft,
+        parsed: RequirementDraft,
+        *,
+        message: str = "",
+    ) -> RequirementDraft:
         raw_interests = canonicalize_interests([*current.interests, *parsed.interests])
         interests, _ = self._normalize_interests(raw_interests)
         scope = parsed.travel_scope
         if scope == "auto" and current.travel_scope != "auto":
             scope = current.travel_scope
         days = parsed.days or current.days
-        if scope == "auto" and days is not None and days > MAX_SINGLE_CITY_DAYS:
+        if parsed.cities and current.cities and self.is_city_addition_message(message):
+            # A turn such as “昆明我突然也想去” parses to only [昆明]. Keep
+            # the already confirmed cities because this turn is an addition,
+            # not a replacement of the destination list.
+            cities = list(dict.fromkeys([*current.cities, *parsed.cities]))
+        else:
+            cities = parsed.cities or current.cities
+        # The merged city list is authoritative. A single-city parser result
+        # must not turn an existing 4～7 day multi-city trip into an invalid
+        # single-city draft.
+        if len(cities) >= 2:
             scope = "multi_city"
-        cities = parsed.cities or current.cities
+        elif scope == "auto" and days is not None:
+            scope = "single_city" if days <= MAX_SINGLE_CITY_DAYS else "multi_city"
         city_preference_confirmed = (
             current.city_preference_confirmed
             or parsed.city_preference_confirmed
@@ -669,7 +985,9 @@ class ConversationService:
         if parsed.province and parsed.province != current.province and not parsed.cities:
             cities = []
             province_preference_confirmed = True
-            city_preference_confirmed = False
+            # Changing province invalidates an old named-city choice, but an
+            # explicit “城市你来推荐” in the same message remains valid.
+            city_preference_confirmed = parsed.city_preference_confirmed
         elif parsed.cities:
             # A named city settles the destination directly; it should not
             # remain labelled as an AI-recommended province.
@@ -721,7 +1039,10 @@ class ConversationService:
         if not destination and requirement.province_preference_confirmed:
             destination = "AI根据兴趣和偏好推荐省份"
         destination = destination or "待补充"
-        interests = "、".join(requirement.interests) if requirement.interests else requirement.preference_text or "待补充"
+        profile_parts = ["、".join(requirement.interests)] if requirement.interests else []
+        if requirement.preference_text and requirement.preference_text != NO_EXTRA_PREFERENCE_TEXT:
+            profile_parts.append(requirement.preference_text)
+        interests = " · ".join(profile_parts) or requirement.preference_text or "待补充"
         start_date = format_date_zh(requirement.start_date) if requirement.start_date else None
         scope = {
             "single_city": "单城市深度游",
@@ -780,8 +1101,14 @@ class ConversationService:
             scope_hint = "按同省多城市安排。" if requirement.days and requirement.days > MAX_SINGLE_CITY_DAYS else ""
             destination_text = "推荐的省份" if recommending_province else (destination or "目的地")
             return (
-                f"{destination_text}安排{requirement.days}天，{scope_hint}可以把节奏做得更舒服。"
-                "你更想把重点放在自然风光、历史文化、美食、摄影，还是轻松慢游？"
+                f"{destination_text}安排{requirement.days}天，{scope_hint}先选择这次旅行的兴趣标签："
+                "自然、历史文化、古城、摄影、美食或休闲。"
+            )
+        if missing[0] == "preference_text":
+            return (
+                "兴趣方向已经记下了。除了这些标签，你希望行程是什么节奏、侧重什么体验？"
+                "这一项需要明确填写，例如“节奏轻松，不赶时间”“喜欢拍照和沉浸体验”"
+                "或“优先游览代表性景点”。"
             )
         if missing[0] == "start_date":
             return "计划哪天出发？可以说具体日期，也可以说“明天”或“下周一”。"

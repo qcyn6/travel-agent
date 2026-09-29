@@ -13,6 +13,9 @@ class AttractionDocument(BaseModel):
     description: str
     source_url: str | None = None
     visit_duration_minutes: int = Field(default=90, ge=1, le=720)
+    opening_hours_weekly: str | None = None
+    opening_hours_today: str | None = None
+    opening_hours_status: str = "not_checked"
 
     def index_text(self) -> str:
         parts = [self.name]
@@ -49,6 +52,9 @@ class KnowledgeSearchResult(BaseModel):
     source_file: str
     content: str
     distance: float = Field(ge=0)
+    # RRF score is useful for adaptive retrieval decisions but is not
+    # required by existing callers or persisted API payloads.
+    retrieval_score: float = Field(default=0, ge=0)
 
 
 class IndexBuildResult(BaseModel):
@@ -76,6 +82,9 @@ class HybridSearchResult(BaseModel):
     description: str
     source_url: str | None = None
     visit_duration_minutes: int = Field(default=90, ge=1, le=720)
+    opening_hours_weekly: str | None = None
+    opening_hours_today: str | None = None
+    opening_hours_status: str = "not_checked"
     # New retrieval observability fields. The legacy rank fields below stay
     # in the API for compatibility with saved plans and existing clients.
     tag_match_count: int = Field(default=0, ge=0)

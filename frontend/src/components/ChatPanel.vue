@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import type { ChatMessage, ConversationMode } from '../types'
+import type { ChatMessage, ConversationMode, RouteChatCard, SingleChatToolCard } from '../types'
+import GeneralRouteMap from './GeneralRouteMap.vue'
+import NearbyPlacesCard from './NearbyPlacesCard.vue'
+import WeatherCalendarCard from './WeatherCalendarCard.vue'
 
 const props = defineProps<{
   messages: ChatMessage[]
@@ -13,6 +16,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   send: [text: string]
   confirm: []
+  cardUpdated: [index: number, card: RouteChatCard]
 }>()
 
 const input = ref('')
@@ -22,6 +26,11 @@ const generalInputPlaceholder = '例如：杭州明天天气、杭州东站到�
 const planningInputPlaceholder = '告诉我想去哪里、玩几天、哪天出发，以及你喜欢怎样的旅行……'
 const modePlaceholder = computed(() => props.mode === 'planning' ? planningInputPlaceholder : generalInputPlaceholder)
 const inputPlaceholder = ref(modePlaceholder.value)
+
+function cardsForMessage(card: ChatMessage['card']): SingleChatToolCard[] {
+  if (!card) return []
+  return card.type === 'collection' ? card.cards : [card]
+}
 
 const confirmationAvailable = computed(() => Boolean(
   props.mode === 'planning' && props.suggestions.includes('确认生成计划'),
@@ -75,7 +84,7 @@ watch(
 )
 
 watch(
-  () => props.messages.map((item) => item.content).join('|'),
+  () => props.messages.map((item) => `${item.content}|${item.card ? JSON.stringify(item.card) : ''}`).join('|'),
   async () => {
     await nextTick()
     // 流式回复会频繁触发更新，直接定位到底部，避免连续平滑动画造成滚动滞后。
@@ -104,9 +113,27 @@ watch(
         :class="message.role"
       >
         <div v-if="message.role === 'assistant'" class="avatar">山</div>
-        <div class="message-bubble">
-          <template v-if="message.streaming && !message.content"><span class="streaming-label">正在生成回复</span><span class="typing-dots"><i></i><i></i><i></i></span></template>
-          <template v-else>{{ message.content }}<span v-if="message.streaming" class="typing-caret"></span></template>
+        <div class="message-body">
+          <div class="message-bubble">
+            <template v-if="message.streaming && !message.content"><span class="streaming-label">正在生成回复</span><span class="typing-dots"><i></i><i></i><i></i></span></template>
+            <template v-else>{{ message.content }}<span v-if="message.streaming" class="typing-caret"></span></template>
+          </div>
+          <template v-for="(card, cardIndex) in cardsForMessage(message.card)" :key="`${card.type}-${cardIndex}`">
+            <WeatherCalendarCard
+              v-if="card.type === 'weather'"
+              :weather="card.weather"
+            />
+            <GeneralRouteMap
+              v-else-if="card.type === 'route'"
+              :route="card.route"
+              :disabled="Boolean(message.streaming)"
+              @update:route="emit('cardUpdated', index, { type: 'route', route: $event })"
+            />
+            <NearbyPlacesCard
+              v-else-if="card.type === 'nearby'"
+              :nearby="card.nearby"
+            />
+          </template>
         </div>
       </article>
       <article v-if="sending && !messages.at(-1)?.streaming" class="message-row assistant">

@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-09-22T10:33:55+08:00",
+  "scope": {
+    "province_rows": 34,
+    "city_rows": 372,
+    "catalog_provinces": 34,
+    "catalog_cities": 372
+  },
+  "administrative_integrity": {
+    "province_missing_adcodes": [],
+    "province_extra_adcodes": [],
+    "province_name_mismatch": [],
+    "province_duplicate_names": [],
+    "province_duplicate_adcodes": [],
+    "province_code_format_errors": [],
+    "city_missing_adcodes": [],
+    "city_extra_adcodes": [],
+    "city_name_or_parent_mismatch": [],
+    "city_orphan_rows": [],
+    "city_duplicate_names": [],
+    "city_duplicate_adcodes": [],
+    "city_code_format_errors": [],
+    "city_parent_code_mismatch": []
+  },
+  "content_integrity": {
+    "canonical_tag_count": 52,
+    "province_unknown_tags": {},
+    "city_unknown_tags": {},
+    "province_description_profiles": {
+      "free_text": 34
+    },
+    "city_description_profiles": {
+      "free_text": 372
+    },
+    "province_template_rows": [],
+    "province_placeholder_rows": [],
+    "city_template_row_count": 0,
+    "city_template_rows": [],
+    "city_placeholder_rows": [],
+    "same_name_destination_rows": [
+      {
+        "province": "北京市",
+        "city": "北京市",
+        "adcode": "110000"
+      },
+      {
+        "province": "天津市",
+        "city": "天津市",
+        "adcode": "120000"
+      },
+      {
+        "province": "上海市",
+        "city": "上海市",
+        "adcode": "310000"
+      },
+      {
+        "province": "重庆市",
+        "city": "重庆市",
+        "adcode": "500000"
+      },
+      {
+        "province": "香港特别行政区",
+        "city": "香港特别行政区",
+        "adcode": "810000"
+      },
+      {
+        "province": "澳门特别行政区",
+        "city": "澳门特别行政区",
+        "adcode": "820000"
+      }
+    ],
+    "city_duplicate_descriptions": [],
+    "city_catalog_drift": []
+  },
+  "interpretation": {
+    "administrative_names_and_adcodes": "structurally_verified_against_backend_catalog",
+    "tags_and_descriptions": "catalog_text_requires_public_source_spot_check",
+    "no_database_mutation": true
+  }
+}

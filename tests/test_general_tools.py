@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from backend.conversation.general_tools import GeneralTravelToolService
+from backend.conversation.general_tools import AmapMcpPlaceResolver, GeneralTravelToolService
 from backend.models.general_chat import GeneralIntentDecision
 from backend.models.route import RouteSegment
 from backend.models.weather import WeatherResult
@@ -78,6 +78,32 @@ class WeatherClientStub:
         )
 
 
+@pytest.mark.asyncio
+async def test_amap_place_resolver_accepts_mcp_results_shape():
+    class Client:
+        async def call_tool(self, name, arguments, *, operation):
+            assert name == "maps_geo"
+            assert arguments == {"address": "杭州东站"}
+            assert operation == "geocode"
+            return {
+                "results": [
+                    {
+                        "name": "杭州东站",
+                        "address": "杭州市上城区",
+                        "city": "杭州市",
+                        "location": "120.212600,30.290000",
+                    }
+                ]
+            }
+
+    result = await AmapMcpPlaceResolver(Client()).resolve("杭州东站")
+
+    assert result is not None
+    assert result.name == "杭州东站"
+    assert result.city == "杭州市"
+    assert (result.longitude, result.latitude) == (120.2126, 30.29)
+
+
 def _service(**overrides):
     values = {
         "catalog_repository": SimpleNamespace(
@@ -93,8 +119,9 @@ def _service(**overrides):
 
 
 @pytest.mark.asyncio
-async def test_route_tool_returns_source_distance_and_duration():
-    reply = await _service().execute(
+async def test_route_tool_returns_distance_and_duration_with_card():
+    service = _service()
+    reply = await service.execute(
         GeneralIntentDecision(
             intent="route",
             origin="杭州东站",
@@ -105,12 +132,15 @@ async def test_route_tool_returns_source_distance_and_duration():
     assert "公共交通" in reply
     assert "8.3公里" in reply
     assert "32分钟" in reply
-    assert "高德路线查询" in reply
+    assert "数据来源" not in reply
+    assert service.last_card["type"] == "route"
+    assert service.last_card["route"]["destination_name"] == "西湖"
 
 
 @pytest.mark.asyncio
-async def test_weather_tool_returns_structured_facts():
-    reply = await _service().execute(
+async def test_weather_tool_returns_structured_facts_without_source_label():
+    service = _service()
+    reply = await service.execute(
         GeneralIntentDecision(
             intent="weather",
             city="杭州市",
@@ -121,7 +151,9 @@ async def test_weather_tool_returns_structured_facts():
     assert "多云" in reply
     assert "20～28℃" in reply
     assert "降水概率约20%" in reply
-    assert "和风天气" in reply
+    assert "数据来源" not in reply
+    assert service.last_card["type"] == "weather"
+    assert service.last_card["weather"]["city"] == "杭州市"
 
 
 @pytest.mark.asyncio

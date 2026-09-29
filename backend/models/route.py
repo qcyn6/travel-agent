@@ -20,8 +20,13 @@ class RouteSegment(BaseModel):
     origin_latitude: float | None = None
     destination_longitude: float | None = None
     destination_latitude: float | None = None
+    origin_city: str | None = None
+    destination_city: str | None = None
     distance_m: int | None = Field(default=None, ge=0)
     duration_min: int | None = Field(default=None, ge=0)
     mode: RouteMode
     source: RouteSource
     estimated: bool = False
+    # Real Amap route geometry when the provider response contains step
+    # polylines. Historical and estimated routes may leave it empty.
+    polyline: list[tuple[float, float]] = Field(default_factory=list)

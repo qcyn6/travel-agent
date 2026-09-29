@@ -5,10 +5,15 @@ from backend.destination.repository import CatalogRepository
 from backend.evaluator import PlanEvaluator
 from backend.knowledge import KnowledgeRepository
 from backend.knowledge.runtime import build_bootstrap_service
-from backend.poi.runtime import build_candidate_enrichment_service
-from backend.planner.city import DeepSeekCityPlanner
+from backend.hotels import build_hotel_enrichment_service
+from backend.planner.attraction_details import build_attraction_description_service
+from backend.planner.attraction_photos import build_attraction_photo_service
+from backend.planner.langchain_agents import (
+    LangChainItineraryEnhancementAgent,
+)
 from backend.planner.service import CityPlanningService
 from backend.planner.workflow import TravelPlanningWorkflow
+from backend.poi.amap import AmapAttractionClient, AmapConfigurationError
 from backend.rag.runtime import build_hybrid_service
 from backend.requirements.runtime import build_requirement_parser
 from backend.route import (
@@ -25,12 +30,17 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
     attractions = AttractionRepository(session)
     knowledge = KnowledgeRepository(session)
     cache = build_cache(settings)
-    attraction_enrichment_service = build_candidate_enrichment_service(
-        attraction_repository=attractions,
-        catalog_repository=catalog,
-        settings=settings,
-        cache=cache,
-    )
+    attraction_description_service = build_attraction_description_service(settings)
+    attraction_photo_service = build_attraction_photo_service(settings, cache=cache)
+    try:
+        opening_hours_client = AmapAttractionClient(
+            settings.amap_api_key,
+            timeout_seconds=settings.amap_timeout_seconds,
+            cache=cache,
+            cache_ttl_seconds=43200,
+        )
+    except AmapConfigurationError:
+        opening_hours_client = None
     try:
         route_client = AmapMcpRouteClient(
             settings.amap_api_key,
@@ -46,6 +56,11 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
         route_client,
         max_concurrency=settings.route_enrichment_concurrency,
     )
+    hotel_enrichment_service = build_hotel_enrichment_service(
+        settings,
+        route_service=route_enrichment_service,
+        cache=cache,
+    )
 
     qweather_client = QWeatherClient(
         settings.qweather_api_key,
@@ -59,6 +74,20 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
         meal_minutes=settings.schedule_meal_minutes,
         buffer_minutes=settings.schedule_buffer_minutes,
     )
+    evaluator = PlanEvaluator(
+        max_route_segment_minutes=settings.evaluator_max_route_segment_minutes,
+        max_daily_route_minutes=settings.evaluator_max_daily_route_minutes,
+    )
+    plan_review_agent = (
+        LangChainItineraryEnhancementAgent(
+            settings.llm_api_key,
+            base_url=settings.llm_base_url,
+            model=settings.llm_model,
+            timeout_seconds=settings.llm_timeout_seconds,
+        )
+        if getattr(settings, "planning_agent_backend", "langchain") == "langchain"
+        else None
+    )
     return TravelPlanningWorkflow(
         parser=build_requirement_parser(settings),
         resolver=DestinationResolver(catalog),
@@ -71,17 +100,18 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             settings=settings,
             cache=cache,
         ),
-        attraction_enrichment_service=attraction_enrichment_service,
+        attraction_description_service=attraction_description_service,
+        attraction_photo_service=attraction_photo_service,
+        hotel_enrichment_service=hotel_enrichment_service,
         city_planning_service=CityPlanningService(
             retrieval_service=build_hybrid_service(knowledge, settings),
-            planner=DeepSeekCityPlanner(
-                settings.llm_api_key,
-                base_url=settings.llm_base_url,
-                model=settings.llm_model,
-                timeout_seconds=settings.llm_timeout_seconds,
-            ),
+            # The final enhancement/review node now owns all AI-generated
+            # itinerary prose. The deterministic city scheduler remains the
+            # sole owner of attraction selection and ordering.
+            planner=None,
             route_enrichment_service=route_enrichment_service,
             schedule_builder=schedule_builder,
+            opening_hours_service=opening_hours_client,
         ),
         route_enrichment_service=route_enrichment_service,
         weather_enrichment_service=WeatherEnrichmentService(
@@ -89,10 +119,7 @@ def build_travel_workflow(session, settings) -> TravelPlanningWorkflow:
             max_concurrency=settings.weather_enrichment_concurrency,
         ),
         schedule_builder=schedule_builder,
-        evaluator=PlanEvaluator(
-            max_day_minutes=settings.evaluator_max_day_minutes,
-            max_route_segment_minutes=settings.evaluator_max_route_segment_minutes,
-            max_daily_route_minutes=settings.evaluator_max_daily_route_minutes,
-            minimum_interest_coverage=settings.evaluator_minimum_interest_coverage,
-        ),
+        evaluator=evaluator,
+        checkpoint_path=getattr(settings, "planning_checkpoint_path", None),
+        plan_review_agent=plan_review_agent,
     )

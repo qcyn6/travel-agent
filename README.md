@@ -15,7 +15,7 @@
 - 景点知识、兴趣标签和游玩时长用于演示流程；天气与路线仍可调用真实外部能力
 - 已建立 `name + category + description` 的 Embedding 与 Chroma Vector Search 链路
 - Vector Search 强制使用城市 metadata 过滤，不会跨城市混入候选景点
-- 普通模式接入独立的省份/城市 RAG：`data/knowledge/` 下的 34 个省份和 372 个城市知识块使用 BM25 + Chroma 语义检索，检索结果只作为普通对话上下文，不进入规划需求
+- 普通模式将省份、城市、景点基础知识交给 LLM 直接回答；需要项目统一口径的旅行主题文档放在 `data/knowledge/guides/`，由独立的 `travel_guides` BM25 + Chroma 链路按主题检索
 - BM25、偏好词扩展、RRF 与阿里云 `qwen3-rerank` 个性化景点检索；接口失败时保留 RRF 降级
 - 同一个 City Planner 支持单城市 1～3 日行程
 - Destination Planner 支持同省 2～3 城市组合；总行程限制为1～7天，每个选中城市至少安排1天并均衡分配
@@ -38,13 +38,16 @@
 - 结构化行程景点节点，保留 POI ID、城市、经纬度和出发日期；景点之间的路线由高德地图工具补充
 - 和风天气 API 城市逐日预报；天气接口失败或未配置时标记为暂不可用，无日期时跳过，不阻断规划
 - 景点游玩时长直接保存在 MySQL `attractions`，用于生成每日时间线
+- 排程前按景点名称向高德补充周营业时间；可解析且适用于出游日期的数据用于顺延或排除闭馆时段，未获取或无法核实的数据不限制排程并在方案中提示
 - 确定性日内时间表生成，综合游览、路线、用餐和缓冲时间，并标记估算或不完整数据
-- 规则型行程评估器，覆盖时间密度、路线、天气和用户兴趣，并返回结构化问题与修改建议；问题交由用户确认，不自动修改行程
+- 规则型行程评估器检查路线负担与数据可靠性；景点排序使用 0.4 偏好/0.6 距离权重，AI 根据天气预报生成出行提示但不改动行程
 - 可选 Redis Cache-Aside：POI 24 小时、路线 3 小时、天气 1 小时、来源搜索 12 小时；缓存不可用不阻断业务
 - Windows + WSL2 开发环境可配置 `REDIS_WSL_DISTRO=Ubuntu`，Python 启动缓存层时会自动保持该发行版运行
 - 最终方案 Day Card 展示逐景点时间、每日耗时构成、天气和人类可读的方案检查结果
 - 统一的降级通知与日志：外部服务失败时尽可能继续规划，并明确标注估算、跳过、未知或需人工确认的数据
 - MySQL 版本化保存当前会话生成的旅行方案，并提供会话历史方案查询接口
+- 用户注册/登录、会话按用户隔离，以及管理员查看用户对话和触发方案生成
+- 管理员可编辑景点描述和 `data/knowledge/guides/` 下的旅行指南，并可按需刷新检索索引
 - 独立离线实验矩阵：8 个固定案例 × 3 个排程变体，输出 JSON、CSV 和 Markdown 指标；另有显式开启的 LLM 直接生成 Baseline 与工具 fixture 验收
 - 景点字段映射、空值处理、去重和非景点附属设施过滤
 
@@ -80,6 +83,10 @@ if (!(Test-Path .env)) { Copy-Item .env.example .env }
 
 ```text
 DATABASE_URL=mysql+pymysql://MYSQL_USER:MYSQL_PASSWORD@127.0.0.1:3306/travel_agent?charset=utf8mb4
+AUTH_REQUIRED=true
+AUTH_SECRET=请替换为随机长字符串
+BOOTSTRAP_ADMIN_USERNAME=admin
+BOOTSTRAP_ADMIN_PASSWORD=请替换为强密码
 LLM_API_KEY=YOUR_DEEPSEEK_KEY
 AMAP_API_KEY=YOUR_AMAP_KEY
 # 路线和距离使用高德 MCP；天气直接使用和风天气 API
@@ -141,18 +148,15 @@ cd D:\travel-agent
 D:\Miniconda\envs\travel-agent\python.exe -m pytest -q
 ```
 
-省份/城市知识库首次使用或 Markdown 内容更新后，执行一次向量索引构建：
+当前普通模式的省份、城市、景点基础问答直接由大模型回答，不依赖省份/城市知识库。
+需要项目资料支撑的旅行主题文档使用独立索引：
 
 ```powershell
-cd D:\travel-agent
-python scripts\rebuild_travel_knowledge_index.py
+python scripts\rebuild_travel_guides_index.py
 ```
 
-该命令会读取 `data/knowledge/province_travel_knowledge.md` 和
-`data/knowledge/city_travel_knowledge.md`，生成 406 个知识块并写入 Chroma 的
-`travel_knowledge` 集合。普通模式检索时同时使用本地 BM25 和该集合的语义向量；
-Embedding 服务不可用时自动降级为 BM25。修改知识文档后重新执行即可增量更新，
-不会影响景点专用的 `attraction_knowledge` 集合。
+该命令读取 `data/knowledge/guides/`，将旅行注意事项和行程规划主题写入
+`travel_guides` 集合，不会与省份/城市基础知识或景点索引混用。
 
 前端测试和生产构建：
 
@@ -262,6 +266,9 @@ D:\Miniconda\envs\travel-agent\python.exe -m experiments.tool_acceptance --mode 
 
 ```text
 GET  /health
+POST /api/v1/auth/register
+POST /api/v1/auth/login
+GET  /api/v1/auth/me
 POST /api/v1/conversations
 GET  /api/v1/conversations/{conversation_id}
 GET  /api/v1/conversations/{conversation_id}/plans
@@ -280,7 +287,17 @@ GET  /api/v1/retrieval/vector?city=杭州市&query=适合慢慢逛和拍照的�
 POST /api/v1/retrieval/hybrid
 POST /api/v1/planning/city
 POST /api/v1/travel/plan
+GET  /api/v1/admin/users
+GET  /api/v1/admin/users/{user_id}/conversations
+GET  /api/v1/admin/conversations/{conversation_id}?mode=planning|general
+POST /api/v1/admin/conversations/{conversation_id}/plan
+GET  /api/v1/admin/knowledge/guides
+PUT  /api/v1/admin/knowledge/guides/{filename}
+GET  /api/v1/admin/knowledge/attractions
+PATCH /api/v1/admin/knowledge/attractions/{poi_id}
 ```
+
+多用户部署时请设置 `AUTH_REQUIRED=true`（`APP_ENV=production` 也会自动强制登录），并替换 `AUTH_SECRET`。系统使用用户名和密码登录；启动时如果配置了 `BOOTSTRAP_ADMIN_USERNAME` 和 `BOOTSTRAP_ADMIN_PASSWORD`，系统会自动创建或提升对应管理员账号；管理员后台入口会在管理员登录后显示。
 
 其中 `GET /api/v1/cities/{city}/attractions` 先读取本地景点目录，再默认用高德 MCP 为这些本地结果补充详情；高德 MCP 超时、报错或未配置时保留本地结果。重复传入 `interests` 会影响本地标签排序；传 `use_amap=false` 可强制只读本地目录。`POST /api/v1/attractions/{poi_id}/knowledge` 仅兼容读取已经存在的本地景点描述，不会触发外部搜索或自动补全。
 
@@ -303,7 +320,7 @@ POST /api/v1/travel/plan
 - 天气直接使用和风天气 API；天气服务不可用时标记为暂不可用，不阻断规划
 - 已支持单城市 1～3天、同省多城市 1～7天；多城市保持2～3个城市且跨省多城市不属于 MVP
 - 每天景点规划时间默认 08:00～21:00，也可在对话中由用户指定同一天内的开始和结束时间；超出窗口的景点不会排入当天，也不会显示为次日行程
-- MVP 阶段不包含复杂预算、复杂天气和城市间精确交通优化；当前版本保留规则型方案检查，但不自动修改行程
+- MVP 阶段不包含复杂预算、复杂天气和城市间精确交通优化；景点开放时间仅在高德提供可用周历时参与日程约束，缺失数据按不限制时段处理并明确提示
 - Redis 是可选加速层，未配置时自动旁路，不影响系统功能
 - 全国演示景点描述和规划时长已批量落库，当前以本地景点表数据用于演示规划流程
 

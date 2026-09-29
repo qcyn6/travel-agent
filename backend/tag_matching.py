@@ -2,7 +2,12 @@
 
 from collections.abc import Iterable
 
-from backend.tag_vocabulary import canonicalize_tag
+from backend.tag_vocabulary import (
+    canonicalize_interest,
+    canonicalize_tag,
+    compact_tag_keys,
+    interest_tag_keys,
+)
 
 
 # These aliases are only used to bridge ordinary user language to the
@@ -58,13 +63,14 @@ def normalize_interest_tags(
     unresolved: list[str] = []
 
     for interest in _clean_unique(interests):
-        direct = by_key.get(interest.casefold())
+        public_interest = canonicalize_interest(interest, fallback=interest) or interest
+        direct = by_key.get(public_interest.casefold())
         if direct is not None:
             if direct not in normalized:
                 normalized.append(direct)
             continue
 
-        canonical = _INTEREST_ALIASES.get(interest, interest)
+        canonical = _INTEREST_ALIASES.get(public_interest, public_interest)
         canonical = canonicalize_tag(canonical, fallback=None) or canonical
         canonical_tag = by_key.get(canonical.casefold())
         if canonical_tag is not None:
@@ -88,7 +94,7 @@ def normalize_interest_tags(
 
 
 def tag_match_score(tags: Iterable[str] | None, interests: Iterable[str] | None) -> int:
-    """Count exact shared tags using the same rule for every catalog level."""
+    """Count exact shared display tags for destination recommendation."""
 
     tag_set = {str(tag).strip() for tag in (tags or []) if str(tag).strip()}
     interest_set = {
@@ -99,4 +105,27 @@ def tag_match_score(tags: Iterable[str] | None, interests: Iterable[str] | None)
     return len(tag_set & interest_set)
 
 
-__all__ = ["normalize_interest_tags", "tag_match_score"]
+def compact_tag_match_score(
+    tags: Iterable[str] | None,
+    interests: Iterable[str] | None,
+) -> int:
+    """Count shared compact tag meanings for attraction retrieval.
+
+    Stored display tags can remain detailed nationwide or compressed for a
+    curated province.  Both sides are projected through the same compact
+    vocabulary before comparison, preventing false negatives such as
+    ``古城`` versus ``古镇``.
+    """
+
+    tag_set = {
+        key
+        for tag in (tags or [])
+        for key in compact_tag_keys(str(tag).strip())
+    }
+    return sum(
+        bool(tag_set & interest_tag_keys(str(interest).strip()))
+        for interest in _clean_unique(interests)
+    )
+
+
+__all__ = ["compact_tag_match_score", "normalize_interest_tags", "tag_match_score"]

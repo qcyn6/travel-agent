@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Final
 
 from backend.database.city_profiles import CITY_PROFILES
+from backend.database.province_profiles import PUBLIC_PROVINCE_PROFILES
+from backend.database.public_city_profiles import PUBLIC_CITY_PROFILES
 
 
 # 行政区基础目录来源：
@@ -488,6 +490,14 @@ _PROVINCE_PROFILES: Final[dict[str, tuple[list[str], str]]] = {
     "澳门特别行政区": (["历史文化", "美食", "休闲"], "历史街区、城市休闲与地方美食体验集中。"),
 }
 
+# Public-source descriptions are generated separately so the source URL and
+# fetched text can be audited without adding provenance columns to the schema.
+# Keep the curated tags in this module; only the prose is overridden here.
+for _province_name, (_source_title, _public_description) in PUBLIC_PROVINCE_PROFILES.items():
+    if _province_name in _PROVINCE_PROFILES:
+        _province_tags, _ = _PROVINCE_PROFILES[_province_name]
+        _PROVINCE_PROFILES[_province_name] = (_province_tags, _public_description)
+
 _CURATED_CITIES: Final[dict[tuple[str, str], tuple[str, list[str], str]]] = {
     ("浙江省", "杭州市"): ("330100", ["自然", "历史文化", "摄影", "休闲"], "西湖山水与宋韵文化名城。"),
     ("浙江省", "绍兴市"): ("330600", ["历史文化", "古镇", "人文"], "水乡、黄酒与名人文化名城。"),
@@ -598,6 +608,9 @@ def _build_catalog() -> tuple[dict, ...]:
                     description = (
                         f"{province_name}{city_name}适合结合当地自然、人文与美食体验安排行程。"
                     )
+            public_profile = PUBLIC_CITY_PROFILES.get((province_name, city_name))
+            if public_profile:
+                description = public_profile[1]
             cities.append((city_name, adcode, tags, description))
         profile_tags, profile_description = _PROVINCE_PROFILES.get(
             province_name,

@@ -38,11 +38,11 @@ class _Narrator:
 
 class _ContextEvaluator:
     def __init__(self):
-        self.tags_by_poi = None
+        self.called = False
 
-    def evaluate_with_context(self, plan, requirement, *, interest_tags_by_poi):
+    def evaluate(self, plan, requirement):
         del plan, requirement
-        self.tags_by_poi = interest_tags_by_poi
+        self.called = True
         return EvaluationResult(passed=True, issues=[])
 
 
@@ -173,7 +173,7 @@ async def test_short_window_and_unavailable_route_keep_flow_safe(catalog_reposit
 
 
 @pytest.mark.asyncio
-async def test_workflow_passes_retrieval_tags_to_evaluator_without_persisting_them(
+async def test_workflow_evaluates_without_passing_retrieval_interest_tags(
     catalog_repository,
 ):
     route_service = _RouteService()
@@ -183,6 +183,5 @@ async def test_workflow_passes_retrieval_tags_to_evaluator_without_persisting_th
     )
 
     assert result.plan.evaluation is not None
-    assert evaluator.tags_by_poi
-    assert all(isinstance(tags, list) for tags in evaluator.tags_by_poi.values())
+    assert evaluator.called
     assert all("interest_tags" not in stop.model_dump() for day in result.plan.itinerary for stop in day.attractions)

@@ -36,6 +36,42 @@ class FakeAsyncClient:
         return FakeStreamResponse()
 
 
+class FakeDecisionResponse:
+    status_code = 200
+
+    def json(self):
+        return {
+            "choices": [
+                {
+                    "message": {
+                        "content": (
+                            '{"action":"ask","next_field":"days",'
+                            '"reply":"这次准备玩几天？",'
+                            '"ready_for_confirmation":false}'
+                        )
+                    }
+                }
+            ]
+        }
+
+
+class FakeDecisionClient:
+    last_payload = None
+
+    def __init__(self, **kwargs):
+        pass
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *args):
+        return None
+
+    async def post(self, url, *, headers, json):
+        type(self).last_payload = json
+        return FakeDecisionResponse()
+
+
 @pytest.mark.asyncio
 async def test_deepseek_responder_consumes_upstream_stream(monkeypatch):
     monkeypatch.setattr("backend.conversation.responder.httpx.AsyncClient", FakeAsyncClient)
@@ -94,3 +130,27 @@ async def test_general_prompt_does_not_offer_planning_in_general_mode(monkeypatc
     assert "不得说“告诉我我来安排”" in system_message
     assert "不要继续追问任何规划信息" in prompt
     assert "不要承诺当前普通对话会生成行程" in prompt
+
+
+@pytest.mark.asyncio
+async def test_deepseek_responder_returns_structured_planning_decision(monkeypatch):
+    monkeypatch.setattr("backend.conversation.responder.httpx.AsyncClient", FakeDecisionClient)
+    responder = DeepSeekConversationResponder(
+        "test-key",
+        base_url="https://example.test/v1",
+        model="deepseek-chat",
+    )
+
+    decision = await responder.decide_planning(
+        user_message="我还不知道去哪玩",
+        requirement=RequirementDraft(),
+        missing_fields=["destination", "days"],
+        destination_context=None,
+        recent_messages=[],
+    )
+
+    assert decision.action == "ask"
+    assert decision.next_field == "days"
+    assert decision.reply == "这次准备玩几天？"
+    assert FakeDecisionClient.last_payload["stream"] is False
+    assert '"next_field"' in FakeDecisionClient.last_payload["messages"][1]["content"]

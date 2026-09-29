@@ -67,6 +67,95 @@ CANONICAL_TAGS: tuple[str, ...] = (
 
 _CANONICAL = frozenset(CANONICAL_TAGS)
 
+# The attraction catalogue keeps detailed tags nationwide, while the Yunnan
+# cleanup deliberately stores a smaller product vocabulary.  Matching must
+# use the same projection or a requirement such as ``古城`` can never match a
+# Yunnan attraction stored as ``古镇``.  Keep this mapping here as the single
+# source of truth for cross-catalogue matching; it does not rewrite display
+# tags or add database fields.
+COMPACT_TAG_MAPPING: dict[str, tuple[str, ...]] = {
+    "摄影": ("摄影",),
+    "人文": ("人文",),
+    "自然": ("自然",),
+    "休闲": ("休闲",),
+    "历史文化": ("历史文化",),
+    "民族文化": ("民族文化",),
+    "城市漫游": ("城市漫游",),
+    "湖泊": ("滨水",),
+    "滨水": ("滨水",),
+    "建筑": ("建筑",),
+    "古镇": ("古镇",),
+    "亲子": ("亲子",),
+    "山地": ("山地",),
+    "古城": ("古镇",),
+    "乡村": ("乡村",),
+    "研学": ("研学",),
+    "古建": ("建筑",),
+    "宗教文化": ("宗教文化",),
+    "园林": ("生态",),
+    "生态": ("生态",),
+    "森林": ("生态",),
+    "美食": ("美食",),
+    "湿地": ("滨水", "生态"),
+    "夜游": ("夜游",),
+    "地质景观": ("地质景观",),
+    "江河": ("滨水",),
+    "花卉": ("生态",),
+    "民俗": ("民族文化",),
+    "茶文化": ("民族文化",),
+    "高原": ("山地",),
+    "主题娱乐": ("主题娱乐",),
+    "博物馆": ("博物馆",),
+    "边境风情": ("民族文化",),
+    "冰雪": ("山地",),
+    "温泉": ("温泉",),
+    "瀑布": ("滨水",),
+    "红色文化": ("历史文化",),
+    "草原": ("自然",),
+    "水乡": ("滨水",),
+    "溶洞": ("地质景观",),
+    "丹霞": ("地质景观",),
+    "岛屿": ("滨水",),
+    "影视文化": ("主题娱乐",),
+    "近代建筑": ("建筑",),
+    "雕塑艺术": ("人文",),
+    "工业遗产": ("历史文化",),
+    "航天文化": ("研学",),
+    "酒文化": ("美食",),
+    "漂流": ("滨水",),
+    "海滨": ("滨水",),
+    "露营": ("休闲",),
+}
+
+# Six user-facing interest groups. Attraction rows keep their detailed tags,
+# but retrieval and evaluation use these deterministic relations so the same
+# attraction is never accepted by one stage and rejected by another.
+INTEREST_TAG_GROUPS: dict[str, tuple[str, ...]] = {
+    "古城": ("古城", "古镇", "历史文化", "人文", "建筑", "城市漫游", "博物馆"),
+    "自然": ("自然", "山地", "生态", "森林", "滨水", "地质景观"),
+    "历史文化": ("历史文化", "博物馆", "古建", "人文", "宗教文化"),
+    "摄影": ("摄影", "自然", "建筑", "滨水", "夜游"),
+    "休闲": ("休闲", "城市漫游", "滨水", "生态", "温泉"),
+    "美食": ("美食", "古镇", "城市漫游", "夜游"),
+}
+
+_INTEREST_CATEGORY_ALIASES: dict[str, str] = {
+    "古镇": "古城",
+    "自然风光": "自然",
+    "山水": "自然",
+    "风景": "自然",
+    "历史": "历史文化",
+    "文化": "历史文化",
+    "人文": "历史文化",
+    "拍照": "摄影",
+    "出片": "摄影",
+    "慢游": "休闲",
+    "慢慢玩": "休闲",
+    "休闲慢游": "休闲",
+    "吃": "美食",
+    "小吃": "美食",
+}
+
 # Exact aliases cover the common city-profile vocabulary.  The keyword rules
 # below handle the long tail of local themes without keeping a second tag
 # vocabulary in the database.
@@ -218,4 +307,47 @@ def is_canonical_tag(value: str | None) -> bool:
     return str(value or "").strip() in _CANONICAL
 
 
-__all__ = ["CANONICAL_TAGS", "canonicalize_tag", "canonicalize_tags", "is_canonical_tag"]
+def compact_tag_keys(value: str | None) -> frozenset[str]:
+    """Return the compact semantic keys used by deterministic tag matching."""
+
+    tag = canonicalize_tag(value, fallback=None)
+    if tag is None:
+        return frozenset()
+    return frozenset(COMPACT_TAG_MAPPING.get(tag, (tag,)))
+
+
+def canonicalize_interest(value: str | None, *, fallback: str | None = None) -> str | None:
+    """Map user language to one of the six public interest categories."""
+
+    interest = str(value or "").strip()
+    if not interest:
+        return None
+    if interest in INTEREST_TAG_GROUPS:
+        return interest
+    return _INTEREST_CATEGORY_ALIASES.get(interest, fallback)
+
+
+def interest_tag_keys(value: str | None) -> frozenset[str]:
+    """Return compact attraction-tag keys accepted by one user interest."""
+
+    interest = canonicalize_interest(value, fallback=None)
+    if interest is None:
+        return compact_tag_keys(value)
+    return frozenset(
+        key
+        for tag in INTEREST_TAG_GROUPS[interest]
+        for key in compact_tag_keys(tag)
+    )
+
+
+__all__ = [
+    "CANONICAL_TAGS",
+    "COMPACT_TAG_MAPPING",
+    "INTEREST_TAG_GROUPS",
+    "canonicalize_tag",
+    "canonicalize_tags",
+    "canonicalize_interest",
+    "compact_tag_keys",
+    "interest_tag_keys",
+    "is_canonical_tag",
+]

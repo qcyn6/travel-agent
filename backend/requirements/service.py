@@ -1,3 +1,5 @@
+from inspect import Parameter, isawaitable, signature
+
 from backend.requirements.llm import RequirementLLMError
 from backend.models.requirement import MAX_SINGLE_CITY_DAYS
 from backend.requirements.parser import canonicalize_interests
@@ -8,10 +10,16 @@ class RequirementParsingService:
         self.llm_parser = llm_parser
         self.fallback_parser = fallback_parser
 
-    async def parse(self, text: str):
+    async def parse(
+        self,
+        text: str,
+        *,
+        conversation_history: list[dict[str, str]] | None = None,
+    ):
         fallback = self.fallback_parser.parse(text)
         try:
-            parsed = await self.llm_parser.parse(text)
+            parsed_value = self._parse_llm(text, conversation_history)
+            parsed = await parsed_value if isawaitable(parsed_value) else parsed_value
         except RequirementLLMError:
             return fallback.model_copy(update={"transport_mode": "auto"})
         interests = canonicalize_interests(parsed.interests + fallback.interests)
@@ -62,3 +70,25 @@ class RequirementParsingService:
             }
         )
         return type(parsed).model_validate(merged.model_dump())
+
+    def _parse_llm(
+        self,
+        text: str,
+        conversation_history: list[dict[str, str]] | None,
+    ):
+        parse = self.llm_parser.parse
+        try:
+            parameters = signature(parse).parameters.values()
+        except (TypeError, ValueError):
+            parameters = ()
+        supports_context = any(
+            parameter.name == "conversation_history"
+            or parameter.kind is Parameter.VAR_KEYWORD
+            for parameter in parameters
+        )
+        if supports_context:
+            return parse(text, conversation_history=conversation_history or [])
+        # Keep third-party and test adapters that still implement the legacy
+        # parse(text) contract working while the built-in agents receive the
+        # complete conversation context.
+        return parse(text)

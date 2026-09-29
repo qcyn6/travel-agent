@@ -24,7 +24,12 @@ def test_general_messages_are_stored_in_their_own_table(database_session):
     row = repository.create()
 
     repository.add_message(row, role="user", content="介绍一下云南")
-    repository.add_message(row, role="assistant", content="云南有高原风光、古城和多民族文化。")
+    repository.add_message(
+        row,
+        role="assistant",
+        content="云南有高原风光、古城和多民族文化。",
+        card={"type": "weather", "weather": []},
+    )
 
     saved = repository.get(row.id)
     assert saved is not None
@@ -34,27 +39,50 @@ def test_general_messages_are_stored_in_their_own_table(database_session):
         ("user", "介绍一下云南"),
         ("assistant", "云南有高原风光、古城和多民族文化。"),
     ]
+    assert model.messages[-1].card == {"type": "weather", "weather": []}
     assert database_session.scalar(select(ConversationRow).where(ConversationRow.id == row.id)) is None
     assert [item.id for item in repository.list_recent()] == [row.id]
 
 
+def test_general_route_card_survives_history_round_trip(database_session):
+    repository = GeneralConversationRepository(database_session)
+    row = repository.create()
+    card = {
+        "type": "route",
+        "route": {
+            "origin_name": "杭州东站",
+            "destination_name": "西湖",
+            "mode": "transit",
+            "distance_m": 12000,
+            "duration_min": 32,
+        },
+    }
+
+    repository.add_message(row, role="user", content="杭州东站到西湖怎么走")
+    repository.add_message(row, role="assistant", content="建议公共交通。", card=card)
+
+    saved = repository.to_model(repository.get(row.id))
+    assert saved.messages[-1].card == card
+
+
 @pytest.mark.anyio
-async def test_general_service_blocks_planning_without_creating_a_planning_requirement(database_session):
+async def test_general_service_leaves_planning_decisions_to_the_agent(database_session):
     repository = GeneralConversationRepository(database_session)
     conversation = repository.to_model(repository.create())
     service = GeneralConversationService(repository=repository)
 
     prepared = await service.prepare_message(conversation.id, "北京玩3天，喜欢历史文化")
 
-    assert prepared.boundary_reply == "可以，具体行程需要在规划模式完成。请先切换到规划模式，切换后我会从目的地开始收集信息。"
+    assert prepared.intent == "general"
+    assert prepared.boundary_reply is None
+    assert prepared.tool_reply is None
     assert prepared.conversation.messages[-1].content == "北京玩3天，喜欢历史文化"
     assert prepared.conversation.messages[-1].role == "user"
-    service.finish_message(prepared, prepared.boundary_reply)
     assert database_session.query(ConversationRow).count() == 0
 
 
 @pytest.mark.anyio
-async def test_general_service_uses_a_mode_safe_reply_for_capability_question(database_session):
+async def test_general_service_does_not_preempt_agent_for_capability_question(database_session):
     repository = GeneralConversationRepository(database_session)
     conversation = repository.to_model(repository.create())
     service = GeneralConversationService(repository=repository)
@@ -62,26 +90,52 @@ async def test_general_service_uses_a_mode_safe_reply_for_capability_question(da
     prepared = await service.prepare_message(conversation.id, "你能做什么？")
 
     assert prepared.boundary_reply is None
-    assert prepared.quick_reply is not None
-    assert "普通模式" not in prepared.quick_reply
-    assert "需要制定具体行程时，请切换到规划模式" in prepared.quick_reply
-    assert "陪你聊目的地" in prepared.quick_reply
+    assert prepared.quick_reply is None
+    assert prepared.intent == "general"
+    assert prepared.conversation.messages[-1].content == "你能做什么？"
 
 
 @pytest.mark.anyio
-async def test_general_service_keeps_out_of_range_trip_length_inside_general_boundary(database_session):
+async def test_general_service_leaves_trip_length_validation_to_planning_mode(database_session):
     repository = GeneralConversationRepository(database_session)
     conversation = repository.to_model(repository.create())
     service = GeneralConversationService(repository=repository)
 
     prepared = await service.prepare_message(conversation.id, "北京玩365天，喜欢历史文化")
 
-    assert prepared.boundary_reply is not None
-    assert "规划模式" in prepared.boundary_reply
+    assert prepared.intent == "general"
+    assert prepared.boundary_reply is None
+    assert prepared.conversation.messages[-1].content == "北京玩365天，喜欢历史文化"
 
 
 @pytest.mark.anyio
-async def test_general_service_executes_route_tool_without_calling_planning(database_session):
+async def test_general_service_keeps_destination_knowledge_question_out_of_planning(database_session):
+    repository = GeneralConversationRepository(database_session)
+    conversation = repository.to_model(repository.create())
+    service = GeneralConversationService(repository=repository)
+
+    prepared = await service.prepare_message(conversation.id, "大理古城你知道吗")
+
+    assert prepared.intent == "general"
+    assert prepared.boundary_reply is None
+    assert prepared.quick_reply is None
+
+
+@pytest.mark.anyio
+async def test_general_service_leaves_scope_decision_to_the_agent(database_session):
+    repository = GeneralConversationRepository(database_session)
+    conversation = repository.to_model(repository.create())
+    service = GeneralConversationService(repository=repository)
+
+    prepared = await service.prepare_message(conversation.id, "介绍一下量子力学")
+
+    assert prepared.intent == "general"
+    assert prepared.boundary_reply is None
+    assert prepared.conversation.messages[-1].content == "介绍一下量子力学"
+
+
+@pytest.mark.anyio
+async def test_general_service_leaves_route_tool_selection_to_the_agent(database_session):
     class TravelTools:
         decisions = []
 
@@ -96,29 +150,63 @@ async def test_general_service_executes_route_tool_without_calling_planning(data
 
     prepared = await service.prepare_message(conversation.id, "从杭州东站到西湖怎么走")
 
-    assert prepared.intent == "route"
-    assert prepared.tool_reply == "杭州东站到西湖：建议公共交通，预计32分钟。"
+    assert prepared.intent == "general"
+    assert prepared.tool_reply is None
     assert prepared.boundary_reply is None
-    assert tools.decisions[0].origin == "杭州东站"
-    assert tools.decisions[0].destination == "西湖"
+    assert tools.decisions == []
     assert database_session.query(ConversationRow).count() == 0
 
 
 @pytest.mark.anyio
-async def test_general_service_asks_only_for_missing_weather_city(database_session):
+async def test_general_service_preserves_route_clarification_context_for_the_agent(database_session):
+    class TravelTools:
+        async def execute(self, decision):
+            return f"{decision.origin}到{decision.destination}：建议公共交通。"
+
+    repository = GeneralConversationRepository(database_session)
+    row = repository.create()
+    repository.add_message(row, role="user", content="长城到天安门怎么走")
+    repository.add_message(
+        row,
+        role="assistant",
+        content="长城有好几段，去天安门的路线差别很大。你指的是哪一段，以及想坐公交/地铁还是自驾？",
+    )
+    service = GeneralConversationService(
+        repository=repository,
+        travel_tools=TravelTools(),
+    )
+
+    prepared = await service.prepare_message(
+        row.id,
+        "- 八达岭长城（最靠东，京藏高速方向）",
+    )
+
+    assert prepared.intent == "general"
+    assert prepared.tool_reply is None
+    assert prepared.recent_messages[-2:] == [
+        {"role": "user", "content": "长城到天安门怎么走"},
+        {
+            "role": "assistant",
+            "content": "长城有好几段，去天安门的路线差别很大。你指的是哪一段，以及想坐公交/地铁还是自驾？",
+        },
+    ]
+
+
+@pytest.mark.anyio
+async def test_general_service_leaves_weather_clarification_to_the_agent(database_session):
     repository = GeneralConversationRepository(database_session)
     conversation = repository.to_model(repository.create())
     service = GeneralConversationService(repository=repository)
 
     prepared = await service.prepare_message(conversation.id, "明天天气怎么样")
 
-    assert prepared.intent == "weather"
-    assert "还需要查询天气的城市" in prepared.tool_reply
-    assert prepared.suggestions == ["杭州", "北京", "成都"]
+    assert prepared.intent == "general"
+    assert prepared.tool_reply is None
+    assert prepared.suggestions == ["你能做什么？", "介绍一个目的地"]
 
 
 @pytest.mark.anyio
-async def test_general_knowledge_context_includes_existing_attraction_rows(database_session):
+async def test_destination_knowledge_is_left_for_the_agent_without_pre_retrieval(database_session):
     province = ProvinceRow(
         id=1,
         name="浙江省",
@@ -159,6 +247,7 @@ async def test_general_knowledge_context_includes_existing_attraction_rows(datab
 
     prepared = await service.prepare_message(conversation.id, "杭州有哪些自然景点")
 
-    assert prepared.intent == "knowledge"
-    assert "【景点资料：西湖（杭州市）】" in prepared.destination_context
-    assert "西湖是杭州代表性的湖泊景观" in prepared.destination_context
+    assert prepared.intent == "general"
+    assert prepared.destination_context is None
+    assert prepared.retrieval_sufficient is None
+    assert prepared.retrieval_attempts == 0

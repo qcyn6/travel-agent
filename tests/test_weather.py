@@ -70,6 +70,49 @@ async def test_qweather_client_maps_daily_forecast():
 
 
 @pytest.mark.asyncio
+async def test_qweather_client_retries_transient_network_failure():
+    attempts = 0
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        nonlocal attempts
+        attempts += 1
+        if attempts == 1:
+            raise httpx.ReadTimeout("temporary failure", request=request)
+        return httpx.Response(
+            200,
+            json={
+                "days": [
+                    {
+                        "forecastStartTime": "2026-09-15T00:00+08:00",
+                        "temperatureMin": {"value": 20},
+                        "temperatureMax": {"value": 29},
+                        "daytime": {
+                            "condition": {"text": "晴"},
+                            "precipitation": {"probability": 0},
+                            "wind": {"scale": 2},
+                        },
+                    }
+                ]
+            },
+        )
+
+    async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+        result = await QWeatherClient(
+            "test-key",
+            api_host="weather.test",
+            client=client,
+        ).get_weather(
+            city="杭州市",
+            target_date=date(2026, 9, 15),
+            longitude=120.148,
+            latitude=30.242,
+        )
+
+    assert attempts == 2
+    assert result.condition == "晴"
+
+
+@pytest.mark.asyncio
 async def test_weather_service_skips_without_date():
     service = WeatherEnrichmentService(None, today_provider=lambda: date(2026, 9, 13))
     result = await service.enrich_day(day(None))

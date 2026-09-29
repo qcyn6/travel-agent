@@ -299,8 +299,11 @@ def _from_mcp_record(raw: Mapping[str, object], requested_city: str) -> Attracti
     address = _optional_text(raw.get("address"))
     city = _optional_text(raw.get("city")) or _optional_text(raw.get("cityname")) or requested_city
     rating = _optional_float(raw.get("rating"))
-    if rating is None and isinstance(raw.get("business"), Mapping):
-        rating = _optional_float(raw["business"].get("rating"))
+    business = raw.get("business") if isinstance(raw.get("business"), Mapping) else {}
+    if rating is None:
+        rating = _optional_float(business.get("rating"))
+    opening_hours_weekly = _optional_text(business.get("opentime_week"))
+    opening_hours_today = _optional_text(business.get("opentime_today"))
 
     return _finalize(
         AttractionPOI(
@@ -312,6 +315,13 @@ def _from_mcp_record(raw: Mapping[str, object], requested_city: str) -> Attracti
             longitude=longitude,
             latitude=latitude,
             rating=rating,
+            opening_hours_weekly=opening_hours_weekly,
+            opening_hours_today=opening_hours_today,
+            opening_hours_status=(
+                "available"
+                if opening_hours_weekly or opening_hours_today
+                else "unavailable"
+            ),
         )
     )
 
@@ -343,6 +353,17 @@ def _merge_external_details(local: AttractionPOI, external: AttractionPOI) -> At
             "longitude": external.longitude if external.longitude is not None else local.longitude,
             "latitude": external.latitude if external.latitude is not None else local.latitude,
             "rating": external.rating if external.rating is not None else local.rating,
+            "opening_hours_weekly": (
+                external.opening_hours_weekly or local.opening_hours_weekly
+            ),
+            "opening_hours_today": (
+                external.opening_hours_today or local.opening_hours_today
+            ),
+            "opening_hours_status": (
+                "available"
+                if external.opening_hours_weekly or external.opening_hours_today
+                else local.opening_hours_status
+            ),
         }
     )
 

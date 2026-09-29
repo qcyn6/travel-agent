@@ -17,6 +17,8 @@ import type {
   GeneralConversation,
   PlanningStep,
   RequirementDraft,
+  RouteChatCard,
+  SingleChatToolCard,
   SavedTravelPlan,
   TravelPlanResponse,
   TravelScope,
@@ -91,8 +93,15 @@ function suggestionsFor(next: RequirementDraft, mode: ConversationMode = 'planni
   if (!next.cities.length && !next.city_preference_confirmed) {
     return ['没有指定城市，你来推荐']
   }
-  if (!next.interests.length && !next.preference_text) {
+  if (!next.interests.length) {
     return ['自然风光', '历史文化', '古城', '摄影', '美食', '休闲慢游']
+  }
+  if (!next.preference_text || ['没有额外体验偏好', '没有额外偏好', '无额外偏好', '无特殊偏好'].includes(next.preference_text)) {
+    return [
+      '节奏轻松，不赶时间',
+      '喜欢拍照和沉浸体验',
+      '优先游览代表性景点',
+    ]
   }
   if (!next.start_date) return ['明天出发', '后天出发', '下周一出发']
   if (!next.daily_start_time || !next.daily_end_time) {
@@ -121,6 +130,62 @@ function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
   })
 }
 
+function migrateLegacyGeneralRouteCards(conversationId: string, items: ChatMessage[]): ChatMessage[] {
+  const cacheKey = `travel_general_cards_${conversationId}`
+  let cached: unknown
+  try {
+    cached = JSON.parse(sessionStorage.getItem(cacheKey) || '[]')
+  } catch {
+    sessionStorage.removeItem(cacheKey)
+    return items
+  }
+  if (!Array.isArray(cached)) {
+    sessionStorage.removeItem(cacheKey)
+    return items
+  }
+
+  const restored = [...items]
+  const migrations: Promise<void>[] = []
+  for (const entry of cached) {
+    const route = entry?.card?.type === 'route' ? entry.card.route : null
+    if (
+      !Number.isInteger(entry?.index)
+      || entry.index < 0
+      || !route
+      || !['walking', 'transit', 'driving'].includes(route.mode)
+    ) continue
+    const message = restored[entry.index]
+    if (message?.role !== 'assistant') continue
+    if (message.card?.type === 'collection') {
+      const cards = [...message.card.cards]
+      const routeIndex = cards.findIndex((item) => item.type === 'route')
+      if (routeIndex < 0) continue
+      cards[routeIndex] = entry.card as RouteChatCard
+      restored[entry.index] = { ...message, card: { type: 'collection', cards } }
+    } else if (message.card?.type === 'route') {
+      restored[entry.index] = { ...message, card: entry.card as RouteChatCard }
+    } else {
+      continue
+    }
+    const sequenceNumber = message.sequence_number ?? entry.index + 1
+    migrations.push(
+      generalConversationApi
+        .updateMessageCard(conversationId, sequenceNumber, entry.card as RouteChatCard)
+        .then(() => undefined),
+    )
+  }
+
+  if (!migrations.length) {
+    sessionStorage.removeItem(cacheKey)
+  } else {
+    void Promise.all(migrations).then(
+      () => sessionStorage.removeItem(cacheKey),
+      () => undefined,
+    )
+  }
+  return restored
+}
+
 export const usePlanningStore = defineStore('planning', () => {
   const conversationId = ref('')
   const conversations = ref<ConversationSummary[]>([])
@@ -140,6 +205,7 @@ export const usePlanningStore = defineStore('planning', () => {
   const conversationDeleting = ref<string | null>(null)
   const planningElapsedSeconds = ref(0)
   const planningRequestActive = ref(false)
+  const generalCardSaveQueues = new Map<string, Promise<void>>()
   const planningEventCursor = ref(0)
   const planningJobId = ref<string | null>(null)
   let planningStartedAt: number | null = null
@@ -259,7 +325,10 @@ export const usePlanningStore = defineStore('planning', () => {
     setActiveConversation('general', conversation.id)
     resetPlanningRuntime()
     requirement.value = emptyRequirement()
-    messages.value = normalizeMessages(conversation.messages)
+    messages.value = migrateLegacyGeneralRouteCards(
+      conversation.id,
+      normalizeMessages(conversation.messages),
+    )
     suggestions.value = suggestionsFor(requirement.value, 'general')
     stage.value = 'chat'
     steps.value = []
@@ -452,6 +521,10 @@ export const usePlanningStore = defineStore('planning', () => {
         (event, data) => {
           if (mode === 'planning' && event === 'requirement_updated') requirement.value = data
           if (event === 'suggestions') suggestions.value = data.options || []
+          if (mode === 'general' && event === 'tool_card') {
+            const assistant = messages.value[assistantIndex]
+            if (assistant) assistant.card = data
+          }
           if (event === 'message_delta') {
             const delta = String(data.text || '')
             // Preserve the server's real delta order while rendering each chunk visibly.
@@ -483,7 +556,9 @@ export const usePlanningStore = defineStore('planning', () => {
       )
       await renderChain
       const assistant = messages.value[assistantIndex]
-      if (assistant) assistant.streaming = false
+      if (assistant) {
+        assistant.streaming = false
+      }
       await refreshConversations()
     } catch (caught) {
       const assistant = messages.value[assistantIndex]
@@ -539,6 +614,7 @@ export const usePlanningStore = defineStore('planning', () => {
         sessionStorage.removeItem(`travel_plan_${id}`)
         sessionStorage.removeItem(planningStateKey(id))
       }
+      if (mode === 'general') sessionStorage.removeItem(`travel_general_cards_${id}`)
       sessionStorage.removeItem(`travel_conversation_mode_${id}`)
       if (sessionStorage.getItem(conversationStorageKey(mode)) === id) {
         sessionStorage.removeItem(conversationStorageKey(mode))
@@ -703,9 +779,58 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   function upsertStep(next: PlanningStep) {
+    // City retrieval, route planning and final description enrichment can now
+    // run for up to three cities at the same time.  A newer event must not
+    // close another city's running row; each row is closed only by its own
+    // completed/failed event (or by failRunningSteps on a terminal error).
     const index = steps.value.findIndex((item) => item.step === next.step)
     if (index >= 0) steps.value[index] = next
     else steps.value.push(next)
+  }
+
+  async function updateGeneralCard(index: number, card: RouteChatCard) {
+    if (conversationMode.value !== 'general' || !conversationId.value) return
+    const message = messages.value[index]
+    if (message?.role !== 'assistant') return
+    if (message.card?.type === 'collection') {
+      const cards: SingleChatToolCard[] = [...message.card.cards]
+      const route = card.route
+      const routeIndex = cards.findIndex((item) => (
+        item.type === 'route'
+        && item.route.origin_poi_id === route.origin_poi_id
+        && item.route.destination_poi_id === route.destination_poi_id
+      ))
+      if (routeIndex >= 0) cards[routeIndex] = card
+      else cards.push(card)
+      message.card = { type: 'collection', cards }
+    } else {
+      message.card = card
+    }
+    const conversation = conversationId.value
+    const sequenceNumber = message.sequence_number ?? index + 1
+    const queueKey = `${conversation}:${sequenceNumber}`
+    const previousSave = generalCardSaveQueues.get(queueKey) ?? Promise.resolve()
+    let savedContent: string | null = null
+    const save = previousSave
+      .catch(() => undefined)
+      .then(async () => {
+        const result = await generalConversationApi.updateMessageCard(conversation, sequenceNumber, card)
+        savedContent = result.content
+      })
+    generalCardSaveQueues.set(queueKey, save)
+    try {
+      await save
+      if (conversationId.value === conversation && savedContent !== null) {
+        const currentMessage = messages.value[index]
+        if (currentMessage?.role === 'assistant') currentMessage.content = savedContent
+      }
+    } catch (caught) {
+      if (conversationId.value === conversation) {
+        error.value = `路线已切换，但保存到会话失败：${readableError(caught)}`
+      }
+    } finally {
+      if (generalCardSaveQueues.get(queueKey) === save) generalCardSaveQueues.delete(queueKey)
+    }
   }
 
   function failRunningSteps() {
@@ -731,6 +856,13 @@ export const usePlanningStore = defineStore('planning', () => {
     stopPlanningTimer(true)
     stage.value = 'plan'
     error.value = ''
+  }
+
+  function updatePlan(result: TravelPlanResponse) {
+    plan.value = result
+    if (conversationId.value) {
+      sessionStorage.setItem(`travel_plan_${conversationId.value}`, JSON.stringify(result))
+    }
   }
 
   function readableError(caught: unknown) {
@@ -762,9 +894,11 @@ export const usePlanningStore = defineStore('planning', () => {
     createConversation,
     setConversationMode,
     sendMessage,
+    updateGeneralCard,
     openConversation,
     deleteConversation,
     showPlan,
+    updatePlan,
     confirmAndPlan,
     retryPlanning,
     resumePlanning,

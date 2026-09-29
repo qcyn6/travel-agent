@@ -120,3 +120,48 @@ def test_missing_destination_recommends_by_province_and_city_tags(catalog_reposi
     )
 
     assert [(stay.city, stay.days) for stay in result.city_stays] == [("大理市", 3)]
+
+
+def test_multi_city_recommendation_skips_single_city_province_regions(
+    catalog_repository,
+):
+    result = DestinationPlanner(catalog_repository).plan(
+        TravelRequirement(
+            days=6,
+            interests=["历史文化", "摄影"],
+            travel_scope="multi_city",
+        )
+    )
+
+    assert len(result.city_stays) >= 2
+    assert all(stay.city != "北京市" for stay in result.city_stays)
+    assert sum(stay.days for stay in result.city_stays) == 6
+
+
+def test_explicit_single_city_province_region_has_clear_multi_city_error(
+    catalog_repository,
+):
+    with pytest.raises(DestinationPlanningError, match="单城市型省级地区"):
+        DestinationPlanner(catalog_repository).plan(
+            TravelRequirement(
+                province="北京市",
+                days=6,
+                interests=["历史文化", "摄影"],
+                travel_scope="multi_city",
+            )
+        )
+
+
+def test_destination_ranking_uses_same_six_interest_groups_as_attractions(
+    catalog_repository,
+):
+    result = DestinationPlanner(catalog_repository).plan(
+        TravelRequirement(
+            province="云南省",
+            days=3,
+            interests=["古城"],
+            travel_scope="single_city",
+        )
+    )
+
+    assert result.city_stays[0].city == "大理市"

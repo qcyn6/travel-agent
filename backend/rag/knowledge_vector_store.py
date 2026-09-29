@@ -1,4 +1,4 @@
-"""Persistent Chroma index for province and city Markdown knowledge."""
+"""Persistent Chroma index for travel-topic Markdown knowledge."""
 
 from __future__ import annotations
 
@@ -12,12 +12,12 @@ from backend.rag.knowledge_source import KnowledgeChunk
 
 
 class ChromaKnowledgeIndex:
-    """Store ordinary-chat knowledge separately from attraction vectors."""
+    """Store ordinary-chat topic knowledge separately from attraction vectors."""
 
     def __init__(
         self,
         path: str,
-        collection_name: str = "travel_knowledge",
+        collection_name: str = "travel_guides",
     ):
         Path(path).mkdir(parents=True, exist_ok=True)
         self.client = chromadb.PersistentClient(path=path)

@@ -8,15 +8,23 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_env: str = "development"
+    auth_required: bool = False
+    auth_secret: str = "change-me-in-production"
+    access_token_expire_minutes: int = 720
+    bootstrap_admin_username: str | None = None
+    bootstrap_admin_password: str | None = None
     database_url: str | None = None
     llm_provider: str = "deepseek"
     llm_api_key: str | None = None
     llm_base_url: str = "https://api.deepseek.com"
     llm_model: str = "deepseek-flash"
     llm_timeout_seconds: float = 30.0
+    planning_agent_backend: str = "langchain"
+    planning_checkpoint_path: str | None = "data/planning_checkpoints.sqlite3"
     amap_api_key: str | None = None
     amap_timeout_seconds: float = 8.0
     amap_max_retries: int = 3
+    hotel_enrichment_concurrency: int = 2
     amap_mcp_url: str = "https://mcp.amap.com/mcp"
     amap_mcp_timeout_seconds: float = 15.0
     amap_mcp_sse_read_timeout_seconds: float = 20.0
@@ -29,10 +37,8 @@ class Settings(BaseSettings):
     schedule_day_start_time: str = "08:00"
     schedule_meal_minutes: int = 40
     schedule_buffer_minutes: int = 20
-    evaluator_max_day_minutes: int = 600
     evaluator_max_route_segment_minutes: int = 60
     evaluator_max_daily_route_minutes: int = 180
-    evaluator_minimum_interest_coverage: float = 0.5
     redis_url: str | None = None
     redis_key_prefix: str = "travel-agent"
     redis_timeout_seconds: float = 1.0
@@ -60,8 +66,8 @@ class Settings(BaseSettings):
     rerank_max_retries: int = 2
     chroma_path: str = "data/chroma"
     chroma_collection: str = "attraction_knowledge"
-    knowledge_path: str = "data/knowledge"
-    knowledge_chroma_collection: str = "travel_knowledge"
+    guide_knowledge_path: str = "data/knowledge/guides"
+    guide_knowledge_chroma_collection: str = "travel_guides"
     knowledge_retrieval_top_k: int = 4
     knowledge_embedding_batch_size: int = 5
     planning_heartbeat_seconds: float = 10.0

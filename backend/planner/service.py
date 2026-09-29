@@ -1,5 +1,6 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
+import logging
 
 from backend.attractions.dedupe import dedupe_attractions
 from backend.models.itinerary import CityPlan, CityPlanningResult
@@ -12,6 +13,9 @@ from backend.planner.dynamic_scheduler import (
     dynamic_city_plan,
     dynamic_city_plan_with_routes,
 )
+
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True)
@@ -31,12 +35,14 @@ class CityPlanningService:
         planner,
         route_enrichment_service=None,
         schedule_builder=None,
+        opening_hours_service=None,
         max_route_attempts_per_step: int | None = None,
     ):
         self.retrieval_service = retrieval_service
         self.planner = planner
         self.route_enrichment_service = route_enrichment_service
         self.schedule_builder = schedule_builder
+        self.opening_hours_service = opening_hours_service
         self.max_route_attempts_per_step = (
             None
             if max_route_attempts_per_step is None
@@ -67,6 +73,7 @@ class CityPlanningService:
         city_stay,
         requirement,
         top_k: int | None = None,
+        narrate: bool = True,
     ) -> CityPlanningResult:
         attractions = await self.retrieve_candidates(
             city_stay=city_stay,
@@ -77,6 +84,30 @@ class CityPlanningService:
             city_stay=city_stay,
             requirement=requirement,
             attractions=attractions,
+            narrate=narrate,
+        )
+
+    async def plan_from_candidates(
+        self,
+        *,
+        city_stay,
+        requirement,
+        attractions: Sequence[HybridSearchResult],
+        narrate: bool = True,
+    ) -> CityPlanningResult:
+        """Build a local-distance plan from an already bounded candidate pool.
+
+        This is the recovery boundary used when route-aware selection cannot
+        find a verified segment.  It deliberately does not retrieve a wider
+        pool, so the hard-interest filter and the 20-item candidate limit are
+        still respected during recovery.
+        """
+
+        return await self._plan_from_attractions(
+            city_stay=city_stay,
+            requirement=requirement,
+            attractions=attractions,
+            narrate=narrate,
         )
 
     async def plan_with_routes(
@@ -86,13 +117,16 @@ class CityPlanningService:
         requirement,
         city_adcode: str,
         attractions: Sequence[HybridSearchResult],
+        narrate: bool = True,
     ) -> RouteAwareCityPlanningResult:
         """Plan from enriched candidates while validating routes before selection."""
 
         if self.route_enrichment_service is None or self.schedule_builder is None:
             raise CityPlanningError("路线感知排程未完成服务配置")
 
-        unique_attractions = dedupe_attractions(list(attractions))
+        unique_attractions = await self._enrich_opening_hours(
+            dedupe_attractions(list(attractions))
+        )
         candidates = self._to_planning_candidates(unique_attractions)
         try:
             dynamic_result = await dynamic_city_plan_with_routes(
@@ -107,12 +141,14 @@ class CityPlanningService:
         except (DynamicSchedulingError, ValueError) as exc:
             raise CityPlanningError(str(exc)) from exc
 
-        city_plan = await self._apply_narration(
-            city_stay=city_stay,
-            requirement=requirement,
-            candidates=candidates,
-            city_plan=dynamic_result.city_plan,
-        )
+        city_plan = dynamic_result.city_plan
+        if narrate:
+            city_plan = await self._apply_narration(
+                city_stay=city_stay,
+                requirement=requirement,
+                candidates=candidates,
+                city_plan=city_plan,
+            )
         city_plan = deduplicate_city_plan(plan=city_plan, candidates=candidates)
         return RouteAwareCityPlanningResult(
             city_result=CityPlanningResult(
@@ -130,8 +166,11 @@ class CityPlanningService:
         city_stay,
         requirement,
         attractions: Sequence[HybridSearchResult],
+        narrate: bool = True,
     ) -> CityPlanningResult:
-        unique_attractions = dedupe_attractions(list(attractions))
+        unique_attractions = await self._enrich_opening_hours(
+            dedupe_attractions(list(attractions))
+        )
         candidates = self._to_planning_candidates(unique_attractions)
         try:
             dynamic_result = dynamic_city_plan(
@@ -144,12 +183,14 @@ class CityPlanningService:
             # not leave any usable local candidates for this city.
             raise CityPlanningError(str(exc)) from exc
 
-        city_plan = await self._apply_narration(
-            city_stay=city_stay,
-            requirement=requirement,
-            candidates=candidates,
-            city_plan=dynamic_result.city_plan,
-        )
+        city_plan = dynamic_result.city_plan
+        if narrate:
+            city_plan = await self._apply_narration(
+                city_stay=city_stay,
+                requirement=requirement,
+                candidates=candidates,
+                city_plan=city_plan,
+            )
         city_plan = deduplicate_city_plan(plan=city_plan, candidates=candidates)
         return CityPlanningResult(
             city_stay=city_stay,
@@ -165,6 +206,8 @@ class CityPlanningService:
         candidates: list[PlanningCandidate],
         city_plan: CityPlan,
     ) -> CityPlan:
+        if self.planner is None:
+            return city_plan
         # The deterministic scheduler owns the attraction list. The optional
         # LLM planner may still provide natural-language day descriptions, but
         # it can no longer choose or reorder the actual POIs.
@@ -208,10 +251,39 @@ class CityPlanningService:
                 description=item.description,
                 source_url=item.source_url,
                 visit_duration_minutes=item.visit_duration_minutes,
+                opening_hours_weekly=item.opening_hours_weekly,
+                opening_hours_today=item.opening_hours_today,
+                opening_hours_status=item.opening_hours_status,
                 tag_match_count=item.tag_match_count,
                 semantic_score=item.preference_similarity,
                 keyword_score=item.keyword_score,
                 preference_score=item.preference_score,
+            )
+            for item in attractions
+        ]
+
+    async def _enrich_opening_hours(
+        self,
+        attractions: list[HybridSearchResult],
+    ) -> list[HybridSearchResult]:
+        if self.opening_hours_service is None or not attractions:
+            return attractions
+        try:
+            enriched = await self.opening_hours_service.enrich_opening_hours(attractions)
+        except Exception as exc:
+            logger.warning(
+                "高德营业时间补充失败，继续按未核实数据排程：error=%s",
+                type(exc).__name__,
+            )
+            return [
+                item.model_copy(update={"opening_hours_status": "unavailable"})
+                for item in attractions
+            ]
+        enriched_by_id = {item.poi_id: item for item in enriched}
+        return [
+            enriched_by_id.get(
+                item.poi_id,
+                item.model_copy(update={"opening_hours_status": "unavailable"}),
             )
             for item in attractions
         ]
