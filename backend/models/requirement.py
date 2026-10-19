@@ -32,7 +32,9 @@ MAX_TRIP_CITIES = 3
 def validate_travel_days(value: object, *, allow_legacy_days: bool = False) -> object:
     """Validate a day count before Pydantic emits a low-level error message."""
 
-    if value is None or isinstance(value, bool):
+    if isinstance(value, bool):
+        raise ValueError("旅行天数必须为整数，不能使用布尔值")
+    if value is None:
         return value
     numeric_value: int | None = None
     if isinstance(value, int):

@@ -26,7 +26,11 @@ def get_engine() -> Engine:
             raise DatabaseConfigurationError("未配置 MySQL DATABASE_URL")
         if not database_url.startswith("mysql+"):
             raise DatabaseConfigurationError("DATABASE_URL 必须使用 MySQL SQLAlchemy 驱动")
-        _engine = create_engine(database_url, pool_pre_ping=True, pool_recycle=1800)
+        _engine = create_engine(
+            database_url, pool_pre_ping=True, pool_recycle=1800,
+            pool_size=5, max_overflow=10, pool_timeout=5,
+            connect_args={"connect_timeout": 5, "read_timeout": 30, "write_timeout": 30},
+        )
     return _engine
 
 

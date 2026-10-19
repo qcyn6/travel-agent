@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 
+from backend.auth import require_admin
 from backend.config import Settings, get_settings
 from backend.knowledge import KnowledgeRepository, get_knowledge_repository
 from backend.models.retrieval import (
@@ -23,7 +24,7 @@ def _service(repository: KnowledgeRepository, settings: Settings) -> VectorRetri
     return build_vector_service(repository, settings)
 
 
-@router.post("/index", response_model=IndexBuildResult)
+@router.post("/index", response_model=IndexBuildResult, dependencies=[Depends(require_admin)])
 async def index_city_knowledge(
     city: str = Query(min_length=2),
     repository: KnowledgeRepository = Depends(get_knowledge_repository),

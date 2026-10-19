@@ -1,0 +1,761 @@
+{
+  "created_at": "2026-10-02T18:35:04.418676",
+  "committed": true,
+  "added": 5,
+  "rows": [
+    {
+      "name": "上海战役总前委旧址纪念馆",
+      "status": "approved",
+      "description_source_url": "https://www.iwenbo.fun/museum/1476.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "核准其别名丹阳市总前委旧址纪念馆，2026年主题展资料证实场馆活动，公开文博具名点位于丹阳人民广场北侧，排除安徽及商丘同名总前委场馆。",
+        "source_urls": [
+          "https://www.iwenbo.fun/museum/1476.html",
+          "https://www.jsstb.gov.cn/zhenjiang/202304/t20230407_12524708.htm",
+          "https://www.zjmm.gov.cn/a/zuzhijianshe/mengshiziliao/zhenjiangmengxun/20150922/1801.html",
+          "https://www.thepaper.cn/newsDetail_forward_14780245",
+          "https://zh.wikipedia.org/wiki/%E6%80%BB%E5%89%8D%E5%A7%94%E3%80%81%E4%B8%89%E9%87%8E%E5%8F%B8%E4%BB%A4%E9%83%A8%E9%A9%BB%E5%9C%B0%E6%97%A7%E5%9D%80",
+          "https://www.qingxin.gov.cn/qxqpostfile/uploadFiles/511e7f70686c11e8ba82005056932293.pdf",
+          "https://www.jsmm.org.cn/myfc/202509/t20250926_78946.shtml",
+          "https://www.zjmm.gov.cn/a/shehuifuwu/2026/0616/4860.html"
+        ],
+        "checked_at": "2026-10-02T18:34:07.371875",
+        "coordinate_review_note": "公开网页TMap丹阳馆舍具名点，GCJ02，非实测入口；小型旧址与纪念馆一体，地址人民广场北侧。证据见extra_museum_guides_B_root.json。",
+        "web_search": {
+          "searched_city": "镇江市",
+          "searched_name": "上海战役总前委旧址纪念馆",
+          "batch_candidates": [
+            "赛珍珠文化园",
+            "上海战役总前委旧址纪念馆"
+          ],
+          "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+        },
+        "coordinate_attempt_file": "coordinates_B_root.json",
+        "coordinate_attempt_key": "93|上海战役总前委旧址纪念馆"
+      },
+      "description": "上海战役总前委旧址纪念馆又称丹阳市总前委旧址纪念馆，位于丹阳市人民广场北侧。场馆由总前委驻地旧址和纪念展馆组成，通过复原陈列与图文资料介绍解放、接管上海的历史，适合革命历史参观和研学。展览及开放安排以馆方公告为准。",
+      "longitude": 119.5736289,
+      "latitude": 31.99389599,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1476.html",
+      "coordinate_system": "GCJ02",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "古建",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "aliases": [
+        "丹阳市总前委旧址纪念馆",
+        "丹阳总前委旧址纪念馆"
+      ],
+      "independence_note": "丹阳人民广场北侧独立革命场馆，与现有镇江博物馆、西津渡不同址；旧址与展馆合并一条，不拆院内设施。",
+      "poi_id": "public_aaa130053540c39b3741ec8e3ae1d9e7",
+      "city_id": 93,
+      "city": "镇江市",
+      "province": "江苏省",
+      "stored_longitude": 119.5736289,
+      "stored_latitude": 31.99389599,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "淮海战役总前委旧址纪念馆",
+      "status": "approved",
+      "description_source_url": "https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "濉溪县政府确认临涣文昌宫纪念馆及展陈，公开文博页面具名地图标记与文昌街馆址相符，排除商丘同名旧址。",
+        "source_urls": [
+          "https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html",
+          "https://www.meet99.com/jingdian-huaizhanzongqianwei-117259.html",
+          "https://www.maigoo.com/citiao/251563.html",
+          "https://www.sxx.gov.cn/mhsx/lyfg/60877614.html",
+          "https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%BD%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+          "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%B8%89%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86",
+          "https://www.iwenbo.fun/museum/1980.html"
+        ],
+        "checked_at": "2026-10-02T18:34:07.372734",
+        "coordinate_review_note": "公开网页TMap具名临涣文昌宫馆址锚点，GCJ02，非实测入口；拒绝商丘同名馆地图结果。原标记见museum_guides_B_root.json。",
+        "web_search": {
+          "searched_city": "淮北市",
+          "searched_name": "淮海战役总前委旧址纪念馆",
+          "batch_candidates": [
+            "鸠兹风景区",
+            "淮海战役总前委旧址纪念馆",
+            "口子酒文化博览园",
+            "大运河美术馆",
+            "南山汉文化博物馆"
+          ],
+          "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+        },
+        "coordinate_attempt_file": "coordinates_B_root.json",
+        "coordinate_attempt_key": "109|淮海战役总前委旧址纪念馆"
+      },
+      "description": "淮海战役总前委旧址纪念馆设于濉溪县临涣镇文昌宫，是革命旧址与纪念展陈结合的文博游览点。馆内展示淮海战役史料，并复原会议室、通讯处及首长居室等空间，适合了解战争历史和开展红色研学。开放与参观安排以场馆公告为准。",
+      "longitude": 116.55888498,
+      "latitude": 33.68865438,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1980.html",
+      "coordinate_system": "GCJ02",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "aliases": [
+        "中共淮海战役总前委旧址纪念馆",
+        "文昌宫淮海战役总前委旧址"
+      ],
+      "independence_note": "临涣文昌宫独立纪念场馆，现有淮北景点无临涣古城父项；与徐州淮海战役纪念馆、商丘总前委旧址不同址。",
+      "poi_id": "public_41e6c82847a7ae39a365e8306c6f972f",
+      "city_id": 109,
+      "city": "淮北市",
+      "province": "安徽省",
+      "stored_longitude": 116.55888498,
+      "stored_latitude": 33.68865438,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "南山汉文化博物馆",
+      "status": "approved",
+      "description_source_url": "https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "2025年淮北官方游览报道确认矿山集南山馆参观，公开文博页面具名馆址标记与所在地相符，未与在库景点重叠。",
+        "source_urls": [
+          "https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html",
+          "https://zhaoshang.huaibei.gov.cn/xxfb/gzdt/58025480.html",
+          "https://www.bw10000.com/topic/2188",
+          "https://fgw.huaibei.gov.cn/hbms/bmdt/57935970.html",
+          "https://ny.huaibei.gov.cn/tslm/zfdx/57859191.html",
+          "https://www.iwenbo.fun/museum/1984.html"
+        ],
+        "checked_at": "2026-10-02T18:34:07.372759",
+        "coordinate_review_note": "公开网页TMap具名场馆锚点，GCJ02，位于杜集区矿山集街道南山村，非淮北城市中心或实测游客入口。原标记见museum_guides_B_root.json。",
+        "web_search": {
+          "searched_city": "淮北市",
+          "searched_name": "南山汉文化博物馆",
+          "batch_candidates": [
+            "鸠兹风景区",
+            "淮海战役总前委旧址纪念馆",
+            "口子酒文化博览园",
+            "大运河美术馆",
+            "南山汉文化博物馆"
+          ],
+          "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+        },
+        "coordinate_attempt_file": "coordinates_B_root.json",
+        "coordinate_attempt_key": "109|南山汉文化博物馆"
+      },
+      "description": "南山汉文化博物馆位于淮北市杜集区矿山集街道南山村，以汉文化与地方历史为主要内容。馆内通过汉画像石等展品呈现地方文化，适合历史文化参观与亲子研学，可结合周边村落的乡土文化游览。展览和开放安排以场馆公告为准。",
+      "longitude": 116.940471,
+      "latitude": 33.957784,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1984.html",
+      "coordinate_system": "GCJ02",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "aliases": [
+        "南山村汉文化博物馆"
+      ],
+      "independence_note": "南山村汉文化独立馆舍，现有淮北库无南山风景区父项，不另拆馆内展厅；与淮北市博物馆不同址。",
+      "poi_id": "public_c26d33e68e4d8da9451404b376f8828d",
+      "city_id": 109,
+      "city": "淮北市",
+      "province": "安徽省",
+      "stored_longitude": 116.940471,
+      "stored_latitude": 33.957784,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "华祖庵",
+      "status": "approved",
+      "description_source_url": "https://www.iwenbo.fun/museum/2114.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "运营方单列华祖庵景区，文博指南明确华佗纪念馆位于永安街12号华祖庵院内；按整个紧凑景区一条收录，不另拆子馆。",
+        "source_urls": [
+          "https://www.iwenbo.fun/museum/2114.html",
+          "https://www.baike.com/wikiid/114389733415271040",
+          "https://bkso.baidu.com/item/%E5%8D%8E%E7%A5%96%E5%BA%B5/162291?fromModule=lemma_inlink",
+          "https://cgj.bozhou.gov.cn/file_bz/34/202410/20241030a08897948eaa4fe1851080b8a5cfc741.pdf",
+          "https://www.cntcm.com.cn/content/202202/14/c192058.html",
+          "https://cz.bozhou.gov.cn/file_bz/1/202405/2024052428f53c6efeec42e88b9b9e255df99af7.pdf",
+          "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+          "https://www.bzwljt.cn/About_us.html"
+        ],
+        "checked_at": "2026-10-02T18:34:07.372788",
+        "coordinate_review_note": "公开文博TMap华佗纪念馆具名建筑锚点，GCJ02，地址明确在华祖庵院内；以子馆作为整个小型院落到达锚点，非实测庵门。证据见extra_museum_guides_B_root.json。",
+        "web_search": {
+          "searched_city": "亳州市",
+          "searched_name": "华祖庵",
+          "batch_candidates": [
+            "曹操运兵道",
+            "南京巷钱庄",
+            "华祖庵"
+          ],
+          "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+        },
+        "coordinate_attempt_file": "coordinates_B_root.json",
+        "coordinate_attempt_key": "117|华祖庵"
+      },
+      "description": "华祖庵位于亳州市谯城区永安街，是纪念华佗的历史文化游览点。传统庙祠院落与院内华佗纪念馆、中医药文化展陈共同介绍华佗事迹及中医药发展，适合古建筑观察、医学文化参观和研学。开放与购票安排以景区公告为准。",
+      "longitude": 115.782202,
+      "latitude": 33.877063,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/2114.html",
+      "coordinate_system": "GCJ02",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "古建",
+        "博物馆",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "aliases": [
+        "华佗纪念馆",
+        "华佗中医药文化博物馆"
+      ],
+      "independence_note": "按华祖庵及院内华佗纪念馆整体收录，不再单列子馆；与亳州西南城郊华佗百草园不同址。",
+      "poi_id": "public_cc6d15b4540ded9b82d428fbdb9b7e5e",
+      "city_id": 117,
+      "city": "亳州市",
+      "province": "安徽省",
+      "stored_longitude": 115.782202,
+      "stored_latitude": 33.877063,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "克拉玛依博物馆",
+      "status": "approved",
+      "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "2026年9月市政府资料确认现馆准噶尔路22号及石油历史展陈，公开文博地图具名现館点地址一致；拒绝独库公路同名误匹配。",
+        "source_urls": [
+          "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+          "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82%E6%96%87%E5%8D%9A%E9%99%A2",
+          "https://www.klmy.gov.cn/klmys/szfysq/202207/29350c59be7b483a9ccf204b2286fd77/files/%E5%8D%9A%E7%89%A9%E9%A6%86%E5%85%8D%E8%B4%B9%E5%BC%80%E6%94%BE%E5%8F%8A%E5%B1%95%E9%99%88%E6%8F%90%E5%8D%87%E9%A1%B9%E7%9B%AE%E8%AF%84%E4%BB%B7%E6%8A%A5%E5%91%8A%28%E5%BC%A0%E6%A2%A6%E9%9B%A8%29-11.11%E8%B4%A2%E6%94%BF%E8%B4%A8%E6%8E%A7%E7%A8%BF.pdf",
+          "https://www.maigoo.com/citiao/61227.html",
+          "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82",
+          "https://www.xjkunlun.gov.cn/dswx/dszl/111559.htm",
+          "https://www.iwenbo.fun/museum/5273.html"
+        ],
+        "checked_at": "2026-10-02T18:34:07.375654",
+        "coordinate_review_note": "公开网页TMap现馆具名点标记，GCJ02，位于准噶尔路22号，非实测入口。证据见extra_museum_guides_B_root.json。",
+        "web_search": {
+          "searched_city": "克拉玛依市",
+          "searched_name": "克拉玛依博物馆",
+          "batch_candidates": [
+            "宁夏长城博物馆",
+            "花马池古城",
+            "克拉玛依博物馆"
+          ],
+          "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+        },
+        "coordinate_attempt_file": "coordinates_B_root.json",
+        "coordinate_attempt_key": "345|克拉玛依博物馆"
+      },
+      "description": "克拉玛依博物馆位于克拉玛依区准噶尔路22号，又称克拉玛依市文博院。馆内围绕地质背景、石油工业萌芽、艰苦创业及城市发展设置展陈，展示各族石油人建设边疆的历程，适合地方历史参观、工业文化体验和研学。开放、预约及展览以馆方公告为准。",
+      "longitude": 84.90209699,
+      "latitude": 45.60673111,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5273.html",
+      "coordinate_system": "GCJ02",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "aliases": [
+        "克拉玛依市博物馆",
+        "克拉玛依市文博院",
+        "克拉玛依矿史博物馆"
+      ],
+      "independence_note": "主城区准噶尔路独立文博场馆，与独山子区独库公路博物馆、科技馆不同，不另拆地窖或英雄墙。",
+      "poi_id": "public_4f479e42c40899f65703a7f7bdd2dbdc",
+      "city_id": 345,
+      "city": "克拉玛依市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 84.90209699,
+      "stored_latitude": 45.60673111,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [
+    {
+      "city": "嘉兴市",
+      "name": "嘉兴博物馆",
+      "reason": "existing name/alias",
+      "existing": "嘉兴博物馆"
+    },
+    {
+      "city": "保山市",
+      "name": "保山市博物馆",
+      "reason": "existing name/alias",
+      "existing": "保山市博物馆"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "独树成林",
+      "reason": "existing name/alias",
+      "existing": "独树成林"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "畹町边关文化园",
+      "reason": "existing name/alias",
+      "existing": "畹町边关文化园"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "李根源故居",
+      "reason": "existing name/alias",
+      "existing": "李根源故居"
+    },
+    {
+      "city": "宝鸡市",
+      "name": "凤县革命纪念馆景区",
+      "reason": "existing name/alias",
+      "existing": "凤县革命纪念馆景区"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山启新水泥工业博物馆",
+      "reason": "existing name/alias",
+      "existing": "唐山启新水泥工业博物馆"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山抗震纪念馆",
+      "reason": "existing name/alias",
+      "existing": "唐山抗震纪念馆"
+    },
+    {
+      "city": "保定市",
+      "name": "大慈阁",
+      "reason": "existing name/alias",
+      "existing": "大慈阁"
+    },
+    {
+      "city": "廊坊市",
+      "name": "梦东方未来世界",
+      "reason": "existing name/alias",
+      "existing": "梦东方未来世界"
+    },
+    {
+      "city": "廊坊市",
+      "name": "大厂民族宫",
+      "reason": "existing name/alias",
+      "existing": "大厂民族宫"
+    },
+    {
+      "city": "吕梁市",
+      "name": "中阳楼",
+      "reason": "existing name/alias",
+      "existing": "中阳楼"
+    },
+    {
+      "city": "赤峰市",
+      "name": "辽代历史文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "辽代历史文化博物馆"
+    },
+    {
+      "city": "赤峰市",
+      "name": "乌兰布统旅游区",
+      "reason": "existing name/alias",
+      "existing": "乌兰布统旅游区"
+    },
+    {
+      "city": "抚顺市",
+      "name": "抚顺平顶山惨案纪念馆",
+      "reason": "existing name/alias",
+      "existing": "抚顺平顶山惨案纪念馆"
+    },
+    {
+      "city": "吉林市",
+      "name": "吉林市文庙博物馆",
+      "reason": "existing name/alias",
+      "existing": "吉林市文庙博物馆"
+    },
+    {
+      "city": "大兴安岭地区",
+      "name": "图强林业博物馆",
+      "reason": "existing name/alias",
+      "existing": "图强林业博物馆"
+    },
+    {
+      "city": "大兴安岭地区",
+      "name": "呼玛博物馆",
+      "reason": "existing name/alias",
+      "existing": "呼玛博物馆"
+    },
+    {
+      "city": "徐州市",
+      "name": "沛县博物馆",
+      "reason": "existing name/alias",
+      "existing": "沛县博物馆"
+    },
+    {
+      "city": "连云港市",
+      "name": "连云港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "连云港市博物馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "淮北市博物馆",
+      "reason": "existing name/alias",
+      "existing": "淮北市博物馆"
+    },
+    {
+      "city": "亳州市",
+      "name": "南京巷钱庄",
+      "reason": "existing name/alias",
+      "existing": "南京巷钱庄"
+    },
+    {
+      "city": "南昌市",
+      "name": "南昌之星摩天轮",
+      "reason": "existing name/alias",
+      "existing": "南昌之星摩天轮"
+    },
+    {
+      "city": "青岛市",
+      "name": "鲁迅公园",
+      "reason": "existing name/alias",
+      "existing": "鲁迅公园"
+    },
+    {
+      "city": "烟台市",
+      "name": "北极星钟表文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "北极星钟表文化博物馆"
+    },
+    {
+      "city": "开封市",
+      "name": "开封府",
+      "reason": "existing name/alias",
+      "existing": "开封府"
+    },
+    {
+      "city": "许昌市",
+      "name": "许昌市博物馆",
+      "reason": "existing name/alias",
+      "existing": "许昌市博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "中原农耕文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "中原农耕文化博物馆"
+    },
+    {
+      "city": "天门市",
+      "name": "胡家花园",
+      "reason": "existing name/alias",
+      "existing": "胡家花园"
+    },
+    {
+      "city": "湘潭市",
+      "name": "湘潭市博物馆",
+      "reason": "existing name/alias",
+      "existing": "湘潭市博物馆"
+    },
+    {
+      "city": "贵港市",
+      "name": "贵港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "贵港市博物馆"
+    },
+    {
+      "city": "自贡市",
+      "name": "自贡市盐业历史博物馆",
+      "reason": "existing name/alias",
+      "existing": "自贡市盐业历史博物馆"
+    },
+    {
+      "city": "兰州市",
+      "name": "甘肃天庆博物馆",
+      "reason": "existing name/alias",
+      "existing": "甘肃天庆博物馆"
+    },
+    {
+      "city": "天水市",
+      "name": "天水民俗博物馆",
+      "reason": "existing name/alias",
+      "existing": "天水民俗博物馆"
+    },
+    {
+      "city": "酒泉市",
+      "name": "酒泉民俗博物馆",
+      "reason": "existing name/alias",
+      "existing": "酒泉民俗博物馆"
+    },
+    {
+      "city": "临夏回族自治州",
+      "name": "临夏州博物馆",
+      "reason": "existing name/alias",
+      "existing": "临夏州博物馆"
+    },
+    {
+      "city": "玉树藏族自治州",
+      "name": "玉树州博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉树州博物馆"
+    },
+    {
+      "city": "吴忠市",
+      "name": "吴忠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "吴忠市博物馆"
+    },
+    {
+      "city": "克拉玛依市",
+      "name": "独库公路博物馆",
+      "reason": "existing name/alias",
+      "existing": "独库公路博物馆"
+    },
+    {
+      "city": "克拉玛依市",
+      "name": "克拉玛依科技馆",
+      "reason": "existing name/alias",
+      "existing": "克拉玛依科技馆"
+    },
+    {
+      "city": "博尔塔拉蒙古自治州",
+      "name": "博尔塔拉蒙古自治州博物馆",
+      "reason": "existing name/alias",
+      "existing": "博尔塔拉蒙古自治州博物馆"
+    },
+    {
+      "city": "喀什地区",
+      "name": "喀什地区博物馆",
+      "reason": "existing name/alias",
+      "existing": "喀什地区博物馆"
+    },
+    {
+      "city": "阿勒泰地区",
+      "name": "阿勒泰地区博物馆",
+      "reason": "existing name/alias",
+      "existing": "阿勒泰地区博物馆"
+    },
+    {
+      "city": "汉中市",
+      "name": "佛坪熊猫谷景区",
+      "reason": "existing name/alias",
+      "existing": "佛坪熊猫谷景区"
+    },
+    {
+      "city": "大庆市",
+      "name": "大庆油田历史陈列馆",
+      "reason": "existing name/alias",
+      "existing": "大庆油田历史陈列馆"
+    },
+    {
+      "city": "蚌埠市",
+      "name": "蚌埠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "蚌埠市博物馆"
+    },
+    {
+      "city": "襄阳市",
+      "name": "襄阳市博物馆",
+      "reason": "existing name/alias",
+      "existing": "襄阳市博物馆"
+    },
+    {
+      "city": "河源市",
+      "name": "河源恐龙博物馆",
+      "reason": "existing name/alias",
+      "existing": "河源恐龙博物馆"
+    },
+    {
+      "city": "玉林市",
+      "name": "容县经略台真武阁",
+      "reason": "existing name/alias",
+      "existing": "容县经略台真武阁"
+    },
+    {
+      "city": "拉萨市",
+      "name": "西藏博物馆",
+      "reason": "existing name/alias",
+      "existing": "西藏博物馆"
+    },
+    {
+      "city": "山南市",
+      "name": "昌珠寺",
+      "reason": "existing name/alias",
+      "existing": "昌珠寺"
+    },
+    {
+      "city": "武威市",
+      "name": "武威市博物馆",
+      "reason": "existing name/alias",
+      "existing": "武威市博物馆"
+    },
+    {
+      "city": "黄南藏族自治州",
+      "name": "隆务寺",
+      "reason": "existing name/alias",
+      "existing": "隆务寺"
+    },
+    {
+      "city": "固原市",
+      "name": "固原博物馆",
+      "reason": "existing name/alias",
+      "existing": "固原博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "北投温泉博物馆",
+      "reason": "existing name/alias",
+      "existing": "北投温泉博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "台北市立美术馆",
+      "reason": "existing name/alias",
+      "existing": "台北市立美术馆"
+    },
+    {
+      "city": "宁波市",
+      "name": "中国港口博物馆",
+      "reason": "existing name/alias",
+      "existing": "中国港口博物馆"
+    },
+    {
+      "city": "金华市",
+      "name": "诸葛八卦村",
+      "reason": "existing name/alias",
+      "existing": "诸葛八卦村"
+    },
+    {
+      "city": "普洱市",
+      "name": "孟连宣抚司署",
+      "reason": "existing name/alias",
+      "existing": "孟连宣抚司署"
+    },
+    {
+      "city": "迪庆藏族自治州",
+      "name": "东竹林寺",
+      "reason": "existing name/alias",
+      "existing": "东竹林寺"
+    },
+    {
+      "city": "天津市",
+      "name": "天津鼓楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "天津鼓楼博物馆"
+    },
+    {
+      "city": "大连市",
+      "name": "旅顺日俄监狱旧址博物馆",
+      "reason": "existing name/alias",
+      "existing": "旅顺日俄监狱旧址博物馆"
+    },
+    {
+      "city": "鄂州市",
+      "name": "鄂州市博物馆",
+      "reason": "existing name/alias",
+      "existing": "鄂州市博物馆"
+    },
+    {
+      "city": "阳江市",
+      "name": "广东海上丝绸之路博物馆",
+      "reason": "existing name/alias",
+      "existing": "广东海上丝绸之路博物馆"
+    },
+    {
+      "city": "甘孜藏族自治州",
+      "name": "泸定桥旅游景区",
+      "reason": "existing name/alias",
+      "existing": "泸定桥旅游景区"
+    },
+    {
+      "city": "西宁市",
+      "name": "青海省科学技术馆",
+      "reason": "existing name/alias",
+      "existing": "青海省科学技术馆"
+    },
+    {
+      "city": "银川市",
+      "name": "宁夏博物馆",
+      "reason": "existing name/alias",
+      "existing": "宁夏博物馆"
+    },
+    {
+      "city": "哈密市",
+      "name": "哈密市博物馆",
+      "reason": "existing name/alias",
+      "existing": "哈密市博物馆"
+    },
+    {
+      "city": "玉溪市",
+      "name": "玉溪市博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉溪市博物馆"
+    },
+    {
+      "city": "阿里地区",
+      "name": "古如江寺",
+      "reason": "existing name/alias",
+      "existing": "古如江寺"
+    },
+    {
+      "city": "海东市",
+      "name": "柳湾彩陶博物馆",
+      "reason": "existing name/alias",
+      "existing": "柳湾彩陶博物馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "八路军驻新疆办事处纪念馆",
+      "reason": "existing name/alias",
+      "existing": "八路军驻新疆办事处纪念馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "毛泽民故居",
+      "reason": "existing name/alias",
+      "existing": "毛泽民故居"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "中国工农红军西路军总支队纪念馆",
+      "reason": "existing name/alias",
+      "existing": "中国工农红军西路军总支队纪念馆"
+    },
+    {
+      "city": "塔城地区",
+      "name": "红楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "红楼博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "澳门大赛车博物馆",
+      "reason": "existing name/alias",
+      "existing": "澳门大赛车博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "海事博物馆",
+      "reason": "existing name/alias",
+      "existing": "海事博物馆"
+    }
+  ],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

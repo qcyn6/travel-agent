@@ -1,0 +1,393 @@
+[
+  {
+    "id": 21,
+    "city": "廊坊市",
+    "province": "河北省",
+    "sources": [
+      "https://www.lf.gov.cn/Category_88/Index.aspx"
+    ],
+    "checked_names": [
+      "梦东方未来世界",
+      "中信国安第一城",
+      "燕南春酒文化博览园",
+      "水岸潮白景区",
+      "李少春纪念馆",
+      "华夏民间收藏馆",
+      "胜芳古镇",
+      "刘凌沧郭慕熙艺术馆",
+      "大厂民族宫",
+      "大厂影视小镇"
+    ],
+    "note": "国安第一城及胜芳已有；家居商业卖场不直接新增。",
+    "candidates": [
+      {
+        "name": "梦东方未来世界",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"官方文旅资料证实真实独立景点；公开OSM具名建筑或明确南门可作可达坐标锚点。","source_urls":["https://www.lf.gov.cn/Item/151601.aspx","https://www.openstreetmap.org/way/940755397"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/940755397，building=yes、tourism=museum、name=梦东方未来世界航天主题乐园；馆舍范围约180×170米，采用Photon建筑锚点，非游客入口实测坐标。"},
+        "description": "梦东方未来世界位于三河燕郊，是以航天科普和沉浸式游乐体验为主题的景区，设有航天展示、互动训练及多种游乐项目。",
+        "description_source_url": "https://www.lf.gov.cn/Item/151601.aspx",
+        "longitude": 116.8215415,
+        "latitude": 39.9163061,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/940755397",
+        "category": "主题娱乐",
+        "tags": ["主题娱乐","亲子","研学"],
+        "duration_minutes": 180,
+        "independence_note": "廊坊市政府列为三河燕郊独立4A级景区；OSM同名航天主题乐园馆舍建筑锚点，非园区入口实测点，与在库廊坊景点不重合。",
+        "aliases": ["梦东方未来世界航天主题乐园","梦东方·未来世界"]
+      },
+      {
+        "name": "燕南春酒文化博览园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lf.gov.cn/Category_88/Index.aspx","https://www.lf.gov.cn/Item/151597.aspx"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lf.gov.cn/Category_88/Index.aspx"
+      },
+      {
+        "name": "水岸潮白景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lf.gov.cn/Category_88/Index.aspx","https://www.lf.gov.cn/Item/114438.aspx"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lf.gov.cn/Category_88/Index.aspx"
+      },
+      {
+        "name": "李少春纪念馆",
+        "status": "approved",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "廊坊市文旅局2025年资料确认其为霸州市3A级旅游景区，位于益津中路270号；具名POI坐标来源标注为腾讯地图，指向馆舍所在大剧院建筑。只新增馆舍级景点，不把整片文化广场拆成多个子点。",
+          "source_urls": [
+            "https://www.lf.gov.cn/Item/151595.aspx",
+            "https://www.lf.gov.cn/Item/139689.aspx?sourceid=103139&sourcenodeid=1002",
+            "https://www.poilist.cn/poi-list-%E6%99%AF%E7%82%B9-%E5%BB%8A%E5%9D%8A/"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "坐标116.388655,39.114104来自腾讯地图来源的具名李少春纪念馆POI，落在益津中路270号李少春大剧院馆舍楼宇；不是实测游客入口，场馆位于大剧院三层。"
+        },
+        "description": "李少春纪念馆位于霸州市益津中路270号李少春大剧院三层，展出京剧艺术家李少春的生平、艺术成就及相关剧照、剧本、戏单和演出资料。景区还包括文化艺术广场、李桂春故居及古典小戏楼，可了解京剧艺术并参观相关文化空间。",
+        "description_source_url": "https://www.lf.gov.cn/Item/151595.aspx",
+        "longitude": 116.388655,
+        "latitude": 39.114104,
+        "coordinate_system": "GCJ02",
+        "coordinate_source_url": "https://www.poilist.cn/poi-list-%E6%99%AF%E7%82%B9-%E5%BB%8A%E5%9D%8A/",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 60,
+        "independence_note": "廊坊市政府将李少春纪念馆列为独立3A级景区；坐标指向大剧院三层纪念馆所在馆舍，不是单独的大剧院游览项。与现库廊坊景点无同名或包含关系。",
+        "aliases": ["霸州李少春纪念馆"]
+      },
+      {
+        "name": "华夏民间收藏馆",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lf.gov.cn/Category_88/Index.aspx","https://www.lf.gov.cn/Item/122802.aspx"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lf.gov.cn/Category_88/Index.aspx"
+      },
+      {
+        "name": "刘凌沧郭慕熙艺术馆",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lf.gov.cn/Category_88/Index.aspx","https://www.lf.gov.cn/Item/139689.aspx?sourceid=103139&sourcenodeid=1002"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lf.gov.cn/Category_88/Index.aspx"
+      },
+      {
+        "name": "大厂民族宫",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"官方文旅资料证实真实独立景点；公开OSM具名建筑或明确南门可作可达坐标锚点。","source_urls":["https://www.lf.gov.cn/Item/151587.aspx","https://www.openstreetmap.org/way/1471694618"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/1471694618，building=yes、name=大厂民族宫；馆舍范围约150×150米，采用Photon建筑锚点，非入口实测坐标。"},
+        "description": "大厂民族宫位于大厂回族自治县县城西部，由何镜堂设计，建筑融合地方民族文化元素与现代设计，是当地的文化地标和国家3A级旅游景区。",
+        "description_source_url": "https://www.lf.gov.cn/Item/151587.aspx",
+        "longitude": 116.9605647,
+        "latitude": 39.8895239,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1471694618",
+        "category": "综合景区",
+        "tags": ["建筑","民族文化","人文"],
+        "duration_minutes": 90,
+        "independence_note": "廊坊市政府单列为大厂独立3A级景区；OSM同名具名建筑锚点，非大厂县域或景区泛化中心，与在库廊坊景点不重合。",
+        "aliases": []
+      },
+      {
+        "name": "大厂影视小镇",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lf.gov.cn/Category_88/Index.aspx","https://www.lf.gov.cn/Item/79291.aspx"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lf.gov.cn/Category_88/Index.aspx"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "city": "阳泉市",
+    "province": "山西省",
+    "sources": [
+      "https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml"
+    ],
+    "checked_names": [
+      "百团大战遗址公园",
+      "娘子关",
+      "藏山",
+      "冠山"
+    ],
+    "note": "娘子关已存在，其余待坐标与简介核实。",
+    "candidates": [
+      {
+        "name": "百团大战遗址公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml","https://www.yq.gov.cn/ywdt/jryq/202609/t20260917_2239229.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml"
+      },
+      {
+        "name": "藏山景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml","https://www.yq.gov.cn/ywdt/jryq/202609/t20260917_2239229.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml"
+      },
+      {
+        "name": "冠山景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml","https://www.yq.gov.cn/ywdt/jryq/202609/t20260917_2239229.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.yq.gov.cn/ywdt/jryq/202605/t20260511_2199372.shtml"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "city": "晋中市",
+    "province": "山西省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=34808"
+    ],
+    "checked_names": [
+      "平遥古城",
+      "双林寺",
+      "镇国寺",
+      "平遥古城墙",
+      "平遥县衙",
+      "日昇昌",
+      "清虚观"
+    ],
+    "note": "平遥古城已有，官方将双林寺镇国寺纳入整体景区/遗产介绍；本轮不增父子重叠项。",
+    "candidates": []
+  },
+  {
+    "id": 33,
+    "city": "吕梁市",
+    "province": "山西省",
+    "sources": [
+      "https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html"
+    ],
+    "checked_names": [
+      "于成龙故居",
+      "孝河国家湿地公园",
+      "胜溪湖森林公园",
+      "刘胡兰纪念馆",
+      "石壁玄中寺",
+      "中阳楼",
+      "金龙山文化旅游景区"
+    ],
+    "note": "官方旅游目录名称核查，不把未来创建级别当现行级别。",
+    "candidates": [
+      {
+        "name": "于成龙故居",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html","https://www.lvliang.gov.cn/zjll/mlll/lyjd/fs/201607/t20160729_234033.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html"
+      },
+      {
+        "name": "孝河国家湿地公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html","https://www.lvliang.gov.cn/llxxgk/zfxxgk/xxgkml/bgtwj/202206/t20220624_1664949.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html"
+      },
+      {
+        "name": "胜溪湖森林公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html","https://www.lvliang.gov.cn/llxxgk/zfxxgk/xxgkml/gbmwj/swhlyj/fdzdgknr_55454/gggs_55463/202505/P020250528561631344753.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html"
+      },
+      {
+        "name": "刘胡兰纪念馆",
+        "status": "approved",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "吕梁市政府场馆资料和2026年文水报道分别确认纪念馆位置、馆舍与近期参观接待；OSM具名museum场地轮廓与候选一致，数据库无同名或父子重复景点。",
+          "source_urls": [
+            "https://www.lvliang.gov.cn/zjll/mlll/lyjd/ws/201607/t20160728_234003.html",
+            "https://credit.lvliang.gov.cn/wenshui/news/content/826725981216571392",
+            "https://www.openstreetmap.org/way/1245192874",
+            "https://photon.komoot.io/api/?q=%E5%88%98%E8%83%A1%E5%85%B0%E7%BA%AA%E5%BF%B5%E9%A6%86%20%E6%96%87%E6%B0%B4&limit=2"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/1245192874为具名tourism=museum场地，约220×386米；采用Photon返回的WGS84场地定位点112.191727,37.3930176，代表馆区而非游客入口或实测点。"
+        },
+        "description": "刘胡兰纪念馆位于文水县刘胡兰镇刘胡兰村，园区以纪念碑和陈列展馆为核心，设有刘胡兰事迹陈列室、七烈士纪念厅等内容，介绍刘胡兰及当地革命历史。馆内提供讲解与研学参观，具体开放安排以场馆公告为准。",
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/ws/201607/t20160728_234003.html",
+        "longitude": 112.191727,
+        "latitude": 37.3930176,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1245192874",
+        "category": "博物馆与展馆",
+        "tags": ["红色文化", "历史文化", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "吕梁市政府资料及近期文水报道明确其为独立纪念馆；OSM同名museum场地锚点落在馆区范围内，不是入口。与现有吕梁景点不重名、无父子重叠。",
+        "aliases": ["刘胡兰烈士陵园"]
+      },
+      {
+        "name": "玄中寺",
+        "status": "approved",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "吕梁市政府资料确认玄中寺位于交城县石壁谷并介绍其佛教历史；近期市政府报道确认景区运营；OSM具名宗教遗产场地锚点与寺院相符，数据库无同名项。",
+          "source_urls": [
+            "https://www.lvliang.gov.cn/zjll/mlll/lyjd/jc/201106/t20110602_233994.html",
+            "https://www.lvliang.gov.cn/szdt/llxw/202607/t20260724_2048903.html",
+            "https://www.openstreetmap.org/way/541656350"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/541656350为具名玄中寺宗教历史遗产场地，范围约140×137米；采用其WGS84场地定位锚点112.07817,37.56419，不作为游客入口或现场实测点。"
+        },
+        "description": "玄中寺位于交城县西北石壁谷中，创建于北魏时期，是中国佛教净土宗的重要祖庭，也与日本净土宗、净土真宗的传播历史密切相关。寺院建筑依山布局，游客可参观寺院空间、了解净土宗历史与中日佛教文化交流。",
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/jc/201106/t20110602_233994.html",
+        "longitude": 112.07817,
+        "latitude": 37.56419,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/541656350",
+        "category": "宗教文化",
+        "tags": ["宗教文化", "历史文化", "古建", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "吕梁市政府资料列为交城县独立寺院景点；OSM场地面状锚点位于寺院本体范围内，不是入口。与现库吕梁景点无同名或父子重叠。",
+        "aliases": ["石壁玄中寺"]
+      },
+      {
+        "name": "中阳楼",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"官方文旅资料证实真实独立景点；公开OSM具名建筑或明确南门可作可达坐标锚点。","source_urls":["https://www.lvliang.gov.cn/zjll/mlll/lyjd/xy/201607/t20160728_234025.html","https://www.openstreetmap.org/way/1384926706"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/1384926706，building=temple、historic=heritage、name=中阳楼；建筑范围约12×12米，坐标为建筑锚点而非实测入口。"},
+        "description": "中阳楼坐落于孝义市历史街区，是保存较完整的古楼式建筑，也是当地历史商贸街区的重要地标。",
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/xy/201607/t20160728_234025.html",
+        "longitude": 111.8051434,
+        "latitude": 37.129661,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1384926706",
+        "category": "历史古迹",
+        "tags": ["历史文化","建筑","人文"],
+        "duration_minutes": 60,
+        "independence_note": "吕梁市政府确认其为孝义历史街区独立古建筑地标；OSM同名小型建筑锚点，非街道中心，与在库吕梁景点不重合。",
+        "aliases": ["孝义中阳楼"]
+      },
+      {
+        "name": "金龙山文化旅游景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html","https://www.lvliang.gov.cn/zjll/mlll/lyjd/xy/201607/t20160728_234021.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/index_2.html"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "city": "赤峰市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://chifeng.gov.cn/zjcf/cycf/lyxx/202507/t20250729_2632274.html"
+    ],
+    "checked_names": [
+      "赤峰博物馆",
+      "辽代历史文化博物馆",
+      "达里湖",
+      "乌兰布统",
+      "桦木沟国家森林公园"
+    ],
+    "note": "桦木沟属于乌兰布统介绍范围，独立边界未核实不重复新增。",
+    "candidates": [
+      {
+        "name": "辽代历史文化博物馆",
+        "status": "approved",
+        "description": "位于赤峰市红山区钢铁西街的专题博物馆，主要研究和展示宋辽金时期历史文化。常设展览涵盖宋辽历史文化、辽代壁画艺术及辽塔建筑，可通过文物和专题陈列认识契丹与北方历史。",
+        "description_source_url": "https://wlj.chifeng.gov.cn/wlzy/bwg/202609/t20260911_2816302.html",
+        "longitude": 118.8983153,
+        "latitude": 42.2361901,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1017867273",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "建筑"],
+        "duration_minutes": 120,
+        "independence_note": "具名馆舍建筑锚点约148米宽、178米长。2026赤峰文旅资料和博物院机构文件明确该馆为原南馆，与在库富河街赤峰博物馆不同馆区、相隔约1公里，非父子景区。",
+        "aliases": ["赤峰博物院辽代历史文化博物馆", "赤峰博物馆南馆"]
+      },
+      {
+        "name": "达里湖",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://chifeng.gov.cn/zjcf/cycf/lyxx/202507/t20250729_2632274.html","https://wlj.chifeng.gov.cn/wlzy/jdjq/201909/t20190915_1334512.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://chifeng.gov.cn/zjcf/cycf/lyxx/202507/t20250729_2632274.html"
+      },
+      {
+        "name": "乌兰布统旅游区",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"官方文旅资料证实真实独立景点；公开OSM具名建筑或明确南门可作可达坐标锚点。","source_urls":["https://wlj.chifeng.gov.cn/wlzy/jdjq/201909/t20190926_1334476.html","https://www.openstreetmap.org/node/10231009870"],"checked_at":"2026-10-02","coordinate_review_note":"OSM node/10231009870，name=乌兰布统风景区南门、tourism=information、information=office，作为南门到达点而非整个旅游区中心。"},
+        "description": "乌兰布统旅游区位于赤峰市克什克腾旗西南部，汇集草原、白桦林、湿地与历史遗迹，适合草原观光和摄影。",
+        "description_source_url": "https://wlj.chifeng.gov.cn/wlzy/jdjq/201909/t20190926_1334476.html",
+        "longitude": 117.2707164,
+        "latitude": 42.4827834,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/10231009870",
+        "category": "自然山水",
+        "tags": ["自然","草原","摄影","森林"],
+        "duration_minutes": 240,
+        "independence_note": "赤峰市文化和旅游局单列景区；坐标取OSM明确具名的乌兰布统风景区南门游客信息点，不采用广阔草原或景区中心；景区内部景点不另计。",
+        "aliases": ["乌兰布统风景区"]
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "city": "巴彦淖尔市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/nmg/202203/t20220311_931833.html"
+    ],
+    "checked_names": [
+      "阴山岩刻",
+      "鸡鹿塞",
+      "河套酒业工业旅游区",
+      "乌梁素海"
+    ],
+    "note": "官方旅游介绍核查，岩刻群无具体公共到达点暂缓。",
+    "candidates": [
+      {
+        "name": "河套酒业工业旅游区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/nmg/202203/t20220311_931833.html","https://bynr.gov.cn/ywdt/qxqdt/202609/t20260924_603385.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/nmg/202203/t20220311_931833.html"
+      },
+      {
+        "name": "乌梁素海生态旅游区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/nmg/202203/t20220311_931833.html","https://www.bynr.gov.cn/ywdt/zwdt/202607/t20260717_407601.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/nmg/202203/t20220311_931833.html"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "city": "阿拉善盟",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.szzg.gov.cn/2025/fhdt/zbsi/alsm/202504/t20250426_5010654.htm"
+    ],
+    "checked_names": [
+      "西部梦幻峡谷",
+      "定远营",
+      "阿拉善亲王府",
+      "延福寺"
+    ],
+    "note": "亲王府延福寺是定远营范围内，不再拆分增加。",
+    "candidates": [
+      {
+        "name": "西部梦幻峡谷",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.szzg.gov.cn/2025/fhdt/zbsi/alsm/202504/t20250426_5010654.htm"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.szzg.gov.cn/2025/fhdt/zbsi/alsm/202504/t20250426_5010654.htm"
+      },
+      {
+        "name": "定远营古城",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.szzg.gov.cn/2025/fhdt/zbsi/alsm/202504/t20250426_5010654.htm","https://www.als.gov.cn/attach/0/905552c4d90b4e99b5d70754a9dafd82.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.szzg.gov.cn/2025/fhdt/zbsi/alsm/202504/t20250426_5010654.htm"
+      }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "source_url": "https://www.iwenbo.fun/heritage/1196.html",
+    "checked_at": "2026-10-02T18:17:05.457187",
+    "latitude": 34.58023768,
+    "longitude": 105.72297782,
+    "marker_name": "胡氏古民居建筑",
+    "marker_code": "'position': new TMap.LatLng(34.58023768, 105.72297782)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/heritage/3620.html",
+    "checked_at": "2026-10-02T18:17:05.792007",
+    "latitude": 33.88237614,
+    "longitude": 115.77425838,
+    "marker_name": "南京巷钱庄",
+    "marker_code": "'position': new TMap.LatLng(33.88237614, 115.77425838)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/1319.html",
+    "checked_at": "2026-10-02T18:17:06.145432",
+    "latitude": 34.75541312,
+    "longitude": 116.93167984,
+    "marker_name": "沛县博物馆",
+    "marker_code": "'position': new TMap.LatLng(34.75541312, 116.93167984)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/4364.html",
+    "checked_at": "2026-10-02T18:17:06.471720",
+    "latitude": 30.45577677,
+    "longitude": 106.64548337,
+    "marker_name": "广安市博物馆（广安三线工业遗产陈列馆）",
+    "marker_code": "'position': new TMap.LatLng(30.45577677, 106.64548337)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/5210.html",
+    "checked_at": "2026-10-02T18:17:06.802332",
+    "latitude": 37.98896088,
+    "longitude": 106.15826547,
+    "marker_name": "吴忠市博物馆",
+    "marker_code": "'position': new TMap.LatLng(37.98896088, 106.15826547)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/4973.html",
+    "checked_at": "2026-10-02T18:17:07.123083",
+    "latitude": 36.0667487,
+    "longitude": 103.88992135,
+    "marker_name": "甘肃天庆博物馆",
+    "marker_code": "'position': new TMap.LatLng(36.0667487, 103.88992135)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/1084.html",
+    "checked_at": "2026-10-02T18:24:09.446118",
+    "latitude": 52.9284366,
+    "longitude": 122.80092716,
+    "marker_name": "图强林业博物馆",
+    "marker_code": "'position': new TMap.LatLng(52.9284366, 122.80092716)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  },
+  {
+    "source_url": "https://www.iwenbo.fun/museum/5077.html",
+    "checked_at": "2026-10-02T18:24:09.786292",
+    "latitude": 39.7852634,
+    "longitude": 98.37077465,
+    "marker_name": "酒泉民俗博物馆",
+    "marker_code": "'position': new TMap.LatLng(39.7852634, 98.37077465)",
+    "sdk": "TMap",
+    "coordinate_system": "GCJ02",
+    "coordinate_system_reference": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+    "note": "公开网页明确具名点标记，非现场实测；未调用地图服务API或加载SDK。"
+  }
+]

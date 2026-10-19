@@ -13,7 +13,6 @@ from backend.rag.knowledge_source import (
     TravelGuideKnowledgeSource,
 )
 from backend.rag.knowledge_vector_store import ChromaKnowledgeIndex
-from backend.rag.reranker import DashScopeReranker, DeepSeekReranker, RerankingError
 from backend.rag.vector_store import ChromaAttractionIndex
 
 __all__ = [
@@ -21,15 +20,12 @@ __all__ = [
     "ChromaKnowledgeIndex",
     "EmbeddingConfigurationError",
     "EmbeddingError",
-    "DashScopeReranker",
-    "DeepSeekReranker",
     "HybridRetrievalService",
     "KnowledgeChunk",
     "KnowledgeRetrievalService",
     "KnowledgeSourceError",
     "TravelGuideKnowledgeSource",
     "OpenAICompatibleEmbeddingClient",
-    "RerankingError",
     "rank_interest_matches",
     "VectorRetrievalService",
 ]

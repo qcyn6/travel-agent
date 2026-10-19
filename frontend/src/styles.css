@@ -331,12 +331,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .progress-list li.failed { color: #9c4b2d; }
 .failed .progress-dot { border-color: #d9744f; background: #fff1eb; }
 .failed .progress-dot::after { content: '!'; color: #c45f3b; font-size: 12px; font-weight: 700; }
-.choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
-.choice-card { text-align: left; border: 1px solid #ccddd6; background: white; border-radius: 18px; padding: 23px; cursor: pointer; transition: .2s; }
-.choice-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(19,72,64,.12); }
-.choice-card:disabled { cursor: wait; opacity: .65; transform: none; }
-.choice-card.featured { background: var(--deep); color: white; }
-.choice-index { color: var(--orange); font-size: 11px; }.choice-card strong { display: block; font-family: 'Noto Serif SC', serif; font-size: 18px; margin: 15px 0 7px; }.choice-card p { min-height: 38px; font-size: 12px; opacity: .7; }.choice-card em { font-style: normal; font-size: 11px; color: var(--green); }.choice-card.featured em { color: #9fd2be; }
 .inline-error { display:grid; grid-template-columns:22px minmax(0,1fr); align-items:start; gap:10px 12px; margin:26px auto 0; max-width:620px; padding:14px 16px; border:1px solid #efc7b7; border-radius:14px; background:#fff5f0; color:#9c4b2d; text-align:left; }
 .inline-error > span { display:grid; place-items:center; width:22px; height:22px; border:1px solid #d9744f; border-radius:50%; color:#c45f3b; font-weight:700; }
 .inline-error > p { min-width:0; margin:0; line-height:1.55; overflow-wrap:anywhere; }
@@ -443,7 +437,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
   .message-list { padding:17px 14px; }.message-bubble { max-width:86%; }.message-body, .message-row.user .message-body { max-width:86%; }.suggestions { padding-left:14px; }
   .weather-calendar-entry { grid-template-columns: 75px minmax(0, 1fr); }.weather-calendar-main { padding:13px 12px 12px; }.weather-calendar-main header { display:block; }.weather-calendar-main header small { display:block; margin-top:3px; }.weather-calendar-condition { align-items:flex-start; flex-direction:column; gap:5px; margin-top:14px; }.weather-calendar-condition strong { font-size:20px; }
   .general-route-card-header { align-items:flex-start; flex-direction:column; gap:4px; }.general-route-actions { align-items:flex-start; flex-direction:column; }.general-route-path strong { max-width:110px; }.general-route-map-canvas, .general-route-fallback { height:220px; min-height:220px; }
-  .choice-grid { grid-template-columns:1fr; }
   .plan-hero { min-height:360px;padding:45px 22px; }.plan-hero-content { width:100%; }.plan-stats { gap:16px; }.plan-stats div { padding-right:16px; }.mountain-art { opacity:.18; }
   .plan-hero h1 { font-size:32px; }.plan-hero p { font-size:14px; }.plan-stats { flex-wrap:wrap; gap:18px 16px; margin-top:30px; }.plan-stats div { padding-right:16px; }.plan-stats strong { font-size:24px; }.plan-stats span { font-size:10px; }
   .plan-content { padding:30px 13px 55px; }.plan-toolbar { align-items:flex-start; }.plan-toolbar h2 { font-size:30px; }.toolbar-actions { flex-direction:column; }.city-route { overflow-x:auto; }

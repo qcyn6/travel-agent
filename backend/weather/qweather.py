@@ -14,17 +14,20 @@ class QWeatherConfigurationError(RuntimeError):
 
 
 class QWeatherAPIError(RuntimeError):
-    pass
+    def __init__(self, message: str, *, retryable: bool = True):
+        super().__init__(message)
+        self.retryable = retryable
 
 
 class QWeatherClient:
-    def __init__(self, api_key: str | None, *, api_host: str | None, timeout_seconds: float = 8.0, client=None, cache=None, cache_ttl_seconds: int = 3600):
+    def __init__(self, api_key: str | None, *, api_host: str | None, timeout_seconds: float = 8.0, client=None, cache=None, cache_ttl_seconds: int = 3600, max_attempts: int = 2):
         self.api_key = api_key
         self.api_host = (api_host or "").strip().rstrip("/")
         self.timeout_seconds = timeout_seconds
         self.client = client
         self.cache = cache
         self.cache_ttl_seconds = cache_ttl_seconds
+        self.max_attempts = max(1, min(max_attempts, 2))
 
     async def get_weather(self, *, city: str, target_date: date, longitude: float, latitude: float) -> WeatherResult:
         results = await self.get_weather_range(
@@ -92,7 +95,7 @@ class QWeatherClient:
         headers = {"X-QW-Api-Key": self.api_key, "Accept-Encoding": "gzip"}
         params = {"days": "10", "localTime": "true", "lang": "zh"}
         response = None
-        for attempt in range(2):
+        for attempt in range(self.max_attempts):
             try:
                 async with observe_external_request("qweather", "forecast"):
                     if self.client is not None:
@@ -101,7 +104,7 @@ class QWeatherClient:
                         async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
                             response = await client.get(url, headers=headers, params=params)
             except httpx.RequestError as exc:
-                if attempt == 0:
+                if attempt + 1 < self.max_attempts:
                     await asyncio.sleep(0.25)
                     continue
                 raise QWeatherAPIError("和风天气网络请求失败") from exc
@@ -109,10 +112,10 @@ class QWeatherClient:
             retryable_status = response.status_code in {408, 429} or response.status_code >= 500
             if response.status_code == 200:
                 break
-            if attempt == 0 and retryable_status:
+            if attempt + 1 < self.max_attempts and retryable_status:
                 await asyncio.sleep(0.25)
                 continue
-            raise QWeatherAPIError(f"和风天气返回 HTTP {response.status_code}")
+            raise QWeatherAPIError(f"和风天气返回 HTTP {response.status_code}", retryable=retryable_status)
 
         if response is None or response.status_code != 200:
             raise QWeatherAPIError("和风天气网络请求失败")

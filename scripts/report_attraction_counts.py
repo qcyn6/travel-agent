@@ -12,7 +12,7 @@ from sqlalchemy import func, select
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from backend.database import init_database, open_session  # noqa: E402
+from backend.database import open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow, ProvinceRow  # noqa: E402
 
 
@@ -20,7 +20,7 @@ OUT = ROOT / "docs" / "景点数量统计-当前.md"
 
 
 def main() -> None:
-    init_database()
+    # Reporting is read-only: never create tables or run schema migrations.
     with open_session() as session:
         provinces = list(session.scalars(select(ProvinceRow).order_by(ProvinceRow.name)))
         cities = list(

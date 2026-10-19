@@ -9,14 +9,13 @@ candidate set.
 """
 
 import asyncio
-import json
 import logging
 from collections.abc import Mapping, Sequence
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from mcp import ClientSession
 from mcp.client.streamable_http import streamablehttp_client
 
+from backend.amap_mcp import endpoint_with_key, tool_payload
 from backend.attractions.metadata import infer_attraction_category, infer_interest_tags
 from backend.models.attraction import AttractionPOI
 from backend.observability import observe_external_request
@@ -249,19 +248,7 @@ class AmapMcpAttractionClient:
                 return await asyncio.gather(*(resolve(item) for item in candidates))
 
     def _endpoint_with_key(self) -> str:
-        parsed = urlsplit(self._endpoint)
-        query = parse_qsl(parsed.query, keep_blank_values=True)
-        if not any(name == "key" for name, _ in query):
-            query.append(("key", self._api_key))
-        return urlunsplit(
-            (
-                parsed.scheme,
-                parsed.netloc,
-                parsed.path,
-                urlencode(query),
-                parsed.fragment,
-            )
-        )
+        return endpoint_with_key(self._endpoint, self._api_key)
 
 
 def _search_candidates(raw_pois: list[object], city: str) -> list[AttractionPOI]:
@@ -373,40 +360,8 @@ def _normalize_name(name: str) -> str:
 
 
 def _tool_payload(result, label: str) -> dict[str, object]:
-    if getattr(result, "isError", False):
-        raise AmapAPIError(f"{label}失败")
-
-    structured = getattr(result, "structuredContent", None)
-    if isinstance(structured, Mapping):
-        return dict(structured)
-
-    for block in getattr(result, "content", []) or []:
-        text = block.get("text") if isinstance(block, Mapping) else getattr(block, "text", None)
-        if not isinstance(text, str) or not text.strip():
-            continue
-        payload = _parse_json(text)
-        if isinstance(payload, Mapping):
-            return dict(payload)
-    raise AmapAPIError(f"{label}返回格式异常")
-
-
-def _parse_json(text: str):
-    normalized = text.strip()
-    if normalized.startswith("```"):
-        normalized = normalized.strip("`").strip()
-        if normalized.startswith("json"):
-            normalized = normalized[4:].strip()
-    try:
-        return json.loads(normalized)
-    except (TypeError, ValueError):
-        start = normalized.find("{")
-        end = normalized.rfind("}")
-        if start < 0 or end <= start:
-            return None
-        try:
-            return json.loads(normalized[start : end + 1])
-        except (TypeError, ValueError):
-            return None
+    # Keep this adapter's exception contract while sharing payload parsing.
+    return tool_payload(result, label, error_type=AmapAPIError)
 
 
 __all__ = ["AmapMcpAttractionClient"]

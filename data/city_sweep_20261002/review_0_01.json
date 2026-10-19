@@ -1,0 +1,754 @@
+[
+  {
+    "id": 292,
+    "city": "保山市",
+    "province": "云南省",
+    "sources": [
+      "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+      "https://www.baoshan.gov.cn/bmym/bsswhhlyj1/zfxxgkpt/fdzdgknr/bmxx/lytj/jqjxljs/1.htm"
+    ],
+    "checked_names": [
+      "保山市博物馆",
+      "腾冲滇西抗战纪念馆（国殇墓园）",
+      "腾冲江东银杏村",
+      "腾冲北海湿地",
+      "昌宁右甸河田园生态旅游区",
+      "青华海国家湿地公园",
+      "腾冲和顺古镇",
+      "司莫拉佤族古村落"
+    ],
+    "note": "青华海和和顺已存在，独立候选待核验坐标。",
+    "candidates": [
+      {
+        "name": "保山市博物馆",
+        "status": "approved",
+        "description": "保山市博物馆位于隆阳区永昌文化园的三馆广场，以文物收藏、陈列展示和地方历史研究为主要内容。馆舍采用铜鼓造型，外壁浮雕表现九隆传说、丝道文化和永昌历史，是认识保山地域文化的公共文博场馆。",
+        "description_source_url": "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+        "longitude": 99.162249,
+        "latitude": 25.1022227,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1449721494",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "具名保山博物馆建筑锚点，约54米宽、54米长；官方说明铜鼓造型直径56.6米、永昌文化园4号，交通指南明确隆阳路三馆广场。与现有永子文化园不是同馆；排除腾冲历史博物馆异址结果。",
+        "aliases": [
+          "保山博物馆"
+        ]
+      },
+      {
+        "name": "腾冲滇西抗战纪念馆（国殇墓园）",
+        "status": "approved",
+        "description": "纪念馆与国殇墓园位于叠水河畔、来凤山北麓，合为腾冲滇西抗战纪念景区，集抗战历史展陈、烈士凭吊和爱国主义教育于一体。滇西抗战纪念馆展示滇缅印抗战史，国殇墓园以忠烈祠、烈士墓冢、纪念塔和碑廊纪念远征军将士。",
+        "description_source_url": "https://www.baoshan.gov.cn/info/8046/9872914.htm",
+        "longitude": 98.4815130,
+        "latitude": 25.0286706,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/261122745",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "保山市文旅局将纪念馆与国殇墓园作为同一景区介绍，现有保山市景点未包含该腾冲景区。OSM具名战争纪念博物馆小型建筑(way/261122745)作为到访定位锚点；坐标是建筑面内部的地图点，不是实测入口，游览范围还包括国殇墓园。",
+        "aliases": [
+          "腾冲滇西抗战纪念馆",
+          "国殇墓园"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "第二渠道通过：保山市文旅局确认纪念馆及国殇墓园属于同一景区；OSM API 返回具名 tourism=museum、museum=war、historic=memorial 小型建筑，落在腾冲且不是公交站或地名节点。",
+          "source_urls": [
+            "https://www.baoshan.gov.cn/info/8046/9872914.htm",
+            "https://www.openstreetmap.org/way/261122745"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/261122745：WGS84(98.4815130,25.0286706)，标签name=滇西抗战纪念馆、tourism=museum、museum=war、historic=memorial；Nominatim边界约(25.0281580..25.0292158,98.4809126..98.4821059)。保山市文旅局现行景区纵览确认馆墓同属叠水河畔、来凤山北麓景区；点位定位在馆舍范围内，不宣称是园区入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "已取得具名战争纪念馆馆舍面及保山市文旅局现址/景区关系交叉证据。",
+          "source_urls": [
+            "https://www.baoshan.gov.cn/info/8046/9872914.htm",
+            "https://www.openstreetmap.org/way/261122745"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM API way/261122745标签明确为滇西抗战纪念馆、war museum、war memorial；馆舍建筑锚点与官方景区页面所述国殇墓园东侧纪念馆一致。"
+        }
+      },
+      {
+        "name": "腾冲江东银杏村",
+        "status": "approved",
+        "description": "江东银杏村景区位于腾冲北部，由陈家寨、坝心、江云、四合等村落组成，以连片古银杏林和滇西古村风貌闻名。景区还可体验峡谷栈道、石门古战场、银杏博览园及当地村落文化，适合在银杏季赏秋，也可了解传统村寨的农耕生活。",
+        "description_source_url": "https://baoshan.gov.cn/info/7792/2345464.htm",
+        "longitude": 98.5124672,
+        "latitude": 25.3007837,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/12300603675",
+        "category": "古镇与街区",
+        "tags": [
+          "生态",
+          "人文",
+          "乡村旅游",
+          "摄影"
+        ],
+        "duration_minutes": 150,
+        "independence_note": "保山市文旅局把江东银杏村列为独立景区，包含四个自然村及银杏林、峡谷等游览内容；该城市现有景点中未见江东银杏村。OSM具名tourism=attraction节点在银杏路、陈家寨，作为景区地图POI定位锚点，不宣称为实测入口。",
+        "aliases": [
+          "江东银杏村景区",
+          "腾冲银杏村景区"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "第二渠道通过：保山市文旅局列明江东银杏村景区范围和游览内容；OSM具名tourism=attraction节点的别名对应腾冲江东银杏村景区，位于景区所辖陈家寨银杏路。",
+          "source_urls": [
+            "https://baoshan.gov.cn/info/7792/2345464.htm",
+            "https://www.openstreetmap.org/node/12300603675"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM node/12300603675：WGS84(98.5124672,25.3007837)，name=银杏村景区、alt_name=江东银杏村景区/腾冲江东银杏村景区、tourism=attraction；点位位于银杏路、陈家寨。保山市文旅局介绍景区含陈家寨等4个自然村，面积35.42平方公里；地图点作为景区POI锚点，不是园区实测入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "取得市文旅局景区介绍和OSM具名景区节点交叉核验，且城市景点表未有重名/别名项。",
+          "source_urls": [
+            "https://baoshan.gov.cn/info/7792/2345464.htm",
+            "https://www.openstreetmap.org/node/12300603675"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "现地地图对象是明确的旅游景点节点，别名含景区正式称呼；不是学校、村委会或道路标签。"
+        }
+      },
+      {
+        "name": "腾冲北海湿地",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+            "https://baoshan.gov.cn/info/7792/2345474.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/node/4566696643为村/地名节点，不等于游览入口。"
+        }
+      },
+      {
+        "name": "昌宁右甸河田园生态旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+            "https://baoshan.gov.cn/info/7792/2345444.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“昌宁右甸河田园生态旅游区 保山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "司莫拉佤族古村落",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoshan.gov.cn/info/4888/9675464.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“司莫拉佤族古村落 保山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 296,
+    "city": "楚雄彝族自治州",
+    "province": "云南省",
+    "sources": [
+      "https://www.cxs.gov.cn/info/8825/252238.htm",
+      "https://www.cxs.gov.cn/info/15575/392918.htm"
+    ],
+    "checked_names": [
+      "楚雄州博物馆",
+      "紫溪山",
+      "彝人古镇",
+      "楚雄文庙",
+      "中国彝族十月太阳历文化园",
+      "福塔公园",
+      "青山湖"
+    ],
+    "note": "彝人古镇和十月太阳历文化园已有。",
+    "candidates": [
+      {
+        "name": "楚雄州博物馆",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.cxs.gov.cn/info/8825/252238.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.cxbw.org.cn/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+楚雄返回0项。"
+        },
+        "description": "楚雄州博物馆位于楚雄市鹿城南路，展陈楚雄地方历史与民族文化，并展示铜鼓、禄丰恐龙化石及元谋人化石等。",
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.iwenbo.fun/museum/4600.html",
+            "https://www.openstreetmap.org/way/1379633964"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "具名 TMap marker 换算后落在 OSM way/1379633964“楚雄博物馆”约200×260米的粗略馆区中心，OSM 还标注粗略边界；不能当游客入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      },
+      {
+        "name": "紫溪山",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.cxs.gov.cn/info/8825/252238.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.cxs.gov.cn/info/8825/252248.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“紫溪山林道”(highway=track, https://www.openstreetmap.org/way/1455447306)，与“紫溪山”不符；拒绝错匹配。"
+        }
+      },
+      {
+        "name": "楚雄文庙",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.cxs.gov.cn/info/8825/252238.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.cxs.gov.cn/info/15575/392918.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/1112672742 是约180米的楚雄文庙宗教场地面，非入口。"
+        }
+      },
+      {
+        "name": "福塔公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.cxs.gov.cn/info/8825/252238.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.cxs.gov.cn/info/15575/392918.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/1068270184为way leisure=park范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      },
+      {
+        "name": "青山湖",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.cxs.gov.cn/info/8825/252238.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.cxs.gov.cn/info/8825/252238.htm",
+            "https://www.cxs.gov.cn/info/15575/392918.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/relation/11043920为relation water=reservoir范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 300,
+    "city": "德宏傣族景颇族自治州",
+    "province": "云南省",
+    "sources": [
+      "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm"
+    ],
+    "checked_names": [
+      "勐巴娜西珍奇园",
+      "仙佛洞景区",
+      "孔雀谷景区",
+      "银塔景区",
+      "后谷咖啡小镇景区",
+      "莫里热带雨林景区",
+      "一寨两国",
+      "独树成林",
+      "畹町边关文化园",
+      "南甸宣抚司署",
+      "李根源故居"
+    ],
+    "note": "来源为2021州情资料，开放状态和坐标需补核验，不把规划项目当成现成景点。",
+    "candidates": [
+      {
+        "name": "仙佛洞景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.dhms.gov.cn/wtj/Web/_F0_0_5ILDZKEX5572CE8825F644D2B9.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“仙佛洞景区 德宏傣族景颇族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "孔雀谷景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.dh.gov.cn/lfw/Web/_F0_0_5HHCGZQL80AD2A5C2989454083.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“孔雀谷景区 德宏傣族景颇族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "勐焕银塔",
+        "status": "approved",
+        "description": "勐焕银塔位于芒市仙池路一带，以纯白傣式佛塔为核心，周边设有广场、观景台和步道。景区节假日有《孔雀起舞的地方》专场演出，可观赏建筑与山景、了解傣族佛教文化和民族艺术；演出安排以景区公告为准。",
+        "description_source_url": "https://www.dhms.gov.cn/jdx/Web/_F0_0_6KMRAWCF87C53F4DD8B84641A6.htm",
+        "longitude": 98.5946635,
+        "latitude": 24.4207153,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/660705543",
+        "coordinate_system": "WGS84",
+        "category": "宗教建筑",
+        "tags": [
+          "宗教文化",
+          "建筑",
+          "民族文化",
+          "摄影",
+          "人文"
+        ],
+        "duration_minutes": 60,
+        "aliases": [
+          "银塔景区",
+          "勐焕银塔景区",
+          "勐焕千佛银塔"
+        ],
+        "independence_note": "OSM way/660705543标注为具名勐焕银塔建筑（building=stupa、man_made=stupa），轮廓约50米，坐标为塔体内的WGS84定位锚点，非入口或实测点。芒市现库已有勐焕大金塔；银塔与金塔是不同塔体，官方2026通告仍分列两处景区，故独立收录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "芒市政府2026五一旅游指南介绍勐焕银塔景区及演出，2026交管通告将其与大金塔分别列为游客参观点；OSM有独立具名佛塔建筑轮廓和塔体坐标，与现有勐焕大金塔不是同一地点。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.dhms.gov.cn/wtj/Web/_F0_0_5ILE0PO699B1E5E5E9E44A438E.htm",
+            "https://www.dhms.gov.cn/jdx/Web/_F0_0_6KMRAWCF87C53F4DD8B84641A6.htm",
+            "https://www.dhms.gov.cn/Web/_F0_0_6KPM03CX45EA30CCEA1E4097A7.htm",
+            "https://www.openstreetmap.org/way/660705543"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/660705543为独立具名勐焕银塔塔体建筑，building=stupa、man_made=stupa，轮廓约50米；WGS84坐标是塔体定位锚点，非入口或现场实测点。"
+        }
+      },
+      {
+        "name": "后谷咖啡小镇景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://cbgc.scol.com.cn/news/5077258"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“后谷咖啡小镇景区 德宏傣族景颇族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "独树成林",
+        "status": "approved",
+        "description_source_url": "https://www.rl.gov.cn/slyj/Web/_F0_0_61F4E2JRE54D434802DE4090B2.htm",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "运营方/政府资料确认景点与地址，OSM具名临路景点POI节点可作抵达锚点；排除同城重复。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.dh.gov.cn/Web/_F57T5WSIE0EF242DE3C294DC6A7_0_28D0791P482FFDJHHC6GP1X20N.htm",
+            "https://www.rl.gov.cn/slyj/Web/_F0_0_61F4E2JRE54D434802DE4090B2.htm",
+            "https://www.rl.gov.cn/Web/_M6_4QWS8V0X3BBCEBB5EB4943BCBD_1.htm",
+            "https://www.openstreetmap.org/node/8416966917"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "瑞丽市A级名录确认独树成林在320国道北侧；OSM具名tourism=attraction节点紧邻G320道路，可作临路景点抵达锚点，非实测售票口，与莫里雨林等不同址。"
+        },
+        "longitude": 97.9584443,
+        "latitude": 24.0560855,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/8416966917",
+        "coordinate_system": "WGS84",
+        "category": "生态动植物",
+        "tags": [
+          "自然",
+          "生态"
+        ],
+        "duration_minutes": 45,
+        "independence_note": "瑞丽市A级名录确认独树成林在320国道北侧；OSM具名tourism=attraction节点紧邻G320道路，可作临路景点抵达锚点，非实测售票口，与莫里雨林等不同址。",
+        "aliases": [
+          "瑞丽独树成林",
+          "独树成林景区"
+        ],
+        "description": "瑞丽市320国道旁的独树成林景区，以大榕树形成的独特树形景观为看点，适合短暂停留参观。"
+      },
+      {
+        "name": "畹町边关文化园",
+        "status": "approved",
+        "description_source_url": "https://www.dh.gov.cn/lfw/Web/_F0_0_6J2M5IU28560092D28314BE390.htm",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "运营方/政府资料确认景点与地址，OSM具名临路景点POI节点可作抵达锚点；排除同城重复。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.dh.gov.cn/lfw/Web/_F0_0_6J2M5IU28560092D28314BE390.htm",
+            "https://www.openstreetmap.org/node/13290876413"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "德宏州2026年文旅答复确认畹町边关文化园一街十三馆历史文化集群；OSM具名tourism=attraction节点位于畹町国防街，可作临街抵达锚点，非实测大门；与姐告口岸不同址。"
+        },
+        "longitude": 98.0728068,
+        "latitude": 24.0825204,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/13290876413",
+        "coordinate_system": "WGS84",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "边境风情"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "德宏州2026年文旅答复确认畹町边关文化园一街十三馆历史文化集群；OSM具名tourism=attraction节点位于畹町国防街，可作临街抵达锚点，非实测大门；与姐告口岸不同址。",
+        "aliases": [
+          "畹町边关文化园景区"
+        ],
+        "description": "瑞丽畹町国防街一带的边关文化游览区，串联边关历史展馆与街区，可了解滇缅公路及中缅边境历史。"
+      },
+      {
+        "name": "南甸宣抚司署",
+        "status": "approved",
+        "description": "南甸宣抚司署位于梁河县遮岛镇，是清代土司衙署建筑群，始建于咸丰元年，保存规模较大的院落和建筑。现为全国重点文物保护单位及国家4A级旅游景区，可参观衙署格局，了解土司制度与地方历史；景区近期有庭院剧演出。",
+        "description_source_url": "https://www.dhlh.gov.cn/Web/_F0_0_5Z0ZFXAQ09F7A33921CD4F0781.htm",
+        "longitude": 98.297181,
+        "latitude": 24.8099755,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/52511342",
+        "coordinate_system": "WGS84",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "古建",
+          "建筑",
+          "民族文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "南甸宣抚司古建筑群",
+          "南甸土司衙署"
+        ],
+        "independence_note": "OSM way/52511342标注为具名南甸宣抚司署博物馆及历史建筑保护院落，范围约150×110米；WGS84代表点落在具名遗产场馆内，非实测入口。与现库李根源故居相距约1.9公里，梁河官方线路分别列为游览点，不是父子重叠。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "梁河县官方资料确认遮岛镇现址、清代土司衙署建筑群及国家4A级景区身份；德宏州2026文旅报道确认近期游客庭院剧活动；OSM具名museum及protected_building复合院落有可用WGS84场地锚点，数据库无重复。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.ynxc.gov.cn/uploadfile/s61/2024/0419/20240419095702127.pdf",
+            "https://www.dhlh.gov.cn/Web/_F0_0_5Z0ZFXAQ09F7A33921CD4F0781.htm",
+            "https://www.dhlh.gov.cn/wtj/Web/_F0_0_5WGGN42QD788F6E1B30C4C3CBC.htm",
+            "https://www.dh.gov.cn/lfw/Web/_F0_0_6I8Y14PP558D7B2C8B9944DDAF.htm",
+            "https://www.openstreetmap.org/way/52511342"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/52511342具名 tourism=museum、historic=protected_building，范围约150×110米；采用Photon返回的WGS84场地定位点，不称为游客入口或现场实测点。"
+        },
+        "description": "梁河县遮岛镇南甸路的清代土司衙署建筑群，现为全国重点文物保护单位，可了解德宏土司制度与地方历史。",
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "复核确认具名文物场馆范围的POI定位点与遮岛镇官方现址一致；将坐标语义限定为院落定位锚点，而非入口。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://www.iwenbo.fun/heritage/727.html",
+            "https://www.dhlh.gov.cn/Web/_F0_0_5Z0ZFXAQ09F7A33921CD4F0781.htm",
+            "https://www.dhlh.gov.cn/wtj/Web/_F0_0_5WGGN42QD788F6E1B30C4C3CBC.htm",
+            "https://www.dh.gov.cn/lfw/Web/_F0_0_6I8Y14PP558D7B2C8B9944DDAF.htm",
+            "https://www.openstreetmap.org/way/52511342",
+            "https://photon.komoot.io/api/?q=%E5%8D%97%E7%94%B8%E5%AE%A3%E6%89%AB%E5%8F%B8%E7%BD%B2%20%E6%A2%81%E6%B2%B3&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM具名遗产场馆院落的WGS84定位锚点，落在约150×110米院落内；仅供景点定位，不代表核实入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      },
+      {
+        "name": "李根源故居",
+        "status": "approved",
+        "description_source_url": "https://www.dhlh.gov.cn/zdz/Web/_F0_0_667JDN5N9FD29A7CAA1A419386.htm",
+        "longitude": 98.3133419,
+        "latitude": 24.8206044,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/708441986",
+        "coordinate_system": "WGS84",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "古建"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "OSM具名李根源故居小型院落建筑锚点，位于梁河县九保；不是腾冲同名故居，也不在德宏现有景点范围内。建筑锚点非实测入口。",
+        "aliases": [
+          "九保李根源故居"
+        ],
+        "description": "梁河县九保阿昌族乡的李根源故居，是省级文物保护单位；在九保街巷中可了解李根源及当地近代历史。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/运营方资料核实馆址及简介，OSM具名场馆节点或小型院落建筑锚点核实坐标，确认不与现有景点重叠。",
+          "source_urls": [
+            "https://www.dh.gov.cn/Web/_F0_0_4XHKOT2P8C7302A1DFE343C6B0.htm",
+            "https://mz.yn.gov.cn/html/2019/difangdongtai_0402/31905.html",
+            "https://www.dhlh.gov.cn/zdz/Web/_F0_0_667JDN5N9FD29A7CAA1A419386.htm",
+            "https://m.yunnan.cn/system/2019/04/19/030257607.shtml",
+            "https://www.openstreetmap.org/way/708441986"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/708441986 是梁河县九保具名小院落建筑锚点，非实测入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "city": "宝鸡市",
+    "province": "陕西省",
+    "sources": [
+      "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html"
+    ],
+    "checked_names": [
+      "法门文化景区",
+      "太白山景区",
+      "西府老街文化旅游景区",
+      "金台太极源文化景区",
+      "长乐塬抗战工业遗址景区",
+      "中华石鼓园景区",
+      "大水川景区",
+      "九龙山景区",
+      "古凤州文化景区",
+      "凤凰湖景区",
+      "凤县革命纪念馆景区",
+      "凤翔东湖景区",
+      "野河山景区",
+      "千湖生态旅游景区",
+      "关山草原景区"
+    ],
+    "note": "2026A级名录按城市全域核查；法门、太白山等已有别名不新增。",
+    "candidates": [
+      {
+        "name": "西府老街文化旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“西府老街文化旅游景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "金台太极源文化景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“金台太极源文化景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "长乐塬抗战工业遗址景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“长乐塬抗战工业遗址景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "中华石鼓园景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“中华石鼓园景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "古凤州文化景区",
+        "status": "approved",
+        "description": "古凤州文化景区位于凤县凤州镇，以古凤州历史文化和消灾寺为核心。消灾寺始建于唐代，寺院古建与周边山水共同构成主要游览内容，可了解凤州沿革和佛教文化。",
+        "description_source_url": "https://www.baoji.gov.cn/col26/col95/201609/t20160929_10360.html",
+        "longitude": 106.6198683,
+        "latitude": 33.9574038,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/6566285988",
+        "coordinate_system": "WGS84",
+        "category": "历史文化景区",
+        "tags": [
+          "历史文化",
+          "古建",
+          "宗教文化"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "古凤州文化景区（消灾寺）",
+          "消灾寺"
+        ],
+        "independence_note": "宝鸡2026年A级景区名录列名古凤州文化景区（消灾寺）；坐标为OSM具名消灾寺宗教场所节点，非现场实测入口。与凤县革命纪念馆景区同镇但对象不同，非父子重叠。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "宝鸡市政府史料确认消灾寺始建于唐代，2026年A级景区名录列明古凤州文化景区（消灾寺）及凤县凤州镇；OSM具名消灾寺节点坐标与官方地点对应，现库无重名或父项。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260326_1257552.html",
+            "https://www.baoji.gov.cn/col26/col95/201609/t20160929_10360.html",
+            "https://www.openstreetmap.org/node/6566285988"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM node/6566285988 标注具名消灾寺，WGS84点位；为宗教场所POI锚点，非现场实测入口。"
+        }
+      },
+      {
+        "name": "凤凰湖景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“凤凰湖景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "凤县革命纪念馆景区",
+        "status": "approved",
+        "description_source_url": "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260310_1251847.html",
+        "longitude": 106.6171437,
+        "latitude": 33.9507151,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/958192442",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名凤县革命纪念馆约60米馆舍建筑锚点，非实测入口；宝鸡市政府确认位于凤州镇凤州村，未与同城既有景区重叠。",
+        "aliases": [
+          "凤县革命纪念馆"
+        ],
+        "description": "凤州镇凤州村的革命纪念馆，以“两当兵变”主要领导人生平和凤县革命历史等展陈为主，通过文物史料介绍兵运、红军过境、工合运动与解放凤县相关历史。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/运营方资料核实馆址及简介，OSM具名场馆节点或小型院落建筑锚点核实坐标，确认不与现有景点重叠。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://www.baoji.gov.cn/col46/col52/202603/t20260310_1251465.html",
+            "https://whhlyj.baoji.gov.cn/col3468/col3497/202603/t20260310_1251847.html",
+            "https://www.openstreetmap.org/way/958192442"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/958192442 是凤县革命纪念馆具名小型馆舍建筑锚点，非实测入口。"
+        }
+      },
+      {
+        "name": "凤翔东湖景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“凤翔东湖景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "野河山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+            "https://www.baoji.gov.cn/col9816/col9818/col9845/col9848/202109/P020250113412614799040.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“河北新时基业防火保温材料制造有限公司”(landuse=industrial, https://www.openstreetmap.org/way/1126080140)，与“野河山景区”不符；拒绝错匹配。"
+        }
+      },
+      {
+        "name": "千湖生态旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.baoji.gov.cn/bmpd/bjswhhlyj/ztzl/whly/202603/t20260326_1257552.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“千湖生态旅游景区 宝鸡市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  }
+]

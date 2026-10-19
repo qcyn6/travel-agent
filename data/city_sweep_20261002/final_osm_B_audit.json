@@ -1,0 +1,177 @@
+{
+  "way/940755397/full": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/way/940755397/full",
+    "objects": [
+      {
+        "type": "way",
+        "id": "940755397",
+        "visible": "true",
+        "version": "2",
+        "changeset": "111440780",
+        "timestamp": "2021-09-20T09:42:36Z",
+        "user": "lorenzo23622",
+        "uid": "476483",
+        "tags": {
+          "building": "yes",
+          "layer": "1",
+          "name": "梦东方未来世界航天主题乐园",
+          "tourism": "museum"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942765 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"8712496296\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9170257\" lon=\"116.8211697\"/>\n <node id=\"8712496297\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9168805\" lon=\"116.8210181\"/>\n <node id=\"8712496298\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9166229\" lon=\"116.8208518\"/>\n <node id=\"8712496299\" visible=\"true\" version=\"1\" changeset=\"104370158\" timestamp=\"2021-05-08T15:42:16Z\" user=\"booktiger\" uid=\"4794671\" lat=\"39.9163427\" lon=\"116.8208046\"/>\n <node id=\"8712496300\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9160281\" lon=\"116.8208505\"/>\n <node id=\"8712496301\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9157805\" lon=\"116.8210403\"/>\n <node id=\"8712496302\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9155282\" lon=\"116.8213956\"/>\n <node id=\"8712496303\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9155150\" lon=\"116.8215242\"/>\n <node id=\"8712496304\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9156262\" lon=\"116.8216250\"/>\n <node id=\"8712496305\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9161751\" lon=\"116.8215527\"/>\n <node id=\"8712496307\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9163573\" lon=\"116.8229050\"/>\n <node id=\"8712496308\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9164816\" lon=\"116.8228776\"/>\n <node id=\"8712496309\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9164177\" lon=\"116.8215018\"/>\n <node id=\"8712496310\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9168296\" lon=\"116.8214283\"/>\n <node id=\"8712496311\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9169986\" lon=\"116.8213820\"/>\n <node id=\"9107397615\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9164035\" lon=\"116.8220171\"/>\n <node id=\"9107397616\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9164000\" lon=\"116.8217410\"/>\n <node id=\"9107411217\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9162780\" lon=\"116.8220563\"/>\n <node id=\"9107411218\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9162337\" lon=\"116.8217737\"/>\n <node id=\"9107411219\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9163342\" lon=\"116.8224899\"/>\n <node id=\"9107411220\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9155682\" lon=\"116.8216070\"/>\n <node id=\"9107411221\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9155122\" lon=\"116.8214630\"/>\n <node id=\"9107411222\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9156496\" lon=\"116.8211902\"/>\n <node id=\"9107411223\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9159043\" lon=\"116.8209207\"/>\n <node id=\"9107411224\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9170499\" lon=\"116.8212296\"/>\n <node id=\"9107411225\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9170337\" lon=\"116.8213212\"/>\n <node id=\"9107411226\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9164828\" lon=\"116.8208128\"/>\n <node id=\"9107411227\" visible=\"true\" version=\"1\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\" lat=\"39.9167541\" lon=\"116.8209165\"/>\n <way id=\"940755397\" visible=\"true\" version=\"2\" changeset=\"111440780\" timestamp=\"2021-09-20T09:42:36Z\" user=\"lorenzo23622\" uid=\"476483\">\n  <nd ref=\"8712496296\"/>\n  <nd ref=\"8712496297\"/>\n  <nd ref=\"9107411227\"/>\n  <nd ref=\"8712496298\"/>\n  <nd ref=\"9107411226\"/>\n  <nd ref=\"8712496299\"/>\n  <nd ref=\"8712496300\"/>\n  <nd ref=\"9107411223\"/>\n  <nd ref=\"8712496301\"/>\n  <nd ref=\"9107411222\"/>\n  <nd ref=\"8712496302\"/>\n  <nd ref=\"9107411221\"/>\n  <nd ref=\"8712496303\"/>\n  <nd ref=\"9107411220\"/>\n  <nd ref=\"8712496304\"/>\n  <nd ref=\"8712496305\"/>\n  <nd ref=\"9107411218\"/>\n  <nd ref=\"9107411217\"/>\n  <nd ref=\"9107411219\"/>\n  <nd ref=\"8712496307\"/>\n  <nd ref=\"8712496308\"/>\n  <nd ref=\"9107397615\"/>\n  <nd ref=\"9107397616\"/>\n  <nd ref=\"8712496309\"/>\n  <nd ref=\"8712496310\"/>\n  <nd ref=\"8712496311\"/>\n  <nd ref=\"9107411225\"/>\n  <nd ref=\"9107411224\"/>\n  <nd ref=\"8712496296\"/>\n  <tag k=\"building\" v=\"yes\"/>\n  <tag k=\"layer\" v=\"1\"/>\n  <tag k=\"name\" v=\"梦东方未来世界航天主题乐园\"/>\n  <tag k=\"tourism\" v=\"museum\"/>\n </way>\n</osm>\n"
+  },
+  "way/1471694618/full": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/way/1471694618/full",
+    "objects": [
+      {
+        "type": "way",
+        "id": "1471694618",
+        "visible": "true",
+        "version": "1",
+        "changeset": "177766311",
+        "timestamp": "2026-01-27T14:42:24Z",
+        "user": "Sen_3m23",
+        "uid": "22346008",
+        "tags": {
+          "building": "yes",
+          "name": "大厂民族宫"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942764 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"13504374001\" visible=\"true\" version=\"1\" changeset=\"177766311\" timestamp=\"2026-01-27T14:42:24Z\" user=\"Sen_3m23\" uid=\"22346008\" lat=\"39.8888506\" lon=\"116.9614322\"/>\n <node id=\"13504374089\" visible=\"true\" version=\"1\" changeset=\"177766311\" timestamp=\"2026-01-27T14:42:24Z\" user=\"Sen_3m23\" uid=\"22346008\" lat=\"39.8901972\" lon=\"116.9596973\"/>\n <node id=\"13504374092\" visible=\"true\" version=\"1\" changeset=\"177766311\" timestamp=\"2026-01-27T14:42:24Z\" user=\"Sen_3m23\" uid=\"22346008\" lat=\"39.8901958\" lon=\"116.9614340\"/>\n <node id=\"13504374458\" visible=\"true\" version=\"1\" changeset=\"177766311\" timestamp=\"2026-01-27T14:42:24Z\" user=\"Sen_3m23\" uid=\"22346008\" lat=\"39.8888519\" lon=\"116.9596955\"/>\n <way id=\"1471694618\" visible=\"true\" version=\"1\" changeset=\"177766311\" timestamp=\"2026-01-27T14:42:24Z\" user=\"Sen_3m23\" uid=\"22346008\">\n  <nd ref=\"13504374089\"/>\n  <nd ref=\"13504374458\"/>\n  <nd ref=\"13504374001\"/>\n  <nd ref=\"13504374092\"/>\n  <nd ref=\"13504374089\"/>\n  <tag k=\"building\" v=\"yes\"/>\n  <tag k=\"name\" v=\"大厂民族宫\"/>\n </way>\n</osm>\n"
+  },
+  "way/1384926706/full": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/way/1384926706/full",
+    "objects": [
+      {
+        "type": "way",
+        "id": "1384926706",
+        "visible": "true",
+        "version": "3",
+        "changeset": "178133893",
+        "timestamp": "2026-02-05T10:48:41Z",
+        "user": "scdhin",
+        "uid": "12900351",
+        "tags": {
+          "building": "temple",
+          "height": "23.66",
+          "heritage": "2",
+          "heritage:operator": "ncha",
+          "heritage:since": "2006",
+          "historic": "heritage",
+          "historic:civilization": "imperial_chinese",
+          "historic:period": "qing",
+          "name": "中阳楼",
+          "name:en": "Zhongyang Lou",
+          "name:zh": "中阳楼",
+          "ncha:inscription_date": "2006-05-25",
+          "ncha:type": "古建筑",
+          "protection_title": "全国重点文物保护单位",
+          "ref:heritage:CN": "6-0480-3-183",
+          "start_date": "1909",
+          "wikidata": "Q10876820",
+          "wikipedia": "zh:中阳楼"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942763 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"12822680211\" visible=\"true\" version=\"2\" changeset=\"174516992\" timestamp=\"2025-11-11T15:27:45Z\" user=\"Higashimado\" uid=\"23239738\" lat=\"37.1297129\" lon=\"111.8050837\"/>\n <node id=\"12822680212\" visible=\"true\" version=\"2\" changeset=\"174516992\" timestamp=\"2025-11-11T15:27:45Z\" user=\"Higashimado\" uid=\"23239738\" lat=\"37.1297075\" lon=\"111.8052098\"/>\n <node id=\"12822680213\" visible=\"true\" version=\"2\" changeset=\"174516992\" timestamp=\"2025-11-11T15:27:45Z\" user=\"Higashimado\" uid=\"23239738\" lat=\"37.1296093\" lon=\"111.8052032\"/>\n <node id=\"13296927696\" visible=\"true\" version=\"1\" changeset=\"174516992\" timestamp=\"2025-11-11T15:27:45Z\" user=\"Higashimado\" uid=\"23239738\" lat=\"37.1296146\" lon=\"111.8050771\"/>\n <way id=\"1384926706\" visible=\"true\" version=\"3\" changeset=\"178133893\" timestamp=\"2026-02-05T10:48:41Z\" user=\"scdhin\" uid=\"12900351\">\n  <nd ref=\"12822680211\"/>\n  <nd ref=\"12822680212\"/>\n  <nd ref=\"12822680213\"/>\n  <nd ref=\"13296927696\"/>\n  <nd ref=\"12822680211\"/>\n  <tag k=\"building\" v=\"temple\"/>\n  <tag k=\"height\" v=\"23.66\"/>\n  <tag k=\"heritage\" v=\"2\"/>\n  <tag k=\"heritage:operator\" v=\"ncha\"/>\n  <tag k=\"heritage:since\" v=\"2006\"/>\n  <tag k=\"historic\" v=\"heritage\"/>\n  <tag k=\"historic:civilization\" v=\"imperial_chinese\"/>\n  <tag k=\"historic:period\" v=\"qing\"/>\n  <tag k=\"name\" v=\"中阳楼\"/>\n  <tag k=\"name:en\" v=\"Zhongyang Lou\"/>\n  <tag k=\"name:zh\" v=\"中阳楼\"/>\n  <tag k=\"ncha:inscription_date\" v=\"2006-05-25\"/>\n  <tag k=\"ncha:type\" v=\"古建筑\"/>\n  <tag k=\"protection_title\" v=\"全国重点文物保护单位\"/>\n  <tag k=\"ref:heritage:CN\" v=\"6-0480-3-183\"/>\n  <tag k=\"start_date\" v=\"1909\"/>\n  <tag k=\"wikidata\" v=\"Q10876820\"/>\n  <tag k=\"wikipedia\" v=\"zh:中阳楼\"/>\n </way>\n</osm>\n"
+  },
+  "node/10231009870": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/node/10231009870",
+    "objects": [
+      {
+        "type": "node",
+        "id": "10231009870",
+        "visible": "true",
+        "version": "1",
+        "changeset": "129607210",
+        "timestamp": "2022-12-01T14:45:00Z",
+        "user": "rheins",
+        "uid": "2996489",
+        "lat": "42.4827834",
+        "lon": "117.2707164",
+        "tags": {
+          "information": "office",
+          "name": "乌兰布统风景区南门",
+          "name:en": "South Entrance of Wulanbutong Steppe Scenic Area",
+          "tourism": "information"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942774 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"10231009870\" visible=\"true\" version=\"1\" changeset=\"129607210\" timestamp=\"2022-12-01T14:45:00Z\" user=\"rheins\" uid=\"2996489\" lat=\"42.4827834\" lon=\"117.2707164\">\n  <tag k=\"information\" v=\"office\"/>\n  <tag k=\"name\" v=\"乌兰布统风景区南门\"/>\n  <tag k=\"name:en\" v=\"South Entrance of Wulanbutong Steppe Scenic Area\"/>\n  <tag k=\"tourism\" v=\"information\"/>\n </node>\n</osm>\n"
+  },
+  "node/8416966917": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/node/8416966917",
+    "objects": [
+      {
+        "type": "node",
+        "id": "8416966917",
+        "visible": "true",
+        "version": "2",
+        "changeset": "170953291",
+        "timestamp": "2025-08-25T04:13:33Z",
+        "user": "cnvery",
+        "uid": "3627342",
+        "lat": "24.0560855",
+        "lon": "97.9584443",
+        "tags": {
+          "name": "独树成林",
+          "name:zh": "独树成林",
+          "name:zh-Hans": "独树成林",
+          "name:zh-Hant": "獨樹成林",
+          "tourism": "attraction"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942771 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"8416966917\" visible=\"true\" version=\"2\" changeset=\"170953291\" timestamp=\"2025-08-25T04:13:33Z\" user=\"cnvery\" uid=\"3627342\" lat=\"24.0560855\" lon=\"97.9584443\">\n  <tag k=\"name\" v=\"独树成林\"/>\n  <tag k=\"name:zh\" v=\"独树成林\"/>\n  <tag k=\"name:zh-Hans\" v=\"独树成林\"/>\n  <tag k=\"name:zh-Hant\" v=\"獨樹成林\"/>\n  <tag k=\"tourism\" v=\"attraction\"/>\n </node>\n</osm>\n"
+  },
+  "node/13290876413": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/node/13290876413",
+    "objects": [
+      {
+        "type": "node",
+        "id": "13290876413",
+        "visible": "true",
+        "version": "1",
+        "changeset": "174422093",
+        "timestamp": "2025-11-09T15:16:08Z",
+        "user": "9bc638d",
+        "uid": "22467687",
+        "lat": "24.0825204",
+        "lon": "98.0728068",
+        "tags": {
+          "name": "畹町边关文化园",
+          "name:zh": "畹町边关文化园",
+          "name:zh-Hans": "畹町边关文化园",
+          "name:zh-Hant": "畹町邊關文化園",
+          "tourism": "attraction"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (2942789 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"13290876413\" visible=\"true\" version=\"1\" changeset=\"174422093\" timestamp=\"2025-11-09T15:16:08Z\" user=\"9bc638d\" uid=\"22467687\" lat=\"24.0825204\" lon=\"98.0728068\">\n  <tag k=\"name\" v=\"畹町边关文化园\"/>\n  <tag k=\"name:zh\" v=\"畹町边关文化园\"/>\n  <tag k=\"name:zh-Hans\" v=\"畹町边关文化园\"/>\n  <tag k=\"name:zh-Hant\" v=\"畹町邊關文化園\"/>\n  <tag k=\"tourism\" v=\"attraction\"/>\n </node>\n</osm>\n"
+  },
+  "node/11107529552": {
+    "source_url": "https://api.openstreetmap.org/api/0.6/node/11107529552",
+    "objects": [
+      {
+        "type": "node",
+        "id": "11107529552",
+        "visible": "true",
+        "version": "2",
+        "changeset": "139807627",
+        "timestamp": "2023-08-13T03:15:38Z",
+        "user": "pieleric",
+        "uid": "352940",
+        "lat": "33.6698518",
+        "lon": "107.9687686",
+        "tags": {
+          "name": "佛坪熊猫谷景区",
+          "name:en": "Foping Panda Valley Scenic Spot",
+          "tourism": "attraction"
+        }
+      }
+    ],
+    "raw_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<osm version=\"0.6\" generator=\"openstreetmap-cgimap 2.1.0 (621306 spike-08.openstreetmap.org)\" copyright=\"OpenStreetMap and contributors\" attribution=\"http://www.openstreetmap.org/copyright\" license=\"http://opendatacommons.org/licenses/odbl/1-0/\">\n <node id=\"11107529552\" visible=\"true\" version=\"2\" changeset=\"139807627\" timestamp=\"2023-08-13T03:15:38Z\" user=\"pieleric\" uid=\"352940\" lat=\"33.6698518\" lon=\"107.9687686\">\n  <tag k=\"name\" v=\"佛坪熊猫谷景区\"/>\n  <tag k=\"name:en\" v=\"Foping Panda Valley Scenic Spot\"/>\n  <tag k=\"tourism\" v=\"attraction\"/>\n </node>\n</osm>\n"
+  }
+}

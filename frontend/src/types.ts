@@ -24,6 +24,7 @@ export interface ChatMessage {
   role: 'user' | 'assistant'
   content: string
   streaming?: boolean
+  progress?: string
   card?: ChatToolCard | null
 }
 
@@ -286,13 +287,4 @@ export interface PlanningStep {
   step: string
   label: string
   status: 'running' | 'completed' | 'failed'
-}
-
-export interface DestinationChoice {
-  requirement: RequirementDraft
-  options: {
-    city_stays: CityStay[]
-    alternative_city_stays: CityStay[] | null
-    requires_choice: boolean
-  }
 }

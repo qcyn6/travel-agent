@@ -22,71 +22,12 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from backend.database import init_database, open_session  # noqa: E402
-from backend.attractions.descriptions import build_catalog_description  # noqa: E402
+from backend.attractions.heuristics import build_description, estimate_duration  # noqa: E402, F401
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
 from backend.attractions.metadata import (  # noqa: E402
     infer_attraction_category as classify_category,
 )
-from scripts.backfill_interest_tags import infer_interest_tags  # noqa: E402
-
-
-def estimate_duration(
-    category: str,
-    tags: list[str],
-    name: str = "",
-) -> int:
-    """Estimate a visit window using category plus explicit name signals.
-
-    The value remains marked as heuristic in the database.  The extra name
-    signals prevent large outdoor sites and short urban stops from collapsing
-    into the former 180/210-minute-only distribution.
-    """
-
-    text = f"{name} {category}".strip()
-    if category == "主题娱乐":
-        return 240
-    if any(marker in text for marker in ("国家公园", "风景名胜", "大峡谷", "雪山", "长城")):
-        return 240
-    if any(marker in text for marker in ("漂流", "登山", "徒步", "森林公园", "野生动物")):
-        return 210
-    if category == "自然山水":
-        return 180
-    if category == "生态动植物":
-        return 150
-    if category in {"古城与街区", "古典园林"} or "古城" in tags or "古镇" in tags:
-        return 180
-    if category == "博物馆与展馆":
-        return 120
-    if category == "宗教建筑":
-        return 90
-    if category == "历史古迹" or "历史文化" in tags:
-        return 120
-    if category in {"滨海岛屿", "滨水景观"}:
-        return 150
-    if category == "城市公园":
-        return 90
-    if "美食" in tags:
-        return 90
-    if "休闲" in tags:
-        return 150
-    return 120
-
-
-def build_description(
-    *,
-    city: str,
-    name: str,
-    category: str,
-    tags: list[str],
-    duration: int,
-) -> str:
-    return build_catalog_description(
-        city=city,
-        name=name,
-        category=category,
-        tags=tags,
-        duration_minutes=duration,
-    )
+from backend.attractions.metadata import infer_interest_tags  # noqa: E402
 
 
 def serialise(value):

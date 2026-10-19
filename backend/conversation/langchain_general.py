@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import json
 import logging
+import time
 from collections.abc import AsyncIterator
 from datetime import date
 from typing import Any
+from uuid import uuid4
 
 from langchain.agents import create_agent
 from langchain_core.documents import Document
@@ -19,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from backend.conversation.general_tools import GeneralTravelToolService
 from backend.conversation.responder import ConversationResponseError
 from backend.conversation.weather_dates import requested_weather_dates
+from backend.conversation.tool_results import ReActToolCallGuard, tool_result
 from backend.models.general_chat import GeneralIntentDecision
 from backend.models.route import RouteMode
 from backend.observability import observe_external_request
@@ -46,6 +49,7 @@ _GENERAL_SYSTEM_PROMPT = """
 8. 如果问题与旅游无关，直接说明目前只支持旅游相关问题。
 9. “未来N天”“接下来N天”默认从明天开始，不包含今天；只有用户明确说“包括今天”时才包含今天。
 10. 较早对话摘要只用于理解用户明确表达过的偏好和指代；只有用户明确承接当前会话最近一条路线（如“那开车呢”“换成步行”）时，才沿用其起终点重新查询。天气追问仅在明确承接同一城市时沿用城市，且必须重新查询，绝不复用旧预报。
+11. 对大型景区的路线或附近搜索，若用户没说明入口或区域且会明显影响结果，先询问具体位置。查询同名地点时不得擅自选择城市；附近距离是直线距离，不可当作步行路程。
 
 所有工具均由 Agent 根据本轮对话自主选择；知识库检索不得受关键词规则器预先限制。
 
@@ -98,102 +102,16 @@ class _GuideToolInput(BaseModel):
     query: str = Field(description="需要检索的旅行主题问题")
 
 
-class _ReActToolCallGuard:
-    """Limit tool calls per turn and allow one retry for identical arguments."""
-
-    max_calls = 6
-
-    def __init__(self):
-        self.reset()
-
-    def reset(self) -> None:
-        self.calls_used = 0
-        self.attempts: dict[str, dict[str, Any]] = {}
-
-    async def invoke(self, name: str, arguments: dict[str, object], operation) -> str:
-        signature = json.dumps(
-            {"tool": name, "arguments": arguments},
-            ensure_ascii=False,
-            sort_keys=True,
-            default=str,
-        )
-        previous = self.attempts.get(signature)
-        if self.calls_used >= self.max_calls:
-            return _tool_json({
-                "status": "budget_exceeded",
-                "message": "本轮工具调用已达上限。请使用已有结果回答，或说明尚未完成的部分。",
-                "data": None,
-                "retryable": False,
-                "missing_fields": [],
-            })
-        if previous is not None:
-            can_retry = (
-                previous.get("status") in {"retryable_error", "partial"}
-                and previous.get("retryable")
-                and previous.get("attempts") == 1
-            )
-            if not can_retry:
-                return _tool_json({
-                    "status": "repeat_blocked",
-                    "message": "相同工具和参数已经执行且不能再次重试；请基于已有结果回答，或询问用户补充信息。",
-                    "data": None,
-                    "retryable": False,
-                    "missing_fields": [],
-                })
-        attempts = int(previous.get("attempts", 0)) + 1 if previous else 1
-        self.calls_used += 1
-        self.attempts[signature] = {"attempts": attempts, "status": "in_progress", "retryable": False}
-        try:
-            result = await operation()
-            if not isinstance(result, dict) or result.get("status") not in {
-                "ok", "partial", "needs_clarification", "retryable_error", "error"
-            }:
-                result = {
-                    "status": "ok",
-                    "message": str(result),
-                    "data": None,
-                    "retryable": False,
-                    "missing_fields": [],
-                }
-        except Exception as exc:  # noqa: BLE001 - send a sanitized failure back to the Agent
-            logger.warning("普通模式工具 %s 执行失败：%s", name, type(exc).__name__)
-            result = {
-                "status": "retryable_error",
-                "message": "工具执行暂时失败，请判断是否重试一次或改用其他相关工具。",
-                "data": None,
-                "retryable": True,
-                "missing_fields": [],
-            }
-        self.attempts[signature] = {
-            "attempts": attempts,
-            "status": result.get("status"),
-            "retryable": bool(result.get("retryable")),
-        }
-        return _tool_json(result)
-
-
-def _tool_json(result: dict[str, object]) -> str:
-    return json.dumps(result, ensure_ascii=False, separators=(",", ":"), default=str)
-
-
 def _service_tool_result(service: Any, message: str) -> dict[str, object]:
     result = getattr(service, "last_tool_result", None)
     if isinstance(result, dict) and result.get("status"):
-        return {
-            "status": result.get("status"),
-            "message": str(result.get("message") or message),
-            "data": result.get("data"),
-            "retryable": bool(result.get("retryable")),
-            "missing_fields": result.get("missing_fields") or [],
-        }
+        return tool_result(
+            result["status"], str(result.get("message") or message),
+            data=result.get("data"), retryable=bool(result.get("retryable")),
+            missing_fields=result.get("missing_fields") or [],
+        )
     # Compatibility for injected service doubles that only return text.
-    return {
-        "status": "ok",
-        "message": message,
-        "data": None,
-        "retryable": False,
-        "missing_fields": [],
-    }
+    return tool_result("ok", message)
 
 
 class LangChainGeneralTravelTools:
@@ -201,7 +119,7 @@ class LangChainGeneralTravelTools:
 
     def __init__(self, service: GeneralTravelToolService):
         self.service = service
-        self._guard = _ReActToolCallGuard()
+        self._guard = ReActToolCallGuard()
         self.last_card: dict[str, object] | None = None
         self._cards: list[dict[str, object]] = []
         self._requested_weather_dates: set[date] | None = None
@@ -406,6 +324,8 @@ class LangChainGeneralTravelTools:
             {key: value for key, value in item.items() if key != "_city"}
             for item in self._cards
         ]
+        order = {"weather": 0, "route": 1, "nearby": 2}
+        clean_cards.sort(key=lambda item: order[item['type']])
         if len(clean_cards) == 1:
             self.last_card = clean_cards[0]
         else:
@@ -477,7 +397,7 @@ class LangChainGuideRetriever(BaseRetriever):
 class LangChainGeneralKnowledgeTool:
     """Expose travel-guide retrieval to the Agent with the same turn budget."""
 
-    def __init__(self, retriever: LangChainGuideRetriever, guard: _ReActToolCallGuard):
+    def __init__(self, retriever: LangChainGuideRetriever, guard: ReActToolCallGuard):
         self.retriever = retriever
         self.guard = guard
         self.tool = StructuredTool.from_function(
@@ -494,13 +414,10 @@ class LangChainGeneralKnowledgeTool:
         async def operation():
             documents = await self.retriever.ainvoke(query)
             chunks = [document.page_content for document in documents if document.page_content.strip()]
-            return {
-                "status": "ok",
-                "message": "检索完成" if chunks else "没有检索到与问题直接相关的旅行资料。",
-                "data": {"chunks": chunks},
-                "retryable": False,
-                "missing_fields": [],
-            }
+            return tool_result(
+                "ok", "检索完成" if chunks else "没有检索到与问题直接相关的旅行资料。",
+                data={"chunks": chunks},
+            )
 
         return await self.guard.invoke("travel_guide_search", {"query": query}, operation)
 
@@ -515,6 +432,7 @@ class LangChainGeneralAgent:
         base_url: str,
         model: str,
         timeout_seconds: float = 30.0,
+        max_output_tokens: int = 1000,
         llm: Any | None = None,
         travel_tools: LangChainGeneralTravelTools | None = None,
         guide_retriever: LangChainGuideRetriever | None = None,
@@ -525,11 +443,12 @@ class LangChainGeneralAgent:
         self.base_url = base_url.rstrip("/")
         self.model = model
         self.timeout_seconds = timeout_seconds
+        self.max_output_tokens = max_output_tokens
         self.use_responses_api = use_responses_api
         self.llm = llm or self._build_llm()
         self.travel_tools = travel_tools
         self.guide_retriever = guide_retriever
-        self._tool_guard = _ReActToolCallGuard()
+        self._tool_guard = ReActToolCallGuard()
         if self.travel_tools is not None:
             self.travel_tools._guard = self._tool_guard
         # ``chain`` keeps a small compatibility seam for unit-test doubles;
@@ -547,6 +466,9 @@ class LangChainGeneralAgent:
         if self.travel_tools is not None:
             self.travel_tools._guard = self._tool_guard
 
+    def configure_budget(self, *, deadline: float, timeouts: dict[str, float], on_progress=None, request_id: str | None = None) -> None:
+        self._tool_guard.configure_budget(deadline=deadline, timeouts=timeouts, on_progress=on_progress, request_id=request_id)
+
     def _build_llm(self):
         if not self.api_key:
             return None
@@ -557,7 +479,7 @@ class LangChainGeneralAgent:
             "temperature": 0.5,
             "timeout": self.timeout_seconds,
             "max_retries": 0,
-            "max_tokens": 500,
+            "max_tokens": self.max_output_tokens,
         }
         if self.use_responses_api is not None:
             options["use_responses_api"] = self.use_responses_api
@@ -674,10 +596,14 @@ class LangChainGeneralAgent:
                     conversation_summary=conversation_summary,
                 ),
             }
+            has_text = False
             async for chunk in self.chain.astream(values):
                 text = _message_text(chunk)
+                has_text = has_text or bool(text.strip())
                 if text:
                     yield text
+            if not has_text:
+                raise ConversationResponseError("LangChain 普通模式返回了空回复")
             return
 
         if self.llm is None:
@@ -704,6 +630,12 @@ class LangChainGeneralAgent:
                 )
             )
         )
+        request_id = self._tool_guard.request_id or uuid4().hex
+        started = time.perf_counter()
+        text_chars = 0
+        has_text = False
+        finish_reasons: set[str] = set()
+        outcome = "failed"
         try:
             async with observe_external_request("deepseek", "general_travel_agent"):
                 async for event in agent.astream(
@@ -712,16 +644,34 @@ class LangChainGeneralAgent:
                     stream_mode="messages",
                 ):
                     message, metadata = _stream_event(event)
+                    response_metadata = getattr(message, "response_metadata", {}) or {}
+                    reason = response_metadata.get("finish_reason") or response_metadata.get("stop_reason")
+                    if reason in {"stop", "length", "tool_calls", "content_filter", "end_turn", "max_tokens"}:
+                        finish_reasons.add(reason)
                     if metadata.get("langgraph_node") not in {None, "model"}:
                         continue
                     text = _message_text(message)
                     if text:
+                        text_chars += len(text)
+                        has_text = has_text or bool(text.strip())
                         yield text
+                if not has_text:
+                    outcome = "empty"
+                    raise ConversationResponseError("LangChain 普通模式返回了空回复")
+                if finish_reasons & {'length', 'max_tokens'}:
+                    outcome = 'truncated'
+                    raise ConversationResponseError("普通模式回复达到长度限制")
+                outcome = "success"
         except ConversationResponseError:
             raise
         except Exception as exc:  # noqa: BLE001 - convert provider errors at the boundary
-            logger.warning("LangChain 普通模式 Agent 失败：%s", type(exc).__name__)
+            logger.warning("普通模式 Agent 异常 request_id=%s error_type=%s", request_id, type(exc).__name__)
             raise ConversationResponseError("LangChain 普通模式对话请求失败") from exc
+        finally:
+            # Never log prompts, reply text, tokens, API keys or provider headers.
+            log = logger.info if outcome == "success" else logger.warning
+            log("普通模式 Agent 结束 request_id=%s outcome=%s elapsed=%.3f text_chars=%s finish_reasons=%s",
+                request_id, outcome, time.perf_counter() - started, text_chars, sorted(finish_reasons))
 
     @staticmethod
     def _build_user_prompt(

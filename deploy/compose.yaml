@@ -1,0 +1,123 @@
+name: travel-agent
+x-backend: &backend
+  build:
+    context: ..
+    dockerfile: deploy/Dockerfile.backend
+  environment: &runtime-env
+    DATABASE_URL: mysql+pymysql://travel_app:${MYSQL_APP_PASSWORD:?set MYSQL_APP_PASSWORD}@mysql:3306/travel_agent?charset=utf8mb4
+    REDIS_URL: redis://:${REDIS_PASSWORD:?set REDIS_PASSWORD}@redis:6379/0
+    APP_ENV: production
+    AUTH_REQUIRED: 'true'
+    DATABASE_AUTO_INITIALIZE: 'false'
+    PLANNING_QUEUE_ENABLED: 'true'
+    CORS_ORIGINS: '["https://${DOMAIN:?set DOMAIN}"]'
+    AUTH_SECRET: ${AUTH_SECRET:?generate AUTH_SECRET}
+    ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-120}
+    LLM_PROVIDER: ${LLM_PROVIDER:-deepseek}
+    LLM_BASE_URL: ${LLM_BASE_URL:-https://api.deepseek.com}
+    LLM_MODEL: ${LLM_MODEL:-deepseek-v4-flash}
+    LLM_API_KEY: ${LLM_API_KEY:?set LLM_API_KEY}
+    AMAP_API_KEY: ${AMAP_API_KEY:?set AMAP_API_KEY}
+    QWEATHER_API_KEY: ${QWEATHER_API_KEY:?set QWEATHER_API_KEY}
+    QWEATHER_API_HOST: ${QWEATHER_API_HOST:?set QWEATHER_API_HOST}
+    DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:?set DASHSCOPE_API_KEY}
+    EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+    EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-v3}
+    EMBEDDING_DIMENSIONS: ${EMBEDDING_DIMENSIONS:-1024}
+    PLANNING_CHECKPOINT_PATH: /app/data/planning_checkpoints.sqlite3
+    CHROMA_PATH: /app/data/chroma
+    GUIDE_KNOWLEDGE_PATH: /app/data/knowledge/guides
+    PLANNING_MAX_ACTIVE_JOBS: ${PLANNING_MAX_ACTIVE_JOBS:-4}
+    PLANNING_MAX_ACTIVE_JOBS_PER_USER: ${PLANNING_MAX_ACTIVE_JOBS_PER_USER:-1}
+    PLANNING_JOBS_PER_USER_PER_DAY: ${PLANNING_JOBS_PER_USER_PER_DAY:-10}
+    PLANNING_JOBS_PER_DAY: ${PLANNING_JOBS_PER_DAY:-50}
+    USER_COMPUTE_REQUESTS_PER_DAY: ${USER_COMPUTE_REQUESTS_PER_DAY:-100}
+    GLOBAL_COMPUTE_REQUESTS_PER_MINUTE: ${GLOBAL_COMPUTE_REQUESTS_PER_MINUTE:-40}
+    GLOBAL_COMPUTE_REQUESTS_PER_DAY: ${GLOBAL_COMPUTE_REQUESTS_PER_DAY:-500}
+    ALERT_WEBHOOK_URL: ${ALERT_WEBHOOK_URL:-}
+  volumes:
+    - app_data:/app/data
+  restart: unless-stopped
+  init: true
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+  networks: [private]
+  depends_on:
+    mysql: {condition: service_healthy}
+    redis: {condition: service_healthy}
+  logging:
+    driver: json-file
+    options: {max-size: 10m, max-file: '3'}
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: travel_agent
+      MYSQL_USER: travel_app
+      MYSQL_PASSWORD: ${MYSQL_APP_PASSWORD:?set MYSQL_APP_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD}
+      TZ: Asia/Shanghai
+    volumes: [mysql_data:/var/lib/mysql]
+    networks: [private]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 --silent']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
+  redis:
+    image: redis:7-alpine
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?set REDIS_PASSWORD}
+    command: [sh, -c, 'exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD" --maxmemory 256mb --maxmemory-policy noeviction']
+    volumes: [redis_data:/data]
+    networks: [private]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD-SHELL, 'REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep PONG']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+  api:
+    <<: *backend
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready',timeout=4)"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+  worker:
+    <<: *backend
+    command: [python, scripts/run_planning_worker.py]
+    stop_grace_period: 180s
+  initialize:
+    <<: *backend
+    profiles: [maintenance]
+    restart: 'no'
+    command: [python, scripts/initialize_production.py]
+    environment:
+      <<: *runtime-env
+      BOOTSTRAP_ADMIN_USERNAME: ${BOOTSTRAP_ADMIN_USERNAME:-admin}
+      BOOTSTRAP_ADMIN_PASSWORD: ${BOOTSTRAP_ADMIN_PASSWORD:-}
+  web:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.web
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN}
+    ports: ['80:80', '443:443', '443:443/udp']
+    networks: [private]
+    volumes: [caddy_data:/data, caddy_config:/config]
+    depends_on:
+      api: {condition: service_healthy}
+    restart: unless-stopped
+networks:
+  private:
+volumes:
+  mysql_data:
+  redis_data:
+  app_data:
+  caddy_data:
+  caddy_config:

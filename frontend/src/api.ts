@@ -32,6 +32,7 @@ export interface EventStreamMeta {
 }
 
 export interface EventStreamOptions {
+  signal?: AbortSignal
   after?: number
   jobId?: string | null
   onOpen?: (meta: EventStreamMeta) => void
@@ -49,7 +50,18 @@ async function decodeError(response: Response): Promise<never> {
   let message = `请求失败（${response.status}）`
   try {
     const body = await response.json()
-    message = body.detail || message
+    const detail: unknown = body.detail
+    if (typeof detail === 'string' && detail.trim()) message = detail
+    else if (Array.isArray(detail)) {
+      const messages = detail.flatMap((item: unknown) => {
+        if (!item || typeof item !== 'object' || !('msg' in item) || typeof item.msg !== 'string') return []
+        const text = item.msg.replace(/^Value error,\s*/, '').trim()
+        return text ? [text] : []
+      })
+      if (messages.length) message = [...new Set(messages)].join('；')
+    } else if (detail && typeof detail === 'object' && 'message' in detail && typeof detail.message === 'string') {
+      message = detail.message.trim() || message
+    }
   } catch {
     // Keep the readable fallback.
   }
@@ -77,6 +89,10 @@ export const conversationApi = {
   get: (id: string) => jsonRequest<Conversation>(`/conversations/${id}`),
   remove: (id: string) => jsonRequest<void>(`/conversations/${id}`, { method: 'DELETE' }),
   listPlans: (id: string) => jsonRequest<SavedTravelPlan[]>(`/conversations/${id}/plans`),
+  planningState: (id: string) => jsonRequest<{
+    job_id: string
+    status: 'queued' | 'running' | 'completed' | 'failed' | 'cancelled'
+  } | null>(`/conversations/${encodeURIComponent(id)}/plan/state`),
   replacementOptions: (id: string, day: number, currentPoiId: string) =>
     jsonRequest<AttractionReplacementOption[]>(
       `/conversations/${id}/plans/replacement-options?day=${day}&current_poi_id=${encodeURIComponent(currentPoiId)}`,
@@ -96,8 +112,11 @@ export const conversationApi = {
       method: 'PATCH',
       body: JSON.stringify(draft),
     }),
-  confirm: (id: string) =>
-    jsonRequest(`/conversations/${id}/requirement/confirm`, { method: 'POST' }),
+  confirm: (id: string, requirement: RequirementDraft) =>
+    jsonRequest(`/conversations/${id}/requirement/confirm`, {
+      method: 'POST',
+      body: JSON.stringify(requirement),
+    }),
 }
 
 async function consumeEventStream(
@@ -112,26 +131,38 @@ async function consumeEventStream(
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
   let buffer = ''
-  while (true) {
-    const { value, done } = await reader.read()
-    buffer += decoder.decode(value || new Uint8Array(), { stream: !done })
-    const blocks = buffer.split(/\r?\n\r?\n/)
-    buffer = blocks.pop() || ''
-    for (const block of blocks) {
-      let event = 'message'
-      let eventId: number | undefined
-      const dataLines: string[] = []
-      for (const line of block.split(/\r?\n/)) {
-        if (line.startsWith('event:')) event = line.slice(6).trim()
-        if (line.startsWith('id:')) {
-          const parsed = Number.parseInt(line.slice(3).trim(), 10)
-          if (Number.isFinite(parsed) && parsed >= 0) eventId = parsed
+  let finished = false
+  try {
+    while (true) {
+      const { value, done } = await reader.read()
+      buffer += decoder.decode(value || new Uint8Array(), { stream: !done })
+      const blocks = buffer.split(/\r?\n\r?\n/)
+      buffer = blocks.pop() || ''
+      for (const block of blocks) {
+        let event = 'message'
+        let eventId: number | undefined
+        const dataLines: string[] = []
+        for (const line of block.split(/\r?\n/)) {
+          if (line.startsWith('event:')) event = line.slice(6).trim()
+          if (line.startsWith('id:')) {
+            const text = line.slice(3).trim()
+            const parsed = Number(text)
+            if (/^\d+$/.test(text) && Number.isSafeInteger(parsed)) eventId = parsed
+          }
+          if (line.startsWith('data:')) dataLines.push(line.slice(5).trim())
         }
-        if (line.startsWith('data:')) dataLines.push(line.slice(5).trim())
+        if (dataLines.length) onEvent(event, JSON.parse(dataLines.join('\n')), eventId)
       }
-      if (dataLines.length) onEvent(event, JSON.parse(dataLines.join('\n')), eventId)
+      if (done) {
+        finished = true
+        break
+      }
     }
-    if (done) break
+  } finally {
+    if (!finished) {
+      try { await reader.cancel() } catch { /* Preserve the original stream error. */ }
+    }
+    reader.releaseLock()
   }
 }
 
@@ -149,6 +180,7 @@ export async function streamEvents(
     // Keep the cursor and job identity together. The server resets the
     // cursor automatically when a retry created a new job.
     method: 'POST',
+    signal: options.signal,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'text/event-stream',
@@ -237,6 +269,7 @@ export interface AdminGuide {
   filename: string
   title: string
   content: string
+  revision: string
 }
 
 export interface AdminGuideIndexStatus {
@@ -261,13 +294,13 @@ export const adminApi = {
       method: 'POST',
       body: JSON.stringify({ filename, content }),
     }),
-  updateGuide: (filename: string, content: string) =>
+  updateGuide: (filename: string, content: string, expectedRevision?: string) =>
     jsonRequest<AdminGuide>(`/admin/knowledge/guides/${encodeURIComponent(filename)}`, {
       method: 'PUT',
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ content, expected_revision: expectedRevision }),
     }),
-  deleteGuide: (filename: string) =>
-    jsonRequest<void>(`/admin/knowledge/guides/${encodeURIComponent(filename)}`, { method: 'DELETE' }),
+  deleteGuide: (filename: string, expectedRevision?: string) =>
+    jsonRequest<void>(`/admin/knowledge/guides/${encodeURIComponent(filename)}${expectedRevision ? `?expected_revision=${encodeURIComponent(expectedRevision)}` : ''}`, { method: 'DELETE' }),
   guideIndexStatus: () => jsonRequest<AdminGuideIndexStatus>('/admin/knowledge/guides/index-status'),
   rebuildGuideIndex: () => jsonRequest<{ indexed_count: number }>('/admin/knowledge/guides/index', { method: 'POST' }),
   attractions: (query = '') =>

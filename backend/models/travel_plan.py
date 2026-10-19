@@ -3,7 +3,6 @@ from datetime import date as Date
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 from typing import Literal
 
-from backend.models.destination import DestinationPlanResult
 from backend.models.evaluation import EvaluationResult
 from backend.models.degradation import DegradationNotice
 from backend.models.city_stay import CityStay
@@ -153,8 +152,3 @@ class AttractionReplacementPreview(BaseModel):
 
     result: TravelPlanResponse
     warnings: list[str] = Field(default_factory=list)
-
-
-class DestinationChoiceResponse(BaseModel):
-    requirement: TravelRequirement
-    destination_options: DestinationPlanResult

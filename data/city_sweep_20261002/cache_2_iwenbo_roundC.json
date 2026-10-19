@@ -1,0 +1,89 @@
+{
+  "checked_at": "2026-10-02",
+  "method": "Read public HTML of iwenbo.fun venue pages; extract named TMap.LatLng marker without loading Tencent SDK or using any key. The displayed marker uses Tencent GCJ-02 coordinates; iterative GCJ-02 inverse conversion produces WGS84. Official address and, when present, named OSM building geometry were cross-checked. Marker is not represented as surveyed doorway.",
+  "records": [
+    {
+      "name": "庆元廊桥博物馆",
+      "page_url": "https://www.iwenbo.fun/museum/5436.html",
+      "raw_marker_title": "庆元廊桥博物馆",
+      "raw_tmap_latlng_gcj02": [27.61999523, 119.06199217],
+      "converted_wgs84_lonlat": [119.0569485, 27.6230559],
+      "listed_address": "浙江省丽水市庆元县石龙街1-1号",
+      "official_source_url": "https://www.lishui.gov.cn/art/2024/1/2/art_1229439539_57353870.html",
+      "review": "Compact named museum marker and same-city street address; non-surveyed building/arrival anchor."
+    },
+    {
+      "name": "太原市博物馆",
+      "page_url": "https://www.iwenbo.fun/museum/364.html",
+      "raw_marker_title": "太原市博物馆",
+      "raw_tmap_latlng_gcj02": [37.805001, 112.533892],
+      "converted_wgs84_lonlat": [112.5275379, 37.8044143],
+      "listed_address": "山西省太原市晋源区长风商务区广经路13号",
+      "official_source_url": "https://www.tylyhy.cn/AAAA/JQ834019201091.html",
+      "osm_named_building_url": "https://www.openstreetmap.org/way/422861196",
+      "osm_bbox_wgs84": {"min_lat": 37.8038179, "max_lat": 37.8056703, "min_lon": 112.5265085, "max_lon": 112.5282972},
+      "review": "Converted marker falls inside same-name OSM museum building outline, not a separately surveyed entrance."
+    },
+    {
+      "name": "湖南省地质博物馆",
+      "page_url": "https://www.iwenbo.fun/museum/3533.html",
+      "raw_marker_title": "湖南省地质博物馆",
+      "raw_tmap_latlng_gcj02": [28.10657935, 112.98246367],
+      "converted_wgs84_lonlat": [112.9769128, 28.1099931],
+      "listed_address": "湖南省长沙市天心区杉木冲西路49号",
+      "official_source_url": "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/jgzn/zsjg/202002/t20200225_11191130.html",
+      "osm_named_building_url": "https://www.openstreetmap.org/way/492256966",
+      "osm_bbox_wgs84": {"min_lat": 28.1099701, "max_lat": 28.1117204, "min_lon": 112.9757478, "max_lon": 112.9776673},
+      "review": "Converted marker sits at the edge of the same-name OSM museum geometry; official present address matches. Non-surveyed venue anchor."
+    },
+    {
+      "name": "栖霞市奇石博物馆",
+      "page_url": "https://www.iwenbo.fun/museum/2675.html",
+      "raw_marker_title": "栖霞市地质文化奇石博物馆",
+      "raw_tmap_latlng_gcj02": [37.31860936, 120.83589792],
+      "converted_wgs84_lonlat": [120.8310884, 37.3179438],
+      "listed_address": "山东省烟台市栖霞市霞光路19号",
+      "official_source_url": "https://whlyj.yantai.gov.cn/col/col42216/art/2026/art_2548a9c49ec34913a41f3ec7edd047b9.html",
+      "review": "Government source names current venue and 霞光路19号; public museum page supplies a matching named map marker. Non-surveyed venue anchor."
+    },
+    {
+      "name": "四渡赤水纪念馆",
+      "page_url": "https://www.iwenbo.fun/museum/4442.html",
+      "raw_marker_title": "四渡赤水纪念馆",
+      "raw_tmap_latlng_gcj02": [28.27614685, 105.99864943],
+      "converted_wgs84_lonlat": [105.9950288, 28.2795993],
+      "listed_address": "贵州省遵义市习水县土城镇滋州路121号",
+      "official_source_url": "https://www.sdcs1935.com/html/about/contact/",
+      "review": "Official site confirms 土城镇 but not exact street number; multiple museum-group buildings exist. Deferred pending main-hall-versus-complex cross-check."
+    },
+    {
+      "name": "周口关帝庙",
+      "page_url": "https://www.iwenbo.fun/heritage/689.html",
+      "raw_marker_title": "周口关帝庙",
+      "raw_tmap_latlng_gcj02": [33.631576, 114.645396],
+      "converted_wgs84_lonlat": [114.6400381, 33.6332335],
+      "listed_address": "河南省周口市富强街111号",
+      "osm_named_area_url": "https://www.openstreetmap.org/way/544442050",
+      "osm_bbox_wgs84": {"min_lat": 33.6324264, "max_lat": 33.6340027, "min_lon": 114.6392086, "max_lon": 114.6407007},
+      "review": "Marker lies within large temple compound but is not a verified public entrance; deferred."
+    },
+    {
+      "name": "净觉寺",
+      "page_url": "https://www.iwenbo.fun/heritage/1741.html",
+      "raw_marker_title": "净觉寺",
+      "raw_tmap_latlng_gcj02": [39.81276394, 117.92626977],
+      "converted_wgs84_lonlat": [117.9201653, 39.8116935],
+      "osm_named_area_url": "https://www.openstreetmap.org/way/518707891",
+      "osm_bbox_wgs84": {"min_lat": 39.8109932, "max_lat": 39.8124354, "min_lon": 117.9192353, "max_lon": 117.9207642},
+      "review": "Marker lies within broad temple grounds, no verified visitor gate; deferred."
+    },
+    {
+      "name": "北岳庙景区",
+      "page_url": "https://www.iwenbo.fun/index.php/index/heritage/205.html",
+      "raw_marker_title": "北岳庙",
+      "raw_tmap_latlng_gcj02": [38.62200267, 114.6972549],
+      "converted_wgs84_lonlat": [114.6912641, 38.6213935],
+      "review": "Large historic compound; named public marker alone does not identify entrance and remains deferred."
+    }
+  ]
+}

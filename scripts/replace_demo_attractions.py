@@ -36,7 +36,7 @@ from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
 from backend.models.attraction import AttractionPOI  # noqa: E402
 from backend.poi.amap import AmapAttractionClient  # noqa: E402
-from scripts.seed_ai_demo_attractions import estimate_duration  # noqa: E402
+from backend.attractions.heuristics import estimate_duration  # noqa: E402
 
 
 def _backup_path(directory: Path) -> Path:

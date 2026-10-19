@@ -27,10 +27,8 @@ class HybridRetrievalService:
     travel preference inside that shortlist, so description semantics do not
     silently override an explicit interest choice.
 
-    ``reranker`` remains accepted as an optional constructor argument for
-    integrations written against the previous API, but it is intentionally
-    unused. The optional BM25 instance provides the keyword half of the new
-    preference search.
+    The optional BM25 instance provides the keyword half of preference
+    search. Experimental rerankers are isolated under ``experiments``.
     """
 
     def __init__(
@@ -38,11 +36,9 @@ class HybridRetrievalService:
         *,
         repository,
         vector_service,
-        reranker=None,
         bm25=None,
         preference_rewriter=None,
     ):
-        del reranker
         self.repository = repository
         self.vector_service = vector_service
         self.bm25 = bm25 or BM25Retriever()

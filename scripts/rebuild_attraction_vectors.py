@@ -65,11 +65,9 @@ async def rebuild() -> dict:
     settings, index, needs, missing, stale = _load()
     if not needs:
         return {"missing_before": 0, "stale_before": 0, "embedded": 0, "message": "全部景点向量已与数据库一致。"}
-    # The desktop runtime occasionally presents a certificate chain that
-    # httpx cannot validate for DashScope.  This one-off maintenance command
-    # uses the same endpoint/key with verification disabled; application code
-    # remains unchanged and all content is still sent over HTTPS.
-    async with httpx.AsyncClient(timeout=settings.embedding_timeout_seconds, verify=False) as http_client:
+    # Keep TLS verification enabled. For a trusted local proxy, configure its
+    # CA bundle through SSL_CERT_FILE instead of disabling verification.
+    async with httpx.AsyncClient(timeout=settings.embedding_timeout_seconds) as http_client:
         client = OpenAICompatibleEmbeddingClient(
             settings.embedding_api_key,
             base_url=settings.embedding_base_url,

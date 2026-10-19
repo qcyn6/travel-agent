@@ -3,13 +3,9 @@ import logging
 import re
 
 from backend.conversation.general_repository import GeneralConversationRepository
-from backend.conversation.general_intent import (
-    GeneralIntentRouter,
-)
 from backend.conversation.service import ConversationNotFoundError
-from backend.destination import DestinationResolutionError, DestinationResolver
 from backend.models.conversation import GeneralConversation, RequirementDraft
-from backend.models.general_chat import GeneralIntent, GeneralIntentDecision
+from backend.models.general_chat import GeneralIntent
 
 logger = logging.getLogger(__name__)
 
@@ -67,13 +63,6 @@ class PreparedGeneralConversationTurn:
     memory_summary_target: int | None = None
     memory_base_through: int = 0
     current_user_sequence: int = 0
-    decision: GeneralIntentDecision | None = None
-    retrieval_query: str | None = None
-    retrieval_attempts: int = 0
-    retrieval_sufficient: bool | None = None
-    boundary_reply: str | None = None
-    quick_reply: str | None = None
-    tool_reply: str | None = None
     tool_card: dict[str, object] | None = None
     suggestions: list[str] | None = None
 
@@ -85,19 +74,12 @@ class GeneralConversationService:
         self,
         *,
         repository: GeneralConversationRepository,
-        resolver: DestinationResolver | None = None,
         knowledge_retriever=None,
-        knowledge_repository=None,
         travel_tools=None,
-        intent_router: GeneralIntentRouter | None = None,
     ):
         self.repository = repository
-        self.resolver = resolver
         self.knowledge_retriever = knowledge_retriever
-        self.knowledge_repository = knowledge_repository
         self.travel_tools = travel_tools
-        # Kept as an optional constructor argument for compatibility only.
-        # Ordinary turns are no longer classified by this rule-based router.
 
     def create(self) -> GeneralConversation:
         return self.repository.to_model(self.repository.create())
@@ -112,8 +94,6 @@ class GeneralConversationService:
         self,
         conversation_id: str,
         message: str,
-        *,
-        execute_actions: bool = True,
     ) -> PreparedGeneralConversationTurn:
         row = self.repository.get(conversation_id)
         if row is None:
@@ -206,123 +186,6 @@ class GeneralConversationService:
         prepared.memory_summary_messages = None
         prepared.memory_summary_target = None
 
-    async def _knowledge_context(
-        self,
-        message: str,
-        destination_names: list[str],
-    ) -> tuple[str | None, str, int, bool]:
-        chunks: list[str] = []
-        city_names = [
-            name
-            for name in destination_names
-            if not name.endswith(("省", "自治区", "特别行政区"))
-        ]
-        if self.knowledge_repository is not None:
-            try:
-                documents = self.knowledge_repository.search_documents(
-                    message,
-                    city_names=city_names,
-                    limit=5,
-                )
-                attraction_context = self._format_attraction_context(documents)
-                if attraction_context:
-                    chunks.append(attraction_context)
-            except Exception as exc:  # noqa: BLE001 - knowledge failure must not block chat
-                logger.warning("普通对话景点知识检索失败，继续使用其他知识源：%s", type(exc).__name__)
-        if self.knowledge_retriever is None:
-            context = "\n\n".join(chunks) if chunks else None
-            return context, message, 0, bool(context)
-        try:
-            adaptive_context = getattr(self.knowledge_retriever, "adaptive_context", None)
-            if callable(adaptive_context):
-                result = await adaptive_context(
-                    message,
-                    destination_names=destination_names,
-                )
-                if result.context:
-                    chunks.append(result.context)
-                context = "\n\n".join(chunks) if chunks else None
-                return (
-                    context,
-                    result.query,
-                    result.attempts,
-                    bool(result.sufficient and context),
-                )
-            context = await self.knowledge_retriever.context(
-                message,
-                destination_names=destination_names,
-            )
-            if context:
-                chunks.append(context)
-        except Exception as exc:  # noqa: BLE001 - knowledge failure must not block chat
-            logger.warning("普通对话知识库检索失败，继续使用模型：%s", type(exc).__name__)
-        context = "\n\n".join(chunks) if chunks else None
-        return context, message, 1, bool(context)
-
-    async def _tool_reply(self, decision: GeneralIntentDecision) -> tuple[str, dict[str, object] | None]:
-        if self.travel_tools is not None:
-            try:
-                reply = await self.travel_tools.execute(decision)
-                if reply:
-                    return reply, getattr(self.travel_tools, "last_card", None)
-            except Exception as exc:  # noqa: BLE001 - tool failure must not break SSE
-                logger.warning("普通模式工具调用失败：%s", type(exc).__name__)
-        if decision.includes("route"):
-            if "origin" in decision.missing_fields:
-                return "要查询这条路线，我还需要出发地点。请告诉我你从哪里出发。", None
-            if "destination" in decision.missing_fields:
-                return "要查询这条路线，我还需要目的地。请告诉我你想去哪里。", None
-            return "路线服务暂时不可用，我不能给出未经查询的路线耗时。请稍后重试。", None
-        if decision.includes("nearby"):
-            if "nearby_center" in decision.missing_fields and "nearby_category" in decision.missing_fields:
-                return (
-                    "请告诉我一个具体地点和想找的服务，例如“杭州东站附近的厕所”。"
-                    "我目前无法获取你手机的实时位置。",
-                    None,
-                )
-            if "nearby_center" in decision.missing_fields:
-                return (
-                    f"你想以哪个具体地点为中心找{decision.nearby_category or '附近服务'}？"
-                    "可以告诉我景点、车站或商圈；我目前无法获取你手机的实时位置。",
-                    None,
-                )
-            if "nearby_category" in decision.missing_fields:
-                return (
-                    f"你想在{decision.nearby_center}附近想找什么？"
-                    "例如厕所、停车场、地铁站、药店或餐饮。",
-                    None,
-                )
-            return "附近地点查询暂时不可用，请稍后重试。", None
-        if "city" in decision.missing_fields:
-            return "查询天气还需要查询天气的城市，请告诉我城市名称。", None
-        return "天气服务暂时不可用，请稍后重试。", None
-
-    @staticmethod
-    def _format_attraction_context(documents) -> str | None:
-        chunks = []
-        for document in documents:
-            facts = []
-            if document.category:
-                facts.append(f"分类：{document.category}")
-            if document.interest_tags:
-                facts.append(f"标签：{'、'.join(document.interest_tags)}")
-            if document.description:
-                facts.append(f"简介：{document.description.strip()}")
-            detail = "；".join(facts) if facts else "数据库暂无更多介绍"
-            chunks.append(f"【景点资料：{document.name}（{document.city}）】\n{detail}")
-        return "\n\n".join(chunks) if chunks else None
-
-    @staticmethod
-    def _suggestions(decision: GeneralIntentDecision) -> list[str]:
-        if decision.includes("weather") and "city" in decision.missing_fields:
-            return ["杭州", "北京", "成都"]
-        if decision.includes("nearby") and "nearby_category" in decision.missing_fields:
-            return ["厕所", "停车场", "地铁站", "药店", "餐饮"]
-        if decision.includes("route") or decision.intent == "planning":
-            return []
-        if decision.intent == "out_of_scope":
-            return []
-        return ["你能做什么？", "介绍一个目的地"]
 
     def finish_message(
         self,
@@ -340,87 +203,6 @@ class GeneralConversationService:
         refreshed = self.repository.get(prepared.conversation.id)
         return self.repository.to_model(refreshed)
 
-    @staticmethod
-    def _has_planning_signal(message: str, parsed) -> bool:
-        normalized = re.sub(r"[，。！？、\s]", "", message.strip()).lower()
-        markers = (
-            "想去",
-            "要去",
-            "准备去",
-            "打算去",
-            "计划去",
-            "去玩",
-            "规划",
-            "安排",
-            "出发",
-        )
-        direct_trip = re.match(
-            r"^(?:明天|后天|大后天|下周[一二三四五六日天]|周[一二三四五六日天])?去",
-            normalized,
-        )
-        return bool(
-            direct_trip
-            or any(marker in normalized for marker in markers)
-            or GeneralConversationService._has_day_expression(normalized)
-            or parsed.days is not None
-            or parsed.start_date is not None
-            or (
-                (parsed.interests or parsed.preference_text)
-                and not GeneralConversationService._looks_like_knowledge_question(normalized)
-            )
-        )
-
-    @staticmethod
-    def _has_day_expression(normalized: str) -> bool:
-        return bool(
-            re.search(
-                r"(?:\d+|[零〇一二两三四五六七八九十百千万亿]+)\s*(?:天|日)(?:游)?",
-                normalized,
-            )
-        )
-
-    @staticmethod
-    def _looks_like_knowledge_question(normalized: str) -> bool:
-        """Do not mistake a destination knowledge question for trip planning."""
-
-        return any(
-            marker in normalized
-            for marker in (
-                "介绍",
-                "有哪些",
-                "有什么",
-                "特色",
-                "特点",
-                "值得",
-                "适合",
-                "了解",
-                "推荐",
-                "风景",
-                "美食",
-                "历史文化",
-                "自然风光",
-                "人文",
-                "好玩吗",
-                "知道",
-                "吗",
-                "是什么",
-                "什么是",
-                "什么意思",
-                "了解一下",
-                "听说",
-            )
-        )
-
-    def _destination_context(self, requirement: RequirementDraft) -> str | None:
-        if self.resolver is None:
-            return None
-        if requirement.cities:
-            city = self.resolver.repository.find_city(requirement.cities[0])
-            return city.description if city else None
-        if requirement.province:
-            province = self.resolver.repository.find_province(requirement.province)
-            return province.description if province else None
-        return None
 
     @staticmethod
     def responder_inputs(prepared: PreparedGeneralConversationTurn) -> dict[str, object]:

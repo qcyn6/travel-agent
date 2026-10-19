@@ -1,0 +1,719 @@
+[
+  {
+    "id": 237,
+    "city": "河池市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf"
+    ],
+    "checked_names": [
+      "歌娅思谷·中国白裤瑶民俗风情园",
+      "刘三姐故里景区",
+      "棉花天坑",
+      "三门海"
+    ],
+    "note": "自治区精品旅游线；环江喀斯特为宽泛遗产片区，暂不当独立到达点添加。",
+    "candidates": [
+      {
+        "name": "歌娅思谷·中国白裤瑶民俗风情园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+            "https://www.baike.com/wikiid/7415787016360429819",
+            "https://m.meiligaosu.com/nd.jsp?groupId=63&id=3479&mid=5",
+            "https://gx.cri.cn/2020-06-05/bce0ac32-b219-180e-8011-d5ad9b14ac24.html",
+            "https://epaper.gxrb.com.cn/gxrb2/page/1/2020-06-05/007/53311591310521779.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905504",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "河池市",
+            "searched_name": "歌娅思谷·中国白裤瑶民俗风情园",
+            "batch_candidates": [
+              "曾侯乙墓遗址",
+              "歌娅思谷·中国白裤瑶民俗风情园",
+              "刘三姐故里景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "237|歌娅思谷·中国白裤瑶民俗风情园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "237|歌娅思谷·中国白裤瑶民俗风情园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "刘三姐故里景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+            "https://you.ctrip.com/sight/hechi838/131894.html",
+            "https://piao.qunar.com/ticket/detail_39977.html",
+            "https://www.ctnews.com.cn/paper/att/202205/03/6ef6a27b-8c8a-4c4a-a7e8-917795a1c7a3.pdf",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905515",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "河池市",
+            "searched_name": "刘三姐故里景区",
+            "batch_candidates": [
+              "曾侯乙墓遗址",
+              "歌娅思谷·中国白裤瑶民俗风情园",
+              "刘三姐故里景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "237|刘三姐故里景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "237|刘三姐故里景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "棉花天坑",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202601/t20260112_964083.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905523",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "河池市",
+            "searched_name": "棉花天坑",
+            "batch_candidates": [
+              "棉花天坑",
+              "三门海",
+              "世界热带水果之窗"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "237|棉花天坑",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "237|棉花天坑",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "三门海",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "真实景区有公开资料，但公开地图此次返回三门海镇行政地名，不是游览景点或入口。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+            "https://zh.wikipedia.org/wiki/%E4%B8%89%E9%97%A8%E6%B5%B7",
+            "https://you.ctrip.com/sight/fengshan2022/131888.html",
+            "https://wlt.gxzf.gov.cn/data/uploadfile/2019/11/29/90e0e816dcd2d702f0140287ccfb9b30.pdf",
+            "https://zh.wikipedia.org/wiki/%E6%B5%99%E6%B1%9F%E7%9C%81%E7%9C%81%E9%81%93",
+            "https://zh.wikipedia.org/wiki/%E4%B8%89%E9%97%A8%E6%B5%B7%E9%95%87",
+            "https://zh.wikipedia.org/wiki/%E5%87%A4%E5%B1%B1%E5%8E%BF%E5%90%84%E7%BA%A7%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D%E5%88%97%E8%A1%A8"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905531",
+          "coordinate_review_note": "拒绝OSM node4569871090，type=town。",
+          "web_search": {
+            "searched_city": "河池市",
+            "searched_name": "三门海",
+            "batch_candidates": [
+              "棉花天坑",
+              "三门海",
+              "世界热带水果之窗"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "237|三门海",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "237|三门海",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 241,
+    "city": "三亚市",
+    "province": "海南省",
+    "sources": [
+      "https://yz.sanya.gov.cn/yzqsite/zjyz/202607/8c4e3066f633467aa2f2df52aba546ab.shtml"
+    ],
+    "checked_names": [
+      "南山文化旅游区",
+      "大小洞天",
+      "三亚自然博物馆"
+    ],
+    "note": "南山与大小洞天已存，自然博物馆为后者内部点。现存分界洲岛归属疑似异常记录，未改动旧数据。",
+    "candidates": []
+  },
+  {
+    "id": 245,
+    "city": "琼海市",
+    "province": "海南省",
+    "sources": [
+      "https://qionghai.hainan.gov.cn/xxgk/zfgzbg/szfgzbg/202602/t20260209_4026344.html"
+    ],
+    "checked_names": [
+      "世界热带水果之窗",
+      "中国（海南）南海博物馆"
+    ],
+    "note": "南海博物馆已有，二期未完成不另增。",
+    "candidates": [
+      {
+        "name": "世界热带水果之窗",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://qionghai.hainan.gov.cn/xxgk/zfgzbg/szfgzbg/202602/t20260209_4026344.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://qionghai.hainan.gov.cn/xxgk/zfgzbg/szfgzbg/202602/t20260209_4026344.html",
+            "https://you.ctrip.com/sight/qionghai843/135938978.html",
+            "https://agri.hainan.gov.cn/hnsnytzt/bjsjxdnysfjd/jdml/202011/t20201124_2890832.html",
+            "https://www.youtube.com/watch?v=P5-lfLEU8II",
+            "https://haikou.bendibao.com/tour/20241220/70693.shtm",
+            "https://www.cnr.cn/hn/jrhn/20260416/t20260416_527587353.shtml",
+            "https://news.hainan.net/hainan/shixian/qionghai/2025/03/20/4790512.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905538",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "琼海市",
+            "searched_name": "世界热带水果之窗",
+            "batch_candidates": [
+              "棉花天坑",
+              "三门海",
+              "世界热带水果之窗"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "245|世界热带水果之窗",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "245|世界热带水果之窗",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 249,
+    "city": "定安县",
+    "province": "海南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html"
+    ],
+    "checked_names": [
+      "百里百村",
+      "久温塘火山冷泉",
+      "彩虹农场",
+      "文笔峰"
+    ],
+    "note": "百里百村范围广，暂只选明确点位；不引用误检出的江西定南数据。",
+    "candidates": [
+      {
+        "name": "久温塘火山冷泉",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+            "https://dingan.hainan.gov.cn/zfxxgkzl/bm/gtj/gkml/202408/P020240830584994600194.pdf",
+            "https://www.oct-cts.com/Scenery/place-28813.html",
+            "https://www.sina.cn/news/detail/5270871686252019.html",
+            "https://k.sina.cn/article_6533920788_18573b8140010091xb.html",
+            "https://www.chinanews.com/cj/cj-gncj/news/2010/02-17/2125169.shtml",
+            "https://paper.people.com.cn/rmrbhwb/page/2015-08/14/15/rmrbhwb2015081415.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905545",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "定安县",
+            "searched_name": "久温塘火山冷泉",
+            "batch_candidates": [
+              "久温塘火山冷泉",
+              "彩虹农场",
+              "圣哒哒旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "249|久温塘火山冷泉",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "249|久温塘火山冷泉",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "彩虹农场",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+            "https://www.songjiang.gov.cn/shsj_yexie_nas/753d47c9-b565-4e21-8abe-59e6e2458bbd/45f191d3-7b9b-465f-9ece-e0947b4feebf/YX3_Print.pdf",
+            "https://dfcxb.com/resfile/2026-02-05/06/06.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905552",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "定安县",
+            "searched_name": "彩虹农场",
+            "batch_candidates": [
+              "久温塘火山冷泉",
+              "彩虹农场",
+              "圣哒哒旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "249|彩虹农场",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "249|彩虹农场",
+              "error": null,
+              "raw_result_count": 4
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 253,
+    "city": "白沙黎族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html"
+    ],
+    "checked_names": [
+      "圣哒哒旅游景区",
+      "阿罗多甘共享农庄",
+      "五里路茶园"
+    ],
+    "note": "文化和旅游部2026报道证实旅游经营与活动；仍待坐标。",
+    "candidates": [
+      {
+        "name": "圣哒哒旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+            "https://www.haihua365.com/news/22406",
+            "https://www.imetacloud.com/plan/sheng-da-da-lv-you-jing-qu",
+            "https://pdf.dfcfw.com/pdf/H3_AP202211131580211885_1.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905559",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "白沙黎族自治县",
+            "searched_name": "圣哒哒旅游景区",
+            "batch_candidates": [
+              "久温塘火山冷泉",
+              "彩虹农场",
+              "圣哒哒旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "253|圣哒哒旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "253|圣哒哒旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "阿罗多甘共享农庄",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+            "https://www.wta-web.org/wp-content/uploads/2024/07/%E3%80%8A2022%E4%B8%96%E7%95%8C%E6%97%85%E6%B8%B8%E8%81%94%E7%9B%9F%E2%80%94%E2%80%94%E6%97%85%E6%B8%B8%E5%8A%A9%E5%8A%9B%E4%B9%A1%E6%9D%91%E6%8C%AF%E5%85%B4%E6%A1%88%E4%BE%8B%E3%80%8B.pdf",
+            "https://xccys.moa.gov.cn/xxny/201905/t20190517_6309420.htm",
+            "https://ibs.hainanu.edu.cn/info/1015/5618.htm",
+            "https://news.hainan.net/hainan/minsheng/minshengliebiao/2024/11/30/4784197_6.shtml",
+            "https://www.cnr.cn/hn/jrhn/20180730/t20180730_524315893.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905565",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "白沙黎族自治县",
+            "searched_name": "阿罗多甘共享农庄",
+            "batch_candidates": [
+              "阿罗多甘共享农庄",
+              "五里路茶园",
+              "神玉岛文化旅游度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "253|阿罗多甘共享农庄",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "253|阿罗多甘共享农庄",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "五里路茶园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "省农业农村厅确认牙叉镇五里路茶韵共享农庄与有机茶园体验；需以正式别名再次定位，不采用泛化村镇中心。",
+          "source_urls": [
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+            "https://agri.hainan.gov.cn/hnsnyt/ywdt/zwdt/202506/t20250611_3878215.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905572",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "白沙黎族自治县",
+            "searched_name": "五里路茶园",
+            "batch_candidates": [
+              "阿罗多甘共享农庄",
+              "五里路茶园",
+              "神玉岛文化旅游度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "253|五里路茶园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "253|五里路茶园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 257,
+    "city": "保亭黎族苗族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://baoting.hainan.gov.cn/lypd/jdjq/201907/t20190726_2638533.html"
+    ],
+    "checked_names": [
+      "神玉岛文化旅游度假区"
+    ],
+    "note": "度假区内玉器艺术馆和雨林博物馆不重复另加；简介不采信夸张空气数值。",
+    "candidates": [
+      {
+        "name": "神玉岛文化旅游度假区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://baoting.hainan.gov.cn/lypd/jdjq/201907/t20190726_2638533.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://baoting.hainan.gov.cn/lypd/jdjq/201907/t20190726_2638533.html",
+            "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail/1530.html",
+            "https://baoting.hainan.gov.cn/ywdt/mtkbt/202107/t20210713_3012194.html",
+            "https://baoting.hainan.gov.cn/zfxxgk/xgbmgk/jtys/gkml/202401/P020240129584559259893.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905579",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "保亭黎族苗族自治县",
+            "searched_name": "神玉岛文化旅游度假区",
+            "batch_candidates": [
+              "阿罗多甘共享农庄",
+              "五里路茶园",
+              "神玉岛文化旅游度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "257|神玉岛文化旅游度假区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "257|神玉岛文化旅游度假区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 261,
+    "city": "自贡市",
+    "province": "四川省",
+    "sources": [
+      "https://wlt.sc.gov.cn/scwlt/hydt/2024/8/8/bae58b48a3d14662bf0a20c1c512070d.shtml",
+      "https://www.ndrc.gov.cn/fggz/dqzx/lzydfzxfz/202107/t20210715_1290445_ext.html"
+    ],
+    "checked_names": [
+      "尖山风景区",
+      "荣县大佛",
+      "富顺文庙",
+      "自贡市盐业历史博物馆"
+    ],
+    "note": "富顺文庙与已有文庙西湖组合景区重叠不加；荣县大佛已有。",
+    "candidates": [
+      {
+        "name": "尖山风景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.sc.gov.cn/scwlt/hydt/2024/8/8/bae58b48a3d14662bf0a20c1c512070d.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://wlt.sc.gov.cn/scwlt/hydt/2024/8/8/bae58b48a3d14662bf0a20c1c512070d.shtml",
+            "https://you.ctrip.com/sight/zigong575/63869.html",
+            "https://en.wikipedia.org/wiki/Xinmi",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905587",
+          "coordinate_review_note": "已在线读取OSM way1037510498完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "自贡市",
+            "searched_name": "尖山风景区",
+            "batch_candidates": [
+              "尖山风景区",
+              "东风堰",
+              "广安市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "261|尖山风景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "261|尖山风景区",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "自贡市盐业历史博物馆",
+        "status": "approved",
+        "description": "自贡市盐业历史博物馆设于清代西秦会馆，以文物、模型和景观陈列介绍井盐生产、天然气开采及制盐技术的发展，可结合会馆古建筑了解自贡盐业历史。",
+        "description_source_url": "https://www.ndrc.gov.cn/fggz/dqzx/lzydfzxfz/202107/t20210715_1290445_ext.html",
+        "longitude": 104.7685567,
+        "latitude": 29.3517826,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/500311765",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名馆舍与官方解放路107号一致，馆舍锚点约190米宽；与燊海井、恐龙博物馆不同，西秦会馆与本馆作为同一记录。",
+        "aliases": [
+          "盐业历史博物馆",
+          "西秦会馆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 265,
+    "city": "绵阳市",
+    "province": "四川省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=35051"
+    ],
+    "checked_names": [
+      "北川羌城旅游区"
+    ],
+    "note": "已有北川羌城，不将其内部羌族建筑和展馆重复列为新增。",
+    "candidates": []
+  },
+  {
+    "id": 269,
+    "city": "乐山市",
+    "province": "四川省",
+    "sources": [
+      "https://www.leshan.gov.cn/zjls/"
+    ],
+    "checked_names": [
+      "峨眉山",
+      "乐山大佛",
+      "东风堰"
+    ],
+    "note": "已有峨眉山与大佛；东风堰遗产需核实具体游览入口，不能直接使用遗产片区中心。",
+    "candidates": [
+      {
+        "name": "东风堰",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.leshan.gov.cn/zjls/",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.leshan.gov.cn/zjls/",
+            "https://bkso.baidu.com/item/%E4%B8%9C%E9%A3%8E%E5%A0%B0/15823445?fromModule=lemma_inlink",
+            "https://www.jiajiang.gov.cn/jjx/nyjq/0ddbc53b29974d84bc756db33.html",
+            "https://leshan.bendibao.com/tour/202182/1065.shtm",
+            "https://difang.neamco.com/sc/2026-07/30/content_38917768.htm",
+            "https://leshan.bendibao.com/tour/202285/4046.shtm",
+            "https://rb.lsrbs.net/index.php?a=view&aid=41288&c=Nparticle&m=home"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905600",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "乐山市",
+            "searched_name": "东风堰",
+            "batch_candidates": [
+              "尖山风景区",
+              "东风堰",
+              "广安市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "269|东风堰",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "269|东风堰",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 273,
+    "city": "广安市",
+    "province": "四川省",
+    "sources": [
+      "https://www.guang-an.gov.cn/gasrmzfw/c104271/pc/104239/pc/content/content_2056201130290974720.html"
+    ],
+    "checked_names": [
+      "广安市博物馆"
+    ],
+    "note": "独立城市博物馆，与邓小平故里纪念馆不同。",
+    "candidates": [
+      {
+        "name": "广安市博物馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.guang-an.gov.cn/gasrmzfw/c104271/pc/104239/pc/content/content_2056201130290974720.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到公开具名地图点，但指南地址为青莲东街旧馆；2026年物业采购及当前游览资料指向桥头坝路66号，旧馆标记不能替代当前新馆。",
+          "source_urls": [
+            "https://www.guang-an.gov.cn/gasrmzfw/c104271/pc/104239/pc/content/content_2056201130290974720.html",
+            "https://www.tang.org.cn/44218.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%B7%9D%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://www.guang-an.gov.cn/gasrmzfw/tzgg/1988791004532649984/AlZfMQkM.pdf",
+            "https://wwj.shaanxi.gov.cn/zfxxgk/fdzdgknr/zcwj/bwgzwj/202011/P020220507574909484535.pdf",
+            "https://www.iwenbo.fun/museum/4364.html",
+            "https://m.sohu.com/a/980866223_122434053",
+            "https://www.sohu.com/a/1055840691_121106884"
+          ],
+          "checked_at": "2026-10-02T18:48:31.905608",
+          "coordinate_review_note": "公开指南30.45577677,106.64548337对应青莲东街旧馆，已拒绝采用；需要当前桥头坝路66号具名新馆点。",
+          "web_search": {
+            "searched_city": "广安市",
+            "searched_name": "广安市博物馆",
+            "batch_candidates": [
+              "尖山风景区",
+              "东风堰",
+              "广安市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "273|广安市博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "273|广安市博物馆",
+              "error": null,
+              "raw_result_count": 5
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "273|广安市博物馆",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

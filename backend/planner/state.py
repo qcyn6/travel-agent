@@ -15,7 +15,6 @@ class PlanningContext(TypedDict, total=False):
     """
 
     progress: Any
-    use_interrupts: bool
 
 
 class PlanningState(TypedDict, total=False):

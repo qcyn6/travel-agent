@@ -1,0 +1,797 @@
+[
+  {
+    "id": 277,
+    "city": "资阳市",
+    "province": "四川省",
+    "sources": [
+      "https://www.sctyzx.gov.cn/zy/202602/54320400.html"
+    ],
+    "checked_names": [
+      "陈毅故里景区"
+    ],
+    "note": "四川资阳乐至，非湖南益阳资阳区；不采纳误检外市景区。",
+    "candidates": [
+      {
+        "name": "陈毅故里景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.sctyzx.gov.cn/zy/202602/54320400.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.sctyzx.gov.cn/zy/202602/54320400.html",
+            "https://www.caoyuantianlu.org/sight/8446.html",
+            "https://youletour.com/ziyang/chen-yi-gu-li",
+            "https://www.redtourism.com.cn/content/2020-01/18/content_70419.html",
+            "https://stte.csu.edu.cn/info/1044/5862.htm",
+            "https://www.aayts.com/gt/944.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906244",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "资阳市",
+            "searched_name": "陈毅故里景区",
+            "batch_candidates": [
+              "陈毅故里景区",
+              "鸡鸣三省旅游景区",
+              "拱拢坪景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "277|陈毅故里景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "277|陈毅故里景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 281,
+    "city": "贵阳市",
+    "province": "贵州省",
+    "sources": [
+      "https://www.kaiyang.gov.cn/zjky/whly_5777310/lyzn/201612/t20161219_64379603.html",
+      "https://yunghzg.cn/default.aspx?RoomID=147",
+      "https://www.gywb.cn/pages/web/2026/01/03/cbb0266d070647f0a631a9cd4efb2f76.html"
+    ],
+    "checked_names": [
+      "南江大峡谷",
+      "贵阳市城乡规划展览馆"
+    ],
+    "note": "南江大峡谷已存，规划中的博物馆建设项目不当已开放景点。贵阳市城乡规划展览馆经升级后重新开放，为独立馆舍，与相邻的贵州省博物馆不同。",
+    "candidates": [
+      {
+        "name": "贵阳市城乡规划展览馆",
+        "status": "approved",
+        "description": "贵阳市城乡规划展览馆位于观山湖区林城东路，四层展区涵盖贵阳与贵州城市发展、生态空间规划、科技园成果及城市沙盘，并通过沉浸式展项介绍贵阳的过去、现状与未来。",
+        "description_source_url": "https://yunghzg.cn/default.aspx?RoomID=147",
+        "longitude": 106.637895,
+        "latitude": 26.6481841,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/671094670",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "人文",
+          "建筑",
+          "研学",
+          "城市漫游"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "场馆页面确认位于观山湖区林城东路以南，设贵州、贵阳主展区和城市沙盘；2026年贵阳媒体报道其升级改造后开放。OSM way/671094670为具名城乡规划展览馆范围代表点，WGS84，非入口实测坐标；与约500米外已收录的贵州省博物馆为不同馆舍。",
+        "aliases": [
+          "贵阳城乡规划展览馆",
+          "贵阳城乡规划馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "场馆页面确认现址、展区和开放服务，2026年本地媒体确认升级后对外开放；具名OSM馆舍范围与林城东路现址吻合；独立于贵州省博物馆。",
+          "source_urls": [
+            "https://yunghzg.cn/default.aspx?RoomID=147",
+            "https://www.gywb.cn/pages/web/2026/01/03/cbb0266d070647f0a631a9cd4efb2f76.html",
+            "https://www.openstreetmap.org/way/671094670"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情返回“贵阳城乡规划展览馆”，坐标(106.637895,26.6481841)；该way为具名场馆建筑范围，坐标是WGS84代表点，非入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 285,
+    "city": "毕节市",
+    "province": "贵州省",
+    "sources": [
+      "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf"
+    ],
+    "checked_names": [
+      "鸡鸣三省旅游景区",
+      "贵州毕节国家森林公园（拱拢坪景区）"
+    ],
+    "note": "省发改旅游价格名录；拱拢坪与森林公园一个候选。",
+    "candidates": [
+      {
+        "name": "鸡鸣三省旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+            "https://you.ctrip.com/sight/bijie521/5701588.html",
+            "https://www.uuetek.com/zh/attraction/bijie/jiming-sansheng-scenic-area-bijie-guizhou",
+            "https://m.thepaper.cn/newsDetail_forward_10493653"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906255",
+          "coordinate_review_note": "已在线读取OSM way746956988完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "毕节市",
+            "searched_name": "鸡鸣三省旅游景区",
+            "batch_candidates": [
+              "陈毅故里景区",
+              "鸡鸣三省旅游景区",
+              "拱拢坪景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "285|鸡鸣三省旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "285|鸡鸣三省旅游景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "拱拢坪景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+            "https://www.bjkyjt.cn/product/5.html",
+            "https://you.ctrip.com/sight/bijie521/5065381.html",
+            "https://www.uuetek.com/zh/attraction/bijie/gulongping-scenic-area-bijie-national-forest-park",
+            "https://invest.guizhou.gov.cn/tzgz/tzgk/sjtzzn/202010/P020220413607111080153.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906263",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "毕节市",
+            "searched_name": "拱拢坪景区",
+            "batch_candidates": [
+              "陈毅故里景区",
+              "鸡鸣三省旅游景区",
+              "拱拢坪景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "285|拱拢坪景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "285|拱拢坪景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 289,
+    "city": "黔南布依族苗族自治州",
+    "province": "贵州省",
+    "sources": [
+      "https://www.neac.gov.cn/seac/xwzx/202601/1186701.shtml"
+    ],
+    "checked_names": [
+      "荔波小七孔",
+      "天眼科普文化园"
+    ],
+    "note": "均有现存景区，未把同一景区内科普园重复添加。",
+    "candidates": []
+  },
+  {
+    "id": 306,
+    "city": "林芝市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://wlj.linzhi.gov.cn/lzslyfzwyh/c103820/202410/b9b0f4fcc278416eb670be47da7fbc0f.shtml"
+    ],
+    "checked_names": [
+      "巴松措",
+      "雅鲁藏布大峡谷",
+      "南伊沟",
+      "波密红楼红色系列景区"
+    ],
+    "note": "南伊沟旧公告道路维修暂缓添加，峡谷已有，内部观景台不重复。",
+    "candidates": [
+      {
+        "name": "波密红楼红色系列景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlj.linzhi.gov.cn/lzslyfzwyh/c103820/202410/b9b0f4fcc278416eb670be47da7fbc0f.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlj.linzhi.gov.cn/lzslyfzwyh/c103820/202410/b9b0f4fcc278416eb670be47da7fbc0f.shtml",
+            "https://e.xzxw.com/xzsb/202410/16/1ed6762c-5687-4a08-9672-a72be32dd5c1.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906270",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "林芝市",
+            "searched_name": "波密红楼红色系列景区",
+            "batch_candidates": [
+              "波密红楼红色系列景区",
+              "兰州徐家山森林公园",
+              "甘肃天庆博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "306|波密红楼红色系列景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "306|波密红楼红色系列景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 317,
+    "city": "兰州市",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.qinan.gov.cn/info/11102/1167452.htm"
+    ],
+    "checked_names": [
+      "兰州徐家山森林公园",
+      "甘肃天庆博物馆",
+      "晴望川民俗文化村"
+    ],
+    "note": "官方全省名录明确兰州归属；不采集外市嘉峪关博物馆。",
+    "candidates": [
+      {
+        "name": "兰州徐家山森林公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.qinan.gov.cn/info/11102/1167452.htm",
+            "https://m.lz.bendibao.com/tour/40083.shtm",
+            "https://www.maigoo.com/citiao/109320.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906277",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "兰州市",
+            "searched_name": "兰州徐家山森林公园",
+            "batch_candidates": [
+              "波密红楼红色系列景区",
+              "兰州徐家山森林公园",
+              "甘肃天庆博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "317|兰州徐家山森林公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "317|兰州徐家山森林公园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "甘肃天庆博物馆",
+        "status": "approved",
+        "description_source_url": "https://tqgroup.net/museum?id=museum",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "运营方参观导览、年报与公开具名地图标记对应雁北路1599号，补齐场馆锚点证据。",
+          "source_urls": [
+            "https://tqgroup.net/museum?id=museum",
+            "https://bkso.baidu.com/item/%E7%94%98%E8%82%83%E5%A4%A9%E5%BA%86%E5%8D%9A%E7%89%A9%E9%A6%86/22885649?fromModule=lemma_inlink",
+            "https://tqgroup.net/museum",
+            "https://finance.gscn.com.cn/system/2026/06/01/013505451.shtml",
+            "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf",
+            "https://www.tqgroup.net/museum?id=report",
+            "https://czt.gansu.gov.cn/doc/2021_05/%7B4B5C62CC-EE9C-26F9-D1F9-37ED195DD3B2%7D.pdf",
+            "https://tqgroup.net/museum?id=guide",
+            "https://www.iwenbo.fun/museum/4973.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906286",
+          "coordinate_review_note": "公开指南TMap具名小型馆舍锚点，GCJ02，地址与馆方雁北路1599号一致；不冒充现场入口。原代码见published_markers_B_root.json。",
+          "web_search": {
+            "searched_city": "兰州市",
+            "searched_name": "甘肃天庆博物馆",
+            "batch_candidates": [
+              "波密红楼红色系列景区",
+              "兰州徐家山森林公园",
+              "甘肃天庆博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "317|甘肃天庆博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "甘肃天庆博物馆位于兰州市城关区雁北路1599号，是展示彩陶、书画、唐卡、古籍等藏品的文博场馆。不同楼层设置美术、文物及文献类展示空间，可了解历史文化和收藏艺术。适合文博参观、艺术观察和研学，具体展陈、预约与开放安排以运营方公告为准。",
+        "longitude": 103.88992135,
+        "latitude": 36.0667487,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/4973.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "艺术",
+          "研学"
+        ],
+        "aliases": [
+          "天庆博物馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "独立具名文博场馆，现有兰州条目无同名或同一馆区；不把各楼层和藏书阁另拆成景点。"
+      },
+      {
+        "name": "晴望川民俗文化村",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.qinan.gov.cn/info/11102/1167452.htm",
+            "https://www.lzxq.gov.cn/system/2019/08/12/030005147.shtml",
+            "https://gs.ctrip.com/html5/you/sight/gaolan2801/90497915.html",
+            "https://www.lzxq.gov.cn/system/2020/05/09/030021327.shtml",
+            "https://www.lzxq.gov.cn/system/2020/06/16/030023324.shtml",
+            "https://www.lzxq.gov.cn/system/2021/06/04/030346869.shtml",
+            "https://www.gswbj.gov.cn/a/2021/01/28/7645.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906292",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "兰州市",
+            "searched_name": "晴望川民俗文化村",
+            "batch_candidates": [
+              "晴望川民俗文化村",
+              "天水民俗博物馆",
+              "天水弘文博物苑"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "317|晴望川民俗文化村",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "317|晴望川民俗文化村",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 321,
+    "city": "天水市",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.tianshui.gov.cn/wlj/info/2722/285082.htm"
+    ],
+    "checked_names": [
+      "天水民俗博物馆",
+      "天水弘文博物苑",
+      "玉泉观"
+    ],
+    "note": "民俗馆即胡氏民居别名；弘文博物苑内部各馆不拆分添加。",
+    "candidates": [
+      {
+        "name": "天水民俗博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.tianshui.gov.cn/wlj/info/1822/172942.htm",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "天水文旅资料与文物资料确认胡氏民居及南宅子文博用途，公开文保指南给出民主西路小院落具名标记；与现有天水古城西关片区不同，不重复拆分南北院条目。",
+          "source_urls": [
+            "https://www.tianshui.gov.cn/wlj/info/1822/172942.htm",
+            "https://bkso.baidu.com/item/%E5%A4%A9%E6%B0%B4%E6%B0%91%E4%BF%97%E5%8D%9A%E7%89%A9%E9%A6%86/12573765?fromModule=lemma_inlink",
+            "https://www.bw10000.com/topic/5791",
+            "https://www.chinamuseum.org.cn/detail.html?contentId=2995&id=13",
+            "https://www.tianshui.gov.cn/wlj/info/2962/218162.htm",
+            "https://www.tianshui.gov.cn/virtual_attach_file.vsb?afc=KU87OZLmLDLmnVUxz9ZUlV7nNQknNUJPMzAVU4UPLmTVMR-0gihFp2hmCIa062TApjMw6ITjpsC0C5n8CIMwg4G0ZZkHbqSXbKk8bp1kbp35LzNZM_HGTR-aLzRm9-000-mNJ-K00-NJv2nto4OeoDnt_tWjvYhXptQ0g47sMmL0LzvbLSbw6208c",
+            "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf",
+            "https://www.iwenbo.fun/heritage/1196.html",
+            "https://zh.wikipedia.org/wiki/%E8%83%A1%E6%B0%8F%E5%8F%A4%E6%B0%91%E5%B1%85%E5%BB%BA%E7%AD%91"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906301",
+          "coordinate_review_note": "采用公开文保指南TMap具名胡氏民居小院落锚点（GCJ02），对应民主西路南宅子馆区；不是伏羲庙内天水市博物馆，不冒充实测门口。原代码见published_markers_B_root.json。",
+          "web_search": {
+            "searched_city": "天水市",
+            "searched_name": "天水民俗博物馆",
+            "batch_candidates": [
+              "晴望川民俗文化村",
+              "天水民俗博物馆",
+              "天水弘文博物苑"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "321|天水民俗博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "天水民俗博物馆依托秦州区民主西路的胡氏民居南宅子，展示地方民俗与古民居文化。明代院落、传统木构和雕饰构成主要参观内容，可了解天水历史居住空间与地方人文；适合古建筑观察、文博研学和院落摄影。展陈与开放安排以馆方公告为准。",
+        "longitude": 105.72297782,
+        "latitude": 34.58023768,
+        "coordinate_source_url": "https://www.iwenbo.fun/heritage/1196.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "古建",
+          "人文"
+        ],
+        "aliases": [
+          "胡氏民居南宅子",
+          "胡氏古民居建筑",
+          "南宅子"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "采用民俗馆整体单条记录，不把南北院和各展室拆分；与现有天水古城西关片区、伏羲庙内市博物馆不是同一游览实体。"
+      },
+      {
+        "name": "天水弘文博物苑",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.tianshui.gov.cn/wlj/info/2722/285082.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "市文旅局2026研学线路确认弘文园博物苑及其四馆构成；只登记整体，不把四馆拆分重复计数，整体入口坐标待补。",
+          "source_urls": [
+            "https://www.tianshui.gov.cn/wlj/info/2722/285082.htm",
+            "https://www.tianshui.gov.cn/wlj/info/1822/288802.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906308",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "天水市",
+            "searched_name": "天水弘文博物苑",
+            "batch_candidates": [
+              "晴望川民俗文化村",
+              "天水民俗博物馆",
+              "天水弘文博物苑"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "321|天水弘文博物苑",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "321|天水弘文博物苑",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "321|天水弘文博物苑",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 325,
+    "city": "酒泉市",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.qinan.gov.cn/info/11102/1167452.htm"
+    ],
+    "checked_names": [
+      "花城湖生态旅游景区",
+      "酒泉民俗博物馆",
+      "肃州区中以生态农业旅游景区"
+    ],
+    "note": "已有敦煌名片不重复，扩充酒泉肃州独立场所候选。",
+    "candidates": [
+      {
+        "name": "花城湖生态旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.qinan.gov.cn/info/11102/1167452.htm",
+            "https://bkso.baidu.com/item/%E8%8A%B1%E5%9F%8E%E6%B9%96/629654?fromModule=lemma_inlink",
+            "https://www.baike.com/wikiid/7543794465223166076",
+            "https://szb.gansudaily.com.cn/gsrb/pc/con/202308/08/c103778.html",
+            "https://m.yingjiesheng.com/job-007-956-277.html",
+            "https://www.sohu.com/a/987173550_121106869"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906316",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "酒泉市",
+            "searched_name": "花城湖生态旅游景区",
+            "batch_candidates": [
+              "花城湖生态旅游景区",
+              "酒泉民俗博物馆",
+              "肃州区中以生态农业旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "325|花城湖生态旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "325|花城湖生态旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "酒泉民俗博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.iwenbo.fun/museum/5077.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "拒绝敦煌同名误配后，找到酒嘉城际道路禹苑内的准确具名文博指南标记；官方名录地址与该位置相符。",
+          "source_urls": [
+            "https://www.iwenbo.fun/museum/5077.html",
+            "https://xkgc-data.obs.cn-north-1.myhuaweicloud.com/xiaokang/8/5/7219813919812.pdf",
+            "https://www.gswbj.gov.cn/a/2024/07/30/21397.html",
+            "https://www.phb123.com/lvyou/gonglve/gs/vtmzan22742.html",
+            "https://www.qinan.gov.cn/info/11102/1167452.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906325",
+          "coordinate_review_note": "继续拒绝way225176858敦煌民俗馆；采用公开文博指南TMap的酒泉民俗馆具名馆区标记，GCJ02，位于酒泉至嘉峪关城际道路沿线。不是现场实测入口。",
+          "web_search": {
+            "searched_city": "酒泉市",
+            "searched_name": "酒泉民俗博物馆",
+            "batch_candidates": [
+              "花城湖生态旅游景区",
+              "酒泉民俗博物馆",
+              "肃州区中以生态农业旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "325|酒泉民俗博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "酒泉民俗博物馆位于酒嘉城际道路沿线禹苑水利风景区内，收藏和展示当地传统生产工具、生活用品、建筑构件等民俗物件。通过古民居复建、生活场景与专题陈列介绍晚清以来酒泉农耕生活和地域民俗，适合地方历史、民俗文化参观和研学。开放安排以馆方公告为准。",
+        "longitude": 98.37077465,
+        "latitude": 39.7852634,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5077.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "aliases": [],
+        "duration_minutes": 90,
+        "independence_note": "现有酒泉库无禹苑父景区或同馆条目；与敦煌民俗馆、酒泉酒文化馆为不同实体，不拆同馆各陈列室。"
+      },
+      {
+        "name": "肃州区中以生态农业旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方2024A级名录确认此旅游景区及东洞戈壁农业产业园地址；建设项目与整体农业区不能直接替代旅游入口坐标。",
+          "source_urls": [
+            "https://www.qinan.gov.cn/info/11102/1167452.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906332",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "酒泉市",
+            "searched_name": "肃州区中以生态农业旅游景区",
+            "batch_candidates": [
+              "花城湖生态旅游景区",
+              "酒泉民俗博物馆",
+              "肃州区中以生态农业旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "325|肃州区中以生态农业旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "325|肃州区中以生态农业旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 329,
+    "city": "临夏回族自治州",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.linxia.gov.cn/lxz/lxly/jqjd/gj3Ajlyjq/art/2022/art_8f9e1db4d05e4ede8923b2057a923d36.html"
+    ],
+    "checked_names": [
+      "临夏州博物馆"
+    ],
+    "note": "地方综合博物馆，与炳灵寺独立；旧地址需当前馆舍核验。",
+    "candidates": [
+      {
+        "name": "临夏州博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.lxzbwg.cn/",
+        "description": "临夏州博物馆亦称临夏州彩陶馆，位于临夏市东区市政府广场西侧。馆藏以马家窑文化等史前彩陶见长，并收藏石器、玉器、铜器和民族文物，展示临夏及周边的历史文化。适合文博参观与彩陶文化研学，具体展陈、预约和开放安排以馆方公告为准。",
+        "latitude": 35.6022723,
+        "longitude": 103.241046,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/606536512",
+        "coordinate_system": "WGS84",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "aliases": [
+          "临夏州彩陶馆",
+          "临夏回族自治州博物馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://www.lxzbwg.cn/",
+            "https://www.linxia.gov.cn/lxz/lxly/jqjd/gj3Ajlyjq/art/2022/art_8f9e1db4d05e4ede8923b2057a923d36.html",
+            "https://lxzbwg.cn/",
+            "https://gs.ctrip.com/html5/you/sight/linxia1446157/5705395.html",
+            "https://www.lxzbwg.cn/Article/SinglePage?Channel=00010003",
+            "https://www.lxzbwg.cn/Article/Content?ItemID=818c0dc2-727f-4b90-986b-3919c9e24db4",
+            "https://www.lxzrdw.gov.cn/Article/Content?ItemID=c1088fd0-452f-4206-bfa9-a4b3cb8d722f",
+            "https://www.openstreetmap.org/way/606536512"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906340",
+          "coordinate_review_note": "采用临夏市东区具名紧凑馆区锚点（约160米范围），非大景区中心；不冒充门口实测点。馆方当前地址与地图东区位置一致。",
+          "web_search": {
+            "searched_city": "临夏回族自治州",
+            "searched_name": "临夏州博物馆",
+            "batch_candidates": [
+              "临夏州博物馆",
+              "玉树州博物馆",
+              "吴忠市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "329|临夏州博物馆",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 333,
+    "city": "海北藏族自治州",
+    "province": "青海省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/rxhmxjgn2022/beijing/detail_g7yU_504/3443.html"
+    ],
+    "checked_names": [
+      "阿咪东索景区",
+      "古城博物馆"
+    ],
+    "note": "阿咪东索已有，古城博物馆的具体名称和入口未充分确定暂缓。",
+    "candidates": []
+  },
+  {
+    "id": 337,
+    "city": "玉树藏族自治州",
+    "province": "青海省",
+    "sources": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html"
+    ],
+    "checked_names": [
+      "玉树州博物馆"
+    ],
+    "note": "博物馆已接待游客的部委报道；尚待具名坐标，不新增在建街区项目。",
+    "candidates": [
+      {
+        "name": "玉树州博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+        "description": "玉树州博物馆位于青海省玉树市，是了解玉树地方历史与藏族民俗文化的文博场馆。参观可结合馆内展陈认识当地历史变迁和地域文化，适合安排为城市人文与研学游览点。具体开放时间、展览内容及预约要求以馆方公告为准。",
+        "latitude": 33.0060788,
+        "longitude": 97.0104388,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1471785633",
+        "coordinate_system": "WGS84",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "人文",
+          "民族文化",
+          "研学"
+        ],
+        "aliases": [
+          "玉树藏族自治州博物馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+            "https://www.qhnews.com/newscenter/system/2024/08/18/030259566.shtml",
+            "https://www.tibetology.ac.cn/2026-07/28/content_43467983.htm",
+            "https://wwj.shaanxi.gov.cn/zfxxgk/fdzdgknr/zcwj/bwgzwj/202011/P020220507574909484535.pdf",
+            "https://zh.wikipedia.org/wiki/%E9%9D%92%E6%B5%B7%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://zh.wikipedia.org/wiki/%E7%BB%93%E5%8F%A4%E8%A1%97%E9%81%93",
+            "https://www.openstreetmap.org/way/1471785633"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906348",
+          "coordinate_review_note": "采用民主路附近具名紧凑馆区锚点（约200米范围），非整个玉树城市中心；不冒充现场入口坐标。",
+          "web_search": {
+            "searched_city": "玉树藏族自治州",
+            "searched_name": "玉树州博物馆",
+            "batch_candidates": [
+              "临夏州博物馆",
+              "玉树州博物馆",
+              "吴忠市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "337|玉树州博物馆",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  }
+]

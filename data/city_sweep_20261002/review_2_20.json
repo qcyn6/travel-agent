@@ -1,0 +1,158 @@
+[
+  {
+    "id": 339,
+    "city": "银川市",
+    "province": "宁夏回族自治区",
+    "sources": [
+      "https://whhlyt.nx.gov.cn/ggfw/ggwhcs/201910/t20191025_3645028.html",
+      "https://www.ycjinfeng.gov.cn/xxgk/zfxxgkml/zdlygk/ggwhfw_59349/gzxx_59352/202512/t20251218_5112483.html"
+    ],
+    "checked_names": [
+      "宁夏博物馆",
+      "宁夏美术馆",
+      "西夏陵国家考古遗址公园"
+    ],
+    "note": "宁夏博物馆是金凤区独立馆舍，不同于现有西夏陵、岩画景区；西夏博物馆在西夏陵园区内，不另列。",
+    "candidates": [
+      {
+        "name": "宁夏博物馆",
+        "status": "approved",
+        "description": "银川的自治区综合性博物馆，以宁夏历史、民俗和西夏文化文物展览为主要参观内容。",
+        "description_source_url": "https://whhlyt.nx.gov.cn/ggfw/ggwhcs/201910/t20191025_3645028.html",
+        "longitude": 106.2307292,
+        "latitude": 38.4844578,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/334447456",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "宁夏文旅官网介绍独立馆舍；OSM具名 museum 且 building=yes 的四层馆舍建筑轮廓定位，不是广场或西夏陵景区质心。",
+        "aliases": [
+          "宁夏回族自治区博物馆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 343,
+    "city": "中卫市",
+    "province": "宁夏回族自治区",
+    "sources": [
+      "https://www.nxzw.gov.cn/zjzw/zwtc/201804/t20180411_735105.html",
+      "https://www.nxzw.gov.cn/xwzx/tzgg/202607/t20260701_5278928.html"
+    ],
+    "checked_names": [
+      "中卫高庙",
+      "高庙保安寺",
+      "天都山景区",
+      "沙坡头旅游景区"
+    ],
+    "note": "中卫高庙为古建筑文保点，和现有沙坡头、金沙岛、寺口分离；2026年7月官方拟取消其3A资质，因此不能写作当前3A，需核实参观开放状态后才可入库。",
+    "candidates": [
+      {
+        "name": "中卫高庙",
+        "status": "pending_coordinates",
+        "description": "中卫市区北部始建于明代的寺庙古建筑群，展示地方宗教建筑历史。",
+        "description_source_url": "https://www.nxzw.gov.cn/zjzw/zwtc/201804/t20180411_735105.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮检索首项位于异地或非目标景点，错匹配已排除；缺可信同城坐标。",
+          "source_urls": [
+            "https://www.nxzw.gov.cn/zjzw/zwtc/201804/t20180411_735105.html",
+            "https://www.nxzw.gov.cn/xwzx/tzgg/202607/t20260701_5278928.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "错项：西安高铁基础设施段, 经开区, 未央区, 西安市, 陕西省, 中国。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "Photon对该名称返回异地同名中高庙；无中卫本址的具名入口实体，拒绝错配。",
+          "source_urls": [
+            "https://www.nxzw.gov.cn/zjzw/zwtc/201804/t20180411_735105.html",
+            "https://www.nxzw.gov.cn/xwzx/tzgg/202607/t20260701_5278928.html",
+            "https://photon.komoot.io/api/?q=%E4%B8%AD%E5%8D%AB%E9%AB%98%E5%BA%99&limit=5"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Photon对该名称返回异地同名中高庙；无中卫本址的具名入口实体，拒绝错配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 347,
+    "city": "哈密市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.hami.gov.cn/hami/c120114/202408/55fd099a0fa6486495342ea9b71352bc.shtml",
+      "https://www.hamimuseum.com/",
+      "https://www.hami.gov.cn/hami/c127799/202511/9451d84d6a4d4baf92095d79f56f24e2.shtml"
+    ],
+    "checked_names": [
+      "哈密市博物馆",
+      "哈密大海道景区",
+      "哈密王景区"
+    ],
+    "note": "哈密市博物馆是独立馆舍，与现有大海道、巴里坤湖、哈密回王府分离；大海道内的五堡魔鬼城不另列。",
+    "candidates": [
+      {
+        "name": "哈密市博物馆",
+        "status": "approved",
+        "description": "哈密伊州区的地方博物馆，以当地考古文物、历史与地域文化展览为主。",
+        "description_source_url": "https://www.hami.gov.cn/hami/c120114/202408/55fd099a0fa6486495342ea9b71352bc.shtml",
+        "longitude": 93.4877265,
+        "latitude": 42.8128198,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/3879049327",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "哈密市文旅局明确馆址为伊州区环城路72号，OSM具名哈密博物馆 museum 节点位于相应独立馆舍；与现有哈密回王府不同。",
+        "aliases": [
+          "哈密博物馆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 351,
+    "city": "阿克苏地区",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xinjiang.gov.cn/xinjiang/dzdt/202306/9a5bb8feb0954eee9a174a4a793b5663.shtml",
+      "https://www.aksrb.cn/att/202503/26/74a4181e-4475-4677-af10-d0f9a2ba9316.pdf"
+    ],
+    "checked_names": [
+      "库车王府",
+      "库车大寺",
+      "库车大峡谷",
+      "天山托木尔景区"
+    ],
+    "note": "库车王府位于库车老城区，与现有天山托木尔和库车大峡谷分离；王府游客大门可作为后续坐标核验目标。",
+    "candidates": [
+      {
+        "name": "库车王府",
+        "status": "pending_coordinates",
+        "description": "库车老城区的王府历史景区，以库车王家族历史及当地民俗文化展陈为主要内容。",
+        "description_source_url": "https://www.xinjiang.gov.cn/xinjiang/dzdt/202306/9a5bb8feb0954eee9a174a4a793b5663.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/castle，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.xinjiang.gov.cn/xinjiang/dzdt/202306/9a5bb8feb0954eee9a174a4a793b5663.shtml",
+            "https://www.aksrb.cn/att/202503/26/74a4181e-4475-4677-af10-d0f9a2ba9316.pdf",
+            "https://www.openstreetmap.org/way/595959927"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/595959927；定位候选尚未达入库门槛。"
+        }
+      }
+    ]
+  }
+]

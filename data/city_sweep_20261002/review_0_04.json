@@ -1,0 +1,164 @@
+[
+  {
+    "id": 49,
+    "city": "抚顺市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+    ],
+    "checked_names": [
+      "和睦国家森林公园",
+      "参仙谷生态旅游度假区",
+      "猴石国家森林公园",
+      "云帽峰风景区",
+      "三块石国家森林公园",
+      "南天门文化旅游风景区",
+      "紫花岭生态风景区",
+      "筐子沟原生态风景区",
+      "红河峡谷漂流",
+      "抚顺平顶山惨案纪念馆"
+    ],
+    "note": "已剔除劳动公园、月牙岛、天女山、煤矿博物馆等已有地点。",
+    "candidates": [
+      {
+        "name": "和睦国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025122215240396408/index.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "参仙谷生态旅游度假区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://www.fushun.gov.cn/zwgk/002016/20240422/231e6201-bea7-4e4b-8b5f-30394d066728.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "猴石国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://www.fushun.gov.cn/005/005007/20210706/8791fbef-1364-416d-9867-056f16cdb4f9.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "云帽峰风景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "三块石国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025122215341060360/index.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "南天门文化旅游风景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://whly.fushun.gov.cn/xydt/013004/013004001/20221028/4dda3636-5f75-4bb3-b148-337ebf42e84e.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "紫花岭生态风景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "筐子沟原生态风景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://www.fushun.gov.cn/zwgk/002016/20260619/2bf95f2d-018d-44a0-a592-a5580e3ff700.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "红河峡谷漂流",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html","https://fsfgw.fushun.gov.cn/zwgk/002002/002002002/20250708/fd8fbfb7-2ef7-45ab-9859-11d4c69370fe.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://whly.fushun.gov.cn/xydt/013004/013004001/moreinfo.html"
+      },
+      {
+        "name": "抚顺平顶山惨案纪念馆",
+        "status": "approved",
+        "description": "抚顺平顶山惨案纪念馆以历史图片、文物和现场遗物展示1932年平顶山惨案的史实。园区包括史实陈列馆、遗址馆及纪念设施，是纪念遇难同胞、了解抗战历史的场所，各展馆合并作为一次完整参访。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/B316148751854DABBEA121C1C74344C7/index.shtml",
+        "longitude": 123.9202118,
+        "latitude": 41.8318329,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1315296538",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "采用馆区主参访建筑史实陈列馆具名建筑锚点，约123米宽、78米长；不是16.5万平方米整个纪念馆园区质心。遗址馆与碑苑不拆开新增，与现有抚顺煤矿馆、战犯管理所不同址。",
+        "aliases": ["平顶山惨案纪念馆", "平顶山惨案遗址纪念馆", "抚顺市平顶山惨案遗址纪念馆"]
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "city": "铁岭市",
+    "province": "辽宁省",
+    "sources": [
+      "https://www.ln.gov.cn/web/sqgk/whly/ajjq/tl/index.shtml"
+    ],
+    "checked_names": [
+      "铁煤蒸汽机车博物馆",
+      "铁岭莲花湿地景区",
+      "城子山风景区"
+    ],
+    "note": "铁煤博物馆和莲花湿地已有同义名。",
+    "candidates": [
+      {
+        "name": "城子山风景区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.ln.gov.cn/web/sqgk/whly/ajjq/tl/index.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.ln.gov.cn/web/sqgk/whly/ajjq/tl/index.shtml"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "city": "吉林市",
+    "province": "吉林省",
+    "sources": [
+      "https://xxgk.jlcity.gov.cn/szf/gknr/zdmsxx/ypaq/index_2.html"
+    ],
+    "checked_names": [
+      "吉林市明清造船厂遗址博物馆",
+      "吉林市文庙博物馆",
+      "吉林市博物馆"
+    ],
+    "note": "市博物馆已有；两个不同专题馆待核验新旧地址。",
+    "candidates": [
+      {
+        "name": "吉林市明清造船厂遗址博物馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html","https://xxgk.jlcity.gov.cn/gzbm/gbdydsj_1/xbgkml/202112/t20211229_1009689.html","https://www.openstreetmap.org/node/13947020014","https://www.iwenbo.fun/museum/815.html"],"checked_at":"2026-10-02","coordinate_review_note":"OSM node/13947020014现标 tourism=museum、name=吉林明清船厂历史陈列（旧馆名），2026-06编辑；与iwenbo具名现名标记GCJ02逆转后相距约2米。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html","description_source_url":"https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html","marker_source_url":"https://www.iwenbo.fun/museum/815.html","coordinate_source_url":"https://www.openstreetmap.org/node/13947020014","coordinate_method":"OSM node/13947020014现标 tourism=museum、name=吉林明清船厂历史陈列（旧馆名），2026-06编辑；与iwenbo具名现名标记GCJ02逆转后相距约2米。"},
+        "description": "吉林市明清造船厂遗址博物馆位于丰满区阿什哈达摩崖附近，依托明清造船厂遗址展示船厂历史及吉林城的发展。",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+        "longitude": 126.6649017,
+        "latitude": 43.7660393,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/13947020014",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","历史文化","研学"],
+        "duration_minutes": 90,
+        "independence_note": "吉林省文旅厅确认位于丰满区吉丰东路9公里处，馆舍依托阿什哈达摩崖而建；OSM独立博物馆POI而非摩崖大范围中心，与在库吉林市博物馆景区不同。",
+        "aliases": ["吉林明清船厂历史陈列馆","吉林明清船厂历史陈列"]
+      },
+      {
+        "name": "吉林市文庙博物馆",
+        "status": "approved",
+        "description": "以吉林文庙古建筑群为馆址的遗址性博物馆，位于昌邑区南昌路2号。馆内通过孔子、儒学、科举制度、古代祭器等主题展示传统文化；游览兼顾古建筑与博物馆陈列。",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201603/t20160301_3107928.html",
+        "longitude": 126.5647547,
+        "latitude": 43.8388337,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/347269365",
+        "coordinate_system": "WGS84",
+        "category": "历史古迹",
+        "tags": ["历史文化", "古建", "博物馆"],
+        "duration_minutes": 90,
+        "independence_note": "南昌路2号具名文庙院落锚点，约117米宽、230米长，非大景区质心。与现有吉林市博物馆吉林大街100号新馆不同址；文庙殿堂不拆成多个新景点。",
+        "aliases": ["吉林文庙", "吉林文庙博物馆"]
+      }
+    ]
+  }
+]

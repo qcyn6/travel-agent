@@ -1,0 +1,411 @@
+[
+  {
+    "id": 96,
+    "city": "温州市",
+    "province": "浙江省",
+    "sources": [
+      "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web1825/site/attach/0/07105720e3a044d281076fd7acfa6356.pdf"
+    ],
+    "checked_names": [
+      "雁荡山风景名胜区",
+      "刘伯温故里景区",
+      "苍南碗窑景区"
+    ],
+    "note": "雁荡山与刘伯温故里已收录；碗窑在苍南，和既有景区独立，待核到达坐标。",
+    "candidates": [
+      {
+        "name": "苍南碗窑景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web1825/site/attach/0/07105720e3a044d281076fd7acfa6356.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "苍南县桥墩镇的古村落与传统制陶主题旅游景区。",
+        "description_source_url": "https://zjjcmspublic.oss-cn-hangzhou-zwynet-d01-a.internet.cloud.zj.gov.cn/jcms_files/jcms1/web1825/site/attach/0/07105720e3a044d281076fd7acfa6356.pdf"
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "city": "衢州市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.kecheng.gov.cn/art/2023/12/19/art_1229777901_59076338.html"
+    ],
+    "checked_names": [
+      "水亭门历史文化街区",
+      "罗汉郊野山公园"
+    ],
+    "note": "水亭门属于已收录衢州古城文化旅游区内部片区；罗汉郊野山公园出现在复合景区描述中，独立边界不明，本轮不列候选。",
+    "candidates": []
+  },
+  {
+    "id": 4,
+    "city": "昆明市",
+    "province": "云南省",
+    "sources": [
+      "https://swt.yn.gov.cn/gzdt/zwwj/szfwj/202205/t20220530_1896729.html"
+    ],
+    "checked_names": [
+      "滇池旅游度假区",
+      "石林风景区",
+      "昆明世界园艺博览园"
+    ],
+    "note": "来源提及的重点景区与库内滇池、石林、世博园重合；现库还存在多条同义名，先不拆分或新增。",
+    "candidates": []
+  },
+  {
+    "id": 291,
+    "city": "玉溪市",
+    "province": "云南省",
+    "sources": [
+      "https://www.yuxi.gov.cn/yxs/ywdtsy/20251128/1636632.html"
+    ],
+    "checked_names": [
+      "玉溪市博物馆",
+      "玉溪青花街",
+      "九龙池公园"
+    ],
+    "note": "玉溪市博物馆与青花街不在现库；九龙池公园亦可后续核查，需先确认坐标与街区边界。",
+    "candidates": [
+      {
+        "name": "玉溪市博物馆",
+        "status": "approved",
+        "description": "玉溪市博物馆位于红塔区红塔大道，常设古生物、史前文化、青铜文化、陶瓷、书画及非遗等主题展览，集中展示玉溪的自然与人文历史。",
+        "description_source_url": "https://www.yuxi.gov.cn/yxszfxxgk/jgzn7683/20260610/735260.html",
+        "longitude": 102.534852,
+        "latitude": 24.3494654,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1383956236",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 120,
+        "independence_note": "OSM具名博物馆建筑锚点，非大景区质心；市政府确认红塔大道30号，与在库玉溪其他景点不重合。",
+        "aliases": ["玉溪博物馆"]
+      },
+      {
+        "name": "玉溪青花街",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.yuxi.gov.cn/yxs/ywdtsy/20251128/1636632.html","https://www.yuxi.gov.cn/yxszfxxgk/swjjyya/20231026/1483092.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "以青花瓷文化为主题，设有陶艺体验、文创市集和餐饮等街区业态。",
+        "description_source_url": "https://www.yuxi.gov.cn/yxs/ywdtsy/20251128/1636632.html"
+      }
+    ]
+  },
+  {
+    "id": 295,
+    "city": "临沧市",
+    "province": "云南省",
+    "sources": [
+      "https://www.lincang.gov.cn/zfxxgk_lcs/artview/238/318174.html?chapter=null&ml=null&year=null"
+    ],
+    "checked_names": [
+      "翁丁原始部落",
+      "赐福彝寨",
+      "鲁史古镇"
+    ],
+    "note": "翁丁与鲁史古镇已在库；赐福彝寨另址，待核精确范围与到达点。",
+    "candidates": [
+      {
+        "name": "赐福彝寨",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.lincang.gov.cn/zfxxgk_lcs/artview/238/318174.html?chapter=null&ml=null&year=null","https://www.ynzk.gov.cn/zfxxgk_zkx_whlyj/artview/272/216783.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "临沧市政府工作报告列举的乡村文旅景区，以彝族村寨文化为特色。",
+        "description_source_url": "https://www.lincang.gov.cn/zfxxgk_lcs/artview/238/318174.html?chapter=null&ml=null&year=null"
+      }
+    ]
+  },
+  {
+    "id": 299,
+    "city": "西双版纳傣族自治州",
+    "province": "云南省",
+    "sources": [
+      "https://www.ynxc.gov.cn/html/2025/focus_0326/3021818.html"
+    ],
+    "checked_names": [
+      "曼听公园"
+    ],
+    "note": "省级发布会在曼听公园举办；库内曼听御花园景区与之同义，本条无独立新增候选。",
+    "candidates": []
+  },
+  {
+    "id": 7,
+    "city": "西安市",
+    "province": "陕西省",
+    "sources": [
+      "https://www.xa.gov.cn/gk/wtly/ssml/1824366329290301442.html"
+    ],
+    "checked_names": [
+      "陕西太平国家森林公园",
+      "西安大唐西市文化景区",
+      "西安浐灞国家湿地公园"
+    ],
+    "note": "大唐西市、浐灞湿地已有；太平国家森林公园未收录，和现有朱雀森林公园名称不同，仍需空间去重。",
+    "candidates": [
+      {
+        "name": "陕西太平国家森林公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.xa.gov.cn/gk/wtly/ssml/1824366329290301442.html","https://wlj.xa.gov.cn/wlml/lyjq/1.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "西安市A级景区名录列出的鄠邑区森林公园，适合山地与森林游览。",
+        "description_source_url": "https://www.xa.gov.cn/gk/wtly/ssml/1824366329290301442.html"
+      }
+    ]
+  },
+  {
+    "id": 311,
+    "city": "咸阳市",
+    "province": "陕西省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=35102"
+    ],
+    "checked_names": [
+      "咸阳市乾陵景区"
+    ],
+    "note": "文化和旅游部核实乾陵；库内已有同名景区，继续查找其他独立点前不重复入库。",
+    "candidates": []
+  },
+  {
+    "id": 315,
+    "city": "安康市",
+    "province": "陕西省",
+    "sources": [
+      "https://www.ankang.gov.cn/Node-2573.html"
+    ],
+    "checked_names": [
+      "瀛湖景区"
+    ],
+    "note": "政府景点栏目显示瀛湖，现库已有瀛湖风景区；本来源不足以确认其他独立新景点。",
+    "candidates": []
+  },
+  {
+    "id": 12,
+    "city": "石家庄市",
+    "province": "河北省",
+    "sources": [
+      "https://wglj.sjz.gov.cn/columns/fe0104ee-ad62-4770-b099-5afbc2481b52/202201/18/c977d90f-90ab-451e-be89-083e0fe7136a.html"
+    ],
+    "checked_names": [
+      "滹沱河生态风景区",
+      "滹沱河艺术生态岛"
+    ],
+    "note": "政府报道的滹沱河生态风景区范围很长；现库已有滹沱河艺术生态岛，父子与空间边界未明，暂不再建大范围记录。",
+    "candidates": []
+  },
+  {
+    "id": 16,
+    "city": "邢台市",
+    "province": "河北省",
+    "sources": [
+      "https://whly.hebei.gov.cn/c/2020-08-25/560475.html"
+    ],
+    "checked_names": [
+      "邢台云梦山景区",
+      "天河山景区",
+      "邢台大峡谷"
+    ],
+    "note": "现库仅邢州古城、达活泉公园，云梦山未收录；需补独立入口坐标。",
+    "candidates": [
+      {
+        "name": "邢台云梦山景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://whly.hebei.gov.cn/c/2020-08-25/560475.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "河北省文旅厅将云梦山列为邢台自然山水旅游目的地，适合山地观景。",
+        "description_source_url": "https://whly.hebei.gov.cn/c/2020-08-25/560475.html"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "city": "沧州市",
+    "province": "河北省",
+    "sources": [
+      "https://whly.hebei.gov.cn/c/2024-07-27/577715.html"
+    ],
+    "checked_names": [
+      "纪晓岚文化园"
+    ],
+    "note": "与现有吴桥杂技、河间府署等不同址，待核园区游客入口。",
+    "candidates": [
+      {
+        "name": "纪晓岚文化园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；未检索到同名具名OSM场馆或入口，不能用沧州城区近似点。","source_urls":["https://whly.hebei.gov.cn/c/2024-07-27/577715.html"],"checked_at":"2026-10-02","coordinate_review_note":"未检索到同名具名OSM场馆或入口，不能用沧州城区近似点。"},
+        "coordinate_review_note": "未检索到同名具名OSM场馆或入口，不能用沧州城区近似点。",
+        "description": "位于沧县崔尔庄镇，以纪晓岚生平为主题，结合仿清园林建筑与生态枣林供游客参观。",
+        "description_source_url": "https://whly.hebei.gov.cn/c/2024-07-27/577715.html"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "city": "大同市",
+    "province": "山西省",
+    "sources": [
+      "https://www.dt.gov.cn/dtszf/bumdtq/202503/db7d9b375ee94eabbb9eff56ec3ce457.shtml"
+    ],
+    "checked_names": [
+      "云冈石窟",
+      "华严寺",
+      "善化寺",
+      "大同古城墙"
+    ],
+    "note": "云冈、华严和古城已有；善化寺位于古城范围，是否作为独立游览点需核门票与入口，避免与古城父子重叠。",
+    "candidates": [
+      {
+        "name": "善化寺",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM仅有约200米宽的寺院范围面，未定位可到达山门；拒绝用院落质心。","source_urls":["https://www.dt.gov.cn/dtszf/bumdtq/202503/db7d9b375ee94eabbb9eff56ec3ce457.shtml","https://ai.dt.gov.cn/dtszf/tzggnr/202507/dbad03ae38304d778b5b1acb271ac6c5.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"OSM仅有约200米宽的寺院范围面，未定位可到达山门；拒绝用院落质心。"},
+        "coordinate_review_note": "OSM仅有约200米宽的寺院范围面，未定位可到达山门；拒绝用院落质心。",
+        "description": "大同市文旅线路中的古建筑参观点，与华严寺为不同寺院。",
+        "description_source_url": "https://www.dt.gov.cn/dtszf/bumdtq/202503/db7d9b375ee94eabbb9eff56ec3ce457.shtml"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "city": "朔州市",
+    "province": "山西省",
+    "sources": [
+      "https://www.mct.gov.cn/whzx/qgwhxxlb/sx/202412/t20241219_957174.htm"
+    ],
+    "checked_names": [
+      "崇福寺景区",
+      "应县木塔景区",
+      "广武国际滑雪场"
+    ],
+    "note": "崇福寺与应县木塔已收录；广武国际滑雪场属季节性项目，现阶段不列通用景点候选。",
+    "candidates": []
+  },
+  {
+    "id": 32,
+    "city": "临汾市",
+    "province": "山西省",
+    "sources": [
+      "https://www.lfrc.gov.cn/policy/humanistic"
+    ],
+    "checked_names": [
+      "洪洞大槐树",
+      "乡宁云丘山",
+      "隰县小西天"
+    ],
+    "note": "大槐树与云丘山已收录；小西天独立于二者，需核精确入口。",
+    "candidates": [
+      {
+        "name": "隰县小西天",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM小西天为约850米宽景区面，仅有千佛庵内部对象，尚无游客入口或售票处锚点。","source_urls":["https://www.lfrc.gov.cn/policy/humanistic"],"checked_at":"2026-10-02","coordinate_review_note":"OSM小西天为约850米宽景区面，仅有千佛庵内部对象，尚无游客入口或售票处锚点。"},
+        "coordinate_review_note": "OSM小西天为约850米宽景区面，仅有千佛庵内部对象，尚无游客入口或售票处锚点。",
+        "description": "临汾开放的A级古建筑景区，位于隰县，以寺院建筑参观为主。",
+        "description_source_url": "https://www.lfrc.gov.cn/policy/humanistic"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "city": "乌海市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.hainanqu.gov.cn/c/2025-05-01/94933.shtml"
+    ],
+    "checked_names": [
+      "图海山文化旅游景区",
+      "黄河西行客栈",
+      "小三线军工文化园"
+    ],
+    "note": "现库拉僧庙为宗教场所，图海山为另一个景区；需核景区边界及入口。",
+    "candidates": [
+      {
+        "name": "图海山文化旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图未找到同名具名实体或可到达入口，不能以乌海近郊山体代替。","source_urls":["https://www.hainanqu.gov.cn/c/2025-05-01/94933.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图未找到同名具名实体或可到达入口，不能以乌海近郊山体代替。"},
+        "coordinate_review_note": "开放地图未找到同名具名实体或可到达入口，不能以乌海近郊山体代替。",
+        "description": "位于乌海市海南区拉僧庙镇图海山，以观光和休闲为主要游览内容的AAA级景区。",
+        "description_source_url": "https://www.hainanqu.gov.cn/c/2025-05-01/94933.shtml"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "city": "呼伦贝尔市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://wlt.nmg.gov.cn/zfxxgk/zfxxglzl/fdzdgknr/zdlyxx/zyml/202111/P020211224646379346895.pdf"
+    ],
+    "checked_names": [
+      "海拉尔国家森林公园"
+    ],
+    "note": "不在现有三条内，需核到达入口及是否仍正常对外开放。",
+    "candidates": [
+      {
+        "name": "海拉尔国家森林公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM way/1436619652为数公里宽的自然保护地边界，未找到具名游客入口，拒绝边界质心。","source_urls":["https://wlt.nmg.gov.cn/zfxxgk/zfxxglzl/fdzdgknr/zdlyxx/zyml/202111/P020211224646379346895.pdf","https://www.ccgp-neimenggu.gov.cn/gpx-bid-file/150701/gpx-tender/2022/9/7/402881dd82f475a0018317a8090f3156.pdf?accessCode=8811d8220ebd5c6e033e6fd2fbe06be2"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/1436619652为数公里宽的自然保护地边界，未找到具名游客入口，拒绝边界质心。"},
+        "coordinate_review_note": "OSM way/1436619652为数公里宽的自然保护地边界，未找到具名游客入口，拒绝边界质心。",
+        "description": "自治区A级景区名单列出的呼伦贝尔森林公园。",
+        "description_source_url": "https://wlt.nmg.gov.cn/zfxxgk/zfxxglzl/fdzdgknr/zdlyxx/zyml/202111/P020211224646379346895.pdf"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "city": "锡林郭勒盟",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.xilinhaote.gov.cn/eportal/ui?articleKey=da77ea29e64b46ac8e941220d7f4aba5&columnId=50fdb61ff91f4c68ad2c7a3fc5cecb96&pageId=6d4a786c2987477a9497764e53c05a6a"
+    ],
+    "checked_names": [
+      "多伦县三河缘旅游景区"
+    ],
+    "note": "与现有元上都遗址、贝子庙不同址；需核具名入口。",
+    "candidates": [
+      {
+        "name": "多伦县三河缘旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.xilinhaote.gov.cn/eportal/ui?articleKey=da77ea29e64b46ac8e941220d7f4aba5&columnId=50fdb61ff91f4c68ad2c7a3fc5cecb96&pageId=6d4a786c2987477a9497764e53c05a6a","https://www.xlgl.gov.cn/xlgl/slsy/xwdt/qxdt/2024080616000187529/index.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "位于多伦县蔡木山乡白城子村，以三河汇流景观和草原河谷为主要观览内容。",
+        "description_source_url": "https://www.xilinhaote.gov.cn/eportal/ui?articleKey=da77ea29e64b46ac8e941220d7f4aba5&columnId=50fdb61ff91f4c68ad2c7a3fc5cecb96&pageId=6d4a786c2987477a9497764e53c05a6a"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "city": "鞍山市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012115155641152/"
+    ],
+    "checked_names": [
+      "老院子景区",
+      "千山风景名胜区"
+    ],
+    "note": "与现有千山主景区地理上分开，但景区宣传称紧邻千山；核边界后再入库。",
+    "candidates": [
+      {
+        "name": "老院子景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012115155641152/"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "位于鞍山韩家峪村、千山景区东北约6公里，设乡村休闲、传统建筑观览与亲子活动。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012115155641152/"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "city": "锦州市",
+    "province": "辽宁省",
+    "sources": [
+      "https://www.ln.gov.cn/web/sqgk/whly/ajjq/jz/index.shtml"
+    ],
+    "checked_names": [
+      "东方华地城湿地温泉旅游度假区",
+      "锦州北普陀山景区"
+    ],
+    "note": "北普陀山已收录；东方华地城不同于现有锦州东方欢乐王国水世界，需核空间边界与独立运营。",
+    "candidates": [
+      {
+        "name": "东方华地城湿地温泉旅游度假区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.ln.gov.cn/web/sqgk/whly/ajjq/jz/index.shtml","https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025112415452456472/index.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "辽宁省A级景区栏目列出的锦州湿地温泉度假景区。",
+        "description_source_url": "https://www.ln.gov.cn/web/sqgk/whly/ajjq/jz/index.shtml"
+      }
+    ]
+  }
+]

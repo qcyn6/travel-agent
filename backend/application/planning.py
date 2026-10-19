@@ -11,10 +11,10 @@ from backend.conversation import ConversationNotFoundError, ConversationReposito
 from backend.database import open_session
 from backend.destination import DestinationPlanningError
 from backend.knowledge import KnowledgeBootstrapError
-from backend.models.conversation import RequirementDraft, load_requirement_draft
-from backend.models.travel_plan import DestinationChoiceResponse, TravelPlanResponse
+from backend.models.conversation import PlanningJobState, RequirementDraft, load_requirement_draft
+from backend.models.travel_plan import TravelPlanResponse
 from backend.observability import AlertSink, build_alert_sink, metrics
-from backend.planner import DestinationChoiceRequired, build_travel_workflow
+from backend.planner import build_travel_workflow
 from backend.planning_jobs import (
     ACTIVE_JOB_STATUSES,
     TERMINAL_JOB_STATUSES,
@@ -22,6 +22,7 @@ from backend.planning_jobs import (
 )
 from backend.planning_jobs.queue import PlanningQueue, build_planning_queue
 from backend.travel_plans import TravelPlanRepository
+from backend.application.admission import admission_lock, check_admission
 
 
 PLANNING_POLL_SECONDS = 0.5
@@ -43,7 +44,7 @@ class PlanningJobHandle:
 @dataclass(frozen=True)
 class StandalonePlanningResult:
     conversation_id: str
-    response: TravelPlanResponse | DestinationChoiceResponse
+    response: TravelPlanResponse
 
 
 class PlanningTaskRegistry:
@@ -99,45 +100,17 @@ class PlanningApplicationService:
     def prepare_conversation(self, conversation_id: str) -> PlanningJobHandle:
         """Create or reuse a durable job and mark the conversation as planning."""
 
+        with open_session() as guard, admission_lock(guard):
+            return self._prepare_conversation(conversation_id)
+
+    def _prepare_conversation(self, conversation_id: str) -> PlanningJobHandle:
+
         with open_session() as session:
             conversation_repository = ConversationRepository(session)
             job_repository = PlanningJobRepository(session)
             conversation = conversation_repository.get(conversation_id, for_update=True)
             if conversation is None:
                 raise ConversationNotFoundError("当前会话不存在或已失效")
-
-            latest_job = job_repository.latest_for_conversation(
-                conversation_id,
-                for_update=True,
-            )
-            if latest_job is not None and latest_job.status == "waiting_for_choice":
-                selected_requirement = load_requirement_draft(
-                    conversation.requirement_draft or {}
-                )
-                if (
-                    conversation.requirement_confirmed
-                    and selected_requirement.is_ready()
-                    and selected_requirement.travel_scope in {"single_city", "multi_city"}
-                    and job_repository.resume_waiting_for_choice(
-                        latest_job,
-                        resume_value=selected_requirement.travel_scope,
-                    )
-                ):
-                    job_repository.append_event(
-                        latest_job,
-                        "job_resumed",
-                        {
-                            "status": "queued",
-                            "resume_value": selected_requirement.travel_scope,
-                        },
-                    )
-                    conversation_repository.set_status(
-                        conversation,
-                        "planning",
-                        commit=False,
-                    )
-                    session.commit()
-                    return self._job_handle(latest_job)
 
             active_job = job_repository.active_for_conversation(
                 conversation_id,
@@ -163,6 +136,7 @@ class PlanningApplicationService:
             if not requirement.is_ready():
                 session.commit()
                 raise PlanningConflictError("当前旅行需求尚未完整，请先在对话中补充所有出行条件")
+            check_admission(session, self.settings, conversation.user_id)
             job = job_repository.create(conversation_id, requirement)
             job_repository.append_event(job, "job_queued", {"status": "queued"})
             conversation_repository.set_status(conversation, "planning", commit=False)
@@ -178,12 +152,19 @@ class PlanningApplicationService:
 
         A queue outage falls back to the existing local worker so development
         and single-process deployments remain usable.
+        True also means that a running or settled job needs no new dispatch;
+        in either case the caller must not start a fallback local worker.
         """
 
         if not getattr(self.queue, "enabled", False):
             return False
+        generation = self.queued_job_generation(job_id)
+        if generation is None:
+            # Reattaching to running or settled jobs only replays events;
+            # it must not publish another execution request.
+            return True
         try:
-            accepted = await self.queue.enqueue(job_id)
+            accepted = await self.queue.enqueue(job_id, generation=generation)
         except Exception as exc:
             logger.exception("planning queue dispatch failed: job_id=%s", job_id)
             accepted = False
@@ -206,10 +187,33 @@ class PlanningApplicationService:
         self._ensure_worker(job_id)
         return False
 
+    @staticmethod
+    def queued_job_generation(job_id: str) -> int | None:
+        with open_session() as session:
+            job = PlanningJobRepository(session).get(job_id)
+            if job is None:
+                raise ConversationNotFoundError("当前旅行计划任务不存在或已失效")
+            return int(job.retry_count or 0) if job.status == "queued" else None
+
+    @staticmethod
+    def can_acknowledge_job(job_id: str) -> bool:
+        with open_session() as session:
+            job = PlanningJobRepository(session).get(job_id)
+            # Deleted jobs no longer need delivery; active leases must keep
+            # their message pending so a crash remains recoverable.
+            return job is None or job.status in TERMINAL_JOB_STATUSES
+
     def latest_job_id(self, conversation_id: str) -> str | None:
         with open_session() as session:
             job = PlanningJobRepository(session).latest_for_conversation(conversation_id)
             return job.id if job is not None else None
+
+    @staticmethod
+    def planning_state(conversation_id: str) -> PlanningJobState | None:
+        """Read the latest execution state without dispatching or changing it."""
+        with open_session() as session:
+            job = PlanningJobRepository(session).latest_for_conversation(conversation_id)
+            return PlanningJobState(job_id=job.id, status=job.status) if job is not None else None
 
     def stream_conversation_plan(
         self,
@@ -355,38 +359,6 @@ class PlanningApplicationService:
                 job_repository.append_event(job, "plan_completed", result.model_dump(mode="json"))
                 session.commit()
                 return StandalonePlanningResult(conversation_id, result)
-            except DestinationChoiceRequired as exc:
-                session.rollback()
-                conversation = conversation_repository.get(conversation_id, for_update=True)
-                if conversation is None:
-                    raise ConversationNotFoundError("当前会话不存在或已失效")
-                requirement = RequirementDraft.model_validate(exc.requirement.model_dump())
-                conversation_repository.save_requirement(
-                    conversation,
-                    requirement,
-                    confirmed=False,
-                    commit=False,
-                )
-                job = job_repository.get(job.id, for_update=True)
-                if job is not None:
-                    job_repository.set_requirement(job, requirement)
-                    job_repository.mark_waiting_for_choice(job)
-                    job_repository.append_event(
-                        job,
-                        "destination_choice_required",
-                        {
-                            "requirement": exc.requirement.model_dump(mode="json"),
-                            "options": exc.options.model_dump(mode="json"),
-                        },
-                    )
-                session.commit()
-                return StandalonePlanningResult(
-                    conversation_id,
-                    DestinationChoiceResponse(
-                        requirement=exc.requirement,
-                        destination_options=exc.options,
-                    ),
-                )
             except Exception as exc:
                 session.rollback()
                 conversation = conversation_repository.get(conversation_id, for_update=True)
@@ -502,13 +474,10 @@ class PlanningApplicationService:
                 try:
                     requirement = load_requirement_draft(job.requirement_json or {})
                     workflow = build_travel_workflow(session, self.settings)
-                    resume_value = (job.progress_json or {}).get("_resume_value")
                     stream_runner = getattr(workflow, "stream_requirement", None)
                     if callable(stream_runner):
                         result = None
                         stream_kwargs = {"thread_id": job_id}
-                        if resume_value is not None:
-                            stream_kwargs["resume_value"] = resume_value
                         async for event in stream_runner(requirement, **stream_kwargs):
                             await consume_graph_event(event)
                             if event.get("type") == "plan_completed":
@@ -546,20 +515,6 @@ class PlanningApplicationService:
                     metrics.inc(
                         "travel_agent_planning_jobs_total",
                         {"status": "completed"},
-                    )
-                except DestinationChoiceRequired as exc:
-                    self._finish_choice(
-                        session,
-                        conversation_repository,
-                        job_repository,
-                        job_id,
-                        exc,
-                        worker_id,
-                    )
-                    outcome = "waiting_for_choice"
-                    metrics.inc(
-                        "travel_agent_planning_jobs_total",
-                        {"status": "waiting_for_choice"},
                     )
                 except (ValueError, DestinationPlanningError) as exc:
                     failed = self._finish_failure(
@@ -728,7 +683,9 @@ class PlanningApplicationService:
         repository still applies its 2000-character limit when persisting it.
         """
 
-        message = str(exc).strip()
+        from backend.config import get_settings
+        from backend.observability.redaction import redact_secrets
+        message = redact_secrets(str(exc).strip(), get_settings())
         if message:
             return message
         return f"{type(exc).__name__}：服务未返回具体错误信息"
@@ -766,45 +723,6 @@ class PlanningApplicationService:
             )
         except Exception:
             logger.exception("operator alert delivery failed: event=%s", event)
-
-    @staticmethod
-    def _finish_choice(
-        session,
-        conversation_repository: ConversationRepository,
-        job_repository: PlanningJobRepository,
-        job_id: str,
-        choice: DestinationChoiceRequired,
-        worker_id: str,
-    ) -> None:
-        session.rollback()
-        job = job_repository.get(job_id)
-        if job is None or not job_repository.owns(job, worker_id):
-            return
-        conversation = conversation_repository.get(job.conversation_id, for_update=True)
-        if conversation is None:
-            return
-        requirement = RequirementDraft.model_validate(choice.requirement.model_dump())
-        conversation_repository.save_requirement(
-            conversation,
-            requirement,
-            confirmed=True,
-            commit=False,
-        )
-        job = job_repository.get(job_id, for_update=True)
-        if job is None or not job_repository.owns(job, worker_id):
-            return
-        job_repository.set_requirement(job, requirement)
-        if not job_repository.mark_waiting_for_choice(job, worker_id=worker_id):
-            return
-        job_repository.append_event(
-            job,
-            "destination_choice_required",
-            {
-                "requirement": choice.requirement.model_dump(mode="json"),
-                "options": choice.options.model_dump(mode="json"),
-            },
-        )
-        session.commit()
 
     @staticmethod
     def _finish_failure(

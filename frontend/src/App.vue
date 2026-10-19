@@ -186,6 +186,7 @@ async function selectHomeMode(mode: ConversationMode) {
               :mode="store.conversationMode"
               :empty="isFreshChat"
               @send="store.sendMessage"
+              @cancel="store.cancelMessage"
               @confirm="store.confirmAndPlan"
               @card-updated="store.updateGeneralCard"
             />
@@ -197,12 +198,10 @@ async function selectHomeMode(mode: ConversationMode) {
       <PlanningView
         v-else-if="store.stage === 'planning'"
         :steps="store.steps"
-        :choice="store.destinationChoice"
         :error="store.error"
         :elapsed-seconds="store.planningElapsedSeconds"
         :busy="store.planningRequestActive"
         :requirement="store.requirement"
-        @choose="store.chooseScope"
         @retry="store.retryPlanning"
         @back="store.backToChat"
       />

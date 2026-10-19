@@ -1,0 +1,1125 @@
+[
+  {
+    "id": 109,
+    "city": "淮北市",
+    "province": "安徽省",
+    "sources": [
+      "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+      "https://www.huaibei.gov.cn/xwzx/mtjj/wmkhb/60223081.html"
+    ],
+    "checked_names": [
+      "淮海战役总前委旧址纪念馆",
+      "小李家红色旅游景区",
+      "口子酒文化博览园",
+      "淮海战役双堆集烈士陵园",
+      "大运河美术馆",
+      "淮北市博物馆",
+      "南山汉文化博物馆",
+      "淮北市石榴博物馆"
+    ],
+    "note": "2026年度复核认定公告线索，公众游览与坐标尚需核实。",
+    "candidates": [
+      {
+        "name": "淮海战役总前委旧址纪念馆",
+        "status": "approved",
+        "description_source_url": "https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "濉溪县政府确认临涣文昌宫纪念馆及展陈，公开文博页面具名地图标记与文昌街馆址相符，排除商丘同名旧址。",
+          "source_urls": [
+            "https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html",
+            "https://www.meet99.com/jingdian-huaizhanzongqianwei-117259.html",
+            "https://www.maigoo.com/citiao/251563.html",
+            "https://www.sxx.gov.cn/mhsx/lyfg/60877614.html",
+            "https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%BD%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%B8%89%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://www.iwenbo.fun/museum/1980.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903175",
+          "coordinate_review_note": "公开网页TMap具名临涣文昌宫馆址锚点，GCJ02，非实测入口；拒绝商丘同名馆地图结果。原标记见museum_guides_B_root.json。",
+          "web_search": {
+            "searched_city": "淮北市",
+            "searched_name": "淮海战役总前委旧址纪念馆",
+            "batch_candidates": [
+              "鸠兹风景区",
+              "淮海战役总前委旧址纪念馆",
+              "口子酒文化博览园",
+              "大运河美术馆",
+              "南山汉文化博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "109|淮海战役总前委旧址纪念馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "109|淮海战役总前委旧址纪念馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "109|淮海战役总前委旧址纪念馆",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        },
+        "description": "淮海战役总前委旧址纪念馆设于濉溪县临涣镇文昌宫，是革命旧址与纪念展陈结合的文博游览点。馆内展示淮海战役史料，并复原会议室、通讯处及首长居室等空间，适合了解战争历史和开展红色研学。开放与参观安排以场馆公告为准。",
+        "longitude": 116.55888498,
+        "latitude": 33.68865438,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/1980.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "中共淮海战役总前委旧址纪念馆",
+          "文昌宫淮海战役总前委旧址"
+        ],
+        "independence_note": "临涣文昌宫独立纪念场馆，现有淮北景点无临涣古城父项；与徐州淮海战役纪念馆、商丘总前委旧址不同址。"
+      },
+      {
+        "name": "口子酒文化博览园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+            "https://www.huaibei.gov.cn/group3/M00/0A/CE/rBIoImKDUVaAHJhsACRD-hzrz_s654.pdf",
+            "https://www.kouzi.com/index.php?c=category&id=2",
+            "https://www.thepaper.cn/newsDetail_forward_24793087",
+            "https://1118.cctv.cn/2025/12/17/ARTIQLq41XJFZMaGLbOUkPMM251217.shtml",
+            "https://szb.ahnews.com.cn/ahrb/attachment/202601/07/d6da88d7-8f4e-4e7a-b070-74ea4e313c79.pdf",
+            "https://pdf.dfcfw.com/pdf/H3_AP202207151576165817_1.pdf?1657891822000.pdf="
+          ],
+          "checked_at": "2026-10-02T18:48:31.903185",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "淮北市",
+            "searched_name": "口子酒文化博览园",
+            "batch_candidates": [
+              "鸠兹风景区",
+              "淮海战役总前委旧址纪念馆",
+              "口子酒文化博览园",
+              "大运河美术馆",
+              "南山汉文化博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "109|口子酒文化博览园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "109|口子酒文化博览园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "大运河美术馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮检索到淮北隋唐古镇内美术馆及研学介绍；无可靠具名坐标，且仍需核对与现有隋唐运河古镇的独立游览边界。",
+          "source_urls": [
+            "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+            "https://www.sohu.com/a/1002350508_121124566"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903192",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "淮北市",
+            "searched_name": "大运河美术馆",
+            "batch_candidates": [
+              "鸠兹风景区",
+              "淮海战役总前委旧址纪念馆",
+              "口子酒文化博览园",
+              "大运河美术馆",
+              "南山汉文化博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "109|大运河美术馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "109|大运河美术馆",
+              "error": null,
+              "raw_result_count": 5
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "109|大运河美术馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "淮北市博物馆",
+        "status": "approved",
+        "description": "淮北市博物馆展示当地历史、汉画像石与隋唐大运河文化，通过出土文物、遗址复原和场景展陈介绍淮北地区的发展及运河沿岸生活。",
+        "description_source_url": "https://www.huaibei.gov.cn/xwzx/mtjj/wmkhb/60223081.html",
+        "longitude": 116.7929121,
+        "latitude": 33.9533779,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/555994609",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "aliases": [
+          "隋唐大运河博物馆",
+          "淮北博物馆"
+        ],
+        "independence_note": "OSM博物馆路具名馆舍建筑约115米宽，未把同名道路误作坐标；与隋唐运河古镇不同址。"
+      },
+      {
+        "name": "南山汉文化博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "2025年淮北官方游览报道确认矿山集南山馆参观，公开文博页面具名馆址标记与所在地相符，未与在库景点重叠。",
+          "source_urls": [
+            "https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html",
+            "https://zhaoshang.huaibei.gov.cn/xxfb/gzdt/58025480.html",
+            "https://www.bw10000.com/topic/2188",
+            "https://fgw.huaibei.gov.cn/hbms/bmdt/57935970.html",
+            "https://ny.huaibei.gov.cn/tslm/zfdx/57859191.html",
+            "https://www.iwenbo.fun/museum/1984.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903204",
+          "coordinate_review_note": "公开网页TMap具名场馆锚点，GCJ02，位于杜集区矿山集街道南山村，非淮北城市中心或实测游客入口。原标记见museum_guides_B_root.json。",
+          "web_search": {
+            "searched_city": "淮北市",
+            "searched_name": "南山汉文化博物馆",
+            "batch_candidates": [
+              "鸠兹风景区",
+              "淮海战役总前委旧址纪念馆",
+              "口子酒文化博览园",
+              "大运河美术馆",
+              "南山汉文化博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "109|南山汉文化博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "109|南山汉文化博物馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "109|南山汉文化博物馆",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        },
+        "description": "南山汉文化博物馆位于淮北市杜集区矿山集街道南山村，以汉文化与地方历史为主要内容。馆内通过汉画像石等展品呈现地方文化，适合历史文化参观与亲子研学，可结合周边村落的乡土文化游览。展览和开放安排以场馆公告为准。",
+        "longitude": 116.940471,
+        "latitude": 33.957784,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/1984.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "南山村汉文化博物馆"
+        ],
+        "independence_note": "南山村汉文化独立馆舍，现有淮北库无南山风景区父项，不另拆馆内展厅；与淮北市博物馆不同址。"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "city": "滁州市",
+    "province": "安徽省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html"
+    ],
+    "checked_names": [
+      "大墅龙山度假区",
+      "龙山樱花园",
+      "三界外景区",
+      "静港营地",
+      "黄寨草场",
+      "观音湖生态园"
+    ],
+    "note": "文旅部具体线路核查，龙山樱花园与大墅龙山边界未清不拆分；露营商业点暂不新增。",
+    "candidates": [
+      {
+        "name": "三界外景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+            "https://www.hichuzhou.com/weixin-content-id-22737.html?pc=1",
+            "https://www.csjwdy.cn/show-3-203-0.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903210",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "滁州市",
+            "searched_name": "三界外景区",
+            "batch_candidates": [
+              "三界外景区",
+              "黄寨草场",
+              "观音湖生态园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "113|三界外景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "113|三界外景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "黄寨草场",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+            "https://www.ctnews.com.cn/zt/content/2021-10/01/content_112632.html",
+            "https://blog.sina.com.cn/s/blog_7cf45ec10102wy4l.html",
+            "https://www.sohu.com/a/492700421_117402",
+            "https://ah.people.com.cn/n2/2021/1002/c358428-34941856.html",
+            "https://news.10jqka.com.cn/20260415/c676015606.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903215",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "滁州市",
+            "searched_name": "黄寨草场",
+            "batch_candidates": [
+              "三界外景区",
+              "黄寨草场",
+              "观音湖生态园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "113|黄寨草场",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "113|黄寨草场",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "观音湖生态园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+            "https://xb.ynau.edu.cn/jwk_sk/cn/article/pdf/preview/10.12371/j.ynau%28s%29.202107008.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903220",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "滁州市",
+            "searched_name": "观音湖生态园",
+            "batch_candidates": [
+              "三界外景区",
+              "黄寨草场",
+              "观音湖生态园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "113|观音湖生态园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "113|观音湖生态园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "sources": [
+      "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm"
+    ],
+    "checked_names": [
+      "花戏楼",
+      "曹操运兵道",
+      "南京巷钱庄",
+      "华祖庵",
+      "亳州市展览馆",
+      "道德中宫",
+      "魏武祠",
+      "曹腾墓",
+      "张园汉墓",
+      "林拥城萌宠乐园"
+    ],
+    "note": "花戏楼已有，华祖庵不等于华佗百草园；古墓公众开放资料需更新核实。",
+    "candidates": [
+      {
+        "name": "曹操运兵道",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.qcdj.gov.cn/e/action/ShowInfo.php?classid=59&id=8764",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方及运营方资料补齐真实简介；另找到亳州古地道具名点，但地道跨多条街且公开点未明确游客入口，暂不按完整证据入库。",
+          "source_urls": [
+            "https://www.qcdj.gov.cn/e/action/ShowInfo.php?classid=59&id=8764",
+            "https://bkso.baidu.com/item/%E6%9B%B9%E6%93%8D%E8%BF%90%E5%85%B5%E9%81%93/167301?fromModule=lemma_inlink",
+            "https://finance.sina.com.cn/jjxw/2024-11-23/doc-incwzrru7004603.shtml",
+            "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+            "https://www.bzwljt.cn/",
+            "https://www.iwenbo.fun/heritage/1078.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903226",
+          "coordinate_review_note": "heritage_details_B_root.json保留GCJ02具名点115.77697814,33.87199896；仅标亳州古地道，未明确入口，不用遗址代表点冒充游客入口。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "曹操运兵道",
+            "batch_candidates": [
+              "曹操运兵道",
+              "南京巷钱庄",
+              "华祖庵"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|曹操运兵道",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|曹操运兵道",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        },
+        "description": "曹操运兵道位于亳州老城区地下，是以大隅首一带为中心向外延伸的历史地道遗迹。可参观的地道通过券顶、交叉通道等结构呈现古代军事工程特点，出土遗物涉及汉、唐、宋等时期；具体开放段和入园安排以景区公告为准。"
+      },
+      {
+        "name": "南京巷钱庄",
+        "status": "approved",
+        "description_source_url": "https://you.ctrip.com/sight/bozhou404/66849.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "文旅部门确认对外游览，文保资料及携程核准南京巷19号旧址；公开文保网页发布明确具名场馆地图标记，未与已有库同名/父景点重复。",
+          "source_urls": [
+            "https://you.ctrip.com/sight/bozhou404/66849.html",
+            "https://touch.go.qunar.com/poi/708096",
+            "https://zufa.jsntrg.cn/926762063023.html",
+            "https://tw.trip.com/travel-guide/attraction/bozhou/nanjing-alley-qianzhuang-88408/",
+            "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/87da99e3f444878581d20fbe4baf2f72.pdf",
+            "https://zjj.bozhou.gov.cn/file_bz/31/202412/20241231097a4f8d353141bd99d0c3d0fa999012.pdf",
+            "https://www.iwenbo.fun/heritage/3620.html",
+            "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903232",
+          "coordinate_review_note": "采用公开文保指南TMap具名旧址标记（GCJ02）；小型钱庄场馆锚点，非实测门口。原代码与坐标见published_markers_B_root.json；未加载SDK、未使用用户地图Key。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "南京巷钱庄",
+            "batch_candidates": [
+              "曹操运兵道",
+              "南京巷钱庄",
+              "华祖庵"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|南京巷钱庄",
+          "additional_coordinate_attempts": []
+        },
+        "description": "南京巷钱庄位于亳州市谯城区南京巷19号，是保存清代钱庄建筑及金融历史展陈的文化游览点。院落、账房等空间与钱币陈列呈现当地商贸和近代钱庄经营文化，适合古建筑观察、历史文化参观和金融文化研学。开放及购票安排以景区公告为准。",
+        "longitude": 115.77425838,
+        "latitude": 33.88237614,
+        "coordinate_source_url": "https://www.iwenbo.fun/heritage/3620.html",
+        "coordinate_system": "GCJ02",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "古建",
+          "博物馆",
+          "研学"
+        ],
+        "aliases": [
+          "亳州市南京巷钱庄景区"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "独立开放的钱庄旧址景区；现有亳州条目无同名或包含其展陈的父景点，不把馆内展厅另拆条。"
+      },
+      {
+        "name": "华祖庵",
+        "status": "approved",
+        "description_source_url": "https://www.iwenbo.fun/museum/2114.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "运营方单列华祖庵景区，文博指南明确华佗纪念馆位于永安街12号华祖庵院内；按整个紧凑景区一条收录，不另拆子馆。",
+          "source_urls": [
+            "https://www.iwenbo.fun/museum/2114.html",
+            "https://www.baike.com/wikiid/114389733415271040",
+            "https://bkso.baidu.com/item/%E5%8D%8E%E7%A5%96%E5%BA%B5/162291?fromModule=lemma_inlink",
+            "https://cgj.bozhou.gov.cn/file_bz/34/202410/20241030a08897948eaa4fe1851080b8a5cfc741.pdf",
+            "https://www.cntcm.com.cn/content/202202/14/c192058.html",
+            "https://cz.bozhou.gov.cn/file_bz/1/202405/2024052428f53c6efeec42e88b9b9e255df99af7.pdf",
+            "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+            "https://www.bzwljt.cn/About_us.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903238",
+          "coordinate_review_note": "公开文博TMap华佗纪念馆具名建筑锚点，GCJ02，地址明确在华祖庵院内；以子馆作为整个小型院落到达锚点，非实测庵门。证据见extra_museum_guides_B_root.json。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "华祖庵",
+            "batch_candidates": [
+              "曹操运兵道",
+              "南京巷钱庄",
+              "华祖庵"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|华祖庵",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|华祖庵",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        },
+        "description": "华祖庵位于亳州市谯城区永安街，是纪念华佗的历史文化游览点。传统庙祠院落与院内华佗纪念馆、中医药文化展陈共同介绍华佗事迹及中医药发展，适合古建筑观察、医学文化参观和研学。开放与购票安排以景区公告为准。",
+        "longitude": 115.782202,
+        "latitude": 33.877063,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/2114.html",
+        "coordinate_system": "GCJ02",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "古建",
+          "博物馆",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "华佗纪念馆",
+          "华佗中医药文化博物馆"
+        ],
+        "independence_note": "按华祖庵及院内华佗纪念馆整体收录，不再单列子馆；与亳州西南城郊华佗百草园不同址。"
+      },
+      {
+        "name": "亳州市展览馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+            "https://www.meet99.com/jingdian-haozhoushizhanlanguan.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903243",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "亳州市展览馆",
+            "batch_candidates": [
+              "亳州市展览馆",
+              "道德中宫",
+              "魏武祠"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|亳州市展览馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|亳州市展览馆",
+              "error": null,
+              "raw_result_count": 1
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "117|亳州市展览馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "道德中宫",
+        "status": "pending_coordinates",
+        "description_source_url": "https://you.ctrip.com/sight/bozhou404/1714222.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开旅游资料补齐老祖殿街现址与老子纪念宫观简介；地图仍缺可靠具名场馆/入口点。",
+          "source_urls": [
+            "https://you.ctrip.com/sight/bozhou404/1714222.html",
+            "https://bkso.baidu.com/item/%E9%81%93%E5%BE%B7%E4%B8%AD%E5%AE%AB/168789?fromModule=lemma_inlink",
+            "https://baike.so.com/doc/23472-24442.html",
+            "https://culture.people.com.cn/n/2014/0407/c1013-24838267.html",
+            "https://www.rjut.cn/mark/jie-mi-bo-zhou-dao-de-zhong-gong-qian-nian-gu-yun-yu-xian-dai-wen-ming-de-jiao-rong-zhi-di.html",
+            "https://travel.people.com.cn/n/2014/0407/c41570-24839194.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903250",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "道德中宫",
+            "batch_candidates": [
+              "亳州市展览馆",
+              "道德中宫",
+              "魏武祠"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|道德中宫",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|道德中宫",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        },
+        "description": "道德中宫又称老祖殿，是亳州市谯城区老祖殿街的老子纪念宫观。院落保留传统宫观建筑格局，以老子纪念和道家文化为主要参观内容，可结合亳州老城其他历史文化景点游览。开放与购票安排以管理方公告为准。"
+      },
+      {
+        "name": "魏武祠",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+            "https://www.bzwljt.cn/product/10.html",
+            "https://www.mayijf.com/Facility/Details/14100?culture=ko-KR",
+            "https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%BD%E7%9C%81A%E7%BA%A7%E6%99%AF%E5%8C%BA%E5%88%97%E8%A1%A8",
+            "https://m.maigoo.com/citiao/115576.html",
+            "https://tdr.lib.ntu.edu.tw/bitstream/123456789/8846/1/ntu-98-1.pdf",
+            "https://www.bzqc.gov.cn/file_bz/2/202502/2025021474e7a3369fe548a8a92accf5d8d59a00.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903256",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "魏武祠",
+            "batch_candidates": [
+              "亳州市展览馆",
+              "道德中宫",
+              "魏武祠"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|魏武祠",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|魏武祠",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "曹腾墓",
+        "status": "pending_coordinates",
+        "description_source_url": "https://you.ctrip.com/sight/bozhou404/141451.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开旅游资料补齐魏武大道馆址与石构汉墓简介；曹氏家族墓群跨度约10平方公里，其公共代表点不能作为曹腾墓坐标。",
+          "source_urls": [
+            "https://you.ctrip.com/sight/bozhou404/141451.html",
+            "https://zh.wikipedia.org/wiki/%E6%9B%B9%E9%A8%B0",
+            "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+            "https://zh.wikipedia.org/wiki/%E6%9B%B9%E6%93%8D%E5%AE%97%E6%97%8F%E5%A2%93%E7%BE%A4",
+            "https://ctext.org/datawiki.pl?if=gb&remap=gb&res=477945",
+            "https://pdf.dfcfw.com/pdf/H2_AN202403061625696207_1.pdf",
+            "https://www.iwenbo.fun/heritage/928.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903262",
+          "coordinate_review_note": "拒绝以曹氏家族墓群整体点替代曹腾墓单体入口；携程静态页面未含可核准经纬度。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "曹腾墓",
+            "batch_candidates": [
+              "曹腾墓",
+              "张园汉墓",
+              "林拥城萌宠乐园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|曹腾墓",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|曹腾墓",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        },
+        "description": "曹腾墓位于亳州魏武大道一带，是曹氏家族墓群中的大型石结构多室汉墓。墓室、甬道及石雕画像反映东汉墓葬建筑和装饰艺术，适合古代建筑与地方历史参观；墓室实际开放情况以景区当日公告为准。"
+      },
+      {
+        "name": "张园汉墓",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.bzwljt.cn/product/6.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "运营方张园汉墓专题资料及文保目录可补齐汉墓简介；曹氏家族墓群整体点不能代替单体游览入口。",
+          "source_urls": [
+            "https://www.bzwljt.cn/product/6.html",
+            "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+            "https://pdf.dfcfw.com/pdf/H2_AN202403061625696207_1.pdf",
+            "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2023-06-28/152448_20230628_GUE0.pdf",
+            "https://hilookcn.com/chs-all/",
+            "https://www.iwenbo.fun/heritage/928.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903268",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "张园汉墓",
+            "batch_candidates": [
+              "曹腾墓",
+              "张园汉墓",
+              "林拥城萌宠乐园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|张园汉墓",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|张园汉墓",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        },
+        "description": "张园汉墓是亳州曹氏家族墓群中的汉代墓葬游览点。考古清理发现铭文砖及玉器、铜车马饰、陶制生活器等文物，可了解汉代墓葬形制与丧葬文化。是否开放墓室和具体参观安排以景区公告为准。"
+      },
+      {
+        "name": "林拥城萌宠乐园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+            "https://www.sohu.com/a/448532881_120770957",
+            "https://touch.piao.qunar.com/touch/detail.htm?id=521339",
+            "https://www.sohu.com/a/986343942_121106832"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903274",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "亳州市",
+            "searched_name": "林拥城萌宠乐园",
+            "batch_candidates": [
+              "曹腾墓",
+              "张园汉墓",
+              "林拥城萌宠乐园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "117|林拥城萌宠乐园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "117|林拥城萌宠乐园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "sources": [
+      "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+      "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202406/t20240611_6462673.htm",
+      "https://wlt.fujian.gov.cn/wldt/btdt/202609/t20260922_7216935.htm",
+      "https://www.openstreetmap.org/node/12250212765"
+    ],
+    "checked_names": [
+      "鼓浪屿",
+      "园林植物园",
+      "园林博览苑",
+      "胡里山炮台",
+      "天竺山森林公园",
+      "集美鳌园",
+      "青礁慈济祖宫",
+      "北辰山",
+      "同安影视城",
+      "金光湖",
+      "英雄三岛",
+      "双龙潭",
+      "厦门奥林匹克博物馆"
+    ],
+    "note": "前六项已存在的同义名称不新增；鼓浪屿内部花园不拆分。",
+    "candidates": [
+      {
+        "name": "天竺山森林公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://you.ctrip.com/sight/xiamen21/8646.html",
+            "https://www.xmtzs.com/index/about/index.html",
+            "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82",
+            "https://lyj.fujian.gov.cn/zwgk/czzj/czyjs/202409/P020240912586435706175.pdf",
+            "https://www.xmrd.gov.cn/rdlz/rdgb/2019/201905/P020241016591114098650.pdf",
+            "https://zh.wikipedia.org/wiki/%E5%A4%A9%E7%AB%BA%E5%B1%B1"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903279",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "天竺山森林公园",
+            "batch_candidates": [
+              "天竺山森林公园",
+              "青礁慈济祖宫",
+              "北辰山旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|天竺山森林公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|天竺山森林公园",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "青礁慈济祖宫",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://xm.bendibao.com/tour/20221123/79436.shtm",
+            "https://xm.fjdsfzw.org.cn/2025-01-13/content_154059.html",
+            "https://nynct.fujian.gov.cn/ztzl/xxny/202203/t20220328_5868055.htm",
+            "https://minnan.wenlvti.net/details/artifact?id=527",
+            "https://paper.people.com.cn/rmrbhwb/html/2013-11/22/content_1328495.htm",
+            "https://m.wenda.bendibao.com/tour/72066.shtm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903284",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "青礁慈济祖宫",
+            "batch_candidates": [
+              "天竺山森林公园",
+              "青礁慈济祖宫",
+              "北辰山旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|青礁慈济祖宫",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|青礁慈济祖宫",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "北辰山旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903290",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "北辰山旅游景区",
+            "batch_candidates": [
+              "天竺山森林公园",
+              "青礁慈济祖宫",
+              "北辰山旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|北辰山旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|北辰山旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "同安影视城",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "影视城真实存在，本轮只检索到邻近同名公交站，未找到可直接采用的入口。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://you.ctrip.com/sight/xiamen21/8666.html",
+            "https://www.maigoo.com/citiao/111538.html",
+            "https://xm.bendibao.com/tour/2019322/56965.shtm",
+            "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82",
+            "https://zh.wikipedia.org/wiki/%E5%90%8C%E5%AE%89%E5%8C%BA",
+            "https://oss.fjhb.org/202204/22/094515/7297/%E8%A5%BF%E6%9F%AF%E5%8D%97%E5%85%AC%E7%A4%BA%E6%9C%AC.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903295",
+          "coordinate_review_note": "拒绝OSM node13381466169/13383513806，两条均为bus_stop。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "同安影视城",
+            "batch_candidates": [
+              "同安影视城",
+              "金光湖生态旅游区",
+              "英雄三岛战地观光园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|同安影视城",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|同安影视城",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "金光湖生态旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://www.maigoo.com/citiao/111621.html",
+            "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903301",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "金光湖生态旅游区",
+            "batch_candidates": [
+              "同安影视城",
+              "金光湖生态旅游区",
+              "英雄三岛战地观光园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|金光湖生态旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|金光湖生态旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "英雄三岛战地观光园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://you.ctrip.com/sight/xiamen21/48772.html",
+            "https://xm.bendibao.com/tour/20221220/80656.shtm",
+            "https://news.xmnn.cn/xmxw/202209/t20220926_30927.html",
+            "https://www.xmrd.gov.cn/rdlz/dbjygk/dbjy/201604/t20160420_238911.htm",
+            "https://www.sohu.com/a/514593627_121106994",
+            "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/flsxkmh/202604/t20260424_7130840.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903307",
+          "coordinate_review_note": "已在线读取OSM way993455721完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "英雄三岛战地观光园",
+            "batch_candidates": [
+              "同安影视城",
+              "金光湖生态旅游区",
+              "英雄三岛战地观光园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|英雄三岛战地观光园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|英雄三岛战地观光园",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "双龙潭生态运动景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+            "https://you.ctrip.com/sight/xiamen21/119091.html",
+            "https://wlt.fujian.gov.cn/zwgk/ztzl/dmtzl/dzkw/202209/P020220930313552197375.pdf",
+            "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+          ],
+          "checked_at": "2026-10-02T18:48:31.903312",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "厦门市",
+            "searched_name": "双龙潭生态运动景区",
+            "batch_candidates": [
+              "双龙潭生态运动景区",
+              "仙姑顶景区",
+              "天沐温泉度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "121|双龙潭生态运动景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "121|双龙潭生态运动景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "厦门奥林匹克博物馆",
+        "status": "approved",
+        "description": "厦门奥林匹克博物馆是奥林匹克主题博物馆，展出奥运火炬、奖牌、邮票、徽章、纪念币和吉祥物等藏品，介绍奥林匹克发展历程并传播奥林匹克精神。",
+        "description_source_url": "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202406/t20240611_6462673.htm",
+        "longitude": 118.1888135,
+        "latitude": 24.4805946,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/12250212765",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文", "研学", "摄影"],
+        "duration_minutes": 90,
+        "independence_note": "福建省政府资料确认其为独立奥林匹克专题博物馆，福建省文物局2026年活动报道再次记录该馆举办公众活动；OSM具名馆舍node用于到达定位。与厦门市博物馆、华侨博物院和陈嘉庚纪念馆不同址、不同主题。",
+        "aliases": [],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "省政府资料确认博物馆身份、藏品与主题，省文物局2026年活动报道确认近期公众活动；公开地图具名馆舍POI定位，并与厦门现有博物馆去重。",
+          "source_urls": [
+            "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202406/t20240611_6462673.htm",
+            "https://wlt.fujian.gov.cn/wldt/btdt/202609/t20260922_7216935.htm",
+            "https://www.openstreetmap.org/node/12250212765"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 118.1888135,24.4805946；取具名博物馆POI点，不声称为游客入口实测点。"
+        }
+      }
+    ]
+  }
+]

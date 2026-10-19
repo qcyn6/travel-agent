@@ -52,9 +52,9 @@ class ConversationRepository:
         if self.owner_id is not None:
             query = query.where(ConversationRow.user_id == self.owner_id)
         if with_messages:
-            query = query.options(selectinload(ConversationRow.messages))
+            query = query.options(selectinload(ConversationRow.messages)).execution_options(populate_existing=True)
         if for_update:
-            query = query.with_for_update()
+            query = query.with_for_update().execution_options(populate_existing=True)
         return self.session.scalar(query)
 
     def list_recent(self, *, limit: int = 30) -> list[ConversationRow]:
@@ -81,6 +81,9 @@ class ConversationRepository:
             # Keep legacy records readable without changing their stored activity time.
             row.title = _title_from_message(first_user_message.content)
         return rows
+
+    def get_for_confirmation(self, conversation_id):
+        return self.get(conversation_id, with_messages=True, for_update=True)
 
     def delete(self, conversation_id: str) -> bool:
         row = self.get(conversation_id)
@@ -119,6 +122,20 @@ class ConversationRepository:
             self.session.refresh(row)
         else:
             self.session.flush()
+
+    def save_agent_requirement(self, row, expected, requirement) -> bool:
+        """Reject a turn based on a draft another request has since replaced."""
+        from backend.models.conversation import load_requirement_draft
+
+        query = select(ConversationRow).where(ConversationRow.id == row.id)
+        if self.owner_id is not None:
+            query = query.where(ConversationRow.user_id == self.owner_id)
+        latest = self.session.scalar(query.with_for_update().execution_options(populate_existing=True))
+        if latest is None or load_requirement_draft(latest.requirement_draft) != expected:
+            self.session.rollback()
+            return False
+        self.save_requirement(latest, requirement, confirmed=False)
+        return True
 
     def add_message(self, row: ConversationRow, *, role: str, content: str) -> ConversationMessageRow:
         # Serialize sequence allocation per conversation. The unique constraint

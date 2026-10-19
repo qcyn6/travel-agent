@@ -5,7 +5,8 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import Mapping, Sequence
-from urllib.parse import urlparse
+from backend.poi.photos import first_photo_url as _first_photo_url
+from backend.poi.photos import safe_photo_url as _safe_photo_url
 
 import httpx
 
@@ -146,27 +147,6 @@ def build_attraction_photo_service(settings, *, cache=None):
         # search results without introducing another database/config field.
         cache_ttl_seconds=max(604800, settings.redis_poi_ttl_seconds),
     )
-
-
-def _first_photo_url(value: object) -> str | None:
-    if isinstance(value, Mapping):
-        return _safe_photo_url(value.get("url"))
-    if not isinstance(value, list):
-        return None
-    for item in value:
-        if isinstance(item, Mapping):
-            url = _safe_photo_url(item.get("url"))
-            if url:
-                return url
-    return None
-
-
-def _safe_photo_url(value: object) -> str | None:
-    if not isinstance(value, str) or not value.strip():
-        return None
-    normalized = value.strip()
-    parsed = urlparse(normalized)
-    return normalized if parsed.scheme in {"http", "https"} and parsed.netloc else None
 
 
 def _normalize_name(value: str) -> str:

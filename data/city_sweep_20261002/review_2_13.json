@@ -1,0 +1,199 @@
+[
+  {
+    "id": 191,
+    "city": "长沙市",
+    "province": "湖南省",
+    "sources": [
+      "https://zrzyt.hunan.gov.cn/xxgk/qtxx/sxfc/201703/t20170328_4166469.html",
+      "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/tzgg/201904/t20190417_5316826.html",
+      "https://www.tgydjq.com/pc-website/jxjddetail.html?id=jxjd_2"
+    ],
+    "checked_names": [
+      "湖南省地质博物馆",
+      "长沙铜官窑国家考古遗址公园",
+      "长沙铜官窑文化旅游度假区",
+      "湖南美术馆"
+    ],
+    "note": "湖南省地质博物馆是天心区独立馆舍，与现有湖南博物院、长沙市博物馆不同；铜官窑考古遗址公园可能被现有铜官窑度假区覆盖，本轮不加。湖南美术馆位于靳江路，是独立公共美术场馆，与现有李自健美术馆、谢子龙影像艺术馆不同。",
+    "candidates": [
+      {
+        "name": "湖南省地质博物馆",
+        "status": "approved",
+        "description": "长沙天心区的地学类博物馆，通过矿物、化石与地球演化展厅介绍湖南自然资源及地质科学。",
+        "description_source_url": "https://zrzyt.hunan.gov.cn/xxgk/qtxx/sxfc/201703/t20170328_4166469.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "不同渠道复核：官方现址与文博指南具名馆舍地图点一致，GCJ-02反算WGS84；详情见research_round_20261002C。",
+          "source_urls": [
+            "https://zrzyt.hunan.gov.cn/xxgk/qtxx/sxfc/201703/t20170328_4166469.html",
+            "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/tzgg/201904/t20190417_5316826.html",
+            "https://www.tgydjq.com/pc-website/jxjddetail.html?id=jxjd_2",
+            "https://www.openstreetmap.org/way/492256966",
+            "https://www.iwenbo.fun/museum/3533.html",
+            "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/jgzn/zsjg/202002/t20200225_11191130.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "独立地质科普馆；省自然资源厅现址杉木冲路49号与文博指南相合。具名TMap点位转换WGS84后落在OSM同名馆舍way/492256966内，非旧馆也非实测入口。"
+        },
+        "longitude": 112.9769128,
+        "latitude": 28.1099931,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3533.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "自然",
+          "研学"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "独立地质科普馆；省自然资源厅现址杉木冲路49号与文博指南相合。具名TMap点位转换WGS84后落在OSM同名馆舍way/492256966内，非旧馆也非实测入口。",
+        "aliases": [],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "独立馆舍的具名公开地图标记与官方现址吻合；GCJ-02反算WGS84，非大景区质心。",
+          "source_urls": [
+            "https://zrzyt.hunan.gov.cn/xxgk/qtxx/sxfc/201703/t20170328_4166469.html",
+            "https://www.iwenbo.fun/museum/3533.html",
+            "https://www.openstreetmap.org/way/492256966",
+            "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/jgzn/zsjg/202002/t20200225_11191130.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "独立地质科普馆；省自然资源厅现址杉木冲路49号与文博指南相合。具名TMap点位转换WGS84后落在OSM同名馆舍way/492256966内，非旧馆也非实测入口。",
+          "raw_coordinate_evidence_file": "data/city_sweep_20261002/cache_2_iwenbo_roundC.json"
+        }
+      },
+      {
+        "name": "湖南美术馆",
+        "status": "approved",
+        "description": "湖南美术馆位于长沙岳麓区靳江路，设有多个展厅并举办美术展览、馆藏展示和公共教育活动，呈现湖南及国内美术创作与艺术发展。",
+        "description_source_url": "https://www.hnmsg.net/h/7/20250918/433.html",
+        "longitude": 112.944325,
+        "latitude": 28.1560194,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/983566659",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "人文",
+          "建筑",
+          "摄影",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "湖南美术馆官网确认馆址为长沙市岳麓区靳江路2号，并持续开展展览及公共教育；OSM way/983566659具名为湖南省美术馆，对应现馆建筑范围，坐标为WGS84代表点，非入口实测坐标。与现有李自健美术馆和谢子龙影像艺术馆是不同馆舍。",
+        "aliases": [
+          "湖南省美术馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "湖南美术馆官网确认现馆名称、靳江路地址、展厅及公共教育功能；OSM具名馆舍范围与馆址一致；与同城已收录美术馆不重名且为独立建筑。",
+          "source_urls": [
+            "https://www.hnmsg.net/default.php?a=list&channel_id=18&mod=channel&sp=1&temp=channel_18",
+            "https://www.hnmsg.net/h/7/20250918/433.html",
+            "https://www.openstreetmap.org/way/983566659"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情返回名称“湖南省美术馆”，坐标(112.944325,28.1560194)；与官网靳江路2号现址相合，为具名馆舍范围WGS84代表点，非入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "city": "邵阳市",
+    "province": "湖南省",
+    "sources": [
+      "https://lyj.hunan.gov.cn/xxgk_71167/gzdt/xlkb/xsqxx/201910/t20191017_10485974.html",
+      "https://lyj.hunan.gov.cn/lyj/ztzl/gdzt/zrbhq/201512/t20151227_2587421.html"
+    ],
+    "checked_names": [
+      "绥宁黄桑生态旅游区",
+      "黄桑国家级自然保护区",
+      "南山风景名胜区",
+      "花瑶古寨"
+    ],
+    "note": "黄桑生态旅游区位于绥宁，与现有崀山、南山、花瑶古寨分离；须锁定开放景区游客入口，保护区核心区不作为游览目的地。",
+    "candidates": [
+      {
+        "name": "绥宁黄桑生态旅游区",
+        "status": "pending_coordinates",
+        "description": "绥宁以森林、峡谷和瀑布为特色的生态旅游区，也展示当地民族文化。",
+        "description_source_url": "https://lyj.hunan.gov.cn/xxgk_71167/gzdt/xlkb/xsqxx/201910/t20191017_10485974.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://lyj.hunan.gov.cn/xxgk_71167/gzdt/xlkb/xsqxx/201910/t20191017_10485974.html",
+            "https://lyj.hunan.gov.cn/lyj/ztzl/gdzt/zrbhq/201512/t20151227_2587421.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "city": "益阳市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.yiyang.gov.cn/yiyang/324/330/334/content_62418.html",
+      "https://www.yiyang.gov.cn/yysscjgj/13827/13830/content_2187860.html"
+    ],
+    "checked_names": [
+      "安化茶马古道风景区",
+      "关山峡谷游览区",
+      "桃花江国家森林公园"
+    ],
+    "note": "安化茶马古道与现有桃花江森林公园、益阳奥林匹克公园、山乡巨变第一村分离；关山峡谷为其单元景区，不另列。",
+    "candidates": [
+      {
+        "name": "安化茶马古道风景区",
+        "status": "pending_coordinates",
+        "description": "安化县以古道、茶文化和山谷景观为主题的景区，可了解历史茶马贸易。",
+        "description_source_url": "https://www.yiyang.gov.cn/yiyang/324/330/334/content_62418.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.yiyang.gov.cn/yiyang/324/330/334/content_62418.html",
+            "https://www.yiyang.gov.cn/yysscjgj/13827/13830/content_2187860.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "city": "娄底市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.hunan.gov.cn/hnszf/jxxx/szmp/lds/szmp.html"
+    ],
+    "checked_names": [
+      "波月洞",
+      "湄江风景区",
+      "大熊山森林公园",
+      "水府庙水库"
+    ],
+    "note": "波月洞位于冷水江，与现有湄江地质公园、梅山龙宫等不是同一个溶洞；但省政府页面是概要，详情与开放情况需复核。",
+    "candidates": [
+      {
+        "name": "波月洞",
+        "status": "pending_coordinates",
+        "description": "冷水江市的岩溶洞穴游览地，为娄底山水旅游资源之一。",
+        "description_source_url": "https://www.hunan.gov.cn/hnszf/jxxx/szmp/lds/szmp.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.hunan.gov.cn/hnszf/jxxx/szmp/lds/szmp.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  }
+]

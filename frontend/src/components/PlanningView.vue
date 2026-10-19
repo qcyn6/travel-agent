@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import type { DestinationChoice, PlanningStep, RequirementDraft } from '../types'
+import type { PlanningStep, RequirementDraft } from '../types'
 
 const props = withDefaults(defineProps<{
   steps: PlanningStep[]
-  choice: DestinationChoice | null
   error: string
   elapsedSeconds?: number
   busy?: boolean
@@ -15,7 +14,6 @@ const props = withDefaults(defineProps<{
   requirement: null,
 })
 defineEmits<{
-  choose: [scope: 'single_city' | 'multi_city']
   retry: []
   back: []
 }>()
@@ -52,10 +50,6 @@ function friendlyError(message: string) {
   const [, city, ready, target] = match
   const missing = Math.max(1, Number(target) - Number(ready))
   return `${city}目前只整理到 ${ready} 个符合条件的景点，还需要 ${missing} 个才能生成完整行程。`
-}
-
-function stayText(stays: { city: string; days: number }[] | null) {
-  return stays?.map((item) => `${item.city} ${item.days}天`).join(' · ') || ''
 }
 
 function statusText(status: PlanningStep['status']) {
@@ -114,19 +108,19 @@ const activityHint = computed(() => activeStep.value?.label || (props.error ? '�
 <template>
   <main class="planning-screen">
     <section class="planning-card glass-panel">
-      <div v-if="!choice && !error" class="compass-loader" aria-hidden="true">
+      <div v-if="!error" class="compass-loader" aria-hidden="true">
         <span></span><i></i>
       </div>
       <span class="eyebrow">CRAFTING YOUR JOURNEY</span>
-      <h1>{{ choice ? '选择更适合你的旅行方式' : error ? '旅程准备遇到问题' : '正在为你绘制旅程' }}</h1>
-      <p v-if="!choice">{{ error ? '已经保留已完成的准备工作，你可以直接重试或回到对话调整。' : '我们正在根据你的偏好，整理景点、路线和每天的时间安排。' }}</p>
+      <h1>{{ error ? '旅程准备遇到问题' : '正在为你绘制旅程' }}</h1>
+      <p>{{ error ? '已经保留已完成的准备工作，你可以直接重试或回到对话调整。' : '我们正在根据你的偏好，整理景点、路线和每天的时间安排。' }}</p>
       <div v-if="requirement" class="planning-profile" aria-label="本次安排信息">
         <span class="planning-profile-label">本次安排</span>
         <span class="planning-profile-chip">{{ destinationLabel }}</span>
         <span v-if="requirement.days !== null" class="planning-profile-chip">{{ requirement.days }}天</span>
         <span v-if="preferenceLabel" class="planning-profile-chip">{{ preferenceLabel }}</span>
       </div>
-      <div v-if="!choice" class="planning-meta" aria-live="polite">
+      <div class="planning-meta" aria-live="polite">
         <span v-if="completedSteps">已完成 {{ completedSteps }} 项</span>
         <span v-if="completedSteps" aria-hidden="true">·</span>
         <span>{{ error ? '本次生成已停止' : activityHint }}</span>
@@ -134,22 +128,7 @@ const activityHint = computed(() => activeStep.value?.label || (props.error ? '�
         <span>{{ elapsedText(props.elapsedSeconds) }}</span>
       </div>
 
-      <div v-if="choice" class="choice-grid">
-        <button class="choice-card" type="button" :disabled="props.busy" @click="$emit('choose', 'single_city')">
-          <span class="choice-index">01</span>
-          <strong>一个城市慢慢玩</strong>
-          <p>{{ stayText(choice.options.city_stays) }}</p>
-          <em>选择单城市方案 →</em>
-        </button>
-        <button class="choice-card featured" type="button" :disabled="props.busy" @click="$emit('choose', 'multi_city')">
-          <span class="choice-index">02</span>
-          <strong>多个城市都看看</strong>
-          <p>{{ stayText(choice.options.alternative_city_stays) }}</p>
-          <em>选择多城市方案 →</em>
-        </button>
-      </div>
-
-      <ol v-else class="progress-list" aria-live="polite">
+      <ol class="progress-list" aria-live="polite">
         <li v-for="item in displaySteps" :key="item.step" :class="item.status">
           <span class="progress-dot"><i></i></span>
           <span>{{ item.label }}</span>

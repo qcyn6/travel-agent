@@ -7,6 +7,35 @@ import ChatPanel from './ChatPanel.vue'
 
 
 describe('ChatPanel', () => {
+  it('shows a stop button and query status only for an active ordinary reply', async () => {
+    const wrapper = mount(ChatPanel, { props: {
+      messages: [{ role: 'assistant', content: '', streaming: true, progress: '正在查询天气' }],
+      suggestions: [], sending: true, mode: 'general',
+    } })
+    expect(wrapper.text()).toContain('正在查询天气')
+    await wrapper.get('[aria-label="停止生成"]').trigger('click')
+    expect(wrapper.emitted('cancel')).toHaveLength(1)
+    await wrapper.setProps({ mode: 'planning' })
+    expect(wrapper.find('[aria-label="停止生成"]').exists()).toBe(false)
+    wrapper.unmount()
+  })
+
+  it('does not pull the reader to the bottom when they scroll up', async () => {
+    const wrapper = mount(ChatPanel, { props: {
+      messages: [{ role: 'assistant', content: '旧消息' }], suggestions: [], sending: false, mode: 'general',
+    } })
+    const list = wrapper.get('.message-list')
+    const element = list.element as HTMLElement
+    Object.defineProperty(element, 'scrollHeight', { value: 2000, configurable: true })
+    Object.defineProperty(element, 'clientHeight', { value: 500, configurable: true })
+    element.scrollTop = 0
+    element.scrollTo = vi.fn()
+    await list.trigger('scroll')
+    await wrapper.setProps({ messages: [{ role: 'assistant', content: '新消息' }] })
+    await nextTick()
+    expect(element.scrollTo).not.toHaveBeenCalled()
+    wrapper.unmount()
+  })
   it('starts planning when the conversational confirmation action is clicked', async () => {
     const wrapper = mount(ChatPanel, {
       props: {

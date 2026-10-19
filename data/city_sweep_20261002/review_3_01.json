@@ -1,0 +1,516 @@
+[
+  {
+    "id": 56,
+    "city": "盘锦市",
+    "province": "辽宁省",
+    "sources": [
+      "https://www.panjin.gov.cn/html/2535/2026-06-12/content-151945.html"
+    ],
+    "checked_names": [
+      "红海滩风景廊道",
+      "鼎翔生态旅游区",
+      "辽河碑林",
+      "北旅田园·黑风关古镇"
+    ],
+    "note": "红海滩、鼎翔、辽河碑林已有；黑风关古镇待核是否独立于既有庄园及其游客入口。",
+    "candidates": [
+      {
+        "name": "北旅田园·黑风关古镇",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.panjin.gov.cn/html/2535/2026-06-12/content-151945.html","https://www.pjrd.gov.cn/2026_05/21_15/content-569452.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "盘锦市文旅产品之一，结合古镇风貌与田园休闲游览。",
+        "description_source_url": "https://www.panjin.gov.cn/html/2535/2026-06-12/content-151945.html"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "city": "长春市",
+    "province": "吉林省",
+    "sources": [
+      "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202512/t20251226_9383127.html"
+    ],
+    "checked_names": [
+      "神鹿峰旅游度假区",
+      "吉林省自然博物馆"
+    ],
+    "note": "神鹿峰已在库；自然博物馆不同于现有长春博物馆，需核馆舍与开放状态。",
+    "candidates": [
+      {
+        "name": "吉林省自然博物馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html","https://www.jl.gov.cn/ggzy/zfcg/cggg/202609/t20260918_9716148.html","https://www.openstreetmap.org/way/700748108","https://www.iwenbo.fun/museum/797.html"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/700748108具名“自然历史博物馆”tourism=museum的小型馆舍面，中心点与iwenbo具名吉林省自然博物馆标记逆转WGS84后约20米；2026省级采购文件仍确认净月大街2556号。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://www.jl.gov.cn/ggzy/zfcg/cggg/202609/t20260918_9716148.html","description_source_url":"https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html","marker_source_url":"https://www.iwenbo.fun/museum/797.html","coordinate_source_url":"https://www.openstreetmap.org/way/700748108","coordinate_method":"OSM way/700748108具名“自然历史博物馆”tourism=museum的小型馆舍面，中心点与iwenbo具名吉林省自然博物馆标记逆转WGS84后约20米；2026省级采购文件仍确认净月大街2556号。"},
+        "description": "吉林省自然博物馆位于长春净月大街，是与东北师范大学自然博物馆一馆两牌的综合性自然历史博物馆，可参观自然与生态主题展览。",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html",
+        "longitude": 125.4260396,
+        "latitude": 43.8269361,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/700748108",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","自然","研学"],
+        "duration_minutes": 120,
+        "independence_note": "官方现馆址净月大街2556号；OSM具名馆舍与文博指南标记互证，不取5.4公顷园区质心；与在库长春其他博物馆不重叠。",
+        "aliases": ["东北师范大学自然博物馆"]
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "city": "通化市",
+    "province": "吉林省",
+    "sources": [
+      "https://www.tonghua.gov.cn/zwgk/thlb/thdt/202607/t20260717_778238.html"
+    ],
+    "checked_names": [
+      "鸭绿江国门景区",
+      "高句丽文物古迹景区"
+    ],
+    "note": "鸭绿江国门已有；高句丽遗址为另一个旅游区，但多个遗迹分散，需确认统一游客入口或拆分原则。",
+    "candidates": [
+      {
+        "name": "高句丽文物古迹景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.tonghua.gov.cn/zwgk/thlb/thdt/202607/t20260717_778238.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "通化市官方线路列出的集安世界文化遗产景区，以高句丽历史遗存参观为核心。",
+        "description_source_url": "https://www.tonghua.gov.cn/zwgk/thlb/thdt/202607/t20260717_778238.html"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "city": "延边朝鲜族自治州",
+    "province": "吉林省",
+    "sources": [
+      "https://www.yanbian.gov.cn/zw/ybyw/202601/t20260122_565938.html"
+    ],
+    "checked_names": [
+      "延吉帽儿山文化旅游区",
+      "中国朝鲜族民俗园",
+      "延边恐龙博物馆"
+    ],
+    "note": "帽儿山已收录；民俗园需核与帽儿山旅游区边界，避免父子重叠。",
+    "candidates": [
+      {
+        "name": "中国朝鲜族民俗园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；Photon同名命中OSM node/11422182515，类型是公交站而非景区入口，拒绝采用。","source_urls":["https://www.yanbian.gov.cn/zw/ybyw/202601/t20260122_565938.html","https://zhuanti.mct.gov.cn/xczgshsh2023/ngfp/detail_xl/3730.html"],"checked_at":"2026-10-02","coordinate_review_note":"Photon同名命中OSM node/11422182515，类型是公交站而非景区入口，拒绝采用。"},
+        "coordinate_review_note": "Photon同名命中OSM node/11422182515，类型是公交站而非景区入口，拒绝采用。",
+        "description": "延吉市民族文化体验景区，可体验朝鲜族民俗展示与相关文旅活动。",
+        "description_source_url": "https://www.yanbian.gov.cn/zw/ybyw/202601/t20260122_565938.html"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "city": "鹤岗市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.hgds.gov.cn/dongshanqurenminzhengfu/ldsms/202408/59455.shtml"
+    ],
+    "checked_names": [
+      "鹤岗市博物馆",
+      "东山体育公园",
+      "桃花源"
+    ],
+    "note": "现库无博物馆；当地回复亦提及体育公园和桃花源，但性质和可达点未核，本轮只列博物馆。",
+    "candidates": [
+      {
+        "name": "鹤岗市博物馆",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图相似命中为广东鹤山市博物馆，城市不符；不可误用。","source_urls":["https://www.hgds.gov.cn/dongshanqurenminzhengfu/ldsms/202408/59455.shtml","https://www.ljjgdj.gov.cn/system/202403/124468.html"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图相似命中为广东鹤山市博物馆，城市不符；不可误用。"},
+        "research_round_20261002C": {"outcome":"unresolved","checked_at":"2026-10-02","reason":"文博指南具名标记页面写东山区光宇路与宇南街交叉口，黑龙江省直机关工委公布现馆址为兴安区宇南路3号，行政区不一致；未证实同一现馆，拒绝以地图点入库。","source_urls":["https://www.iwenbo.fun/museum/980.html","https://www.ljjgdj.gov.cn/system/202403/124468.html"]},
+        "coordinate_review_note": "第二渠道找到具名标记，但页面东山区地址与官方兴安区宇南路3号不符；不使用此点。",
+        "description": "鹤岗市博物馆新馆设有《自然鹤岗》生态资源陈列与《人文鹤岗》历史文化陈列，并举办专题展览。",
+        "description_source_url": "https://www.ljjgdj.gov.cn/system/202403/124468.html"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "city": "佳木斯市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.jms.gov.cn/jms/c100014/202412/c04_955.shtml"
+    ],
+    "checked_names": [
+      "四丰山风景旅游区",
+      "佳木斯沿江公园"
+    ],
+    "note": "两者均不在现有五条内，需核园区范围与游客入口。",
+    "candidates": [
+      {
+        "name": "四丰山风景旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.jms.gov.cn/jms/c100014/202412/c04_955.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "佳木斯市政府列出的市区山地景区，可作近郊自然观光。",
+        "description_source_url": "https://www.jms.gov.cn/jms/c100014/202412/c04_955.shtml"
+      },
+      {
+        "name": "佳木斯沿江公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.jms.gov.cn/jms/c100014/202412/c04_955.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "位于佳木斯市区北部的沿江公园，兼有滨水湿地、绿地及步道休闲空间。",
+        "description_source_url": "https://www.jms.gov.cn/jms/c100014/202412/c04_955.shtml"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "city": "绥化市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://suihua.gov.cn/sh/szbf/202607/c12_237721.shtml"
+    ],
+    "checked_names": [
+      "千鹤岛旅游风景区",
+      "黄崖子民俗村",
+      "安达古大湖湿地公园"
+    ],
+    "note": "千鹤岛已收录；黄崖子与现有景点不同址，需核正式景区范围及到达点。",
+    "candidates": [
+      {
+        "name": "黄崖子民俗村",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://suihua.gov.cn/sh/szbf/202607/c12_237721.shtml","https://www.suihua.gov.cn/sh/xsdtx/202405/c12_185787.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "绥化兰西县的民俗乡村旅游节点，围绕关东农耕和乡土体验组织游览。",
+        "description_source_url": "https://suihua.gov.cn/sh/szbf/202607/c12_237721.shtml"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "city": "无锡市",
+    "province": "江苏省",
+    "sources": [
+      "https://crtt.wuxi.gov.cn/doc/2024/09/24/4272307.shtml"
+    ],
+    "checked_names": [
+      "三国水浒景区",
+      "宜兴云湖旅游景区",
+      "无锡市雪浪山生态景观园"
+    ],
+    "note": "现有鼋头渚、蠡园、影都等与三国水浒景区不同；需核影视城两个园区是否按整体记录。",
+    "candidates": [
+      {
+        "name": "三国水浒景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://crtt.wuxi.gov.cn/doc/2024/09/24/4272307.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "无锡市旅游等级景区名录中的影视主题景区。",
+        "description_source_url": "https://crtt.wuxi.gov.cn/doc/2024/09/24/4272307.shtml"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "city": "南通市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.nantong.gov.cn/ntsrmzf/fjms2018/content/a63b4b34-da31-4522-8598-fae910934e77.html"
+    ],
+    "checked_names": [
+      "如皋水绘园",
+      "南通洲际绿博园",
+      "余西古镇"
+    ],
+    "note": "水绘园、洲际绿博园已有；余西古镇与其不同，待核古镇核心区到达坐标。",
+    "candidates": [
+      {
+        "name": "余西古镇",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图只命中余东古镇，名称不同；待核是否同一街区或需更正名称。","source_urls":["https://www.nantong.gov.cn/ntsrmzf/fjms2018/content/a63b4b34-da31-4522-8598-fae910934e77.html"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图只命中余东古镇，名称不同；待核是否同一街区或需更正名称。"},
+        "coordinate_review_note": "开放地图只命中余东古镇，名称不同；待核是否同一街区或需更正名称。",
+        "description": "南通市政府风景名胜栏目列出的历史古镇游览地。",
+        "description_source_url": "https://www.nantong.gov.cn/ntsrmzf/fjms2018/content/a63b4b34-da31-4522-8598-fae910934e77.html"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "city": "扬州市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.jiangsu.gov.cn/art/2024/2/18/art_33718_11154625.html"
+    ],
+    "checked_names": [
+      "个园",
+      "北湖湿地公园",
+      "茱萸湾海洋馆"
+    ],
+    "note": "个园已在库；北湖湿地公园不在现有扬州条目中，需核入口。茱萸湾海洋馆为其他园区内部设施，不单列。",
+    "candidates": [
+      {
+        "name": "北湖湿地公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.jiangsu.gov.cn/art/2024/2/18/art_33718_11154625.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "扬州春节期间举办民俗活动的湿地公园，可进行滨水生态休闲游览。",
+        "description_source_url": "https://www.jiangsu.gov.cn/art/2024/2/18/art_33718_11154625.html"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "city": "合肥市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.hfyaohai.gov.cn/zwdt/bmts/10933545.html"
+    ],
+    "checked_names": [
+      "合肥植物园",
+      "合肥滨湖国家森林公园",
+      "中国（合肥）非物质文化遗产园"
+    ],
+    "note": "政府赏花线路提及的三处均已收录；合肥现库条目较多，先不拆分园内子点。",
+    "candidates": []
+  },
+  {
+    "id": 108,
+    "city": "马鞍山市",
+    "province": "安徽省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=34911"
+    ],
+    "checked_names": [
+      "长江采石矶文化生态旅游区",
+      "采石矶",
+      "太白楼"
+    ],
+    "note": "文化和旅游部说明太白楼等属采石矶景区内部；现库同时有采石矶与其上级旅游区，需优先去重，不能再拆子点。",
+    "candidates": []
+  },
+  {
+    "id": 112,
+    "city": "黄山市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.huangshan.gov.cn/zwgk/public/6615714/10322156.html"
+    ],
+    "checked_names": [
+      "齐云山",
+      "花山谜窟",
+      "屯溪老街",
+      "牯牛降"
+    ],
+    "note": "齐云山、花山谜窟、屯溪老街已有；牯牛降未见现库，需核黄山辖区内景区入口与跨地范围。",
+    "candidates": [
+      {
+        "name": "牯牛降风景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。","source_urls":["https://www.huangshan.gov.cn/zwgk/public/6615714/10322156.html","https://www.huangshan.gov.cn/zxzx/zwyw/8407257.html"],"checked_at":"2026-10-02","coordinate_review_note":"已作公开地图名称核查，但尚无经复核的游客入口或小型馆舍坐标；不能以宽泛中心替代。"},
+        "description": "黄山市政府介绍的皖南山地自然景区，以森林与山岳游览为主要特色。",
+        "description_source_url": "https://www.huangshan.gov.cn/zwgk/public/6615714/10322156.html"
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "city": "六安市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.luan.gov.cn/zjla/lasq/lyp/index.html"
+    ],
+    "checked_names": [
+      "东石笋",
+      "大华山",
+      "皖西烈士陵园"
+    ],
+    "note": "现库仅万佛湖与天堂寨；东石笋独立，待核位置及入口。",
+    "candidates": [
+      {
+        "name": "东石笋风景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.luan.gov.cn/zjla/lasq/lyp/index.html","https://www.luan.gov.cn/zjla/lyla/gjslgy/10038406.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description": "六安市文旅部门列出的近郊山地游览景点。",
+        "description_source_url": "https://www.luan.gov.cn/zjla/lasq/lyp/index.html"
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "city": "福州市",
+    "province": "福建省",
+    "sources": [
+      "https://wlj.fuzhou.gov.cn/zwgk/lyfg/202105/P020210518375281889911.pdf",
+      "https://www.fuzhou.gov.cn/zgfzhd/znhd/swwj/wwsz/202407/t20240709_4856680.htm",
+      "https://news.fznews.com.cn/fzyw/20260929/rnl4238381.shtml",
+      "https://www.openstreetmap.org/way/606130417"
+    ],
+    "checked_names": [
+      "中国船政文化景区",
+      "福州国家森林公园",
+      "旗山森林人家旅游区",
+      "福州市博物馆"
+    ],
+    "note": "船政和国家森林公园已收录；旗山仍待具名到达点；福州市博物馆为晋安区文博路8号的独立馆舍，与福建博物院及船政文化景区不同址。",
+    "candidates": [
+      {
+        "name": "旗山森林人家旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlj.fuzhou.gov.cn/zwgk/lyfg/202105/P020210518375281889911.pdf","https://wlj.fuzhou.gov.cn/zwgk/lyfg/202405/P020240527587459850848.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "福州市A级景区名录列出的旗山森林休闲旅游区，设有配套住宿。",
+        "description_source_url": "https://wlj.fuzhou.gov.cn/zwgk/lyfg/202105/P020210518375281889911.pdf"
+      },
+      {
+        "name": "福州市博物馆",
+        "status": "approved",
+        "description": "福州市博物馆创建于1987年，承担文物征集、收藏、保护、鉴赏与研究，通过陈列展览和文化交流展示福州历史及地方文化，馆址位于晋安区文博路8号。",
+        "description_source_url": "https://www.fuzhou.gov.cn/zgfzhd/znhd/swwj/wwsz/202407/t20240709_4856680.htm",
+        "longitude": 119.321289,
+        "latitude": 26.0671763,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/606130417",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文", "研学"],
+        "duration_minutes": 120,
+        "independence_note": "福州市政府文物信息确认馆址为晋安区文博路8号，2026年国庆开放公告再次确认正常对外开放；OSM具名馆舍way代表点用于到达定位，不是实测入口。与数据库现有福建博物院、林则徐纪念馆和船政文化景区不同址。",
+        "aliases": ["福州博物馆"],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "政府资料确认场馆、展陈功能和地址，2026年开放公告证明目前仍运营；公开地图具名馆舍点位匹配，检查同城现有记录无重复。",
+          "source_urls": [
+            "https://www.fuzhou.gov.cn/zgfzhd/znhd/swwj/wwsz/202407/t20240709_4856680.htm",
+            "https://news.fznews.com.cn/fzyw/20260929/rnl4238381.shtml",
+            "https://www.openstreetmap.org/way/606130417"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 119.321289,26.0671763；取具名博物馆馆舍建筑代表点，非现场测量入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "city": "泉州市",
+    "province": "福建省",
+    "sources": [
+      "https://cbtb.quanzhou.gov.cn/lyfw/jqml/202606/t20260617_3301343.htm",
+      "https://yingliangmuseum.com/",
+      "https://www.openstreetmap.org/node/9358575932"
+    ],
+    "checked_names": [
+      "泉州森林公园",
+      "永春牛姆林生态旅游区",
+      "福建省英良石材自然历史博物馆"
+    ],
+    "note": "泉州森林公园已有；牛姆林仍待具名到达点；英良石材自然历史博物馆位于南安水头镇，是具名独立场馆，与泉州中心城区博物馆不同址。",
+    "candidates": [
+      {
+        "name": "永春牛姆林生态旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://cbtb.quanzhou.gov.cn/lyfw/jqml/202606/t20260617_3301343.htm","https://cbtb.quanzhou.gov.cn/zwgk/ghgb/201608/P020160831646547983421.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "泉州市A级旅游景区名录列出的永春县生态旅游区。",
+        "description_source_url": "https://cbtb.quanzhou.gov.cn/lyfw/jqml/202606/t20260617_3301343.htm"
+      },
+      {
+        "name": "福建省英良石材自然历史博物馆",
+        "status": "approved",
+        "description": "福建省英良石材自然历史博物馆位于南安市水头镇海联创业园，设有自然馆、人类馆、石材艺术馆和石材产业馆，以陨石、岩矿、生命演化、石器文明及现代石材应用讲述地球与石材文化。",
+        "description_source_url": "https://yingliangmuseum.com/",
+        "longitude": 118.4266573,
+        "latitude": 24.665597,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/9358575932",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "自然", "地质景观", "研学", "人文"],
+        "duration_minutes": 120,
+        "independence_note": "馆方官网确认南安市水头镇海联创业园地址、四个常设展馆及全年开放；OSM具名博物馆node作为馆舍定位点。它不是泉州市博物馆、泉州海外交通史博物馆或泉州森林公园的组成部分。",
+        "aliases": ["英良石材自然历史博物馆", "英良·石材自然历史博物馆"],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "馆方官网核实场馆名称、地址、常设展馆及开放服务，具名公开地图POI核实场馆位置；与泉州市现有景点逐项去重。",
+          "source_urls": [
+            "https://yingliangmuseum.com/",
+            "https://www.yingliang.com/newsDetail.aspx?Id=622",
+            "https://www.openstreetmap.org/node/9358575932"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 118.4266573,24.665597；使用具名馆舍POI坐标，非大范围园区质心。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "city": "宁德市",
+    "province": "福建省",
+    "sources": [
+      "https://lyfw.mct.gov.cn/site/special/province?pkey=fujian&type=0"
+    ],
+    "checked_names": [
+      "宁德市太姥山旅游区",
+      "白水洋·鸳鸯溪旅游景区",
+      "三沙光影栈道景区"
+    ],
+    "note": "文化和旅游部明确太姥山园区包含太姥山岳、九鲤溪瀑、福瑶列岛、晴川海滨；现库已新增三沙光影栈道、霞浦和宁德博物馆。太姥山内部子景点不再拆录。",
+    "candidates": []
+  },
+  {
+    "id": 132,
+    "city": "九江市",
+    "province": "江西省",
+    "sources": [
+      "https://jje.jiujiang.gov.cn/zwgk_194/jytabl1/jytabl_1/202212/t20221216_5885717.html"
+    ],
+    "checked_names": [
+      "庐山西海",
+      "石钟山",
+      "修水东浒寨景区"
+    ],
+    "note": "庐山西海与石钟山已收录；东浒寨不同县域，需核景区到达点。",
+    "candidates": [
+      {
+        "name": "修水东浒寨景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://jje.jiujiang.gov.cn/zwgk_194/jytabl1/jytabl_1/202212/t20221216_5885717.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "九江市研学旅游基地名单列出的修水县景区，适合山地与文化研学游览。",
+        "description_source_url": "https://jje.jiujiang.gov.cn/zwgk_194/jytabl1/jytabl_1/202212/t20221216_5885717.html"
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "city": "吉安市",
+    "province": "江西省",
+    "sources": [
+      "https://www.mva.gov.cn/xinwen/dfdt/202311/t20231109_92166.html"
+    ],
+    "checked_names": [
+      "钓源古村·十里芳菲",
+      "渼陂古村",
+      "井冈山风景名胜区"
+    ],
+    "note": "现库井冈山烈士陵园、庐陵文化生态园及白鹭洲书院，两个古村均未收录，待核地址和边界。",
+    "candidates": [
+      {
+        "name": "钓源古村·十里芳菲",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；未找到确切游客入口或具名景点坐标，古村范围点不可代替。","source_urls":["https://www.mva.gov.cn/xinwen/dfdt/202311/t20231109_92166.html","https://www.yudu.gov.cn/ydxxxgk/c100264csdt/202307/0af44f98d54a46dd9ff2b4846d87c4c2.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"未找到确切游客入口或具名景点坐标，古村范围点不可代替。"},
+        "coordinate_review_note": "未找到确切游客入口或具名景点坐标，古村范围点不可代替。",
+        "description": "吉安市景区惠民名单列出的古村旅游区，提供历史村落游览。",
+        "description_source_url": "https://www.mva.gov.cn/xinwen/dfdt/202311/t20231109_92166.html"
+      },
+      {
+        "name": "渼陂古村",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图node/8714497585标记为place=village，是村庄中心而非古村景区游客入口。","source_urls":["https://www.mva.gov.cn/xinwen/dfdt/202311/t20231109_92166.html"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图node/8714497585标记为place=village，是村庄中心而非古村景区游客入口。"},
+        "coordinate_review_note": "开放地图node/8714497585标记为place=village，是村庄中心而非古村景区游客入口。",
+        "description": "吉安市景区惠民名单列出的古村落游览地。",
+        "description_source_url": "https://www.mva.gov.cn/xinwen/dfdt/202311/t20231109_92166.html"
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "city": "济南市",
+    "province": "山东省",
+    "sources": [
+      "https://www.jinan.gov.cn/col/col118356/art/2026/art_617e080e4dac4060bf30d8fdd4250475.html"
+    ],
+    "checked_names": [
+      "印象济南·泉世界旅游景区",
+      "山东人文纪念公园景区"
+    ],
+    "note": "印象济南已在库；山东人文纪念公园属于纪念设施与景区双重属性，用户旅游场景适配性待核，本轮不新增。",
+    "candidates": []
+  }
+]

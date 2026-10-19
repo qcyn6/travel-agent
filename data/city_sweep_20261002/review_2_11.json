@@ -1,0 +1,149 @@
+[
+  {
+    "id": 159,
+    "city": "平顶山市",
+    "province": "河南省",
+    "sources": [
+      "https://wglj.pds.gov.cn/contents/12520/241025.html"
+    ],
+    "checked_names": [
+      "画眉谷景区",
+      "尧山风景区"
+    ],
+    "note": "画眉谷虽同属鲁山县尧山镇，但为单独命名景区，不等同现有尧山风景区或尧山峡谷漂流；需核游客入口。",
+    "candidates": [
+      {
+        "name": "画眉谷景区",
+        "status": "pending_coordinates",
+        "description": "鲁山县尧山镇的山谷生态景区，植被繁茂，沿谷分布潭池和瀑布。",
+        "description_source_url": "https://wglj.pds.gov.cn/contents/12520/241025.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wglj.pds.gov.cn/contents/12520/241025.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 163,
+    "city": "焦作市",
+    "province": "河南省",
+    "sources": [
+      "https://wglj.jiaozuo.gov.cn/2026/07-04/607169.html"
+    ],
+    "checked_names": [
+      "陈家沟太极拳文化旅游区",
+      "太极拳祖祠",
+      "太极拳博物馆",
+      "太极文化园",
+      "东沟创拳处"
+    ],
+    "note": "陈家沟在温县，与现有云台山、青天河、神农山不重合；祖祠、博物馆和东沟为其内部点位，本轮不拆分。",
+    "candidates": [
+      {
+        "name": "陈家沟太极拳文化旅游区",
+        "status": "pending_coordinates",
+        "description": "温县太极拳文化景区，可参观祖祠、文化园和东沟创拳处，了解陈式太极拳传承。",
+        "description_source_url": "https://wglj.jiaozuo.gov.cn/2026/07-04/607169.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wglj.jiaozuo.gov.cn/2026/07-04/607169.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "city": "三门峡市",
+    "province": "河南省",
+    "sources": [
+      "https://www.smx.gov.cn/4138/614864448/732657.html",
+      "https://www.lingbao.gov.cn/16031/616500000/1265843.html"
+    ],
+    "checked_names": [
+      "函谷关历史文化旅游区",
+      "太初宫",
+      "望气台",
+      "函谷关博物馆",
+      "关楼"
+    ],
+    "note": "函谷关与现有天鹅湖、虢国博物馆、黄河公园、陕州地坑院分离；太初宫等是景区内部点位。",
+    "candidates": [
+      {
+        "name": "函谷关历史文化旅游区",
+        "status": "pending_coordinates",
+        "description": "灵宝市兼具古关隘军事文化和老子文化的景区，可参观关楼、古道与相关历史展陈。",
+        "description_source_url": "https://www.smx.gov.cn/4138/614864448/732657.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://www.smx.gov.cn/4138/614864448/732657.html",
+            "https://www.lingbao.gov.cn/16031/616500000/1265843.html",
+            "https://www.openstreetmap.org/way/361834389"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/361834389；大范围质心禁用。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 171,
+    "city": "周口市",
+    "province": "河南省",
+    "sources": [
+      "https://www.zhoukou.gov.cn/page_pc/zjzk/zkyx/lyjd/article8cb82bea4d4542d1a9dbde29a7de5764.html",
+      "https://www.zhoukou.gov.cn/page_pc/xwzx/xqdt/xqdt/article33620286e18b40c0ac6a2447d739c8c0.html"
+    ],
+    "checked_names": [
+      "周口关帝庙",
+      "山陕会馆",
+      "太清宫景区",
+      "明道宫景区",
+      "老子故里旅游区"
+    ],
+    "note": "关帝庙又名山陕会馆，不在现有太昊陵、老子故里、淮阳龙湖名录；太清宫与明道宫可能属于现有老子故里旅游区，暂不拆分。",
+    "candidates": [
+      {
+        "name": "周口关帝庙",
+        "status": "pending_coordinates",
+        "description": "清代山陕商人修建的会馆建筑群，现为文物保护单位和民俗博物馆，可了解周家口商贸历史。",
+        "description_source_url": "https://www.zhoukou.gov.cn/page_pc/zjzk/zkyx/lyjd/article8cb82bea4d4542d1a9dbde29a7de5764.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/place_of_worship，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.zhoukou.gov.cn/page_pc/zjzk/zkyx/lyjd/article8cb82bea4d4542d1a9dbde29a7de5764.html",
+            "https://www.zhoukou.gov.cn/page_pc/xwzx/xqdt/xqdt/article33620286e18b40c0ac6a2447d739c8c0.html",
+            "https://www.openstreetmap.org/way/544442050"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/544442050；定位候选尚未达入库门槛。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "文博指南具名GCJ-02标记转换后位于OSM同名寺庙范围内部；范围约160米，标记非证实的游客入口。",
+          "source_urls": [
+            "https://www.zhoukou.gov.cn/page_pc/zjzk/zkyx/lyjd/article8cb82bea4d4542d1a9dbde29a7de5764.html",
+            "https://www.zhoukou.gov.cn/page_pc/xwzx/xqdt/xqdt/article33620286e18b40c0ac6a2447d739c8c0.html",
+            "https://www.openstreetmap.org/way/544442050",
+            "https://www.iwenbo.fun/heritage/689.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博指南具名GCJ-02标记转换后位于OSM同名寺庙范围内部；范围约160米，标记非证实的游客入口。"
+        }
+      }
+    ]
+  }
+]

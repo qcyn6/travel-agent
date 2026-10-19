@@ -1,0 +1,232 @@
+[
+  {
+    "id": 213,
+    "city": "茂名市",
+    "province": "广东省",
+    "sources": [
+      "https://www.gdfao.gov.cn/zwgk/zdly/mms/content/post_1333167.html"
+    ],
+    "checked_names": [
+      "茂名柏桥荔博园",
+      "中国荔枝博览馆"
+    ],
+    "note": "中国荔枝博览馆为荔博园内部核心地标不另加；露天矿博物馆亦属已有公园暂不另加。",
+    "candidates": [
+      {
+        "name": "茂名柏桥荔博园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.gdfao.gov.cn/zwgk/zdly/mms/content/post_1333167.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.gdfao.gov.cn/zwgk/zdly/mms/content/post_1333167.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回茂名其他学校，非柏桥荔博园，已拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "city": "汕尾市",
+    "province": "广东省",
+    "sources": [
+      "https://www.shanwei.gov.cn/shanwei/swzdly/lysc/lysc01/lysc0103/content/post_1230231.html"
+    ],
+    "checked_names": [
+      "陆河螺溪谷旅游景区",
+      "陆丰市上海外滩旅游区",
+      "莲花山度假村"
+    ],
+    "note": "已存莲花山不重复，上海外滩为陆丰上海村不是上海市。",
+    "candidates": [
+      {
+        "name": "陆河螺溪谷旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.shanwei.gov.cn/shanwei/swzdly/lysc/lysc01/lysc0103/content/post_1230231.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.shanwei.gov.cn/shanwei/swzdly/lysc/lysc01/lysc0103/content/post_1230231.html",
+            "https://www.shanwei.gov.cn/swwgltj/yaowen/tzgg/content/post_863423.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“陆河螺溪谷旅游景区 汕尾市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "陆丰市上海外滩旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.shanwei.gov.cn/shanwei/swzdly/lysc/lysc01/lysc0103/content/post_1230231.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "陆丰市2026年政府工作报告称上海外滩旅游区仍在推进建设，现阶段不能作为已开放景点入库。",
+          "source_urls": [
+            "https://www.shanwei.gov.cn/shanwei/swzdly/lysc/lysc01/lysc0103/content/post_1230231.html",
+            "https://www.shanwei.gov.cn/swwgltj/zhengwu/gsjwgk/glgk/content/post_971242.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“陆丰市上海外滩旅游区 汕尾市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 221,
+    "city": "东莞市",
+    "province": "广东省",
+    "sources": [
+      "https://wglt.dg.gov.cn/zxfw/gzdt/content/post_4114254.html"
+    ],
+    "checked_names": [
+      "粤晖园",
+      "牙香街",
+      "东莞市科学技术博物馆"
+    ],
+    "note": "科学技术博物馆已存；较早名录需核当前经营。",
+    "candidates": [
+      {
+        "name": "粤晖园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wglt.dg.gov.cn/zxfw/gzdt/content/post_4114254.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wglt.dg.gov.cn/zxfw/gzdt/content/post_4114254.html",
+            "https://www.dg.gov.cn/zdlyxxgk/lyscjgzf/cyzl/content/post_2263757.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/618218708 是约1.3公里的粤晖园公园范围，非入口。"
+        }
+      },
+      {
+        "name": "牙香街文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wglt.dg.gov.cn/zxfw/gzdt/content/post_4114254.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wglt.dg.gov.cn/zxfw/gzdt/content/post_4114254.html",
+            "https://dg.bendibao.com/dglvyou/202422/ly170410.shtm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“牙香街文化旅游区 东莞市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 225,
+    "city": "云浮市",
+    "province": "广东省",
+    "sources": [
+      "https://www.yunfu.gov.cn/zjyf/lyyf/msfj/content/post_1689565.html"
+    ],
+    "checked_names": [
+      "广东南江田园文化旅游小镇",
+      "兰寨古村"
+    ],
+    "note": "兰寨古村为同一小镇载体，不另增内部展馆。",
+    "candidates": [
+      {
+        "name": "广东南江田园文化旅游小镇",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.yunfu.gov.cn/zjyf/lyyf/msfj/content/post_1689565.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.yunfu.gov.cn/zjyf/lyyf/msfj/content/post_1689565.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“广东南江田园文化旅游小镇 云浮市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 229,
+    "city": "梧州市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+    ],
+    "checked_names": [
+      "梧州骑楼城—龙母庙景区",
+      "梧州李济深故里文化旅游区"
+    ],
+    "note": "骑楼城已存不重复加组合景区或龙母庙。",
+    "candidates": [
+      {
+        "name": "梧州李济深故里文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+梧州返回0项。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 233,
+    "city": "贵港市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045601.shtml"
+    ],
+    "checked_names": [
+      "贵港市博物馆",
+      "平南安怀石硖龙眼生态旅游景区"
+    ],
+    "note": "官方景区资料提供地址，坐标不可由地址编造。",
+    "candidates": [
+      {
+        "name": "贵港市博物馆",
+        "status": "approved",
+        "description": "位于贵港市区的公共博物馆，展示贵港历史文物与民族民俗文化。参观可了解当地历史遗产、岭南地方文化，并通过罗泊湾汉墓相关展示认识贵港的汉代考古发现。",
+        "description_source_url": "https://www.gxzx.gov.cn/index.php?a=show&c=index&catid=65&id=57843&m=content",
+        "longitude": 109.5771433,
+        "latitude": 23.1225155,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1212940575",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "具名博物馆建筑锚点约59米宽、76米长；广西文旅AAA名录馆址为桂林路与仙衣路交汇西南角，与OSM位置相符。与现有园博园、荷美覃塘等不重叠；不是金田起义博物馆。",
+        "aliases": [
+          "贵港博物馆"
+        ]
+      },
+      {
+        "name": "平南安怀石硖龙眼生态旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045601.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045601.shtml",
+            "https://wlt.gxzf.gov.cn/zfxxgk/fdzdgknr/tzgg/t11739994.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“平南安怀石硖龙眼生态旅游景区 贵港市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  }
+]

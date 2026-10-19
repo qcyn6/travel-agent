@@ -12,7 +12,6 @@ from langgraph.runtime import Runtime
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from langgraph.checkpoint.base import maybe_add_typed_methods
 from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
-from langgraph.types import Command, interrupt
 
 from backend.planner.city import CityPlanningError
 from backend.planner.state import PlanningContext, PlanningState
@@ -71,8 +70,6 @@ class TravelPlanningGraph:
         *,
         progress=None,
         thread_id: str | None = None,
-        resume_value=None,
-        interrupt_for_destination_choice: bool | None = None,
     ):
         """Run a plan, discarding stream events for synchronous callers."""
 
@@ -80,8 +77,6 @@ class TravelPlanningGraph:
             requirement,
             progress=progress,
             thread_id=thread_id,
-            resume_value=resume_value,
-            interrupt_for_destination_choice=interrupt_for_destination_choice,
         ):
             if event.get("type") == "plan_completed":
                 return event["result"]
@@ -93,8 +88,6 @@ class TravelPlanningGraph:
         *,
         progress=None,
         thread_id: str | None = None,
-        resume_value=None,
-        interrupt_for_destination_choice: bool | None = None,
     ):
         """Yield normalized workflow events directly from LangGraph.
 
@@ -134,25 +127,15 @@ class TravelPlanningGraph:
             # nested subgraph nodes. ``progress`` remains a compatibility
             # callback, not a second event publisher.
             "progress": report,
-            "use_interrupts": (
-                bool(self.checkpoint_path)
-                if interrupt_for_destination_choice is None
-                else interrupt_for_destination_choice
-            ),
         }
 
         async def stream(graph):
             latest_state = None
-            graph_input = (
-                Command(resume=resume_value)
-                if resume_value is not None
-                else input_state
-            )
             async def consume_graph():
                 nonlocal latest_state
                 try:
                     async for chunk in graph.astream(
-                        graph_input,
+                        input_state,
                         config=config,
                         context=context,
                         stream_mode=["custom", "values"],
@@ -188,9 +171,6 @@ class TravelPlanningGraph:
                         pass
             if latest_state is None:
                 latest_state = (await graph.aget_state(config)).values
-            pending_interrupt = latest_state.get("__interrupt__")
-            if pending_interrupt:
-                self._raise_destination_choice(pending_interrupt[0].value)
             result = latest_state.get("result")
             if result is None:
                 raise RuntimeError("LangGraph 规划流程未返回最终结果")
@@ -311,56 +291,11 @@ class TravelPlanningGraph:
         state: TravelPlanningGraphState,
         runtime: Runtime[PlanningContext] | None = None,
     ):
-        try:
-            requirement, destination = await self.workflow._resolve_destination(
-                state["requirement"],
-                progress=self._progress(state, runtime),
-            )
-        except Exception as exc:
-            # The legacy application boundary still receives
-            # DestinationChoiceRequired. When a durable checkpoint is
-            # configured, the same choice is also represented as a native
-            # LangGraph interrupt so a caller can resume this exact thread.
-            from backend.planner.workflow import DestinationChoiceRequired
-
-            if not isinstance(exc, DestinationChoiceRequired) or not (
-                runtime is not None
-                and runtime.context
-                and runtime.context.get("use_interrupts")
-            ):
-                raise
-            selected_scope = interrupt(
-                {
-                    "type": "destination_choice",
-                    "requirement": exc.requirement.model_dump(mode="json"),
-                    "options": exc.options.model_dump(mode="json"),
-                }
-            )
-            if isinstance(selected_scope, dict):
-                selected_scope = selected_scope.get("travel_scope") or selected_scope.get("scope")
-            if selected_scope not in {"single_city", "multi_city"}:
-                raise ValueError("人工选择必须是 single_city 或 multi_city")
-            requirement = exc.requirement.model_copy(
-                update={"travel_scope": selected_scope}
-            )
-            requirement, destination = await self.workflow._resolve_destination(
-                requirement,
-                progress=self._progress(state, runtime),
-            )
-        return {"requirement": requirement, "destination": destination}
-
-    @staticmethod
-    def _raise_destination_choice(payload) -> None:
-        from backend.models.destination import DestinationPlanResult
-        from backend.models.requirement import TravelRequirement
-        from backend.planner.workflow import DestinationChoiceRequired
-
-        if not isinstance(payload, dict):
-            raise RuntimeError("LangGraph 返回了无法识别的人工选择中断")
-        raise DestinationChoiceRequired(
-            TravelRequirement.model_validate(payload["requirement"]),
-            DestinationPlanResult.model_validate(payload["options"]),
+        requirement, destination = await self.workflow._resolve_destination(
+            state["requirement"],
+            progress=self._progress(state, runtime),
         )
+        return {"requirement": requirement, "destination": destination}
 
     async def _plan_cities(
         self,

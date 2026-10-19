@@ -1,0 +1,455 @@
+[
+  {
+    "id": 324,
+    "city": "平凉市",
+    "province": "甘肃省",
+    "sources": [
+      "https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_e1a3c15aec6a4e51a84e616f078452b5.html",
+      "https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_ba6d295e93e14e40b22e242879befefc.html",
+      "https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_e2ab54a21edf4f58845d4e4e0ee20002.html"
+    ],
+    "checked_names": [
+      "崆峒山",
+      "大云寺·王母宫",
+      "云崖寺",
+      "龙泉寺"
+    ],
+    "note": "崆峒山已在库；云崖寺和大云寺位于不同县域，非崆峒山子景点。大云寺·王母宫内部是否作为一处整体需进一步核对。",
+    "candidates": [
+      {
+        "name": "云崖寺景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM具名点是景区内部寺院而非游客入口；缺景区售票口/入口坐标。","source_urls":["https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_ba6d295e93e14e40b22e242879befefc.html","https://wlj.pingliang.gov.cn/ztzl/tspl/art/2022/art_ab30de298bd3429282da93cc0ab6a8e4.html"],"checked_at":"2026-10-02","coordinate_review_note":"OSM具名点是景区内部寺院而非游客入口；缺景区售票口/入口坐标。"},
+        "coordinate_review_note": "OSM具名点是景区内部寺院而非游客入口；缺景区售票口/入口坐标。",
+        "description": "庄浪县云崖寺以寺院、石窟及山地景观为主要游览内容。",
+        "description_source_url": "https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_ba6d295e93e14e40b22e242879befefc.html"
+      },
+      {
+        "name": "泾川县大云寺·王母宫景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_e1a3c15aec6a4e51a84e616f078452b5.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "泾川县大云寺文化园展示当地佛教遗存与历史文化，可作独立文化游览。",
+        "description_source_url": "https://wlj.pingliang.gov.cn/ztzl/yzpl/y/art/2022/art_e1a3c15aec6a4e51a84e616f078452b5.html"
+      }
+    ]
+  },
+  {
+    "id": 328,
+    "city": "陇南市",
+    "province": "甘肃省",
+    "sources": [
+      "https://zwfw.gansu.gov.cn/longnan/lnsfwyy/wdqlyjdcx/art/2024/art_c094fd180f9b4bbbae3d3c5c56366437.html",
+      "https://zwfw.gansu.gov.cn/wudu/zczx/tzgg/art/2023/art_2c79670d453b4f198a012a2eaf4e8217.html"
+    ],
+    "checked_names": [
+      "官鹅沟",
+      "万象洞"
+    ],
+    "note": "官鹅沟已有两种名称记录；万象洞独立，但官方提示接待中心与检票口相距约5公里，坐标须标游客接待中心，不能标洞体中心。",
+    "candidates": [
+      {
+        "name": "万象洞景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；官方明确接待中心距核心区检票口约5公里且必须乘观光车；尚未找到具名接待中心坐标，洞体点不可用。","source_urls":["https://zwfw.gansu.gov.cn/longnan/lnsfwyy/wdqlyjdcx/art/2024/art_c094fd180f9b4bbbae3d3c5c56366437.html","https://zwfw.gansu.gov.cn/wudu/zczx/tzgg/art/2023/art_2c79670d453b4f198a012a2eaf4e8217.html"],"checked_at":"2026-10-02","coordinate_review_note":"官方明确接待中心距核心区检票口约5公里且必须乘观光车；尚未找到具名接待中心坐标，洞体点不可用。"},
+        "coordinate_review_note": "官方明确接待中心距核心区检票口约5公里且必须乘观光车；尚未找到具名接待中心坐标，洞体点不可用。",
+        "description": "武都区万象洞是白龙江南岸山腰的天然溶洞景区，游客应从接待中心乘景区观光车进入核心区。",
+        "description_source_url": "https://zwfw.gansu.gov.cn/longnan/lnsfwyy/wdqlyjdcx/art/2024/art_c094fd180f9b4bbbae3d3c5c56366437.html"
+      }
+    ]
+  },
+  {
+    "id": 332,
+    "city": "海东市",
+    "province": "青海省",
+    "sources": [
+      "https://www.qinghai.gov.cn/dmqh/system/2024/04/18/030042149.shtml"
+    ],
+    "checked_names": [
+      "互助土族故土园",
+      "平安驿·河湟民俗文化体验地",
+      "河湟文化博物馆景区",
+      "柳湾彩陶博物馆",
+      "喇家考古遗址公园",
+      "孟达天池"
+    ],
+    "note": "故土园、平安驿已有记录；柳湾与喇家为另外两处独立文化景点。河湟文化博物馆还需核地址和开放情况。",
+    "candidates": [
+      {
+        "name": "柳湾彩陶博物馆",
+        "status": "approved",
+        "description": "青海柳湾彩陶博物馆位于海东市乐都区高庙镇柳湾村，馆内以柳湾出土彩陶为重点，展示史前陶器和当地考古文化。",
+        "description_source_url": "https://www.qinghai.gov.cn/dmqh/system/2024/01/13/030034792.shtml",
+        "longitude": 102.560995,
+        "latitude": 36.4464604,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/654728556",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名博物馆建筑锚点约75米宽；青海省政府确认馆舍位于乐都区高庙镇柳湾村，与现有互助故土园、平安驿不重合。",
+        "aliases": ["青海柳湾彩陶博物馆"]
+      },
+      {
+        "name": "喇家考古遗址公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.qinghai.gov.cn/dmqh/system/2024/04/18/030042149.shtml","https://zhuanti.mct.gov.cn/xczgshsh2023/syxj/detail_shi/3831.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "喇家考古遗址公园以遗址保护展示和史前文化体验为主。",
+        "description_source_url": "https://www.qinghai.gov.cn/dmqh/system/2024/04/18/030042149.shtml"
+      }
+    ]
+  },
+  {
+    "id": 336,
+    "city": "果洛藏族自治州",
+    "province": "青海省",
+    "sources": [
+      "https://hzjl.sh.gov.cn/n1309/20240222/0af6565e561b400088adafc19809b9ae.html",
+      "https://hzjl.sh.gov.cn/n1309/20241216/a712cf96fa854ce4860e0e2827d8e515.html"
+    ],
+    "checked_names": [
+      "阿尼玛卿山国家地质公园",
+      "龙恩寺",
+      "格萨尔林卡",
+      "班玛玛可河原始森林景区",
+      "格萨尔狮龙宫殿",
+      "查郎寺"
+    ],
+    "note": "玛可河林区与现有阿尼玛卿山、格萨尔林卡不同；林区范围大，需找正式游客入口，不能以林区质心代替。",
+    "candidates": [
+      {
+        "name": "班玛玛可河原始森林景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://hzjl.sh.gov.cn/n1309/20240222/0af6565e561b400088adafc19809b9ae.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "班玛玛可河原始森林景区以森林自然景观为主要体验。",
+        "description_source_url": "https://hzjl.sh.gov.cn/n1309/20240222/0af6565e561b400088adafc19809b9ae.html"
+      }
+    ]
+  },
+  {
+    "id": 340,
+    "city": "石嘴山市",
+    "province": "宁夏回族自治区",
+    "sources": [
+      "https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758948.html",
+      "https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758933.html"
+    ],
+    "checked_names": [
+      "沙湖",
+      "石炭井工业文旅影视小镇",
+      "星海湖",
+      "北武当生态旅游区",
+      "华夏奇石山文化旅游区"
+    ],
+    "note": "沙湖、石炭井和星海湖已有；新列两处与现有景区名称和区域不重合，坐标须核游客入口。",
+    "candidates": [
+      {
+        "name": "北武当生态旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758948.html","https://www.shizuishan.gov.cn/zwgk/zfgb/2022_76905/202603/P020260309602704978936.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "北武当生态旅游区是石嘴山市的山地生态游览景区。",
+        "description_source_url": "https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758948.html"
+      },
+      {
+        "name": "华夏奇石山文化旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758933.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "华夏奇石山文化旅游区以奇石文化展示与休闲游览为主要内容。",
+        "description_source_url": "https://www.shizuishan.gov.cn/szsgk/szsly/yzszs/202412/t20241216_4758933.html"
+      }
+    ]
+  },
+  {
+    "id": 344,
+    "city": "乌鲁木齐市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.wlmq.gov.cn/wlmqs/c119055/202604/326477e0e6394fa78fd4fa2d85bb525e.shtml",
+      "https://www.wlmq.gov.cn/wlmqs/c119290/202506/de5794d869d741d997780d3802909a58.shtml"
+    ],
+    "checked_names": [
+      "新疆国际大巴扎",
+      "红山公园",
+      "天山大峡谷",
+      "乌鲁木齐市博物馆",
+      "八路军驻新疆办事处纪念馆",
+      "毛泽民故居",
+      "中国工农红军西路军总支队纪念馆",
+      "新疆丝绸之路山地度假区"
+    ],
+    "note": "已有大巴扎、红山等；三处红色纪念馆是不同地点的独立馆舍。OSM市博物馆标注南湖南路旧址，而现址据政府为凤起街111号，故市博物馆暂缓坐标审核。丝绸之路山地度假区范围大且与周边山地景区或有交叉，暂不列入。",
+    "candidates": [
+      {
+        "name": "乌鲁木齐市博物馆",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM way/1257368055仍标南湖南路123号旧馆，市政府现馆址为凤起街111号，故拒绝旧址坐标。","source_urls":["https://www.wlmq.gov.cn/wlmqs/c119055/202604/326477e0e6394fa78fd4fa2d85bb525e.shtml","https://www.wlmq.gov.cn/wlmqs/c119295/202309/107f94982cb24d3cbc51bf89621628de.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"OSM way/1257368055仍标南湖南路123号旧馆，市政府现馆址为凤起街111号，故拒绝旧址坐标。"},
+        "coordinate_review_note": "OSM way/1257368055仍标南湖南路123号旧馆，市政府现馆址为凤起街111号，故拒绝旧址坐标。",
+        "description": "乌鲁木齐市博物馆提供城市历史与地方文化主题展览。",
+        "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119055/202604/326477e0e6394fa78fd4fa2d85bb525e.shtml"
+      },
+      {
+        "name": "八路军驻新疆办事处纪念馆",
+        "status": "approved",
+        "description": "八路军驻新疆办事处纪念馆位于乌鲁木齐市胜利路，展示抗战时期共产党人在新疆开展抗日救亡等活动的历史。",
+        "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202409/dde7a7753cb245cc8c25a593d27494a0.shtml",
+        "longitude": 87.6128476,
+        "latitude": 43.7723522,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/667838864",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 60,
+        "independence_note": "OSM具名小型纪念馆建筑锚点约25米见方；市政府2025年A级景区名录列天山区胜利路392号，与其他红色纪念馆地点不同。",
+        "aliases": ["八路军驻新疆办事处旧址"]
+      },
+      {
+        "name": "毛泽民故居",
+        "status": "approved",
+        "description": "毛泽民故居是乌鲁木齐市对外开放的革命历史纪念场馆，展示与毛泽民在新疆经历有关的史迹。",
+        "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202504/238623b2300447f89cb2dfd5a03b9a72.shtml",
+        "longitude": 87.6203321,
+        "latitude": 43.791232,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1447825943",
+        "category": "历史古迹",
+        "tags": ["历史文化", "人文", "建筑"],
+        "duration_minutes": 60,
+        "independence_note": "OSM具名故居建筑锚点，政府文博名录记为民德路29号；与胜利路八路军纪念馆及西后街西路军纪念馆分别位于不同街区。",
+        "aliases": ["毛泽民故居纪念馆", "毛泽民办公室及宿舍旧址"]
+      },
+      {
+        "name": "中国工农红军西路军总支队纪念馆",
+        "status": "approved",
+        "description": "中国工农红军西路军总支队纪念馆通过历史文物与图片讲述西路军有关的革命历史，位于乌鲁木齐市西后街。",
+        "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202409/dde7a7753cb245cc8c25a593d27494a0.shtml",
+        "longitude": 87.6268472,
+        "latitude": 43.8011987,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/897755543",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 60,
+        "independence_note": "OSM具名小型纪念场馆锚点约50米宽；乌鲁木齐市政府确认西后街37号并列为独立开放场馆，不是八路军纪念馆或毛泽民故居的子景点。",
+        "aliases": ["西路军总支队纪念馆"]
+      }
+    ]
+  },
+  {
+    "id": 348,
+    "city": "昌吉回族自治州",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://lyfw.mct.gov.cn/site/special/province?pkey=xinjiang&type=0",
+      "https://www.cj.gov.cn/u/cms/www/202403/05104647ql7c.pdf"
+    ],
+    "checked_names": [
+      "天山天池",
+      "江布拉克",
+      "北庭故城"
+    ],
+    "note": "天池、江布拉克均有重复记录；北庭故城不同于现有自然景区，仍须找官方可进入的游客入口。",
+    "candidates": [
+      {
+        "name": "北庭故城遗址",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；未找到具名游客入口或售票处，遗址范围坐标不可作为可到达点。","source_urls":["https://www.cj.gov.cn/u/cms/www/202403/05104647ql7c.pdf","https://www.xjpcsc.gov.cn/article/2065d73399364bb5a69770ee60d35cca"],"checked_at":"2026-10-02","coordinate_review_note":"未找到具名游客入口或售票处，遗址范围坐标不可作为可到达点。"},
+        "coordinate_review_note": "未找到具名游客入口或售票处，遗址范围坐标不可作为可到达点。",
+        "description": "北庭故城是昌吉州境内的历史遗址，可作为历史文化主题景点。",
+        "description_source_url": "https://www.cj.gov.cn/u/cms/www/202403/05104647ql7c.pdf"
+      }
+    ]
+  },
+  {
+    "id": 352,
+    "city": "克孜勒苏柯尔克孜自治州",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjkz.gov.cn/xjkz/c124085/202412/a473d1defb60403cbb67c6e9ab9a23a4.shtml",
+      "https://www.xjkz.gov.cn/xjkz/c117530/202309/bf08f96dd96a48799e2c9fda0fcadbed.shtml"
+    ],
+    "checked_names": [
+      "阿图什天门",
+      "阿图什木纳格葡萄生态文化旅游景区",
+      "阿孜汗无花果民俗文化旅游景区"
+    ],
+    "note": "阿图什天门已在库；葡萄景区跨多个村落，需明确游客入口后才能入库。",
+    "candidates": [
+      {
+        "name": "阿图什木纳格葡萄生态文化旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.xjkz.gov.cn/xjkz/c124085/202412/a473d1defb60403cbb67c6e9ab9a23a4.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "景区位于阿图什市阿扎克镇，围绕木纳格葡萄种植与乡村体验展开游览。",
+        "description_source_url": "https://www.xjkz.gov.cn/xjkz/c124085/202412/a473d1defb60403cbb67c6e9ab9a23a4.shtml"
+      }
+    ]
+  },
+  {
+    "id": 356,
+    "city": "塔城地区",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjtc.gov.cn/zjtc/tcgk"
+    ],
+    "checked_names": [
+      "独库公路",
+      "乌苏佛山国家森林公园",
+      "巴克图口岸",
+      "红楼博物馆",
+      "手风琴展馆",
+      "巴尔鲁克旅游景区"
+    ],
+    "note": "红楼博物馆与在库乌苏佛山不重合；独库公路属于线性道路，不宜直接作为单点景点且现有城市归属需另查。",
+    "candidates": [
+      {
+        "name": "红楼博物馆",
+        "status": "approved",
+        "description": "塔城红楼博物馆依托塔城市历史建筑红楼设置，陈列内容包括地方历史、民俗及革命史。",
+        "description_source_url": "https://www.xjtcsh.gov.cn/zjyhtc/fwms/content_34831",
+        "longitude": 82.9757224,
+        "latitude": 46.7499277,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/13411857201",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名museum POI节点；塔城市政府确认为红楼独立博物馆，非在库乌苏佛山或独库公路的子景点。",
+        "aliases": ["塔城红楼博物馆", "塔城红楼"]
+      }
+    ]
+  },
+  {
+    "id": 360,
+    "city": "图木舒克市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbtnss.gov.cn/xwzx/jcdt/202605/t20260520_66376.html"
+    ],
+    "checked_names": [
+      "唐王城遗址",
+      "白沙山景区",
+      "永安湖生态旅游景区"
+    ],
+    "note": "唐王城与白沙山已有；永安湖独立，需核开放入口及位置。",
+    "candidates": [
+      {
+        "name": "永安湖生态旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图未检出同名游客入口或馆舍，湖泊/公园宽泛坐标不可用。","source_urls":["https://www.xjbtnss.gov.cn/xwzx/jcdt/202605/t20260520_66376.html","https://www.xjbt.gov.cn/c/2026-07-07/8492406.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图未检出同名游客入口或馆舍，湖泊/公园宽泛坐标不可用。"},
+        "coordinate_review_note": "开放地图未检出同名游客入口或馆舍，湖泊/公园宽泛坐标不可用。",
+        "description": "永安湖生态旅游景区为图木舒克市的湖泊生态休闲游览地。",
+        "description_source_url": "https://www.xjbtnss.gov.cn/xwzx/jcdt/202605/t20260520_66376.html"
+      }
+    ]
+  },
+  {
+    "id": 364,
+    "city": "双河市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjshs.gov.cn/news-show-83303.html",
+      "https://www.xjshs.gov.cn/news-show-87267.html"
+    ],
+    "checked_names": [
+      "怪石峪景区",
+      "金沙山旅游度假区"
+    ],
+    "note": "该城市当前无景点；两处为独立运营的旅游区域。坐标均需核可到达入口。",
+    "candidates": [
+      {
+        "name": "怪石峪景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.xjshs.gov.cn/news-show-83303.html","https://www.xjshs.gov.cn/news-show-41690.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description": "怪石峪景区位于第五师双河市八十四团，以奇石地貌和自然风光为主要游览内容。",
+        "description_source_url": "https://www.xjshs.gov.cn/news-show-83303.html"
+      },
+      {
+        "name": "金沙山旅游度假区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.xjshs.gov.cn/news-show-87267.html","https://www.xjshs.gov.cn/news-list-zscg.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "金沙山旅游度假区位于第五师双河市八十三团，提供沙漠景观与休闲活动。",
+        "description_source_url": "https://www.xjshs.gov.cn/news-show-87267.html"
+      }
+    ]
+  },
+  {
+    "id": 368,
+    "city": "新星市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2026-04-07/8478493.shtml",
+      "https://www.btnsss.gov.cn/ywdt/zwyw/112917.htm"
+    ],
+    "checked_names": [
+      "东疆夏宫·庙尔沟景区",
+      "八大石古村落遗址景区",
+      "东天山自然地质博览园"
+    ],
+    "note": "该城市当前无景点；来源确认两处独立命名景区，仍需核正式入口。",
+    "candidates": [
+      {
+        "name": "八大石古村落遗址景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.btnsss.gov.cn/ywdt/zwyw/112917.htm","https://www.btnsss.gov.cn/ywdt/zdsb/120429.htm"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "八大石古村落遗址景区围绕古村落遗址保护展示开展文化游览。",
+        "description_source_url": "https://www.btnsss.gov.cn/ywdt/zwyw/112917.htm"
+      },
+      {
+        "name": "东天山自然地质博览园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.btnsss.gov.cn/ywdt/zwyw/112917.htm","https://www.btnsss.gov.cn/ywdt/zwyw/121348.htm"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "东天山自然地质博览园以地质景观及科普体验为主题。",
+        "description_source_url": "https://www.btnsss.gov.cn/ywdt/zwyw/112917.htm"
+      }
+    ]
+  },
+  {
+    "id": 372,
+    "city": "澳门特别行政区",
+    "province": "澳门特别行政区",
+    "sources": [
+      "https://www.macaotourism.gov.mo/zh-hans/sightseeing/museums-and-galleries",
+      "https://www.museums.gov.mo/chis/museums.html"
+    ],
+    "checked_names": [
+      "妈阁庙",
+      "大三巴牌坊",
+      "澳门博物馆",
+      "海事博物馆",
+      "澳门大赛车博物馆",
+      "澳门艺术博物馆",
+      "通讯博物馆"
+    ],
+    "note": "妈阁庙、大三巴等已有；大赛车博物馆与海事博物馆为独立馆舍，海事博物馆毗邻妈阁庙但不是同一景点。",
+    "candidates": [
+      {
+        "name": "澳门大赛车博物馆",
+        "status": "approved",
+        "description": "澳门大赛车博物馆位于高美士街，以澳门格兰披治大赛车为主题，展出历届赛车，并设有互动体验设施。",
+        "description_source_url": "https://www.macaotourism.gov.mo/zh-hans/events/whatson/9286/",
+        "longitude": 113.552713,
+        "latitude": 22.1945528,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/3538330803",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "主题娱乐"],
+        "duration_minutes": 120,
+        "independence_note": "OSM具名tourism=museum POI节点，官方地址高美士街431号；与金莲花广场、澳门旅游塔等在库景点是不同场馆。",
+        "aliases": ["大赛车博物馆", "澳門大賽車博物館"]
+      },
+      {
+        "name": "海事博物馆",
+        "status": "approved",
+        "description": "位于妈阁庙前地的海事博物馆，展示澳门与海洋的历史联系和中葡海事文化。",
+        "description_source_url": "https://www.museums.gov.mo/chis/museums.html",
+        "longitude": 113.5306241,
+        "latitude": 22.1859405,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/206824050",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名馆舍建筑锚点，官方地址妈阁庙前地1号；虽与妈阁庙相邻，却是独立馆舍和游览内容。",
+        "aliases": ["澳门海事博物馆", "海事博物館"]
+      }
+    ]
+  }
+]

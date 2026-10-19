@@ -1,0 +1,89 @@
+{
+  "checked_at": "2026-10-02",
+  "attribution": "© OpenStreetMap contributors; ODbL",
+  "method": "OSM具名实体由Photon检索，way标签与建筑边界经OpenStreetMap公开API再次核对。way坐标为Photon返回的WGS84建筑锚点，不声称实测游客入口；node坐标为OSM明示南门到达点。",
+  "entities": [
+    {
+      "name": "梦东方未来世界",
+      "official_url": "https://www.lf.gov.cn/Item/151601.aspx",
+      "osm_entity_url": "https://www.openstreetmap.org/way/940755397",
+      "osm_api_url": "https://api.openstreetmap.org/api/0.6/way/940755397/full",
+      "osm_tags": {
+        "building": "yes",
+        "tourism": "museum",
+        "name": "梦东方未来世界航天主题乐园"
+      },
+      "bbox_wgs84": {
+        "min_lon": 116.8208046,
+        "min_lat": 39.9155122,
+        "max_lon": 116.822905,
+        "max_lat": 39.9170499
+      },
+      "photon_anchor_wgs84": {
+        "longitude": 116.8215415,
+        "latitude": 39.9163061
+      },
+      "review": "具名主题乐园馆舍，非实测入口，官方当前列为独立4A级景区。"
+    },
+    {
+      "name": "大厂民族宫",
+      "official_url": "https://www.lf.gov.cn/Item/151587.aspx",
+      "osm_entity_url": "https://www.openstreetmap.org/way/1471694618",
+      "osm_api_url": "https://api.openstreetmap.org/api/0.6/way/1471694618/full",
+      "osm_tags": {
+        "building": "yes",
+        "name": "大厂民族宫"
+      },
+      "bbox_wgs84": {
+        "min_lon": 116.9596955,
+        "min_lat": 39.8888506,
+        "max_lon": 116.961434,
+        "max_lat": 39.8901972
+      },
+      "photon_anchor_wgs84": {
+        "longitude": 116.9605647,
+        "latitude": 39.8895239
+      },
+      "review": "具名文化建筑，非实测入口，官方列为独立3A级景区。"
+    },
+    {
+      "name": "中阳楼",
+      "official_url": "https://www.lvliang.gov.cn/zjll/mlll/lyjd/xy/201607/t20160728_234025.html",
+      "osm_entity_url": "https://www.openstreetmap.org/way/1384926706",
+      "osm_api_url": "https://api.openstreetmap.org/api/0.6/way/1384926706/full",
+      "osm_tags": {
+        "building": "temple",
+        "historic": "heritage",
+        "name": "中阳楼",
+        "wikidata": "Q10876820"
+      },
+      "bbox_wgs84": {
+        "min_lon": 111.8050771,
+        "min_lat": 37.1296093,
+        "max_lon": 111.8052098,
+        "max_lat": 37.1297129
+      },
+      "photon_anchor_wgs84": {
+        "longitude": 111.8051434,
+        "latitude": 37.129661
+      },
+      "review": "具名约12米古楼建筑，非街道中心，官方列孝义历史地标。"
+    },
+    {
+      "name": "乌兰布统旅游区",
+      "official_url": "https://wlj.chifeng.gov.cn/wlzy/jdjq/201909/t20190926_1334476.html",
+      "osm_entity_url": "https://www.openstreetmap.org/node/10231009870",
+      "osm_api_url": "https://api.openstreetmap.org/api/0.6/node/10231009870",
+      "osm_tags": {
+        "name": "乌兰布统风景区南门",
+        "tourism": "information",
+        "information": "office"
+      },
+      "node_wgs84": {
+        "longitude": 117.2707164,
+        "latitude": 42.4827834
+      },
+      "review": "OSM明确命名为风景区南门的游客信息点；仅作景区南门到达点，不代表大面积旅游区质心。"
+    }
+  ]
+}

@@ -11,6 +11,7 @@ from langchain_openai import ChatOpenAI
 
 from backend.models.requirement import TravelRequirement, validate_start_date
 from backend.observability import observe_external_request
+from backend.requirements.history import format_conversation_history
 from backend.requirements.llm import RequirementLLMError
 
 
@@ -102,7 +103,7 @@ class LangChainRequirementAgent:
         *,
         conversation_history: list[dict[str, str]] | None = None,
     ) -> str:
-        history_context = LangChainRequirementAgent._format_conversation_history(
+        history_context = format_conversation_history(
             conversation_history
         )
         return (
@@ -125,24 +126,6 @@ class LangChainRequirementAgent:
             "</conversation_history>\n\n"
             f"当前用户消息（用户输入）：{text}"
         )
-
-    @staticmethod
-    def _format_conversation_history(
-        conversation_history: list[dict[str, str]] | None,
-    ) -> str:
-        if not conversation_history:
-            return "（暂无历史对话）"
-        lines: list[str] = []
-        for item in conversation_history:
-            if not isinstance(item, dict):
-                continue
-            role = item.get("role", "unknown")
-            content = str(item.get("content", "")).strip()
-            if not content:
-                continue
-            role_name = {"user": "用户", "assistant": "助手"}.get(role, role)
-            lines.append(f"{role_name}：{content}")
-        return "\n".join(lines) or "（暂无历史对话）"
 
 
 __all__ = ["LangChainRequirementAgent"]

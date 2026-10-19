@@ -1,0 +1,128 @@
+[
+  {
+    "name": "常德博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回南京或城头山馆，非所需常德市区馆。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "常德市丁玲纪念馆",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "随州博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回广州同类建筑，不在随州。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "吴忠市博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回北京博物馆，非吴忠。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "天水民俗博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回深圳龙岗客家民俗馆。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "广安市博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回南阳方城同名街道场所。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "新余赣西抗战博物馆",
+    "decision": "not_imported",
+    "reason": "搜索返回南昌其他博物馆，且抱石公园父子关系仍待核。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "曹丞相府",
+    "decision": "not_imported",
+    "reason": "搜索返回唐山住宅/长治道路，不是许昌景区。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "华南植物园",
+    "decision": "not_imported",
+    "reason": "中文搜索误返广州南沙产业园，暂不入库。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "仙姑顶景区",
+    "decision": "not_imported",
+    "reason": "命中山峰顶点而非游客可抵达的景区入口。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "石门国家森林公园",
+    "decision": "not_imported",
+    "reason": "仅命中宽达10公里自然保护片区质心。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "牟氏庄园",
+    "decision": "not_imported",
+    "reason": "命中500米宽院落范围，仍需到达点精核。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "龙海白塘湾景区",
+    "decision": "not_imported",
+    "reason": "搜索误返湛江换电站。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "世界热带水果之窗",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "茂名柏桥荔博园",
+    "decision": "not_imported",
+    "reason": "搜索误返电白学校。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "马家浜文化博物馆",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "中国木雕艺术馆",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "曹操运兵道",
+    "decision": "not_imported",
+    "reason": "误返淮安漕运东路，道路非景区。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "李少春纪念馆",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "楚雄州博物馆",
+    "decision": "not_imported",
+    "reason": "误返禄丰恐龙博物馆与大姚核桃博物馆，不是州博物馆。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  },
+  {
+    "name": "长乐塬抗战工业遗址景区",
+    "decision": "not_imported",
+    "reason": "未查询到可靠具名坐标。",
+    "coordinate_lookup_provider": "OpenStreetMap Nominatim"
+  }
+]

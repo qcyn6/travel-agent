@@ -1,0 +1,321 @@
+{
+  "created_at": "2026-10-02T17:12:42.927239",
+  "committed": true,
+  "added": 4,
+  "rows": [
+    {
+      "name": "容县经略台真武阁",
+      "status": "approved",
+      "description": "容县历史楼阁，以明代木构和二层悬空柱结构闻名。",
+      "description_source_url": "https://www.gxdag.org.cn/show/338/17305",
+      "longitude": 110.5562538,
+      "latitude": 22.8583123,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1211201960",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "古建"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "广西档案资料证实经略台真武阁可参观；OSM对象为具名真武阁历史建筑的建筑轮廓，非容州古城或景区范围中心；与已存大容山和园博园独立。",
+      "aliases": [
+        "经略台真武阁",
+        "真武阁"
+      ],
+      "poi_id": "public_e3d35681c728a575b5f3fe73e1f2ce74",
+      "city_id": 234,
+      "city": "玉林市",
+      "province": "广西壮族自治区",
+      "stored_longitude": 110.56059717147802,
+      "stored_latitude": 22.855351170025468,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "昌珠寺",
+      "status": "approved",
+      "description": "山南市昌珠景区核心寺院，以藏传佛教文化和珍珠唐卡著称。",
+      "description_source_url": "https://lyfzj.shannan.gov.cn/zjsn/jdjs/202603/t20260310_165499.html",
+      "longitude": 91.772161,
+      "latitude": 29.1936837,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/298097279",
+      "category": "宗教建筑",
+      "tags": [
+        "历史文化",
+        "宗教文化",
+        "古建"
+      ],
+      "duration_minutes": 75,
+      "independence_note": "山南市文旅局明确昌珠景区的核心为昌珠寺，门票含寺院；仅以寺院作为同一游览单元，不另建父级昌珠景区；OSM坐标为具名寺院POI节点。",
+      "aliases": [
+        "昌珠寺景区",
+        "昌珠景区"
+      ],
+      "poi_id": "public_eb9dc66ab4edf903af7372c4b6c789f3",
+      "city_id": 307,
+      "city": "山南市",
+      "province": "西藏自治区",
+      "stored_longitude": 91.77337293188037,
+      "stored_latitude": 29.1905698145097,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "隆务寺",
+      "status": "approved",
+      "description": "位于同仁市的藏传佛教寺院，可结合热贡文化主题参观寺院建筑与宗教艺术。",
+      "description_source_url": "https://zhuanti.mct.gov.cn/xcss2024_shjlzzxc/qinghai/detail/6849.html",
+      "longitude": 102.0088237,
+      "latitude": 35.5090049,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/11548841919",
+      "category": "宗教建筑",
+      "tags": [
+        "历史文化",
+        "宗教文化"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "文化和旅游部线路将隆务寺与已存吾屯下寺作为先后两个目的地；坐标取OSM具名隆务寺宗教场所节点，非热贡大景区中心。",
+      "aliases": [
+        "Longwu Temple",
+        "Rongwo Temple"
+      ],
+      "poi_id": "public_e42389f917e1eb75f41c9bcc37467fbe",
+      "city_id": 334,
+      "city": "黄南藏族自治州",
+      "province": "青海省",
+      "stored_longitude": 102.01068763653512,
+      "stored_latitude": 35.50856464473793,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "固原博物馆",
+      "status": "approved",
+      "description": "展示固原及宁夏南部历史文物的综合性博物馆，适合了解丝路相关地方文化。",
+      "description_source_url": "https://whhlyt.nx.gov.cn/zzjg/zsdw/201903/t20190306_3641773.html",
+      "longitude": 106.2717249,
+      "latitude": 36.0056881,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/440294620",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "宁夏文旅厅确认馆址为原州区西城路133号；OSM具名博物馆对象同址标注133号，馆舍独立于六盘山景区及须弥山石窟。",
+      "aliases": [
+        "宁夏固原博物馆"
+      ],
+      "poi_id": "public_e70f2cdef32d1521ebc368a550732cf1",
+      "city_id": 342,
+      "city": "固原市",
+      "province": "宁夏回族自治区",
+      "stored_longitude": 106.2759370428078,
+      "stored_latitude": 36.005509802700686,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [
+    {
+      "city": "嘉兴市",
+      "name": "嘉兴博物馆",
+      "reason": "existing name/alias",
+      "existing": "嘉兴博物馆"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山抗震纪念馆",
+      "reason": "existing name/alias",
+      "existing": "唐山抗震纪念馆"
+    },
+    {
+      "city": "连云港市",
+      "name": "连云港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "连云港市博物馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "淮北市博物馆",
+      "reason": "existing name/alias",
+      "existing": "淮北市博物馆"
+    },
+    {
+      "city": "南昌市",
+      "name": "南昌之星摩天轮",
+      "reason": "existing name/alias",
+      "existing": "南昌之星摩天轮"
+    },
+    {
+      "city": "青岛市",
+      "name": "鲁迅公园",
+      "reason": "existing name/alias",
+      "existing": "鲁迅公园"
+    },
+    {
+      "city": "烟台市",
+      "name": "北极星钟表文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "北极星钟表文化博物馆"
+    },
+    {
+      "city": "开封市",
+      "name": "开封府",
+      "reason": "existing name/alias",
+      "existing": "开封府"
+    },
+    {
+      "city": "许昌市",
+      "name": "许昌市博物馆",
+      "reason": "existing name/alias",
+      "existing": "许昌市博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "中原农耕文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "中原农耕文化博物馆"
+    },
+    {
+      "city": "天门市",
+      "name": "胡家花园",
+      "reason": "existing name/alias",
+      "existing": "胡家花园"
+    },
+    {
+      "city": "自贡市",
+      "name": "自贡市盐业历史博物馆",
+      "reason": "existing name/alias",
+      "existing": "自贡市盐业历史博物馆"
+    },
+    {
+      "city": "大庆市",
+      "name": "大庆油田历史陈列馆",
+      "reason": "existing name/alias",
+      "existing": "大庆油田历史陈列馆"
+    },
+    {
+      "city": "蚌埠市",
+      "name": "蚌埠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "蚌埠市博物馆"
+    },
+    {
+      "city": "河源市",
+      "name": "河源恐龙博物馆",
+      "reason": "existing name/alias",
+      "existing": "河源恐龙博物馆"
+    },
+    {
+      "city": "拉萨市",
+      "name": "西藏博物馆",
+      "reason": "existing name/alias",
+      "existing": "西藏博物馆"
+    },
+    {
+      "city": "武威市",
+      "name": "武威市博物馆",
+      "reason": "existing name/alias",
+      "existing": "武威市博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "北投温泉博物馆",
+      "reason": "existing name/alias",
+      "existing": "北投温泉博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "台北市立美术馆",
+      "reason": "existing name/alias",
+      "existing": "台北市立美术馆"
+    },
+    {
+      "city": "天津市",
+      "name": "天津鼓楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "天津鼓楼博物馆"
+    },
+    {
+      "city": "大连市",
+      "name": "旅顺日俄监狱旧址博物馆",
+      "reason": "existing name/alias",
+      "existing": "旅顺日俄监狱旧址博物馆"
+    },
+    {
+      "city": "鄂州市",
+      "name": "鄂州市博物馆",
+      "reason": "existing name/alias",
+      "existing": "鄂州市博物馆"
+    },
+    {
+      "city": "甘孜藏族自治州",
+      "name": "泸定桥旅游景区",
+      "reason": "existing name/alias",
+      "existing": "泸定桥旅游景区"
+    },
+    {
+      "city": "西宁市",
+      "name": "青海省科学技术馆",
+      "reason": "existing name/alias",
+      "existing": "青海省科学技术馆"
+    },
+    {
+      "city": "玉溪市",
+      "name": "玉溪市博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉溪市博物馆"
+    },
+    {
+      "city": "阿里地区",
+      "name": "古如江寺",
+      "reason": "existing name/alias",
+      "existing": "古如江寺"
+    },
+    {
+      "city": "海东市",
+      "name": "柳湾彩陶博物馆",
+      "reason": "existing name/alias",
+      "existing": "柳湾彩陶博物馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "八路军驻新疆办事处纪念馆",
+      "reason": "existing name/alias",
+      "existing": "八路军驻新疆办事处纪念馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "毛泽民故居",
+      "reason": "existing name/alias",
+      "existing": "毛泽民故居"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "中国工农红军西路军总支队纪念馆",
+      "reason": "existing name/alias",
+      "existing": "中国工农红军西路军总支队纪念馆"
+    },
+    {
+      "city": "塔城地区",
+      "name": "红楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "红楼博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "澳门大赛车博物馆",
+      "reason": "existing name/alias",
+      "existing": "澳门大赛车博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "海事博物馆",
+      "reason": "existing name/alias",
+      "existing": "海事博物馆"
+    }
+  ],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

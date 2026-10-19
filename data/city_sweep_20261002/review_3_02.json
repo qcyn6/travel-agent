@@ -1,0 +1,443 @@
+[
+  {
+    "id": 144,
+    "city": "东营市",
+    "province": "山东省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=34951"
+    ],
+    "checked_names": [
+      "黄河口生态旅游区",
+      "黄河入海口",
+      "海滨滩涂"
+    ],
+    "note": "文化和旅游部将入海口、滩涂、鸟类观赏等归于黄河口生态旅游区，现库已有同名与带市名前缀的两条；应先去重，不拆内部点。",
+    "candidates": []
+  },
+  {
+    "id": 148,
+    "city": "泰安市",
+    "province": "山东省",
+    "sources": [
+      "https://whlyj.taian.gov.cn/art/2026/4/13/art_366263_10312076.html"
+    ],
+    "checked_names": [
+      "岱青水兰文商旅街区",
+      "泰山炊烟巷"
+    ],
+    "note": "现有泰山与徂徕山景区不涵盖此市区街区；需核街区具体游览范围。",
+    "candidates": [
+      {
+        "name": "岱青水兰文商旅街区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whlyj.taian.gov.cn/art/2026/4/13/art_366263_10312076.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于泰安岱宗大街与普照寺路交叉口，以文化体验、休闲消费及城市漫游为主要内容。",
+        "description_source_url": "https://whlyj.taian.gov.cn/art/2026/4/13/art_366263_10312076.html"
+      }
+    ]
+  },
+  {
+    "id": 152,
+    "city": "德州市",
+    "province": "山东省",
+    "sources": [
+      "https://www.neac.gov.cn/seac/xwzx/202305/1164500.shtml"
+    ],
+    "checked_names": [
+      "四女寺风景区",
+      "运河古街",
+      "天衢码头"
+    ],
+    "note": "现库主要为庆云海岛金山寺和影视城；四女寺不同，需核具体景区范围与入口。",
+    "candidates": [
+      {
+        "name": "四女寺风景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM同名node/14016554937是公交站，way/904018268是约800米宽公园面；均非已核验景区入口。","source_urls":["https://www.neac.gov.cn/seac/xwzx/202305/1164500.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"OSM同名node/14016554937是公交站，way/904018268是约800米宽公园面；均非已核验景区入口。"},
+        "coordinate_review_note": "OSM同名node/14016554937是公交站，way/904018268是约800米宽公园面；均非已核验景区入口。",
+        "description": "德州运河沿线人文游览地，与沿河古街、码头等共同展示地方运河文化。",
+        "description_source_url": "https://www.neac.gov.cn/seac/xwzx/202305/1164500.shtml"
+      }
+    ]
+  },
+  {
+    "id": 156,
+    "city": "郑州市",
+    "province": "河南省",
+    "sources": [
+      "https://www.zhengzhou.gov.cn/news7/10054331.jhtml"
+    ],
+    "checked_names": [
+      "郑州记忆1952油化厂旅游休闲街区",
+      "郑州德化步行街",
+      "嵩山少林景区",
+      "郑州商都遗址博物院"
+    ],
+    "note": "少林景区已收录；郑州记忆1952仍缺可核验入口坐标。郑州商都遗址博物院为郑州商城遗址公园内独立专题馆舍，与现有郑州博物馆、郑州二七纪念馆及少林景区不同。",
+    "candidates": [
+      {
+        "name": "郑州记忆1952油化厂旅游休闲街区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；未找到同名入口或临街可达的具名OSM点，不能用整片工业街区中心。","source_urls":["https://www.zhengzhou.gov.cn/news7/10054331.jhtml","https://www.zhengzhou.gov.cn/yshj01/9148198.jhtml"],"checked_at":"2026-10-02","coordinate_review_note":"未找到同名入口或临街可达的具名OSM点，不能用整片工业街区中心。"},
+        "coordinate_review_note": "未找到同名入口或临街可达的具名OSM点，不能用整片工业街区中心。",
+        "description": "郑州市官方线路中的工业遗存改造街区，可进行城市漫游和工业文化体验。",
+        "description_source_url": "https://www.zhengzhou.gov.cn/news7/10054331.jhtml"
+      },
+      {
+        "name": "郑州商都遗址博物院",
+        "status": "approved",
+        "description": "位于郑州商城遗址考古公园内的专题遗址博物馆，通过商代都城文明展及出土青铜器、玉器、陶器等，展示郑州商城的城市布局、考古研究与遗址保护成果。",
+        "description_source_url": "https://www.zhengzhou.gov.cn/view45/6664682.jhtml",
+        "longitude": 113.6806525,
+        "latitude": 34.7475745,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1341987750",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "建筑",
+          "研学"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "郑州市文物局确认其为集中展示商代都城历史的专题遗址博物馆，位于东大街与城东路交汇处西侧；与现有郑州博物馆、郑州二七纪念馆及郑州其他景区为独立馆舍。OSM way/1341987750 为具名场馆范围，坐标取WGS84范围代表点，非实测入口。",
+        "aliases": [
+          "郑州商代都城遗址博物院"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "郑州市文物局官方页面核实馆名、展陈主题和现址；具名OSM馆舍范围核准代表坐标；与目标城市现有景点记录无重名或明显父子重叠。",
+          "source_urls": [
+            "https://www.zhengzhou.gov.cn/view45/6664682.jhtml",
+            "https://www.zhengzhou.gov.cn/view42212/8994671.jhtml",
+            "https://www.openstreetmap.org/way/1341987750"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情确认way/1341987750名称为郑州商都遗址博物院；WGS84代表点(113.6806525,34.7475745)，为具名场馆范围点，不是入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "city": "安阳市",
+    "province": "河南省",
+    "sources": [
+      "https://www.ayx.gov.cn/2026/01-13/3589129.html"
+    ],
+    "checked_names": [
+      "杜庄古镇旅游景区"
+    ],
+    "note": "与现有殷墟、红旗渠和太行大峡谷不同址；景区可能以村落为主体，需核可到达核心位置。",
+    "candidates": [
+      {
+        "name": "杜庄古镇旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.ayx.gov.cn/2026/01-13/3589129.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于安阳县瓦店乡，结合古镇风貌、乡村民俗与休闲游览的旅游景区。",
+        "description_source_url": "https://www.ayx.gov.cn/2026/01-13/3589129.html"
+      }
+    ]
+  },
+  {
+    "id": 164,
+    "city": "濮阳市",
+    "province": "河南省",
+    "sources": [
+      "https://oss.henan.gov.cn/typtfile/20241108/f0a14655b4e04841a981567dfd85df1f.pdf"
+    ],
+    "checked_names": [
+      "单拐冀鲁豫边区革命根据地旧址纪念馆",
+      "范县冀鲁豫边区革命纪念馆"
+    ],
+    "note": "现库清丰亭与该纪念馆不属同一景点；后续核馆舍位置与是否开放。",
+    "candidates": [
+      {
+        "name": "单拐冀鲁豫边区革命根据地旧址纪念馆",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图缺同名馆舍坐标；避免把整个旧址区中心写作纪念馆。","source_urls":["https://oss.henan.gov.cn/typtfile/20241108/f0a14655b4e04841a981567dfd85df1f.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图缺同名馆舍坐标；避免把整个旧址区中心写作纪念馆。"},
+        "coordinate_review_note": "开放地图缺同名馆舍坐标；避免把整个旧址区中心写作纪念馆。",
+        "description": "位于濮阳清丰县单拐村，以冀鲁豫边区革命历史旧址为主题的纪念馆。",
+        "description_source_url": "https://oss.henan.gov.cn/typtfile/20241108/f0a14655b4e04841a981567dfd85df1f.pdf"
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "city": "南阳市",
+    "province": "河南省",
+    "sources": [
+      "https://lyj.nanyang.gov.cn/2023/01-05/175435.html"
+    ],
+    "checked_names": [
+      "西峡老界岭",
+      "中国西峡恐龙遗迹园",
+      "南召五朵山旅游区"
+    ],
+    "note": "老界岭和恐龙遗迹园已被现有复合5A记录涵盖；五朵山为另一县域景区，需核入口。",
+    "candidates": [
+      {
+        "name": "南召五朵山旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://lyj.nanyang.gov.cn/2023/01-05/175435.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "南召县的山地旅游区，融合山水景观与道教文化游览。",
+        "description_source_url": "https://lyj.nanyang.gov.cn/2023/01-05/175435.html"
+      }
+    ]
+  },
+  {
+    "id": 172,
+    "city": "驻马店市",
+    "province": "河南省",
+    "sources": [
+      "https://lyfw.mct.gov.cn/site/special/province?pkey=henan"
+    ],
+    "checked_names": [
+      "驻马店市嵖岈山旅游景区"
+    ],
+    "note": "文化和旅游部页面核实嵖岈山；现库已有嵖岈山及其风景区同义名，优先去重，不再新增。",
+    "candidates": []
+  },
+  {
+    "id": 176,
+    "city": "十堰市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202412/t20241231_5485736.shtml"
+    ],
+    "checked_names": [
+      "房县诗经文化旅游区"
+    ],
+    "note": "与现有武当山、十堰市博物馆等不同，需进一步核景区组成和入口。",
+    "candidates": [
+      {
+        "name": "房县诗经文化旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202412/t20241231_5485736.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "湖北省文化和旅游厅公布的十堰房县4A级文化旅游景区。",
+        "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202412/t20241231_5485736.shtml"
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "city": "荆门市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202312/t20231226_5016581.shtml"
+    ],
+    "checked_names": [
+      "荆门市圣境山生态旅游区"
+    ],
+    "note": "现有明显陵、绿林山、黄仙洞均不是圣境山；待核具名景区入口。",
+    "candidates": [
+      {
+        "name": "荆门市圣境山生态旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202312/t20231226_5016581.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "湖北省文化和旅游厅公布的荆门4A级生态旅游景区。",
+        "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202312/t20231226_5016581.shtml"
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "city": "咸宁市",
+    "province": "湖北省",
+    "sources": [
+      "https://zrzyhghj.xianning.gov.cn/xxgk/fdzdgknr/ghjh/201210/t20121029_1576762.shtml"
+    ],
+    "checked_names": [
+      "九宫山",
+      "陆水湖",
+      "赤壁古战场"
+    ],
+    "note": "九宫山与赤壁古战场已在库；陆水湖未收录，来源较旧，后续必须补近期开放资料与入口。",
+    "candidates": [
+      {
+        "name": "陆水湖风景名胜区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://zrzyhghj.xianning.gov.cn/xxgk/fdzdgknr/ghjh/201210/t20121029_1576762.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "咸宁市官方资源资料列出的湖泊型风景名胜区。",
+        "description_source_url": "https://zrzyhghj.xianning.gov.cn/xxgk/fdzdgknr/ghjh/201210/t20121029_1576762.shtml"
+      }
+    ]
+  },
+  {
+    "id": 188,
+    "city": "潜江市",
+    "province": "湖北省",
+    "sources": [
+      "https://www.hbqj.gov.cn/xxgk/xxgkml/szfxxgkml/gysyjs/ly/ggfw/202502/t20250228_5557555.html"
+    ],
+    "checked_names": [
+      "龙湾国家考古遗址公园",
+      "曹禺文化旅游区",
+      "返湾湖国家湿地公园"
+    ],
+    "note": "龙湾考古公园、曹禺文化旅游区与返湾湖已有现库对应，未发现可独立分离的新景点。",
+    "candidates": []
+  },
+  {
+    "id": 192,
+    "city": "株洲市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.hunan.gov.cn/hnszf/hnyw/szdt/202304/t20230428_29325952.html"
+    ],
+    "checked_names": [
+      "炎帝陵"
+    ],
+    "note": "省政府推介文章核实炎帝陵，现库已重复出现景区名与短名；应先去重，不再增加陵园内部点。",
+    "candidates": []
+  },
+  {
+    "id": 196,
+    "city": "岳阳市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.yyx.gov.cn/yyjc/jc_yyx/63/440/content_21833.html"
+    ],
+    "checked_names": [
+      "东湖国家湿地公园",
+      "君山岛",
+      "洞庭湖博物馆"
+    ],
+    "note": "君山岛已收录；东湖湿地独立于岳阳楼—君山岛组合景区，仍需核游客入口和湿地范围。",
+    "candidates": [
+      {
+        "name": "东湖国家湿地公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.yyx.gov.cn/yyjc/jc_yyx/63/440/content_21833.html","https://www.yueyang.gov.cn/yyast/31417/73086/73088/content_2285179.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description": "岳阳市官方春游线路的湿地观光节点，以湖滨生态游览为主。",
+        "description_source_url": "https://www.yyx.gov.cn/yyjc/jc_yyx/63/440/content_21833.html"
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "city": "郴州市",
+    "province": "湖南省",
+    "sources": [
+      "https://searchs.hunan.gov.cn/hnszf/hnyw/szdt/202609/t20260912_34062601.html"
+    ],
+    "checked_names": [
+      "莽山景区"
+    ],
+    "note": "与东江湖、苏仙岭不同区域，需核景区入口及是否有多个独立园区。",
+    "candidates": [
+      {
+        "name": "莽山景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://searchs.hunan.gov.cn/hnszf/hnyw/szdt/202609/t20260912_34062601.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "郴州山地景区，设观光索道与游步道，可进行山林景观游览。",
+        "description_source_url": "https://searchs.hunan.gov.cn/hnszf/hnyw/szdt/202609/t20260912_34062601.html"
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "city": "湘西土家族苗族自治州",
+    "province": "湖南省",
+    "sources": [
+      "https://fgw.hunan.gov.cn/fgw/jgzc11/202507/t20250724_33748635.html"
+    ],
+    "checked_names": [
+      "浦市古镇景区",
+      "凤凰奇梁洞景区"
+    ],
+    "note": "现有凤凰古城、边城茶峒、芙蓉镇，浦市为不同古镇；待核核心街区位置。",
+    "candidates": [
+      {
+        "name": "浦市古镇景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://fgw.hunan.gov.cn/fgw/jgzc11/202507/t20250724_33748635.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于湘西泸溪县的4A级古镇景区。",
+        "description_source_url": "https://fgw.hunan.gov.cn/fgw/jgzc11/202507/t20250724_33748635.html"
+      }
+    ]
+  },
+  {
+    "id": 208,
+    "city": "珠海市",
+    "province": "广东省",
+    "sources": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/gd/202404/t20240410_952184.html"
+    ],
+    "checked_names": [
+      "港珠澳大桥旅游项目",
+      "爱情邮局灯塔",
+      "海天驿站栈桥"
+    ],
+    "note": "来源介绍的是海上游、空中游与观景点组合，尚非单一可直接入库的景点；海天驿站等还需单独核实位置和开放性。",
+    "candidates": []
+  },
+  {
+    "id": 212,
+    "city": "湛江市",
+    "province": "广东省",
+    "sources": [
+      "https://www.zhanjiang.gov.cn/whgdlytyj/gkmlpt/content/1/1560/post_1560080.html"
+    ],
+    "checked_names": [
+      "湛江市茂德公鼓城度假区",
+      "湛江市鼎龙天海湾旅游景区"
+    ],
+    "note": "与现有湖光岩、赤坎老街和金沙湾等不同，待核游客入口。",
+    "candidates": [
+      {
+        "name": "湛江市茂德公鼓城度假区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.zhanjiang.gov.cn/whgdlytyj/gkmlpt/content/1/1560/post_1560080.html","https://www.zhanjiang.gov.cn/whgdlytyj/gkmlpt/content/1/1560/mpost_1560080.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于雷州市的4A级文化休闲度假景区。",
+        "description_source_url": "https://www.zhanjiang.gov.cn/whgdlytyj/gkmlpt/content/1/1560/post_1560080.html"
+      }
+    ]
+  },
+  {
+    "id": 216,
+    "city": "梅州市",
+    "province": "广东省",
+    "sources": [
+      "https://www.gdmx.gov.cn/mzmxsokzzf/gkmlpt/content/2/2655/post_2655040.html"
+    ],
+    "checked_names": [
+      "南寿峰旅游景区",
+      "叶剑英纪念园"
+    ],
+    "note": "叶剑英纪念园已收录；南寿峰与松口古镇附近，需核是否独立收费景区及边界。",
+    "candidates": [
+      {
+        "name": "南寿峰旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.gdmx.gov.cn/mzmxsokzzf/gkmlpt/content/2/2655/post_2655040.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于梅县区松口镇，结合生态游览、客家传统文化与中医药养生体验。",
+        "description_source_url": "https://www.gdmx.gov.cn/mzmxsokzzf/gkmlpt/content/2/2655/post_2655040.html"
+      }
+    ]
+  },
+  {
+    "id": 220,
+    "city": "清远市",
+    "province": "广东省",
+    "sources": [
+      "https://www.lianzhou.gov.cn/qylzwgdlt/gkmlpt/content/2/2001/post_2001687.html"
+    ],
+    "checked_names": [
+      "狮子湖国际休闲度假区",
+      "美林湖景区",
+      "黄腾峡生态旅游区"
+    ],
+    "note": "黄腾峡已在库；狮子湖与现有五条不重名，核独立范围、游客入园方式及坐标。",
+    "candidates": [
+      {
+        "name": "狮子湖国际休闲度假区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.lianzhou.gov.cn/qylzwgdlt/gkmlpt/content/2/2001/post_2001687.html","https://www.qingcheng.gov.cn/qyqcwgdltj/attachment/0/129/129753/1774612.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "清远官方精品线路中的湖滨休闲度假区，含观光与休闲业态。",
+        "description_source_url": "https://www.lianzhou.gov.cn/qylzwgdlt/gkmlpt/content/2/2001/post_2001687.html"
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from uuid import uuid4
 
-from sqlalchemy import select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session
 
 from backend.database.tables import PlanningEventRow, PlanningJobRow
@@ -9,7 +9,7 @@ from backend.models.conversation import RequirementDraft
 
 
 ACTIVE_JOB_STATUSES = frozenset({"queued", "running"})
-TERMINAL_JOB_STATUSES = frozenset({"completed", "failed", "cancelled", "waiting_for_choice"})
+TERMINAL_JOB_STATUSES = frozenset({"completed", "failed", "cancelled"})
 
 
 class PlanningJobRepository:
@@ -81,6 +81,17 @@ class PlanningJobRepository:
             )
         )
 
+    def list_recoverable(self, *, limit: int = 100, stale_after_seconds: float = 90) -> list[PlanningJobRow]:
+        cutoff = datetime.now() - timedelta(seconds=max(1, stale_after_seconds))
+        return list(self.session.scalars(
+            select(PlanningJobRow).where(or_(
+                PlanningJobRow.status == "queued",
+                and_(PlanningJobRow.status == "running",
+                     func.coalesce(PlanningJobRow.heartbeat_at, PlanningJobRow.started_at,
+                                   PlanningJobRow.created_at) <= cutoff),
+            )).order_by(PlanningJobRow.created_at, PlanningJobRow.id).limit(max(1, limit))
+        ))
+
     def set_requirement(self, row: PlanningJobRow, requirement: RequirementDraft) -> None:
         row.requirement_json = requirement.model_dump(mode="json")
 
@@ -130,23 +141,6 @@ class PlanningJobRepository:
         row.retry_count = (row.retry_count or 0) + 1
         row.worker_id = worker_id
 
-    def resume_waiting_for_choice(self, row: PlanningJobRow, *, resume_value: str) -> bool:
-        """Put a checkpointed human-choice job back on the worker queue."""
-
-        if row.status != "waiting_for_choice":
-            return False
-        row.status = "queued"
-        row.started_at = None
-        row.heartbeat_at = None
-        row.finished_at = None
-        row.error = None
-        row.worker_id = None
-        row.current_step = None
-        # Keep this marker until the worker reads it. Progress events will
-        # replace the public progress payload once the resumed graph starts.
-        row.progress_json = {"_resume_value": resume_value}
-        return True
-
     def record_progress(
         self,
         row: PlanningJobRow,
@@ -179,17 +173,6 @@ class PlanningJobRepository:
         now = datetime.now()
         row.status = "completed"
         row.current_step = "complete"
-        row.heartbeat_at = now
-        row.finished_at = now
-        row.error = None
-        row.worker_id = None
-        return True
-
-    def mark_waiting_for_choice(self, row: PlanningJobRow, *, worker_id: str | None = None) -> bool:
-        if worker_id is not None and not self.owns(row, worker_id):
-            return False
-        now = datetime.now()
-        row.status = "waiting_for_choice"
         row.heartbeat_at = now
         row.finished_at = now
         row.error = None

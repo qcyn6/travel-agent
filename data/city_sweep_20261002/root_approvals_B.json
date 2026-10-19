@@ -1,0 +1,631 @@
+{
+  "117|曹操运兵道": {
+    "status": "pending_coordinates", "outcome": "unresolved",
+    "reason": "官方及运营方资料补齐真实简介；另找到亳州古地道具名点，但地道跨多条街且公开点未明确游客入口，暂不按完整证据入库。",
+    "source_urls": ["https://www.qcdj.gov.cn/e/action/ShowInfo.php?classid=59&id=8764", "https://www.bzwljt.cn/", "https://www.iwenbo.fun/heritage/1078.html"],
+    "coordinate_review_note": "heritage_details_B_root.json保留GCJ02具名点115.77697814,33.87199896；仅标亳州古地道，未明确入口，不用遗址代表点冒充游客入口。",
+    "fields": {
+      "description": "曹操运兵道位于亳州老城区地下，是以大隅首一带为中心向外延伸的历史地道遗迹。可参观的地道通过券顶、交叉通道等结构呈现古代军事工程特点，出土遗物涉及汉、唐、宋等时期；具体开放段和入园安排以景区公告为准。",
+      "description_source_url": "https://www.qcdj.gov.cn/e/action/ShowInfo.php?classid=59&id=8764"
+    }
+  },
+  "117|道德中宫": {
+    "status": "pending_coordinates", "outcome": "unresolved",
+    "reason": "公开旅游资料补齐老祖殿街现址与老子纪念宫观简介；地图仍缺可靠具名场馆/入口点。",
+    "source_urls": ["https://you.ctrip.com/sight/bozhou404/1714222.html"],
+    "fields": {
+      "description": "道德中宫又称老祖殿，是亳州市谯城区老祖殿街的老子纪念宫观。院落保留传统宫观建筑格局，以老子纪念和道家文化为主要参观内容，可结合亳州老城其他历史文化景点游览。开放与购票安排以管理方公告为准。",
+      "description_source_url": "https://you.ctrip.com/sight/bozhou404/1714222.html"
+    }
+  },
+  "117|曹腾墓": {
+    "status": "pending_coordinates", "outcome": "unresolved",
+    "reason": "公开旅游资料补齐魏武大道馆址与石构汉墓简介；曹氏家族墓群跨度约10平方公里，其公共代表点不能作为曹腾墓坐标。",
+    "source_urls": ["https://you.ctrip.com/sight/bozhou404/141451.html", "https://www.iwenbo.fun/heritage/928.html"],
+    "coordinate_review_note": "拒绝以曹氏家族墓群整体点替代曹腾墓单体入口；携程静态页面未含可核准经纬度。",
+    "fields": {
+      "description": "曹腾墓位于亳州魏武大道一带，是曹氏家族墓群中的大型石结构多室汉墓。墓室、甬道及石雕画像反映东汉墓葬建筑和装饰艺术，适合古代建筑与地方历史参观；墓室实际开放情况以景区当日公告为准。",
+      "description_source_url": "https://you.ctrip.com/sight/bozhou404/141451.html"
+    }
+  },
+  "117|张园汉墓": {
+    "status": "pending_coordinates", "outcome": "unresolved",
+    "reason": "运营方张园汉墓专题资料及文保目录可补齐汉墓简介；曹氏家族墓群整体点不能代替单体游览入口。",
+    "source_urls": ["https://www.bzwljt.cn/product/6.html", "https://www.iwenbo.fun/heritage/928.html"],
+    "fields": {
+      "description": "张园汉墓是亳州曹氏家族墓群中的汉代墓葬游览点。考古清理发现铭文砖及玉器、铜车马饰、陶制生活器等文物，可了解汉代墓葬形制与丧葬文化。是否开放墓室和具体参观安排以景区公告为准。",
+      "description_source_url": "https://www.bzwljt.cn/product/6.html"
+    }
+  },
+  "93|上海战役总前委旧址纪念馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "核准其别名丹阳市总前委旧址纪念馆，2026年主题展资料证实场馆活动，公开文博具名点位于丹阳人民广场北侧，排除安徽及商丘同名总前委场馆。",
+    "source_urls": ["https://www.iwenbo.fun/museum/1476.html", "https://www.zjmm.gov.cn/a/shehuifuwu/2026/0616/4860.html"],
+    "coordinate_review_note": "公开网页TMap丹阳馆舍具名点，GCJ02，非实测入口；小型旧址与纪念馆一体，地址人民广场北侧。证据见extra_museum_guides_B_root.json。",
+    "fields": {
+      "description": "上海战役总前委旧址纪念馆又称丹阳市总前委旧址纪念馆，位于丹阳市人民广场北侧。场馆由总前委驻地旧址和纪念展馆组成，通过复原陈列与图文资料介绍解放、接管上海的历史，适合革命历史参观和研学。展览及开放安排以馆方公告为准。",
+      "description_source_url": "https://www.iwenbo.fun/museum/1476.html",
+      "longitude": 119.5736289, "latitude": 31.99389599,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1476.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "古建", "研学"],
+      "duration_minutes": 90, "aliases": ["丹阳市总前委旧址纪念馆", "丹阳总前委旧址纪念馆"],
+      "independence_note": "丹阳人民广场北侧独立革命场馆，与现有镇江博物馆、西津渡不同址；旧址与展馆合并一条，不拆院内设施。"
+    }
+  },
+  "345|克拉玛依博物馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "2026年9月市政府资料确认现馆准噶尔路22号及石油历史展陈，公开文博地图具名现館点地址一致；拒绝独库公路同名误匹配。",
+    "source_urls": ["https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml", "https://www.iwenbo.fun/museum/5273.html"],
+    "coordinate_review_note": "公开网页TMap现馆具名点标记，GCJ02，位于准噶尔路22号，非实测入口。证据见extra_museum_guides_B_root.json。",
+    "fields": {
+      "description": "克拉玛依博物馆位于克拉玛依区准噶尔路22号，又称克拉玛依市文博院。馆内围绕地质背景、石油工业萌芽、艰苦创业及城市发展设置展陈，展示各族石油人建设边疆的历程，适合地方历史参观、工业文化体验和研学。开放、预约及展览以馆方公告为准。",
+      "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+      "longitude": 84.90209699, "latitude": 45.60673111,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5273.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "人文", "研学"],
+      "duration_minutes": 90, "aliases": ["克拉玛依市博物馆", "克拉玛依市文博院", "克拉玛依矿史博物馆"],
+      "independence_note": "主城区准噶尔路独立文博场馆，与独山子区独库公路博物馆、科技馆不同，不另拆地窖或英雄墙。"
+    }
+  },
+  "117|华祖庵": {
+    "status": "approved", "outcome": "approved",
+    "reason": "运营方单列华祖庵景区，文博指南明确华佗纪念馆位于永安街12号华祖庵院内；按整个紧凑景区一条收录，不另拆子馆。",
+    "source_urls": ["https://www.bzwljt.cn/About_us.html", "https://www.iwenbo.fun/museum/2114.html", "https://bkso.baidu.com/item/%E5%8D%8E%E7%A5%96%E5%BA%B5/162291?fromModule=lemma_inlink"],
+    "coordinate_review_note": "公开文博TMap华佗纪念馆具名建筑锚点，GCJ02，地址明确在华祖庵院内；以子馆作为整个小型院落到达锚点，非实测庵门。证据见extra_museum_guides_B_root.json。",
+    "fields": {
+      "description": "华祖庵位于亳州市谯城区永安街，是纪念华佗的历史文化游览点。传统庙祠院落与院内华佗纪念馆、中医药文化展陈共同介绍华佗事迹及中医药发展，适合古建筑观察、医学文化参观和研学。开放与购票安排以景区公告为准。",
+      "description_source_url": "https://www.iwenbo.fun/museum/2114.html",
+      "longitude": 115.782202, "latitude": 33.877063,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/2114.html", "coordinate_system": "GCJ02",
+      "category": "历史古迹", "tags": ["历史文化", "古建", "博物馆", "研学"],
+      "duration_minutes": 90, "aliases": ["华佗纪念馆", "华佗中医药文化博物馆"],
+      "independence_note": "按华祖庵及院内华佗纪念馆整体收录，不再单列子馆；与亳州西南城郊华佗百草园不同址。"
+    }
+  },
+  "109|淮海战役总前委旧址纪念馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "濉溪县政府确认临涣文昌宫纪念馆及展陈，公开文博页面具名地图标记与文昌街馆址相符，排除商丘同名旧址。",
+    "source_urls": ["https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html", "https://www.iwenbo.fun/museum/1980.html"],
+    "coordinate_review_note": "公开网页TMap具名临涣文昌宫馆址锚点，GCJ02，非实测入口；拒绝商丘同名馆地图结果。原标记见museum_guides_B_root.json。",
+    "fields": {
+      "description": "淮海战役总前委旧址纪念馆设于濉溪县临涣镇文昌宫，是革命旧址与纪念展陈结合的文博游览点。馆内展示淮海战役史料，并复原会议室、通讯处及首长居室等空间，适合了解战争历史和开展红色研学。开放与参观安排以场馆公告为准。",
+      "description_source_url": "https://www.sxx.gov.cn/xwzx/ztzl/sxyl/jnss/60529561.html",
+      "longitude": 116.55888498, "latitude": 33.68865438,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1980.html",
+      "coordinate_system": "GCJ02", "category": "博物馆",
+      "tags": ["博物馆", "历史文化", "研学"], "duration_minutes": 90,
+      "aliases": ["中共淮海战役总前委旧址纪念馆", "文昌宫淮海战役总前委旧址"],
+      "independence_note": "临涣文昌宫独立纪念场馆，现有淮北景点无临涣古城父项；与徐州淮海战役纪念馆、商丘总前委旧址不同址。"
+    }
+  },
+  "109|南山汉文化博物馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "2025年淮北官方游览报道确认矿山集南山馆参观，公开文博页面具名馆址标记与所在地相符，未与在库景点重叠。",
+    "source_urls": ["https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html", "https://ny.huaibei.gov.cn/tslm/zfdx/57859191.html", "https://www.iwenbo.fun/museum/1984.html"],
+    "coordinate_review_note": "公开网页TMap具名场馆锚点，GCJ02，位于杜集区矿山集街道南山村，非淮北城市中心或实测游客入口。原标记见museum_guides_B_root.json。",
+    "fields": {
+      "description": "南山汉文化博物馆位于淮北市杜集区矿山集街道南山村，以汉文化与地方历史为主要内容。馆内通过汉画像石等展品呈现地方文化，适合历史文化参观与亲子研学，可结合周边村落的乡土文化游览。展览和开放安排以场馆公告为准。",
+      "description_source_url": "https://www.hbnews.net/dj/2025/06-04/XkJloXrA.html",
+      "longitude": 116.940471, "latitude": 33.957784,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1984.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "人文", "研学"],
+      "duration_minutes": 90, "aliases": ["南山村汉文化博物馆"],
+      "independence_note": "南山村汉文化独立馆舍，现有淮北库无南山风景区父项，不另拆馆内展厅；与淮北市博物馆不同址。"
+    }
+  },
+  "81|图强林业博物馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "2026年漠河政府确认图强馆现状与展陈，公开文博指南明确具名馆舍地图标记，与图强文体中心位置相符。",
+    "source_urls": ["https://www.mohe.gov.cn/mohe/c101075/202604/c13_333150.shtml", "https://www.iwenbo.fun/museum/1084.html", "https://www.forestry.gov.cn/lyj/1/ggsllvcy/20260911/689863.html"],
+    "coordinate_review_note": "公开网页TMap具名馆舍标记，GCJ02，位于图强镇，非大兴安岭地区中心或实测入口；原代码见published_markers_B_root.json。",
+    "fields": {
+      "description": "图强林业博物馆位于大兴安岭漠河市图强林业局，展示林区开发建设、生态变迁和林业文化。馆内以沙盘、实物及多媒体介绍森林生产过程、林区四季景观、动植物标本与林业工具，适合森林科普、地方历史参观和研学。票价与开放安排以馆方最新公告为准。",
+      "description_source_url": "https://www.mohe.gov.cn/mohe/c101075/202604/c13_333150.shtml",
+      "longitude": 122.80092716, "latitude": 52.9284366,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1084.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "森林", "研学"],
+      "aliases": [], "duration_minutes": 90,
+      "independence_note": "独立林业专题馆，与已有五六火灾纪念馆和呼玛博物馆不同；不另拆模型展厅或标本为景点。"
+    }
+  },
+  "85|沛县博物馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "馆方现址、展陈及2019年新馆开放可核准；公开具名地图点对应新城区汉邦路，不采用歌风台旧馆位置。",
+    "source_urls": ["https://www.pxbwg.com/", "https://www.iwenbo.fun/museum/1319.html", "https://ggzy.zwb.xz.gov.cn/jyxx/003009/003009001/20240822/8dbd41bd-ed2d-4ac0-84f7-810d55c41acb.html"],
+    "coordinate_review_note": "公开网页具名场馆标记，GCJ02；非实测入口。原代码见published_markers_B_root.json，官方汉邦路7号与新城区位置一致。",
+    "fields": {
+      "description": "沛县博物馆现馆位于汉邦路7号，展示沛县地方历史与两汉文化。馆藏大风歌碑、彩绘陶器及石刻等文物，展陈还介绍微山湖历史文化与地方革命历史。适合文博参观、历史文化研学，可结合馆方临时展览安排游览。预约和开放安排以馆方公告为准。",
+      "description_source_url": "https://www.pxbwg.com/",
+      "longitude": 116.93167984, "latitude": 34.75541312,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/1319.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "研学", "人文"],
+      "aliases": [], "duration_minutes": 90,
+      "independence_note": "新城区独立馆舍；不是歌风台旧馆，不与现有徐州市汉文化主题景区同一地点，也不另拆展厅或馆藏为景点。"
+    }
+  },
+  "341|吴忠市博物馆": {
+    "status": "approved", "outcome": "approved",
+    "reason": "吴忠政府游览资料核准场馆展陈，2026年官方采购地址与公开地图滨河新区两馆一中心位置相符。",
+    "source_urls": ["https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html", "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202604/t20260403_26361840.htm", "https://www.iwenbo.fun/museum/5210.html"],
+    "coordinate_review_note": "公开网页TMap具名场馆锚点，GCJ02，非现场实测入口；2026年官方地址开元大道两馆一中心与地图位置相符。",
+    "fields": {
+      "description": "吴忠市博物馆位于利通区滨河新区两馆一中心，是地方综合性博物馆。常设展陈包括吴忠溯源、红色吴忠，以历史文物和专题展示介绍地方历史、地域文化及革命历史。适合文博参观和历史研学，展览、预约及开放安排以馆方公告为准。",
+      "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+      "longitude": 106.15826547, "latitude": 37.98896088,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5210.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "人文", "研学"],
+      "aliases": ["吴忠博物馆"], "duration_minutes": 90,
+      "independence_note": "独立市级馆舍，与现有吴忠景点逐名及内容检查无重复；不把同一文化中心其他建筑或馆内展厅拆成多个景点。"
+    }
+  },
+  "273|广安市博物馆": {
+    "status": "pending_coordinates_and_description", "outcome": "unresolved",
+    "reason": "找到公开具名地图点，但指南地址为青莲东街旧馆；2026年物业采购及当前游览资料指向桥头坝路66号，旧馆标记不能替代当前新馆。",
+    "source_urls": ["https://www.iwenbo.fun/museum/4364.html", "https://m.sohu.com/a/980866223_122434053", "https://www.sohu.com/a/1055840691_121106884"],
+    "coordinate_review_note": "公开指南30.45577677,106.64548337对应青莲东街旧馆，已拒绝采用；需要当前桥头坝路66号具名新馆点。"
+  },
+  "117|南京巷钱庄": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "文旅部门确认对外游览，文保资料及携程核准南京巷19号旧址；公开文保网页发布明确具名场馆地图标记，未与已有库同名/父景点重复。",
+    "source_urls": [
+      "https://www.iwenbo.fun/heritage/3620.html",
+      "https://you.ctrip.com/sight/bozhou404/66849.html",
+      "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm"
+    ],
+    "coordinate_review_note": "采用公开文保指南TMap具名旧址标记（GCJ02）；小型钱庄场馆锚点，非实测门口。原代码与坐标见published_markers_B_root.json；未加载SDK、未使用用户地图Key。",
+    "fields": {
+      "description": "南京巷钱庄位于亳州市谯城区南京巷19号，是保存清代钱庄建筑及金融历史展陈的文化游览点。院落、账房等空间与钱币陈列呈现当地商贸和近代钱庄经营文化，适合古建筑观察、历史文化参观和金融文化研学。开放及购票安排以景区公告为准。",
+      "description_source_url": "https://you.ctrip.com/sight/bozhou404/66849.html",
+      "longitude": 115.77425838,
+      "latitude": 33.88237614,
+      "coordinate_source_url": "https://www.iwenbo.fun/heritage/3620.html",
+      "coordinate_system": "GCJ02",
+      "category": "历史古迹",
+      "tags": ["历史文化", "古建", "博物馆", "研学"],
+      "aliases": ["亳州市南京巷钱庄景区"],
+      "duration_minutes": 90,
+      "independence_note": "独立开放的钱庄旧址景区；现有亳州条目无同名或包含其展陈的父景点，不把馆内展厅另拆条。"
+    }
+  },
+  "321|天水民俗博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "天水文旅资料与文物资料确认胡氏民居及南宅子文博用途，公开文保指南给出民主西路小院落具名标记；与现有天水古城西关片区不同，不重复拆分南北院条目。",
+    "source_urls": [
+      "https://www.tianshui.gov.cn/wlj/info/1822/172942.htm",
+      "https://www.iwenbo.fun/heritage/1196.html",
+      "https://zh.wikipedia.org/wiki/%E8%83%A1%E6%B0%8F%E5%8F%A4%E6%B0%91%E5%B1%85%E5%BB%BA%E7%AD%91"
+    ],
+    "coordinate_review_note": "采用公开文保指南TMap具名胡氏民居小院落锚点（GCJ02），对应民主西路南宅子馆区；不是伏羲庙内天水市博物馆，不冒充实测门口。原代码见published_markers_B_root.json。",
+    "fields": {
+      "description": "天水民俗博物馆依托秦州区民主西路的胡氏民居南宅子，展示地方民俗与古民居文化。明代院落、传统木构和雕饰构成主要参观内容，可了解天水历史居住空间与地方人文；适合古建筑观察、文博研学和院落摄影。展陈与开放安排以馆方公告为准。",
+      "description_source_url": "https://www.tianshui.gov.cn/wlj/info/1822/172942.htm",
+      "longitude": 105.72297782,
+      "latitude": 34.58023768,
+      "coordinate_source_url": "https://www.iwenbo.fun/heritage/1196.html",
+      "coordinate_system": "GCJ02",
+      "category": "博物馆",
+      "tags": ["博物馆", "历史文化", "古建", "人文"],
+      "aliases": ["胡氏民居南宅子", "胡氏古民居建筑", "南宅子"],
+      "duration_minutes": 90,
+      "independence_note": "采用民俗馆整体单条记录，不把南北院和各展室拆分；与现有天水古城西关片区、伏羲庙内市博物馆不是同一游览实体。"
+    }
+  },
+  "341|宁夏长城博物馆": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "已找到盐池县长城关相关公开报道，但水洞沟官网也有同名博物馆资料；需消除同名实体混淆并核准盐池场馆坐标，不把灵武水洞沟馆挂到吴忠。",
+    "source_urls": [
+      "https://szb.ycfbapp.com/ycwb/pc/att/202509/08/0dd228b1-e1ce-4f00-b8a3-ec144a54eedd.pdf",
+      "https://www.shuidonggou.com/mobile/photo/show.php/itemid-20/"
+    ],
+    "coordinate_review_note": "本轮名称查询未取得可核准的盐池馆坐标；同名水洞沟馆不得替代。"
+  },
+  "361|五家渠军垦博物馆": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "2026年兵团官网可确认六师五家渠军垦博物馆现有展陈；查得2013年已迁至新馆，必须核准当前馆址坐标，不能沿用未核实旧馆位置。",
+    "source_urls": [
+      "https://www.xjbt.gov.cn/c/2026-09-07/8502764.shtml",
+      "https://lwtj.shzu.edu.cn/openfile?dbid=72&lwsing=f2e739f5fc8d5066b3c01bf82c149277&objid=52_51_56_49_49"
+    ],
+    "coordinate_review_note": "公开地图暂无可采用的当前场馆点；迁馆历史已登记，不使用城市中心或其他师军垦馆坐标。"
+  },
+  "317|甘肃天庆博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "运营方参观导览、年报与公开具名地图标记对应雁北路1599号，补齐场馆锚点证据。",
+    "source_urls": [
+      "https://tqgroup.net/museum?id=guide",
+      "https://www.tqgroup.net/museum?id=report",
+      "https://tqgroup.net/museum?id=museum",
+      "https://www.iwenbo.fun/museum/4973.html"
+    ],
+    "coordinate_review_note": "公开指南TMap具名小型馆舍锚点，GCJ02，地址与馆方雁北路1599号一致；不冒充现场入口。原代码见published_markers_B_root.json。",
+    "fields": {
+      "description": "甘肃天庆博物馆位于兰州市城关区雁北路1599号，是展示彩陶、书画、唐卡、古籍等藏品的文博场馆。不同楼层设置美术、文物及文献类展示空间，可了解历史文化和收藏艺术。适合文博参观、艺术观察和研学，具体展陈、预约与开放安排以运营方公告为准。",
+      "description_source_url": "https://tqgroup.net/museum?id=museum",
+      "longitude": 103.88992135, "latitude": 36.0667487,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/4973.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "艺术", "研学"],
+      "aliases": ["天庆博物馆"], "duration_minutes": 90,
+      "independence_note": "独立具名文博场馆，现有兰州条目无同名或同一馆区；不把各楼层和藏书阁另拆成景点。"
+    }
+  },
+  "81|呼玛博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://www.dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+      "https://www.openstreetmap.org/way/1125974487"
+    ],
+    "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+    "fields": {
+      "description": "呼玛博物馆位于大兴安岭地区呼玛县，以地方历史和自然环境为展陈内容。馆内通过文物、场景与图文呈现呼玛的历史变迁、边城建设及区域文化，适合了解黑龙江上游的人文与自然背景。具体开放和展览安排以馆方公告为准。",
+      "description_source_url": "https://www.dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+      "latitude": 51.7233959,
+      "longitude": 126.6598298,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1125974487",
+      "coordinate_system": "WGS84",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文",
+        "研学"
+      ],
+      "aliases": [],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "329|临夏州博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://www.lxzbwg.cn/",
+      "https://www.openstreetmap.org/way/606536512"
+    ],
+    "coordinate_review_note": "采用临夏市东区具名紧凑馆区锚点（约160米范围），非大景区中心；不冒充门口实测点。馆方当前地址与地图东区位置一致。",
+    "fields": {
+      "description": "临夏州博物馆亦称临夏州彩陶馆，位于临夏市东区市政府广场西侧。馆藏以马家窑文化等史前彩陶见长，并收藏石器、玉器、铜器和民族文物，展示临夏及周边的历史文化。适合文博参观与彩陶文化研学，具体展陈、预约和开放安排以馆方公告为准。",
+      "description_source_url": "https://www.lxzbwg.cn/",
+      "latitude": 35.6022723,
+      "longitude": 103.241046,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/606536512",
+      "coordinate_system": "WGS84",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文",
+        "研学"
+      ],
+      "aliases": [
+        "临夏州彩陶馆",
+        "临夏回族自治州博物馆"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "337|玉树州博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+      "https://www.openstreetmap.org/way/1471785633"
+    ],
+    "coordinate_review_note": "采用民主路附近具名紧凑馆区锚点（约200米范围），非整个玉树城市中心；不冒充现场入口坐标。",
+    "fields": {
+      "description": "玉树州博物馆位于青海省玉树市，是了解玉树地方历史与藏族民俗文化的文博场馆。参观可结合馆内展陈认识当地历史变迁和地域文化，适合安排为城市人文与研学游览点。具体开放时间、展览内容及预约要求以馆方公告为准。",
+      "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+      "latitude": 33.0060788,
+      "longitude": 97.0104388,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1471785633",
+      "coordinate_system": "WGS84",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "人文",
+        "民族文化",
+        "研学"
+      ],
+      "aliases": [
+        "玉树藏族自治州博物馆"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "345|克拉玛依科技馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://www.klmyq.gov.cn/klmyq/ggwhfw/202409/f7aba60486764d8181188f80c35b3de5.shtml",
+      "https://www.openstreetmap.org/way/879506636"
+    ],
+    "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+    "fields": {
+      "description": "克拉玛依科技馆位于市文体中心，处于迎宾路以西、世纪大道以南。馆舍建筑以石油地质为设计意象，通过科学探索等主题展陈与互动项目开展科普教育，适合亲子参观和科学研学。具体展项、场次与开放安排以场馆公告为准。",
+      "description_source_url": "https://www.klmyq.gov.cn/klmyq/ggwhfw/202409/f7aba60486764d8181188f80c35b3de5.shtml",
+      "latitude": 45.5695491,
+      "longitude": 84.8867461,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/879506636",
+      "coordinate_system": "WGS84",
+      "category": "科普场馆",
+      "tags": [
+        "博物馆",
+        "研学",
+        "亲子",
+        "建筑"
+      ],
+      "aliases": [
+        "克拉玛依市科技馆"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "349|博尔塔拉蒙古自治州博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+      "https://www.openstreetmap.org/way/554604783"
+    ],
+    "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+    "fields": {
+      "description": "博尔塔拉蒙古自治州博物馆位于博乐市南城区锦绣路9号，是地方综合性博物馆。基本陈列围绕博尔塔拉的民族民俗和历史文物，结合数字化展示介绍当地文化与丝路历史，并举办临时交流展览。适合文博与民族文化研学，开放安排以馆方公告为准。",
+      "description_source_url": "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+      "latitude": 44.8553194,
+      "longitude": 82.0533997,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/554604783",
+      "coordinate_system": "WGS84",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "民族文化",
+        "研学"
+      ],
+      "aliases": [
+        "博州博物馆"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "357|阿勒泰地区博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+    "source_urls": [
+      "https://wlt.xinjiang.gov.cn/wlt/dzdt/202105/c1ec7480d86f4d758e089bbb0adf8b82.shtml",
+      "https://www.openstreetmap.org/way/1351505184"
+    ],
+    "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+    "fields": {
+      "description": "阿勒泰地区博物馆是一座收藏、展示和研究地方文物的综合性博物馆，新馆于2021年对外开放。馆藏包括石器、陶器、青铜器、铁器和金器等，适合了解阿勒泰地区历史与人文文化。参观时的展览内容、开放时间和预约要求以馆方最新公告为准。",
+      "description_source_url": "https://wlt.xinjiang.gov.cn/wlt/dzdt/202105/c1ec7480d86f4d758e089bbb0adf8b82.shtml",
+      "latitude": 47.8097456,
+      "longitude": 88.1225241,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1351505184",
+      "coordinate_system": "WGS84",
+      "category": "博物馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文",
+        "研学"
+      ],
+      "aliases": [],
+      "duration_minutes": 90,
+      "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。"
+    }
+  },
+  "77|冠军湾": {
+    "status": "excluded_duplicate",
+    "outcome": "excluded_duplicate",
+    "reason": "省政府说明冠军湾属于桃山湖生态治理项目“一湾五海”中的一湾；现有“桃山湖”已按湖泊及湿地公共游览空间整体记录，本候选不再拆分新增。注意同名“冠军湾抖街”商业项目不能混作此湿地。",
+    "source_urls": [
+      "https://www.hlj.gov.cn/hlj/c107858/202604/c00_31931057.shtml"
+    ],
+    "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。"
+  },
+  "185|随州博物馆": {
+    "status": "excluded_duplicate",
+    "outcome": "excluded_duplicate",
+    "reason": "现有“随州炎帝文化旅游区”按三片区整体收录，湖北日报2025年报道确认炎帝故里、随州博物馆和曾侯乙墓三景点联合打造该旅游区；本轮不再与整体记录重复计入，并非同一院落或否认博物馆真实存在。",
+    "source_urls": [
+      "https://news.hubeidaily.net/pc/c_4680488.html",
+      "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml"
+    ],
+    "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。"
+  },
+  "185|曾侯乙墓遗址": {
+    "status": "excluded_duplicate",
+    "outcome": "excluded_duplicate",
+    "reason": "现有“随州炎帝文化旅游区”已明确整体包括此墓遗址；不将同一父景区的核心子点重复新增到行程候选库。",
+    "source_urls": [
+      "https://news.hubeidaily.net/pc/c_4680488.html",
+      "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+      "https://www.saac.gov.cn/mowcn/cn/c100512/202506/382e5c53ec654d16aeb7eedeaaf7389f/files/7561dbe91fe343c2947eaf533bb6696e.pdf"
+    ],
+    "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。"
+  },
+  "89|孔望山景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "景区真实存在，但本轮坐标只命中同名公交站，不能把公交站坐标当景区入口。",
+    "source_urls": [],
+    "coordinate_review_note": "拒绝OSM node13474095760/13474095759：二者为bus_stop而非景区入口。"
+  },
+  "93|宝华山景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "名称及真实性可核实，本轮只命中公交站，缺实际游览入口坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "拒绝OSM node8742026376，type=bus_stop。"
+  },
+  "121|同安影视城": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "影视城真实存在，本轮只检索到邻近同名公交站，未找到可直接采用的入口。",
+    "source_urls": [],
+    "coordinate_review_note": "拒绝OSM node13381466169/13383513806，两条均为bus_stop。"
+  },
+  "237|三门海": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "真实景区有公开资料，但公开地图此次返回三门海镇行政地名，不是游览景点或入口。",
+    "source_urls": [],
+    "coordinate_review_note": "拒绝OSM node4569871090，type=town。"
+  },
+  "325|酒泉民俗博物馆": {
+    "status": "approved",
+    "outcome": "approved",
+    "reason": "拒绝敦煌同名误配后，找到酒嘉城际道路禹苑内的准确具名文博指南标记；官方名录地址与该位置相符。",
+    "source_urls": [
+      "https://www.qinan.gov.cn/info/11102/1167452.htm",
+      "https://www.iwenbo.fun/museum/5077.html"
+    ],
+    "coordinate_review_note": "继续拒绝way225176858敦煌民俗馆；采用公开文博指南TMap的酒泉民俗馆具名馆区标记，GCJ02，位于酒泉至嘉峪关城际道路沿线。不是现场实测入口。",
+    "fields": {
+      "description": "酒泉民俗博物馆位于酒嘉城际道路沿线禹苑水利风景区内，收藏和展示当地传统生产工具、生活用品、建筑构件等民俗物件。通过古民居复建、生活场景与专题陈列介绍晚清以来酒泉农耕生活和地域民俗，适合地方历史、民俗文化参观和研学。开放安排以馆方公告为准。",
+      "description_source_url": "https://www.iwenbo.fun/museum/5077.html",
+      "longitude": 98.37077465, "latitude": 39.7852634,
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5077.html", "coordinate_system": "GCJ02",
+      "category": "博物馆", "tags": ["博物馆", "历史文化", "人文", "研学"],
+      "aliases": [], "duration_minutes": 90,
+      "independence_note": "现有酒泉库无禹苑父景区或同馆条目；与敦煌民俗馆、酒泉酒文化馆为不同实体，不拆同馆各陈列室。"
+    }
+  },
+  "81|观音山·采金小镇": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方确认景区真实，已找到具名旅游节点，但节点未标明入口；景区包括多处游览点，本轮不把泛化POI锚点假定为入口。",
+    "source_urls": [
+      "https://dxal.gov.cn/dxal/c100030/202401/c13_272368.shtml"
+    ],
+    "coordinate_review_note": "OSM node12370114529仅有name/tourism=attraction，无entrance；入口定位继续待补。"
+  },
+  "161|桑园小镇": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方确认淇滨区桑园村乡村旅游项目，公开地图有具名旅游节点；尚未核实其作为实际游览入口的位置，暂不批准。",
+    "source_urls": [
+      "https://www.rootinhenan.gov.cn/sitesources/rootinhenan/page_pc/cxzc/articlec448f828ab8642cf8a859f2728f605c7.html"
+    ],
+    "coordinate_review_note": "node6389007114地址匹配桑园村，仅tourism=attraction，未标实际入口。"
+  },
+  "85|快哉亭": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way457587853完整节点及标签；未有入口标签，不采用范围中心冒充入口。"
+  },
+  "93|米芾书法公园": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way1531003059完整节点及周边有界地图；服务路way1283192765有lift_gate节点12944602638，但不能确认是对游客开放的景区入口，暂不采用。详见entrances_B_root.json。"
+  },
+  "121|英雄三岛战地观光园": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way993455721完整节点及标签；未有入口标签，不采用范围中心冒充入口。"
+  },
+  "165|春秋楼景区": {
+    "status": "pending_coordinates",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": ["https://xuchang.gov.cn/zjxc/005004/20190614/b684c757-4eb9-48bc-b251-de18c8f8b595.html"],
+    "coordinate_review_note": "已在线读取OSM way1472243299完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+    "fields": {
+      "description": "春秋楼景区位于许昌市中心，由春秋楼关宅和毗邻的文庙古建筑组成。关宅展示关羽忠义文化，文庙保留棂星门、大成殿等建筑，文武庙祀与明清风格院落相结合，适合三国文化参观和传统建筑观察。",
+      "description_source_url": "https://xuchang.gov.cn/zjxc/005004/20190614/b684c757-4eb9-48bc-b251-de18c8f8b595.html"
+    }
+  },
+  "169|商丘博物馆": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way592564699完整节点及标签；未有入口标签，不采用范围中心冒充入口。"
+  },
+  "261|尖山风景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way1037510498完整节点及标签；未有入口标签，不采用范围中心冒充入口。"
+  },
+  "285|鸡鸣三省旅游景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+    "source_urls": [],
+    "coordinate_review_note": "已在线读取OSM way746956988完整节点及标签；未有入口标签，不采用范围中心冒充入口。"
+  },
+  "109|大运河美术馆": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "本轮检索到淮北隋唐古镇内美术馆及研学介绍；无可靠具名坐标，且仍需核对与现有隋唐运河古镇的独立游览边界。",
+    "source_urls": [
+      "https://www.sohu.com/a/1002350508_121124566"
+    ]
+  },
+  "177|嫘祖文化园景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "宜昌最新A级名录及公开介绍可确认远安嫘祖文化园；缺具名可核准入口坐标。",
+    "source_urls": [
+      "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+      "https://you.ctrip.com/sight/yuanan2713/5711990.html"
+    ]
+  },
+  "181|老观湖国家湿地公园古泽遗珠景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "省文旅厅确认应城老观湖湿地及观鸟塔，不能使用别市同名湖泊或行政区域中心；游览入口坐标待补。",
+    "source_urls": [
+      "https://wlt.hubei.gov.cn/bmdt/mtjj/202605/t20260528_5945775.shtml"
+    ]
+  },
+  "253|五里路茶园": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "省农业农村厅确认牙叉镇五里路茶韵共享农庄与有机茶园体验；需以正式别名再次定位，不采用泛化村镇中心。",
+    "source_urls": [
+      "https://agri.hainan.gov.cn/hnsnyt/ywdt/zwdt/202506/t20250611_3878215.html"
+    ]
+  },
+  "321|天水弘文博物苑": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "市文旅局2026研学线路确认弘文园博物苑及其四馆构成；只登记整体，不把四馆拆分重复计数，整体入口坐标待补。",
+    "source_urls": [
+      "https://www.tianshui.gov.cn/wlj/info/1822/288802.htm"
+    ]
+  },
+  "325|肃州区中以生态农业旅游景区": {
+    "status": "pending_coordinates_and_description",
+    "outcome": "unresolved",
+    "reason": "官方2024A级名录确认此旅游景区及东洞戈壁农业产业园地址；建设项目与整体农业区不能直接替代旅游入口坐标。",
+    "source_urls": [
+      "https://www.qinan.gov.cn/info/11102/1167452.htm"
+    ]
+  }
+}

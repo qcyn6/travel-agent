@@ -33,7 +33,7 @@ from backend.attractions.metadata import (  # noqa: E402
 )
 from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow, ProvinceRow  # noqa: E402
-from scripts.seed_ai_demo_attractions import (  # noqa: E402
+from backend.attractions.heuristics import (  # noqa: E402
     build_description,
     estimate_duration,
 )

@@ -1,0 +1,214 @@
+[
+  {
+    "id": 53,
+    "city": "营口市",
+    "province": "辽宁省",
+    "sources": [
+      "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml"
+    ],
+    "checked_names": [
+      "仙人岛白沙湾黄金海岸",
+      "团山国家级海洋公园",
+      "虹溪谷旅游度假区",
+      "万福赤山旅游景区",
+      "月亮湖公园",
+      "望儿山"
+    ],
+    "note": "仙人岛白沙湾与已有仙人岛边界需复核，不直接新增。",
+    "candidates": [
+      {
+        "name": "虹溪谷旅游度假区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025112415305468791/index.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“虹溪谷旅游度假区 营口市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "万福赤山旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025112415290813331/index.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“万福赤山旅游景区 营口市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "月亮湖公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.ln.gov.cn/web/sqgk/whly/ajjq/yk/index.shtml",
+            "https://www.yingkou.gov.cn/005/005002/005002002/20190513/786027e1-32ac-4cdd-b4e5-fe448ba77f5a.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“月亮湖公园 营口市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "city": "白山市",
+    "province": "吉林省",
+    "sources": [
+      "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf"
+    ],
+    "checked_names": [
+      "长白山万达国际度假区",
+      "露水河国家森林公园",
+      "松江河国家森林公园",
+      "长白望天鹅风景区",
+      "长白朝鲜族民俗村",
+      "北山生态森林植物园",
+      "长白山鲁能胜地"
+    ],
+    "note": "规划资源名录仅作线索；新增须确认公众可游及入口位置，排除酒店型度假区。",
+    "candidates": [
+      {
+        "name": "露水河国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+            "https://dfz.jl.gov.cn/ybjl/201712/t20171201_5217154.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“露水河国家森林公园 白山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "松江河国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮仅见规划文书提及松江河国家森林公园，未核实现有运营景区及独立游客入口。",
+          "source_urls": [
+            "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“松江河国家森林公园 白山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "长白望天鹅风景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“长白望天鹅风景区 白山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      },
+      {
+        "name": "长白朝鲜族民俗村",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://xxgk.jl.gov.cn/zcbm/fgw_98067/xxgkmlqy/202211/W020221111539011929226.pdf",
+            "https://you.ctrip.com/sight/changbaicounty2463/1835245.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“长白朝鲜族民俗村 白山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "city": "哈尔滨市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://wlt.hlj.gov.cn/wlt/c114254/202512/c00_31897146.shtml"
+    ],
+    "checked_names": [
+      "中国木雕艺术馆",
+      "中央大街",
+      "哈尔滨冰雪大世界"
+    ],
+    "note": "中央大街和冰雪大世界已有；木雕艺术馆待真实坐标。",
+    "candidates": [
+      {
+        "name": "中国木雕艺术馆",
+        "status": "pending_coordinates",
+        "description_source_url": "https://wlt.hlj.gov.cn/wlt/c114254/202512/c00_31897146.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.hlj.gov.cn/wlt/c114254/202512/c00_31897146.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+哈尔滨返回0项。"
+        },
+        "description": "哈尔滨的木雕专题馆，展出朱金漆木雕等作品，可了解中国传统木雕技艺。",
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://wlt.hlj.gov.cn/wlt/c114254/202512/c00_31897146.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "黑龙江文旅厅可核实展陈，但站内文博与 Photon 未给出能对应现馆门址的具名坐标。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "city": "双鸭山市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://fao.hlj.gov.cn/fao/c111834/202206/30672918/files/025996ad567e84465b235ce0cca63ab5.pdf"
+    ],
+    "checked_names": [
+      "安邦河湿地公园",
+      "友谊农场万亩良田"
+    ],
+    "note": "湿地为明确旅游园区，农田展示窗口未核验公共接待与定位暂不新增。",
+    "candidates": [
+      {
+        "name": "安邦河湿地公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://fao.hlj.gov.cn/fao/c111834/202206/30672918/files/025996ad567e84465b235ce0cca63ab5.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://fao.hlj.gov.cn/fao/c111834/202206/30672918/files/025996ad567e84465b235ce0cca63ab5.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“安邦河湿地公园 双鸭山市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  }
+]

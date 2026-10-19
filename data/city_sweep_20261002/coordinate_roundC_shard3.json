@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-10-02",
+  "attribution": "文博指南地图标记来自 iwenbo.fun 公开页面HTML；OSM对象 © OpenStreetMap contributors，ODbL。",
+  "method": "只读取网页HTML中具名 TMap.LatLng 标记，不加载地图SDK、无需地图Key。文博标记按GCJ02迭代逆算WGS84。吉林省自然博物馆的逆算点与具名OSM博物馆小面相距约20米，吉林市明清造船厂馆与OSM博物馆节点相距约2米，作为坐标系转换交叉校验。",
+  "records": [
+    {
+      "name": "吉林省自然博物馆",
+      "official_current_address": "长春市净月大街2556号",
+      "official_address_url": "https://www.jl.gov.cn/ggzy/zfcg/cggg/202609/t20260918_9716148.html",
+      "official_description_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html",
+      "iwenbo_url": "https://www.iwenbo.fun/museum/797.html",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(43.829291, 125.432593),\r\n                    'properties':{\r\n                        'title':\"吉林省自然博物馆\"\r\n                    }\r\n                }",
+      "gcj02_marker": {
+        "lat": 43.829291,
+        "lon": 125.432593
+      },
+      "reviewed_wgs84": {
+        "longitude": 125.4260396,
+        "latitude": 43.8269361
+      },
+      "coordinate_source_url": "https://www.openstreetmap.org/way/700748108",
+      "coordinate_basis": "OSM具名博物馆实体；文博标记用于同址交叉验证",
+      "coordinate_review_note": "OSM way/700748108具名“自然历史博物馆”tourism=museum的小型馆舍面，中心点与iwenbo具名吉林省自然博物馆标记逆转WGS84后约20米；2026省级采购文件仍确认净月大街2556号。"
+    },
+    {
+      "name": "吉林市明清造船厂遗址博物馆",
+      "official_current_address": "吉林市丰满区吉丰东路9公里处、阿什哈达摩崖东侧",
+      "official_address_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+      "official_description_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+      "iwenbo_url": "https://www.iwenbo.fun/museum/815.html",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(43.76834343, 126.6706413),\r\n                    'properties':{\r\n                        'title':\"吉林市明清造船厂遗址博物馆\"\r\n                    }",
+      "gcj02_marker": {
+        "lat": 43.76834343,
+        "lon": 126.6706413
+      },
+      "reviewed_wgs84": {
+        "longitude": 126.6649017,
+        "latitude": 43.7660393
+      },
+      "coordinate_source_url": "https://www.openstreetmap.org/node/13947020014",
+      "coordinate_basis": "OSM具名博物馆实体；文博标记用于同址交叉验证",
+      "coordinate_review_note": "OSM node/13947020014现标 tourism=museum、name=吉林明清船厂历史陈列（旧馆名），2026-06编辑；与iwenbo具名现名标记GCJ02逆转后相距约2米。"
+    },
+    {
+      "name": "常德博物馆",
+      "official_current_address": "常德市武陵区武陵大道南段282号",
+      "official_address_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+      "official_description_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(29.03834892, 111.69301987),\r\n                    'properties':{\r\n                        'title':\"常德博物馆\"\r\n                    }\r\n                }",
+      "gcj02_marker": {
+        "lat": 29.03834892,
+        "lon": 111.69301987
+      },
+      "reviewed_wgs84": {
+        "longitude": 111.687432,
+        "latitude": 29.041385
+      },
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3596.html",
+      "coordinate_basis": "文博具名标记逆算WGS84，官方现馆地址同文博页面地址",
+      "coordinate_review_note": "iwenbo馆名为常德博物馆的TMap标记GCJ02(29.03834892,111.69301987)，逆算WGS84(29.041385,111.687432)；页面地址武陵大道282号与2026-08常德市文旅局现馆址一致；非街区或城市中心点。"
+    },
+    {
+      "name": "常德市丁玲纪念馆",
+      "official_current_address": "常德市武陵区紫菱路1818号",
+      "official_address_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+      "official_description_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(29.06164194, 111.67661011),\r\n                    'properties':{\r\n                        'title':\"常德市丁玲纪念馆\"\r\n                    }",
+      "gcj02_marker": {
+        "lat": 29.06164194,
+        "lon": 111.67661011
+      },
+      "reviewed_wgs84": {
+        "longitude": 111.671058,
+        "latitude": 29.06469
+      },
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5394.html",
+      "coordinate_basis": "文博具名标记逆算WGS84，官方现馆地址同文博页面地址",
+      "coordinate_review_note": "iwenbo馆名为常德市丁玲纪念馆的TMap标记GCJ02(29.06164194,111.67661011)，逆算WGS84(29.064690,111.671058)；页面标紫菱路1818号、丁玲公园南门内，与2026-08官方现馆址一致；不采用公园质心。"
+    },
+    {
+      "name": "津市市博物馆",
+      "official_current_address": "津市市孟姜女大道648号",
+      "official_address_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+      "official_description_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(29.6014947, 111.87648335),\r\n                    'properties':{\r\n                        'title':\"津市市博物馆\"\r\n                    }",
+      "gcj02_marker": {
+        "lat": 29.6014947,
+        "lon": 111.87648335
+      },
+      "reviewed_wgs84": {
+        "longitude": 111.870965,
+        "latitude": 29.604285
+      },
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3598.html",
+      "coordinate_basis": "文博具名标记逆算WGS84，官方现馆地址同文博页面地址",
+      "coordinate_review_note": "iwenbo馆名为津市市博物馆的TMap标记GCJ02(29.6014947,111.87648335)，逆算WGS84(29.604285,111.870965)；页面地址孟姜女大道648号与2026-08官方现馆址一致。"
+    },
+    {
+      "name": "广东环亚美容化妆品博物馆",
+      "official_current_address": "广州市黄埔区科学城南云一路18号",
+      "official_address_url": "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html",
+      "official_description_url": "https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html",
+      "raw_marker_html_excerpt": "'position': new TMap.LatLng(23.1557268, 113.4427899),\r\n                    'properties':{\r\n                        'title':\"广东环亚美容化妆品博物馆\"\r\n                    }",
+      "gcj02_marker": {
+        "lat": 23.1557268,
+        "lon": 113.4427899
+      },
+      "reviewed_wgs84": {
+        "longitude": 113.437298,
+        "latitude": 23.158237
+      },
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3709.html",
+      "coordinate_basis": "文博具名标记逆算WGS84，官方现馆地址同文博页面地址",
+      "coordinate_review_note": "iwenbo馆名为广东环亚美容化妆品博物馆的TMap标记GCJ02(23.1557268,113.4427899)，逆算WGS84(23.158237,113.437298)；页面地址南云一路18号与2026-06广州市A级景区名录一致。"
+    }
+  ],
+  "rejected_checks": [
+    {
+      "name": "乌鲁木齐市博物馆",
+      "reason": "文博指南/OSM均是南湖南路123号旧馆，市政府现馆址凤起街111号；拒绝旧馆坐标。",
+      "source_urls": [
+        "https://www.iwenbo.fun/museum/5265.html",
+        "https://www.wlmq.gov.cn/wlmqs/c119055/202604/326477e0e6394fa78fd4fa2d85bb525e.shtml"
+      ]
+    },
+    {
+      "name": "永州市博物馆",
+      "reason": "文博指南页面标零陵区南津南路414号，永州官方2026现址为南津南路120号；坐标未能证明现馆一致，拒绝。",
+      "source_urls": [
+        "https://www.iwenbo.fun/museum/3635.html",
+        "https://www.yzcity.gov.cn/wlgtj/whcg/202410/bd9b726d9fdf415c91f28c00a910277c.shtml"
+      ]
+    },
+    {
+      "name": "鹤岗市博物馆",
+      "reason": "文博指南标东山区光宇路与宇南街交叉口，黑龙江官方机构页面标兴安区宇南路3号；行政区址不一致待核，暂不批准。",
+      "source_urls": [
+        "https://www.iwenbo.fun/museum/980.html",
+        "https://www.ljjgdj.gov.cn/system/202403/124468.html"
+      ]
+    },
+    {
+      "name": "澧县博物馆",
+      "reason": "文博指南对应馆舍页返回服务端错误，尚无可读取具名标记；保持未决。",
+      "source_urls": [
+        "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "created_at": "2026-10-02T17:06:22.433707",
+  "committed": true,
+  "added": 15,
+  "rows": [
+    {
+      "name": "嘉兴博物馆",
+      "status": "approved",
+      "description": "嘉兴博物馆位于南湖区海盐塘路，是展示嘉兴地方历史文化的公共博物馆，可通过馆藏文物和专题陈列了解当地历史与文化。",
+      "description_source_url": "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm",
+      "longitude": 120.7598815,
+      "latitude": 30.7445832,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1515347881",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "OSM具名博物馆建筑位于凌公塘路与海盐塘路馆区，约60米宽；官方海盐塘路485号相符，与南湖旅游区不同址。",
+      "aliases": [
+        "嘉兴市博物馆"
+      ],
+      "poi_id": "public_9d41b2615e1fd046cbcb6f9b700b731c",
+      "city_id": 97,
+      "city": "嘉兴市",
+      "province": "浙江省",
+      "stored_longitude": 120.76419927135947,
+      "stored_latitude": 30.742281186205087,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "唐山抗震纪念馆",
+      "status": "approved",
+      "description": "唐山抗震纪念馆以历史照片、实物和多媒体景观展示唐山人民抗震救灾与城市建设的经历，介绍抗震精神及防震减灾知识。",
+      "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+      "longitude": 118.1743172,
+      "latitude": 39.6230415,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/178943655",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "aliases": [],
+      "independence_note": "OSM纪念碑广场内独立纪念馆建筑锚点约60米宽；数据库未存广场母景点，与南湖开滦景区不同址。",
+      "poi_id": "public_cb8662ab7ad4c243281b1a8a853cd8f4",
+      "city_id": 13,
+      "city": "唐山市",
+      "province": "河北省",
+      "stored_longitude": 118.18061154027777,
+      "stored_latitude": 39.624358752177535,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "连云港市博物馆",
+      "status": "approved",
+      "description": "连云港市博物馆位于海州区朝阳东路，通过历史文物、汉墓简牍与艺术作品等展陈介绍连云港的历史文化，是面向公众开放的综合性博物馆。",
+      "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/content/f17fc9a9-0a79-4371-a3e0-7658b0980dd8.shtml",
+      "longitude": 119.2183246,
+      "latitude": 34.5948626,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1325570480",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "aliases": [
+        "连云港博物馆"
+      ],
+      "independence_note": "OSM朝阳东路具名馆舍建筑约90米宽与官方68号馆址一致，不同于市革命纪念馆；展厅改造或开放以最新公告为准。",
+      "poi_id": "public_e4cbd377c1c96732809c4653749cd90b",
+      "city_id": 89,
+      "city": "连云港市",
+      "province": "江苏省",
+      "stored_longitude": 119.22386050619804,
+      "stored_latitude": 34.59382967614366,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "淮北市博物馆",
+      "status": "approved",
+      "description": "淮北市博物馆展示当地历史、汉画像石与隋唐大运河文化，通过出土文物、遗址复原和场景展陈介绍淮北地区的发展及运河沿岸生活。",
+      "description_source_url": "https://www.huaibei.gov.cn/xwzx/mtjj/wmkhb/60223081.html",
+      "longitude": 116.7929121,
+      "latitude": 33.9533779,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/555994609",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "aliases": [
+        "隋唐大运河博物馆",
+        "淮北博物馆"
+      ],
+      "independence_note": "OSM博物馆路具名馆舍建筑约115米宽，未把同名道路误作坐标；与隋唐运河古镇不同址。",
+      "poi_id": "public_aa999edb80d31ce28c21512c8c632fe5",
+      "city_id": 109,
+      "city": "淮北市",
+      "province": "安徽省",
+      "stored_longitude": 116.79831580206162,
+      "stored_latitude": 33.9519580117252,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "鲁迅公园",
+      "status": "approved",
+      "description": "鲁迅公园是青岛琴屿路沿海的公共公园，以海湾、红礁石、松林和临海步道为特色，适合滨海散步、观景与摄影。",
+      "description_source_url": "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml",
+      "longitude": 120.3279749,
+      "latitude": 36.0548059,
+      "coordinate_source_url": "https://www.openstreetmap.org/node/13184091001",
+      "coordinate_system": "WGS84",
+      "category": "城市公园",
+      "tags": [
+        "滨水",
+        "生态",
+        "城市漫游",
+        "摄影",
+        "休闲"
+      ],
+      "duration_minutes": 60,
+      "aliases": [
+        "青岛鲁迅公园"
+      ],
+      "independence_note": "选用OSM具名公园POI节点；官方2026线路将其与海军博物馆、小青岛及第一浴场分列；不是在库八大关景区内部建筑。",
+      "poi_id": "public_552e0343a129f140b7706ef8c319ddce",
+      "city_id": 141,
+      "city": "青岛市",
+      "province": "山东省",
+      "stored_longitude": 120.33303929411852,
+      "stored_latitude": 36.05499514567639,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "开封府",
+      "status": "approved",
+      "description": "开封府景区位于包公东湖北岸，以重建的府衙建筑展示北宋衙署、刑狱及科举等文化。可参观院落和专题空间，了解开封与包公相关的历史文化，现存景区并非完整保存的北宋原衙署。",
+      "description_source_url": "https://ytsc.rootinhenan.gov.cn/sitesources/ytsc/page_pc/twmtkhn/article04cae754007a420c94dbfe7c2fe4bdfa.html",
+      "longitude": 114.3411117,
+      "latitude": 34.790564,
+      "coordinate_source_url": "https://www.openstreetmap.org/relation/9921656",
+      "coordinate_system": "WGS84",
+      "category": "历史文化景区",
+      "tags": [
+        "历史文化",
+        "建筑",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "aliases": [],
+      "independence_note": "OSM具名府衙景区院落群锚点约200米范围；省政府旅游资料明确东府西祠，与已存包公祠分别位于东西湖岸。",
+      "poi_id": "public_dc6dcf9fef5b7d548fb0a46374727c2c",
+      "city_id": 157,
+      "city": "开封市",
+      "province": "河南省",
+      "stored_longitude": 114.3470108883906,
+      "stored_latitude": 34.7897270914562,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "天津鼓楼博物馆",
+      "status": "approved",
+      "description": "2001年重建的天津鼓楼现作为博物馆开放，展陈天津老城厢历史照片和城市文化专题。",
+      "description_source_url": "https://whly.tj.gov.cn/tjswlzxw/jgbn/whtj/jzwh/zsjz/202302/t20230202_6094589.html",
+      "longitude": 117.1747564,
+      "latitude": 39.1405538,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/11572243659",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "建筑"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "天津文旅官方确认鼓楼内博物馆；OSM具名天津鼓楼 museum 节点即独立馆舍位置，与古文化街范围不同。",
+      "aliases": [
+        "天津鼓楼",
+        "鼓楼博物馆"
+      ],
+      "poi_id": "public_ffd1038abe09137ea92b903bc39bf924",
+      "city_id": 11,
+      "city": "天津市",
+      "province": "天津市",
+      "stored_longitude": 117.1811071479684,
+      "stored_latitude": 39.14163997986123,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "旅顺日俄监狱旧址博物馆",
+      "status": "approved",
+      "description": "旅顺口区向阳街的近代监狱旧址博物馆，通过保留的监狱建筑与展陈介绍日俄侵华历史。",
+      "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012815521914267/index.shtml",
+      "longitude": 121.2599376,
+      "latitude": 38.8245804,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/2421358101",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "近代建筑"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "辽宁文旅官方单列该馆；OSM具名 museum 节点与现有旅顺博物馆、旅顺日本关东法院旧址分离。",
+      "aliases": [
+        "旅顺监狱旧址"
+      ],
+      "poi_id": "public_435435ec1a418161fbc096ae7e28e76e",
+      "city_id": 47,
+      "city": "大连市",
+      "province": "辽宁省",
+      "stored_longitude": 121.2651140037872,
+      "stored_latitude": 38.82548034180091,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "鄂州市博物馆",
+      "status": "approved",
+      "description": "鄂州市地方综合性博物馆，承担当地文物收藏、陈列与鄂州历史文化展示。",
+      "description_source_url": "https://www.ezhou.gov.cn/gk/zcwdpt/bm/swlj/202112/t20211202_445843.html",
+      "longitude": 114.8716818,
+      "latitude": 30.4137172,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/11772912470",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "市政府资料证实独立博物馆；OSM具名 museum 节点为馆舍位置，与西山风景区不同。",
+      "aliases": [],
+      "poi_id": "public_b196317272fcfca954a94d33b29db113",
+      "city_id": 179,
+      "city": "鄂州市",
+      "province": "湖北省",
+      "stored_longitude": 114.87674172875288,
+      "stored_latitude": 30.411043157382167,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "泸定桥旅游景区",
+      "status": "approved",
+      "description": "泸定县城大渡河上的历史铁索桥景区，展示川藏交通与红军长征相关历史。",
+      "description_source_url": "https://www.scldq.cn/about.html",
+      "longitude": 102.2307093,
+      "latitude": 29.9145326,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/877739922",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "红色文化",
+        "建筑"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "运营方有独立售票与游览信息；坐标采用OSM具名泸定桥步行桥东端节点8166595087（way/877739922几何端点），是县城侧可抵达点，并非景区质心。",
+      "aliases": [
+        "泸定桥"
+      ],
+      "poi_id": "public_ebbe1badebf251928c0251ba7f7596b2",
+      "city_id": 279,
+      "city": "甘孜藏族自治州",
+      "province": "四川省",
+      "stored_longitude": 102.23227760246574,
+      "stored_latitude": 29.911829015037586,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "青海省科学技术馆",
+      "status": "approved",
+      "description": "西宁市城西区的互动式科普馆，展览涉及生态环境、基础科学、航空航天与能源信息等。",
+      "description_source_url": "https://www.qhskjg.org.cn/",
+      "longitude": 101.711808,
+      "latitude": 36.6468661,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/9177401404",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "研学",
+        "亲子"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "运营方提供城西区独立馆舍信息；OSM具名 museum 节点为科普馆位置，与省博物馆不同。",
+      "aliases": [
+        "青海省科技馆"
+      ],
+      "poi_id": "public_b6377937d535bf18ff34c22940023185",
+      "city_id": 331,
+      "city": "西宁市",
+      "province": "青海省",
+      "stored_longitude": 101.71374106807605,
+      "stored_latitude": 36.64678861297761,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "古如江寺",
+      "status": "approved",
+      "description": "古如江寺位于阿里地区噶尔县门士乡，是一处雍仲苯教寺庙。阿里地区文旅路线将其与附近卡尔东遗址作为不同参访点。",
+      "description_source_url": "https://lyfz.al.gov.cn/info/1772/19541.htm",
+      "longitude": 80.6399875,
+      "latitude": 31.1298461,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/1612692201",
+      "category": "宗教建筑",
+      "tags": [
+        "宗教文化",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "OSM具名寺庙POI节点，阿里地区政府资料明确古如江寺亦称古入江寺，并有门士乡通寺旅游道路；与附近卡尔东遗址不是同一景点。",
+      "aliases": [
+        "古入江寺",
+        "古如甲木寺"
+      ],
+      "poi_id": "public_014c969f85527c061f665aacb440262d",
+      "city_id": 309,
+      "city": "阿里地区",
+      "province": "西藏自治区",
+      "stored_longitude": 80.64185164777983,
+      "stored_latitude": 31.127033179119863,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "红楼博物馆",
+      "status": "approved",
+      "description": "塔城红楼博物馆依托塔城市历史建筑红楼设置，陈列内容包括地方历史、民俗及革命史。",
+      "description_source_url": "https://www.xjtcsh.gov.cn/zjyhtc/fwms/content_34831",
+      "longitude": 82.9757224,
+      "latitude": 46.7499277,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/13411857201",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM具名museum POI节点；塔城市政府确认为红楼独立博物馆，非在库乌苏佛山或独库公路的子景点。",
+      "aliases": [
+        "塔城红楼博物馆",
+        "塔城红楼"
+      ],
+      "poi_id": "public_6468e21625ec02ee1c7325ccbc718128",
+      "city_id": 356,
+      "city": "塔城地区",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 82.9788662547607,
+      "stored_latitude": 46.75062661942972,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "澳门大赛车博物馆",
+      "status": "approved",
+      "description": "澳门大赛车博物馆位于高美士街，以澳门格兰披治大赛车为主题，展出历届赛车，并设有互动体验设施。",
+      "description_source_url": "https://www.macaotourism.gov.mo/zh-hans/events/whatson/9286/",
+      "longitude": 113.552713,
+      "latitude": 22.1945528,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/3538330803",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "主题娱乐"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "OSM具名tourism=museum POI节点，官方地址高美士街431号；与金莲花广场、澳门旅游塔等在库景点是不同场馆。",
+      "aliases": [
+        "大赛车博物馆",
+        "澳門大賽車博物館"
+      ],
+      "poi_id": "public_6d3794e8b0982a551962fb256897d760",
+      "city_id": 372,
+      "city": "澳门特别行政区",
+      "province": "澳门特别行政区",
+      "stored_longitude": 113.552713,
+      "stored_latitude": 22.1945528,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "海事博物馆",
+      "status": "approved",
+      "description": "位于妈阁庙前地的海事博物馆，展示澳门与海洋的历史联系和中葡海事文化。",
+      "description_source_url": "https://www.museums.gov.mo/chis/museums.html",
+      "longitude": 113.5306241,
+      "latitude": 22.1859405,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/206824050",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM具名馆舍建筑锚点，官方地址妈阁庙前地1号；虽与妈阁庙相邻，却是独立馆舍和游览内容。",
+      "aliases": [
+        "澳门海事博物馆",
+        "海事博物館"
+      ],
+      "poi_id": "public_f4952453943d9365cf95180426bf1a5c",
+      "city_id": 372,
+      "city": "澳门特别行政区",
+      "province": "澳门特别行政区",
+      "stored_longitude": 113.5306241,
+      "stored_latitude": 22.1859405,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [
+    {
+      "city": "南昌市",
+      "name": "南昌之星摩天轮",
+      "reason": "existing name/alias",
+      "existing": "南昌之星摩天轮"
+    },
+    {
+      "city": "烟台市",
+      "name": "北极星钟表文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "北极星钟表文化博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "许昌市博物馆",
+      "reason": "existing name/alias",
+      "existing": "许昌市博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "中原农耕文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "中原农耕文化博物馆"
+    },
+    {
+      "city": "天门市",
+      "name": "胡家花园",
+      "reason": "existing name/alias",
+      "existing": "胡家花园"
+    },
+    {
+      "city": "自贡市",
+      "name": "自贡市盐业历史博物馆",
+      "reason": "existing name/alias",
+      "existing": "自贡市盐业历史博物馆"
+    },
+    {
+      "city": "大庆市",
+      "name": "大庆油田历史陈列馆",
+      "reason": "existing name/alias",
+      "existing": "大庆油田历史陈列馆"
+    },
+    {
+      "city": "蚌埠市",
+      "name": "蚌埠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "蚌埠市博物馆"
+    },
+    {
+      "city": "河源市",
+      "name": "河源恐龙博物馆",
+      "reason": "existing name/alias",
+      "existing": "河源恐龙博物馆"
+    },
+    {
+      "city": "拉萨市",
+      "name": "西藏博物馆",
+      "reason": "existing name/alias",
+      "existing": "西藏博物馆"
+    },
+    {
+      "city": "武威市",
+      "name": "武威市博物馆",
+      "reason": "existing name/alias",
+      "existing": "武威市博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "北投温泉博物馆",
+      "reason": "existing name/alias",
+      "existing": "北投温泉博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "台北市立美术馆",
+      "reason": "existing name/alias",
+      "existing": "台北市立美术馆"
+    },
+    {
+      "city": "玉溪市",
+      "name": "玉溪市博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉溪市博物馆"
+    },
+    {
+      "city": "海东市",
+      "name": "柳湾彩陶博物馆",
+      "reason": "existing name/alias",
+      "existing": "柳湾彩陶博物馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "八路军驻新疆办事处纪念馆",
+      "reason": "existing name/alias",
+      "existing": "八路军驻新疆办事处纪念馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "毛泽民故居",
+      "reason": "existing name/alias",
+      "existing": "毛泽民故居"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "中国工农红军西路军总支队纪念馆",
+      "reason": "existing name/alias",
+      "existing": "中国工农红军西路军总支队纪念馆"
+    }
+  ],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

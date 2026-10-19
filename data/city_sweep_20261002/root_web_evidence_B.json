@@ -1,0 +1,3027 @@
+[
+  {
+    "file": "review_0_06.json",
+    "id": 77,
+    "city": "七台河市",
+    "province": "黑龙江省",
+    "name": "短道速滑冠军馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+    "source_urls": [
+      "https://www.baike.com/wikiid/6809036382030113864",
+      "https://www.tongren.gov.cn/2022/0126/260700.shtml",
+      "https://feeds-drcn.cloud.huawei.com.cn/landingpage/latest?channel=HW_TRENDING&cpid=666&ctype=news&docid=1051410b2bec52ce71c332069e3a12fa8257ea8&dy_scenario=relate&pageType=26&r=CN&tn=1e095c1678faa20889e04b6ac01d7deafac5d6564ddd8460444a89873d692ec4&to_app=hwbrowser",
+      "https://hlj.people.com.cn/n2/2021/0207/c220037-34568735.html",
+      "https://www.scdnews.com/images/paper/220326/220326C.pdf",
+      "https://ly.fanshutou.com/ly3/attraction.php?id=16157"
+    ],
+    "web_search": {
+      "searched_city": "七台河市",
+      "searched_name": "短道速滑冠军馆",
+      "batch_candidates": [
+        "短道速滑冠军馆",
+        "冠军湾",
+        "庆余公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 77,
+    "city": "七台河市",
+    "province": "黑龙江省",
+    "name": "冠军湾",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+    "source_urls": [
+      "https://www.hlj.gov.cn/hlj/c107858/202310/c00_31676645.shtml",
+      "https://www.hlj.gov.cn/hlj/c107858/202604/c00_31931057.shtml",
+      "https://hlj.people.com.cn/n2/2023/0905/c220027-40557703.html",
+      "https://news.sina.com.cn/sx/2023-12-05/detail-imzwxzhr6445702.shtml",
+      "https://cezhidao.com/reports/MWtM"
+    ],
+    "web_search": {
+      "searched_city": "七台河市",
+      "searched_name": "冠军湾",
+      "batch_candidates": [
+        "短道速滑冠军馆",
+        "冠军湾",
+        "庆余公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 77,
+    "city": "七台河市",
+    "province": "黑龙江省",
+    "name": "庆余公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+    "source_urls": [
+      "https://paper.people.com.cn/rmrbwap/html/2022-03/30/nw.D110000renmrb_20220330_1-20.htm"
+    ],
+    "web_search": {
+      "searched_city": "七台河市",
+      "searched_name": "庆余公园",
+      "batch_candidates": [
+        "短道速滑冠军馆",
+        "冠军湾",
+        "庆余公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "鹿鼎山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+      "https://dxal.gov.cn/dxal/c100145/202507/c13_315697.shtml",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://dxal.gov.cn/dxal/c100062/202110/58333/files/202110091722269962.pdf",
+      "https://www.hljsql.org.cn/hqlh/attachment/20240320100851633.pdf",
+      "https://huma.gov.cn/huma/c100707/202603/331147/files/%E5%91%BC%E7%8E%9B%E5%8E%BF331%E5%9B%BD%E9%81%933507%E5%85%AC%E9%87%8C%E5%A4%84%E7%9F%B3%E5%9C%BA%E7%9F%BF%E5%8C%BA%E7%94%9F%E6%80%81%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88.pdf"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "鹿鼎山景区",
+      "batch_candidates": [
+        "鹿鼎山景区",
+        "二十二驿站旅游风景区",
+        "百泉谷生态旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "二十二驿站旅游风景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://www.dxalth.gov.cn/dxalth/c101013/202310/c13_261571.shtml",
+      "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+      "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20653.shtml",
+      "https://tyj.hlj.gov.cn/tyj/c112401/202507/c00_31856809.shtml",
+      "https://www.dxalth.gov.cn/dxalth/c100905/202411/c13_298259.shtml",
+      "https://www.hljba.gov.cn/bas/bmdt/202409/c11_303956.shtml"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "二十二驿站旅游风景区",
+      "batch_candidates": [
+        "鹿鼎山景区",
+        "二十二驿站旅游风景区",
+        "百泉谷生态旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "百泉谷生态旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+      "https://www.forestry.gov.cn/c/www/dmxagzdt/575894.jhtml",
+      "https://hlj.cnr.cn/wlty/20210402/t20210402_525452807.shtml",
+      "https://jingdian.juyoufuli.com/scenics/53178",
+      "https://paper.people.com.cn/rmrbhwb/images/2022-04/01/12/rmrbhwb2022040112.pdf"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "百泉谷生态旅游景区",
+      "batch_candidates": [
+        "鹿鼎山景区",
+        "二十二驿站旅游风景区",
+        "百泉谷生态旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "寒温带植物园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://dxal.gov.cn/dxal/c100001/201303/c13_11145.shtml",
+      "https://www.dxal.gov.cn/dxal/c100062/202110/58333/files/202110091722269962.pdf",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "寒温带植物园",
+      "batch_candidates": [
+        "寒温带植物园",
+        "观音山·采金小镇",
+        "图强林业博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "观音山·采金小镇",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://you.ctrip.com/sight/mohe983/138300.html",
+      "https://dxal.gov.cn/dxal/c100030/202401/c13_272368.shtml"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "观音山·采金小镇",
+      "batch_candidates": [
+        "寒温带植物园",
+        "观音山·采金小镇",
+        "图强林业博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "图强林业博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E5%9B%BE%E5%BC%BA%E6%9E%97%E4%B8%9A%E5%8D%9A%E7%89%A9%E9%A6%86/18512092?fromModule=lemma_inlink",
+      "https://www.mohe.gov.cn/mohe/c101075/202604/c13_333150.shtml",
+      "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf",
+      "https://www.mayijf.com/Facility/Details/4555",
+      "https://gs.ctrip.com/html5/you/sight/mohe983/3226316.html",
+      "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20653.shtml"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "图强林业博物馆",
+      "batch_candidates": [
+        "寒温带植物园",
+        "观音山·采金小镇",
+        "图强林业博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "name": "呼玛博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+    "source_urls": [
+      "https://www.dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+      "https://gs.ctrip.com/html5/you/sight/huma2225/3373338.html",
+      "https://dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+      "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+      "https://dxal.gov.cn/dxal/c100145/202507/c13_315697.shtml",
+      "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20042.shtml"
+    ],
+    "web_search": {
+      "searched_city": "大兴安岭地区",
+      "searched_name": "呼玛博物馆",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "刘邦故里文化景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "刘邦故里文化景区",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "歌风台",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "歌风台",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "沛县博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "沛县博物馆",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "回龙窝",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+      "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+      "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202511/04/cd62df8c-cda0-4e0c-affb-cc89fda1f4fd.pdf"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "回龙窝",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "快哉亭",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+      "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+      "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+      "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "快哉亭",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "城下城遗址博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+      "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+      "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+      "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202511/04/cd62df8c-cda0-4e0c-affb-cc89fda1f4fd.pdf"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "城下城遗址博物馆",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "name": "黄楼",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+    "source_urls": [
+      "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+      "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+      "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+      "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+      "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf"
+    ],
+    "web_search": {
+      "searched_city": "徐州市",
+      "searched_name": "黄楼",
+      "batch_candidates": [
+        "呼玛博物馆",
+        "刘邦故里文化景区",
+        "歌风台",
+        "沛县博物馆",
+        "回龙窝",
+        "快哉亭",
+        "城下城遗址博物馆",
+        "黄楼"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "孔望山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "孔望山景区",
+      "batch_candidates": [
+        "孔望山景区",
+        "东海水晶文化旅游区",
+        "海上云台山景区",
+        "二郎神文化遗迹公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "东海水晶文化旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "东海水晶文化旅游区",
+      "batch_candidates": [
+        "孔望山景区",
+        "东海水晶文化旅游区",
+        "海上云台山景区",
+        "二郎神文化遗迹公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "海上云台山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "海上云台山景区",
+      "batch_candidates": [
+        "孔望山景区",
+        "东海水晶文化旅游区",
+        "海上云台山景区",
+        "二郎神文化遗迹公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "二郎神文化遗迹公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "二郎神文化遗迹公园",
+      "batch_candidates": [
+        "孔望山景区",
+        "东海水晶文化旅游区",
+        "海上云台山景区",
+        "二郎神文化遗迹公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "西双湖景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+      "https://www.sina.cn/news/detail/4673669298655194.html"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "西双湖景区",
+      "batch_candidates": [
+        "西双湖景区",
+        "大伊山景区",
+        "桃花涧景区",
+        "秦山岛景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "大伊山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+      "https://www.sina.cn/news/detail/4673669298655194.html"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "大伊山景区",
+      "batch_candidates": [
+        "西双湖景区",
+        "大伊山景区",
+        "桃花涧景区",
+        "秦山岛景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "桃花涧景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+      "https://www.sina.cn/news/detail/4673669298655194.html"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "桃花涧景区",
+      "batch_candidates": [
+        "西双湖景区",
+        "大伊山景区",
+        "桃花涧景区",
+        "秦山岛景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "name": "秦山岛景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+    "source_urls": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+      "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+      "https://www.sina.cn/news/detail/4673669298655194.html"
+    ],
+    "web_search": {
+      "searched_city": "连云港市",
+      "searched_name": "秦山岛景区",
+      "batch_candidates": [
+        "西双湖景区",
+        "大伊山景区",
+        "桃花涧景区",
+        "秦山岛景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "name": "茅山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+    "source_urls": [
+      "https://maoshanchina.com.cn/about.html",
+      "https://zh.wikipedia.org/wiki/%E5%8F%A5%E5%AE%B9%E8%8C%85%E5%B1%B1%E6%99%AF%E5%8C%BA",
+      "https://zh.wikipedia.org/wiki/%E6%B1%9F%E8%8B%8F%E7%9C%81%E9%81%93",
+      "https://travellutionmedia.com/wp-content/uploads/zhenjiang_brochure.pdf"
+    ],
+    "web_search": {
+      "searched_city": "镇江市",
+      "searched_name": "茅山景区",
+      "batch_candidates": [
+        "茅山景区",
+        "宝华山景区",
+        "米芾书法公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "name": "宝华山景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E9%95%87%E6%B1%9F%E5%B8%82",
+      "https://doss.xhby.net/zpaper/xhrb/pc/att/202602/11/22488c30-b504-4f0e-a56c-664b7c6b1ff8.pdf",
+      "https://doss.xhby.net/zpaper/yzwb/pad/att/202109/30/b9e4c8cc-d4f9-4142-a5ec-d31d9539b38b.pdf",
+      "https://doss.xhby.net/zpaper/yzwb/pc/att/202604/27/a9dae756-ae9c-46e2-ad39-2a801ededc29.pdf"
+    ],
+    "web_search": {
+      "searched_city": "镇江市",
+      "searched_name": "宝华山景区",
+      "batch_candidates": [
+        "茅山景区",
+        "宝华山景区",
+        "米芾书法公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "name": "米芾书法公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+    "source_urls": [
+      "https://you.ctrip.com/sight/zhenjiang13/133737.html",
+      "https://www.mayijf.com/Facility/Details/15467",
+      "https://www.wenxiaobai.com/api/expends/detail?article=cece772d-fb7f-4903-939e-038457689ea2",
+      "https://m.tangshui.net/biji/show/58b8e8dcfb7735057584711d",
+      "https://www.aiyoutravel.com/location/detail/b502880ce0d3a28475f61098326dc6b7",
+      "https://m.meet99.com/jingdian-mifushufa.html"
+    ],
+    "web_search": {
+      "searched_city": "镇江市",
+      "searched_name": "米芾书法公园",
+      "batch_candidates": [
+        "茅山景区",
+        "宝华山景区",
+        "米芾书法公园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "name": "赛珍珠文化园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+    "source_urls": [
+      "https://www.imetacloud.com/plan/zhen-jiang-shi-sai-zhen-zhu-wen-hua-yuan",
+      "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202207/P020220728611989455875.pdf",
+      "https://wgxj.nc.gov.cn/wgxlj/tzgg/202307/8c588b365bf24b7e9355ada50de7e11a/files/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E5%AF%BC%E6%B8%B8%E8%B5%84%E6%A0%BC%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B2.pdf",
+      "https://www.jianweidata.com/data/api/File/FileOpenBondFiling?documentId=398944428&token=FcgWEczaoFsqmxFCCr%2FATc5ZefW5p%2BOD3pvKEVeMaRbv%2FN1YldADDf%2BM9sBGItFXsE90U4gj7XQJl67OoeUv%2Fkoy2uE5wnCruE2qFdjMi6rAIWI8TkQBbMfwpmg5cjYXY1v8yyNA4YonJb353xiaoRaBG3vRqjp0asGg6%2FsGjCXWoBwVttSwqiyJbPUGDIBZJ3yrSxdLEHUA%2B0M2BgvvA0xNuv4PdgPfoWUdYSnw4%2BmZpdlgaY2tE7tMCVfBGGv9RgUYjPhw35sV97M%2FgcD4k%2BnJYehQJ4oQU9hsY6hjwZ7Rl25Dy03M%2Bt%2FROxZqywbYn1dULAXAqBARb4lneUgay2FaHYhZvwC7osnB3DX8YAInOFhfGkX%2FJvYObZpzQMo8txH%2F4ZbXFsYdCwnFO1ZNvGTjbDIoSH%2FM21P0zGcY3tH2UNqWXRUjj05sk2v4sgm0QCe0vjbKCh7I2MTZ25hYwU4iCQdULU4PEry3orrHSleo5nIWUtWZhcKwVz3GJZs%2FzmBnPkqFk5oUfJt30AqeNub7Ed1cHLJ0EftqHXvtEWuWJO6PLIGrfnnLS5yqL%2BeDYKr5xH%2F5RoXTs657E40L8OlWh%2FF%2Fa7fYD80OSuW1YZyNTJWrJxMvMgw1%2F%2BXesvHq83474bf4%2Fney%2BvTuDaMjtvHcHXCMD5ZGSskY6btlYYuZK18RiaoFo%2BPObsy%2FQGkP2dgTDyqO%2F%2FW9a6LF%2FkU%2B%2F2i%2BrJz3lQTiW9nULIcbJxSUx530A5FVhbWYcFJUwcMsY%2BrxLZka64Qn8rDZXpZNvf7KdU6OrZHMpO%2FAe%2F%2FM1KpXIBXKEM7aHsMyvj6AELGhC5duPNvWKQaIM%2BAEQKodLkM0liAKw0VzJwIkFgxoKKXXX32eGdJBXHIkq4IYCAhS9HUmM0ufYAefJvaysS7BR1Aqqgy2W9zEWGvVDuUag7ySmS4VhUtYuvCIjddeW2BNMFZfGRAMUsnfVvnd8dmalw%3D%3D"
+    ],
+    "web_search": {
+      "searched_city": "镇江市",
+      "searched_name": "赛珍珠文化园",
+      "batch_candidates": [
+        "赛珍珠文化园",
+        "上海战役总前委旧址纪念馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "name": "上海战役总前委旧址纪念馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+    "source_urls": [
+      "https://www.jsstb.gov.cn/zhenjiang/202304/t20230407_12524708.htm",
+      "https://www.zjmm.gov.cn/a/zuzhijianshe/mengshiziliao/zhenjiangmengxun/20150922/1801.html",
+      "https://www.thepaper.cn/newsDetail_forward_14780245",
+      "https://zh.wikipedia.org/wiki/%E6%80%BB%E5%89%8D%E5%A7%94%E3%80%81%E4%B8%89%E9%87%8E%E5%8F%B8%E4%BB%A4%E9%83%A8%E9%A9%BB%E5%9C%B0%E6%97%A7%E5%9D%80",
+      "https://www.qingxin.gov.cn/qxqpostfile/uploadFiles/511e7f70686c11e8ba82005056932293.pdf",
+      "https://www.jsmm.org.cn/myfc/202509/t20250926_78946.shtml"
+    ],
+    "web_search": {
+      "searched_city": "镇江市",
+      "searched_name": "上海战役总前委旧址纪念馆",
+      "batch_candidates": [
+        "赛珍珠文化园",
+        "上海战役总前委旧址纪念馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_06.json",
+    "id": 105,
+    "city": "芜湖市",
+    "province": "安徽省",
+    "name": "鸠兹风景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.wuhu.gov.cn/mlwh/lywh/xz/23531431.html",
+    "source_urls": [
+      "https://www.wuhu.gov.cn/mlwh/lywh/xz/23531431.html",
+      "https://m.wuhu.bendibao.com/jingdian/jiuzi/content/",
+      "https://zh.wikipedia.org/wiki/%E9%95%9C%E6%B9%96",
+      "https://ct.wuhu.gov.cn/openness/public/6596641/33640961.html",
+      "https://tjj.wuhu.gov.cn/zhsj/tjnj/%E8%8A%9C%E6%B9%96%E7%BB%9F%E8%AE%A1%E5%B9%B4%E9%89%B42025/files/2-17.pdf",
+      "https://zh.wikipedia.org/wiki/%E9%B8%A0%E5%85%B9%E5%B9%BF%E5%9C%BA%E7%AB%99"
+    ],
+    "web_search": {
+      "searched_city": "芜湖市",
+      "searched_name": "鸠兹风景区",
+      "batch_candidates": [
+        "鸠兹风景区",
+        "淮海战役总前委旧址纪念馆",
+        "口子酒文化博览园",
+        "大运河美术馆",
+        "南山汉文化博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 109,
+    "city": "淮北市",
+    "province": "安徽省",
+    "name": "淮海战役总前委旧址纪念馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+    "source_urls": [
+      "https://www.meet99.com/jingdian-huaizhanzongqianwei-117259.html",
+      "https://www.maigoo.com/citiao/251563.html",
+      "https://www.sxx.gov.cn/mhsx/lyfg/60877614.html",
+      "https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%BD%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%B8%89%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86"
+    ],
+    "web_search": {
+      "searched_city": "淮北市",
+      "searched_name": "淮海战役总前委旧址纪念馆",
+      "batch_candidates": [
+        "鸠兹风景区",
+        "淮海战役总前委旧址纪念馆",
+        "口子酒文化博览园",
+        "大运河美术馆",
+        "南山汉文化博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 109,
+    "city": "淮北市",
+    "province": "安徽省",
+    "name": "口子酒文化博览园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+    "source_urls": [
+      "https://www.huaibei.gov.cn/group3/M00/0A/CE/rBIoImKDUVaAHJhsACRD-hzrz_s654.pdf",
+      "https://www.kouzi.com/index.php?c=category&id=2",
+      "https://www.thepaper.cn/newsDetail_forward_24793087",
+      "https://1118.cctv.cn/2025/12/17/ARTIQLq41XJFZMaGLbOUkPMM251217.shtml",
+      "https://szb.ahnews.com.cn/ahrb/attachment/202601/07/d6da88d7-8f4e-4e7a-b070-74ea4e313c79.pdf",
+      "https://pdf.dfcfw.com/pdf/H3_AP202207151576165817_1.pdf?1657891822000.pdf="
+    ],
+    "web_search": {
+      "searched_city": "淮北市",
+      "searched_name": "口子酒文化博览园",
+      "batch_candidates": [
+        "鸠兹风景区",
+        "淮海战役总前委旧址纪念馆",
+        "口子酒文化博览园",
+        "大运河美术馆",
+        "南山汉文化博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 109,
+    "city": "淮北市",
+    "province": "安徽省",
+    "name": "大运河美术馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "淮北市",
+      "searched_name": "大运河美术馆",
+      "batch_candidates": [
+        "鸠兹风景区",
+        "淮海战役总前委旧址纪念馆",
+        "口子酒文化博览园",
+        "大运河美术馆",
+        "南山汉文化博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 109,
+    "city": "淮北市",
+    "province": "安徽省",
+    "name": "南山汉文化博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.huaibei.gov.cn/gzdt/tzgg/58056017.html",
+    "source_urls": [
+      "https://zhaoshang.huaibei.gov.cn/xxfb/gzdt/58025480.html",
+      "https://www.bw10000.com/topic/2188",
+      "https://fgw.huaibei.gov.cn/hbms/bmdt/57935970.html"
+    ],
+    "web_search": {
+      "searched_city": "淮北市",
+      "searched_name": "南山汉文化博物馆",
+      "batch_candidates": [
+        "鸠兹风景区",
+        "淮海战役总前委旧址纪念馆",
+        "口子酒文化博览园",
+        "大运河美术馆",
+        "南山汉文化博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 113,
+    "city": "滁州市",
+    "province": "安徽省",
+    "name": "三界外景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+    "source_urls": [
+      "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+      "https://www.hichuzhou.com/weixin-content-id-22737.html?pc=1",
+      "https://www.csjwdy.cn/show-3-203-0.html"
+    ],
+    "web_search": {
+      "searched_city": "滁州市",
+      "searched_name": "三界外景区",
+      "batch_candidates": [
+        "三界外景区",
+        "黄寨草场",
+        "观音湖生态园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 113,
+    "city": "滁州市",
+    "province": "安徽省",
+    "name": "黄寨草场",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+    "source_urls": [
+      "https://www.ctnews.com.cn/zt/content/2021-10/01/content_112632.html",
+      "https://blog.sina.com.cn/s/blog_7cf45ec10102wy4l.html",
+      "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+      "https://www.sohu.com/a/492700421_117402",
+      "https://ah.people.com.cn/n2/2021/1002/c358428-34941856.html",
+      "https://news.10jqka.com.cn/20260415/c676015606.shtml"
+    ],
+    "web_search": {
+      "searched_city": "滁州市",
+      "searched_name": "黄寨草场",
+      "batch_candidates": [
+        "三界外景区",
+        "黄寨草场",
+        "观音湖生态园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 113,
+    "city": "滁州市",
+    "province": "安徽省",
+    "name": "观音湖生态园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+    "source_urls": [
+      "https://zhuanti.mct.gov.cn/xcsshfghqxy/jpxl/detail/9016.html",
+      "https://xb.ynau.edu.cn/jwk_sk/cn/article/pdf/preview/10.12371/j.ynau%28s%29.202107008.pdf"
+    ],
+    "web_search": {
+      "searched_city": "滁州市",
+      "searched_name": "观音湖生态园",
+      "batch_candidates": [
+        "三界外景区",
+        "黄寨草场",
+        "观音湖生态园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "曹操运兵道",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E6%9B%B9%E6%93%8D%E8%BF%90%E5%85%B5%E9%81%93/167301?fromModule=lemma_inlink",
+      "https://finance.sina.com.cn/jjxw/2024-11-23/doc-incwzrru7004603.shtml",
+      "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "曹操运兵道",
+      "batch_candidates": [
+        "曹操运兵道",
+        "南京巷钱庄",
+        "华祖庵"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "南京巷钱庄",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/bozhou404/66849.html",
+      "https://touch.go.qunar.com/poi/708096",
+      "https://zufa.jsntrg.cn/926762063023.html",
+      "https://tw.trip.com/travel-guide/attraction/bozhou/nanjing-alley-qianzhuang-88408/",
+      "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/87da99e3f444878581d20fbe4baf2f72.pdf",
+      "https://zjj.bozhou.gov.cn/file_bz/31/202412/20241231097a4f8d353141bd99d0c3d0fa999012.pdf"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "南京巷钱庄",
+      "batch_candidates": [
+        "曹操运兵道",
+        "南京巷钱庄",
+        "华祖庵"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "华祖庵",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://www.baike.com/wikiid/114389733415271040",
+      "https://bkso.baidu.com/item/%E5%8D%8E%E7%A5%96%E5%BA%B5/162291?fromModule=lemma_inlink",
+      "https://cgj.bozhou.gov.cn/file_bz/34/202410/20241030a08897948eaa4fe1851080b8a5cfc741.pdf",
+      "https://www.cntcm.com.cn/content/202202/14/c192058.html",
+      "https://cz.bozhou.gov.cn/file_bz/1/202405/2024052428f53c6efeec42e88b9b9e255df99af7.pdf",
+      "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "华祖庵",
+      "batch_candidates": [
+        "曹操运兵道",
+        "南京巷钱庄",
+        "华祖庵"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "亳州市展览馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://www.meet99.com/jingdian-haozhoushizhanlanguan.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "亳州市展览馆",
+      "batch_candidates": [
+        "亳州市展览馆",
+        "道德中宫",
+        "魏武祠"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "道德中宫",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/bozhou404/1714222.html",
+      "https://bkso.baidu.com/item/%E9%81%93%E5%BE%B7%E4%B8%AD%E5%AE%AB/168789?fromModule=lemma_inlink",
+      "https://baike.so.com/doc/23472-24442.html",
+      "https://culture.people.com.cn/n/2014/0407/c1013-24838267.html",
+      "https://www.rjut.cn/mark/jie-mi-bo-zhou-dao-de-zhong-gong-qian-nian-gu-yun-yu-xian-dai-wen-ming-de-jiao-rong-zhi-di.html",
+      "https://travel.people.com.cn/n/2014/0407/c41570-24839194.html"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "道德中宫",
+      "batch_candidates": [
+        "亳州市展览馆",
+        "道德中宫",
+        "魏武祠"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "魏武祠",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://www.bzwljt.cn/product/10.html",
+      "https://www.mayijf.com/Facility/Details/14100?culture=ko-KR",
+      "https://zh.wikipedia.org/wiki/%E5%AE%89%E5%BE%BD%E7%9C%81A%E7%BA%A7%E6%99%AF%E5%8C%BA%E5%88%97%E8%A1%A8",
+      "https://m.maigoo.com/citiao/115576.html",
+      "https://tdr.lib.ntu.edu.tw/bitstream/123456789/8846/1/ntu-98-1.pdf",
+      "https://www.bzqc.gov.cn/file_bz/2/202502/2025021474e7a3369fe548a8a92accf5d8d59a00.pdf"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "魏武祠",
+      "batch_candidates": [
+        "亳州市展览馆",
+        "道德中宫",
+        "魏武祠"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "曹腾墓",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/bozhou404/141451.html",
+      "https://zh.wikipedia.org/wiki/%E6%9B%B9%E9%A8%B0",
+      "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+      "https://zh.wikipedia.org/wiki/%E6%9B%B9%E6%93%8D%E5%AE%97%E6%97%8F%E5%A2%93%E7%BE%A4",
+      "https://ctext.org/datawiki.pl?if=gb&remap=gb&res=477945",
+      "https://pdf.dfcfw.com/pdf/H2_AN202403061625696207_1.pdf"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "曹腾墓",
+      "batch_candidates": [
+        "曹腾墓",
+        "张园汉墓",
+        "林拥城萌宠乐园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "张园汉墓",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://www.bzwljt.cn/product/6.html",
+      "https://qxb-pdf-osscache.qixin.com/AnBaseinfo/f357f832d0a219ea40c3068bf82da969.pdf",
+      "https://pdf.dfcfw.com/pdf/H2_AN202403061625696207_1.pdf",
+      "https://static.sse.com.cn/disclosure/bond/announcement/corporate/c/new/2023-06-28/152448_20230628_GUE0.pdf",
+      "https://hilookcn.com/chs-all/"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "张园汉墓",
+      "batch_candidates": [
+        "曹腾墓",
+        "张园汉墓",
+        "林拥城萌宠乐园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 117,
+    "city": "亳州市",
+    "province": "安徽省",
+    "name": "林拥城萌宠乐园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://mct.gov.cn/whzx/qgwhxxlb/ah/202104/t20210422_923885.htm",
+    "source_urls": [
+      "https://www.sohu.com/a/448532881_120770957",
+      "https://touch.piao.qunar.com/touch/detail.htm?id=521339",
+      "https://www.sohu.com/a/986343942_121106832"
+    ],
+    "web_search": {
+      "searched_city": "亳州市",
+      "searched_name": "林拥城萌宠乐园",
+      "batch_candidates": [
+        "曹腾墓",
+        "张园汉墓",
+        "林拥城萌宠乐园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "天竺山森林公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/xiamen21/8646.html",
+      "https://www.xmtzs.com/index/about/index.html",
+      "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82",
+      "https://lyj.fujian.gov.cn/zwgk/czzj/czyjs/202409/P020240912586435706175.pdf",
+      "https://www.xmrd.gov.cn/rdlz/rdgb/2019/201905/P020241016591114098650.pdf",
+      "https://zh.wikipedia.org/wiki/%E5%A4%A9%E7%AB%BA%E5%B1%B1"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "天竺山森林公园",
+      "batch_candidates": [
+        "天竺山森林公园",
+        "青礁慈济祖宫",
+        "北辰山旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "青礁慈济祖宫",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://xm.bendibao.com/tour/20221123/79436.shtm",
+      "https://xm.fjdsfzw.org.cn/2025-01-13/content_154059.html",
+      "https://nynct.fujian.gov.cn/ztzl/xxny/202203/t20220328_5868055.htm",
+      "https://minnan.wenlvti.net/details/artifact?id=527",
+      "https://paper.people.com.cn/rmrbhwb/html/2013-11/22/content_1328495.htm",
+      "https://m.wenda.bendibao.com/tour/72066.shtm"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "青礁慈济祖宫",
+      "batch_candidates": [
+        "天竺山森林公园",
+        "青礁慈济祖宫",
+        "北辰山旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "北辰山旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "北辰山旅游景区",
+      "batch_candidates": [
+        "天竺山森林公园",
+        "青礁慈济祖宫",
+        "北辰山旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "同安影视城",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/xiamen21/8666.html",
+      "https://www.maigoo.com/citiao/111538.html",
+      "https://xm.bendibao.com/tour/2019322/56965.shtm",
+      "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82",
+      "https://zh.wikipedia.org/wiki/%E5%90%8C%E5%AE%89%E5%8C%BA",
+      "https://oss.fjhb.org/202204/22/094515/7297/%E8%A5%BF%E6%9F%AF%E5%8D%97%E5%85%AC%E7%A4%BA%E6%9C%AC.pdf"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "同安影视城",
+      "batch_candidates": [
+        "同安影视城",
+        "金光湖生态旅游区",
+        "英雄三岛战地观光园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "金光湖生态旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://www.maigoo.com/citiao/111621.html",
+      "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "金光湖生态旅游区",
+      "batch_candidates": [
+        "同安影视城",
+        "金光湖生态旅游区",
+        "英雄三岛战地观光园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "英雄三岛战地观光园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/xiamen21/48772.html",
+      "https://xm.bendibao.com/tour/20221220/80656.shtm",
+      "https://news.xmnn.cn/xmxw/202209/t20220926_30927.html",
+      "https://www.xmrd.gov.cn/rdlz/dbjygk/dbjy/201604/t20160420_238911.htm",
+      "https://www.sohu.com/a/514593627_121106994",
+      "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/flsxkmh/202604/t20260424_7130840.htm"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "英雄三岛战地观光园",
+      "batch_candidates": [
+        "同安影视城",
+        "金光湖生态旅游区",
+        "英雄三岛战地观光园"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_07.json",
+    "id": 121,
+    "city": "厦门市",
+    "province": "福建省",
+    "name": "双龙潭生态运动景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/whzx/qgwhxxlb/fj/202004/t20200422_852672.htm",
+    "source_urls": [
+      "https://you.ctrip.com/sight/xiamen21/119091.html",
+      "https://wlt.fujian.gov.cn/zwgk/ztzl/dmtzl/dzkw/202209/P020220930313552197375.pdf",
+      "https://zh.wikipedia.org/wiki/%E5%8E%A6%E9%97%A8%E5%B8%82"
+    ],
+    "web_search": {
+      "searched_city": "厦门市",
+      "searched_name": "双龙潭生态运动景区",
+      "batch_candidates": [
+        "双龙潭生态运动景区",
+        "仙姑顶景区",
+        "天沐温泉度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 149,
+    "city": "威海市",
+    "province": "山东省",
+    "name": "仙姑顶景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+    "source_urls": [
+      "https://www.weihai.gov.cn/art/2011/12/6/art_80791_2737007.html",
+      "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+      "https://you.ctrip.com/sight/weihai169/10659.html",
+      "https://shandong-chorography.org/database/ca1/section/3/article/135/",
+      "https://www.dahepiao.com/lvyounews1/20250617517047.html",
+      "https://weihai.iqilu.com/whyaowen/2023/0530/5438140.shtml"
+    ],
+    "web_search": {
+      "searched_city": "威海市",
+      "searched_name": "仙姑顶景区",
+      "batch_candidates": [
+        "双龙潭生态运动景区",
+        "仙姑顶景区",
+        "天沐温泉度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 149,
+    "city": "威海市",
+    "province": "山东省",
+    "name": "天沐温泉度假区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+    "source_urls": [
+      "https://you.ctrip.com/sight/weihai169/136038.html",
+      "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+      "https://www.liugongdao.com.cn/index.php?a=show&c=index&catid=19&id=3256&m=content",
+      "https://hotels.ctrip.com/hotels/436508.html",
+      "https://www.tianmuhotspring.cn/jingdian_detail-17355.html",
+      "https://zh.wikipedia.org/wiki/%E5%A8%81%E6%B5%B7%E5%B8%82"
+    ],
+    "web_search": {
+      "searched_city": "威海市",
+      "searched_name": "天沐温泉度假区",
+      "batch_candidates": [
+        "双龙潭生态运动景区",
+        "仙姑顶景区",
+        "天沐温泉度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 149,
+    "city": "威海市",
+    "province": "山东省",
+    "name": "成山头风景名胜区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E6%88%90%E5%B1%B1%E5%A4%B4",
+      "https://you.ctrip.com/sight/rongcheng899/10614.html",
+      "https://shandong-chorography.org/database/da0/section/1/article/297/",
+      "https://m.map.360.cn/?pid=ef86274fa38d2df3&src=socitybox",
+      "https://www.weihai.gov.cn/attach/0/48a5aafb4c6b4ecc86540ca5d08d77ee.pdf",
+      "https://www.weihai.gov.cn/module/download/downfile.jsp?classid=0&filename=960ea65ee699418188e7c0bb5da7b64d.pdf&showname=%E9%99%84%E4%BB%B6%EF%BC%9A%E8%83%B6%E4%B8%9C%E5%8D%8A%E5%B2%9B%E6%B5%B7%E6%BB%A8%E9%A3%8E%E6%99%AF%E5%90%8D%E8%83%9C%E5%8C%BA%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92%282021-2035%E5%B9%B4%29%E5%BE%81%E6%B1%82%E6%84%8F%E8%A7%81%E7%A8%BF.pdf"
+    ],
+    "web_search": {
+      "searched_city": "威海市",
+      "searched_name": "成山头风景名胜区",
+      "batch_candidates": [
+        "成山头风景名胜区",
+        "赤山风景名胜区",
+        "阿胶世界"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 149,
+    "city": "威海市",
+    "province": "山东省",
+    "name": "赤山风景名胜区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "威海市",
+      "searched_name": "赤山风景名胜区",
+      "batch_candidates": [
+        "成山头风景名胜区",
+        "赤山风景名胜区",
+        "阿胶世界"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 153,
+    "city": "聊城市",
+    "province": "山东省",
+    "name": "阿胶世界",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/xcszbwg2022/shandong/detail/2043.html",
+    "source_urls": [
+      "https://you.ctrip.com/sight/donge2893/5539375.html",
+      "https://zhuanti.mct.gov.cn/xcszbwg2022/shandong/detail/2043.html",
+      "https://www.eeo.com.cn/2023/0403/584791.shtml",
+      "https://bgs.lcudcc.edu.cn/__local/C/5A/6A/15CFAE111A17827938D0E3A7DF5_125D124B_E2653.pdf",
+      "https://news.iqilu.com/shandong/yuanchuang/2024/1010/5726401.shtml",
+      "https://liaocheng.sdnews.com.cn/lcxw/202001/t20200103_2660800.htm"
+    ],
+    "web_search": {
+      "searched_city": "聊城市",
+      "searched_name": "阿胶世界",
+      "batch_candidates": [
+        "成山头风景名胜区",
+        "赤山风景名胜区",
+        "阿胶世界"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 161,
+    "city": "鹤壁市",
+    "province": "河南省",
+    "name": "桑园小镇",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+    "source_urls": [
+      "https://ytsc.rootinhenan.gov.cn/sitesources/ytsc/page_pc/twmtkhn/articlebbf22d869de04c8ea79108231a26fb84.html",
+      "https://bkso.baidu.com/item/%E6%A1%91%E5%9B%AD%E5%B0%8F%E9%95%87/57492863?fromModule=lemma_inlink",
+      "https://qhwh.hbzy.edu.cn/info/1066/1301.htm",
+      "https://www.chinastory.cn/dzhn-pc-twxqy/dzhnwap/detail/20201215/1006000000049051607998176248032607_1.html",
+      "https://www.rootinhenan.gov.cn/sitesources/rootinhenan/page_pc/cxzc/articlec448f828ab8642cf8a859f2728f605c7.html",
+      "https://www.guanzhongliu.com/html/zoujinbinbingaikuang2017-04-165884.html"
+    ],
+    "web_search": {
+      "searched_city": "鹤壁市",
+      "searched_name": "桑园小镇",
+      "batch_candidates": [
+        "桑园小镇",
+        "太极图景区",
+        "金山淇河文化旅游区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 161,
+    "city": "鹤壁市",
+    "province": "河南省",
+    "name": "太极图景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+    "source_urls": [
+      "https://you.ctrip.com/sight/hebi595/5069271.html",
+      "https://guanzhongliu.com/html/wenhualvyoulyzyjs2016-05-134825.html",
+      "https://www.guanzhongliu.com/html/wenhualvyoujdzpzs2012-11-062654.html",
+      "https://miaoqu.wupk.com/scenic/175721.html",
+      "https://jingji.zfcg.henan.gov.cn/cmsweb81e27e/nas/webfile2024/henan/rootfiles/2023/07/24/5ce1007005524c09bdc366a4a09c170c.pdf",
+      "https://hbrb.hebiw.com/pc/att/202505/19/be1d1760-f937-4840-82dd-225b6c0359d7.pdf"
+    ],
+    "web_search": {
+      "searched_city": "鹤壁市",
+      "searched_name": "太极图景区",
+      "batch_candidates": [
+        "桑园小镇",
+        "太极图景区",
+        "金山淇河文化旅游区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 161,
+    "city": "鹤壁市",
+    "province": "河南省",
+    "name": "金山淇河文化旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+    "source_urls": [
+      "https://www.meet99.com/jingdian-jisnhanqihe.html",
+      "https://hbrb.hebiw.com/pc/att/202505/19/be1d1760-f937-4840-82dd-225b6c0359d7.pdf",
+      "https://hbrb.hebiw.com/pc/att/202604/03/54a5750e-9586-474a-9a9a-ef62df99dd2a.pdf",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://hbrb.hebiw.com/pc/att/202503/24/f8c4087b-b8ef-4002-b133-9238dc83dc7c.pdf"
+    ],
+    "web_search": {
+      "searched_city": "鹤壁市",
+      "searched_name": "金山淇河文化旅游区",
+      "batch_candidates": [
+        "桑园小镇",
+        "太极图景区",
+        "金山淇河文化旅游区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 165,
+    "city": "许昌市",
+    "province": "河南省",
+    "name": "春秋楼景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://xuchang.gov.cn/zjxc/005010/20260325/dfa0b4df-57ba-454e-bb88-cdc3dd046919.html",
+    "source_urls": [
+      "https://you.ctrip.com/sight/xuchang465/73593.html",
+      "https://www.weidu.gov.cn/zjwd/006003/20171115/db124b03-5eb5-4df3-90ae-a6bc0b861bcc.html",
+      "https://www.xuchang.gov.cn/zjxc/005010/20200806/c5c56a0a-0392-492f-9545-c8bc20e407af.html",
+      "https://xuchang.gov.cn/zjxc/005010/20240403/b5d4cf71-b750-482d-a9e8-1ebe84c93b24.html",
+      "https://wgl.xuchang.gov.cn/zykf/20190929/f9ef7b40-ff24-4932-89de-f4d3d78081bd.html",
+      "https://xc.rootinhenan.gov.cn/sitesources/xc/page_pc/whwht/article6d2e11bde80140c4b18509b8927a11ca.html"
+    ],
+    "web_search": {
+      "searched_city": "许昌市",
+      "searched_name": "春秋楼景区",
+      "batch_candidates": [
+        "春秋楼景区",
+        "曹丞相府景区",
+        "商丘博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 165,
+    "city": "许昌市",
+    "province": "河南省",
+    "name": "曹丞相府景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://xuchang.gov.cn/zjxc/005010/20260325/dfa0b4df-57ba-454e-bb88-cdc3dd046919.html",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E8%AE%B8%E6%98%8C%E5%B8%82",
+      "https://www.jianan.gov.cn/jagk/002003/20171227/ae9230b0-2ee1-47d0-b399-6cedab29b11c.html",
+      "https://www.uhenan.com/ScenicArea/Content/S1258836631041941505",
+      "https://xuchang.gov.cn/zjxc/005010/20240403/b5d4cf71-b750-482d-a9e8-1ebe84c93b24.html",
+      "https://m.xc.bendibao.com/jingdian/caochengxiangfu/",
+      "https://www.xuchang.gov.cn/zjxc/005010/20260514/c64f9bf5-fa75-47e6-95e8-9cec6c66afb4.html"
+    ],
+    "web_search": {
+      "searched_city": "许昌市",
+      "searched_name": "曹丞相府景区",
+      "batch_candidates": [
+        "春秋楼景区",
+        "曹丞相府景区",
+        "商丘博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 169,
+    "city": "商丘市",
+    "province": "河南省",
+    "name": "商丘博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E5%95%86%E4%B8%98%E5%8D%9A%E7%89%A9%E9%A6%86",
+      "https://you.ctrip.com/sight/shangqiu849/1833339.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%BA%8C%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86"
+    ],
+    "web_search": {
+      "searched_city": "商丘市",
+      "searched_name": "商丘博物馆",
+      "batch_candidates": [
+        "春秋楼景区",
+        "曹丞相府景区",
+        "商丘博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 169,
+    "city": "商丘市",
+    "province": "河南省",
+    "name": "睢县凤栖湖景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+    "source_urls": [
+      "https://www.baike.com/wikiid/7415483989638692899",
+      "https://gs.ctrip.com/html5/you/sight/suicounty1446081/145237997.html"
+    ],
+    "web_search": {
+      "searched_city": "商丘市",
+      "searched_name": "睢县凤栖湖景区",
+      "batch_candidates": [
+        "睢县凤栖湖景区",
+        "济水之源文化旅游区",
+        "杜八联革命纪念馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 173,
+    "city": "济源市",
+    "province": "河南省",
+    "name": "济水之源文化旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+    "source_urls": [
+      "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t967610.html",
+      "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t997247.html",
+      "https://jiyuan.gov.cn/zwyw/zwyw_22093/t1001417.html",
+      "https://fgw.jiyuan.gov.cn/14186/17304/17307/19221/t953398.html",
+      "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t995884.html",
+      "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t1004384.html"
+    ],
+    "web_search": {
+      "searched_city": "济源市",
+      "searched_name": "济水之源文化旅游区",
+      "batch_candidates": [
+        "睢县凤栖湖景区",
+        "济水之源文化旅游区",
+        "杜八联革命纪念馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 173,
+    "city": "济源市",
+    "province": "河南省",
+    "name": "杜八联革命纪念馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E6%9D%9C%E5%85%AB%E8%81%94%E9%9D%A9%E5%91%BD%E7%BA%AA%E5%BF%B5%E9%A6%86/16563250?fromModule=lemma_inlink",
+      "https://www.zmdsjw.gov.cn/2019/0823/33800.html",
+      "https://www.jydsfz.com/gzdt/dsdt/t893830.html",
+      "https://www.gov.cn/gbgl/83870cd09fb14433b5dad26eba8e58ae/files/c45b8a033c8f4703bcc02ec1c722775a.pdf",
+      "https://jyj.jiyuan.gov.cn/jyjx/jxyj/P020240305530155909338.pdf",
+      "https://wglj.jiyuan.gov.cn/14204/15220/21414/P020250102320632635662.pdf"
+    ],
+    "web_search": {
+      "searched_city": "济源市",
+      "searched_name": "杜八联革命纪念馆",
+      "batch_candidates": [
+        "睢县凤栖湖景区",
+        "济水之源文化旅游区",
+        "杜八联革命纪念馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 177,
+    "city": "宜昌市",
+    "province": "湖北省",
+    "name": "车溪民俗旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+    "source_urls": [
+      "https://www.yichang.gov.cn/content-56664-1004053-1.html",
+      "https://www.yichangly.com/news/show-811.html",
+      "https://www.yichang.gov.cn/vote/Show/preview.html?sign=65bf12d5c863603f6fb326fd5ea51cd3&themeid=1178&token=Z7p15c52Mmc7",
+      "https://my.trip.com/travel-guide/attraction/yichang/chexi-folk-custom-tourism-area-82403?curr=EUR&locale=zh-MY&poiType=3&rankingId=100001412794",
+      "https://gzw.yichang.gov.cn/content-40912-17426-1.html",
+      "https://hbdaye.gov.cn/zfxxgk/dfbmptlj/szbm/dysfzhggjjgsz/zc_16434/qtzdgkwj_19887/202312/P020231206355300962762.pdf"
+    ],
+    "web_search": {
+      "searched_city": "宜昌市",
+      "searched_name": "车溪民俗旅游区",
+      "batch_candidates": [
+        "车溪民俗旅游区",
+        "青林休闲旅游区",
+        "嫘祖文化园景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 177,
+    "city": "宜昌市",
+    "province": "湖北省",
+    "name": "青林休闲旅游区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+    "source_urls": [
+      "https://www.yichang.gov.cn/html/zhengwuyizhantong/zhengwuzixun/jinriyaowen/2024/0517/1060656.html",
+      "https://whly.yichang.gov.cn/content-12726-962779-1.html",
+      "https://www.yichang.gov.cn/html/zhengwuyizhantong/zhengwuzixun/jinriyaowen/2023/0727/1053250.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+      "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202310/035651_20231023_TWFX.pdf"
+    ],
+    "web_search": {
+      "searched_city": "宜昌市",
+      "searched_name": "青林休闲旅游区",
+      "batch_candidates": [
+        "车溪民俗旅游区",
+        "青林休闲旅游区",
+        "嫘祖文化园景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 177,
+    "city": "宜昌市",
+    "province": "湖北省",
+    "name": "嫘祖文化园景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "宜昌市",
+      "searched_name": "嫘祖文化园景区",
+      "batch_candidates": [
+        "车溪民俗旅游区",
+        "青林休闲旅游区",
+        "嫘祖文化园景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 181,
+    "city": "孝感市",
+    "province": "湖北省",
+    "name": "应城市楚珍园旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+    "source_urls": [
+      "https://www.wuhan.com/travel/41637.html"
+    ],
+    "web_search": {
+      "searched_city": "孝感市",
+      "searched_name": "应城市楚珍园旅游景区",
+      "batch_candidates": [
+        "应城市楚珍园旅游景区",
+        "老观湖国家湿地公园古泽遗珠景区",
+        "随州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 181,
+    "city": "孝感市",
+    "province": "湖北省",
+    "name": "老观湖国家湿地公园古泽遗珠景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "孝感市",
+      "searched_name": "老观湖国家湿地公园古泽遗珠景区",
+      "batch_candidates": [
+        "应城市楚珍园旅游景区",
+        "老观湖国家湿地公园古泽遗珠景区",
+        "随州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 185,
+    "city": "随州市",
+    "province": "湖北省",
+    "name": "随州博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86",
+      "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82",
+      "https://m.szswdx.cn/news/1623.html",
+      "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+      "https://hb.people.com.cn/n2/2025/1022/c192237-41387627.html",
+      "https://wlt.hubei.gov.cn/zfxxgk/fdzdgknr/qtzdgknr/jytabl/rddbjy/202008/W020191121752090156869.pdf"
+    ],
+    "web_search": {
+      "searched_city": "随州市",
+      "searched_name": "随州博物馆",
+      "batch_candidates": [
+        "应城市楚珍园旅游景区",
+        "老观湖国家湿地公园古泽遗珠景区",
+        "随州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_09.json",
+    "id": 185,
+    "city": "随州市",
+    "province": "湖北省",
+    "name": "曾侯乙墓遗址",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+    "source_urls": [
+      "https://you.ctrip.com/sight/suizhou860/5067278.html",
+      "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82",
+      "https://www.maigoo.com/citiao/59565.html",
+      "https://www.saac.gov.cn/mowcn/cn/c100512/202506/382e5c53ec654d16aeb7eedeaaf7389f/files/7561dbe91fe343c2947eaf533bb6696e.pdf",
+      "https://zh.wikipedia.org/wiki/%E6%B9%96%E5%8C%97%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+      "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86"
+    ],
+    "web_search": {
+      "searched_city": "随州市",
+      "searched_name": "曾侯乙墓遗址",
+      "batch_candidates": [
+        "曾侯乙墓遗址",
+        "歌娅思谷·中国白裤瑶民俗风情园",
+        "刘三姐故里景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 237,
+    "city": "河池市",
+    "province": "广西壮族自治区",
+    "name": "歌娅思谷·中国白裤瑶民俗风情园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+    "source_urls": [
+      "https://www.baike.com/wikiid/7415787016360429819",
+      "https://m.meiligaosu.com/nd.jsp?groupId=63&id=3479&mid=5",
+      "https://gx.cri.cn/2020-06-05/bce0ac32-b219-180e-8011-d5ad9b14ac24.html",
+      "https://epaper.gxrb.com.cn/gxrb2/page/1/2020-06-05/007/53311591310521779.pdf",
+      "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf"
+    ],
+    "web_search": {
+      "searched_city": "河池市",
+      "searched_name": "歌娅思谷·中国白裤瑶民俗风情园",
+      "batch_candidates": [
+        "曾侯乙墓遗址",
+        "歌娅思谷·中国白裤瑶民俗风情园",
+        "刘三姐故里景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 237,
+    "city": "河池市",
+    "province": "广西壮族自治区",
+    "name": "刘三姐故里景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+    "source_urls": [
+      "https://you.ctrip.com/sight/hechi838/131894.html",
+      "https://piao.qunar.com/ticket/detail_39977.html",
+      "https://www.ctnews.com.cn/paper/att/202205/03/6ef6a27b-8c8a-4c4a-a7e8-917795a1c7a3.pdf",
+      "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "河池市",
+      "searched_name": "刘三姐故里景区",
+      "batch_candidates": [
+        "曾侯乙墓遗址",
+        "歌娅思谷·中国白裤瑶民俗风情园",
+        "刘三姐故里景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 237,
+    "city": "河池市",
+    "province": "广西壮族自治区",
+    "name": "棉花天坑",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+    "source_urls": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202601/t20260112_964083.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "河池市",
+      "searched_name": "棉花天坑",
+      "batch_candidates": [
+        "棉花天坑",
+        "三门海",
+        "世界热带水果之窗"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 237,
+    "city": "河池市",
+    "province": "广西壮族自治区",
+    "name": "三门海",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/jptjzl/gxjplyxl/cwsyslyjpxl/P020230428595595627038.pdf",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E4%B8%89%E9%97%A8%E6%B5%B7",
+      "https://you.ctrip.com/sight/fengshan2022/131888.html",
+      "https://wlt.gxzf.gov.cn/data/uploadfile/2019/11/29/90e0e816dcd2d702f0140287ccfb9b30.pdf",
+      "https://zh.wikipedia.org/wiki/%E6%B5%99%E6%B1%9F%E7%9C%81%E7%9C%81%E9%81%93",
+      "https://zh.wikipedia.org/wiki/%E4%B8%89%E9%97%A8%E6%B5%B7%E9%95%87",
+      "https://zh.wikipedia.org/wiki/%E5%87%A4%E5%B1%B1%E5%8E%BF%E5%90%84%E7%BA%A7%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D%E5%88%97%E8%A1%A8"
+    ],
+    "web_search": {
+      "searched_city": "河池市",
+      "searched_name": "三门海",
+      "batch_candidates": [
+        "棉花天坑",
+        "三门海",
+        "世界热带水果之窗"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 245,
+    "city": "琼海市",
+    "province": "海南省",
+    "name": "世界热带水果之窗",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://qionghai.hainan.gov.cn/xxgk/zfgzbg/szfgzbg/202602/t20260209_4026344.html",
+    "source_urls": [
+      "https://you.ctrip.com/sight/qionghai843/135938978.html",
+      "https://agri.hainan.gov.cn/hnsnytzt/bjsjxdnysfjd/jdml/202011/t20201124_2890832.html",
+      "https://www.youtube.com/watch?v=P5-lfLEU8II",
+      "https://haikou.bendibao.com/tour/20241220/70693.shtm",
+      "https://www.cnr.cn/hn/jrhn/20260416/t20260416_527587353.shtml",
+      "https://news.hainan.net/hainan/shixian/qionghai/2025/03/20/4790512.shtml"
+    ],
+    "web_search": {
+      "searched_city": "琼海市",
+      "searched_name": "世界热带水果之窗",
+      "batch_candidates": [
+        "棉花天坑",
+        "三门海",
+        "世界热带水果之窗"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 249,
+    "city": "定安县",
+    "province": "海南省",
+    "name": "久温塘火山冷泉",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+    "source_urls": [
+      "https://dingan.hainan.gov.cn/zfxxgkzl/bm/gtj/gkml/202408/P020240830584994600194.pdf",
+      "https://www.oct-cts.com/Scenery/place-28813.html",
+      "https://www.sina.cn/news/detail/5270871686252019.html",
+      "https://k.sina.cn/article_6533920788_18573b8140010091xb.html",
+      "https://www.chinanews.com/cj/cj-gncj/news/2010/02-17/2125169.shtml",
+      "https://paper.people.com.cn/rmrbhwb/page/2015-08/14/15/rmrbhwb2015081415.pdf"
+    ],
+    "web_search": {
+      "searched_city": "定安县",
+      "searched_name": "久温塘火山冷泉",
+      "batch_candidates": [
+        "久温塘火山冷泉",
+        "彩虹农场",
+        "圣哒哒旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 249,
+    "city": "定安县",
+    "province": "海南省",
+    "name": "彩虹农场",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+    "source_urls": [
+      "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4601.html",
+      "https://www.songjiang.gov.cn/shsj_yexie_nas/753d47c9-b565-4e21-8abe-59e6e2458bbd/45f191d3-7b9b-465f-9ece-e0947b4feebf/YX3_Print.pdf",
+      "https://dfcxb.com/resfile/2026-02-05/06/06.pdf"
+    ],
+    "web_search": {
+      "searched_city": "定安县",
+      "searched_name": "彩虹农场",
+      "batch_candidates": [
+        "久温塘火山冷泉",
+        "彩虹农场",
+        "圣哒哒旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 253,
+    "city": "白沙黎族自治县",
+    "province": "海南省",
+    "name": "圣哒哒旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+    "source_urls": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+      "https://www.haihua365.com/news/22406",
+      "https://www.imetacloud.com/plan/sheng-da-da-lv-you-jing-qu",
+      "https://pdf.dfcfw.com/pdf/H3_AP202211131580211885_1.pdf"
+    ],
+    "web_search": {
+      "searched_city": "白沙黎族自治县",
+      "searched_name": "圣哒哒旅游景区",
+      "batch_candidates": [
+        "久温塘火山冷泉",
+        "彩虹农场",
+        "圣哒哒旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 253,
+    "city": "白沙黎族自治县",
+    "province": "海南省",
+    "name": "阿罗多甘共享农庄",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+    "source_urls": [
+      "https://www.wta-web.org/wp-content/uploads/2024/07/%E3%80%8A2022%E4%B8%96%E7%95%8C%E6%97%85%E6%B8%B8%E8%81%94%E7%9B%9F%E2%80%94%E2%80%94%E6%97%85%E6%B8%B8%E5%8A%A9%E5%8A%9B%E4%B9%A1%E6%9D%91%E6%8C%AF%E5%85%B4%E6%A1%88%E4%BE%8B%E3%80%8B.pdf",
+      "https://xccys.moa.gov.cn/xxny/201905/t20190517_6309420.htm",
+      "https://ibs.hainanu.edu.cn/info/1015/5618.htm",
+      "https://news.hainan.net/hainan/minsheng/minshengliebiao/2024/11/30/4784197_6.shtml",
+      "https://www.cnr.cn/hn/jrhn/20180730/t20180730_524315893.shtml"
+    ],
+    "web_search": {
+      "searched_city": "白沙黎族自治县",
+      "searched_name": "阿罗多甘共享农庄",
+      "batch_candidates": [
+        "阿罗多甘共享农庄",
+        "五里路茶园",
+        "神玉岛文化旅游度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 253,
+    "city": "白沙黎族自治县",
+    "province": "海南省",
+    "name": "五里路茶园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qg/202603/t20260303_964882.html",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "白沙黎族自治县",
+      "searched_name": "五里路茶园",
+      "batch_candidates": [
+        "阿罗多甘共享农庄",
+        "五里路茶园",
+        "神玉岛文化旅游度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 257,
+    "city": "保亭黎族苗族自治县",
+    "province": "海南省",
+    "name": "神玉岛文化旅游度假区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://baoting.hainan.gov.cn/lypd/jdjq/201907/t20190726_2638533.html",
+    "source_urls": [
+      "https://baoting.hainan.gov.cn/lypd/jdjq/201907/t20190726_2638533.html",
+      "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail/1530.html",
+      "https://baoting.hainan.gov.cn/ywdt/mtkbt/202107/t20210713_3012194.html",
+      "https://baoting.hainan.gov.cn/zfxxgk/xgbmgk/jtys/gkml/202401/P020240129584559259893.pdf"
+    ],
+    "web_search": {
+      "searched_city": "保亭黎族苗族自治县",
+      "searched_name": "神玉岛文化旅游度假区",
+      "batch_candidates": [
+        "阿罗多甘共享农庄",
+        "五里路茶园",
+        "神玉岛文化旅游度假区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 261,
+    "city": "自贡市",
+    "province": "四川省",
+    "name": "尖山风景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlt.sc.gov.cn/scwlt/hydt/2024/8/8/bae58b48a3d14662bf0a20c1c512070d.shtml",
+    "source_urls": [
+      "https://you.ctrip.com/sight/zigong575/63869.html",
+      "https://en.wikipedia.org/wiki/Xinmi",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+    ],
+    "web_search": {
+      "searched_city": "自贡市",
+      "searched_name": "尖山风景区",
+      "batch_candidates": [
+        "尖山风景区",
+        "东风堰",
+        "广安市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 269,
+    "city": "乐山市",
+    "province": "四川省",
+    "name": "东风堰",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.leshan.gov.cn/zjls/",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E4%B8%9C%E9%A3%8E%E5%A0%B0/15823445?fromModule=lemma_inlink",
+      "https://www.jiajiang.gov.cn/jjx/nyjq/0ddbc53b29974d84bc756db33.html",
+      "https://leshan.bendibao.com/tour/202182/1065.shtm",
+      "https://difang.neamco.com/sc/2026-07/30/content_38917768.htm",
+      "https://leshan.bendibao.com/tour/202285/4046.shtm",
+      "https://rb.lsrbs.net/index.php?a=view&aid=41288&c=Nparticle&m=home"
+    ],
+    "web_search": {
+      "searched_city": "乐山市",
+      "searched_name": "东风堰",
+      "batch_candidates": [
+        "尖山风景区",
+        "东风堰",
+        "广安市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_12.json",
+    "id": 273,
+    "city": "广安市",
+    "province": "四川省",
+    "name": "广安市博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.guang-an.gov.cn/gasrmzfw/c104271/pc/104239/pc/content/content_2056201130290974720.html",
+    "source_urls": [
+      "https://www.tang.org.cn/44218.html",
+      "https://www.guang-an.gov.cn/gasrmzfw/c104271/pc/104239/pc/content/content_2056201130290974720.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%B7%9D%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+      "https://www.guang-an.gov.cn/gasrmzfw/tzgg/1988791004532649984/AlZfMQkM.pdf",
+      "https://wwj.shaanxi.gov.cn/zfxxgk/fdzdgknr/zcwj/bwgzwj/202011/P020220507574909484535.pdf"
+    ],
+    "web_search": {
+      "searched_city": "广安市",
+      "searched_name": "广安市博物馆",
+      "batch_candidates": [
+        "尖山风景区",
+        "东风堰",
+        "广安市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 277,
+    "city": "资阳市",
+    "province": "四川省",
+    "name": "陈毅故里景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.sctyzx.gov.cn/zy/202602/54320400.html",
+    "source_urls": [
+      "https://www.caoyuantianlu.org/sight/8446.html",
+      "https://www.sctyzx.gov.cn/zy/202602/54320400.html",
+      "https://youletour.com/ziyang/chen-yi-gu-li",
+      "https://www.redtourism.com.cn/content/2020-01/18/content_70419.html",
+      "https://stte.csu.edu.cn/info/1044/5862.htm",
+      "https://www.aayts.com/gt/944.html"
+    ],
+    "web_search": {
+      "searched_city": "资阳市",
+      "searched_name": "陈毅故里景区",
+      "batch_candidates": [
+        "陈毅故里景区",
+        "鸡鸣三省旅游景区",
+        "拱拢坪景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 285,
+    "city": "毕节市",
+    "province": "贵州省",
+    "name": "鸡鸣三省旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+    "source_urls": [
+      "https://you.ctrip.com/sight/bijie521/5701588.html",
+      "https://www.uuetek.com/zh/attraction/bijie/jiming-sansheng-scenic-area-bijie-guizhou",
+      "https://m.thepaper.cn/newsDetail_forward_10493653"
+    ],
+    "web_search": {
+      "searched_city": "毕节市",
+      "searched_name": "鸡鸣三省旅游景区",
+      "batch_candidates": [
+        "陈毅故里景区",
+        "鸡鸣三省旅游景区",
+        "拱拢坪景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 285,
+    "city": "毕节市",
+    "province": "贵州省",
+    "name": "拱拢坪景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf",
+    "source_urls": [
+      "https://www.bjkyjt.cn/product/5.html",
+      "https://you.ctrip.com/sight/bijie521/5065381.html",
+      "https://www.uuetek.com/zh/attraction/bijie/gulongping-scenic-area-bijie-national-forest-park",
+      "https://invest.guizhou.gov.cn/tzgz/tzgk/sjtzzn/202010/P020220413607111080153.pdf"
+    ],
+    "web_search": {
+      "searched_city": "毕节市",
+      "searched_name": "拱拢坪景区",
+      "batch_candidates": [
+        "陈毅故里景区",
+        "鸡鸣三省旅游景区",
+        "拱拢坪景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 306,
+    "city": "林芝市",
+    "province": "西藏自治区",
+    "name": "波密红楼红色系列景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://wlj.linzhi.gov.cn/lzslyfzwyh/c103820/202410/b9b0f4fcc278416eb670be47da7fbc0f.shtml",
+    "source_urls": [
+      "https://e.xzxw.com/xzsb/202410/16/1ed6762c-5687-4a08-9672-a72be32dd5c1.pdf"
+    ],
+    "web_search": {
+      "searched_city": "林芝市",
+      "searched_name": "波密红楼红色系列景区",
+      "batch_candidates": [
+        "波密红楼红色系列景区",
+        "兰州徐家山森林公园",
+        "甘肃天庆博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 317,
+    "city": "兰州市",
+    "province": "甘肃省",
+    "name": "兰州徐家山森林公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [
+      "https://m.lz.bendibao.com/tour/40083.shtm",
+      "https://www.maigoo.com/citiao/109320.html"
+    ],
+    "web_search": {
+      "searched_city": "兰州市",
+      "searched_name": "兰州徐家山森林公园",
+      "batch_candidates": [
+        "波密红楼红色系列景区",
+        "兰州徐家山森林公园",
+        "甘肃天庆博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 317,
+    "city": "兰州市",
+    "province": "甘肃省",
+    "name": "甘肃天庆博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E7%94%98%E8%82%83%E5%A4%A9%E5%BA%86%E5%8D%9A%E7%89%A9%E9%A6%86/22885649?fromModule=lemma_inlink",
+      "https://tqgroup.net/museum",
+      "https://finance.gscn.com.cn/system/2026/06/01/013505451.shtml",
+      "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf",
+      "https://www.tqgroup.net/museum?id=report",
+      "https://czt.gansu.gov.cn/doc/2021_05/%7B4B5C62CC-EE9C-26F9-D1F9-37ED195DD3B2%7D.pdf"
+    ],
+    "web_search": {
+      "searched_city": "兰州市",
+      "searched_name": "甘肃天庆博物馆",
+      "batch_candidates": [
+        "波密红楼红色系列景区",
+        "兰州徐家山森林公园",
+        "甘肃天庆博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 317,
+    "city": "兰州市",
+    "province": "甘肃省",
+    "name": "晴望川民俗文化村",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [
+      "https://www.lzxq.gov.cn/system/2019/08/12/030005147.shtml",
+      "https://gs.ctrip.com/html5/you/sight/gaolan2801/90497915.html",
+      "https://www.lzxq.gov.cn/system/2020/05/09/030021327.shtml",
+      "https://www.lzxq.gov.cn/system/2020/06/16/030023324.shtml",
+      "https://www.lzxq.gov.cn/system/2021/06/04/030346869.shtml",
+      "https://www.gswbj.gov.cn/a/2021/01/28/7645.html"
+    ],
+    "web_search": {
+      "searched_city": "兰州市",
+      "searched_name": "晴望川民俗文化村",
+      "batch_candidates": [
+        "晴望川民俗文化村",
+        "天水民俗博物馆",
+        "天水弘文博物苑"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 321,
+    "city": "天水市",
+    "province": "甘肃省",
+    "name": "天水民俗博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.tianshui.gov.cn/wlj/info/2722/285082.htm",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E5%A4%A9%E6%B0%B4%E6%B0%91%E4%BF%97%E5%8D%9A%E7%89%A9%E9%A6%86/12573765?fromModule=lemma_inlink",
+      "https://www.bw10000.com/topic/5791",
+      "https://www.chinamuseum.org.cn/detail.html?contentId=2995&id=13",
+      "https://www.tianshui.gov.cn/wlj/info/2962/218162.htm",
+      "https://www.tianshui.gov.cn/virtual_attach_file.vsb?afc=KU87OZLmLDLmnVUxz9ZUlV7nNQknNUJPMzAVU4UPLmTVMR-0gihFp2hmCIa062TApjMw6ITjpsC0C5n8CIMwg4G0ZZkHbqSXbKk8bp1kbp35LzNZM_HGTR-aLzRm9-000-mNJ-K00-NJv2nto4OeoDnt_tWjvYhXptQ0g47sMmL0LzvbLSbw6208c",
+      "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf"
+    ],
+    "web_search": {
+      "searched_city": "天水市",
+      "searched_name": "天水民俗博物馆",
+      "batch_candidates": [
+        "晴望川民俗文化村",
+        "天水民俗博物馆",
+        "天水弘文博物苑"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 321,
+    "city": "天水市",
+    "province": "甘肃省",
+    "name": "天水弘文博物苑",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.tianshui.gov.cn/wlj/info/2722/285082.htm",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "天水市",
+      "searched_name": "天水弘文博物苑",
+      "batch_candidates": [
+        "晴望川民俗文化村",
+        "天水民俗博物馆",
+        "天水弘文博物苑"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 325,
+    "city": "酒泉市",
+    "province": "甘肃省",
+    "name": "花城湖生态旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E8%8A%B1%E5%9F%8E%E6%B9%96/629654?fromModule=lemma_inlink",
+      "https://www.baike.com/wikiid/7543794465223166076",
+      "https://szb.gansudaily.com.cn/gsrb/pc/con/202308/08/c103778.html",
+      "https://m.yingjiesheng.com/job-007-956-277.html",
+      "https://www.sohu.com/a/987173550_121106869"
+    ],
+    "web_search": {
+      "searched_city": "酒泉市",
+      "searched_name": "花城湖生态旅游景区",
+      "batch_candidates": [
+        "花城湖生态旅游景区",
+        "酒泉民俗博物馆",
+        "肃州区中以生态农业旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 325,
+    "city": "酒泉市",
+    "province": "甘肃省",
+    "name": "酒泉民俗博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [
+      "https://xkgc-data.obs.cn-north-1.myhuaweicloud.com/xiaokang/8/5/7219813919812.pdf",
+      "https://www.gswbj.gov.cn/a/2024/07/30/21397.html",
+      "https://www.phb123.com/lvyou/gonglve/gs/vtmzan22742.html"
+    ],
+    "web_search": {
+      "searched_city": "酒泉市",
+      "searched_name": "酒泉民俗博物馆",
+      "batch_candidates": [
+        "花城湖生态旅游景区",
+        "酒泉民俗博物馆",
+        "肃州区中以生态农业旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 325,
+    "city": "酒泉市",
+    "province": "甘肃省",
+    "name": "肃州区中以生态农业旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.qinan.gov.cn/info/11102/1167452.htm",
+    "source_urls": [],
+    "web_search": {
+      "searched_city": "酒泉市",
+      "searched_name": "肃州区中以生态农业旅游景区",
+      "batch_candidates": [
+        "花城湖生态旅游景区",
+        "酒泉民俗博物馆",
+        "肃州区中以生态农业旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 329,
+    "city": "临夏回族自治州",
+    "province": "甘肃省",
+    "name": "临夏州博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.linxia.gov.cn/lxz/lxly/jqjd/gj3Ajlyjq/art/2022/art_8f9e1db4d05e4ede8923b2057a923d36.html",
+    "source_urls": [
+      "https://www.linxia.gov.cn/lxz/lxly/jqjd/gj3Ajlyjq/art/2022/art_8f9e1db4d05e4ede8923b2057a923d36.html",
+      "https://lxzbwg.cn/",
+      "https://gs.ctrip.com/html5/you/sight/linxia1446157/5705395.html",
+      "https://www.lxzbwg.cn/Article/SinglePage?Channel=00010003",
+      "https://www.lxzbwg.cn/Article/Content?ItemID=818c0dc2-727f-4b90-986b-3919c9e24db4",
+      "https://www.lxzrdw.gov.cn/Article/Content?ItemID=c1088fd0-452f-4206-bfa9-a4b3cb8d722f"
+    ],
+    "web_search": {
+      "searched_city": "临夏回族自治州",
+      "searched_name": "临夏州博物馆",
+      "batch_candidates": [
+        "临夏州博物馆",
+        "玉树州博物馆",
+        "吴忠市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_13.json",
+    "id": 337,
+    "city": "玉树藏族自治州",
+    "province": "青海省",
+    "name": "玉树州博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+    "source_urls": [
+      "https://www.qhnews.com/newscenter/system/2024/08/18/030259566.shtml",
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/qh/202308/t20230823_946779.html",
+      "https://www.tibetology.ac.cn/2026-07/28/content_43467983.htm",
+      "https://wwj.shaanxi.gov.cn/zfxxgk/fdzdgknr/zcwj/bwgzwj/202011/P020220507574909484535.pdf",
+      "https://zh.wikipedia.org/wiki/%E9%9D%92%E6%B5%B7%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+      "https://zh.wikipedia.org/wiki/%E7%BB%93%E5%8F%A4%E8%A1%97%E9%81%93"
+    ],
+    "web_search": {
+      "searched_city": "玉树藏族自治州",
+      "searched_name": "玉树州博物馆",
+      "batch_candidates": [
+        "临夏州博物馆",
+        "玉树州博物馆",
+        "吴忠市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 341,
+    "city": "吴忠市",
+    "province": "宁夏回族自治区",
+    "name": "吴忠市博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+    "source_urls": [
+      "https://bkso.baidu.com/item/%E5%90%B4%E5%BF%A0%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86/60801509?fromModule=lemma_inlink",
+      "https://www.wuzhong.gov.cn/xxgk/zfxxgkml/yjsgkqk/bmys/2025/202502/P020250212645079061229.pdf",
+      "https://orpheo.com.cn/company-profile",
+      "https://www.wuzhong.gov.cn/ztzl/zcwdpt/wzswhlytygdj/list_1.html",
+      "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%B8%89%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86",
+      "https://fzggw.nx.gov.cn/fzzlhgh/202110/P020211015392020178201.pdf"
+    ],
+    "web_search": {
+      "searched_city": "吴忠市",
+      "searched_name": "吴忠市博物馆",
+      "batch_candidates": [
+        "临夏州博物馆",
+        "玉树州博物馆",
+        "吴忠市博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 341,
+    "city": "吴忠市",
+    "province": "宁夏回族自治区",
+    "name": "宁夏长城博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+    "source_urls": [
+      "https://szb.ycfbapp.com/ycwb/pc/att/202509/08/0dd228b1-e1ce-4f00-b8a3-ec144a54eedd.pdf",
+      "https://www.cac.gov.cn/2026-07/23/c_1786897294787131.htm",
+      "https://www.meet99.com/jingdian-yanzhougucheng-141875.html",
+      "https://www.wuzhong.gov.cn/hdjl/myzj/202511/P020251119424100171385.pdf",
+      "https://nx.people.com.cn/n2/2022/0520/c192482-35277605.html",
+      "https://www.wuzhong.gov.cn/zzb/rdhy_67268/202511/P020251119424100171385.pdf"
+    ],
+    "web_search": {
+      "searched_city": "吴忠市",
+      "searched_name": "宁夏长城博物馆",
+      "batch_candidates": [
+        "宁夏长城博物馆",
+        "花马池古城",
+        "克拉玛依博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 341,
+    "city": "吴忠市",
+    "province": "宁夏回族自治区",
+    "name": "花马池古城",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+    "source_urls": [
+      "https://zh.wikipedia.org/wiki/%E8%8A%B1%E9%A9%AC%E6%B1%A0%E5%8F%A4%E5%9F%8E%E5%9D%80",
+      "https://zh.wikipedia.org/wiki/%E5%90%B4%E5%BF%A0%E5%B8%82%E5%A2%83%E5%86%85%E7%9A%84%E5%AE%81%E5%A4%8F%E5%9B%9E%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8C%BA%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D%E5%88%97%E8%A1%A8",
+      "https://www.meet99.com/jingdian-yanzhougucheng-141875.html",
+      "https://zh.wikipedia.org/wiki/%E5%AE%81%E5%A4%8F%E5%9B%9E%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8C%BA%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D"
+    ],
+    "web_search": {
+      "searched_city": "吴忠市",
+      "searched_name": "花马池古城",
+      "batch_candidates": [
+        "宁夏长城博物馆",
+        "花马池古城",
+        "克拉玛依博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 345,
+    "city": "克拉玛依市",
+    "province": "新疆维吾尔自治区",
+    "name": "克拉玛依博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+    "source_urls": [
+      "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+      "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82%E6%96%87%E5%8D%9A%E9%99%A2",
+      "https://www.klmy.gov.cn/klmys/szfysq/202207/29350c59be7b483a9ccf204b2286fd77/files/%E5%8D%9A%E7%89%A9%E9%A6%86%E5%85%8D%E8%B4%B9%E5%BC%80%E6%94%BE%E5%8F%8A%E5%B1%95%E9%99%88%E6%8F%90%E5%8D%87%E9%A1%B9%E7%9B%AE%E8%AF%84%E4%BB%B7%E6%8A%A5%E5%91%8A%28%E5%BC%A0%E6%A2%A6%E9%9B%A8%29-11.11%E8%B4%A2%E6%94%BF%E8%B4%A8%E6%8E%A7%E7%A8%BF.pdf",
+      "https://www.maigoo.com/citiao/61227.html",
+      "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82",
+      "https://www.xjkunlun.gov.cn/dswx/dszl/111559.htm"
+    ],
+    "web_search": {
+      "searched_city": "克拉玛依市",
+      "searched_name": "克拉玛依博物馆",
+      "batch_candidates": [
+        "宁夏长城博物馆",
+        "花马池古城",
+        "克拉玛依博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 345,
+    "city": "克拉玛依市",
+    "province": "新疆维吾尔自治区",
+    "name": "克拉玛依科技馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+    "source_urls": [
+      "https://www.klmyq.gov.cn/klmyq/ggwhfw/202409/f7aba60486764d8181188f80c35b3de5.shtml",
+      "https://www.cacsi.org.cn/site/content/2405.html"
+    ],
+    "web_search": {
+      "searched_city": "克拉玛依市",
+      "searched_name": "克拉玛依科技馆",
+      "batch_candidates": [
+        "克拉玛依科技馆",
+        "生态休闲健身公园",
+        "博尔塔拉蒙古自治州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 345,
+    "city": "克拉玛依市",
+    "province": "新疆维吾尔自治区",
+    "name": "生态休闲健身公园",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+    "source_urls": [
+      "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+      "https://www.klmyq.gov.cn/klmyq/zdjsxm/202311/8a8dc8e6e82746df96c541993ace54c9.shtml",
+      "https://www.klmy.gov.cn/klmys/szyw/202605/2351088cbbfd4b6a8558eb9251958565.shtml",
+      "https://www.sohu.com/a/710498230_121119059",
+      "https://www.klmy.gov.cn/klmys/szyw/202504/a2350cc034254e81b0003e5047aeae83.shtml",
+      "https://www.klmyq.gov.cn/klmyq/qwtl/202302/2a16eee47e4a42fd9ffe09d84ea1d12d/files/529389B609342F0A24E2BA374E9_E39611A3_5AE42.pdf"
+    ],
+    "web_search": {
+      "searched_city": "克拉玛依市",
+      "searched_name": "生态休闲健身公园",
+      "batch_candidates": [
+        "克拉玛依科技馆",
+        "生态休闲健身公园",
+        "博尔塔拉蒙古自治州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 349,
+    "city": "博尔塔拉蒙古自治州",
+    "province": "新疆维吾尔自治区",
+    "name": "博尔塔拉蒙古自治州博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+    "source_urls": [
+      "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+      "https://www.xjboz.gov.cn/xjboz/c125981/202508/07cac52c69f44d318882200f8da5cbd9.shtml",
+      "https://bkso.baidu.com/item/%E5%8D%9A%E5%B0%94%E5%A1%94%E6%8B%89%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%B7%9E%E5%8D%9A%E7%89%A9%E9%A6%86/19836055?fromModule=lemma_inlink",
+      "https://www.maigoo.com/citiao/61162.html",
+      "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+      "https://www.alsk.gov.cn/__local/9/CB/4E/98BB4F01115C313FAA141442F59_35B2B3D5_42238.pdf"
+    ],
+    "web_search": {
+      "searched_city": "博尔塔拉蒙古自治州",
+      "searched_name": "博尔塔拉蒙古自治州博物馆",
+      "batch_candidates": [
+        "克拉玛依科技馆",
+        "生态休闲健身公园",
+        "博尔塔拉蒙古自治州博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 357,
+    "city": "阿勒泰地区",
+    "province": "新疆维吾尔自治区",
+    "name": "将军山国际滑雪度假区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2025-12-02/8461606.shtml",
+    "source_urls": [
+      "https://you.ctrip.com/sight/altaycity2482/5042346.html",
+      "https://scjgj.xinjiang.gov.cn/xjaic/qjxx/202403/0ad2899ad6b64511ad5fdb971677282f.shtml",
+      "https://www.xinjiang.gov.cn/xinjiang/dzdt/202303/d2a6e4472d374cfab7d75b9efffaf6e2.shtml",
+      "https://www.chinaxinjiang.cn/2026/05/18/53d97a7c264e41b4b9aefa3a1092713d.html",
+      "https://www.chinaxinjiang.cn/2026/01/12/d93da1e2fce04acf834cc7733927245f.html",
+      "https://alt-szb.xjmty.com/resfile/2025-12-31/03/altrb2025123103.pdf"
+    ],
+    "web_search": {
+      "searched_city": "阿勒泰地区",
+      "searched_name": "将军山国际滑雪度假区",
+      "batch_candidates": [
+        "将军山国际滑雪度假区",
+        "阿勒泰地区博物馆",
+        "五家渠军垦博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 357,
+    "city": "阿勒泰地区",
+    "province": "新疆维吾尔自治区",
+    "name": "阿勒泰地区博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2025-12-02/8461606.shtml",
+    "source_urls": [
+      "https://wlt.xinjiang.gov.cn/wlt/dzdt/202105/c1ec7480d86f4d758e089bbb0adf8b82.shtml",
+      "https://api.aiyoutravel.com/location/detail/a9d002850a4d09ffe9c9cc2537fa32f6",
+      "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8"
+    ],
+    "web_search": {
+      "searched_city": "阿勒泰地区",
+      "searched_name": "阿勒泰地区博物馆",
+      "batch_candidates": [
+        "将军山国际滑雪度假区",
+        "阿勒泰地区博物馆",
+        "五家渠军垦博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 361,
+    "city": "五家渠市",
+    "province": "新疆维吾尔自治区",
+    "name": "五家渠军垦博物馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/xjbt/detail/1606.html",
+    "source_urls": [
+      "https://www.forestry.gov.cn/c/www/gzdt/78713.jhtml"
+    ],
+    "web_search": {
+      "searched_city": "五家渠市",
+      "searched_name": "五家渠军垦博物馆",
+      "batch_candidates": [
+        "将军山国际滑雪度假区",
+        "阿勒泰地区博物馆",
+        "五家渠军垦博物馆"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 365,
+    "city": "可克达拉市",
+    "province": "新疆维吾尔自治区",
+    "name": "可克达拉规划展示馆",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2026-08-11/8498559.shtml",
+    "source_urls": [
+      "https://alt-szb.xjmty.com/resfile/2023-09-20/01/altrb2023092001.pdf"
+    ],
+    "web_search": {
+      "searched_city": "可克达拉市",
+      "searched_name": "可克达拉规划展示馆",
+      "batch_candidates": [
+        "可克达拉规划展示馆",
+        "金沙棘小镇",
+        "巴依木扎旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 369,
+    "city": "白杨市",
+    "province": "新疆维吾尔自治区",
+    "name": "金沙棘小镇",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+    "source_urls": [
+      "https://www.btwmw.net/content/content_1851732.html",
+      "https://oss.baigongbao.com/2021/01/16/BfzfzG4rQE.pdf",
+      "https://www.btwmw.net/content/content_1904781.html"
+    ],
+    "web_search": {
+      "searched_city": "白杨市",
+      "searched_name": "金沙棘小镇",
+      "batch_candidates": [
+        "可克达拉规划展示馆",
+        "金沙棘小镇",
+        "巴依木扎旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 369,
+    "city": "白杨市",
+    "province": "新疆维吾尔自治区",
+    "name": "巴依木扎旅游景区",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+    "source_urls": [
+      "https://www.btwmw.net/content/content_1851732.html",
+      "https://whhlyt.hunan.gov.cn/whhlyt/news/szyw/201909/t20190912_5483778.html",
+      "https://mt.sohu.com/kindfeed/travel/20250822/32"
+    ],
+    "web_search": {
+      "searched_city": "白杨市",
+      "searched_name": "巴依木扎旅游景区",
+      "batch_candidates": [
+        "可克达拉规划展示馆",
+        "金沙棘小镇",
+        "巴依木扎旅游景区"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  },
+  {
+    "file": "review_0_14.json",
+    "id": 369,
+    "city": "白杨市",
+    "province": "新疆维吾尔自治区",
+    "name": "芍药谷",
+    "status": "pending_coordinates_and_description",
+    "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+    "source_urls": [
+      "https://www.ccqctg.com/web/column/1525156572879376384/web/content_1525156572879376384.html",
+      "https://www.huyangnet.cn/content/2023-05/18/content_1778065.html",
+      "https://www.btzx.com.cn/web/2025/5/5/ARTI1746414710647873.html",
+      "https://zhuanti.mct.gov.cn/xjbt_detail/472.html",
+      "https://bkso.baidu.com/item/%E7%99%BD%E6%9D%A8%E5%B8%82/50450256?fromModule=lemma_inlink",
+      "https://www.huyangnet.cn/content/2025-03/25/content_1965396.html"
+    ],
+    "web_search": {
+      "searched_city": "白杨市",
+      "searched_name": "芍药谷",
+      "batch_candidates": [
+        "芍药谷"
+      ],
+      "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+    }
+  }
+]

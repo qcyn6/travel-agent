@@ -1,0 +1,208 @@
+[
+  {
+    "id": 271,
+    "city": "眉山市",
+    "province": "四川省",
+    "sources": [
+      "https://www.sscbwg.cn/index.html",
+      "https://www.sscbwg.cn/about/"
+    ],
+    "checked_names": [
+      "眉山三苏祠博物馆",
+      "三苏祠",
+      "三苏纪念馆",
+      "瓦屋山风景区",
+      "柳江古镇"
+    ],
+    "note": "三苏祠为眉山市区独立博物馆景区，与现有瓦屋山、柳江古镇分离；馆内三苏纪念馆不另列。",
+    "candidates": [
+      {
+        "name": "眉山三苏祠博物馆",
+        "status": "pending_coordinates",
+        "description": "展示苏洵、苏轼、苏辙生平、文学与家风的祠堂博物馆，含三苏文化主题展陈。",
+        "description_source_url": "https://www.sscbwg.cn/index.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.sscbwg.cn/index.html",
+            "https://www.sscbwg.cn/about/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "文博指南点位转换WGS84后近似OSM三苏祠景区代表点；古建园林范围较大，不能视作游客入口。",
+          "source_urls": [
+            "https://www.sscbwg.cn/index.html",
+            "https://www.sscbwg.cn/about/",
+            "https://www.iwenbo.fun/museum/4349.html",
+            "https://www.openstreetmap.org/way/529109531"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博指南点位转换WGS84后近似OSM三苏祠景区代表点；古建园林范围较大，不能视作游客入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 275,
+    "city": "雅安市",
+    "province": "四川省",
+    "sources": [
+      "https://www.yaan.gov.cn/xinwen/show/f7d7a443-f803-44f2-8c1e-c1f005359ede.html",
+      "https://www.yaan.gov.cn/gongkai/show/fb4dd67f782d7888827539c1db3a71ba.html"
+    ],
+    "checked_names": [
+      "上里古镇",
+      "碧峰峡",
+      "蒙顶山",
+      "韩家大院",
+      "二仙桥"
+    ],
+    "note": "上里古镇与现有碧峰峡、蒙顶山及雅安市区景点分离；韩家大院、二仙桥为古镇内点位不单列。",
+    "candidates": [
+      {
+        "name": "上里古镇",
+        "status": "pending_coordinates",
+        "description": "雨城区的茶马古道历史驿站，保留老街、古石桥和明清古建筑。",
+        "description_source_url": "https://www.yaan.gov.cn/xinwen/show/f7d7a443-f803-44f2-8c1e-c1f005359ede.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://www.yaan.gov.cn/xinwen/show/f7d7a443-f803-44f2-8c1e-c1f005359ede.html",
+            "https://www.yaan.gov.cn/gongkai/show/fb4dd67f782d7888827539c1db3a71ba.html",
+            "https://www.openstreetmap.org/node/1799747868"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/node/1799747868；大范围质心禁用。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "city": "甘孜藏族自治州",
+    "province": "四川省",
+    "sources": [
+      "https://www.scldq.cn/about.html",
+      "https://www.scldq.cn/book/ticket/",
+      "https://www.luding.gov.cn/gzldx/c101621/202112/154431c80c074048900097da49c754c4.shtml"
+    ],
+    "checked_names": [
+      "泸定桥旅游景区",
+      "川藏公路纪念馆",
+      "海螺沟景区",
+      "色达五明佛学院"
+    ],
+    "note": "泸定桥有独立售票/到达点，不在现有海螺沟、稻城亚丁、木格措列表；色达佛学院为宗教场所且游客政策复杂，不作为本轮候选。",
+    "candidates": [
+      {
+        "name": "泸定桥旅游景区",
+        "status": "approved",
+        "description": "泸定县城大渡河上的历史铁索桥景区，展示川藏交通与红军长征相关历史。",
+        "description_source_url": "https://www.scldq.cn/about.html",
+        "longitude": 102.2307093,
+        "latitude": 29.9145326,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/877739922",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "红色文化",
+          "建筑"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "运营方有独立售票与游览信息；坐标采用OSM具名泸定桥步行桥东端节点8166595087（way/877739922几何端点），是县城侧可抵达点，并非景区质心。",
+        "aliases": [
+          "泸定桥"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 283,
+    "city": "遵义市",
+    "province": "贵州省",
+    "sources": [
+      "https://www.sdcs1935.com/",
+      "https://www.sdcs1935.com/html/service/"
+    ],
+    "checked_names": [
+      "四渡赤水纪念馆",
+      "土城古镇",
+      "遵义会议会址",
+      "赤水丹霞旅游区",
+      "遵义市博物馆"
+    ],
+    "note": "四渡赤水纪念馆位于习水县土城古镇，为独立纪念馆，不在现有遵义会议会址、海龙屯、赤水丹霞列表；博物馆群下其他馆舍不合并成单点。遵义市博物馆是汇川区珠海路独立场馆，与遵义会议会址不同馆址、不同主题。",
+    "candidates": [
+      {
+        "name": "四渡赤水纪念馆",
+        "status": "pending_coordinates",
+        "description": "习水县土城的长征历史纪念馆，围绕红军四渡赤水战史开展展陈。",
+        "description_source_url": "https://www.sdcs1935.com/",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.sdcs1935.com/",
+            "https://www.sdcs1935.com/html/service/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "文博指南有土城镇滋州路121号具名点，但官方场馆下辖多座纪念馆；未能确认该点对应主馆实际入口。",
+          "source_urls": [
+            "https://www.sdcs1935.com/",
+            "https://www.sdcs1935.com/html/service/",
+            "https://www.iwenbo.fun/museum/4442.html",
+            "https://www.sdcs1935.com/html/about/contact/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博指南有土城镇滋州路121号具名点，但官方场馆下辖多座纪念馆；未能确认该点对应主馆实际入口。"
+        }
+      },
+      {
+        "name": "遵义市博物馆",
+        "status": "approved",
+        "description": "遵义市博物馆位于汇川区珠海路，常设陈列包括遵义历史文化展和贵州酒文化展，通过文物、历史资料与场景展陈介绍遵义地方历史及贵州酒文化。",
+        "description_source_url": "https://www.gzstv.com/a/de202e3b80214968a4d5e877fdafc79d",
+        "longitude": 106.9243182,
+        "latitude": 27.7259002,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/365032125",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "民族文化",
+          "酒文化",
+          "研学",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "政府采购公告确认遵义市博物馆位于汇川区珠海路，2025年贵州卫视报道其新开基本陈列包含遵义历史文化展、贵州酒文化展。OSM way/365032125为珠海路具名博物馆馆舍范围代表点，WGS84，非入口实测坐标；与遵义会议会址是不同场馆。",
+        "aliases": [
+          "遵义市博物馆（贵州酒文化博物馆）",
+          "贵州酒文化博物馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "政府采购公告核实场馆名称、珠海路地址和基础陈列改造内容；贵州卫视2025年报道确认展览已开展；具名OSM馆舍与地址相合，并与遵义会议会址独立。",
+          "source_urls": [
+            "https://www.ccgp.gov.cn/cggg/dfgg/zbgg/202409/t20240903_23062240.htm",
+            "https://www.gzstv.com/a/de202e3b80214968a4d5e877fdafc79d",
+            "https://www.openstreetmap.org/way/365032125"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情确认way/365032125具名“遵义市博物馆”，WGS84代表点(106.9243182,27.7259002)；地图标注珠海路，与采购公告的汇川区珠海路馆址吻合。"
+        }
+      }
+    ]
+  }
+]

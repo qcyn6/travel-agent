@@ -45,6 +45,9 @@ def build_guide_retrieval_service(settings) -> KnowledgeRetrievalService:
             collection_name=settings.guide_knowledge_chroma_collection,
         ),
         filter_destinations=False,
+        # Only bound query embeddings, never shorten administrative indexing.
+        query_timeout_seconds=min(settings.embedding_timeout_seconds,
+                                  getattr(settings, 'general_guide_timeout_seconds', 8.0) * 0.6),
     )
 
 

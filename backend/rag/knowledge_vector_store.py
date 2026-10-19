@@ -24,6 +24,7 @@ class ChromaKnowledgeIndex:
         self.collection = self.client.get_or_create_collection(
             name=collection_name,
             metadata={"hnsw:space": "cosine"},
+            embedding_function=None,
         )
 
     def upsert(self, documents: list[KnowledgeChunk], embeddings: list[list[float]]) -> int:

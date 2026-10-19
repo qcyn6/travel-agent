@@ -35,7 +35,7 @@ from backend.database import open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow, ProvinceRow  # noqa: E402
 from backend.models.attraction import AttractionPOI  # noqa: E402
 from backend.poi.amap import AmapAttractionClient  # noqa: E402
-from scripts.seed_ai_demo_attractions import build_description, estimate_duration  # noqa: E402
+from backend.attractions.heuristics import build_description, estimate_duration  # noqa: E402
 
 
 @dataclass(frozen=True)

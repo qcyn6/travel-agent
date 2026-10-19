@@ -1,0 +1,165 @@
+[
+  {
+    "id": 1,
+    "city": "杭州市",
+    "province": "浙江省",
+    "sources": [
+      "https://wgly.hangzhou.gov.cn/cw/cn/index.html",
+      "https://www.hzzx.gov.cn/cshz/content/2026-01/28/content_9169875.htm",
+      "https://www.zjmuseum.com.cn/cn/",
+      "https://ori.hangzhou.com.cn/ornews/content/2026-07/24/content_9263083.htm",
+      "https://www.openstreetmap.org/way/1393054074"
+    ],
+    "checked_names": [
+      "吴山",
+      "南宋德寿宫遗址博物馆",
+      "良渚博物院",
+      "杭州国家版本馆",
+      "衣锦城遗址博物馆",
+      "浙江省博物馆之江馆区"
+    ],
+    "note": "吴山和德寿宫已存在；之江馆区与孤山馆区属于同一机构的不同馆舍，本次只登记数据库此前缺失的之江馆区，不另拆重复馆点；衣锦城遗址博物馆仍待坐标。",
+    "candidates": [
+      {
+        "name": "衣锦城遗址博物馆",
+        "status": "pending_coordinates",
+        "description": "位于杭州临安锦城街道城中街69号，依托吴越国衣锦城遗迹开展原址展示，展陈主题为吴越千年、衣锦再现。",
+        "description_source_url": "https://www.hzzx.gov.cn/cshz/content/2026-01/28/content_9169875.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮网页核实景点名称和资料，但尚未获得可核实的具名游客入口或小型场馆坐标，暂不入库。",
+          "source_urls": [
+            "https://www.hzzx.gov.cn/cshz/content/2026-01/28/content_9169875.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“衣锦城遗址博物馆 杭州市”检索返回0项；未取得具名入口/馆舍点位。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.hzzx.gov.cn/cshz/content/2026-01/28/content_9169875.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "站内文博资料与 Photon 检索未提供可核准的具名现馆坐标；官方仅能确认城中街69号，继续保留。",
+          "iwenbo_marker_evidence_file": null
+        }
+      },
+      {
+        "name": "浙江省博物馆之江馆区",
+        "status": "approved",
+        "description": "浙江省博物馆之江馆区位于之江文化中心，设有浙江历史文化、革命历史及专题展览，可通过文物陈列了解浙江历史、海洋文化和传统工艺。",
+        "description_source_url": "https://www.zjmuseum.com.cn/cn/",
+        "longitude": 120.0968744,
+        "latitude": 30.1620244,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1393054074",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文", "研学"],
+        "duration_minutes": 180,
+        "independence_note": "浙江省博物馆官网2026年仍列出之江馆区展览及参观服务；OSM way/1393054074为具名馆舍建筑轮廓，中心点匹配之江文化中心馆址，作为馆舍到达锚点而非实测入口。数据库此前没有浙江省博物馆记录；不再单独新增同机构孤山馆区。",
+        "aliases": ["浙江省博物馆（之江馆区）", "浙江省博物馆之江馆"],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "官方馆方页面确认当前之江馆区展览与参观服务；公开地图具名馆舍轮廓坐标与之江文化中心场址匹配；检查杭州现有景点及别名后无同址记录。",
+          "source_urls": [
+            "https://www.zjmuseum.com.cn/cn/",
+            "https://ori.hangzhou.com.cn/ornews/content/2026-07/24/content_9263083.htm",
+            "https://www.openstreetmap.org/way/1393054074"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 120.0968744,30.1620244；取具名之江馆区建筑轮廓代表点，非游客入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "city": "嘉兴市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm",
+      "https://www.jiaxing.gov.cn/module/download/downfile.jsp?classid=0&filename=47aebd6af6314063a99ca7083d1cc4ad.pdf"
+    ],
+    "checked_names": [
+      "嘉兴博物馆",
+      "马家浜文化博物馆"
+    ],
+    "note": "两个不同地址的馆区，需核验与数据库独立性及坐标。",
+    "candidates": [
+      {
+        "name": "嘉兴博物馆",
+        "status": "approved",
+        "description": "嘉兴博物馆位于南湖区海盐塘路，是展示嘉兴地方历史文化的公共博物馆，可通过馆藏文物和专题陈列了解当地历史与文化。",
+        "description_source_url": "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm",
+        "longitude": 120.7598815,
+        "latitude": 30.7445832,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1515347881",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "OSM具名博物馆建筑位于凌公塘路与海盐塘路馆区，约60米宽；官方海盐塘路485号相符，与南湖旅游区不同址。",
+        "aliases": [
+          "嘉兴市博物馆"
+        ]
+      },
+      {
+        "name": "马家浜文化博物馆",
+        "status": "pending_coordinates",
+        "description": "位于南湖区马家浜路297号，通过遗址出土文物展示长江下游早期新石器文化及江南文化源流。",
+        "description_source_url": "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮网页核实景点名称和资料，但尚未获得可核实的具名游客入口或小型场馆坐标，暂不入库。",
+          "source_urls": [
+            "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm",
+            "https://jiaxingmuseum.com/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+嘉兴返回0项，虽有官方馆址但缺具名可抵达坐标。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.ezhejiang.gov.cn/jiaxing/2025-01/10/c_1063769.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "站内文博资料与 Photon 检索未提供可核准的马家浜路297号馆舍坐标；继续保留。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "city": "舟山市",
+    "province": "浙江省",
+    "sources": [
+      "https://zsjgbz.zhoushan.gov.cn/col/col1229858739/art/2026/art_beca2148eb7740999c968782fb9508d6.html"
+    ],
+    "checked_names": [
+      "舟山博物馆"
+    ],
+    "note": "2025年度报告核对馆址海天大道610号；数据库已有，暂不新增。",
+    "candidates": []
+  },
+  {
+    "id": 5,
+    "city": "大理市",
+    "province": "云南省",
+    "sources": [
+      "https://www.yndali.gov.cn/dlsrmzf/c106762/pc/content/2014593247609982976/content_2014593247609982976.html"
+    ],
+    "checked_names": [
+      "大理市博物馆"
+    ],
+    "note": "馆址在大理古城内复兴路111号，需核对与总统兵马大元帅府既有记录的同址/父子关系，不直接新增。",
+    "candidates": []
+  }
+]

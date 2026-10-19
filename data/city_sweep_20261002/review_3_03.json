@@ -1,0 +1,462 @@
+[
+  {
+    "id": 224,
+    "city": "揭阳市",
+    "province": "广东省",
+    "sources": [
+      "https://www.jieyang.gov.cn/zjjy/lygg/mljy/content/post_114431.html"
+    ],
+    "checked_names": [
+      "黄满寨瀑布群旅游区",
+      "揭阳学宫"
+    ],
+    "note": "现库揭阳学宫等为城区人文景点；黄满寨另址，待核入口与是否属于大洋景区范围。",
+    "candidates": [
+      {
+        "name": "黄满寨瀑布群旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.jieyang.gov.cn/zjjy/lygg/mljy/content/post_114431.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于揭西县的4A级瀑布群景区，以自然山水和瀑布观览为主要内容。",
+        "description_source_url": "https://www.jieyang.gov.cn/zjjy/lygg/mljy/content/post_114431.html"
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "city": "桂林市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+    ],
+    "checked_names": [
+      "桂林西山景区",
+      "桂林全州县湘山·湘源历史文化旅游区"
+    ],
+    "note": "桂林西山已收录；全州县湘山·湘源与市区14条不同，需核组合景区游览入口。",
+    "candidates": [
+      {
+        "name": "桂林全州县湘山·湘源历史文化旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "广西文化和旅游厅4A级景区名录列出的全州县历史文化旅游区。",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+      }
+    ]
+  },
+  {
+    "id": 232,
+    "city": "钦州市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+    ],
+    "checked_names": [
+      "钦州市林湖森林公园",
+      "钦州市浦北县越州天湖景区"
+    ],
+    "note": "现库三娘湾、刘永福故居、园博园与林湖公园不同，需核游客入口。",
+    "candidates": [
+      {
+        "name": "钦州市林湖森林公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "广西4A级景区名录所列的钦州森林公园，适合林地休闲游览。",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+      }
+    ]
+  },
+  {
+    "id": 236,
+    "city": "贺州市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+    ],
+    "checked_names": [
+      "贺州市十八水原生态园景区",
+      "黄姚古镇景区"
+    ],
+    "note": "黄姚已收录；十八水与黄姚、姑婆山为独立景区，待核入口。",
+    "candidates": [
+      {
+        "name": "贺州市十八水原生态园景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "广西4A级景区名录中的贺州自然山水景区，以原生态景观游览为主题。",
+        "description_source_url": "https://wlt.gxzf.gov.cn/ztzl/rdjj/gxajlyjq/t19045600.shtml"
+      }
+    ]
+  },
+  {
+    "id": 240,
+    "city": "海口市",
+    "province": "海南省",
+    "sources": [
+      "https://jyj.haikou.gov.cn/hksjyj/zxzx/202608/c6e6e08b4d4a491c93ca6e7d398ba80a.shtml"
+    ],
+    "checked_names": [
+      "海口骑楼老街",
+      "海瑞文化公园",
+      "骑楼老街非遗展示馆"
+    ],
+    "note": "骑楼老街与海瑞文化公园已在库；非遗展示馆位于骑楼老街内部，父子去重原则下不独立新增。",
+    "candidates": []
+  },
+  {
+    "id": 244,
+    "city": "五指山市",
+    "province": "海南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcszbwg2022/hainan/detail/1955.html"
+    ],
+    "checked_names": [
+      "五指山大峡谷漂流",
+      "五指山革命根据地纪念园"
+    ],
+    "note": "纪念园已收录；大峡谷漂流可能处于既有热带雨林景区范围内，坐标与经营独立性须核，季节性亦需提示。",
+    "candidates": [
+      {
+        "name": "五指山大峡谷漂流",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://zhuanti.mct.gov.cn/xcszbwg2022/hainan/detail/1955.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于五指山热带雨林腹地的峡谷漂流景区，依托河道与原生植被开展体验。",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcszbwg2022/hainan/detail/1955.html"
+      }
+    ]
+  },
+  {
+    "id": 248,
+    "city": "东方市",
+    "province": "海南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/rxhmxjgn2022/beijing/detail_g7yU_505/3416.html"
+    ],
+    "checked_names": [
+      "鱼鳞洲风景区",
+      "花梨谷文化旅游区"
+    ],
+    "note": "鱼鳞洲已收录；花梨谷与现有鱼鳞洲、俄贤岭等不同址，待核入口。",
+    "candidates": [
+      {
+        "name": "花梨谷文化旅游区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://zhuanti.mct.gov.cn/rxhmxjgn2022/beijing/detail_g7yU_505/3416.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于东方市板桥镇，以黄花梨主题、花海和营地等为旅游内容。",
+        "description_source_url": "https://zhuanti.mct.gov.cn/rxhmxjgn2022/beijing/detail_g7yU_505/3416.html"
+      }
+    ]
+  },
+  {
+    "id": 252,
+    "city": "临高县",
+    "province": "海南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcss2024_xcygj/hainan/detail/7173.html"
+    ],
+    "checked_names": [
+      "临高文庙"
+    ],
+    "note": "文化和旅游部线路核实临高文庙，现库已有，未发现可排除父子重叠的新候选。",
+    "candidates": []
+  },
+  {
+    "id": 256,
+    "city": "陵水黎族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=35030"
+    ],
+    "checked_names": [
+      "分界洲岛旅游区"
+    ],
+    "note": "文化和旅游部核实分界洲岛；现库已有分界洲岛景区，岛内观景点不再拆录。",
+    "candidates": []
+  },
+  {
+    "id": 260,
+    "city": "成都市",
+    "province": "四川省",
+    "sources": [
+      "https://lyfw.mct.gov.cn/site/special/province?pkey=sichuan&type=0"
+    ],
+    "checked_names": [
+      "成都天台山旅游景区",
+      "安顺廊桥"
+    ],
+    "note": "文化和旅游部介绍邛崃天台山，现库已同时收录两条同义名称，先去重，不新增内部山峰或沟谷。安顺廊桥是锦江上的独立桥梁地标，与望江楼公园等现有景点不同。",
+    "candidates": [
+      {
+        "name": "安顺廊桥",
+        "status": "approved",
+        "description": "安顺廊桥位于成都府河与南河交汇处，是一座兼具步行、观光与文化展示功能的古典桥梁，采用明清风格，青石栏杆、红墙青瓦和飞檐回廊构成锦江夜景中的城市地标。",
+        "description_source_url": "https://www.cdmedi.com/contents/36/471.html",
+        "longitude": 104.0834347,
+        "latitude": 30.644143,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/6349200760",
+        "coordinate_system": "WGS84",
+        "category": "滨水景观",
+        "tags": [
+          "滨水",
+          "江河",
+          "建筑",
+          "历史文化",
+          "夜游",
+          "城市漫游",
+          "摄影"
+        ],
+        "duration_minutes": 45,
+        "independence_note": "成都市市政工程设计研究院介绍该桥位于府河与南河交汇处，桥长81米，是独立可步行地标。OSM具名node/6349200760落在桥体上，WGS84，代表桥上POI而非附近街区或望江楼公园中心；与现有望江楼公园相距约1.8公里。",
+        "aliases": [
+          "成都安顺廊桥"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "市政工程设计研究院资料确认桥址和建筑形态；OSM具名桥梁节点位于桥体；数据库及台账无同名记录，与现有望江楼公园不重叠。",
+          "source_urls": [
+            "https://www.cdmedi.com/contents/36/471.html",
+            "https://www.cdmedi.com/contents/50/458.html",
+            "https://www.openstreetmap.org/node/6349200760"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情确认node/6349200760具名“安顺廊桥”，WGS84坐标(104.0834347,30.644143)；节点位于桥体，不是公园或街区代表点。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 264,
+    "city": "德阳市",
+    "province": "四川省",
+    "sources": [
+      "https://mztoday.gov.cn/show/96099.html"
+    ],
+    "checked_names": [
+      "白马关景区",
+      "绵竹年画村",
+      "九龙山—麓棠山旅游区"
+    ],
+    "note": "白马关已有；九龙滑草场属于九龙山—麓棠山旅游区内部不单列，年画村独立待核。",
+    "candidates": [
+      {
+        "name": "绵竹年画村",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://mztoday.gov.cn/show/96099.html","https://www.mztoday.gov.cn/show/96099.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "德阳官方国庆线路中的乡村非遗旅游点，以绵竹年画文化体验为特色。",
+        "description_source_url": "https://mztoday.gov.cn/show/96099.html"
+      }
+    ]
+  },
+  {
+    "id": 268,
+    "city": "内江市",
+    "province": "四川省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcszbwg2022/sichuan/detail/1963.html"
+    ],
+    "checked_names": [
+      "大千园旅游风景区",
+      "张大千纪念馆"
+    ],
+    "note": "现库罗泉古镇、大洲广场等均不同；张大千纪念馆为大千园内部，不拆录。",
+    "candidates": [
+      {
+        "name": "大千园旅游风景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://zhuanti.mct.gov.cn/xcszbwg2022/sichuan/detail/1963.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于内江市东兴区城区，为纪念画家张大千而建，园区包含纪念馆、美术馆等文化场馆。",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcszbwg2022/sichuan/detail/1963.html"
+      }
+    ]
+  },
+  {
+    "id": 272,
+    "city": "宜宾市",
+    "province": "四川省",
+    "sources": [
+      "https://ybsrd.gov.cn/contents/47/8963.html"
+    ],
+    "checked_names": [
+      "蜀南竹海",
+      "五粮液景区",
+      "僰道历史文化旅游休闲街区"
+    ],
+    "note": "蜀南竹海已在库；僰道街区与现有李庄古镇不同址，需核街区范围。",
+    "candidates": [
+      {
+        "name": "僰道历史文化旅游休闲街区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://ybsrd.gov.cn/contents/47/8963.html","https://www.ybsrd.gov.cn/contents/47/8963.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "宜宾市新获评的历史文化旅游休闲街区，适合城市漫游和地方文化体验。",
+        "description_source_url": "https://ybsrd.gov.cn/contents/47/8963.html"
+      }
+    ]
+  },
+  {
+    "id": 276,
+    "city": "巴中市",
+    "province": "四川省",
+    "sources": [
+      "https://www.bazhongpeace.gov.cn/shgz/20260203/3031067.html"
+    ],
+    "checked_names": [
+      "光雾山",
+      "米仓山",
+      "南龛石窟"
+    ],
+    "note": "光雾山和南龛山已收录；米仓山可能与光雾山旅游圈相邻但单列售票，需核独立入口与边界。",
+    "candidates": [
+      {
+        "name": "米仓山旅游景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"南江县政府确认米仓山景区（原大坝景区）与在库光雾山旅游景区（原桃园景区）是光雾山旅游区内两个不同景区，不作同义重复排除；本轮未找到可靠的米仓山景区大门或游客中心坐标，暂不入库。","source_urls":["https://scnj.gov.cn/mlnj/cynj/yznj/12882481.html","https://scnj.gov.cn/mlnj/cynj/yznj/12816451.html"],"checked_at":"2026-10-02","coordinate_review_note":"独立景区身份已核清，但公开地图未命中可证实的游客入口；禁止把光雾山景区或米仓山森林公园面中心代入。"},
+        "description": "米仓山旅游景区位于光雾山旅游区东北部，是四川米仓山国家森林公园所在地，以秋季红叶观赏著称。",
+        "description_source_url": "https://scnj.gov.cn/mlnj/cynj/yznj/12882481.html"
+      }
+    ]
+  },
+  {
+    "id": 280,
+    "city": "凉山彝族自治州",
+    "province": "四川省",
+    "sources": [
+      "https://lsz.sczwfw.gov.cn/module/download/downfile.jsp?classid=0&filename=d1a9633308514f4ea3625e82537ce7bf.pdf"
+    ],
+    "checked_names": [
+      "西昌卫星发射基地",
+      "西昌建昌古城",
+      "螺髻山"
+    ],
+    "note": "螺髻山已收录；卫星发射基地需确认公众开放范围、预约制度和可用游客入口后才能入库。",
+    "candidates": [
+      {
+        "name": "西昌卫星发射基地",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；开放地图命中大面积发射中心边界，未定位对游客开放的独立参观入口。","source_urls":["https://lsz.sczwfw.gov.cn/module/download/downfile.jsp?classid=0&filename=d1a9633308514f4ea3625e82537ce7bf.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"开放地图命中大面积发射中心边界，未定位对游客开放的独立参观入口。"},
+        "coordinate_review_note": "开放地图命中大面积发射中心边界，未定位对游客开放的独立参观入口。",
+        "description": "凉山州旅游规划列出的西昌航天主题参观点。",
+        "description_source_url": "https://lsz.sczwfw.gov.cn/module/download/downfile.jsp?classid=0&filename=d1a9633308514f4ea3625e82537ce7bf.pdf"
+      }
+    ]
+  },
+  {
+    "id": 284,
+    "city": "安顺市",
+    "province": "贵州省",
+    "sources": [
+      "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf"
+    ],
+    "checked_names": [
+      "云峰景区",
+      "云峰景区屯堡文化博物馆",
+      "本寨"
+    ],
+    "note": "现有天龙屯堡与云峰景区为不同屯堡片区；本寨和馆舍作为云峰景区子点不另拆，待核主入口。",
+    "candidates": [
+      {
+        "name": "云峰景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description": "位于安顺市西秀区的4A级屯堡文化景区，由博物馆、本寨等多个参观点组成。",
+        "description_source_url": "https://fgw.guizhou.gov.cn/zwgk/zdlyxx/jffw/zcwj/202601/P020260205655508332150.pdf"
+      }
+    ]
+  },
+  {
+    "id": 288,
+    "city": "黔东南苗族侗族自治州",
+    "province": "贵州省",
+    "sources": [
+      "https://www.qdn.gov.cn/zwgk_5871642/zfgzbg_5872133/202501/t20250124_86686228.html"
+    ],
+    "checked_names": [
+      "从江加榜梯田"
+    ],
+    "note": "现有苗寨和古城景点不涵盖加榜梯田，待核观景入口及范围。",
+    "candidates": [
+      {
+        "name": "从江加榜梯田景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.qdn.gov.cn/zwgk_5871642/zfgzbg_5872133/202501/t20250124_86686228.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "黔东南州政府工作报告列出的新增4A级梯田景区，以高山梯田景观游览为主。",
+        "description_source_url": "https://www.qdn.gov.cn/zwgk_5871642/zfgzbg_5872133/202501/t20250124_86686228.html"
+      }
+    ]
+  },
+  {
+    "id": 305,
+    "city": "昌都市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://lyfz.changdu.gov.cn/cdslyj4/c101234/202105/dc006eb7627b4a7c9b17e1246e6a3856.shtml"
+    ],
+    "checked_names": [
+      "强巴林寺景区",
+      "莽措湖景区",
+      "三色湖"
+    ],
+    "note": "三色湖已收录；强巴林寺与孜珠寺不同址，待核参访入口与开放时段。",
+    "candidates": [
+      {
+        "name": "强巴林寺景区",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；OSM寺院围墙面约380米宽，缺可验证的开放山门位置，不能用面质心。","source_urls":["https://lyfz.changdu.gov.cn/cdslyj4/c101234/202105/dc006eb7627b4a7c9b17e1246e6a3856.shtml","https://lyfz.changdu.gov.cn/cdslyj4/c102471/202108/8a89a55788fa44d19a1317e777ba6d52.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"OSM寺院围墙面约380米宽，缺可验证的开放山门位置，不能用面质心。"},
+        "coordinate_review_note": "OSM寺院围墙面约380米宽，缺可验证的开放山门位置，不能用面质心。",
+        "description": "昌都官方旅游攻略列出的寺院参访景区，适合藏传佛教文化与建筑观览。",
+        "description_source_url": "https://lyfz.changdu.gov.cn/cdslyj4/c101234/202105/dc006eb7627b4a7c9b17e1246e6a3856.shtml"
+      }
+    ]
+  },
+  {
+    "id": 309,
+    "city": "阿里地区",
+    "province": "西藏自治区",
+    "sources": [
+      "https://www.al.gov.cn/info/1031/23190.htm"
+    ],
+    "checked_names": [
+      "冈仁波齐",
+      "古格王国遗址",
+      "札达土林",
+      "古如江寺"
+    ],
+    "note": "神山、古格、札达土林均已在库；古如江寺另址，但高原偏远且交通条件特殊，必须核安全可达点后入库。",
+    "candidates": [
+      {
+        "name": "古如江寺",
+        "status": "approved",
+        "description": "古如江寺位于阿里地区噶尔县门士乡，是一处雍仲苯教寺庙。阿里地区文旅路线将其与附近卡尔东遗址作为不同参访点。",
+        "description_source_url": "https://lyfz.al.gov.cn/info/1772/19541.htm",
+        "longitude": 80.6399875,
+        "latitude": 31.1298461,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/1612692201",
+        "category": "宗教建筑",
+        "tags": ["宗教文化", "历史文化", "人文"],
+        "duration_minutes": 60,
+        "independence_note": "OSM具名寺庙POI节点，阿里地区政府资料明确古如江寺亦称古入江寺，并有门士乡通寺旅游道路；与附近卡尔东遗址不是同一景点。",
+        "aliases": ["古入江寺", "古如甲木寺"]
+      }
+    ]
+  },
+  {
+    "id": 320,
+    "city": "白银市",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.jingyuan.gov.cn/zfxxgk/bmhxzxxgk/xzxxgk/lcz/fdzdgknr/whly/art/2025/art_8f5d6704a9a64937a7cda9bfad46e007.html"
+    ],
+    "checked_names": [
+      "景泰寿鹿山森林公园"
+    ],
+    "note": "现有黄河石林和永泰龟城均非寿鹿山；待核最新开放情况与入口。",
+    "candidates": [
+      {
+        "name": "景泰寿鹿山森林公园",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.jingyuan.gov.cn/zfxxgk/bmhxzxxgk/xzxxgk/lcz/fdzdgknr/whly/art/2025/art_8f5d6704a9a64937a7cda9bfad46e007.html","https://www.baiyin.gov.cn/attach/old/byszf/P020211125619026569046.pdf"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description": "位于白银市景泰县，以森林生态为主要游览特色的景区。",
+        "description_source_url": "https://www.jingyuan.gov.cn/zfxxgk/bmhxzxxgk/xzxxgk/lcz/fdzdgknr/whly/art/2025/art_8f5d6704a9a64937a7cda9bfad46e007.html"
+      }
+    ]
+  }
+]

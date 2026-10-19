@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from backend.attractions.dedupe import dedupe_attractions, normalize_attraction_name
 from backend.models.city_stay import CityStay
-from backend.models.itinerary import CityPlan, DayPlan
+from backend.models.itinerary import CityPlan
 from backend.observability import observe_external_request
 from backend.models.requirement import TravelRequirement
 from backend.models.planning import PlanningCandidate

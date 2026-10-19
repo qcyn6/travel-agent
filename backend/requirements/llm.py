@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from backend.models.requirement import TravelRequirement, validate_start_date
 from backend.observability import observe_external_request
+from backend.requirements.history import format_conversation_history
 
 
 class RequirementLLMError(RuntimeError):
@@ -41,7 +42,7 @@ class DeepSeekRequirementParser:
             raise ValueError("旅游需求不能为空")
         if not self.api_key:
             raise RequirementLLMError("未配置 LLM_API_KEY")
-        history_context = self._format_conversation_history(conversation_history)
+        history_context = format_conversation_history(conversation_history)
         prompt = (
             "将用户旅游需求严格提取为 JSON。字段只能是：province、cities、province_preference_confirmed、city_preference_confirmed、days、interests、"
             "preference_text、travel_scope、start_date、daily_start_time、daily_end_time、transport_mode。province 为省级名称或 null；cities 为用户明确指定的城市列表；"
@@ -114,21 +115,3 @@ class DeepSeekRequirementParser:
                 continue
             return response
         raise RequirementLLMError("DeepSeek 需求解析网络请求失败")
-
-    @staticmethod
-    def _format_conversation_history(
-        conversation_history: list[dict[str, str]] | None,
-    ) -> str:
-        if not conversation_history:
-            return "（暂无历史对话）"
-        lines: list[str] = []
-        for item in conversation_history:
-            if not isinstance(item, dict):
-                continue
-            role = item.get("role", "unknown")
-            content = str(item.get("content", "")).strip()
-            if not content:
-                continue
-            role_name = {"user": "用户", "assistant": "助手"}.get(role, role)
-            lines.append(f"{role_name}：{content}")
-        return "\n".join(lines) or "（暂无历史对话）"

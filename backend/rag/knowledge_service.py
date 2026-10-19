@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import logging
+import asyncio
 from collections.abc import Sequence
 import re
 
@@ -40,12 +41,14 @@ class KnowledgeRetrievalService:
         vector_index,
         bm25: BM25Retriever | None = None,
         filter_destinations: bool = True,
+        query_timeout_seconds: float | None = None,
     ):
         self.source = source
         self.embedding_client = embedding_client
         self.vector_index = vector_index
         self.bm25 = bm25 or BM25Retriever()
         self.filter_destinations = filter_destinations
+        self.query_timeout_seconds = query_timeout_seconds
 
     async def index_all(self) -> int:
         documents = self.source.list_documents()
@@ -54,7 +57,7 @@ class KnowledgeRetrievalService:
         desired_ids = {document.doc_id for document in documents}
         stale_ids = existing_ids - desired_ids
 
-        if current:
+        if current or not documents:
             if stale_ids:
                 self.vector_index.delete(list(stale_ids))
             return 0
@@ -64,9 +67,10 @@ class KnowledgeRetrievalService:
         embeddings = await self.embedding_client.embed(
             [document.index_text() for document in documents]
         )
+        indexed_count = self.vector_index.upsert(documents, embeddings)
         if stale_ids:
             self.vector_index.delete(list(stale_ids))
-        return self.vector_index.upsert(documents, embeddings)
+        return indexed_count
 
     async def search(
         self,
@@ -96,7 +100,8 @@ class KnowledgeRetrievalService:
 
         vector_results = []
         try:
-            query_embedding = (await self.embedding_client.embed([normalized_query]))[0]
+            async with asyncio.timeout(self.query_timeout_seconds):
+                query_embedding = (await self.embedding_client.embed([normalized_query]))[0]
             vector_results = self.vector_index.search(
                 query_embedding=query_embedding,
                 limit=candidate_limit,

@@ -1,0 +1,633 @@
+{
+  "created_at": "2026-10-02T17:34:10.738913",
+  "committed": true,
+  "added": 14,
+  "rows": [
+    {
+      "name": "保山市博物馆",
+      "status": "approved",
+      "description": "保山市博物馆位于隆阳区永昌文化园的三馆广场，以文物收藏、陈列展示和地方历史研究为主要内容。馆舍采用铜鼓造型，外壁浮雕表现九隆传说、丝道文化和永昌历史，是认识保山地域文化的公共文博场馆。",
+      "description_source_url": "https://www.baoshan.gov.cn/info/4888/9675464.htm",
+      "longitude": 99.162249,
+      "latitude": 25.1022227,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1449721494",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "具名保山博物馆建筑锚点，约54米宽、54米长；官方说明铜鼓造型直径56.6米、永昌文化园4号，交通指南明确隆阳路三馆广场。与现有永子文化园不是同馆；排除腾冲历史博物馆异址结果。",
+      "aliases": [
+        "保山博物馆"
+      ],
+      "poi_id": "public_ec445374cd299eda64c94c8fe368bb8e",
+      "city_id": 292,
+      "city": "保山市",
+      "province": "云南省",
+      "stored_longitude": 99.1631667810683,
+      "stored_latitude": 25.09936389830732,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "唐山启新水泥工业博物馆",
+      "status": "approved",
+      "description": "依托启新水泥厂工业遗存改造的博物馆，通过旧厂房、水泥窑系统、生产设备和历史资料展示中国近代水泥工业的发展。参观重点是工业建筑与生产技术历史，并非仍在生产的工厂。",
+      "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253966.shtml",
+      "longitude": 118.2036137,
+      "latitude": 39.6295877,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/434229185",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "建筑"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "具名博物馆建筑锚点，约83米宽、144米长，周学熙路原厂区；不是古冶区仍在生产的启新水泥公司，也不是南湖开滦景区内部展馆。官方新华东道15号馆区与工业遗存定位相符。",
+      "aliases": [
+        "启新水泥工业博物馆",
+        "启新1889文化创意产业园"
+      ],
+      "poi_id": "public_fe223af58c4fc74e3782dc24cfea2f39",
+      "city_id": 13,
+      "city": "唐山市",
+      "province": "河北省",
+      "stored_longitude": 118.20982771465118,
+      "stored_latitude": 39.630855461211766,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "大慈阁",
+      "status": "approved",
+      "description": "位于保定老城区的古建筑与佛教寺院，是全国重点文物保护单位，也是当地传统城市景观的代表。可在院落中参观建筑、了解文物保护与老城历史，不把周边商业街作为另一个同名景点。",
+      "description_source_url": "https://www.spp.gov.cn/spp/zdgz/201905/t20190526_419538.shtml",
+      "longitude": 115.4964105,
+      "latitude": 38.8590204,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/240481050",
+      "coordinate_system": "WGS84",
+      "category": "宗教文化",
+      "tags": [
+        "历史文化",
+        "古建",
+        "宗教文化"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "保定莲池区具名小型宗教院落锚点，约53米宽、121米长；与直隶总督署、古莲花池为不同院落，也不在现有野三坡、白石山、清西陵景区内。",
+      "aliases": [
+        "大慈閣",
+        "大慈阁寺"
+      ],
+      "poi_id": "public_9de05e42caabb0fe93b47d09624b4dd9",
+      "city_id": 17,
+      "city": "保定市",
+      "province": "河北省",
+      "stored_longitude": 115.50260865717003,
+      "stored_latitude": 38.85982283749369,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "辽代历史文化博物馆",
+      "status": "approved",
+      "description": "位于赤峰市红山区钢铁西街的专题博物馆，主要研究和展示宋辽金时期历史文化。常设展览涵盖宋辽历史文化、辽代壁画艺术及辽塔建筑，可通过文物和专题陈列认识契丹与北方历史。",
+      "description_source_url": "https://wlj.chifeng.gov.cn/wlzy/bwg/202609/t20260911_2816302.html",
+      "longitude": 118.8983153,
+      "latitude": 42.2361901,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1017867273",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "建筑"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "具名馆舍建筑锚点约148米宽、178米长。2026赤峰文旅资料和博物院机构文件明确该馆为原南馆，与在库富河街赤峰博物馆不同馆区、相隔约1公里，非父子景区。",
+      "aliases": [
+        "赤峰博物院辽代历史文化博物馆",
+        "赤峰博物馆南馆"
+      ],
+      "poi_id": "public_0837104c9176c85a7342e6bca307cfed",
+      "city_id": 37,
+      "city": "赤峰市",
+      "province": "内蒙古自治区",
+      "stored_longitude": 118.90447931421355,
+      "stored_latitude": 42.23812281337494,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "抚顺平顶山惨案纪念馆",
+      "status": "approved",
+      "description": "抚顺平顶山惨案纪念馆以历史图片、文物和现场遗物展示1932年平顶山惨案的史实。园区包括史实陈列馆、遗址馆及纪念设施，是纪念遇难同胞、了解抗战历史的场所，各展馆合并作为一次完整参访。",
+      "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/B316148751854DABBEA121C1C74344C7/index.shtml",
+      "longitude": 123.9202118,
+      "latitude": 41.8318329,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1315296538",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "采用馆区主参访建筑史实陈列馆具名建筑锚点，约123米宽、78米长；不是16.5万平方米整个纪念馆园区质心。遗址馆与碑苑不拆开新增，与现有抚顺煤矿馆、战犯管理所不同址。",
+      "aliases": [
+        "平顶山惨案纪念馆",
+        "平顶山惨案遗址纪念馆",
+        "抚顺市平顶山惨案遗址纪念馆"
+      ],
+      "poi_id": "public_d0f352ba251c67203921795e5855a615",
+      "city_id": 49,
+      "city": "抚顺市",
+      "province": "辽宁省",
+      "stored_longitude": 123.92591192631234,
+      "stored_latitude": 41.833930265132345,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "吉林市文庙博物馆",
+      "status": "approved",
+      "description": "以吉林文庙古建筑群为馆址的遗址性博物馆，位于昌邑区南昌路2号。馆内通过孔子、儒学、科举制度、古代祭器等主题展示传统文化；游览兼顾古建筑与博物馆陈列。",
+      "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201603/t20160301_3107928.html",
+      "longitude": 126.5647547,
+      "latitude": 43.8388337,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/347269365",
+      "coordinate_system": "WGS84",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "古建",
+        "博物馆"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "南昌路2号具名文庙院落锚点，约117米宽、230米长，非大景区质心。与现有吉林市博物馆吉林大街100号新馆不同址；文庙殿堂不拆成多个新景点。",
+      "aliases": [
+        "吉林文庙",
+        "吉林文庙博物馆"
+      ],
+      "poi_id": "public_cb07590d2a45fc15a799fecfbc86ca0e",
+      "city_id": 61,
+      "city": "吉林市",
+      "province": "吉林省",
+      "stored_longitude": 126.5704071514268,
+      "stored_latitude": 43.8410602479184,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "湘潭市博物馆",
+      "status": "approved",
+      "description": "湘潭城市综合性博物馆，馆舍位于岳塘区湖湘东路的公共文化场馆群。馆藏与基本陈列介绍湘潭地方历史、考古文物及湖湘文化，适合通过室内展览了解城市从史前聚落到近现代的发展。",
+      "description_source_url": "https://whhlyt.hunan.gov.cn/whhlyt/news/wlyw/201808/t20180817_5373067.html",
+      "longitude": 112.9381156,
+      "latitude": 27.8374913,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/884257525",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "具名场馆建筑锚点，约159米宽、172米长，官方湖湘东路馆址吻合；排除Nominatim误返矿院月湖路无具体名博物馆。党史馆与规划馆不另拆新增；与现有韶山、万楼等不同址。",
+      "aliases": [
+        "湘潭博物馆"
+      ],
+      "poi_id": "public_e184bf85620a9bcff352cfedc709d5c8",
+      "city_id": 193,
+      "city": "湘潭市",
+      "province": "湖南省",
+      "stored_longitude": 112.94353318739057,
+      "stored_latitude": 27.834030882611422,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "贵港市博物馆",
+      "status": "approved",
+      "description": "位于贵港市区的公共博物馆，展示贵港历史文物与民族民俗文化。参观可了解当地历史遗产、岭南地方文化，并通过罗泊湾汉墓相关展示认识贵港的汉代考古发现。",
+      "description_source_url": "https://www.gxzx.gov.cn/index.php?a=show&c=index&catid=65&id=57843&m=content",
+      "longitude": 109.5771433,
+      "latitude": 23.1225155,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1212940575",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "具名博物馆建筑锚点约59米宽、76米长；广西文旅AAA名录馆址为桂林路与仙衣路交汇西南角，与OSM位置相符。与现有园博园、荷美覃塘等不重叠；不是金田起义博物馆。",
+      "aliases": [
+        "贵港博物馆"
+      ],
+      "poi_id": "public_f725413cc9fd0dc562595ecd1012aacd",
+      "city_id": 233,
+      "city": "贵港市",
+      "province": "广西壮族自治区",
+      "stored_longitude": 109.58134103155494,
+      "stored_latitude": 23.119628221447286,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "独库公路博物馆",
+      "status": "approved",
+      "description": "位于克拉玛依市独山子区独库公路起点附近的专题博物馆。通过历史文献、实物、模型与沙盘展示独库公路的筑路历程、筑路者故事及沿线自然风光；它是室内展馆，不是整条独库公路的游览范围。",
+      "description_source_url": "https://www.klmy.gov.cn/klmys/szyw/202006/1119b3a9476e4e4faf7fefdb6b792fc3.shtml",
+      "longitude": 84.8821036,
+      "latitude": 44.3169448,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1546933736",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "具名博物馆建筑锚点约114米宽、110米长，南环东路与北京路零公里处；独山子区2026开放信息确认北京路乙2-1号。与独山子大峡谷不同址，不把公路沿线其他景点拆作本馆。",
+      "aliases": [
+        "独库公路博物馆景区"
+      ],
+      "poi_id": "public_218cb23457c5f5b9091d4ca790bba409",
+      "city_id": 345,
+      "city": "克拉玛依市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 84.88446074954268,
+      "stored_latitude": 44.317784624807686,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "喀什地区博物馆",
+      "status": "approved",
+      "description": "位于喀什市天山西路的地区博物馆，通过馆藏文物、考古成果展示和公共教育活动介绍地域历史文化。可在室内展览中了解喀什与帕米尔地区的文化交流和丝路历史，具体专题展览以馆方当期公告为准。",
+      "description_source_url": "https://czt.xinjiang.gov.cn/xjczt/c115019/202609/7ace564f80a945ba83ae4c1fe6eb114a.shtml",
+      "supporting_source_urls": [
+        "https://www.kashi.gov.cn/ksdqxzgs/c112191/202405/191f8b202b7d4d6ab2ec2be9b7ecad59.shtml",
+        "https://www.kashi.gov.cn/ksdqxzgs/c112191/202203/3f541aaa3ba346868dfa97d0b8421d9b.shtml"
+      ],
+      "longitude": 75.992991,
+      "latitude": 39.4951226,
+      "coordinate_source_url": "https://www.openstreetmap.org/node/8581254417",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM具名喀什博物舘 museum节点位于天山西路；行政公署2022开放表和2024公示均确认天山西路28号。排除莎车博物馆同区域异地结果，与喀什古城、帕米尔景区不同址。",
+      "aliases": [
+        "喀什博物馆",
+        "喀什博物舘"
+      ],
+      "poi_id": "public_2c5dbc8938c81e1585bb9ff4de487922",
+      "city_id": 353,
+      "city": "喀什地区",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 75.99595736765384,
+      "stored_latitude": 39.49536688238376,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "中国港口博物馆",
+      "status": "approved",
+      "description": "宁波港口文化专题博物馆，围绕港口历史、海洋文化与相关科学知识开展展示和教育活动。",
+      "description_source_url": "https://wglyj.ningbo.gov.cn/module/download/downfile.jsp?classid=0&filename=c7d1d0be71664352b7fda312a6f6e572.pdf",
+      "longitude": 121.9058811,
+      "latitude": 29.7587325,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/559989176",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "研学"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "宁波文旅资料列为独立博物馆；OSM具名 building=yes 馆舍建筑轮廓定位，非春晓街道或大型景区质心，与宁波博物馆不同。",
+      "aliases": [],
+      "poi_id": "public_8f2d51a5dbd28ebf05d36343166e4c3a",
+      "city_id": 3,
+      "city": "宁波市",
+      "province": "浙江省",
+      "stored_longitude": 121.90986948233274,
+      "stored_latitude": 29.756092689734547,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "广东海上丝绸之路博物馆",
+      "status": "approved",
+      "description": "海陵岛十里银滩的海洋考古博物馆，重点展示南宋古沉船南海Ⅰ号及海上丝绸之路文物。",
+      "description_source_url": "https://www.msrmuseum.com/",
+      "longitude": 111.8692287,
+      "latitude": 21.5757753,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/565977810",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "研学"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "运营方介绍独立海洋考古博物馆；OSM具名 building=museum 馆舍轮廓定位，不以海陵岛或大角湾质心代替入口。",
+      "aliases": [
+        "海上丝绸之路博物馆"
+      ],
+      "poi_id": "public_1a8b05596a1e7f7ce8fdd8f1e4772b39",
+      "city_id": 219,
+      "city": "阳江市",
+      "province": "广东省",
+      "stored_longitude": 111.87418437530728,
+      "stored_latitude": 21.573043289948618,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "宁夏博物馆",
+      "status": "approved",
+      "description": "银川的自治区综合性博物馆，以宁夏历史、民俗和西夏文化文物展览为主要参观内容。",
+      "description_source_url": "https://whhlyt.nx.gov.cn/ggfw/ggwhcs/201910/t20191025_3645028.html",
+      "longitude": 106.2307292,
+      "latitude": 38.4844578,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/334447456",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "宁夏文旅官网介绍独立馆舍；OSM具名 museum 且 building=yes 的四层馆舍建筑轮廓定位，不是广场或西夏陵景区质心。",
+      "aliases": [
+        "宁夏回族自治区博物馆"
+      ],
+      "poi_id": "public_a7c4632e1e1252f5833913feb5891398",
+      "city_id": 339,
+      "city": "银川市",
+      "province": "宁夏回族自治区",
+      "stored_longitude": 106.23512798736809,
+      "stored_latitude": 38.4849170488133,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "哈密市博物馆",
+      "status": "approved",
+      "description": "哈密伊州区的地方博物馆，以当地考古文物、历史与地域文化展览为主。",
+      "description_source_url": "https://www.hami.gov.cn/hami/c120114/202408/55fd099a0fa6486495342ea9b71352bc.shtml",
+      "longitude": 93.4877265,
+      "latitude": 42.8128198,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/3879049327",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "哈密市文旅局明确馆址为伊州区环城路72号，OSM具名哈密博物馆 museum 节点位于相应独立馆舍；与现有哈密回王府不同。",
+      "aliases": [
+        "哈密博物馆"
+      ],
+      "poi_id": "public_54014924afcbb154ee72ad680a74a3e3",
+      "city_id": 347,
+      "city": "哈密市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 93.48943347897956,
+      "stored_latitude": 42.81441155465445,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [
+    {
+      "city": "嘉兴市",
+      "name": "嘉兴博物馆",
+      "reason": "existing name/alias",
+      "existing": "嘉兴博物馆"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山抗震纪念馆",
+      "reason": "existing name/alias",
+      "existing": "唐山抗震纪念馆"
+    },
+    {
+      "city": "连云港市",
+      "name": "连云港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "连云港市博物馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "淮北市博物馆",
+      "reason": "existing name/alias",
+      "existing": "淮北市博物馆"
+    },
+    {
+      "city": "南昌市",
+      "name": "南昌之星摩天轮",
+      "reason": "existing name/alias",
+      "existing": "南昌之星摩天轮"
+    },
+    {
+      "city": "青岛市",
+      "name": "鲁迅公园",
+      "reason": "existing name/alias",
+      "existing": "鲁迅公园"
+    },
+    {
+      "city": "烟台市",
+      "name": "北极星钟表文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "北极星钟表文化博物馆"
+    },
+    {
+      "city": "开封市",
+      "name": "开封府",
+      "reason": "existing name/alias",
+      "existing": "开封府"
+    },
+    {
+      "city": "许昌市",
+      "name": "许昌市博物馆",
+      "reason": "existing name/alias",
+      "existing": "许昌市博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "中原农耕文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "中原农耕文化博物馆"
+    },
+    {
+      "city": "天门市",
+      "name": "胡家花园",
+      "reason": "existing name/alias",
+      "existing": "胡家花园"
+    },
+    {
+      "city": "自贡市",
+      "name": "自贡市盐业历史博物馆",
+      "reason": "existing name/alias",
+      "existing": "自贡市盐业历史博物馆"
+    },
+    {
+      "city": "大庆市",
+      "name": "大庆油田历史陈列馆",
+      "reason": "existing name/alias",
+      "existing": "大庆油田历史陈列馆"
+    },
+    {
+      "city": "蚌埠市",
+      "name": "蚌埠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "蚌埠市博物馆"
+    },
+    {
+      "city": "河源市",
+      "name": "河源恐龙博物馆",
+      "reason": "existing name/alias",
+      "existing": "河源恐龙博物馆"
+    },
+    {
+      "city": "玉林市",
+      "name": "容县经略台真武阁",
+      "reason": "existing name/alias",
+      "existing": "容县经略台真武阁"
+    },
+    {
+      "city": "拉萨市",
+      "name": "西藏博物馆",
+      "reason": "existing name/alias",
+      "existing": "西藏博物馆"
+    },
+    {
+      "city": "山南市",
+      "name": "昌珠寺",
+      "reason": "existing name/alias",
+      "existing": "昌珠寺"
+    },
+    {
+      "city": "武威市",
+      "name": "武威市博物馆",
+      "reason": "existing name/alias",
+      "existing": "武威市博物馆"
+    },
+    {
+      "city": "黄南藏族自治州",
+      "name": "隆务寺",
+      "reason": "existing name/alias",
+      "existing": "隆务寺"
+    },
+    {
+      "city": "固原市",
+      "name": "固原博物馆",
+      "reason": "existing name/alias",
+      "existing": "固原博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "北投温泉博物馆",
+      "reason": "existing name/alias",
+      "existing": "北投温泉博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "台北市立美术馆",
+      "reason": "existing name/alias",
+      "existing": "台北市立美术馆"
+    },
+    {
+      "city": "天津市",
+      "name": "天津鼓楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "天津鼓楼博物馆"
+    },
+    {
+      "city": "大连市",
+      "name": "旅顺日俄监狱旧址博物馆",
+      "reason": "existing name/alias",
+      "existing": "旅顺日俄监狱旧址博物馆"
+    },
+    {
+      "city": "鄂州市",
+      "name": "鄂州市博物馆",
+      "reason": "existing name/alias",
+      "existing": "鄂州市博物馆"
+    },
+    {
+      "city": "甘孜藏族自治州",
+      "name": "泸定桥旅游景区",
+      "reason": "existing name/alias",
+      "existing": "泸定桥旅游景区"
+    },
+    {
+      "city": "西宁市",
+      "name": "青海省科学技术馆",
+      "reason": "existing name/alias",
+      "existing": "青海省科学技术馆"
+    },
+    {
+      "city": "玉溪市",
+      "name": "玉溪市博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉溪市博物馆"
+    },
+    {
+      "city": "阿里地区",
+      "name": "古如江寺",
+      "reason": "existing name/alias",
+      "existing": "古如江寺"
+    },
+    {
+      "city": "海东市",
+      "name": "柳湾彩陶博物馆",
+      "reason": "existing name/alias",
+      "existing": "柳湾彩陶博物馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "八路军驻新疆办事处纪念馆",
+      "reason": "existing name/alias",
+      "existing": "八路军驻新疆办事处纪念馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "毛泽民故居",
+      "reason": "existing name/alias",
+      "existing": "毛泽民故居"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "中国工农红军西路军总支队纪念馆",
+      "reason": "existing name/alias",
+      "existing": "中国工农红军西路军总支队纪念馆"
+    },
+    {
+      "city": "塔城地区",
+      "name": "红楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "红楼博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "澳门大赛车博物馆",
+      "reason": "existing name/alias",
+      "existing": "澳门大赛车博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "海事博物馆",
+      "reason": "existing name/alias",
+      "existing": "海事博物馆"
+    }
+  ],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

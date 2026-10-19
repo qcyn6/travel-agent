@@ -1,0 +1,132 @@
+[
+  {
+    "id": 287,
+    "city": "黔西南布依族苗族自治州",
+    "province": "贵州省",
+    "sources": [
+      "https://www.ldqxn.com/news/zzxw/20231223/529322.html",
+      "https://movement.gzstv.com/news/detail/HqEazE/"
+    ],
+    "checked_names": [
+      "贞丰古城景区",
+      "万峰林景区",
+      "马岭河峡谷"
+    ],
+    "note": "贞丰古城为贞丰县独立3A级景区，不在现有万峰林、峡谷、双乳峰清单；仍需核其开放游览区域和入口。",
+    "candidates": [
+      {
+        "name": "贞丰古城景区",
+        "status": "pending_coordinates",
+        "description": "贞丰县城历史文化街区景区，可游览古城建筑并体验当地民俗与饮食文化。",
+        "description_source_url": "https://www.ldqxn.com/news/zzxw/20231223/529322.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.ldqxn.com/news/zzxw/20231223/529322.html",
+            "https://movement.gzstv.com/news/detail/HqEazE/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 304,
+    "city": "日喀则市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://drc.xizang.gov.cn/zwgk_1941/fz/zxx/201806/P020200909428490530433.pdf",
+      "https://swt.xizang.gov.cn/xxgk/zzqwj/202505/W020250512593477495771.pdf"
+    ],
+    "checked_names": [
+      "江孜白居寺",
+      "江孜宗山公园",
+      "扎什伦布寺",
+      "珠峰大本营"
+    ],
+    "note": "白居寺位于江孜，不与现有扎什伦布寺或珠峰景区重合；高原宗教场所参观需遵守现行开放管理。",
+    "candidates": [
+      {
+        "name": "江孜白居寺",
+        "status": "pending_coordinates",
+        "description": "江孜县历史寺院及宗教文化游览地，是日喀则旅游线路中的独立人文景点。",
+        "description_source_url": "https://drc.xizang.gov.cn/zwgk_1941/fz/zxx/201806/P020200909428490530433.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/place_of_worship，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://drc.xizang.gov.cn/zwgk_1941/fz/zxx/201806/P020200909428490530433.pdf",
+            "https://swt.xizang.gov.cn/xxgk/zzqwj/202505/W020250512593477495771.pdf",
+            "https://www.openstreetmap.org/way/1551518741"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/1551518741；定位候选尚未达入库门槛。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "寺院整体面积大，缺经独立来源验证的游客入口，不能采用主体建筑或景区中心。",
+          "source_urls": [
+            "https://drc.xizang.gov.cn/zwgk_1941/fz/zxx/201806/P020200909428490530433.pdf",
+            "https://swt.xizang.gov.cn/xxgk/zzqwj/202505/W020250512593477495771.pdf",
+            "https://www.openstreetmap.org/way/1551518741"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "寺院整体面积大，缺经独立来源验证的游客入口，不能采用主体建筑或景区中心。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 308,
+    "city": "那曲市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://www.xizang.gov.cn/xwzx_406/dsdt/202509/t20250907_498859.html",
+      "https://www.xizang.gov.cn/xwzx_406/dsdt/202102/t20210210_192959.html"
+    ],
+    "checked_names": [
+      "当惹雍错中象雄旅游景区",
+      "萨普冰川旅游景区",
+      "骷髅墙景区",
+      "纳木错圣象天门"
+    ],
+    "note": "萨普、骷髅墙和纳木错北岸已在库；当惹雍错中象雄景区在尼玛县，为另一区域，但高原远程抵达及入口需审慎核验。",
+    "candidates": [
+      {
+        "name": "当惹雍错中象雄旅游景区",
+        "status": "pending_coordinates",
+        "description": "尼玛县高原湖泊及象雄文化旅游区，以当惹雍错湖景和藏北高原环境为主要看点。",
+        "description_source_url": "https://www.xizang.gov.cn/xwzx_406/dsdt/202102/t20210210_192959.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.xizang.gov.cn/xwzx_406/dsdt/202102/t20210210_192959.html",
+            "https://www.xizang.gov.cn/xwzx_406/dsdt/202509/t20250907_498859.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 319,
+    "city": "金昌市",
+    "province": "甘肃省",
+    "sources": [
+      "https://zwfw.gansu.gov.cn/jinchang/ztfw/zsyzfwzq/jcjs/art/2023/art_b26525f96f03418ea35aa444fdbf4fe0.html",
+      "https://ydyl.gansu.gov.cn/gsydyl/spgs/slgsrdzt/hxzl/hxws/202302/t20230206_9927.html"
+    ],
+    "checked_names": [
+      "骊靬古城遗址",
+      "圣容寺",
+      "永昌钟鼓楼",
+      "金川国家矿山公园"
+    ],
+    "note": "骊靬古城遗址与现有永昌钟鼓楼、紫金苑和矿山公园不同，但古遗址与新建主题园边界尚不明，暂不提候选以免将遗址/仿古设施混淆。",
+    "candidates": []
+  }
+]

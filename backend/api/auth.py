@@ -34,6 +34,8 @@ def register(
     session: Session = Depends(get_db),
     settings: Settings = Depends(get_settings),
 ) -> TokenResponse:
+    if settings.app_env == "production" and len(payload.password) < 12:
+        raise HTTPException(status_code=422, detail="生产环境注册密码至少需要12位")
     repository = UserRepository(session)
     if repository.get_by_username(payload.username) is not None:
         raise HTTPException(status_code=409, detail="该用户名已经注册")

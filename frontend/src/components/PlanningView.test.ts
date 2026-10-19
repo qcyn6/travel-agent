@@ -12,7 +12,6 @@ describe('PlanningView', () => {
           { step: 'requirement', label: '已确认旅行需求', status: 'completed' },
           { step: 'poi_search:0:宝鸡市', label: '正在准备宝鸡市真实景点', status: 'failed' },
         ],
-        choice: null,
         error: '宝鸡市仅准备好2条景点知识，目标为3条',
         elapsedSeconds: 42,
         requirement: {
@@ -55,7 +54,6 @@ describe('PlanningView', () => {
     const wrapper = mount(PlanningView, {
       props: {
         steps: [],
-        choice: null,
         error: '旅游方案生成失败，请稍后重试',
       },
     })

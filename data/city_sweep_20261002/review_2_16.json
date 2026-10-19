@@ -1,0 +1,168 @@
+[
+  {
+    "id": 255,
+    "city": "乐东黎族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://www.dx.hainan.gov.cn/130/content_15736.html",
+      "https://hi.people.com.cn/n2/2022/0118/c231190-35100932.html"
+    ],
+    "checked_names": [
+      "莺歌海盐场",
+      "莺歌海盐场盐文化馆",
+      "莺歌海一级渔港"
+    ],
+    "note": "查到的盐文化馆依托现有莺歌海盐场；渔港资料当时仍在建设且主要用于渔业，不能据此列为独立景点。暂无可靠新候选。",
+    "candidates": []
+  },
+  {
+    "id": 259,
+    "city": "重庆市",
+    "province": "重庆市",
+    "sources": [
+      "https://wap.cq.gov.cn/zjcq/bywh/whss/bwg/202606/t20260604_15728867.html",
+      "https://www.hongyanmuseum.cn/",
+      "https://www.cqcpe.cn/"
+    ],
+    "checked_names": [
+      "重庆红岩革命历史博物馆",
+      "红岩革命纪念馆",
+      "歌乐山革命纪念馆",
+      "重庆特园民主党派历史陈列馆",
+      "渣滓洞监狱旧址",
+      "重庆市规划展览馆"
+    ],
+    "note": "渣滓洞已在库，红岩系统下多个馆舍分散；红岩革命纪念馆仍保持未决，避免用整体机构名和多馆同点。重庆市规划展览馆位于南岸区弹子石广场，是独立展馆，和现有长嘉汇弹子石老街相邻但不是其内部点位。",
+    "candidates": [
+      {
+        "name": "红岩革命纪念馆",
+        "status": "pending_coordinates",
+        "description": "展示中共中央南方局及抗战、解放战争时期革命历史的纪念馆，属重庆红岩革命历史博物馆体系。",
+        "description_source_url": "https://wap.cq.gov.cn/zjcq/bywh/whss/bwg/202606/t20260604_15728867.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wap.cq.gov.cn/zjcq/bywh/whss/bwg/202606/t20260604_15728867.html",
+            "https://www.hongyanmuseum.cn/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "文博目录条目是管理多个场馆的红岩革命历史博物馆，不能把集团址标记替代具体红岩革命纪念馆入口。",
+          "source_urls": [
+            "https://wap.cq.gov.cn/zjcq/bywh/whss/bwg/202606/t20260604_15728867.html",
+            "https://www.hongyanmuseum.cn/",
+            "https://www.iwenbo.fun/museum/4078.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博目录条目是管理多个场馆的红岩革命历史博物馆，不能把集团址标记替代具体红岩革命纪念馆入口。"
+        }
+      },
+      {
+        "name": "重庆市规划展览馆",
+        "status": "approved",
+        "description": "位于重庆南岸区弹子石广场的城市规划展馆，以重庆自然山水、历史人文、城乡规划和城市发展为主题，通过沙盘、互动展项及多媒体展示山城风貌与未来规划。",
+        "description_source_url": "https://www.cqcpe.cn/",
+        "longitude": 106.5852369,
+        "latitude": 29.5786431,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1055574267",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "人文",
+          "建筑",
+          "研学",
+          "城市漫游"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "重庆市规划展览馆官网确认地址为南岸区南滨路弹子石广场，官网列有自然山水、历史人文、总体规划等展厅并提供参观服务。OSM way/1055574267为具名展馆范围，坐标采用WGS84范围代表点，非入口实测坐标；与现有长嘉汇弹子石老街相邻但为不同馆舍。",
+        "aliases": [
+          "重庆规划展览馆",
+          "重庆市规划馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "展馆官网和重庆市政府资料确认地址、展陈内容及对公众开放；OSM具名展馆范围中心与官方地址相符；与长嘉汇弹子石老街为相邻但独立的设施。",
+          "source_urls": [
+            "https://www.cqcpe.cn/",
+            "https://www.cq.gov.cn/ywdt/jrcq/202204/t20220425_10654494.html",
+            "https://www.openstreetmap.org/way/1055574267"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情确认way/1055574267名称为重庆市规划展览馆，WGS84代表点(106.5852369,29.5786431)；采用具名馆舍范围点，不使用已无法确认的入口节点。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 263,
+    "city": "泸州市",
+    "province": "四川省",
+    "sources": [
+      "https://www.scjgdj.gov.cn/B000000262/202302/99568.html"
+    ],
+    "checked_names": [
+      "泸州老窖景区",
+      "泸州老窖旅游区",
+      "太平古镇",
+      "黄荆老林"
+    ],
+    "note": "泸州老窖景区是工业旅游基地，和现有古镇及森林景区不同；需复核参观开放区域与独立游客入口。",
+    "candidates": [
+      {
+        "name": "泸州老窖景区",
+        "status": "pending_coordinates",
+        "description": "以泸州传统酿酒工艺及白酒工业文化为主题的旅游景区，获评国家工业旅游示范基地。",
+        "description_source_url": "https://www.scjgdj.gov.cn/B000000262/202302/99568.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.scjgdj.gov.cn/B000000262/202302/99568.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 267,
+    "city": "遂宁市",
+    "province": "四川省",
+    "sources": [
+      "https://www.sctyzx.gov.cn/sn/201707/54252066.html",
+      "https://www.sc.gov.cn/10462/10464/10465/10595/2020/9/15/96079efd6f6143a8979ce1789a89be9e.shtml"
+    ],
+    "checked_names": [
+      "广德景区",
+      "广德寺",
+      "灵泉寺",
+      "中国死海旅游度假区",
+      "龙凤古镇"
+    ],
+    "note": "广德寺所在广德景区与现有灵泉寺为遂宁市不同游览地；广德寺为核心，按广德景区整体保留一条。",
+    "candidates": [
+      {
+        "name": "遂宁广德景区",
+        "status": "pending_coordinates",
+        "description": "以广德寺为核心的观音文化游览区，含寺院和相关文化景观。",
+        "description_source_url": "https://www.sctyzx.gov.cn/sn/201707/54252066.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮检索首项位于异地或非目标景点，错匹配已排除；缺可信同城坐标。",
+          "source_urls": [
+            "https://www.sctyzx.gov.cn/sn/201707/54252066.html",
+            "https://www.sc.gov.cn/10462/10464/10465/10595/2020/9/15/96079efd6f6143a8979ce1789a89be9e.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "错项：白石涌, 新村, 宁西街道, 增城区, 广州市, 广东省, 511340, 中国。"
+        }
+      }
+    ]
+  }
+]

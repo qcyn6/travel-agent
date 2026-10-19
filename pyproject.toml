@@ -19,9 +19,25 @@ dependencies = [
     "redis>=7,<8",
     "sqlalchemy>=2.0,<3",
     "uvicorn>=0.52,<0.53",
+    # Security floors for transitive dependencies used by MCP/Chroma.
+    "pyjwt[crypto]>=2.15,<3",
+    "urllib3>=2.8,<3",
+    "oauthlib>=4,<5",
+    "multidict>=6.9.1,<7",
 ]
 
+[build-system]
+requires = ["setuptools>=78"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["backend*"]
+
 [project.optional-dependencies]
+maintenance = [
+    "requests>=2.32,<3",
+]
+
 dev = [
     "pytest>=9.1,<10",
 ]

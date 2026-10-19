@@ -5,8 +5,8 @@ from backend.api.dependencies import get_planning_application_service
 from backend.auth import CurrentUser, get_current_user
 from backend.destination import DestinationPlanningError
 from backend.knowledge import KnowledgeBootstrapError
+from backend.security import reject_legacy_planning
 from backend.models.travel_plan import (
-    DestinationChoiceResponse,
     TravelPlanRequest,
     TravelPlanResponse,
 )
@@ -24,14 +24,15 @@ def _conversation_error_headers(error: Exception) -> dict[str, str] | None:
 
 @router.post(
     "/plan",
-    response_model=TravelPlanResponse | DestinationChoiceResponse,
+    response_model=TravelPlanResponse,
+    dependencies=[Depends(reject_legacy_planning)],
 )
 async def create_travel_plan(
     request: TravelPlanRequest,
     response: Response,
     planning_service: PlanningApplicationService = Depends(get_planning_application_service),
     user: CurrentUser | None = Depends(get_current_user),
-) -> TravelPlanResponse | DestinationChoiceResponse:
+) -> TravelPlanResponse:
     try:
         options = {"travel_scope": request.travel_scope}
         if user is not None:

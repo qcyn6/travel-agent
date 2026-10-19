@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-02",
+  "query_url": "https://photon.komoot.io/api/?q=%E5%94%90%E5%B1%B1%E7%A7%91%E6%8A%80%E9%A6%86&limit=3",
+  "selected_result_raw_fields": {
+    "properties.name": "唐山科技馆",
+    "properties.city": "唐山市",
+    "properties.osm_type": "W",
+    "properties.osm_id": 518660573,
+    "geometry.coordinates_wgs84_lonlat": [118.1593014, 39.623503]
+  },
+  "osm_way_url": "https://www.openstreetmap.org/way/518660573",
+  "osm_way_tags": {"building": "yes", "tourism": "museum", "museum": "science", "name": "唐山科技馆", "start_date": "2019-07-18"},
+  "osm_bbox_wgs84": {"min_lat": 39.6233314, "max_lat": 39.6238368, "min_lon": 118.1587136, "max_lon": 118.1598902},
+  "official_address_source_url": "https://www.tskp.org.cn/about/index.aspx?sign=Contact",
+  "official_address": "唐山市路南区卫国路14号",
+  "official_exhibition_source_url": "https://www.tskp.org.cn/notice/1/93",
+  "review": "Named ~100x55m museum building anchor, not surveyed doorway; official current location agrees, separate from larger Nanhu scenic area."
+}

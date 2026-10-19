@@ -1,0 +1,1445 @@
+[
+  {
+    "id": 77,
+    "city": "七台河市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml"
+    ],
+    "checked_names": [
+      "短道速滑冠军馆",
+      "冠军湾",
+      "庆余公园"
+    ],
+    "note": "省政府实际打卡介绍，不把争创等级写成已获等级。",
+    "candidates": [
+      {
+        "name": "短道速滑冠军馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+            "https://www.baike.com/wikiid/6809036382030113864",
+            "https://www.tongren.gov.cn/2022/0126/260700.shtml",
+            "https://feeds-drcn.cloud.huawei.com.cn/landingpage/latest?channel=HW_TRENDING&cpid=666&ctype=news&docid=1051410b2bec52ce71c332069e3a12fa8257ea8&dy_scenario=relate&pageType=26&r=CN&tn=1e095c1678faa20889e04b6ac01d7deafac5d6564ddd8460444a89873d692ec4&to_app=hwbrowser",
+            "https://hlj.people.com.cn/n2/2021/0207/c220037-34568735.html",
+            "https://www.scdnews.com/images/paper/220326/220326C.pdf",
+            "https://ly.fanshutou.com/ly3/attraction.php?id=16157"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902092",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "七台河市",
+            "searched_name": "短道速滑冠军馆",
+            "batch_candidates": [
+              "短道速滑冠军馆",
+              "冠军湾",
+              "庆余公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "77|短道速滑冠军馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "77|短道速滑冠军馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "77|短道速滑冠军馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "冠军湾",
+        "status": "excluded_duplicate",
+        "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+        "research_round_20261002B": {
+          "outcome": "excluded_duplicate",
+          "reason": "省政府说明冠军湾属于桃山湖生态治理项目“一湾五海”中的一湾；现有“桃山湖”已按湖泊及湿地公共游览空间整体记录，本候选不再拆分新增。注意同名“冠军湾抖街”商业项目不能混作此湿地。",
+          "source_urls": [
+            "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+            "https://www.hlj.gov.cn/hlj/c107858/202310/c00_31676645.shtml",
+            "https://www.hlj.gov.cn/hlj/c107858/202604/c00_31931057.shtml",
+            "https://hlj.people.com.cn/n2/2023/0905/c220027-40557703.html",
+            "https://news.sina.com.cn/sx/2023-12-05/detail-imzwxzhr6445702.shtml",
+            "https://cezhidao.com/reports/MWtM"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902127",
+          "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。",
+          "web_search": {
+            "searched_city": "七台河市",
+            "searched_name": "冠军湾",
+            "batch_candidates": [
+              "短道速滑冠军馆",
+              "冠军湾",
+              "庆余公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "77|冠军湾",
+          "additional_coordinate_attempts": []
+        }
+      },
+      {
+        "name": "庆余公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.hlj.gov.cn/hlj/c107858/202412/c00_31791475.shtml",
+            "https://paper.people.com.cn/rmrbwap/html/2022-03/30/nw.D110000renmrb_20220330_1-20.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902136",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "七台河市",
+            "searched_name": "庆余公园",
+            "batch_candidates": [
+              "短道速滑冠军馆",
+              "冠军湾",
+              "庆余公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "77|庆余公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "77|庆余公园",
+              "error": null,
+              "raw_result_count": 5
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "city": "大兴安岭地区",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml"
+    ],
+    "checked_names": [
+      "北极村",
+      "龙江第一湾",
+      "鹿鼎山",
+      "二十二驿站",
+      "百泉谷生态旅游景区",
+      "寒温带植物园",
+      "观音山·采金小镇",
+      "图强林业博物馆",
+      "呼玛博物馆"
+    ],
+    "note": "北极村、龙江第一湾、五六火灾纪念馆已有，不同区域博物馆独立候选。",
+    "candidates": [
+      {
+        "name": "鹿鼎山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://dxal.gov.cn/dxal/c100145/202507/c13_315697.shtml",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://dxal.gov.cn/dxal/c100062/202110/58333/files/202110091722269962.pdf",
+            "https://www.hljsql.org.cn/hqlh/attachment/20240320100851633.pdf",
+            "https://huma.gov.cn/huma/c100707/202603/331147/files/%E5%91%BC%E7%8E%9B%E5%8E%BF331%E5%9B%BD%E9%81%933507%E5%85%AC%E9%87%8C%E5%A4%84%E7%9F%B3%E5%9C%BA%E7%9F%BF%E5%8C%BA%E7%94%9F%E6%80%81%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902142",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "鹿鼎山景区",
+            "batch_candidates": [
+              "鹿鼎山景区",
+              "二十二驿站旅游风景区",
+              "百泉谷生态旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|鹿鼎山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "81|鹿鼎山景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "二十二驿站旅游风景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://www.dxalth.gov.cn/dxalth/c101013/202310/c13_261571.shtml",
+            "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20653.shtml",
+            "https://tyj.hlj.gov.cn/tyj/c112401/202507/c00_31856809.shtml",
+            "https://www.dxalth.gov.cn/dxalth/c100905/202411/c13_298259.shtml",
+            "https://www.hljba.gov.cn/bas/bmdt/202409/c11_303956.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902146",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "二十二驿站旅游风景区",
+            "batch_candidates": [
+              "鹿鼎山景区",
+              "二十二驿站旅游风景区",
+              "百泉谷生态旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|二十二驿站旅游风景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "81|二十二驿站旅游风景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "百泉谷生态旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://www.forestry.gov.cn/c/www/dmxagzdt/575894.jhtml",
+            "https://hlj.cnr.cn/wlty/20210402/t20210402_525452807.shtml",
+            "https://jingdian.juyoufuli.com/scenics/53178",
+            "https://paper.people.com.cn/rmrbhwb/images/2022-04/01/12/rmrbhwb2022040112.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902150",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "百泉谷生态旅游景区",
+            "batch_candidates": [
+              "鹿鼎山景区",
+              "二十二驿站旅游风景区",
+              "百泉谷生态旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|百泉谷生态旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "81|百泉谷生态旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "寒温带植物园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://dxal.gov.cn/dxal/c100001/201303/c13_11145.shtml",
+            "https://www.dxal.gov.cn/dxal/c100062/202110/58333/files/202110091722269962.pdf",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902153",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "寒温带植物园",
+            "batch_candidates": [
+              "寒温带植物园",
+              "观音山·采金小镇",
+              "图强林业博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|寒温带植物园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "81|寒温带植物园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "观音山·采金小镇",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方确认景区真实，已找到具名旅游节点，但节点未标明入口；景区包括多处游览点，本轮不把泛化POI锚点假定为入口。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://you.ctrip.com/sight/mohe983/138300.html",
+            "https://dxal.gov.cn/dxal/c100030/202401/c13_272368.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902158",
+          "coordinate_review_note": "OSM node12370114529仅有name/tourism=attraction，无entrance；入口定位继续待补。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "观音山·采金小镇",
+            "batch_candidates": [
+              "寒温带植物园",
+              "观音山·采金小镇",
+              "图强林业博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|观音山·采金小镇",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "81|观音山·采金小镇",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "图强林业博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.mohe.gov.cn/mohe/c101075/202604/c13_333150.shtml",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "2026年漠河政府确认图强馆现状与展陈，公开文博指南明确具名馆舍地图标记，与图强文体中心位置相符。",
+          "source_urls": [
+            "https://www.mohe.gov.cn/mohe/c101075/202604/c13_333150.shtml",
+            "https://bkso.baidu.com/item/%E5%9B%BE%E5%BC%BA%E6%9E%97%E4%B8%9A%E5%8D%9A%E7%89%A9%E9%A6%86/18512092?fromModule=lemma_inlink",
+            "https://www.gov.cn/zhengce/zhengceku/2020-05/22/5513734/files/1b6a0d01bf584c20bf17d5801a3e3e6f.pdf",
+            "https://www.mayijf.com/Facility/Details/4555",
+            "https://gs.ctrip.com/html5/you/sight/mohe983/3226316.html",
+            "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20653.shtml",
+            "https://www.iwenbo.fun/museum/1084.html",
+            "https://www.forestry.gov.cn/lyj/1/ggsllvcy/20260911/689863.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902163",
+          "coordinate_review_note": "公开网页TMap具名馆舍标记，GCJ02，位于图强镇，非大兴安岭地区中心或实测入口；原代码见published_markers_B_root.json。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "图强林业博物馆",
+            "batch_candidates": [
+              "寒温带植物园",
+              "观音山·采金小镇",
+              "图强林业博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|图强林业博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "图强林业博物馆位于大兴安岭漠河市图强林业局，展示林区开发建设、生态变迁和林业文化。馆内以沙盘、实物及多媒体介绍森林生产过程、林区四季景观、动植物标本与林业工具，适合森林科普、地方历史参观和研学。票价与开放安排以馆方最新公告为准。",
+        "longitude": 122.80092716,
+        "latitude": 52.9284366,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/1084.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "森林",
+          "研学"
+        ],
+        "aliases": [],
+        "duration_minutes": 90,
+        "independence_note": "独立林业专题馆，与已有五六火灾纪念馆和呼玛博物馆不同；不另拆模型展厅或标本为景点。"
+      },
+      {
+        "name": "呼玛博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+        "description": "呼玛博物馆位于大兴安岭地区呼玛县，以地方历史和自然环境为展陈内容。馆内通过文物、场景与图文呈现呼玛的历史变迁、边城建设及区域文化，适合了解黑龙江上游的人文与自然背景。具体开放和展览安排以馆方公告为准。",
+        "latitude": 51.7233959,
+        "longitude": 126.6598298,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1125974487",
+        "coordinate_system": "WGS84",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "aliases": [],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://www.dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+            "https://gs.ctrip.com/html5/you/sight/huma2225/3373338.html",
+            "https://dxal.gov.cn/dxal/c100145/201904/c13_176.shtml",
+            "https://www.dxal.gov.cn/dxal/c100149/202501/c13_303129.shtml",
+            "https://dxal.gov.cn/dxal/c100145/202507/c13_315697.shtml",
+            "https://www.dxal.gov.cn/dxal/c100144/202208/c13_20042.shtml",
+            "https://www.openstreetmap.org/way/1125974487"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902168",
+          "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+          "web_search": {
+            "searched_city": "大兴安岭地区",
+            "searched_name": "呼玛博物馆",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "81|呼玛博物馆",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "city": "徐州市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml"
+    ],
+    "checked_names": [
+      "徐州博物馆",
+      "汉文化景区",
+      "戏马台",
+      "龟山景区",
+      "刘邦故里文化景区",
+      "歌风台",
+      "沛县博物馆",
+      "回龙窝",
+      "快哉亭",
+      "城下城遗址博物馆",
+      "黄楼"
+    ],
+    "note": "前四项已有；不增汉兵马俑等已有父景区内部点位。",
+    "candidates": [
+      {
+        "name": "刘邦故里文化景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902172",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "刘邦故里文化景区",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|刘邦故里文化景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|刘邦故里文化景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "歌风台",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902176",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "歌风台",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|歌风台",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|歌风台",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "沛县博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.pxbwg.com/",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "馆方现址、展陈及2019年新馆开放可核准；公开具名地图点对应新城区汉邦路，不采用歌风台旧馆位置。",
+          "source_urls": [
+            "https://www.pxbwg.com/",
+            "https://tour.jschina.com.cn/lyjs/202603/t20260317_s69b8c19de4b02ad3932e37b2.shtml",
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://www.iwenbo.fun/museum/1319.html",
+            "https://ggzy.zwb.xz.gov.cn/jyxx/003009/003009001/20240822/8dbd41bd-ed2d-4ac0-84f7-810d55c41acb.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902180",
+          "coordinate_review_note": "公开网页具名场馆标记，GCJ02；非实测入口。原代码见published_markers_B_root.json，官方汉邦路7号与新城区位置一致。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "沛县博物馆",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|沛县博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "沛县博物馆现馆位于汉邦路7号，展示沛县地方历史与两汉文化。馆藏大风歌碑、彩绘陶器及石刻等文物，展陈还介绍微山湖历史文化与地方革命历史。适合文博参观、历史文化研学，可结合馆方临时展览安排游览。预约和开放安排以馆方公告为准。",
+        "longitude": 116.93167984,
+        "latitude": 34.75541312,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/1319.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "研学",
+          "人文"
+        ],
+        "aliases": [],
+        "duration_minutes": 90,
+        "independence_note": "新城区独立馆舍；不是歌风台旧馆，不与现有徐州市汉文化主题景区同一地点，也不另拆展厅或馆藏为景点。"
+      },
+      {
+        "name": "回龙窝",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+            "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+            "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202511/04/cd62df8c-cda0-4e0c-affb-cc89fda1f4fd.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902184",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "回龙窝",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|回龙窝",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|回龙窝",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "快哉亭",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+            "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+            "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+            "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902189",
+          "coordinate_review_note": "已在线读取OSM way457587853完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "快哉亭",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|快哉亭",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|快哉亭",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "城下城遗址博物馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+            "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+            "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202511/04/cd62df8c-cda0-4e0c-affb-cc89fda1f4fd.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902193",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "城下城遗址博物馆",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|城下城遗址博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|城下城遗址博物馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "85|城下城遗址博物馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "黄楼",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.zgjssw.gov.cn/shixianchuanzhen/xuzhou/202603/t20260315_8561774.shtml",
+            "https://www.jsrd.gov.cn/sxcz/202311/t20231109_1188508.shtml",
+            "https://www.nbs.cn/news/7/202511/t20251101_769116.html",
+            "https://xz.wenming.cn/wmcj/202511/t20251104_9068728.html",
+            "https://szb.xdplus.cn/xdkb/pc/attachment/202412/12/4edb8900-4d4d-4384-a8df-c59fc5254ee3.pdf",
+            "https://szb.cnxz.com.cn/xzrb/pc/att/202503/19/bff74786-1453-4a93-813b-c1f9705d0d21.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902198",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "徐州市",
+            "searched_name": "黄楼",
+            "batch_candidates": [
+              "呼玛博物馆",
+              "刘邦故里文化景区",
+              "歌风台",
+              "沛县博物馆",
+              "回龙窝",
+              "快哉亭",
+              "城下城遗址博物馆",
+              "黄楼"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "85|黄楼",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "85|黄楼",
+              "error": null,
+              "raw_result_count": 5
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "city": "连云港市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+      "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/content/f17fc9a9-0a79-4371-a3e0-7658b0980dd8.shtml"
+    ],
+    "checked_names": [
+      "花果山",
+      "连岛",
+      "孔望山",
+      "渔湾",
+      "东海水晶文化旅游区",
+      "海上云台山",
+      "二郎神文化遗迹公园",
+      "西双湖",
+      "大伊山",
+      "桃花涧",
+      "连云港市博物馆",
+      "秦山岛"
+    ],
+    "note": "按2026名录核查，与已有花果山连岛渔湾等去重。",
+    "candidates": [
+      {
+        "name": "孔望山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "景区真实存在，但本轮坐标只命中同名公交站，不能把公交站坐标当景区入口。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902202",
+          "coordinate_review_note": "拒绝OSM node13474095760/13474095759：二者为bus_stop而非景区入口。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "孔望山景区",
+            "batch_candidates": [
+              "孔望山景区",
+              "东海水晶文化旅游区",
+              "海上云台山景区",
+              "二郎神文化遗迹公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|孔望山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|孔望山景区",
+              "error": null,
+              "raw_result_count": 4
+            }
+          ]
+        }
+      },
+      {
+        "name": "东海水晶文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902206",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "东海水晶文化旅游区",
+            "batch_candidates": [
+              "孔望山景区",
+              "东海水晶文化旅游区",
+              "海上云台山景区",
+              "二郎神文化遗迹公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|东海水晶文化旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|东海水晶文化旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "海上云台山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902213",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "海上云台山景区",
+            "batch_candidates": [
+              "孔望山景区",
+              "东海水晶文化旅游区",
+              "海上云台山景区",
+              "二郎神文化遗迹公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|海上云台山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|海上云台山景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "二郎神文化遗迹公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/TrueCMS/messageController/getMessageByCondition.do?lmxx=zglygzfmhwz%2Cyzgc1&pagenum=&pagesize=15",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902220",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "二郎神文化遗迹公园",
+            "batch_candidates": [
+              "孔望山景区",
+              "东海水晶文化旅游区",
+              "海上云台山景区",
+              "二郎神文化遗迹公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|二郎神文化遗迹公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|二郎神文化遗迹公园",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "西双湖景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+            "https://www.sina.cn/news/detail/4673669298655194.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902227",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "西双湖景区",
+            "batch_candidates": [
+              "西双湖景区",
+              "大伊山景区",
+              "桃花涧景区",
+              "秦山岛景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|西双湖景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|西双湖景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "大伊山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+            "https://www.sina.cn/news/detail/4673669298655194.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902235",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "大伊山景区",
+            "batch_candidates": [
+              "西双湖景区",
+              "大伊山景区",
+              "桃花涧景区",
+              "秦山岛景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|大伊山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|大伊山景区",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "桃花涧景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.lyg.gov.cn/TrueCMS/attachmentController/download.do?id=1516241e-fd88-471b-aeb4-926de2f36229",
+            "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/yzgc1.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/lyfw/lyfw.shtml",
+            "https://www.lyg.gov.cn/zglygzfmhwz/upload/02bf60a4-c04c-4a1e-9538-5838f4dc8195.pdf",
+            "https://www.sina.cn/news/detail/4673669298655194.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902240",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "桃花涧景区",
+            "batch_candidates": [
+              "西双湖景区",
+              "大伊山景区",
+              "桃花涧景区",
+              "秦山岛景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|桃花涧景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|桃花涧景区",
+              "error": null,
+              "raw_result_count": 4
+            }
+          ]
+        }
+      },
+      {
+        "name": "连云港市博物馆",
+        "status": "approved",
+        "description": "连云港市博物馆位于海州区朝阳东路，通过历史文物、汉墓简牍与艺术作品等展陈介绍连云港的历史文化，是面向公众开放的综合性博物馆。",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/yzgc1/content/f17fc9a9-0a79-4371-a3e0-7658b0980dd8.shtml",
+        "longitude": 119.2183246,
+        "latitude": 34.5948626,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1325570480",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "aliases": [
+          "连云港博物馆"
+        ],
+        "independence_note": "OSM朝阳东路具名馆舍建筑约90米宽与官方68号馆址一致，不同于市革命纪念馆；展厅改造或开放以最新公告为准。"
+      },
+      {
+        "name": "秦山岛景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方资料确认景区仍运营，且秦山岛旅游码头是游客往返登岛的登船点；但公开地图坐标对应大陆码头而非岛上景区。当前规划流程无法计入渡船时长并将岛上游览与码头区分，直接入库会造成路线和时间误导，因此暂不新增。",
+          "source_urls": [
+            "https://www.lyg.gov.cn/zglygzfmhwz/gcly/content/8144bde5-e008-4c92-a549-8c64a167b4af.htm",
+            "https://www.ganyu.gov.cn/gyqfzhggwyh/zfwj/content/61f913d2-61ed-4275-8d4a-af2a3afb99e4.html",
+            "https://www.lyg.gov.cn/zglygzfmhwz/xqdt/content/125deccf-105d-44c0-a9fd-34e14e1340e2.htm",
+            "https://www.openstreetmap.org/way/820308556",
+            "https://photon.komoot.io/api/?q=%E7%A7%A6%E5%B1%B1%E5%B2%9B%E6%99%AF%E5%8C%BA%E7%A0%81%E5%A4%B4%20%E8%B5%A3%E6%A6%86&limit=3&lang=default"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/820308556与Photon返回的WGS84坐标对应具名秦山岛旅游码头（约117×73米），不是离岸秦山岛景区本体。该码头可作为登船点，但不宜当作岛上景区坐标；还需规划系统支持渡船行程和时长。",
+          "web_search": {
+            "searched_city": "连云港市",
+            "searched_name": "秦山岛景区",
+            "batch_candidates": [
+              "西双湖景区",
+              "大伊山景区",
+              "桃花涧景区",
+              "秦山岛景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "89|秦山岛景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "89|秦山岛景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "city": "镇江市",
+    "province": "江苏省",
+    "sources": [
+      "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf"
+    ],
+    "checked_names": [
+      "金山",
+      "焦山",
+      "北固山",
+      "南山",
+      "西津渡",
+      "茅山",
+      "宝华山",
+      "米芾书法公园",
+      "镇江博物馆",
+      "赛珍珠文化园",
+      "上海战役总前委旧址纪念馆",
+      "中国醋文化博物馆"
+    ],
+    "note": "三山整体和单山、西津渡同义项不新增。",
+    "candidates": [
+      {
+        "name": "茅山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+            "https://maoshanchina.com.cn/about.html",
+            "https://zh.wikipedia.org/wiki/%E5%8F%A5%E5%AE%B9%E8%8C%85%E5%B1%B1%E6%99%AF%E5%8C%BA",
+            "https://zh.wikipedia.org/wiki/%E6%B1%9F%E8%8B%8F%E7%9C%81%E9%81%93",
+            "https://travellutionmedia.com/wp-content/uploads/zhenjiang_brochure.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902254",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "镇江市",
+            "searched_name": "茅山景区",
+            "batch_candidates": [
+              "茅山景区",
+              "宝华山景区",
+              "米芾书法公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "93|茅山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "93|茅山景区",
+              "error": null,
+              "raw_result_count": 5
+            }
+          ]
+        }
+      },
+      {
+        "name": "宝华山景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "名称及真实性可核实，本轮只命中公交站，缺实际游览入口坐标。",
+          "source_urls": [
+            "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+            "https://zh.wikipedia.org/wiki/%E9%95%87%E6%B1%9F%E5%B8%82",
+            "https://doss.xhby.net/zpaper/xhrb/pc/att/202602/11/22488c30-b504-4f0e-a56c-664b7c6b1ff8.pdf",
+            "https://doss.xhby.net/zpaper/yzwb/pad/att/202109/30/b9e4c8cc-d4f9-4142-a5ec-d31d9539b38b.pdf",
+            "https://doss.xhby.net/zpaper/yzwb/pc/att/202604/27/a9dae756-ae9c-46e2-ad39-2a801ededc29.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902258",
+          "coordinate_review_note": "拒绝OSM node8742026376，type=bus_stop。",
+          "web_search": {
+            "searched_city": "镇江市",
+            "searched_name": "宝华山景区",
+            "batch_candidates": [
+              "茅山景区",
+              "宝华山景区",
+              "米芾书法公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "93|宝华山景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "93|宝华山景区",
+              "error": null,
+              "raw_result_count": 2
+            }
+          ]
+        }
+      },
+      {
+        "name": "米芾书法公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+            "https://you.ctrip.com/sight/zhenjiang13/133737.html",
+            "https://www.mayijf.com/Facility/Details/15467",
+            "https://www.wenxiaobai.com/api/expends/detail?article=cece772d-fb7f-4903-939e-038457689ea2",
+            "https://m.tangshui.net/biji/show/58b8e8dcfb7735057584711d",
+            "https://www.aiyoutravel.com/location/detail/b502880ce0d3a28475f61098326dc6b7",
+            "https://m.meet99.com/jingdian-mifushufa.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902263",
+          "coordinate_review_note": "已在线读取OSM way1531003059完整节点及周边有界地图；服务路way1283192765有lift_gate节点12944602638，但不能确认是对游客开放的景区入口，暂不采用。详见entrances_B_root.json。",
+          "web_search": {
+            "searched_city": "镇江市",
+            "searched_name": "米芾书法公园",
+            "batch_candidates": [
+              "茅山景区",
+              "宝华山景区",
+              "米芾书法公园"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "93|米芾书法公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "93|米芾书法公园",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "赛珍珠文化园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202105/p020210514530681096726.pdf",
+            "https://www.imetacloud.com/plan/zhen-jiang-shi-sai-zhen-zhu-wen-hua-yuan",
+            "https://zwgk.mct.gov.cn/zfxxgkml/scgl/202207/P020220728611989455875.pdf",
+            "https://wgxj.nc.gov.cn/wgxlj/tzgg/202307/8c588b365bf24b7e9355ada50de7e11a/files/2023%E5%B9%B4%E5%85%A8%E5%9B%BD%E5%AF%BC%E6%B8%B8%E8%B5%84%E6%A0%BC%E8%80%83%E8%AF%95%E5%A4%A7%E7%BA%B2.pdf",
+            "https://www.jianweidata.com/data/api/File/FileOpenBondFiling?documentId=398944428&token=FcgWEczaoFsqmxFCCr%2FATc5ZefW5p%2BOD3pvKEVeMaRbv%2FN1YldADDf%2BM9sBGItFXsE90U4gj7XQJl67OoeUv%2Fkoy2uE5wnCruE2qFdjMi6rAIWI8TkQBbMfwpmg5cjYXY1v8yyNA4YonJb353xiaoRaBG3vRqjp0asGg6%2FsGjCXWoBwVttSwqiyJbPUGDIBZJ3yrSxdLEHUA%2B0M2BgvvA0xNuv4PdgPfoWUdYSnw4%2BmZpdlgaY2tE7tMCVfBGGv9RgUYjPhw35sV97M%2FgcD4k%2BnJYehQJ4oQU9hsY6hjwZ7Rl25Dy03M%2Bt%2FROxZqywbYn1dULAXAqBARb4lneUgay2FaHYhZvwC7osnB3DX8YAInOFhfGkX%2FJvYObZpzQMo8txH%2F4ZbXFsYdCwnFO1ZNvGTjbDIoSH%2FM21P0zGcY3tH2UNqWXRUjj05sk2v4sgm0QCe0vjbKCh7I2MTZ25hYwU4iCQdULU4PEry3orrHSleo5nIWUtWZhcKwVz3GJZs%2FzmBnPkqFk5oUfJt30AqeNub7Ed1cHLJ0EftqHXvtEWuWJO6PLIGrfnnLS5yqL%2BeDYKr5xH%2F5RoXTs657E40L8OlWh%2FF%2Fa7fYD80OSuW1YZyNTJWrJxMvMgw1%2F%2BXesvHq83474bf4%2Fney%2BvTuDaMjtvHcHXCMD5ZGSskY6btlYYuZK18RiaoFo%2BPObsy%2FQGkP2dgTDyqO%2F%2FW9a6LF%2FkU%2B%2F2i%2BrJz3lQTiW9nULIcbJxSUx530A5FVhbWYcFJUwcMsY%2BrxLZka64Qn8rDZXpZNvf7KdU6OrZHMpO%2FAe%2F%2FM1KpXIBXKEM7aHsMyvj6AELGhC5duPNvWKQaIM%2BAEQKodLkM0liAKw0VzJwIkFgxoKKXXX32eGdJBXHIkq4IYCAhS9HUmM0ufYAefJvaysS7BR1Aqqgy2W9zEWGvVDuUag7ySmS4VhUtYuvCIjddeW2BNMFZfGRAMUsnfVvnd8dmalw%3D%3D"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902268",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "镇江市",
+            "searched_name": "赛珍珠文化园",
+            "batch_candidates": [
+              "赛珍珠文化园",
+              "上海战役总前委旧址纪念馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "93|赛珍珠文化园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "93|赛珍珠文化园",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "上海战役总前委旧址纪念馆",
+        "status": "approved",
+        "description_source_url": "https://www.iwenbo.fun/museum/1476.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "核准其别名丹阳市总前委旧址纪念馆，2026年主题展资料证实场馆活动，公开文博具名点位于丹阳人民广场北侧，排除安徽及商丘同名总前委场馆。",
+          "source_urls": [
+            "https://www.iwenbo.fun/museum/1476.html",
+            "https://www.jsstb.gov.cn/zhenjiang/202304/t20230407_12524708.htm",
+            "https://www.zjmm.gov.cn/a/zuzhijianshe/mengshiziliao/zhenjiangmengxun/20150922/1801.html",
+            "https://www.thepaper.cn/newsDetail_forward_14780245",
+            "https://zh.wikipedia.org/wiki/%E6%80%BB%E5%89%8D%E5%A7%94%E3%80%81%E4%B8%89%E9%87%8E%E5%8F%B8%E4%BB%A4%E9%83%A8%E9%A9%BB%E5%9C%B0%E6%97%A7%E5%9D%80",
+            "https://www.qingxin.gov.cn/qxqpostfile/uploadFiles/511e7f70686c11e8ba82005056932293.pdf",
+            "https://www.jsmm.org.cn/myfc/202509/t20250926_78946.shtml",
+            "https://www.zjmm.gov.cn/a/shehuifuwu/2026/0616/4860.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902277",
+          "coordinate_review_note": "公开网页TMap丹阳馆舍具名点，GCJ02，非实测入口；小型旧址与纪念馆一体，地址人民广场北侧。证据见extra_museum_guides_B_root.json。",
+          "web_search": {
+            "searched_city": "镇江市",
+            "searched_name": "上海战役总前委旧址纪念馆",
+            "batch_candidates": [
+              "赛珍珠文化园",
+              "上海战役总前委旧址纪念馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "93|上海战役总前委旧址纪念馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "93|上海战役总前委旧址纪念馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "93|上海战役总前委旧址纪念馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        },
+        "description": "上海战役总前委旧址纪念馆又称丹阳市总前委旧址纪念馆，位于丹阳市人民广场北侧。场馆由总前委驻地旧址和纪念展馆组成，通过复原陈列与图文资料介绍解放、接管上海的历史，适合革命历史参观和研学。展览及开放安排以馆方公告为准。",
+        "longitude": 119.5736289,
+        "latitude": 31.99389599,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/1476.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "古建",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "丹阳市总前委旧址纪念馆",
+          "丹阳总前委旧址纪念馆"
+        ],
+        "independence_note": "丹阳人民广场北侧独立革命场馆，与现有镇江博物馆、西津渡不同址；旧址与展馆合并一条，不拆院内设施。"
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "city": "芜湖市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.wuhu.gov.cn/mlwh/lywh/xz/23531431.html"
+    ],
+    "checked_names": [
+      "鸠兹风景区",
+      "镜湖公园"
+    ],
+    "note": "镜湖公园按同一景区组成部分处理，不拆分新增。",
+    "candidates": [
+      {
+        "name": "鸠兹风景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.wuhu.gov.cn/mlwh/lywh/xz/23531431.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.wuhu.gov.cn/mlwh/lywh/xz/23531431.html",
+            "https://m.wuhu.bendibao.com/jingdian/jiuzi/content/",
+            "https://zh.wikipedia.org/wiki/%E9%95%9C%E6%B9%96",
+            "https://ct.wuhu.gov.cn/openness/public/6596641/33640961.html",
+            "https://tjj.wuhu.gov.cn/zhsj/tjnj/%E8%8A%9C%E6%B9%96%E7%BB%9F%E8%AE%A1%E5%B9%B4%E9%89%B42025/files/2-17.pdf",
+            "https://zh.wikipedia.org/wiki/%E9%B8%A0%E5%85%B9%E5%B9%BF%E5%9C%BA%E7%AB%99"
+          ],
+          "checked_at": "2026-10-02T18:48:31.902283",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "芜湖市",
+            "searched_name": "鸠兹风景区",
+            "batch_candidates": [
+              "鸠兹风景区",
+              "淮海战役总前委旧址纪念馆",
+              "口子酒文化博览园",
+              "大运河美术馆",
+              "南山汉文化博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "105|鸠兹风景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "105|鸠兹风景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

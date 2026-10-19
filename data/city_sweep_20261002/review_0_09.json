@@ -1,0 +1,1069 @@
+[
+  {
+    "id": 149,
+    "city": "威海市",
+    "province": "山东省",
+    "sources": [
+      "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html"
+    ],
+    "checked_names": [
+      "刘公岛",
+      "华夏城",
+      "仙姑顶",
+      "天沐温泉度假区",
+      "成山头",
+      "赤山"
+    ],
+    "note": "已有刘公岛和华夏城不再新增；按市级名录筛选独立景区。",
+    "candidates": [
+      {
+        "name": "仙姑顶景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+            "https://www.weihai.gov.cn/art/2011/12/6/art_80791_2737007.html",
+            "https://you.ctrip.com/sight/weihai169/10659.html",
+            "https://shandong-chorography.org/database/ca1/section/3/article/135/",
+            "https://www.dahepiao.com/lvyounews1/20250617517047.html",
+            "https://weihai.iqilu.com/whyaowen/2023/0530/5438140.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904559",
+          "coordinate_review_note": "公开地图命中见coordinates_B_root.json；需核对对象类型、名称及入口，不自动采纳范围中心或同名站点。",
+          "web_search": {
+            "searched_city": "威海市",
+            "searched_name": "仙姑顶景区",
+            "batch_candidates": [
+              "双龙潭生态运动景区",
+              "仙姑顶景区",
+              "天沐温泉度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "149|仙姑顶景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "149|仙姑顶景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "天沐温泉度假区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+            "https://you.ctrip.com/sight/weihai169/136038.html",
+            "https://www.liugongdao.com.cn/index.php?a=show&c=index&catid=19&id=3256&m=content",
+            "https://hotels.ctrip.com/hotels/436508.html",
+            "https://www.tianmuhotspring.cn/jingdian_detail-17355.html",
+            "https://zh.wikipedia.org/wiki/%E5%A8%81%E6%B5%B7%E5%B8%82"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904585",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "威海市",
+            "searched_name": "天沐温泉度假区",
+            "batch_candidates": [
+              "双龙潭生态运动景区",
+              "仙姑顶景区",
+              "天沐温泉度假区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "149|天沐温泉度假区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "149|天沐温泉度假区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "成山头风景名胜区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+            "https://zh.wikipedia.org/wiki/%E6%88%90%E5%B1%B1%E5%A4%B4",
+            "https://you.ctrip.com/sight/rongcheng899/10614.html",
+            "https://shandong-chorography.org/database/da0/section/1/article/297/",
+            "https://m.map.360.cn/?pid=ef86274fa38d2df3&src=socitybox",
+            "https://www.weihai.gov.cn/attach/0/48a5aafb4c6b4ecc86540ca5d08d77ee.pdf",
+            "https://www.weihai.gov.cn/module/download/downfile.jsp?classid=0&filename=960ea65ee699418188e7c0bb5da7b64d.pdf&showname=%E9%99%84%E4%BB%B6%EF%BC%9A%E8%83%B6%E4%B8%9C%E5%8D%8A%E5%B2%9B%E6%B5%B7%E6%BB%A8%E9%A3%8E%E6%99%AF%E5%90%8D%E8%83%9C%E5%8C%BA%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92%282021-2035%E5%B9%B4%29%E5%BE%81%E6%B1%82%E6%84%8F%E8%A7%81%E7%A8%BF.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904605",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "威海市",
+            "searched_name": "成山头风景名胜区",
+            "batch_candidates": [
+              "成山头风景名胜区",
+              "赤山风景名胜区",
+              "阿胶世界"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "149|成山头风景名胜区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "149|成山头风景名胜区",
+              "error": null,
+              "raw_result_count": 3
+            }
+          ]
+        }
+      },
+      {
+        "name": "赤山风景名胜区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlj.weihai.gov.cn/art/2026/5/8/art_162556_4824985.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904622",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "威海市",
+            "searched_name": "赤山风景名胜区",
+            "batch_candidates": [
+              "成山头风景名胜区",
+              "赤山风景名胜区",
+              "阿胶世界"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "149|赤山风景名胜区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "149|赤山风景名胜区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "city": "聊城市",
+    "province": "山东省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcszbwg2022/shandong/detail/2043.html"
+    ],
+    "checked_names": [
+      "阿胶世界",
+      "中国阿胶博物馆"
+    ],
+    "note": "阿胶博物馆与阿胶世界关系待核，不同时添加。",
+    "candidates": [
+      {
+        "name": "阿胶世界",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcszbwg2022/shandong/detail/2043.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/xcszbwg2022/shandong/detail/2043.html",
+            "https://you.ctrip.com/sight/donge2893/5539375.html",
+            "https://www.eeo.com.cn/2023/0403/584791.shtml",
+            "https://bgs.lcudcc.edu.cn/__local/C/5A/6A/15CFAE111A17827938D0E3A7DF5_125D124B_E2653.pdf",
+            "https://news.iqilu.com/shandong/yuanchuang/2024/1010/5726401.shtml",
+            "https://liaocheng.sdnews.com.cn/lcxw/202001/t20200103_2660800.htm"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904639",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "聊城市",
+            "searched_name": "阿胶世界",
+            "batch_candidates": [
+              "成山头风景名胜区",
+              "赤山风景名胜区",
+              "阿胶世界"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "153|阿胶世界",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "153|阿胶世界",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 157,
+    "city": "开封市",
+    "province": "河南省",
+    "sources": [
+      "https://www.shunhequ.gov.cn/kfsshhzqwz/c00314/pc/content/content_1876895005729964032.html",
+      "https://ytsc.rootinhenan.gov.cn/sitesources/ytsc/page_pc/twmtkhn/article04cae754007a420c94dbfe7c2fe4bdfa.html"
+    ],
+    "checked_names": [
+      "开封府",
+      "山陕甘会馆",
+      "铁塔"
+    ],
+    "note": "山陕甘会馆与铁塔已有；开封府独立于包公祠。",
+    "candidates": [
+      {
+        "name": "开封府",
+        "status": "approved",
+        "description": "开封府景区位于包公东湖北岸，以重建的府衙建筑展示北宋衙署、刑狱及科举等文化。可参观院落和专题空间，了解开封与包公相关的历史文化，现存景区并非完整保存的北宋原衙署。",
+        "description_source_url": "https://ytsc.rootinhenan.gov.cn/sitesources/ytsc/page_pc/twmtkhn/article04cae754007a420c94dbfe7c2fe4bdfa.html",
+        "longitude": 114.3411117,
+        "latitude": 34.790564,
+        "coordinate_source_url": "https://www.openstreetmap.org/relation/9921656",
+        "coordinate_system": "WGS84",
+        "category": "历史文化景区",
+        "tags": [
+          "历史文化",
+          "建筑",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "aliases": [],
+        "independence_note": "OSM具名府衙景区院落群锚点约200米范围；省政府旅游资料明确东府西祠，与已存包公祠分别位于东西湖岸。"
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "city": "鹤壁市",
+    "province": "河南省",
+    "sources": [
+      "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html"
+    ],
+    "checked_names": [
+      "桑园小镇",
+      "太极图",
+      "金山淇河文化旅游区"
+    ],
+    "note": "市级2026实地景区监管报道；不加入历史项目规划而未证实开放的阿斗寨。",
+    "candidates": [
+      {
+        "name": "桑园小镇",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方确认淇滨区桑园村乡村旅游项目，公开地图有具名旅游节点；尚未核实其作为实际游览入口的位置，暂不批准。",
+          "source_urls": [
+            "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+            "https://ytsc.rootinhenan.gov.cn/sitesources/ytsc/page_pc/twmtkhn/articlebbf22d869de04c8ea79108231a26fb84.html",
+            "https://bkso.baidu.com/item/%E6%A1%91%E5%9B%AD%E5%B0%8F%E9%95%87/57492863?fromModule=lemma_inlink",
+            "https://qhwh.hbzy.edu.cn/info/1066/1301.htm",
+            "https://www.chinastory.cn/dzhn-pc-twxqy/dzhnwap/detail/20201215/1006000000049051607998176248032607_1.html",
+            "https://www.rootinhenan.gov.cn/sitesources/rootinhenan/page_pc/cxzc/articlec448f828ab8642cf8a859f2728f605c7.html",
+            "https://www.guanzhongliu.com/html/zoujinbinbingaikuang2017-04-165884.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904669",
+          "coordinate_review_note": "node6389007114地址匹配桑园村，仅tourism=attraction，未标实际入口。",
+          "web_search": {
+            "searched_city": "鹤壁市",
+            "searched_name": "桑园小镇",
+            "batch_candidates": [
+              "桑园小镇",
+              "太极图景区",
+              "金山淇河文化旅游区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "161|桑园小镇",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "161|桑园小镇",
+              "error": null,
+              "raw_result_count": 5
+            }
+          ]
+        }
+      },
+      {
+        "name": "太极图景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+            "https://you.ctrip.com/sight/hebi595/5069271.html",
+            "https://guanzhongliu.com/html/wenhualvyoulyzyjs2016-05-134825.html",
+            "https://www.guanzhongliu.com/html/wenhualvyoujdzpzs2012-11-062654.html",
+            "https://miaoqu.wupk.com/scenic/175721.html",
+            "https://jingji.zfcg.henan.gov.cn/cmsweb81e27e/nas/webfile2024/henan/rootfiles/2023/07/24/5ce1007005524c09bdc366a4a09c170c.pdf",
+            "https://hbrb.hebiw.com/pc/att/202505/19/be1d1760-f937-4840-82dd-225b6c0359d7.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904685",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "鹤壁市",
+            "searched_name": "太极图景区",
+            "batch_candidates": [
+              "桑园小镇",
+              "太极图景区",
+              "金山淇河文化旅游区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "161|太极图景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "161|太极图景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "金山淇河文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.hbsjcj.gov.cn/sitesources/hbsjcj/page_pc/jcfc/article136ee67748f040259b545ceb60dc488c.html",
+            "https://www.meet99.com/jingdian-jisnhanqihe.html",
+            "https://hbrb.hebiw.com/pc/att/202505/19/be1d1760-f937-4840-82dd-225b6c0359d7.pdf",
+            "https://hbrb.hebiw.com/pc/att/202604/03/54a5750e-9586-474a-9a9a-ef62df99dd2a.pdf",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://hbrb.hebiw.com/pc/att/202503/24/f8c4087b-b8ef-4002-b133-9238dc83dc7c.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904700",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "鹤壁市",
+            "searched_name": "金山淇河文化旅游区",
+            "batch_candidates": [
+              "桑园小镇",
+              "太极图景区",
+              "金山淇河文化旅游区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "161|金山淇河文化旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "161|金山淇河文化旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 165,
+    "city": "许昌市",
+    "province": "河南省",
+    "sources": [
+      "https://xuchang.gov.cn/zjxc/005010/20260325/dfa0b4df-57ba-454e-bb88-cdc3dd046919.html",
+      "https://www.xuchang.gov.cn/zjxc/005010/20260114/366a163c-2918-4651-b0cf-018c1ad70a54.html"
+    ],
+    "checked_names": [
+      "许昌市博物馆",
+      "中原农耕文化博物馆",
+      "春秋楼",
+      "曹丞相府"
+    ],
+    "note": "春秋楼与曹魏古城相邻但独立点需入口核验；新馆不补虚假坐标。",
+    "candidates": [
+      {
+        "name": "许昌市博物馆",
+        "status": "approved",
+        "description": "许昌市博物馆展示本地从史前到明清的历史文化，馆藏汉代画像砖、陶器等文物，可通过展览了解曹魏故都的历史背景。",
+        "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20260114/366a163c-2918-4651-b0cf-018c1ad70a54.html",
+        "longitude": 113.8463757,
+        "latitude": 34.0337095,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/294831863",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "OSM具名馆舍建筑约150米宽，位于许昌新区，与曹魏古城、灞陵桥独立；为馆舍锚点非入口实测。",
+        "aliases": [
+          "许昌博物馆"
+        ]
+      },
+      {
+        "name": "中原农耕文化博物馆",
+        "status": "approved",
+        "description": "中原农耕文化博物馆位于许昌学院内，展出传统农耕生产工具、生活器具和民俗物品，介绍中原地区的农耕文明与乡土生活。",
+        "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20260114/366a163c-2918-4651-b0cf-018c1ad70a54.html",
+        "longitude": 113.8615077,
+        "latitude": 34.044866,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/644676719",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM许昌市文津路具名农耕博物馆建筑约70米宽，与许昌学院地址相符；不与市博物馆同址；高校内馆参观需遵守校方管理。",
+        "aliases": [
+          "农耕博物馆"
+        ]
+      },
+      {
+        "name": "春秋楼景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://xuchang.gov.cn/zjxc/005004/20190614/b684c757-4eb9-48bc-b251-de18c8f8b595.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://xuchang.gov.cn/zjxc/005004/20190614/b684c757-4eb9-48bc-b251-de18c8f8b595.html",
+            "https://you.ctrip.com/sight/xuchang465/73593.html",
+            "https://www.weidu.gov.cn/zjwd/006003/20171115/db124b03-5eb5-4df3-90ae-a6bc0b861bcc.html",
+            "https://www.xuchang.gov.cn/zjxc/005010/20200806/c5c56a0a-0392-492f-9545-c8bc20e407af.html",
+            "https://xuchang.gov.cn/zjxc/005010/20240403/b5d4cf71-b750-482d-a9e8-1ebe84c93b24.html",
+            "https://wgl.xuchang.gov.cn/zykf/20190929/f9ef7b40-ff24-4932-89de-f4d3d78081bd.html",
+            "https://xc.rootinhenan.gov.cn/sitesources/xc/page_pc/whwht/article6d2e11bde80140c4b18509b8927a11ca.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904742",
+          "coordinate_review_note": "已在线读取OSM way1472243299完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "许昌市",
+            "searched_name": "春秋楼景区",
+            "batch_candidates": [
+              "春秋楼景区",
+              "曹丞相府景区",
+              "商丘博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "165|春秋楼景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "165|春秋楼景区",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        },
+        "description": "春秋楼景区位于许昌市中心，由春秋楼关宅和毗邻的文庙古建筑组成。关宅展示关羽忠义文化，文庙保留棂星门、大成殿等建筑，文武庙祀与明清风格院落相结合，适合三国文化参观和传统建筑观察。"
+      },
+      {
+        "name": "曹丞相府景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://xuchang.gov.cn/zjxc/005010/20260325/dfa0b4df-57ba-454e-bb88-cdc3dd046919.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://xuchang.gov.cn/zjxc/005010/20260325/dfa0b4df-57ba-454e-bb88-cdc3dd046919.html",
+            "https://zh.wikipedia.org/wiki/%E8%AE%B8%E6%98%8C%E5%B8%82",
+            "https://www.jianan.gov.cn/jagk/002003/20171227/ae9230b0-2ee1-47d0-b399-6cedab29b11c.html",
+            "https://www.uhenan.com/ScenicArea/Content/S1258836631041941505",
+            "https://xuchang.gov.cn/zjxc/005010/20240403/b5d4cf71-b750-482d-a9e8-1ebe84c93b24.html",
+            "https://m.xc.bendibao.com/jingdian/caochengxiangfu/",
+            "https://www.xuchang.gov.cn/zjxc/005010/20260514/c64f9bf5-fa75-47e6-95e8-9cec6c66afb4.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904757",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "许昌市",
+            "searched_name": "曹丞相府景区",
+            "batch_candidates": [
+              "春秋楼景区",
+              "曹丞相府景区",
+              "商丘博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "165|曹丞相府景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "165|曹丞相府景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "city": "商丘市",
+    "province": "河南省",
+    "sources": [
+      "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html"
+    ],
+    "checked_names": [
+      "商丘博物馆",
+      "睢县凤栖湖景区"
+    ],
+    "note": "2025评级公示仅作真实性线索；须复核最终评级与开放。",
+    "candidates": [
+      {
+        "name": "商丘博物馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "官方或公开游览资料可确认真实；此次地图命中区域轮廓，尚缺可核准的入口或明确馆舍建筑坐标。",
+          "source_urls": [
+            "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+            "https://zh.wikipedia.org/wiki/%E5%95%86%E4%B8%98%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://you.ctrip.com/sight/shangqiu849/1833339.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%BA%8C%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904771",
+          "coordinate_review_note": "已在线读取OSM way592564699完整节点及标签；未有入口标签，不采用范围中心冒充入口。",
+          "web_search": {
+            "searched_city": "商丘市",
+            "searched_name": "商丘博物馆",
+            "batch_candidates": [
+              "春秋楼景区",
+              "曹丞相府景区",
+              "商丘博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "169|商丘博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "169|商丘博物馆",
+              "error": null,
+              "raw_result_count": 2
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "169|商丘博物馆",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "睢县凤栖湖景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xuchang.gov.cn/zjxc/005010/20251203/c482a700-a7e7-422b-a224-879f656cc320.html",
+            "https://www.baike.com/wikiid/7415483989638692899",
+            "https://gs.ctrip.com/html5/you/sight/suicounty1446081/145237997.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904781",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "商丘市",
+            "searched_name": "睢县凤栖湖景区",
+            "batch_candidates": [
+              "睢县凤栖湖景区",
+              "济水之源文化旅游区",
+              "杜八联革命纪念馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "169|睢县凤栖湖景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "169|睢县凤栖湖景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 173,
+    "city": "济源市",
+    "province": "河南省",
+    "sources": [
+      "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html"
+    ],
+    "checked_names": [
+      "济水之源文化旅游区",
+      "杜八联革命纪念馆",
+      "济源伊利乳业工业旅游景区"
+    ],
+    "note": "官方2026景区名录；济渎庙为济水之源核心不另加。",
+    "candidates": [
+      {
+        "name": "济水之源文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+            "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t967610.html",
+            "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t997247.html",
+            "https://jiyuan.gov.cn/zwyw/zwyw_22093/t1001417.html",
+            "https://fgw.jiyuan.gov.cn/14186/17304/17307/19221/t953398.html",
+            "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t995884.html",
+            "https://www.jiyuan.gov.cn/zwyw/zwyw_22093/t1004384.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904787",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "济源市",
+            "searched_name": "济水之源文化旅游区",
+            "batch_candidates": [
+              "睢县凤栖湖景区",
+              "济水之源文化旅游区",
+              "杜八联革命纪念馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "173|济水之源文化旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "173|济水之源文化旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "杜八联革命纪念馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wglj.jiyuan.gov.cn/ggfw/lvyou/t994488.html",
+            "https://bkso.baidu.com/item/%E6%9D%9C%E5%85%AB%E8%81%94%E9%9D%A9%E5%91%BD%E7%BA%AA%E5%BF%B5%E9%A6%86/16563250?fromModule=lemma_inlink",
+            "https://www.zmdsjw.gov.cn/2019/0823/33800.html",
+            "https://www.jydsfz.com/gzdt/dsdt/t893830.html",
+            "https://www.gov.cn/gbgl/83870cd09fb14433b5dad26eba8e58ae/files/c45b8a033c8f4703bcc02ec1c722775a.pdf",
+            "https://jyj.jiyuan.gov.cn/jyjx/jxyj/P020240305530155909338.pdf",
+            "https://wglj.jiyuan.gov.cn/14204/15220/21414/P020250102320632635662.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904793",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "济源市",
+            "searched_name": "杜八联革命纪念馆",
+            "batch_candidates": [
+              "睢县凤栖湖景区",
+              "济水之源文化旅游区",
+              "杜八联革命纪念馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "173|杜八联革命纪念馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "173|杜八联革命纪念馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "173|杜八联革命纪念馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "city": "宜昌市",
+    "province": "湖北省",
+    "sources": [
+      "https://whly.yichang.gov.cn/content-61371-964057-1.html"
+    ],
+    "checked_names": [
+      "车溪民俗旅游区",
+      "宜昌博物馆",
+      "青林休闲旅游区",
+      "嫘祖文化园景区",
+      "宜昌市城市规划展览馆"
+    ],
+    "note": "宜昌博物馆已存；车溪、青林、嫘祖文化园仍缺合格入口坐标。宜昌市城市规划展览馆为伍家岗区独立馆舍，展示宜昌总体规划、城市演变与旅游生态，不与现有自然景区和宜昌博物馆重叠。",
+    "candidates": [
+      {
+        "name": "车溪民俗旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+            "https://www.yichang.gov.cn/content-56664-1004053-1.html",
+            "https://www.yichangly.com/news/show-811.html",
+            "https://www.yichang.gov.cn/vote/Show/preview.html?sign=65bf12d5c863603f6fb326fd5ea51cd3&themeid=1178&token=Z7p15c52Mmc7",
+            "https://my.trip.com/travel-guide/attraction/yichang/chexi-folk-custom-tourism-area-82403?curr=EUR&locale=zh-MY&poiType=3&rankingId=100001412794",
+            "https://gzw.yichang.gov.cn/content-40912-17426-1.html",
+            "https://hbdaye.gov.cn/zfxxgk/dfbmptlj/szbm/dysfzhggjjgsz/zc_16434/qtzdgkwj_19887/202312/P020231206355300962762.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904800",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "宜昌市",
+            "searched_name": "车溪民俗旅游区",
+            "batch_candidates": [
+              "车溪民俗旅游区",
+              "青林休闲旅游区",
+              "嫘祖文化园景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "177|车溪民俗旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "177|车溪民俗旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "青林休闲旅游区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+            "https://www.yichang.gov.cn/html/zhengwuyizhantong/zhengwuzixun/jinriyaowen/2024/0517/1060656.html",
+            "https://whly.yichang.gov.cn/content-12726-962779-1.html",
+            "https://www.yichang.gov.cn/html/zhengwuyizhantong/zhengwuzixun/jinriyaowen/2023/0727/1053250.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B64A%E7%BA%A7%E6%97%85%E6%B8%B8%E6%99%AF%E5%8C%BA",
+            "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202310/035651_20231023_TWFX.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904807",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "宜昌市",
+            "searched_name": "青林休闲旅游区",
+            "batch_candidates": [
+              "车溪民俗旅游区",
+              "青林休闲旅游区",
+              "嫘祖文化园景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "177|青林休闲旅游区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "177|青林休闲旅游区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "嫘祖文化园景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "宜昌最新A级名录及公开介绍可确认远安嫘祖文化园；缺具名可核准入口坐标。",
+          "source_urls": [
+            "https://whly.yichang.gov.cn/content-61371-964057-1.html",
+            "https://you.ctrip.com/sight/yuanan2713/5711990.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904813",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "宜昌市",
+            "searched_name": "嫘祖文化园景区",
+            "batch_candidates": [
+              "车溪民俗旅游区",
+              "青林休闲旅游区",
+              "嫘祖文化园景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "177|嫘祖文化园景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "177|嫘祖文化园景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "宜昌市城市规划展览馆",
+        "status": "approved",
+        "description": "展馆位于宜昌伍家岗区，设有城市规划模型、空间演变、历史文化与旅游生态等展项，介绍宜昌城市发展、总体规划和山水生态格局。",
+        "description_source_url": "https://zrzy.yichang.gov.cn/list-56704-3.html",
+        "longitude": 111.3768281,
+        "latitude": 30.6351928,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1000386549",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "人文",
+          "研学",
+          "建筑",
+          "城市漫游"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "宜昌市规划展览馆官网确认馆址为伍家岗区柏临河共谊二路，馆内有总体规划模型、城市空间演变、历史文化及旅游生态等展项。OSM way/1000386549为具名展馆范围代表点，WGS84，非入口实测坐标；与现有宜昌博物馆和三峡等景区是不同馆舍。",
+        "aliases": [
+          "宜昌城市规划展览馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "宜昌市规划展览馆官方网站确认地址、当前活动和展览内容；具名OSM馆舍范围提供WGS84代表点；与现有同城景点为独立场馆。",
+          "source_urls": [
+            "https://zrzy.yichang.gov.cn/list-56701-1.html",
+            "https://zrzy.yichang.gov.cn/list-56704-3.html",
+            "https://www.openstreetmap.org/way/1000386549"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情返回名称“宜昌城市规划展览馆”，WGS84代表点(111.3768281,30.6351928)；对应官网地址所述馆址，属具名展馆范围，不是入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "city": "孝感市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml"
+    ],
+    "checked_names": [
+      "应城市楚珍园旅游景区",
+      "老观湖国家湿地公园古泽遗珠景区"
+    ],
+    "note": "文旅信用名录证实经营主体景区；坐标及描述待核。",
+    "candidates": [
+      {
+        "name": "应城市楚珍园旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+            "https://www.wuhan.com/travel/41637.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904819",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "孝感市",
+            "searched_name": "应城市楚珍园旅游景区",
+            "batch_candidates": [
+              "应城市楚珍园旅游景区",
+              "老观湖国家湿地公园古泽遗珠景区",
+              "随州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "181|应城市楚珍园旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "181|应城市楚珍园旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "老观湖国家湿地公园古泽遗珠景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "省文旅厅确认应城老观湖湿地及观鸟塔，不能使用别市同名湖泊或行政区域中心；游览入口坐标待补。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202602/t20260224_5879327.shtml",
+            "https://wlt.hubei.gov.cn/bmdt/mtjj/202605/t20260528_5945775.shtml"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904825",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "孝感市",
+            "searched_name": "老观湖国家湿地公园古泽遗珠景区",
+            "batch_candidates": [
+              "应城市楚珍园旅游景区",
+              "老观湖国家湿地公园古泽遗珠景区",
+              "随州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "181|老观湖国家湿地公园古泽遗珠景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "181|老观湖国家湿地公园古泽遗珠景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "city": "随州市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml"
+    ],
+    "checked_names": [
+      "炎帝故里景区",
+      "随州博物馆",
+      "曾侯乙墓遗址"
+    ],
+    "note": "炎帝故里与现存炎帝文化旅游区别名不再新增；馆与墓区需核实相互独立。",
+    "candidates": [
+      {
+        "name": "随州博物馆",
+        "status": "excluded_duplicate",
+        "description_source_url": "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+        "research_round_20261002B": {
+          "outcome": "excluded_duplicate",
+          "reason": "现有“随州炎帝文化旅游区”按三片区整体收录，湖北日报2025年报道确认炎帝故里、随州博物馆和曾侯乙墓三景点联合打造该旅游区；本轮不再与整体记录重复计入，并非同一院落或否认博物馆真实存在。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+            "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82",
+            "https://m.szswdx.cn/news/1623.html",
+            "https://hb.people.com.cn/n2/2025/1022/c192237-41387627.html",
+            "https://wlt.hubei.gov.cn/zfxxgk/fdzdgknr/qtzdgknr/jytabl/rddbjy/202008/W020191121752090156869.pdf",
+            "https://news.hubeidaily.net/pc/c_4680488.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904832",
+          "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。",
+          "web_search": {
+            "searched_city": "随州市",
+            "searched_name": "随州博物馆",
+            "batch_candidates": [
+              "应城市楚珍园旅游景区",
+              "老观湖国家湿地公园古泽遗珠景区",
+              "随州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "185|随州博物馆",
+          "additional_coordinate_attempts": []
+        }
+      },
+      {
+        "name": "曾侯乙墓遗址",
+        "status": "excluded_duplicate",
+        "description_source_url": "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+        "research_round_20261002B": {
+          "outcome": "excluded_duplicate",
+          "reason": "现有“随州炎帝文化旅游区”已明确整体包括此墓遗址；不将同一父景区的核心子点重复新增到行程候选库。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/bmdt/szyw/sz/202605/t20260519_5939234.shtml",
+            "https://you.ctrip.com/sight/suizhou860/5067278.html",
+            "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82",
+            "https://www.maigoo.com/citiao/59565.html",
+            "https://www.saac.gov.cn/mowcn/cn/c100512/202506/382e5c53ec654d16aeb7eedeaaf7389f/files/7561dbe91fe343c2947eaf533bb6696e.pdf",
+            "https://zh.wikipedia.org/wiki/%E6%B9%96%E5%8C%97%E7%9C%81%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://zh.wikipedia.org/wiki/%E9%9A%8F%E5%B7%9E%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://news.hubeidaily.net/pc/c_4680488.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.904838",
+          "coordinate_review_note": "已确认与现有父景点重叠，不需要为其强行补坐标另建记录。",
+          "web_search": {
+            "searched_city": "随州市",
+            "searched_name": "曾侯乙墓遗址",
+            "batch_candidates": [
+              "曾侯乙墓遗址",
+              "歌娅思谷·中国白裤瑶民俗风情园",
+              "刘三姐故里景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "185|曾侯乙墓遗址",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,759 @@
+[
+  {
+    "id": 142,
+    "city": "淄博市",
+    "province": "山东省",
+    "sources": [
+      "https://wh.zibo.gov.cn/art/2017/7/12/art_260_1606645.html"
+    ],
+    "checked_names": [
+      "潭溪山旅游区"
+    ],
+    "note": "现有周村古商城等；潭溪山是淄川区山地景区，非古商城子点。",
+    "candidates": [
+      {
+        "name": "潭溪山旅游区",
+        "status": "pending_coordinates",
+        "description": "山地峡谷景区，设瀑布、潭水、步云梯及悬崖观光设施。",
+        "description_source_url": "https://wh.zibo.gov.cn/art/2017/7/12/art_260_1606645.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wh.zibo.gov.cn/art/2017/7/12/art_260_1606645.html",
+            "https://boftec.zibo.gov.cn/cec/charm/detail?charmid=167"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“潭溪山旅游区 淄博市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "city": "潍坊市",
+    "province": "山东省",
+    "sources": [
+      "https://www.forestry.gov.cn/c/www/kjzrjy/591413.jhtml"
+    ],
+    "checked_names": [
+      "仰天山国家森林公园"
+    ],
+    "note": "现有青州古城、十笏园和风筝博物馆；仰天山为青州独立森林公园。",
+    "candidates": [
+      {
+        "name": "仰天山国家森林公园",
+        "status": "pending_coordinates",
+        "description": "位于青州市的国家森林公园，可体验山林景观与林业科普。",
+        "description_source_url": "https://www.forestry.gov.cn/c/www/kjzrjy/591413.jhtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.forestry.gov.cn/c/www/kjzrjy/591413.jhtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“仰天山国家森林公园 潍坊市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "city": "日照市",
+    "province": "山东省",
+    "sources": [
+      "https://www.wulianshan.org/company/"
+    ],
+    "checked_names": [
+      "五莲山风景名胜区"
+    ],
+    "note": "现有万平口、海滨森林公园等滨海景区；五莲山为五莲县内陆山岳景区。",
+    "candidates": [
+      {
+        "name": "五莲山风景名胜区",
+        "status": "pending_coordinates",
+        "description": "五莲县山岳景区，以野生杜鹃花、山石和光明寺等景观为特色。",
+        "description_source_url": "https://www.wulianshan.org/company/",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.wulianshan.org/company/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“五莲山风景名胜区 日照市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "city": "滨州市",
+    "province": "山东省",
+    "sources": [
+      "https://binzhou.dzwww.com/huimin/202504/t20250421_15829018.htm"
+    ],
+    "checked_names": [
+      "孙子兵法城",
+      "武定府衙",
+      "魏氏庄园"
+    ],
+    "note": "现有无棣古城、蒲湖、鹤伴山；惠民孙子兵法城为独立运营景区，但该报道为城投集团发布会的媒体转述。",
+    "candidates": [
+      {
+        "name": "中国孙子兵法城",
+        "status": "pending_coordinates",
+        "description": "惠民县以孙武兵法文化为主题的独立售票景区。",
+        "description_source_url": "https://binzhou.dzwww.com/huimin/202504/t20250421_15829018.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://binzhou.dzwww.com/huimin/202504/t20250421_15829018.htm",
+            "https://www.amap.com/place/B021F00E64"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“中国孙子兵法城 滨州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "city": "洛阳市",
+    "province": "河南省",
+    "sources": [
+      "https://gongyi.zfcg.henan.gov.cn/henan/content?channelCode=H640101&infoId=1960043"
+    ],
+    "checked_names": [
+      "定鼎门遗址博物馆",
+      "应天门遗址博物馆",
+      "隋唐大运河文化博物馆"
+    ],
+    "note": "应天门已入库；定鼎门遗址博物馆位于隋唐洛阳城南门，与应天门不同。隋唐大运河文化博物馆为洛河、瀍河交汇区域的独立新馆，与现有洛阳万里茶道博物馆不是同一馆舍。",
+    "candidates": [
+      {
+        "name": "定鼎门遗址博物馆",
+        "status": "approved",
+        "description": "在隋唐洛阳城定鼎门遗址原址参观城门遗迹，了解古都城门与相关考古保护展示。",
+        "description_source_url": "https://www.iwenbo.fun/museum/5368.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "第二渠道核准，详见 research_round_20261002C。",
+          "source_urls": [
+            "https://gongyi.zfcg.henan.gov.cn/henan/content?channelCode=H640101&infoId=1960043",
+            "https://www.iwenbo.fun/museum/5368.html",
+            "https://oss.ly.gov.cn/upload-file/files/20250117/8b8b8b59fef24026a790e4324075a93a.pdf",
+            "https://www.openstreetmap.org/way/387176568"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站原始 TMap.LatLng(34.63123488,112.46668696)，GCJ02；近似转 WGS84 为(34.63228097,112.46047150)，在 OSM way/387176568“定鼎门遗址”城门建筑南侧约56米。OSM bbox=(34.6327886,112.4598288)-(34.6331112,112.461463)，building=yes/historic=city_gate；仅作馆舍附近接近点，非实测门口。洛阳市备案馆址为古城路与龙门大道交叉口西200米。"
+        },
+        "longitude": 112.46668696,
+        "latitude": 34.63123488,
+        "coordinate_system": "GCJ02",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5368.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "古建"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "洛阳市备案馆址为古城路与龙门大道交叉口西200米；文博站具名 marker 位于 OSM 定鼎门遗址馆舍南侧约56米，仅是接近点而非实测入口；独立于应天门。",
+        "aliases": [
+          "洛阳定鼎门遗址博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+          "source_urls": [
+            "https://gongyi.zfcg.henan.gov.cn/henan/content?channelCode=H640101&infoId=1960043",
+            "https://www.iwenbo.fun/museum/5368.html",
+            "https://oss.ly.gov.cn/upload-file/files/20250117/8b8b8b59fef24026a790e4324075a93a.pdf",
+            "https://www.openstreetmap.org/way/387176568"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站原始 TMap.LatLng(34.63123488,112.46668696)，GCJ02；近似转 WGS84 为(34.63228097,112.46047150)，在 OSM way/387176568“定鼎门遗址”城门建筑南侧约56米。OSM bbox=(34.6327886,112.4598288)-(34.6331112,112.461463)，building=yes/historic=city_gate；仅作馆舍附近接近点，非实测门口。洛阳市备案馆址为古城路与龙门大道交叉口西200米。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      },
+      {
+        "name": "隋唐大运河文化博物馆",
+        "status": "approved",
+        "description": "位于洛阳市老城区的运河主题博物馆，以“运河源、隋唐韵、河洛技”为主线，通过文物展陈和多媒体互动展示隋唐大运河历史、漕运制度及沿线城市文化。",
+        "description_source_url": "https://www.ly.gov.cn/public-jc/2024/06-13/6103.html",
+        "longitude": 112.4883204,
+        "latitude": 34.6747754,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1148206635",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "建筑",
+          "研学"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "洛阳市政府介绍该馆于2022年建成开放，建筑面积约3.3万平方米，展陈隋唐大运河历史；政府采购资料列馆址为老城区规划路与滨河北路西北角。OSM way/1148206635为具名馆舍范围代表点，WGS84，非入口实测坐标。与现有洛阳万里茶道博物馆（山陕会馆旧址）为不同场馆、不同地址。",
+        "aliases": [
+          "洛阳隋唐大运河博物馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "洛阳市政府和政府采购资料核实现馆身份、展陈及地址；OSM具名馆舍范围提供WGS84代表点；与现有万里茶道博物馆址不同。",
+          "source_urls": [
+            "https://www.ly.gov.cn/public-jc/2024/06-13/6103.html",
+            "https://puyang.zfcg.henan.gov.cn/luoyang/content?channelCode=H640102&infoId=2011107",
+            "https://www.openstreetmap.org/way/1148206635"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情返回名称“洛阳隋唐大运河博物馆”，坐标(112.4883204,34.6747754)；与官方现址相符，为具名馆舍范围的WGS84代表点，非实测入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "city": "新乡市",
+    "province": "河南省",
+    "sources": [
+      "https://ct.xinxiang.gov.cn/xwzx/ggfw/jqjd/837547.html"
+    ],
+    "checked_names": [
+      "万仙山景区",
+      "八里沟景区"
+    ],
+    "note": "八里沟、宝泉已入库；万仙山由郭亮、南坪组成，排除二者另增。",
+    "candidates": [
+      {
+        "name": "万仙山景区",
+        "status": "pending_coordinates",
+        "description": "辉县太行山腹地景区，以郭亮和南坪山村、崖壁景观及户外游览为特色。",
+        "description_source_url": "https://ct.xinxiang.gov.cn/xwzx/ggfw/jqjd/837547.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://ct.xinxiang.gov.cn/xwzx/ggfw/jqjd/837547.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/622572605为way leisure=nature_reserve范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "city": "漯河市",
+    "province": "河南省",
+    "sources": [
+      "https://www.henan.gov.cn/2023/01-30/2680736.html"
+    ],
+    "checked_names": [
+      "许慎文化园",
+      "神州鸟园",
+      "沙澧河风景区"
+    ],
+    "note": "神州鸟园、沙澧河已入库；许慎文化园为汉字文化主题独立园区。第二轮：OSM同名对象为数百米园区面，南门检索无可靠节点，不用质心。",
+    "candidates": [
+      {
+        "name": "许慎文化园",
+        "status": "pending_coordinates",
+        "description": "围绕许慎与汉字文化开展书法、篆刻及文化体验的园区。",
+        "description_source_url": "https://www.henan.gov.cn/2023/01-30/2680736.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.henan.gov.cn/2023/01-30/2680736.html",
+            "https://xswhy.cn/index.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/1053332963为way leisure=park范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "city": "信阳市",
+    "province": "河南省",
+    "sources": [
+      "https://hct.henan.gov.cn/2023/04-01/2717707.html"
+    ],
+    "checked_names": [
+      "鄂豫皖苏区首府革命博物馆",
+      "鸡公山风景区"
+    ],
+    "note": "鸡公山、南湾湖已入库；革命博物馆位于新县首府路，为独立红色场馆。第二轮：OSM同名对象标记为公园（leisure=park），范围较宽，不能当作博物馆馆舍坐标。",
+    "candidates": [
+      {
+        "name": "鄂豫皖苏区首府革命博物馆",
+        "status": "pending_coordinates",
+        "description": "位于新县，展示鄂豫皖苏区革命历史的专题博物馆。",
+        "description_source_url": "https://hct.henan.gov.cn/2023/04-01/2717707.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://hct.henan.gov.cn/2023/04-01/2717707.html",
+            "https://zfcg.henan.gov.cn/cmsweb35rc67w/xysxx/rootfiles/2026/05/29/4d53b617eb85438bb36ca21a65f1810e.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/968648556 为约350米博物馆公园面，非可核验馆门。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://hct.henan.gov.cn/2023/04-01/2717707.html",
+            "https://www.iwenbo.fun/museum/3240.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站 marker 落在鄂豫皖苏区首府多处革命旧址组成的宽泛区域；Photon 反查红四方面军总部旧址等子点，不能作为整馆入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "city": "武汉市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437235.shtml"
+    ],
+    "checked_names": [
+      "武汉革命博物馆",
+      "武汉中共中央机关旧址纪念馆"
+    ],
+    "note": "现有武汉博物馆、湖北省博物馆、八七会议会址等；“武汉革命博物馆”仍作为多处旧址的综合机构保持未决。本轮单独收录武汉中共中央机关旧址纪念馆，其官方地址为胜利街163—171号、由三座历史建筑组成，与八七会议会址为不同旧址。",
+    "candidates": [
+      {
+        "name": "武汉革命博物馆",
+        "status": "pending_coordinates",
+        "description": "位于武昌红巷，统筹农讲所、毛泽东旧居、中共五大会址等革命旧址与陈列。",
+        "description_source_url": "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437235.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437235.shtml",
+            "https://www.wuhan.gov.cn/ztzl/yjs/2024/drz/whswhhlyj_36982/bndys_36983/202403/t20240312_2370900.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+武汉返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437235.shtml",
+            "https://www.iwenbo.fun/museum/3304.html",
+            "https://www.openstreetmap.org/way/733293315"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站 marker 实际对应武昌中央农民运动讲习所旧址子点，武汉革命博物馆官方管理多处旧址；未核准独立总馆入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      },
+      {
+        "name": "武汉中共中央机关旧址纪念馆",
+        "status": "approved",
+        "description": "纪念馆位于汉口历史风貌区胜利街，由中共中央机关旧址、唐生智公馆旧址和怡和洋行公寓旧址组成，通过基本陈列与复原陈列展示1927年中共中央在武汉的历史。",
+        "description_source_url": "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437239.shtml",
+        "longitude": 114.2930635,
+        "latitude": 30.5903492,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1318779319",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "红色文化",
+          "人文",
+          "研学",
+          "近代建筑"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "武汉市文旅局确认馆址为胜利街163—171号，由三座历史建筑及展陈组成；OSM way/1318779319对应具名中共中央机关旧址主馆舍，取WGS84范围代表点，非入口实测坐标。与现有八七会议会址纪念馆为不同历史事件和建筑。",
+        "aliases": [
+          "武汉中共中央机关旧址"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "武汉市文化和旅游局2026年页面确认场馆名称、现址、展陈及开放信息；具名OSM主馆舍范围与官方地址相合；和现有八七会议会址独立。",
+          "source_urls": [
+            "https://wlj.wuhan.gov.cn/zfxxgk/fdzdgknr/jgjj/zsdw/202008/t20200827_1437239.shtml",
+            "https://www.openstreetmap.org/way/1318779319"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "Nominatim对象详情确认way/1318779319名称为武汉中共中央机关旧址，坐标(114.2930635,30.5903492)；对应官方163—171号历史建筑群主馆舍范围，WGS84代表点，非入口实测坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "city": "襄阳市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/bmdt/mtjj/202606/t20260609_5954716.shtml"
+    ],
+    "checked_names": [
+      "襄阳市博物馆"
+    ],
+    "note": "现有古隆中、襄阳古城、唐城等；市博物馆为独立馆舍，非古城墙景点。",
+    "candidates": [
+      {
+        "name": "襄阳市博物馆",
+        "status": "approved",
+        "description": "襄城区胜利街的地方综合性博物馆，以馆藏和展陈介绍襄阳地区历史文化。",
+        "description_source_url": "https://www.xymuseum.cn/Collection/Treasure",
+        "longitude": 112.162776,
+        "latitude": 31.9941827,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/9825987567",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "采用OSM具名襄阳市博物馆、附官网网址的现馆节点；官网确认现址胜利街228号，排除北街1号旧馆节点。此为场馆POI节点，非实测入口。",
+        "aliases": [
+          "襄阳博物馆"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/运营方资料核实馆址及简介，OSM具名场馆节点或小型院落建筑锚点核实坐标，确认不与现有景点重叠。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/bmdt/mtjj/202606/t20260609_5954716.shtml",
+            "https://zh.wikipedia.org/wiki/%E8%A5%84%E9%98%B3%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://www.xymuseum.cn/Collection/Treasure",
+            "https://www.openstreetmap.org/node/9825987567"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM node/9825987567 为胜利街现馆具名museum节点；已排除北街旧馆节点。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "city": "荆州市",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/bmdt/szyw/jz/202601/t20260123_5862230.shtml"
+    ],
+    "checked_names": [
+      "荆州园博园",
+      "荆州古城历史文化旅游区"
+    ],
+    "note": "古城、方特已入库；园博园位于纪南生态文旅区，为独立园林景区，非古城内博物馆子点。",
+    "candidates": [
+      {
+        "name": "荆州园博园",
+        "status": "pending_coordinates",
+        "description": "荆州市4A级园林博览景区，以园林展园、楚文化与季节活动为主题。",
+        "description_source_url": "https://wlt.hubei.gov.cn/bmdt/szyw/jz/202601/t20260123_5862230.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.hubei.gov.cn/bmdt/szyw/jz/202601/t20260123_5862230.shtml",
+            "https://www.jzyby.com/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“荆州路”(highway=secondary, https://www.openstreetmap.org/way/756786699)，与“荆州园博园”不符；拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "city": "恩施土家族苗族自治州",
+    "province": "湖北省",
+    "sources": [
+      "https://www.eco.gov.cn/news_info/40202.html"
+    ],
+    "checked_names": [
+      "腾龙洞风景区"
+    ],
+    "note": "现有恩施大峡谷、土司城和州博物馆；腾龙洞位于利川，为独立洞穴景区。第三轮：OSM同名对象为数公里长的景区relation，未核到售票或洞口抵达点，拒绝用范围质心。",
+    "candidates": [
+      {
+        "name": "腾龙洞风景区",
+        "status": "pending_coordinates",
+        "description": "利川市大型洞穴景区，以洞穴群和地下地质景观为特色。",
+        "description_source_url": "https://www.eco.gov.cn/news_info/40202.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.eco.gov.cn/news_info/40202.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/relation/16004357为relation leisure=nature_reserve范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "city": "神农架林区",
+    "province": "湖北省",
+    "sources": [
+      "https://wlt.hubei.gov.cn/bmdt/ztzl/mzyj/202304/t20230420_4631832.shtml"
+    ],
+    "checked_names": [
+      "神农顶景区",
+      "官门山景区",
+      "天生桥景区",
+      "天燕景区",
+      "大九湖景区"
+    ],
+    "note": "现有神农架生态旅游区为总称，官门山、大九湖已单列；天燕虽独立售票，但可能被总景区范围覆盖，本轮保守不提新增。",
+    "candidates": []
+  },
+  {
+    "id": 194,
+    "city": "衡阳市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.hunan.gov.cn/hnszf/c101477/202108/t20210827_20402017.html"
+    ],
+    "checked_names": [
+      "罗荣桓故居和纪念馆"
+    ],
+    "note": "现有衡山、南岳大庙、石鼓书院等；衡东罗荣桓纪念景区地点和主题独立。第二轮：OSM未找到同名故居/纪念馆可靠点，避免以纪念景区泛范围定位。",
+    "candidates": [
+      {
+        "name": "罗荣桓故居和纪念馆",
+        "status": "pending_coordinates",
+        "description": "衡东县纪念景区，涵盖故居、生平业绩陈列馆及纪念广场等，按整体景区去重。",
+        "description_source_url": "https://www.hunan.gov.cn/hnszf/c101477/202108/t20210827_20402017.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.hunan.gov.cn/hnszf/c101477/202108/t20210827_20402017.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+衡阳返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.hunan.gov.cn/hnszf/c101477/202108/t20210827_20402017.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "罗荣桓故居和纪念馆为复合景区，第二渠道无整体游客入口坐标；不能取纪念馆或故居子点替代。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "city": "张家界市",
+    "province": "湖南省",
+    "sources": [
+      "https://whhlyt.hunan.gov.cn/whhlyt/wldhjqjd/202208/t20220816_27583769.html"
+    ],
+    "checked_names": [
+      "张家界大峡谷",
+      "武陵源风景名胜区"
+    ],
+    "note": "武陵源—天门山已入库；大峡谷紧邻武陵源但为另行开发的独立景区，排除玻璃桥作为子点。",
+    "candidates": [
+      {
+        "name": "张家界大峡谷景区",
+        "status": "pending_coordinates",
+        "description": "武陵源附近的峡谷景区，设峡谷游道、瀑布与玻璃桥游览设施。",
+        "description_source_url": "https://whhlyt.hunan.gov.cn/whhlyt/wldhjqjd/202208/t20220816_27583769.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whhlyt.hunan.gov.cn/whhlyt/wldhjqjd/202208/t20220816_27583769.html",
+            "https://whhlyt.hunan.gov.cn/whhlyt/wldhchzn/wldh_zhinan.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“张家界大峡谷景区 张家界市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 202,
+    "city": "怀化市",
+    "province": "湖南省",
+    "sources": [
+      "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/qtxx/sxfc/201510/t20151009_4166455.html"
+    ],
+    "checked_names": [
+      "通道万佛山"
+    ],
+    "note": "现有洪江古商城、黔阳古城和受降纪念馆；万佛山位于通道县，为独立山地景区。",
+    "candidates": [
+      {
+        "name": "通道万佛山景区",
+        "status": "pending_coordinates",
+        "description": "通道侗族自治县的山岳地质景区，以峰林和丹霞山地景观见长。",
+        "description_source_url": "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/qtxx/sxfc/201510/t20151009_4166455.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://zrzyt.hunan.gov.cn/zrzyt/xxgk/qtxx/sxfc/201510/t20151009_4166455.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“合肥一六八玫瑰园东校教育集团经开实验学校”(amenity=school, https://www.openstreetmap.org/way/846675815)，与“通道万佛山景区”不符；拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "city": "韶关市",
+    "province": "广东省",
+    "sources": [
+      "https://www.sg.gov.cn/bmpdlm/whgdlvtyjj/tsfw/zwgk/csjqzx/yzsg/content/post_2424512.html"
+    ],
+    "checked_names": [
+      "广东乳源大峡谷"
+    ],
+    "note": "现有丹霞山、南华禅寺；乳源大峡谷位于大布镇，为不同地貌和区域的独立景区。",
+    "candidates": [
+      {
+        "name": "广东乳源大峡谷",
+        "status": "pending_coordinates",
+        "description": "乳源大布镇峡谷景区，以深切峡谷、山林和瀑布为主要景观。",
+        "description_source_url": "https://www.sg.gov.cn/bmpdlm/whgdlvtyjj/tsfw/zwgk/csjqzx/yzsg/content/post_2424512.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.sg.gov.cn/bmpdlm/whgdlvtyjj/tsfw/zwgk/csjqzx/yzsg/content/post_2424512.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“广东乳源大峡谷 韶关市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "city": "佛山市",
+    "province": "广东省",
+    "sources": [
+      "https://www.qb.gd.gov.cn/mlgd/content/post_1118756.html"
+    ],
+    "checked_names": [
+      "千灯湖公园",
+      "祖庙博物馆",
+      "岭南天地"
+    ],
+    "note": "祖庙已入库；岭南天地与祖庙紧邻且有复合范围，暂不提；千灯湖为南海区独立城市公园。",
+    "candidates": [
+      {
+        "name": "千灯湖公园",
+        "status": "pending_coordinates",
+        "description": "佛山南海区的滨湖城市公园，适合步行休闲和夜间观赏湖区灯光。",
+        "description_source_url": "https://www.qb.gd.gov.cn/mlgd/content/post_1118756.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.qb.gd.gov.cn/mlgd/content/post_1118756.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/130966168为way leisure=park范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "city": "肇庆市",
+    "province": "广东省",
+    "sources": [
+      "https://dfz.gd.gov.cn/index/qwfz/content/post_4678455.html"
+    ],
+    "checked_names": [
+      "德庆学宫",
+      "悦城龙母祖庙",
+      "盘龙峡生态旅游景区"
+    ],
+    "note": "龙母祖庙已入库；德庆学宫位于德庆县城，为独立古建筑景点。第二轮：OSM同名对象是宗教用地面而非建筑或入口点，坐标先不批准。",
+    "candidates": [
+      {
+        "name": "德庆学宫",
+        "status": "pending_coordinates",
+        "description": "德庆县城的古代孔庙建筑群，以宋元时期木构大成殿和儒学文化为核心。",
+        "description_source_url": "https://dfz.gd.gov.cn/index/qwfz/content/post_4678455.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://dfz.gd.gov.cn/index/qwfz/content/post_4678455.html",
+            "https://zh.wikipedia.org/wiki/%E5%BE%B7%E5%BA%86%E5%AD%A6%E5%AE%AB"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/898077647 为德庆学宫约160米宗教用地面，非入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://dfz.gd.gov.cn/index/qwfz/content/post_4678455.html",
+            "https://www.iwenbo.fun/heritage/637.html",
+            "https://www.openstreetmap.org/way/898077647"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站具名 marker 位于 OSM way/898077647“德庆学宫”较大院落中部，未证实临街入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 218,
+    "city": "河源市",
+    "province": "广东省",
+    "sources": [
+      "https://www.heyuan.gov.cn/bmjy/hysdfzbgs/tzgg/content/post_551994.html"
+    ],
+    "checked_names": [
+      "河源恐龙博物馆"
+    ],
+    "note": "现有万绿湖、桂山、巴伐利亚庄园、霍山；恐龙博物馆为独立科普场馆。",
+    "candidates": [
+      {
+        "name": "河源恐龙博物馆",
+        "status": "approved",
+        "description": "收藏展示河源恐龙蛋、骨骼与足迹化石的专题博物馆。",
+        "description_source_url": "https://www.heyuan.gov.cn/bmjy/hysdfzbgs/tzgg/content/post_551994.html",
+        "longitude": 114.6959263,
+        "latitude": 23.7284582,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/908952822",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "河源官方资料证实专题馆独立运营；OSM以河源恐龙博物馆（中国古动物馆恐龙蛋馆）具名馆舍建筑定位，非大景区中心。",
+        "aliases": [
+          "河源恐龙博物馆(中国古动物馆恐龙蛋馆)"
+        ]
+      }
+    ]
+  }
+]

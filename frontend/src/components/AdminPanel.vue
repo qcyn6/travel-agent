@@ -27,6 +27,7 @@ const importedGuideFilename = ref('')
 const busy = ref(false)
 const notice = ref('')
 const error = ref('')
+let guideLoadVersion = 0
 
 function readableError(caught: unknown) {
   return caught instanceof ApiError ? caught.message : '操作失败，请稍后再试'
@@ -84,6 +85,8 @@ async function loadGuideIndexStatus() {
 }
 
 function startCreateGuide() {
+  if (busy.value) return
+  guideLoadVersion += 1
   creatingGuide.value = true
   selectedGuide.value = null
   newGuideFilename.value = '新知识文档.md'
@@ -136,16 +139,23 @@ async function refreshAdminData() {
 }
 
 async function chooseGuide(guide: AdminGuideSummary) {
+  const version = ++guideLoadVersion
   try {
-    selectedGuide.value = await adminApi.guide(guide.filename)
+    const loaded = await adminApi.guide(guide.filename)
+    if (version !== guideLoadVersion) return
+    selectedGuide.value = loaded
     guideContent.value = selectedGuide.value.content
   } catch (caught) {
-    error.value = readableError(caught)
+    if (version === guideLoadVersion) error.value = readableError(caught)
   }
 }
 
 async function saveGuide() {
+  if (busy.value) return
   if (!creatingGuide.value && !selectedGuide.value) return
+  guideLoadVersion += 1
+  error.value = ''
+  notice.value = ''
   busy.value = true
   try {
     if (creatingGuide.value) {
@@ -155,7 +165,7 @@ async function saveGuide() {
       importedGuideFilename.value = ''
       notice.value = '指南已新增，并已同步到向量库。'
     } else {
-      selectedGuide.value = await adminApi.updateGuide(selectedGuide.value!.filename, guideContent.value)
+      selectedGuide.value = await adminApi.updateGuide(selectedGuide.value!.filename, guideContent.value, selectedGuide.value!.revision)
       notice.value = '指南已保存，并已同步到向量库。'
     }
     await loadGuides()
@@ -168,11 +178,15 @@ async function saveGuide() {
 }
 
 async function deleteGuide() {
+  if (busy.value) return
   if (!selectedGuide.value || creatingGuide.value) return
   if (!window.confirm(`确定删除“${selectedGuide.value.title}”吗？`)) return
+  guideLoadVersion += 1
+  error.value = ''
+  notice.value = ''
   busy.value = true
   try {
-    await adminApi.deleteGuide(selectedGuide.value.filename)
+    await adminApi.deleteGuide(selectedGuide.value.filename, selectedGuide.value.revision)
     selectedGuide.value = null
     guideContent.value = ''
     notice.value = '指南已删除，并已同步到向量库。'
@@ -186,6 +200,7 @@ async function deleteGuide() {
 }
 
 async function rebuildGuideIndex() {
+  if (busy.value) return
   busy.value = true
   try {
     await adminApi.rebuildGuideIndex()
@@ -261,7 +276,7 @@ onMounted(() => {
         <div class="knowledge-actions"><button v-if="creatingGuide" class="knowledge-button" type="button" :disabled="busy" title="放弃新增并返回指南编辑" @click="cancelCreateGuide">返回编辑</button><button v-else class="knowledge-button" type="button" :disabled="busy" title="把现有指南重新同步到向量库" @click="rebuildGuideIndex">同步向量库</button><button v-if="!creatingGuide" class="knowledge-button" type="button" :disabled="busy" title="新增一份 Markdown 指南" @click="startCreateGuide">新增指南</button><button v-if="selectedGuide && !creatingGuide" class="knowledge-button" type="button" :disabled="busy" title="删除当前选中的指南" @click="deleteGuide">删除指南</button></div>
       </div>
       <div class="knowledge-layout">
-        <div class="guide-list"><button v-for="guide in guides" :key="guide.filename" class="admin-list-item" :class="{ active: selectedGuide?.filename === guide.filename }" type="button" @click="chooseGuide(guide)"><span><strong>{{ guide.title }}</strong><small>{{ guide.filename }}</small></span></button></div>
+        <div class="guide-list"><button v-for="guide in guides" :key="guide.filename" class="admin-list-item" :class="{ active: selectedGuide?.filename === guide.filename }" type="button" :disabled="busy" @click="chooseGuide(guide)"><span><strong>{{ guide.title }}</strong><small>{{ guide.filename }}</small></span></button></div>
         <div class="guide-editor">
           <template v-if="creatingGuide">
             <div class="guide-import-row">
@@ -269,10 +284,10 @@ onMounted(() => {
               <button class="knowledge-button" type="button" :disabled="busy" @click="guideFileInput?.click()">选择 Markdown 文档</button>
               <small>{{ importedGuideFilename ? `已读取：${importedGuideFilename}` : '也可以直接在下方编写内容' }}</small>
             </div>
-            <input v-model="newGuideFilename" class="guide-filename" placeholder="文件名，例如：海边旅行指南.md" />
-            <textarea v-model="newGuideContent" spellcheck="false"></textarea>
+            <input v-model="newGuideFilename" class="guide-filename" :disabled="busy" placeholder="文件名，例如：海边旅行指南.md" />
+            <textarea v-model="newGuideContent" :disabled="busy" spellcheck="false"></textarea>
           </template>
-          <textarea v-else-if="selectedGuide" v-model="guideContent" spellcheck="false"></textarea>
+          <textarea v-else-if="selectedGuide" v-model="guideContent" :disabled="busy" spellcheck="false"></textarea>
           <p v-else class="admin-empty">暂无指南，请点击“新增指南”</p>
           <button v-if="creatingGuide || selectedGuide" class="admin-action" type="button" :disabled="busy" @click="saveGuide">{{ creatingGuide ? '创建并同步' : '保存并同步' }}</button>
         </div>

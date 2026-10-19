@@ -9,12 +9,13 @@ from backend.models.requirement import MAX_SINGLE_CITY_DAYS
 from backend.planner import CityPlanningError, CityPlanningService, DeepSeekCityPlanner
 from backend.rag import EmbeddingError
 from backend.rag.runtime import build_hybrid_service
+from backend.security import reject_legacy_planning
 
 
 router = APIRouter(prefix="/api/v1/planning", tags=["planning"])
 
 
-@router.post("/city", response_model=CityPlanningResult)
+@router.post("/city", response_model=CityPlanningResult, dependencies=[Depends(reject_legacy_planning)])
 async def plan_city(
     request: CityPlanningRequest,
     repository: KnowledgeRepository = Depends(get_knowledge_repository),

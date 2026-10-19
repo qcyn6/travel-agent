@@ -23,7 +23,7 @@ class PlanningQueueMessage:
 class PlanningQueue(Protocol):
     enabled: bool
 
-    async def enqueue(self, job_id: str) -> bool: ...
+    async def enqueue(self, job_id: str, *, generation: int = 0) -> bool: ...
 
     async def receive(
         self,
@@ -41,8 +41,8 @@ class PlanningQueue(Protocol):
 class NullPlanningQueue:
     enabled = False
 
-    async def enqueue(self, job_id: str) -> bool:
-        del job_id
+    async def enqueue(self, job_id: str, *, generation: int = 0) -> bool:
+        del job_id, generation
         return False
 
     async def receive(
@@ -95,9 +95,14 @@ class RedisPlanningQueue:
         self._claim_cursor = "0-0"
         self._warning_emitted = False
 
-    async def enqueue(self, job_id: str) -> bool:
+    async def enqueue(self, job_id: str, *, generation: int = 0) -> bool:
         reserved = False
         dedup_key = f"{self.key_prefix}:planning:dispatch:{job_id}"
+        # retry_count is retained when a checkpointed job resumes. Each
+        # queued execution round needs its own dispatch reservation, while
+        # reconnects within the same round must still be deduplicated.
+        if generation:
+            dedup_key += f":{generation}"
         try:
             await self._ensure_group()
             reserved = bool(
@@ -112,7 +117,7 @@ class RedisPlanningQueue:
                 return True
             await self.client.xadd(
                 self.stream_key,
-                {"job_id": job_id},
+                {"job_id": job_id, "generation": str(generation)},
                 maxlen=self.max_length,
                 approximate=True,
             )

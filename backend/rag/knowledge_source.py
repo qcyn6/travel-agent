@@ -5,6 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import re
+from urllib.parse import quote
+
+from backend.rag.guide_files import guide_paths
 
 
 class KnowledgeSourceError(RuntimeError):
@@ -48,12 +51,8 @@ class TravelGuideKnowledgeSource:
             raise KnowledgeSourceError(f"主题知识库目录不存在：{self.directory}")
 
         documents: list[KnowledgeChunk] = []
-        for path in sorted(self.directory.glob("*.md")):
-            if path.name.lower() == "readme.md":
-                continue
+        for path in guide_paths(self.directory):
             documents.extend(self._parse_file(path))
-        if not documents:
-            raise KnowledgeSourceError(f"主题知识库目录中没有 Markdown 文档：{self.directory}")
         return documents
 
     def retrieval_keywords(self) -> tuple[str, ...]:
@@ -101,8 +100,20 @@ class TravelGuideKnowledgeSource:
                 current_lines.append(line)
         if current_name is not None:
             sections.append((current_name, current_lines))
+        # Imported guides need not use our section template. Keep their full
+        # text retrievable instead of silently producing zero chunks.
+        if not sections and any(line.strip() for line in lines):
+            sections.append((title, lines))
 
-        slug = re.sub(r"[^\w\u4e00-\u9fff]+", "-", path.stem).strip("-")
+        legacy_slug = re.sub(r"[^\w\u4e00-\u9fff]+", "-", path.stem).strip("-")
+        # Retain IDs for ordinary existing filenames. Names that lost any
+        # characters under the old normalization use a reversible, versioned
+        # full filename, so e.g. "a b.md" can never collide with "a-b.md".
+        document_key = (
+            path.stem
+            if legacy_slug and legacy_slug == path.stem and path.suffix == ".md"
+            else f"v2:{quote(path.name, safe='')}"
+        )
         documents: list[KnowledgeChunk] = []
         for index, (section_name, section_lines) in enumerate(sections, start=1):
             content_parts = [
@@ -115,7 +126,7 @@ class TravelGuideKnowledgeSource:
                 continue
             documents.append(
                 KnowledgeChunk(
-                    doc_id=f"guide:{slug}:{index:02d}",
+                    doc_id=f"guide:{document_key}:{index:02d}",
                     entity_type="guide",
                     name=title,
                     province="全国",

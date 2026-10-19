@@ -1,0 +1,115 @@
+[
+  {
+    "id": 43,
+    "city": "兴安盟",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.xam.gov.cn/xam/2024-07/23/17200b317ef24ca6afa32bae734fa2a8/2024072310452093532.pdf"
+    ],
+    "checked_names": [
+      "成吉思汗庙景区",
+      "阿尔山·柴河旅游景区",
+      "阿尔山海神圣泉旅游区",
+      "乌兰毛都草原风景区"
+    ],
+    "note": "阿尔山·柴河与现有5A条目相同，乌兰毛都已有；成吉思汗庙为乌兰浩特独立4A景区。",
+    "candidates": [
+      {
+        "name": "成吉思汗庙景区",
+        "status": "pending_coordinates",
+        "description": "乌兰浩特市的成吉思汗庙文化景区，是兴安盟等级景区名录中的独立历史文化参观点。",
+        "description_source_url": "https://www.xam.gov.cn/xam/2024-07/23/17200b317ef24ca6afa32bae734fa2a8/2024072310452093532.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.xam.gov.cn/xam/2024-07/23/17200b317ef24ca6afa32bae734fa2a8/2024072310452093532.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "寺庙景区范围大，本轮未获得可核验游客入口点，避免使用建筑群质心。",
+          "source_urls": [
+            "https://www.xam.gov.cn/xam/2024-07/23/17200b317ef24ca6afa32bae734fa2a8/2024072310452093532.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "寺庙景区范围大，本轮未获得可核验游客入口点，避免使用建筑群质心。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "city": "大连市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012815521914267/index.shtml",
+      "https://whly.ln.gov.cn/whly/gsxw/2024072613484739848/index.shtml"
+    ],
+    "checked_names": [
+      "旅顺日俄监狱旧址博物馆",
+      "旅顺博物馆",
+      "大连博物馆",
+      "大连自然博物馆"
+    ],
+    "note": "旅顺日俄监狱旧址博物馆与已在库旅顺博物馆、旅顺日本关东法院旧址为不同遗址馆。",
+    "candidates": [
+      {
+        "name": "旅顺日俄监狱旧址博物馆",
+        "status": "approved",
+        "description": "旅顺口区向阳街的近代监狱旧址博物馆，通过保留的监狱建筑与展陈介绍日俄侵华历史。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2026012815521914267/index.shtml",
+        "longitude": 121.2599376,
+        "latitude": 38.8245804,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/2421358101",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "近代建筑"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "辽宁文旅官方单列该馆；OSM具名 museum 节点与现有旅顺博物馆、旅顺日本关东法院旧址分离。",
+        "aliases": [
+          "旅顺监狱旧址"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "city": "丹东市",
+    "province": "辽宁省",
+    "sources": [
+      "https://files.dandong.gov.cn/files/ueditor/KDXZF/jsp/upload/file/20230324/1679625497588065060.pdf",
+      "https://dd110.dandong.gov.cn/html/DDGAJ/202507/0175323390088984.html"
+    ],
+    "checked_names": [
+      "青山沟风景区",
+      "天桥沟景区",
+      "鸭绿江风景名胜区"
+    ],
+    "note": "青山沟位于宽甸青山沟镇，非现有天桥沟、凤凰山及鸭绿江沿岸子点；暂不拆分青山沟内部各景点。",
+    "candidates": [
+      {
+        "name": "青山沟风景区",
+        "status": "pending_coordinates",
+        "description": "宽甸满族自治县青山沟镇的山水风景区，以辽东山地河谷、林地和水域景观为主要游览内容。",
+        "description_source_url": "https://files.dandong.gov.cn/files/ueditor/KDXZF/jsp/upload/file/20230324/1679625497588065060.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮检索首项位于异地或非目标景点，错匹配已排除；缺可信同城坐标。",
+          "source_urls": [
+            "https://files.dandong.gov.cn/files/ueditor/KDXZF/jsp/upload/file/20230324/1679625497588065060.pdf",
+            "https://dd110.dandong.gov.cn/html/DDGAJ/202507/0175323390088984.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "错项：瑞幸咖啡, 晋中市, 山西省, 中国。"
+        }
+      }
+    ]
+  }
+]

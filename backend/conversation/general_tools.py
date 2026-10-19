@@ -8,6 +8,7 @@ from datetime import date, timedelta
 
 from backend.amap_mcp import AmapMcpAPIError, AmapMcpClient, AmapMcpConfigurationError
 from backend.cache import build_cache
+from backend.conversation.tool_results import tool_result
 from backend.models.general_chat import GeneralIntentDecision
 from backend.models.travel_plan import AttractionStop
 from backend.requirements.dates import format_date_zh
@@ -19,27 +20,34 @@ from backend.weather import QWeatherAPIError, QWeatherClient, QWeatherConfigurat
 logger = logging.getLogger(__name__)
 
 
+class PlaceClarificationError(ValueError):
+    """A safe, user-visible request to disambiguate a place."""
+
+
 class AmapMcpPlaceResolver:
     """Resolve a free-form place name to coordinates through Amap MCP."""
 
-    def __init__(self, client: AmapMcpClient, *, detail_concurrency: int = 5):
+    def __init__(self, client: AmapMcpClient, *, detail_concurrency: int = 5, max_attempts: int = 2):
         self.client = client
         self.detail_concurrency = max(1, detail_concurrency)
+        self.max_attempts = max(1, min(max_attempts, 2))
 
     async def resolve(self, name: str, *, city: str | None = None) -> AttractionStop | None:
         arguments = {"address": name}
         if city:
             arguments["city"] = city
         payload = None
-        for attempt in range(2):
+        for attempt in range(self.max_attempts):
             try:
                 payload = await self.client.call_tool("maps_geo", arguments, operation="geocode")
                 break
-            except (AmapMcpAPIError, AmapMcpConfigurationError):
-                if attempt == 0:
+            except AmapMcpConfigurationError:
+                raise
+            except AmapMcpAPIError:
+                if attempt + 1 < self.max_attempts:
                     await asyncio.sleep(0.25)
                     continue
-                return None
+                raise
         # The official MCP adapter currently returns ``results`` while some
         # older Amap-compatible adapters return ``geocodes``. Accept both
         # shapes so free-form endpoints such as railway stations can still be
@@ -49,10 +57,14 @@ class AmapMcpPlaceResolver:
             geocodes = payload.get("results")
         if not isinstance(geocodes, list) or not geocodes:
             return None
+        candidates = [item for item in geocodes if isinstance(item, Mapping)
+                      and _valid_coordinates(_coordinates(item.get("location"))) is not None]
+        if len(candidates) > 1:
+            raise PlaceClarificationError(f"“{name}”匹配到多个位置，请补充城市、区县或具体地址。")
         item = geocodes[0]
         if not isinstance(item, Mapping):
             return None
-        coordinates = _coordinates(item.get("location"))
+        coordinates = _valid_coordinates(_coordinates(item.get("location")))
         if coordinates is None:
             return None
         longitude, latitude = coordinates
@@ -200,6 +212,7 @@ class GeneralTravelToolService:
         self.place_resolver = place_resolver
         self.weather_client = weather_client
         self.today_provider = today_provider
+        self._resolved_places: dict[str, AttractionStop] = {}
         self.last_card: dict[str, object] | None = None
         self.last_tool_result: dict[str, object] | None = None
 
@@ -214,17 +227,15 @@ class GeneralTravelToolService:
     ) -> str:
         """Keep the human-readable response and expose a safe Agent envelope."""
 
-        self.last_tool_result = {
-            "status": status,
-            "message": message,
-            "data": data,
-            "retryable": retryable,
-            "missing_fields": missing_fields or [],
-        }
+        self.last_tool_result = tool_result(
+            status, message, data=data, retryable=retryable,
+            missing_fields=missing_fields,
+        )
         return message
 
     async def execute(self, decision: GeneralIntentDecision) -> str | None:
         self.last_card = None
+        self.last_tool_result = None
         if decision.includes("nearby"):
             return await self.query_nearby(decision)
         if decision.includes("route"):
@@ -257,6 +268,8 @@ class GeneralTravelToolService:
             )
         try:
             center = await self._resolve_place(decision.nearby_center)
+        except PlaceClarificationError as exc:
+            return self._record_result("needs_clarification", str(exc), missing_fields=["specific_center"])
         except Exception as exc:  # noqa: BLE001 - return a safe status to the Agent
             logger.warning("普通模式附近地点解析失败：%s", type(exc).__name__)
             return self._record_result(
@@ -364,6 +377,8 @@ class GeneralTravelToolService:
         try:
             origin = await self._resolve_place(decision.origin)
             destination = await self._resolve_place(decision.destination)
+        except PlaceClarificationError as exc:
+            return self._record_result("needs_clarification", str(exc), missing_fields=["specific_place"])
         except Exception as exc:  # noqa: BLE001 - return safe status to the Agent
             logger.warning("普通模式路线地点解析失败：%s", type(exc).__name__)
             return self._record_result(
@@ -487,9 +502,10 @@ class GeneralTravelToolService:
                         for target_date in target_dates
                     )
                 )
-        except QWeatherAPIError:
+        except QWeatherAPIError as exc:
             return self._record_result(
-                "retryable_error", "天气服务暂时不可用，请稍后重试。", retryable=True
+                "retryable_error" if exc.retryable else "error",
+                "天气服务暂时不可用，请稍后重试。", retryable=exc.retryable
             )
         except QWeatherConfigurationError:
             return self._record_result("error", "天气服务暂时不可用，请稍后重试。")
@@ -538,25 +554,22 @@ class GeneralTravelToolService:
             if weather.wind_level:
                 facts.append(f"风力{weather.wind_level}级")
             summaries.append(f"{city.name}{format_date_zh(weather.date or target_date)}：{'，'.join(facts)}。")
+        data = {
+            "city": city.name,
+            "forecasts": [
+                {
+                    "date": weather.date.isoformat() if weather.date else target_date.isoformat(),
+                    "condition": weather.condition,
+                    "temperature_min": weather.temperature_min,
+                    "temperature_max": weather.temperature_max,
+                    "precipitation_probability": weather.precipitation_probability,
+                    "wind_level": weather.wind_level,
+                }
+                for target_date, weather in zip(target_dates, weather_results)
+            ],
+        }
         if len(summaries) == 1:
-            return self._record_result(
-                "ok",
-                summaries[0],
-                data={
-                    "city": city.name,
-                    "forecasts": [
-                        {
-                            "date": weather.date.isoformat() if weather.date else target_dates[0].isoformat(),
-                            "condition": weather.condition,
-                            "temperature_min": weather.temperature_min,
-                            "temperature_max": weather.temperature_max,
-                            "precipitation_probability": weather.precipitation_probability,
-                            "wind_level": weather.wind_level,
-                        }
-                        for weather in weather_results
-                    ],
-                },
-            )
+            return self._record_result("ok", summaries[0], data=data)
         starts_today = target_dates[0] == today
         expected_dates = [
             (today if starts_today else today + timedelta(days=1))
@@ -570,27 +583,35 @@ class GeneralTravelToolService:
         else:
             heading = f"{city.name}以下日期的天气："
         message = heading + "\n" + "\n".join(summaries)
-        return self._record_result(
-            "ok",
-            message,
-            data={
-                "city": city.name,
-                "forecasts": [
-                    {
-                        "date": weather.date.isoformat() if weather.date else target_date.isoformat(),
-                        "condition": weather.condition,
-                        "temperature_min": weather.temperature_min,
-                        "temperature_max": weather.temperature_max,
-                        "precipitation_probability": weather.precipitation_probability,
-                        "wind_level": weather.wind_level,
-                    }
-                    for target_date, weather in zip(target_dates, weather_results)
-                ],
-            },
-        )
+        return self._record_result("ok", message, data=data)
 
     async def _resolve_place(self, name: str) -> AttractionStop | None:
-        local = self.attraction_repository.find_place(name)
+        key = name.strip()
+        if key in self._resolved_places:
+            return self._resolved_places[key]
+        place = await self._resolve_place_uncached(key)
+        if place is not None:
+            self._resolved_places[key] = place
+        return place
+
+    async def _resolve_place_uncached(self, name: str) -> AttractionStop | None:
+        if self.catalog_repository.find_city(name) is not None:
+            raise PlaceClarificationError(f"“{name}”是城市范围，请指定车站、景点入口或具体地址。")
+        candidate_query = getattr(self.attraction_repository, "find_place_candidates", None)
+        if callable(candidate_query):
+            candidates = candidate_query(name)
+            exact = [(poi, city) for poi, city in candidates if name.strip() in {
+                poi.name, city.name + poi.name, city.name.removesuffix('市') + poi.name,
+            }]
+            candidates = exact or candidates
+            # Distinct local POIs are not interchangeable, even in one city.
+            unique = {poi.poi_id: (poi, city) for poi, city in candidates}
+            if len(unique) > 1:
+                options = '、'.join(f'{city.name}{poi.name}' for poi, city in list(unique.values())[:4])
+                raise PlaceClarificationError(f"“{name}”存在多个匹配：{options}。请补充城市、区县或具体地点。")
+            local = next(iter(unique.values()), None)
+        else:
+            local = self.attraction_repository.find_place(name)
         if local is not None:
             attraction, city = local
             if attraction.longitude is not None and attraction.latitude is not None:
@@ -626,6 +647,7 @@ def build_general_travel_tools(session, settings) -> GeneralTravelToolService:
         place_resolver = AmapMcpPlaceResolver(
             mcp_client,
             detail_concurrency=getattr(settings, "amap_mcp_detail_concurrency", 5),
+            max_attempts=1,
         )
         route_client = AmapMcpRouteClient(
             settings.amap_api_key,
@@ -644,6 +666,7 @@ def build_general_travel_tools(session, settings) -> GeneralTravelToolService:
         timeout_seconds=settings.qweather_timeout_seconds,
         cache=cache,
         cache_ttl_seconds=settings.redis_weather_ttl_seconds,
+        max_attempts=1,
     )
     return GeneralTravelToolService(
         catalog_repository=CatalogRepository(session),

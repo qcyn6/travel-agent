@@ -1,0 +1,599 @@
+[
+  {
+    "id": 222,
+    "city": "中山市",
+    "province": "广东省",
+    "sources": [
+      "https://zsxwfbt.zs.gov.cn/news/index/view/cateid/1193/id/718188.html"
+    ],
+    "checked_names": [
+      "崖口村",
+      "孙中山故里旅游区"
+    ],
+    "note": "孙中山故里及故居已入库；崖口村为南朗街道独立乡村游览目的地，非故里景区子点。",
+    "candidates": [
+      {
+        "name": "崖口村",
+        "status": "pending_coordinates",
+        "description": "南朗街道滨海乡村，保留稻田景观与乡村生活体验。",
+        "description_source_url": "https://zsxwfbt.zs.gov.cn/news/index/view/cateid/1193/id/718188.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://zsxwfbt.zs.gov.cn/news/index/view/cateid/1193/id/718188.html",
+            "https://www.zs.gov.cn/zwgk/fggw/szfwj/content/post_1671147.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/node/11519486059为村/地名节点，不等于游览入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "city": "南宁市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://www.fnrrc.com/ziranbaohuqujianjie/9773.html"
+    ],
+    "checked_names": [
+      "广西大明山国家级自然保护区"
+    ],
+    "note": "现有青秀山、园博园和多处市区场馆；大明山跨武鸣、上林、马山，属于独立山地自然游览区；开放范围须进一步核。",
+    "candidates": [
+      {
+        "name": "南宁大明山风景旅游区",
+        "status": "pending_coordinates",
+        "description": "南宁北部山地游览区，以高海拔森林、山脉与季节自然景观见长。",
+        "description_source_url": "https://www.fnrrc.com/ziranbaohuqujianjie/9773.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.fnrrc.com/ziranbaohuqujianjie/9773.html",
+            "https://www.gxnews.com.cn/staticpages/20260825/newgx6a8d85a2-21985837.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“南宁大明山风景旅游区 南宁市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 230,
+    "city": "北海市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://gxbh.wenming.cn/wcnr/202407/t20240704_8588451.shtml"
+    ],
+    "checked_names": [
+      "合浦汉代文化博物馆"
+    ],
+    "note": "现有海丝首港与北海老城；合浦汉代文化博物馆为独立展馆，不等同海丝首港商业景区。",
+    "candidates": [
+      {
+        "name": "合浦汉代文化博物馆",
+        "status": "pending_coordinates",
+        "description": "合浦县以汉代历史与海上丝路文物为主题的博物馆。",
+        "description_source_url": "https://gxbh.wenming.cn/wcnr/202407/t20240704_8588451.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://gxbh.wenming.cn/wcnr/202407/t20240704_8588451.shtml",
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/gx/202311/t20231103_949504.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+合浦返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://gxbh.wenming.cn/wcnr/202407/t20240704_8588451.shtml",
+            "https://www.iwenbo.fun/museum/3995.html",
+            "https://www.gxjjw.gov.cn/staticpages/20180415/gxjjw5ad29d4c-131049-8.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站正文仍称旧址“中山公园内”，与政府2008年迁至定海南路81号冲突；其 marker 附近 Photon 只返回定海南路，未核准现馆具名建筑。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "city": "玉林市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://www.gxdag.org.cn/show/338/17305"
+    ],
+    "checked_names": [
+      "经略台真武阁"
+    ],
+    "note": "现有大容山与园博园；容县经略台真武阁为独立古建筑游览区。",
+    "candidates": [
+      {
+        "name": "容县经略台真武阁",
+        "status": "approved",
+        "description": "容县历史楼阁，以明代木构和二层悬空柱结构闻名。",
+        "description_source_url": "https://www.gxdag.org.cn/show/338/17305",
+        "longitude": 110.5562538,
+        "latitude": 22.8583123,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1211201960",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "古建"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "广西档案资料证实经略台真武阁可参观；OSM对象为具名真武阁历史建筑的建筑轮廓，非容州古城或景区范围中心；与已存大容山和园博园独立。",
+        "aliases": [
+          "经略台真武阁",
+          "真武阁"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 238,
+    "city": "来宾市",
+    "province": "广西壮族自治区",
+    "sources": [
+      "https://wlt.gxzf.gov.cn/zfxxgk/fdzdgknr/tzgg/t11739994.shtml"
+    ],
+    "checked_names": [
+      "象州古象旅游区",
+      "圣堂山景区"
+    ],
+    "note": "现有金秀圣堂山、圣堂湖等；象州古象旅游区位于不同县域，官方A级景区名单确认。",
+    "candidates": [
+      {
+        "name": "象州古象旅游区",
+        "status": "pending_coordinates",
+        "description": "位于象州县的独立旅游景区，官方列为4A级；具体特色简介待进一步官方资料复核。",
+        "description_source_url": "https://wlt.gxzf.gov.cn/zfxxgk/fdzdgknr/tzgg/t11739994.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.gxzf.gov.cn/zfxxgk/fdzdgknr/tzgg/t11739994.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“象州古象旅游区 来宾市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 242,
+    "city": "三沙市",
+    "province": "海南省",
+    "sources": [
+      "https://www-nanhai.vonechina.com/"
+    ],
+    "checked_names": [
+      "全富岛",
+      "鸭公岛",
+      "银屿岛",
+      "西沙群岛"
+    ],
+    "note": "运营方邮轮只明确全富岛、鸭公岛、银屿岛登岛；前两者已入库，银屿岛属于已入库西沙群岛总范围内子点，且无普通陆路可达坐标，本轮不新增。",
+    "candidates": []
+  },
+  {
+    "id": 246,
+    "city": "文昌市",
+    "province": "海南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/csxz2022/hainan/detail_g7yU_724/4602.html"
+    ],
+    "checked_names": [
+      "文昌航天主题公园",
+      "文昌航天发射场"
+    ],
+    "note": "发射场已入库；航天主题公园为相邻配套科普体验区，但可能与发射场旅游区共票，独立性待核，暂不新增。",
+    "candidates": []
+  },
+  {
+    "id": 250,
+    "city": "屯昌县",
+    "province": "海南省",
+    "sources": [
+      "https://tunchang.hainan.gov.cn/tcly/lyzx/202401/t20240115_3569579.html"
+    ],
+    "checked_names": [
+      "梦幻香山",
+      "咸六村"
+    ],
+    "note": "本次县政府文旅资料提到已有梦幻香山，以及咸六村乡村体验；咸六村尚缺明确独立景区与游客入口，羊角岭水晶矿亦未查到持续开放入口，本轮无新候选。",
+    "candidates": []
+  },
+  {
+    "id": 254,
+    "city": "昌江黎族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://res.hndaily.cn/file/news/20250203/cid_92_546401.html"
+    ],
+    "checked_names": [
+      "皇帝洞景区",
+      "棋子湾"
+    ],
+    "note": "棋子湾、霸王岭已入库；王下乡皇帝洞为独立溶洞游览点，官方媒体报道接驳车。",
+    "candidates": [
+      {
+        "name": "皇帝洞景区",
+        "status": "pending_coordinates",
+        "description": "王下乡天然溶洞游览点，结合黎族文化和生态景观，游客可由停车场换乘接驳车。",
+        "description_source_url": "https://res.hndaily.cn/file/news/20250203/cid_92_546401.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://res.hndaily.cn/file/news/20250203/cid_92_546401.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“皇帝洞景区 昌江黎族自治县”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 258,
+    "city": "琼中黎族苗族自治县",
+    "province": "海南省",
+    "sources": [
+      "https://www.ctnews.com.cn/paper/att/202109/24/1833c642-b385-461b-b66b-10b7ef7d7d9f.pdf"
+    ],
+    "checked_names": [
+      "百花岭热带雨林",
+      "什寒黎苗村寨"
+    ],
+    "note": "百花岭、什寒和黎母山均已入库；本次旅游线路资料未发现可与现有大景区明确区分且可核入口的新景点。",
+    "candidates": []
+  },
+  {
+    "id": 262,
+    "city": "攀枝花市",
+    "province": "四川省",
+    "sources": [
+      "https://www.sc.gov.cn/10462/10778/10876/2023/12/3/030fa90a64d3403a9572ef4f62427f3f.shtml"
+    ],
+    "checked_names": [
+      "二滩国家森林公园"
+    ],
+    "note": "现有格萨拉、三线建设博物馆等；二滩位于盐边，是独立湖泊森林景区。",
+    "candidates": [
+      {
+        "name": "二滩国家森林公园",
+        "status": "pending_coordinates",
+        "description": "盐边县结合二滩水电站和湖区山林的森林公园，可体验滨湖生态景观。",
+        "description_source_url": "https://www.sc.gov.cn/10462/10778/10876/2023/12/3/030fa90a64d3403a9572ef4f62427f3f.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.sc.gov.cn/10462/10778/10876/2023/12/3/030fa90a64d3403a9572ef4f62427f3f.shtml",
+            "https://jtj.panzhihua.gov.cn/zfxxgk/bmdt/hkxx/10103412.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“二滩国家森林公园 攀枝花市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 266,
+    "city": "广元市",
+    "province": "四川省",
+    "sources": [
+      "https://swglj.cngy.gov.cn/New/show/78690d29727a43fc865a8c5efde49c54.html"
+    ],
+    "checked_names": [
+      "昭化古城旅游景区",
+      "苍溪红军渡·西武当山旅游景区",
+      "剑门蜀道"
+    ],
+    "note": "昭化古城属于已入库剑门蜀道整体范围，排除；苍溪红军渡·西武当山为另一县域的独立红色旅游景区。",
+    "candidates": [
+      {
+        "name": "苍溪红军渡·西武当山旅游景区",
+        "status": "pending_coordinates",
+        "description": "苍溪县嘉陵江畔红色景区，纪念红四方面军强渡嘉陵江，并串联西武当山游览。",
+        "description_source_url": "https://swglj.cngy.gov.cn/New/show/78690d29727a43fc865a8c5efde49c54.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://swglj.cngy.gov.cn/New/show/78690d29727a43fc865a8c5efde49c54.html",
+            "https://swglj.cngy.gov.cn/mshow/a37bd1bc74994d98b298efbccdda8612.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“苍溪红军渡·西武当山旅游景区 广元市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 270,
+    "city": "南充市",
+    "province": "四川省",
+    "sources": [
+      "https://www.zlgllyw.com/index/newsindex.html"
+    ],
+    "checked_names": [
+      "张澜故居景区"
+    ],
+    "note": "现有朱德故里、阆中古城和西山；张澜故居位于西充，为独立红色文化景区。第三轮：景区官网显示张澜故居为张澜故里旅游区核心子点，OSM未检得其小型建筑或游客中心具名坐标，不能以故里景区泛坐标代替。",
+    "candidates": [
+      {
+        "name": "张澜故居景区",
+        "status": "pending_coordinates",
+        "description": "西充县纪念张澜的故居景区，以生平展示和民盟历史教育为核心。",
+        "description_source_url": "https://www.zlgllyw.com/index/newsindex.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.zlgllyw.com/index/newsindex.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+南充返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.zlgllyw.com/index/newsindex.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "张澜故居为复合景区，未核准整体游客入口，不能用故居建筑内部点替代。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 274,
+    "city": "达州市",
+    "province": "四川省",
+    "sources": [
+      "https://www.dazhou.gov.cn/news-show-262079.html"
+    ],
+    "checked_names": [
+      "巴山大峡谷景区"
+    ],
+    "note": "现有洋烈水乡、凤凰山、达州博物馆等；巴山大峡谷位于宣汉，独立峡谷景区。",
+    "candidates": [
+      {
+        "name": "巴山大峡谷景区",
+        "status": "pending_coordinates",
+        "description": "宣汉县峡谷游览景区，开展山地避暑和桃溪泉水漂流等体验。",
+        "description_source_url": "https://www.dazhou.gov.cn/news-show-262079.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.dazhou.gov.cn/news-show-262079.html",
+            "https://www.dazhou.gov.cn/news-show-250176.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“巴山大峡谷景区 达州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 278,
+    "city": "阿坝藏族羌族自治州",
+    "province": "四川省",
+    "sources": [
+      "https://www.heishui.gov.cn/hsxrmzf/c100133/201508/ab4ea839e75c416fa2dff2b22ccaaca1.shtml"
+    ],
+    "checked_names": [
+      "达古冰川景区",
+      "九寨沟景区",
+      "黄龙风景名胜区"
+    ],
+    "note": "现有九寨沟、黄龙、四姑娘山等；黑水达古冰川为独立管理和售票景区。",
+    "candidates": [
+      {
+        "name": "达古冰川景区",
+        "status": "pending_coordinates",
+        "description": "黑水县现代冰川与山地生态景区，串联冰川、原始森林、高山草甸和藏寨景观。",
+        "description_source_url": "https://www.heishui.gov.cn/hsxrmzf/c100133/201508/ab4ea839e75c416fa2dff2b22ccaaca1.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.heishui.gov.cn/hsxrmzf/c100133/201508/ab4ea839e75c416fa2dff2b22ccaaca1.shtml",
+            "https://dgbc.cn/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“达古冰川景区 阿坝藏族羌族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 282,
+    "city": "六盘水市",
+    "province": "贵州省",
+    "sources": [
+      "https://www.gzlps.gov.cn/ywdt/jrld/202312/t20231214_83347772.html"
+    ],
+    "checked_names": [
+      "梅花山旅游景区",
+      "乌蒙大草原"
+    ],
+    "note": "现有乌蒙大草原、玉舍与韭菜坪；梅花山为钟山区独立4A级山地旅游景区。",
+    "candidates": [
+      {
+        "name": "梅花山旅游景区",
+        "status": "pending_coordinates",
+        "description": "兼具避暑、观光、山地运动和索道体验的高海拔旅游景区。",
+        "description_source_url": "https://www.gzlps.gov.cn/ywdt/jrld/202312/t20231214_83347772.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.gzlps.gov.cn/ywdt/jrld/202312/t20231214_83347772.html",
+            "https://www.gzlps.gov.cn/zzb/jrld/202308/t20230810_81649848.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“梅花山旅游景区 六盘水市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 286,
+    "city": "铜仁市",
+    "province": "贵州省",
+    "sources": [
+      "https://szb.tongren.gov.cn/trrb/content/202604/02/content_74916.html"
+    ],
+    "checked_names": [
+      "朱砂古镇",
+      "梵净山风景区"
+    ],
+    "note": "现有梵净山、大峡谷、黔东草海；朱砂古镇位于万山矿区，为不同主题和地点的独立景区。",
+    "candidates": [
+      {
+        "name": "朱砂古镇景区",
+        "status": "pending_coordinates",
+        "description": "依托万山汞矿工业遗产的古镇景区，展示丹砂文化与旧矿区历史。",
+        "description_source_url": "https://szb.tongren.gov.cn/trrb/content/202604/02/content_74916.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://szb.tongren.gov.cn/trrb/content/202604/02/content_74916.html",
+            "https://www.tongren.gov.cn/2026/0218/344980.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“朱砂古镇景区 铜仁市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 303,
+    "city": "拉萨市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://www.lasa.gov.cn/lasa/jdjs/202609/bcbf08cd42b945a884d4d55dd0fde2c4.shtml"
+    ],
+    "checked_names": [
+      "西藏博物馆",
+      "布达拉宫",
+      "大昭寺"
+    ],
+    "note": "布达拉宫和大昭寺已入库；西藏博物馆为罗布林卡附近独立馆舍，非罗布林卡子点。",
+    "candidates": [
+      {
+        "name": "西藏博物馆",
+        "status": "approved",
+        "description": "展示西藏历史、艺术与民俗文物的综合博物馆，提供免费预约参观。",
+        "description_source_url": "https://www.lasa.gov.cn/lasa/jdjs/202609/bcbf08cd42b945a884d4d55dd0fde2c4.shtml",
+        "longitude": 91.0976225,
+        "latitude": 29.6514587,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/345356778",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "拉萨市政府将西藏博物馆列为独立预约文博场所；坐标为罗布林卡路附近OSM具名博物馆节点，非罗布林卡景区中心。",
+        "aliases": []
+      }
+    ]
+  },
+  {
+    "id": 307,
+    "city": "山南市",
+    "province": "西藏自治区",
+    "sources": [
+      "https://lyfzj.shannan.gov.cn/zjsn/jdjs/202603/t20260310_165499.html"
+    ],
+    "checked_names": [
+      "昌珠景区",
+      "昌珠寺",
+      "雍布拉康"
+    ],
+    "note": "雍布拉康已入库；昌珠寺为独立宗教文化景区，不将寺庙与昌珠景区重复入库。",
+    "candidates": [
+      {
+        "name": "昌珠寺",
+        "status": "approved",
+        "description": "山南市昌珠景区核心寺院，以藏传佛教文化和珍珠唐卡著称。",
+        "description_source_url": "https://lyfzj.shannan.gov.cn/zjsn/jdjs/202603/t20260310_165499.html",
+        "longitude": 91.772161,
+        "latitude": 29.1936837,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/298097279",
+        "category": "宗教建筑",
+        "tags": [
+          "历史文化",
+          "宗教文化",
+          "古建"
+        ],
+        "duration_minutes": 75,
+        "independence_note": "山南市文旅局明确昌珠景区的核心为昌珠寺，门票含寺院；仅以寺院作为同一游览单元，不另建父级昌珠景区；OSM坐标为具名寺院POI节点。",
+        "aliases": [
+          "昌珠寺景区",
+          "昌珠景区"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 318,
+    "city": "嘉峪关市",
+    "province": "甘肃省",
+    "sources": [
+      "https://zwfw.gansu.gov.cn/jiayuguan/sbqd/gg3162/art/2026/art_9fb186f110244fcbb14823a3355075de.html"
+    ],
+    "checked_names": [
+      "嘉峪关城市博物馆",
+      "嘉峪关文物景区"
+    ],
+    "note": "文物景区、关城、悬壁长城已有父子重复；城市博物馆为城内独立公共场馆。",
+    "candidates": [
+      {
+        "name": "嘉峪关城市博物馆",
+        "status": "pending_coordinates",
+        "description": "面向公众免费开放的城市历史与地方文化博物馆。",
+        "description_source_url": "https://zwfw.gansu.gov.cn/jiayuguan/sbqd/gg3162/art/2026/art_9fb186f110244fcbb14823a3355075de.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://zwfw.gansu.gov.cn/jiayuguan/sbqd/gg3162/art/2026/art_9fb186f110244fcbb14823a3355075de.html",
+            "https://www.jygcsbwg.cn/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回嘉峪关市博物馆大馆区面，未证实与候选嘉峪关城市博物馆的地址/别名一致。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://zwfw.gansu.gov.cn/jiayuguan/sbqd/gg3162/art/2026/art_9fb186f110244fcbb14823a3355075de.html",
+            "https://www.iwenbo.fun/museum/4978.html",
+            "https://www.jygcsbwg.cn/",
+            "https://www.openstreetmap.org/way/632097467"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站 marker 对应 OSM way/632097467“嘉峪关市博物馆”约260×280米馆区中央，官方现址五一南路1379号；仍缺入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  }
+]

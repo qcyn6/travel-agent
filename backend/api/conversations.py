@@ -1,10 +1,12 @@
 import json
+import asyncio
 from collections.abc import AsyncIterator
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Body, Depends, HTTPException, Query
 from fastapi.responses import StreamingResponse
 
 from backend.auth import CurrentUser, get_current_user
+from backend.application.admission import PlanningCapacityError
 from backend.application import (
     PlanningApplicationService,
     PlanningConflictError,
@@ -18,7 +20,8 @@ from backend.conversation import (
     RequirementNotReadyError,
     get_conversation_repository,
 )
-from backend.conversation.responder import ConversationResponseError, DeepSeekConversationResponder
+from backend.conversation.planning_agent import LangChainPlanningDialogueAgent
+from backend.conversation.service import RequirementConflictError
 from backend.database import get_db
 from backend.destination import DestinationResolver
 from backend.destination.repository import CatalogRepository
@@ -30,6 +33,7 @@ from backend.models.conversation import (
     RequirementDraft,
     RequirementDraftPatch,
     ConversationSummary,
+    PlanningJobState,
 )
 from backend.models.travel_plan import (
     AttractionReplacementPreview,
@@ -40,7 +44,6 @@ from backend.planner.attraction_replacement import (
     list_replacement_options,
 )
 from backend.planner.runtime import build_travel_workflow
-from backend.requirements.runtime import build_requirement_parser
 from backend.travel_plans import TravelPlanRepository, get_travel_plan_repository
 
 
@@ -50,13 +53,13 @@ router = APIRouter(prefix="/api/v1/conversations", tags=["conversations"])
 def _conversation_service(repository, catalog, settings) -> ConversationService:
     return ConversationService(
         repository=repository,
-        parser=build_requirement_parser(settings),
         resolver=DestinationResolver(catalog),
-        responder=DeepSeekConversationResponder(
+        planning_agent=LangChainPlanningDialogueAgent(
             settings.llm_api_key,
             base_url=settings.llm_base_url,
             model=settings.llm_model,
             timeout_seconds=settings.llm_timeout_seconds,
+            turn_timeout_seconds=settings.planning_dialogue_turn_timeout_seconds,
         ),
     )
 
@@ -285,135 +288,35 @@ async def send_message(
         )
     repository = _owned_repository(repository, user)
     service = _conversation_service(repository, CatalogRepository(session), settings)
-    graph_runner = getattr(service, "run_graph", None)
-    if callable(graph_runner):
-        if repository.get(conversation_id) is None:
-            raise HTTPException(status_code=404, detail="当前会话不存在或已失效")
+    if repository.get(conversation_id) is None:
+        raise HTTPException(status_code=404, detail="当前会话不存在或已失效")
 
-        async def graph_events() -> AsyncIterator[str]:
-            try:
-                conversation, reply, options, prepared = await graph_runner(
-                    conversation_id,
-                    payload.message,
-                    mode=payload.mode,
-                )
-            except ConversationNotFoundError as exc:
-                yield _sse("error", {"message": str(exc)})
-                return
-
-            if (
-                prepared.intent == "planning"
-                and not prepared.mode_boundary
-                and not prepared.validation_error
-            ):
-                yield _sse(
-                    "requirement_updated",
-                    prepared.requirement.model_dump(mode="json"),
-                )
-            yield _sse("suggestions", {"options": options})
-            yield _sse("message_delta", {"text": reply})
-            requirement_ready = (
-                conversation.requirement_ready
-                if (
-                    prepared.intent == "planning"
-                    and not prepared.mode_boundary
-                    and not prepared.validation_error
-                )
-                else False
+    async def graph_events() -> AsyncIterator[str]:
+        try:
+            conversation, reply, options, prepared = await service.run_graph(
+                conversation_id,
+                payload.message,
+                mode=payload.mode,
             )
-            yield _sse("message_done", {"requirement_ready": requirement_ready})
-            if requirement_ready:
-                yield _sse("requirement_ready", {"ready": True})
+        except ConversationNotFoundError as exc:
+            yield _sse("error", {"message": str(exc)})
+            return
+        except RequirementConflictError as exc:
+            yield _sse("error", {"message": str(exc)})
+            yield _sse("message_done", {"requirement_ready": False})
+            return
 
-        return StreamingResponse(
-            graph_events(),
-            media_type="text/event-stream",
-            headers=_stream_headers(),
-        )
-    try:
-        prepared = await service.prepare_message(
-            conversation_id,
-            payload.message,
-            mode=payload.mode,
-        )
-    except ConversationNotFoundError as exc:
-        raise HTTPException(status_code=404, detail=str(exc)) from exc
-
-    async def events() -> AsyncIterator[str]:
-        if prepared.intent == "planning" and not prepared.mode_boundary and not prepared.validation_error:
-            yield _sse("requirement_updated", prepared.requirement.model_dump(mode="json"))
-        planning_reply = None
         if (
             prepared.intent == "planning"
             and not prepared.mode_boundary
             and not prepared.validation_error
-            and not prepared.destination_error
-            and not prepared.should_invite_more
         ):
-            planning_reply = await service.planning_reply(prepared)
-        options = service.suggestions_for(
-            prepared.missing,
-            prepared.requirement,
-            intent=prepared.intent,
-        )
-        if planning_reply is not None:
-            options = service.suggestions_for_reply(prepared, planning_reply)
-        if prepared.validation_error and prepared.intent == "planning":
-            options = service.validation_suggestions(
-                prepared.validation_error,
-                prepared.requirement,
+            yield _sse(
+                "requirement_updated",
+                prepared.requirement.model_dump(mode="json"),
             )
-        yield _sse(
-            "suggestions",
-            {"options": options},
-        )
-        chunks: list[str] = []
-        if prepared.mode_boundary:
-            reply = prepared.mode_boundary
-            chunks.append(reply)
-            yield _sse("message_delta", {"text": reply})
-        elif prepared.validation_error:
-            reply = prepared.validation_error
-            chunks.append(reply)
-            yield _sse("message_delta", {"text": reply})
-        elif prepared.destination_error:
-            reply = (
-                f"{prepared.destination_error}。换一个已收录的国内省份或城市试试，"
-                "也可以让我根据你的兴趣和偏好推荐一个省份。"
-            )
-            chunks.append(reply)
-            yield _sse("message_delta", {"text": reply})
-        elif prepared.should_invite_more:
-            reply = service.more_details_reply(prepared.requirement)
-            chunks.append(reply)
-            yield _sse("message_delta", {"text": reply})
-        elif prepared.intent == "general":
-            try:
-                async for chunk in service.responder.stream(
-                    user_message=prepared.user_message,
-                    **service.responder_inputs(prepared),
-                    recent_messages=prepared.recent_messages,
-                    conversation_mode="general",
-                ):
-                    chunks.append(chunk)
-                    yield _sse("message_delta", {"text": chunk})
-            except ConversationResponseError:
-                if not chunks:
-                    fallback = service._general_fallback_reply(
-                        prepared.user_message,
-                        prepared.destination_context,
-                    )
-                    chunks.append(fallback)
-                    yield _sse("message_delta", {"text": fallback})
-                else:
-                    chunks.append("（回复连接中断）")
-                    yield _sse("message_delta", {"text": "（回复连接中断）"})
-        else:
-            reply = planning_reply or service._planning_fallback(prepared)
-            chunks.append(reply)
-            yield _sse("message_delta", {"text": reply})
-        reply = "".join(chunks).strip()
-        conversation = service.finish_message(prepared, reply)
+        yield _sse("suggestions", {"options": options})
+        yield _sse("message_delta", {"text": reply})
         requirement_ready = (
             conversation.requirement_ready
             if (
@@ -423,11 +326,17 @@ async def send_message(
             )
             else False
         )
+        if getattr(prepared, "confirmation_prepared", None) is not None:
+            requirement_ready = requirement_ready and prepared.confirmation_prepared
         yield _sse("message_done", {"requirement_ready": requirement_ready})
         if requirement_ready:
             yield _sse("requirement_ready", {"ready": True})
 
-    return StreamingResponse(events(), media_type="text/event-stream", headers=_stream_headers())
+    return StreamingResponse(
+        graph_events(),
+        media_type="text/event-stream",
+        headers=_stream_headers(),
+    )
 
 
 @router.patch("/{conversation_id}/requirement", response_model=Conversation)
@@ -455,6 +364,7 @@ def update_requirement(
 @router.post("/{conversation_id}/requirement/confirm", response_model=RequirementConfirmation)
 def confirm_requirement(
     conversation_id: str,
+    expected_requirement: RequirementDraft = Body(...),
     repository: ConversationRepository = Depends(get_conversation_repository),
     settings: Settings = Depends(get_settings),
     session=Depends(get_db),
@@ -463,7 +373,7 @@ def confirm_requirement(
     repository = _owned_repository(repository, user)
     service = _conversation_service(repository, CatalogRepository(session), settings)
     try:
-        conversation = service.confirm(conversation_id)
+        conversation = service.confirm(conversation_id, expected_requirement=expected_requirement)
         return RequirementConfirmation(
             conversation_id=conversation.id,
             requirement=conversation.requirement,
@@ -473,6 +383,8 @@ def confirm_requirement(
         raise HTTPException(status_code=404, detail=str(exc)) from exc
     except RequirementNotReadyError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+    except RequirementConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
 
 
 @router.post("/{conversation_id}/plan")
@@ -487,7 +399,7 @@ async def plan_conversation(
     if user is not None and _owned_repository(repository, user).get(conversation_id) is None:
         raise HTTPException(status_code=404, detail="当前旅行计划不存在或已失效")
     try:
-        job = planning_service.prepare_conversation(conversation_id)
+        job = await asyncio.to_thread(planning_service.prepare_conversation, conversation_id)
         # If the client sends a cursor belonging to an older retry, start the
         # newly-created job from its first event instead of silently skipping
         # its short sequence numbers.
@@ -506,6 +418,8 @@ async def plan_conversation(
             )
     except ConversationNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except PlanningCapacityError as exc:
+        raise HTTPException(status_code=429, detail=str(exc), headers={"Retry-After": str(exc.retry_after)}) from exc
     except PlanningConflictError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
 
@@ -518,6 +432,18 @@ async def plan_conversation(
         media_type="text/event-stream",
         headers=_stream_headers(job.job_id),
     )
+
+
+@router.get("/{conversation_id}/plan/state", response_model=PlanningJobState | None)
+def get_planning_state(
+    conversation_id: str,
+    planning_service: PlanningApplicationService = Depends(get_planning_application_service),
+    repository: ConversationRepository = Depends(get_conversation_repository),
+    user: CurrentUser | None = Depends(get_current_user),
+) -> PlanningJobState | None:
+    if _owned_repository(repository, user).get(conversation_id) is None:
+        raise HTTPException(status_code=404, detail="当前旅行计划不存在或已失效")
+    return planning_service.planning_state(conversation_id)
 
 
 @router.get("/{conversation_id}/plan/events")

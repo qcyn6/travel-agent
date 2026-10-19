@@ -26,6 +26,7 @@ from backend.application import PlanningApplicationService  # noqa: E402
 from backend.config import get_settings  # noqa: E402
 from backend.database import open_session  # noqa: E402
 from backend.observability import build_alert_sink, metrics  # noqa: E402
+from backend.observability.redaction import install_redaction
 from backend.planning_jobs import PlanningJobRepository  # noqa: E402
 from backend.planning_jobs.queue import build_planning_queue  # noqa: E402
 
@@ -33,19 +34,23 @@ from backend.planning_jobs.queue import build_planning_queue  # noqa: E402
 logger = logging.getLogger("travel_agent.planning_worker")
 
 
-async def enqueue_queued_jobs(queue, *, limit: int) -> int:
+async def enqueue_queued_jobs(queue, *, limit: int, stale_after_seconds: float | None = None) -> int:
     with open_session() as session:
-        jobs = PlanningJobRepository(session).list_queued(limit=limit)
-        job_ids = [job.id for job in jobs]
+        repository = PlanningJobRepository(session)
+        jobs = (repository.list_queued(limit=limit) if stale_after_seconds is None
+                else repository.list_recoverable(limit=limit, stale_after_seconds=stale_after_seconds))
+        dispatches = [(job.id, int(job.retry_count or 0)) for job in jobs]
     queued = 0
-    for job_id in job_ids:
-        if await queue.enqueue(job_id):
+    for job_id, generation in dispatches:
+        if await queue.enqueue(job_id, generation=generation):
             queued += 1
     return queued
 
 
 async def run(args: argparse.Namespace) -> None:
     settings = get_settings()
+    settings.validate_production_security()
+    install_redaction(settings)
     queue = build_planning_queue(settings)
     if not getattr(queue, "enabled", False):
         raise RuntimeError(
@@ -82,6 +87,7 @@ async def run(args: argparse.Namespace) -> None:
                 queued = await enqueue_queued_jobs(
                     queue,
                     limit=args.reconcile_limit,
+                    stale_after_seconds=settings.planning_worker_stale_seconds,
                 )
                 if queued:
                     logger.info("queued orphan planning jobs: count=%s", queued)
@@ -98,6 +104,7 @@ async def run(args: argparse.Namespace) -> None:
             metrics.inc("travel_agent_planning_jobs_total", {"status": "dequeued"})
             try:
                 await service.run_queued_job(message.job_id)
+                settled = service.can_acknowledge_job(message.job_id)
             except asyncio.CancelledError:
                 raise
             except Exception as exc:
@@ -126,6 +133,10 @@ async def run(args: argparse.Namespace) -> None:
                     )
                 continue
 
+            if not settled:
+                # Another worker may still own the durable lease. Returning
+                # without claiming the job is not proof that it has finished.
+                continue
             if not await queue.ack(message.message_id):
                 metrics.inc(
                     "travel_agent_planning_queue_errors_total",

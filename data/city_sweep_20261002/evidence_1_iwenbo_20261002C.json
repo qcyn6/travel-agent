@@ -1,0 +1,149 @@
+{
+  "round": "2026-10-02C",
+  "source_coordinate_system": "GCJ02 (TMap marker; TencentLBS documents TMap basemap GCJ-02)",
+  "coordinate_system_reference_url": "https://github.com/TencentLBS/tencentmap-map-assistant/blob/main/SKILL.md",
+  "notice": "仅缓存网页返回的具名 marker 片段，不包含网页 SDK Key；地图点仍须与当前官方馆址核对，旧馆或大景区质心不可直接批准。",
+  "records": [
+    {
+      "id": 7,
+      "url": "https://www.iwenbo.fun/museum/4600.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(25.02406855, 101.54775739),\r\n                    'properties':{\r\n                        'title':\"楚雄彝族自治州博物馆\"\r\n                    }\r\n                }\r\n         ",
+      "error": null
+    },
+    {
+      "id": 18,
+      "url": "https://www.iwenbo.fun/heritage/727.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(24.8070563, 98.29752356),\r\n                    'properties':{\r\n                        'title':\"南甸宣抚司署\"\r\n                    }\r\n                }\r\n            ]\r\n",
+      "error": null
+    },
+    {
+      "id": 57,
+      "url": "https://www.iwenbo.fun/museum/356.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(38.03810168, 115.98089576),\r\n                    'properties':{\r\n                        'title':\"武强年画博物馆\"\r\n                    }\r\n                }\r\n            ",
+      "error": null
+    },
+    {
+      "id": 59,
+      "url": "https://www.iwenbo.fun/heritage/94.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(34.720609, 110.693143),\r\n                    'properties':{\r\n                        'title':\"永乐宫\"\r\n                    }\r\n                }\r\n            ]\r\n     ",
+      "error": null
+    },
+    {
+      "id": 60,
+      "url": "https://www.iwenbo.fun/museum/515.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(40.70807, 111.683906),\r\n                    'properties':{\r\n                        'title':\"昭君博物院\"\r\n                    }\r\n                }\r\n            ]\r\n    ",
+      "error": null
+    },
+    {
+      "id": 63,
+      "url": "https://www.iwenbo.fun/museum/688.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(41.807981, 123.425009),\r\n                    'properties':{\r\n                        'title':\"中共满洲省委旧址纪念馆（刘少奇旧居纪念馆）\"\r\n                    }\r\n                }\r\n  ",
+      "error": null
+    },
+    {
+      "id": 65,
+      "url": "https://www.iwenbo.fun/heritage/520.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(42.18513805, 121.80731893),\r\n                    'properties':{\r\n                        'title':\"查海遗址\"\r\n                    }\r\n                }\r\n            ]\r\n",
+      "error": null
+    },
+    {
+      "id": 87,
+      "url": "https://www.iwenbo.fun/museum/5368.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(34.63123488, 112.46668696),\r\n                    'properties':{\r\n                        'title':\"定鼎门遗址博物馆\"\r\n                    }\r\n                }\r\n           ",
+      "error": null
+    },
+    {
+      "id": 90,
+      "url": "https://www.iwenbo.fun/museum/3240.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(31.62123, 114.874545),\r\n                    'properties':{\r\n                        'title':\"鄂豫皖苏区首府革命博物馆\"\r\n                    }\r\n                }\r\n            ",
+      "error": null
+    },
+    {
+      "id": 91,
+      "url": "https://www.iwenbo.fun/museum/3304.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(30.55355803, 114.30040598),\r\n                    'properties':{\r\n                        'title':\"武汉革命博物馆\"\r\n                    }\r\n                }\r\n            ",
+      "error": null
+    },
+    {
+      "id": 100,
+      "url": "https://www.iwenbo.fun/heritage/637.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(23.139642, 111.768368),\r\n                    'properties':{\r\n                        'title':\"德庆学宫\"\r\n                    }\r\n                }\r\n            ]\r\n    ",
+      "error": null
+    },
+    {
+      "id": 103,
+      "url": "https://www.iwenbo.fun/museum/3995.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(21.64323313, 109.19005215),\r\n                    'properties':{\r\n                        'title':\"合浦汉代文化博物馆\"\r\n                    }\r\n                }\r\n          ",
+      "error": null
+    },
+    {
+      "id": 113,
+      "url": "https://www.iwenbo.fun/museum/4978.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(39.77486019, 98.2891953),\r\n                    'properties':{\r\n                        'title':\"嘉峪关城市博物馆\"\r\n                    }\r\n                }\r\n            ]",
+      "error": null
+    },
+    {
+      "id": 114,
+      "url": "https://www.iwenbo.fun/museum/5084.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(35.7058634, 107.64419317),\r\n                    'properties':{\r\n                        'title':\"庆阳市博物馆\"\r\n                    }\r\n                }\r\n            ]\r",
+      "error": null
+    },
+    {
+      "id": 119,
+      "url": "https://www.iwenbo.fun/museum/5329.html",
+      "observed_at": "2026-10-02",
+      "marker_snippet": "'position': new TMap.LatLng(37.0927131, 79.92633104),\r\n                    'properties':{\r\n                        'title':\"和田地区博物馆\"\r\n                    }\r\n                }\r\n            ]\r",
+      "error": null
+    }
+  ],
+  "approved_crosschecks": [
+    {
+      "name": "定鼎门遗址博物馆",
+      "official_address_source_url": "https://oss.ly.gov.cn/upload-file/files/20250117/8b8b8b59fef24026a790e4324075a93a.pdf",
+      "official_address": "洛龙区古城路与龙门大道交叉口西200米",
+      "marker_gcj02_lat_lon": [34.63123488, 112.46668696],
+      "marker_approx_wgs84_lat_lon": [34.63228097262004, 112.46047150206978],
+      "osm_entity_url": "https://www.openstreetmap.org/way/387176568",
+      "osm_type_id": "way/387176568",
+      "osm_tags": {"name": "定鼎门遗址", "building": "yes", "historic": "city_gate"},
+      "osm_bbox_south_west_north_east": [34.6327886, 112.4598288, 34.6331112, 112.461463],
+      "coordinate_review_note": "具名 marker 位于定鼎门城门建筑南侧约56米；仅作为接近馆舍的地图点，非实测门口。"
+    },
+    {
+      "name": "庆阳市博物馆",
+      "official_address_source_url": "https://zgqingyang.gov.cn/departmentmanage/show/384",
+      "official_address": "庆阳市西峰区弘化西路4号",
+      "marker_gcj02_lat_lon": [35.7058634, 107.64419317],
+      "marker_approx_wgs84_lat_lon": [35.70625993188146, 107.63944915553479],
+      "osm_entity_url": "https://www.openstreetmap.org/way/780169087",
+      "osm_type_id": "way/780169087",
+      "osm_tags": {"name": "庆阳博物馆", "building": "yes", "tourism": "museum"},
+      "osm_bbox_south_west_north_east": [35.7058266, 107.6389173, 35.7064231, 107.6398569],
+      "coordinate_review_note": "marker 落在具名小型馆舍范围内；文博站正文庆城县普照寺巷是旧址，明确拒绝其文字地址。非实测入口。"
+    },
+    {
+      "name": "和田地区博物馆",
+      "official_address_source_url": "https://www.xjht.gov.cn/xjht/c128217/202609/2548bc8078074359af041805f7c687ed.shtml",
+      "official_address": "和田市昆仑南路8号",
+      "osm_entity_url": "https://www.openstreetmap.org/node/8917036717",
+      "osm_type_id": "node/8917036717",
+      "osm_wgs84_lat_lon": [37.0921788, 79.9253739],
+      "osm_tags": {"name": "和田博物馆", "tourism": "museum", "wikipedia": "zh:和田地区博物馆"},
+      "coordinate_review_note": "采用昆仑路具名 museum POI node，而非道路实体；排除二环路另一个同名点。文博站 marker 有约百米偏差，仅作辅助。非实测入口。"
+    }
+  ]
+}

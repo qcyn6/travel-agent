@@ -1,0 +1,498 @@
+[
+  {
+    "id": 322,
+    "city": "武威市",
+    "province": "甘肃省",
+    "sources": [
+      "https://www.gswbj.gov.cn/a/2024/04/09/20085.html"
+    ],
+    "checked_names": [
+      "武威市博物馆",
+      "武威文庙",
+      "雷台汉墓"
+    ],
+    "note": "已存武威文庙；武威市博物馆为独立馆舍，非文庙或石窟子点。雷台汉墓本轮未单列以免与雷台区域边界不清。",
+    "candidates": [
+      {
+        "name": "武威市博物馆",
+        "status": "approved",
+        "description": "馆内以武威地区历史文物展陈为主，可集中了解河西走廊东端的历史文化。",
+        "description_source_url": "https://www.gswbj.gov.cn/a/2024/04/09/20085.html",
+        "longitude": 102.6211538,
+        "latitude": 37.9417812,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/813355539",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "甘肃省文旅资料给出武威市博物馆姑臧路25号并与雷台、西夏等馆分列；OSM为姑臧路具名馆舍建筑，不是武威文庙。",
+        "aliases": []
+      }
+    ]
+  },
+  {
+    "id": 326,
+    "city": "庆阳市",
+    "province": "甘肃省",
+    "sources": [
+      "https://zgqingyang.gov.cn/departmentmanage/show/384"
+    ],
+    "checked_names": [
+      "庆阳市博物馆"
+    ],
+    "note": "庆阳市博物馆与已存北石窟寺、南梁革命纪念馆和周祖陵均非同一游览单位。",
+    "candidates": [
+      {
+        "name": "庆阳市博物馆",
+        "status": "approved",
+        "description": "西峰区弘化西路的地方综合性博物馆，设有多处常设展厅，展示庆阳地方历史与馆藏文物。",
+        "description_source_url": "https://zgqingyang.gov.cn/departmentmanage/show/384",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "第二渠道核准，详见 research_round_20261002C。",
+          "source_urls": [
+            "https://zgqingyang.gov.cn/departmentmanage/show/384",
+            "https://www.iwenbo.fun/museum/5084.html",
+            "https://www.openstreetmap.org/way/780169087"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站原始 TMap.LatLng(35.7058634,107.64419317)，GCJ02；近似转 WGS84 为(35.70625993,107.63944916)，落在 OSM way/780169087“庆阳博物馆”馆舍 bbox=(35.7058266,107.6389173)-(35.7064231,107.6398569)，building=yes/tourism=museum。市政府明确现馆西峰区弘化西路4号；文博站正文的庆城县普照寺巷为旧地址，明确拒绝该文字地址，仅采纳经过 OSM/官方现址交叉验证的 marker。非实测入口。"
+        },
+        "longitude": 107.64419317,
+        "latitude": 35.7058634,
+        "coordinate_system": "GCJ02",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5084.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "市政府现址西峰区弘化西路4号，文博站具名 marker 经GCJ02换算落在OSM小型“庆阳博物馆”馆舍内。拒绝文博站正文庆城县普照寺巷旧址；点位非实测入口。",
+        "aliases": [
+          "庆阳博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+          "source_urls": [
+            "https://zgqingyang.gov.cn/departmentmanage/show/384",
+            "https://www.iwenbo.fun/museum/5084.html",
+            "https://www.openstreetmap.org/way/780169087"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站原始 TMap.LatLng(35.7058634,107.64419317)，GCJ02；近似转 WGS84 为(35.70625993,107.63944916)，落在 OSM way/780169087“庆阳博物馆”馆舍 bbox=(35.7058266,107.6389173)-(35.7064231,107.6398569)，building=yes/tourism=museum。市政府明确现馆西峰区弘化西路4号；文博站正文的庆城县普照寺巷为旧地址，明确拒绝该文字地址，仅采纳经过 OSM/官方现址交叉验证的 marker。非实测入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 330,
+    "city": "甘南藏族自治州",
+    "province": "甘肃省",
+    "sources": [
+      "https://zwfw.gansu.gov.cn/gannan/zwcs/zwtgdlyj/gnzAjjqml/index.html"
+    ],
+    "checked_names": [
+      "拉卜楞寺景区",
+      "冶力关旅游区",
+      "扎尕那",
+      "桑科草原"
+    ],
+    "note": "拉卜楞寺景区与已存冶力关、扎尕那、桑科草原空间和经营范围独立。第二轮：OSM同名寺院范围约800米宽，仍缺可靠游客入口点，不取景区质心。",
+    "candidates": [
+      {
+        "name": "拉卜楞寺景区",
+        "status": "pending_coordinates",
+        "description": "夏河县的藏传佛教寺院景区，是甘南重要的人文游览目的地。",
+        "description_source_url": "https://zwfw.gansu.gov.cn/gannan/zwcs/zwtgdlyj/gnzAjjqml/index.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://zwfw.gansu.gov.cn/gannan/zwcs/zwtgdlyj/gnzAjjqml/index.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“拉卜楞寺景区 甘南藏族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 334,
+    "city": "黄南藏族自治州",
+    "province": "青海省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcss2024_shjlzzxc/qinghai/detail/6849.html"
+    ],
+    "checked_names": [
+      "隆务寺",
+      "吾屯下寺"
+    ],
+    "note": "已存吾屯下寺；隆务寺是另一处独立寺院，不能把两者作为同一个点。",
+    "candidates": [
+      {
+        "name": "隆务寺",
+        "status": "approved",
+        "description": "位于同仁市的藏传佛教寺院，可结合热贡文化主题参观寺院建筑与宗教艺术。",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xcss2024_shjlzzxc/qinghai/detail/6849.html",
+        "longitude": 102.0088237,
+        "latitude": 35.5090049,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/11548841919",
+        "category": "宗教建筑",
+        "tags": [
+          "历史文化",
+          "宗教文化"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "文化和旅游部线路将隆务寺与已存吾屯下寺作为先后两个目的地；坐标取OSM具名隆务寺宗教场所节点，非热贡大景区中心。",
+        "aliases": [
+          "Longwu Temple",
+          "Rongwo Temple"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 338,
+    "city": "海西蒙古族藏族自治州",
+    "province": "青海省",
+    "sources": [
+      "https://www.qinghai.gov.cn/dmqh/system/2017/06/15/010269027.shtml"
+    ],
+    "checked_names": [
+      "可鲁克湖",
+      "托素湖"
+    ],
+    "note": "已存盐湖、黑独山等；可鲁克湖不同于这些现有景区，但湖泊范围大，游客入口尚待确认，不可采用湖心坐标。",
+    "candidates": [
+      {
+        "name": "可鲁克湖旅游景区",
+        "status": "pending_coordinates",
+        "description": "德令哈附近的湖泊景区，湖岸湿地与水鸟是主要自然景观。",
+        "description_source_url": "https://www.qinghai.gov.cn/dmqh/system/2017/06/15/010269027.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.qinghai.gov.cn/dmqh/system/2017/06/15/010269027.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“可鲁克湖旅游景区 海西蒙古族藏族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 342,
+    "city": "固原市",
+    "province": "宁夏回族自治区",
+    "sources": [
+      "https://whhlyt.nx.gov.cn/jqjd/gys_66590/gybwg/",
+      "https://whhlyt.nx.gov.cn/zzjg/zsdw/201903/t20190306_3641773.html"
+    ],
+    "checked_names": [
+      "固原博物馆"
+    ],
+    "note": "固原博物馆为独立馆舍；已存六盘山红军长征景区与须弥山石窟均不在该馆。",
+    "candidates": [
+      {
+        "name": "固原博物馆",
+        "status": "approved",
+        "description": "展示固原及宁夏南部历史文物的综合性博物馆，适合了解丝路相关地方文化。",
+        "description_source_url": "https://whhlyt.nx.gov.cn/zzjg/zsdw/201903/t20190306_3641773.html",
+        "longitude": 106.2717249,
+        "latitude": 36.0056881,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/440294620",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "宁夏文旅厅确认馆址为原州区西城路133号；OSM具名博物馆对象同址标注133号，馆舍独立于六盘山景区及须弥山石窟。",
+        "aliases": [
+          "宁夏固原博物馆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 346,
+    "city": "吐鲁番市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://gcq.tlf.gov.cn/gcq/c124143/202606/5b2e6393763c4988940e26de391a0a10.shtml"
+    ],
+    "checked_names": [
+      "高昌故城",
+      "交河故城"
+    ],
+    "note": "高昌故城与已存交河故城是两处不同遗址；景区游客入口坐标待核，不以遗址中心替代。",
+    "candidates": [
+      {
+        "name": "高昌故城",
+        "status": "pending_coordinates",
+        "description": "吐鲁番盆地东部的古城遗址，留存城墙和城内遗迹，可了解古代丝路城址。",
+        "description_source_url": "https://gcq.tlf.gov.cn/gcq/c124143/202606/5b2e6393763c4988940e26de391a0a10.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://gcq.tlf.gov.cn/gcq/c124143/202606/5b2e6393763c4988940e26de391a0a10.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/node/5044709890为景点POI节点，但尚需确定是否处于临路可抵达位置，不能直接认作入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 350,
+    "city": "巴音郭楞蒙古自治州",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbz.gov.cn/xjbz/jrbz/202407/39e25c9b30fa44478a58813f61f27886.shtml"
+    ],
+    "checked_names": [
+      "罗布人村寨景区"
+    ],
+    "note": "已存博斯腾湖与巴音布鲁克等；罗布人村寨位于另一游览区域，非现有景区子点。",
+    "candidates": [
+      {
+        "name": "罗布人村寨景区",
+        "status": "pending_coordinates",
+        "description": "以塔里木河沿岸胡杨、沙漠和罗布人文化为特色的景区。",
+        "description_source_url": "https://www.xjbz.gov.cn/xjbz/jrbz/202407/39e25c9b30fa44478a58813f61f27886.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.xjbz.gov.cn/xjbz/jrbz/202407/39e25c9b30fa44478a58813f61f27886.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“罗布人村寨景区 巴音郭楞蒙古自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 354,
+    "city": "和田地区",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xinjiang.gov.cn/xinjiang/dzdt/202307/af371f5139eb49b7ae19bdbbbcd5afc2.shtml"
+    ],
+    "checked_names": [
+      "和田地区博物馆",
+      "约特干故城",
+      "玉龙湾",
+      "库尔班·吐鲁木纪念馆"
+    ],
+    "note": "和田地区博物馆与已存湖泊、公园、尼雅遗址均非同一处；约特干故城等本轮不一并录入，先避免跨县定位混淆。",
+    "candidates": [
+      {
+        "name": "和田地区博物馆",
+        "status": "approved",
+        "description": "和田市昆仑路的地区综合性博物馆，通过馆藏文物与专题展览了解和田历史及地方文化。",
+        "description_source_url": "https://www.iwenbo.fun/museum/5329.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "第二渠道核准，详见 research_round_20261002C。",
+          "source_urls": [
+            "https://www.xinjiang.gov.cn/xinjiang/dzdt/202307/af371f5139eb49b7ae19bdbbbcd5afc2.shtml",
+            "https://www.iwenbo.fun/museum/5329.html",
+            "https://www.xjht.gov.cn/xjht/c128263/202507/b91b625ed0a447fe9065fbcbde6712da.shtml",
+            "https://www.xjht.gov.cn/xjht/c128217/202609/2548bc8078074359af041805f7c687ed.shtml",
+            "https://www.openstreetmap.org/node/8917036717"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "采用 OSM node/8917036717，WGS84(37.0921788,79.9253739)，实体标签 name=和田博物馆、tourism=museum、wikipedia=zh:和田地区博物馆，位于昆仑路；不是仅道路带 Wikipedia。政府现址昆仑路8号/昆仑南路8号。排除二环路另一个同名 OSM 节点；此为具名馆舍 POI，非实测入口。文博站 GCJ02 marker (37.0927131,79.92633104) 与该节点有约百米偏差，仅作辅助，不采用。"
+        },
+        "longitude": 79.9253739,
+        "latitude": 37.0921788,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/8917036717",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "政府现址昆仑南路8号；OSM昆仑路具名tourism=museum节点链接zh:和田地区博物馆，排除二环路另一同名节点；此点为馆舍POI非实测入口。",
+        "aliases": [
+          "和田博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+          "source_urls": [
+            "https://www.xinjiang.gov.cn/xinjiang/dzdt/202307/af371f5139eb49b7ae19bdbbbcd5afc2.shtml",
+            "https://www.iwenbo.fun/museum/5329.html",
+            "https://www.xjht.gov.cn/xjht/c128263/202507/b91b625ed0a447fe9065fbcbde6712da.shtml",
+            "https://www.xjht.gov.cn/xjht/c128217/202609/2548bc8078074359af041805f7c687ed.shtml",
+            "https://www.openstreetmap.org/node/8917036717"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "采用 OSM node/8917036717，WGS84(37.0921788,79.9253739)，实体标签 name=和田博物馆、tourism=museum、wikipedia=zh:和田地区博物馆，位于昆仑路；不是仅道路带 Wikipedia。政府现址昆仑路8号/昆仑南路8号。排除二环路另一个同名 OSM 节点；此为具名馆舍 POI，非实测入口。文博站 GCJ02 marker (37.0927131,79.92633104) 与该节点有约百米偏差，仅作辅助，不采用。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 358,
+    "city": "石河子市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2026-07-30/8496279.shtml"
+    ],
+    "checked_names": [
+      "石河子西公园",
+      "明珠公园",
+      "将军山辽疆生态公园"
+    ],
+    "note": "已存军垦博物馆与周恩来总理纪念碑；西公园为独立城市公园，和将军山等亦有明确区分。",
+    "candidates": [
+      {
+        "name": "石河子西公园",
+        "status": "pending_coordinates",
+        "description": "石河子建城历史较久的城市公园，杨榆树荫、草坪和步道适合夏季休憩散步。",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2026-07-30/8496279.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2026-07-30/8496279.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“河洛书苑(魏紫路城市书房)”(amenity=library, https://www.openstreetmap.org/node/8456851317)，与“石河子西公园”不符；拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 362,
+    "city": "北屯市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2026-05-13/8483934.shtml"
+    ],
+    "checked_names": [
+      "得仁山公园",
+      "玉带河滨水休闲景区"
+    ],
+    "note": "已存玉带河滨水休闲景区；得仁山公园在城市另一处，为独立开放公园，但须查可靠抵达点而非山体中心。",
+    "candidates": [
+      {
+        "name": "得仁山公园",
+        "status": "pending_coordinates",
+        "description": "北屯市的山地生态公园，有绿化步道与观景空间，可登高眺望城市。",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2026-05-13/8483934.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2026-05-13/8483934.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“得仁山公园 北屯市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 366,
+    "city": "昆玉市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2024-10-14/8362636.shtml"
+    ],
+    "checked_names": [
+      "十四师一牧场昆仑山大峡谷旅游景区",
+      "沙海老兵红色旅游区"
+    ],
+    "note": "已存吐尔迪·阿吉庄园及三八线沙海老兵纪念园；后者与沙海老兵红色旅游区可能父子重叠，故排除。昆仑山大峡谷为另一景区；但与和田地区现有'新疆昆仑山景区'可能同名范围重叠，需坐标及边界核实后才准入。",
+    "candidates": [
+      {
+        "name": "十四师一牧场昆仑山大峡谷旅游景区",
+        "status": "pending_coordinates",
+        "description": "位于十四师一牧场的高山草原与峡谷景区，游览景观包括山峦、草地和雪山。",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2024-10-14/8362636.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2024-10-14/8362636.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“十四师一牧场昆仑山大峡谷旅游景区 昆玉市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 370,
+    "city": "台北市",
+    "province": "台湾省",
+    "sources": [
+      "https://www.travel.taipei/zh-tw/attraction/details/33",
+      "https://tfam.gov.taipei/cp.aspx?n=3FE94CE28EE2276E"
+    ],
+    "checked_names": [
+      "北投溫泉博物館",
+      "臺北市立美術館"
+    ],
+    "note": "两处独立馆舍均不在台北现有101、故宫、天文馆等记录中；注意繁简体别名去重。",
+    "candidates": [
+      {
+        "name": "北投温泉博物馆",
+        "status": "approved",
+        "description": "由北投旧公共浴场修复而成，展厅介绍温泉浴场与北投地方文化。",
+        "description_source_url": "https://www.travel.taipei/zh-tw/attraction/details/33",
+        "longitude": 121.5071899,
+        "latitude": 25.1365786,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/256190307",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "台北旅遊網明示北投區中山路2號；OSM具名舊浴場建築帶同一地址，館舍獨立於其他台北景點。",
+        "aliases": [
+          "北投溫泉博物館"
+        ]
+      },
+      {
+        "name": "台北市立美术馆",
+        "status": "approved",
+        "description": "台北中山区的公共美术馆，设有展览、教育与公共服务空间。",
+        "description_source_url": "https://tfam.gov.taipei/cp.aspx?n=3FE94CE28EE2276E",
+        "longitude": 121.5246613,
+        "latitude": 25.0720297,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/relation/11736180",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "館方參觀頁與OSM具名美術館建築地址均為中山北路三段181號；不是故宮博物院或天文館子點。",
+        "aliases": [
+          "臺北市立美術館"
+        ]
+      }
+    ]
+  }
+]

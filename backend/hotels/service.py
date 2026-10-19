@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import Mapping
-from urllib.parse import urlparse
+from backend.poi.photos import first_photo_url as _first_photo_url
 
 import httpx
 
@@ -385,27 +385,6 @@ def _coordinates(value: object) -> tuple[float | None, float | None]:
         return float(longitude), float(latitude)
     except (TypeError, ValueError):
         return None, None
-
-
-def _first_photo_url(value: object) -> str | None:
-    if isinstance(value, Mapping):
-        return _safe_photo_url(value.get("url"))
-    if not isinstance(value, list):
-        return None
-    for item in value:
-        if isinstance(item, Mapping):
-            url = _safe_photo_url(item.get("url"))
-            if url:
-                return url
-    return None
-
-
-def _safe_photo_url(value: object) -> str | None:
-    if not isinstance(value, str) or not value.strip():
-        return None
-    url = value.strip()
-    parsed = urlparse(url)
-    return url if parsed.scheme in {"http", "https"} and parsed.netloc else None
 
 
 def _parse_clock(value: str) -> int:

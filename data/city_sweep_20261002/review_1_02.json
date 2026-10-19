@@ -1,0 +1,688 @@
+[
+  {
+    "id": 54,
+    "city": "阜新市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/2E6350707F1F4DDA996E7AD8E51F5E14/index.shtml"
+    ],
+    "checked_names": [
+      "查海遗址博物馆"
+    ],
+    "note": "现有海棠山、瑞应寺、乌兰木图山、万人坑纪念馆、海州露天矿公园、市博物馆，查海遗址博物馆为另址专题场馆。第二轮：OSM无同名场馆点，暂不能核坐标。",
+    "candidates": [
+      {
+        "name": "查海遗址博物馆",
+        "status": "pending_coordinates",
+        "description": "展示查海遗址及其新石器时代文化的专题博物馆，馆舍位于遗址附近。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/2E6350707F1F4DDA996E7AD8E51F5E14/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/2E6350707F1F4DDA996E7AD8E51F5E14/index.shtml",
+            "https://www.fuxin.gov.cn/content/2020/890270.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+阜新返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/2E6350707F1F4DDA996E7AD8E51F5E14/index.shtml",
+            "https://www.iwenbo.fun/heritage/520.html",
+            "https://www.openstreetmap.org/way/690926989"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "文博站 marker 标题是“查海遗址”，OSM 对应遗址而非南侧的查海遗址博物馆；拒绝父子误配。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "city": "朝阳市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025111114251027109/index.shtml"
+    ],
+    "checked_names": [
+      "龙凤山风景区"
+    ],
+    "note": "现有牛河梁、喀左龙源、凤凰山等，龙凤山为喀左另一山岳景区；需以入口坐标确认与喀左龙源不重叠。",
+    "candidates": [
+      {
+        "name": "龙凤山风景区",
+        "status": "pending_coordinates",
+        "description": "喀左县以山石、洞穴和寺庙遗存为游览内容的山岳景区。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025111114251027109/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025111114251027109/index.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/1431190734为way tourism=attraction范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "city": "四平市",
+    "province": "吉林省",
+    "sources": [
+      "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/jfjymstyy/202505/t20250523_9238834.html"
+    ],
+    "checked_names": [
+      "叶赫那拉城景区"
+    ],
+    "note": "现有仅四平战役纪念馆；叶赫那拉城为独立历史文化景区，非纪念馆子点。",
+    "candidates": [
+      {
+        "name": "叶赫那拉城景区",
+        "status": "pending_coordinates",
+        "description": "以叶赫部历史文化为主题的景区，可参观仿古建筑及相关民俗展示。",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/jfjymstyy/202505/t20250523_9238834.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/jfjymstyy/202505/t20250523_9238834.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“叶赫那拉城景区 四平市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "city": "松原市",
+    "province": "吉林省",
+    "sources": [
+      "https://www.forestry.gov.cn/c/www/mlzgxczrbhd/574609.jhtml"
+    ],
+    "checked_names": [
+      "乾安泥林国家地质公园"
+    ],
+    "note": "现有查干湖、成吉思汗文化园；泥林位于乾安县，为不同地貌景区。",
+    "candidates": [
+      {
+        "name": "乾安泥林国家地质公园",
+        "status": "pending_coordinates",
+        "description": "位于乾安县，以潜蚀形成的泥林地貌和晚更新世化石遗址为特色。",
+        "description_source_url": "https://www.forestry.gov.cn/c/www/mlzgxczrbhd/574609.jhtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.forestry.gov.cn/c/www/mlzgxczrbhd/574609.jhtml",
+            "https://whhlyt.jl.gov.cn/ggfw/lyfw/jng/202405/t20240524_8912725.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“乾安泥林国家地质公园 松原市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "city": "齐齐哈尔市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.hlj.gov.cn/hlj/c107858/202504/c00_31835064.shtml"
+    ],
+    "checked_names": [
+      "明月岛风景区",
+      "龙沙公园"
+    ],
+    "note": "龙沙公园已入库；明月岛为另一独立游览区，与扎龙不重叠。",
+    "candidates": [
+      {
+        "name": "明月岛风景区",
+        "status": "pending_coordinates",
+        "description": "齐齐哈尔市文旅线路中的嫩江岛屿风景区，可作踏青和滨水休闲游览。",
+        "description_source_url": "https://www.hlj.gov.cn/hlj/c107858/202504/c00_31835064.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.hlj.gov.cn/hlj/c107858/202504/c00_31835064.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/715002927为way tourism=attraction范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "city": "大庆市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://wlt.hlj.gov.cn/wlt/c114274/202302/c00_31528939.shtml"
+    ],
+    "checked_names": [
+      "大庆油田历史陈列馆"
+    ],
+    "note": "现有铁人王进喜纪念馆；油田历史陈列馆以会战及油田发展为主题，非同一场馆。",
+    "candidates": [
+      {
+        "name": "大庆油田历史陈列馆",
+        "status": "approved",
+        "description": "设于石油会战时期的旧址院落，展示大庆油田的开发建设历史。",
+        "description_source_url": "https://wlt.hlj.gov.cn/wlt/c114274/202302/c00_31528939.shtml",
+        "longitude": 125.015903,
+        "latitude": 46.6028557,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/10967539105",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "黑龙江文旅资料载明为独立陈列馆；与已存铁人王进喜纪念馆不同址；坐标取OSM具名博物馆节点。",
+        "aliases": []
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "city": "牡丹江市",
+    "province": "黑龙江省",
+    "sources": [
+      "https://www.hlj.gov.cn/hlj/c108552/202407/c00_31748325.shtml"
+    ],
+    "checked_names": [
+      "横道河子东北虎林园"
+    ],
+    "note": "现有镜泊湖、八女投江雕像；虎林园位于横道河子，主题及位置独立。第三轮：OSM同名东北虎林园对象为约1.5公里宽的theme_park范围，边界节点无入口标记，不能用中心点。",
+    "candidates": [
+      {
+        "name": "横道河子东北虎林园",
+        "status": "pending_coordinates",
+        "description": "位于海林市横道河子，以东北虎保护繁育和近距离观赏为主题。",
+        "description_source_url": "https://www.hlj.gov.cn/hlj/c108552/202407/c00_31748325.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.hlj.gov.cn/hlj/c108552/202407/c00_31748325.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“横道河子东北虎林园 牡丹江市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "city": "上海市",
+    "province": "上海市",
+    "sources": [
+      "https://www.shanghai.gov.cn/sjwl/20260616/65d6dcf5e3df4c85a2fe5a67caf33ed1.html"
+    ],
+    "checked_names": [
+      "上海方塔园",
+      "上海天文馆"
+    ],
+    "note": "现有上海大观园、佘山度假区等；方塔园位于松江老城区，为独立文物主题园林，与大观园不同。第二轮：OSM未返回方塔园具名入口点，园区中心不足以作行程抵达点；另核实收录上海天文馆，和世纪大道上海科技馆主馆、北京西路自然博物馆为不同场馆。",
+    "candidates": [
+      {
+        "name": "上海方塔园",
+        "status": "pending_coordinates",
+        "description": "松江古城的文物主题江南园林，以北宋方塔为中心，汇集历代建筑遗存。",
+        "description_source_url": "https://www.shanghai.gov.cn/sjwl/20260616/65d6dcf5e3df4c85a2fe5a67caf33ed1.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.shanghai.gov.cn/sjwl/20260616/65d6dcf5e3df4c85a2fe5a67caf33ed1.html",
+            "https://whlyj.sh.gov.cn/4ajjq/20191008/0022-28627.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+上海返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.shanghai.gov.cn/sjwl/20260616/65d6dcf5e3df4c85a2fe5a67caf33ed1.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "官网可核实方塔园；第二渠道未找到独立的游客入口点，园林区域中心不可采用。",
+          "iwenbo_marker_evidence_file": null
+        }
+      },
+      {
+        "name": "上海天文馆",
+        "status": "approved",
+        "description": "上海天文馆位于浦东新区临港大道380号，以连接人与宇宙为展示主题，设有“家园”“宇宙”“征程”三大主题展区及特色展区，通过天文展品、互动体验和球幕天象内容介绍宇宙与天文学。开放及预约安排以馆方公告为准。",
+        "description_source_url": "https://www.shanghai.gov.cn/pudong/index.html",
+        "longitude": 121.9218115,
+        "latitude": 30.914519,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/979458385",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "研学", "亲子"],
+        "duration_minutes": 180,
+        "aliases": ["上海科技馆天文馆", "上海天文馆（上海科技馆分馆）"],
+        "independence_note": "上海市政府博物馆名录单列上海天文馆，馆方地址为临港大道380号；与数据库世纪大道2000号上海科技馆主馆、北京西路上海自然博物馆在不同地址，是科技馆管理体系内独立可预约参观的天文场馆，不是同一场馆的重复描述。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "上海市文旅局2025年度博物馆名录单列该馆，上海市政府及馆方页面给出临港大道380号和开放预约信息；Photon命中同名amenity=planetarium/tourism=museum馆舍轮廓，坐标落在建筑内。与现有上海科技馆主馆及自然博物馆地址、场馆实体均不同。",
+          "source_urls": [
+            "https://whlyj.sh.gov.cn/bwg/20260106/265b828de4394054bdc2e61e1599ed4c.html",
+            "https://www.shanghai.gov.cn/pudong/index.html",
+            "https://www.sstm-sam.org.cn/",
+            "https://www.openstreetmap.org/way/979458385",
+            "https://photon.komoot.io/api/?q=%E4%B8%8A%E6%B5%B7%E5%A4%A9%E6%96%87%E9%A6%86%20%E6%B5%A6%E4%B8%9C%E6%96%B0%E5%8C%BA&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/979458385由Photon以上海天文馆、浦东新区检索返回，类型amenity=planetarium，具名馆舍小型轮廓；WGS84代表点121.9218115,30.914519落在建筑内，是场馆定位锚点而非实测游客入口。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "city": "常州市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.changzhou.gov.cn/ns_news/387109396522723"
+    ],
+    "checked_names": [
+      "东方盐湖城·道天下",
+      "花谷奇缘",
+      "天目湖景区"
+    ],
+    "note": "天目湖已入库；东方盐湖城位于金坛茅山，与现有环球恐龙城、春秋淹城分处不同景区。",
+    "candidates": [
+      {
+        "name": "东方盐湖城·道天下",
+        "status": "pending_coordinates",
+        "description": "金坛茅山旅游度假区内以道文化和主题游览为核心的独立景区。",
+        "description_source_url": "https://www.changzhou.gov.cn/ns_news/387109396522723",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.changzhou.gov.cn/ns_news/387109396522723",
+            "https://www.jintan.gov.cn/html/czjt/2022/MPIAADFN_0707/201033.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“东方盐湖城·道天下 常州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "city": "淮安市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.huaian.gov.cn/col/16657_173466/art/17383392/1738912373762MRWSpQ6o.html"
+    ],
+    "checked_names": [
+      "河下古镇",
+      "洪泽湖古堰景区",
+      "盱眙第一山景区"
+    ],
+    "note": "河下古镇、周恩来故里已入库；洪泽湖古堰为不同区域独立景区。第三轮：地名检索返回外地误匹配而非同名景区入口，暂无可靠坐标。",
+    "candidates": [
+      {
+        "name": "洪泽湖古堰景区",
+        "status": "pending_coordinates",
+        "description": "位于洪泽湖沿岸，以历史堤防和滨湖景观为主要游览内容。",
+        "description_source_url": "https://www.huaian.gov.cn/col/16657_173466/art/17383392/1738912373762MRWSpQ6o.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.huaian.gov.cn/col/16657_173466/art/17383392/1738912373762MRWSpQ6o.html",
+            "https://www.hongze.gov.cn/col/930_115165/art/16934976/1695285301578A97BZJ5V.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“洪泽湖古堰景区 淮安市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "city": "泰州市",
+    "province": "江苏省",
+    "sources": [
+      "https://www.taizhou.gov.cn/zmhd/dwzsk/wtly/art/2024/art_a479f9ba76374a23960613bc1e597059.html",
+      "https://www.taizhou.gov.cn/xwzx/bmzx/art/2024/art_0f82b8fb50c64268974f616e79fa26f8.html"
+    ],
+    "checked_names": [
+      "李中水上森林景区",
+      "千垛景区",
+      "溱潼古镇"
+    ],
+    "note": "溱潼古镇和溱湖已入库；李中水上森林位于兴化，独立售票开放，不属溱湖子景点。第三轮：OSM无可核实同名入口点，仍待坐标。",
+    "candidates": [
+      {
+        "name": "李中水上森林景区",
+        "status": "pending_coordinates",
+        "description": "兴化市千垛镇的水上生态林，以水杉、池杉、林间水道和水鸟景观为特色。",
+        "description_source_url": "https://www.taizhou.gov.cn/xwzx/bmzx/art/2024/art_0f82b8fb50c64268974f616e79fa26f8.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.taizhou.gov.cn/xwzx/bmzx/art/2024/art_0f82b8fb50c64268974f616e79fa26f8.html",
+            "https://zh.wikipedia.org/wiki/%E5%85%B4%E5%8C%96%E6%9D%8E%E4%B8%AD%E6%B0%B4%E4%B8%8A%E6%A3%AE%E6%9E%97%E6%99%AF%E5%8C%BA"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“李中水上森林景区 泰州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "city": "蚌埠市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.bengshan.gov.cn/hdjl/dwzsk/4858641.html",
+      "https://xfw.ft.gov.cn/news/szyw/5320.html"
+    ],
+    "checked_names": [
+      "蚌埠市博物馆"
+    ],
+    "note": "现有龙子湖、涂山、蚌埠闸等，无市博物馆；官方证实独立馆舍和入馆流程。",
+    "candidates": [
+      {
+        "name": "蚌埠市博物馆",
+        "status": "approved",
+        "description": "蚌埠市博物馆通过历史文物、图文和专题陈列介绍淮河文化及蚌埠城市的发展变迁，是了解当地历史文化的公共文博场所。",
+        "description_source_url": "https://xfw.ft.gov.cn/news/szyw/5320.html",
+        "longitude": 117.380712,
+        "latitude": 32.9144888,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/263922266",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "蚌山区官方入馆资料与OSM具名馆舍建筑一致；不是已存龙子湖、涂山景区子点；定位为馆舍建筑点而非景区质心。",
+        "aliases": [
+          "蚌埠博物馆",
+          "蚌埠市博物院"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "city": "铜陵市",
+    "province": "安徽省",
+    "sources": [
+      "https://wlj.tl.gov.cn/tlswhhlyj/c00057/pc/content/content_1686675183489572864.html"
+    ],
+    "checked_names": [
+      "浮山风景区"
+    ],
+    "note": "现有犁桥水镇和大通古镇；浮山位于枞阳，为独立山岳地质景区。",
+    "candidates": [
+      {
+        "name": "浮山风景区",
+        "status": "pending_coordinates",
+        "description": "枞阳县山岳风景区，兼有古火山地质地貌、摩崖石刻与佛教文化遗存。",
+        "description_source_url": "https://wlj.tl.gov.cn/tlswhhlyj/c00057/pc/content/content_1686675183489572864.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlj.tl.gov.cn/tlswhhlyj/c00057/pc/content/content_1686675183489572864.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“浮山风景区 铜陵市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "city": "阜阳市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.shucheng.gov.cn/group3/M00/2D/8D/wKgSG2I2smGAH_riAAXwzEuxA3w203.pdf"
+    ],
+    "checked_names": [
+      "尤家花园",
+      "八里河旅游区",
+      "管仲老街",
+      "明清苑"
+    ],
+    "note": "八里河和管仲老街已入库；尤家花园虽与颍上旅游线路并列，但可能与五里湖湿地共用景区品牌，待坐标及范围复核。",
+    "candidates": [
+      {
+        "name": "尤家花园",
+        "status": "pending_coordinates",
+        "description": "颍上县可游览的园林景点，位于当地重点旅游线路中，与八里河、管仲老街分列。",
+        "description_source_url": "https://www.shucheng.gov.cn/group3/M00/2D/8D/wKgSG2I2smGAH_riAAXwzEuxA3w203.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.shucheng.gov.cn/group3/M00/2D/8D/wKgSG2I2smGAH_riAAXwzEuxA3w203.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回河南/江西无关单位，非阜阳尤家花园。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.shucheng.gov.cn/group3/M00/2D/8D/wKgSG2I2smGAH_riAAXwzEuxA3w203.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "景区名称有官方资料，但第二渠道未核准尤家花园可抵达入口坐标。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "city": "池州市",
+    "province": "安徽省",
+    "sources": [
+      "https://www.chizhou.gov.cn/News/show/54858.html"
+    ],
+    "checked_names": [
+      "牯牛降风景区",
+      "九华山风景区"
+    ],
+    "note": "九华山、怪潭已入库；牯牛降石台段为独立景区，排除内含严家村、龙门潭等子点。",
+    "candidates": [
+      {
+        "name": "石台牯牛降风景区",
+        "status": "pending_coordinates",
+        "description": "石台县的山岳与森林景区，可沿已开放的龙门游览区看峡谷、古村和溪潭。",
+        "description_source_url": "https://www.chizhou.gov.cn/News/show/54858.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.chizhou.gov.cn/News/show/54858.html",
+            "https://www.chizhou.gov.cn/News/show/745320.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“石台牯牛降风景区 池州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "city": "莆田市",
+    "province": "福建省",
+    "sources": [
+      "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202305/t20230506_6163597.htm"
+    ],
+    "checked_names": [
+      "兴化府历史文化街区",
+      "湄洲岛妈祖文化旅游区",
+      "木兰陂世界灌溉工程遗产景区"
+    ],
+    "note": "湄洲岛和岛上妈祖项目已入库；兴化府街区在莆田城区，独立于湄洲岛，也不等同市博物馆。",
+    "candidates": [
+      {
+        "name": "兴化府历史文化街区",
+        "status": "pending_coordinates",
+        "description": "莆田城区承载兴化府历史记忆的传统街区，可体验古街巷和地方文化。",
+        "description_source_url": "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202305/t20230506_6163597.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202305/t20230506_6163597.htm",
+            "https://www.fujian.gov.cn/zwgk/ztzl/sxzygwzxsgzx/flsxkmh/202605/t20260519_7149311.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“兴化府历史文化街区 莆田市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "city": "南平市",
+    "province": "福建省",
+    "sources": [
+      "https://wlt.fujian.gov.cn/zwgk/ztzl/fjsjplyc/npswyssxmc/201908/t20190808_5294514.htm"
+    ],
+    "checked_names": [
+      "下梅古村",
+      "武夷山风景名胜区"
+    ],
+    "note": "武夷山已入库；下梅古村位于风景区以东约4公里，官方作为历史文化名村单列，可独立游览。",
+    "candidates": [
+      {
+        "name": "下梅古村",
+        "status": "pending_coordinates",
+        "description": "武夷山市保存茶叶贸易历史和清代古民居的古村，沿梅溪可见古街、古井和古码头。",
+        "description_source_url": "https://wlt.fujian.gov.cn/zwgk/ztzl/fjsjplyc/npswyssxmc/201908/t20190808_5294514.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wlt.fujian.gov.cn/zwgk/ztzl/fjsjplyc/npswyssxmc/201908/t20190808_5294514.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“下梅古村 南平市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "city": "景德镇市",
+    "province": "江西省",
+    "sources": [
+      "https://jdz.gov.cn/zjcd/mljdz/sj/t932861.shtml"
+    ],
+    "checked_names": [
+      "浮梁古县衙"
+    ],
+    "note": "现有陶阳里、古窑、瑶里等；浮梁古县衙位于浮梁旧城，独立的古衙景区，排除内部红塔另增。第二轮：OSM同名对象跨数百米，为景区面，未核到入口。",
+    "candidates": [
+      {
+        "name": "浮梁古县衙",
+        "status": "pending_coordinates",
+        "description": "浮梁旧城保存的清代县衙景区，可参观衙署建筑、历史文化长廊与县衙文化展示。",
+        "description_source_url": "https://jdz.gov.cn/zjcd/mljdz/sj/t932861.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://jdz.gov.cn/zjcd/mljdz/sj/t932861.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/1051496174 为约370米浮梁古县衙公园面，非入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://jdz.gov.cn/zjcd/mljdz/sj/t932861.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Photon 命中浮梁古县衙景区面与内部城门楼，并非明确游客入口；不能以内部子点或景区质心代替。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "city": "鹰潭市",
+    "province": "江西省",
+    "sources": [
+      "https://scdc.cscec.com/xwzx68/gskx68/202402/3756598.html"
+    ],
+    "checked_names": [
+      "白鹤湖嘻嘻哩生态水世界"
+    ],
+    "note": "现有龙虎山及其上清古镇、天师府等子点；白鹤湖生态水世界为另一景区，运营建设方证实4A级身份，但入口需核。",
+    "candidates": [
+      {
+        "name": "白鹤湖嘻嘻哩生态水世界",
+        "status": "pending_coordinates",
+        "description": "鹰潭市白鹤湖区域的生态水世界游览项目，已获评国家4A级旅游景区。",
+        "description_source_url": "https://scdc.cscec.com/xwzx68/gskx68/202402/3756598.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://scdc.cscec.com/xwzx68/gskx68/202402/3756598.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“白鹤湖嘻嘻哩生态水世界 鹰潭市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "city": "抚州市",
+    "province": "江西省",
+    "sources": [
+      "https://www.jxfz.gov.cn/art/2026/3/2/art_8674_4431128.html"
+    ],
+    "checked_names": [
+      "文昌里历史文化街区",
+      "汤显祖纪念馆"
+    ],
+    "note": "现有汤显祖纪念馆、麻姑山等；文昌里为市区成片古街区，非汤显祖纪念馆同一景点。",
+    "candidates": [
+      {
+        "name": "文昌里历史文化街区",
+        "status": "pending_coordinates",
+        "description": "抚州老城沿抚河形成的历史街区，保留传统街巷和商贸文化格局。",
+        "description_source_url": "https://www.jxfz.gov.cn/art/2026/3/2/art_8674_4431128.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.jxfz.gov.cn/art/2026/3/2/art_8674_4431128.html",
+            "https://static.sse.com.cn/bond/bridge2/disclosure/announcement/c/202310/035564_20231023_4PE7.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“文昌里历史文化街区 抚州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  }
+]

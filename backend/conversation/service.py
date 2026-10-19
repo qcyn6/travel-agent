@@ -30,6 +30,10 @@ class RequirementNotReadyError(ValueError):
     pass
 
 
+class RequirementConflictError(ValueError):
+    pass
+
+
 NO_EXTRA_PREFERENCE_TEXT = "没有额外体验偏好"
 
 
@@ -50,15 +54,19 @@ class PreparedConversationTurn:
     destination_error: str | None = None
     mode_boundary: str | None = None
     validation_error: str | None = None
+    confirmation_prepared: bool | None = None
 
 
 class ConversationService:
-    def __init__(self, *, repository, parser, resolver: DestinationResolver, responder):
+    def __init__(self, *, repository, parser=None, resolver: DestinationResolver, responder=None, planning_agent=None):
         self.repository = repository
         self.parser = parser
         self.resolver = resolver
         self.responder = responder
-        self.conversation_graph = PlanningConversationGraph(self)
+        self.planning_agent = planning_agent
+        # Compatibility for standalone parser/service consumers. Production
+        # dialogue uses the single Agent, not the former two-model turn graph.
+        self.conversation_graph = PlanningConversationGraph(self) if planning_agent is None else None
 
     def create(self) -> Conversation:
         return self._to_model(self.repository.create())
@@ -90,13 +98,77 @@ class ConversationService:
         *,
         mode: str | None = None,
     ) -> tuple[Conversation, str, list[str], PreparedConversationTurn]:
-        """Run one conversation turn through the LangGraph orchestration."""
+        """Run the dialogue Agent (or the legacy parser adapter for old callers)."""
 
+        if self.planning_agent is not None:
+            return await self._run_agent_turn(conversation_id, message, mode=mode)
         return await self.conversation_graph.run(
             conversation_id,
             message,
             mode=mode,
         )
+
+    async def _run_agent_turn(self, conversation_id, message, *, mode=None):
+        import logging
+        from backend.conversation.planning_agent import PlanningDialogueTurn
+
+        row = self.repository.get(conversation_id, with_messages=True)
+        if row is None:
+            raise ConversationNotFoundError("当前会话不存在或已失效")
+        if mode not in (None, "planning"):
+            raise ValueError("规划对话 Agent 仅处理规划模式")
+        clean_message = message.strip()
+        if not clean_message:
+            raise ValueError("消息不能为空")
+        current = load_requirement_draft(row.requirement_draft or {})
+        history = [{"role": item.role, "content": item.content} for item in row.messages
+                   if item.role in {"user", "assistant"}]
+        self.repository.add_message(row, role="user", content=clean_message)
+        turn = PlanningDialogueTurn(self, current)
+        ready = False
+        next_field = None
+        answered = False
+        try:
+            decision = await self.planning_agent.run(turn, clean_message, history)
+        except Exception as exc:
+            # No raw provider exceptions or unvalidated staged edits reach the UI/DB.
+            logging.getLogger(__name__).warning("Planning dialogue failed: %s", type(exc).__name__)
+            from backend.observability import metrics
+            metrics.inc("travel_agent_planning_dialogue_failures_total", {"reason": type(exc).__name__})
+            reply = "本轮需求整理暂时未完成，原有需求已保留，请重新发送刚才的补充或修改。"
+        else:
+            if turn.draft != current:
+                saver = getattr(self.repository, "save_agent_requirement", None)
+                if saver is not None:
+                    if not saver(row, current, turn.draft):
+                        raise RequirementConflictError("需求已在其他页面更新，请刷新后再发送")
+                else:
+                    self.repository.save_requirement(row, turn.draft, confirmed=False)
+            current = turn.draft
+            reply = decision.reply
+            answered = True
+            ready = decision.action == "confirm" and turn.confirmation_prepared
+            next_field = decision.next_field
+            if ready:
+                # Confirmation text is rendered from exactly the checked draft,
+                # not from a potentially inconsistent model-written summary.
+                reply = self.summary_reply(current)
+        prepared = PreparedConversationTurn(
+            row=row, conversation=self._to_model(row), user_message=clean_message,
+            requirement=current, missing=self.missing_fields(current),
+            destination_context=None, recent_messages=history[-8:], changed_fields=[],
+            confirmation_prepared=ready,
+        )
+        conversation = self.finish_message(prepared, reply)
+        if ready:
+            options = ["确认生成计划"]
+        elif next_field in prepared.missing:
+            options = self.suggestions_for([next_field], current)
+        elif not answered and prepared.missing:
+            options = self.suggestions_for(prepared.missing[:1], current)
+        else:
+            options = []
+        return conversation, reply, options, prepared
 
     async def planning_reply(self, prepared: PreparedConversationTurn) -> str:
         """Let the LLM guide a planning turn while preserving hard guards."""
@@ -525,11 +597,20 @@ class ConversationService:
         self.repository.save_requirement(row, updated, confirmed=False)
         return self._to_model(self.repository.get(conversation_id, with_messages=True))
 
-    def confirm(self, conversation_id: str) -> Conversation:
-        row = self.repository.get(conversation_id, with_messages=True)
+    def confirm(self, conversation_id: str, *, expected_requirement: RequirementDraft | None = None) -> Conversation:
+        locked_get = getattr(self.repository, "get_for_confirmation", None)
+        row = (locked_get(conversation_id) if locked_get is not None else
+               self.repository.get(conversation_id, with_messages=True))
         if row is None:
             raise ConversationNotFoundError("当前会话不存在或已失效")
         requirement = load_requirement_draft(row.requirement_draft or {})
+        if expected_requirement is not None and expected_requirement != requirement:
+            raise RequirementConflictError("需求已经修改，这张确认卡片已过期，请刷新需求后重新确认")
+        if requirement.province or requirement.cities:
+            try:
+                requirement = RequirementDraft.model_validate(self.resolver.resolve(requirement).requirement)
+            except ValueError as exc:
+                raise RequirementNotReadyError(str(exc)) from exc
         missing = self.missing_fields(requirement)
         if missing:
             labels = {

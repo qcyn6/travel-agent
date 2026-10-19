@@ -1,0 +1,508 @@
+[
+  {
+    "id": 125,
+    "city": "漳州市",
+    "province": "福建省",
+    "sources": [
+      "https://wlt.fujian.gov.cn/zwgk/tzgg/gggs/202603/t20260330_7117179.htm"
+    ],
+    "checked_names": [
+      "龙海白塘湾景区",
+      "龙海鹭凯生态庄园景区",
+      "龙江岁月旅游度假区"
+    ],
+    "note": "省文旅评级公告；华安土楼度假区与土楼景区不重复增加。",
+    "candidates": [
+      {
+        "name": "龙海白塘湾景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wlt.fujian.gov.cn/zwgk/tzgg/gggs/202603/t20260330_7117179.htm",
+            "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "位于漳州市龙海区隆教畲族乡的滨海景区，设有火山公园、火山科普馆和温泉等游览设施。"
+      },
+      {
+        "name": "龙海鹭凯生态庄园景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wlt.fujian.gov.cn/zwgk/tzgg/gggs/202603/t20260330_7117179.htm",
+            "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "位于漳州市龙海区双第华侨农场洲仔村，结合田园休闲、旅居和研学教育活动。"
+      },
+      {
+        "name": "龙江岁月旅游度假区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wlt.fujian.gov.cn/zwgk/tzgg/gggs/202603/t20260330_7117179.htm",
+            "https://www.fj.gov.cn/zwgk/ztzl/sxzygwzxsgzx/sdjj/wvjj/202604/t20260404_7119520.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "位于漳州高新区北部的滨水度假区，以城市水岸漫游和休闲活动为特色。"
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "city": "南昌市",
+    "province": "江西省",
+    "sources": [
+      "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+      "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml"
+    ],
+    "checked_names": [
+      "凤凰沟",
+      "溪霞怪石岭生态公园",
+      "安义古村群",
+      "李渡元代烧酒作坊遗址",
+      "小平小道",
+      "厚田沙漠",
+      "南昌之星摩天轮"
+    ],
+    "note": "官方景区名录较早，候选还需当前开放状态和到达点核验。",
+    "candidates": [
+      {
+        "name": "凤凰沟",
+        "status": "pending_coordinates",
+        "description_source_url": "https://ncx.nc.gov.cn/ncxrmzf/jqzx/202506/a421cd8b26ce4cac81130c1c1534.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://www.openstreetmap.org/relation/9090377",
+            "https://ncx.nc.gov.cn/ncxrmzf/jqzx/202506/a421cd8b26ce4cac81130c1c1534.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/relation/9090377；大范围质心禁用。"
+        },
+        "description": "南昌县的生态农业游览区，可参观花卉、茶园与湿地等田园景观。"
+      },
+      {
+        "name": "溪霞怪石岭生态公园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://xjq.nc.gov.cn/xjqrmzf/xjfg/201901/29dc5d6bf7bd4aa98b3de0ad8cf26a0e.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://xjq.nc.gov.cn/xjqrmzf/xjfg/201901/29dc5d6bf7bd4aa98b3de0ad8cf26a0e.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "位于南昌溪霞一带，以山间怪石地貌和步道游览为主要体验的生态公园。"
+      },
+      {
+        "name": "安义古村群",
+        "status": "pending_coordinates",
+        "description_source_url": "https://anyi.nc.gov.cn/ayxzf/aysfjggflfwnk/202510/a03e24cdbfae43e3bcc77ddf5cc8bb0c.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://anyi.nc.gov.cn/ayxzf/aysfjggflfwnk/202510/a03e24cdbfae43e3bcc77ddf5cc8bb0c.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "由罗田、水南、京台等古村组成，游客可沿村巷观看传统民居与乡村历史风貌。"
+      },
+      {
+        "name": "李渡元代烧酒作坊遗址",
+        "status": "pending_coordinates",
+        "description_source_url": "https://jxx.nc.gov.cn/jxxrmzf/ggtywh/202506/4a66db0eba4e4bdb8c5506c423829da1.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://jxx.nc.gov.cn/jxxrmzf/ggtywh/202506/4a66db0eba4e4bdb8c5506c423829da1.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "进贤县保存的古代酿酒遗址，可结合遗址与展示了解当地烧酒酿造历史。",
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "已核官方真实遗址与展示内容，但本轮无同址可核验的小建筑或参观入口WGS84实体，保留未决。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://jxx.nc.gov.cn/jxxrmzf/ggtywh/202506/4a66db0eba4e4bdb8c5506c423829da1.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "已核官方真实遗址与展示内容，但本轮无同址可核验的小建筑或参观入口WGS84实体，保留未决。"
+        }
+      },
+      {
+        "name": "小平小道",
+        "status": "pending_coordinates",
+        "description_source_url": "https://xjq.nc.gov.cn/xjqrmzf/xjbmjs42/202308/37447cc8f8bf47e984482f1db605f5c9.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/museum，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://www.openstreetmap.org/way/242712193",
+            "https://xjq.nc.gov.cn/xjqrmzf/xjbmjs42/202308/37447cc8f8bf47e984482f1db605f5c9.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/242712193；定位候选尚未达入库门槛。"
+        },
+        "description": "南昌新建区的红色文化参观地，围绕邓小平在当地劳动生活的史迹展开展示。"
+      },
+      {
+        "name": "厚田沙漠",
+        "status": "pending_coordinates",
+        "description_source_url": "https://hgt.nc.gov.cn/hgtqrmzf/lygbds/202512/a0ab9df894d0405bb54fff45b6b3e903.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/gkgsgg/202007/da5db2eff16d489fb6e9437bb932e6cf/files/3fb3533ffcfa4579a169f03fad471b4c.pdf",
+            "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+            "https://www.openstreetmap.org/way/285907513",
+            "https://hgt.nc.gov.cn/hgtqrmzf/lygbds/202512/a0ab9df894d0405bb54fff45b6b3e903.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/285907513；大范围质心禁用。"
+        },
+        "description": "位于南昌市红谷滩区厚田乡，以沙山沙地和邻近水岸形成的风沙地貌景观为特色。"
+      },
+      {
+        "name": "南昌之星摩天轮",
+        "status": "approved",
+        "description": "南昌之星摩天轮位于红谷滩赣江之滨，可登乘俯瞰赣江和一江两岸的城市建筑，结合滨江散步体验城市观光与休闲。",
+        "description_source_url": "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+        "longitude": 115.8458347,
+        "latitude": 28.6594029,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/1503937693",
+        "coordinate_system": "WGS84",
+        "category": "主题游乐",
+        "tags": [
+          "主题娱乐",
+          "滨水",
+          "城市漫游",
+          "摄影"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "2026区政府景点介绍与OSM具名摩天轮节点匹配；已有景点未包含此游乐地标，不以整个赣江风光带为父景区重复新增。",
+        "aliases": [
+          "南昌之星"
+        ]
+      },
+      {
+        "name": "南昌美术馆",
+        "status": "approved",
+        "description": "南昌美术馆是南昌画院的公共展览场馆，承担美术作品和南昌瓷板画的研究、典藏、陈列与展览，并提供公益培训和瓷画体验；本条定位其东湖区建德观街主馆。",
+        "description_source_url": "https://wgxj.nc.gov.cn/wgxlj/whcg/202204/c10e54cf79f44cd694469c865d13d7c5.shtml",
+        "longitude": 115.8898515,
+        "latitude": 28.6855746,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/476196920",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["人文", "研学", "摄影"],
+        "duration_minutes": 60,
+        "independence_note": "南昌市文广旅局公共文化设施目录列明南昌市东湖区建德观街1号、展览及瓷画体验；市级预算文件确认南昌美术馆持续免费开放。馆方另有红谷滩瓷板画展厅，本条仅定位建德观街主馆，不把分馆重复建点。OSM way/476196920为具名场馆建筑轮廓代表点。",
+        "aliases": ["南昌画院（南昌美术馆）"],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "市文广旅局场馆目录核实主馆地址、展览及体验内容，2025年预算资料确认对外开放职责；公开地图具名建筑点位匹配，已检查南昌市现有景点无同名同址记录。",
+          "source_urls": [
+            "https://wgxj.nc.gov.cn/wgxlj/whcg/202204/c10e54cf79f44cd694469c865d13d7c5.shtml",
+            "https://wgxj.nc.gov.cn/wgxlj/ysjs/202501/3087c20f6e4e4b01a117e31f934d2e04/files/207004%E5%8D%97%E6%98%8C%E7%94%BB%E9%99%A22025%E5%B9%B4%E9%A2%84%E7%AE%97.pdf",
+            "https://www.openstreetmap.org/way/476196920"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 115.8898515,28.6855746；取具名主馆建筑轮廓代表点。南昌美术馆另有红谷滩瓷板画展厅，本条只收建德观街主馆。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "city": "新余市",
+    "province": "江西省",
+    "sources": [
+      "https://www.xysmuseum.com/59.html",
+      "https://xygxkzbwg.com/"
+    ],
+    "checked_names": [
+      "傅抱石纪念馆",
+      "新余赣西抗战博物馆",
+      "罗坊会议纪念馆"
+    ],
+    "note": "傅抱石纪念馆和赣西抗战博物馆均需核对抱石公园内部重叠；罗坊已有父景区，暂不重复添加。",
+    "candidates": []
+  },
+  {
+    "id": 137,
+    "city": "宜春市",
+    "province": "江西省",
+    "sources": [
+      "https://www.myslyjt.com/",
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=34932"
+    ],
+    "checked_names": [
+      "明月山",
+      "青云栈道",
+      "星月洞"
+    ],
+    "note": "已存明月山；栈道与洞穴为内部点位不另增。",
+    "candidates": []
+  },
+  {
+    "id": 141,
+    "city": "青岛市",
+    "province": "山东省",
+    "sources": [
+      "https://www.qingdao.gov.cn/yfqd/",
+      "https://www.qdseaside.cn/mobile/about.asp?id=1",
+      "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml"
+    ],
+    "checked_names": [
+      "小青岛",
+      "鲁迅公园",
+      "五四广场",
+      "石老人国家旅游度假区"
+    ],
+    "note": "核对海滨风景区内部点与已有独立景点；不再新增整个海滨风景区。",
+    "candidates": [
+      {
+        "name": "小青岛",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520361.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/islet，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.qingdao.gov.cn/yfqd/",
+            "https://www.qdseaside.cn/mobile/about.asp?id=1",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml",
+            "https://www.openstreetmap.org/way/43276162",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520361.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/43276162；定位候选尚未达入库门槛。"
+        },
+        "description": "青岛湾内与陆地由海堤相连的小岛公园，岛上灯塔和海湾景色是主要看点。"
+      },
+      {
+        "name": "鲁迅公园",
+        "status": "approved",
+        "description": "鲁迅公园是青岛琴屿路沿海的公共公园，以海湾、红礁石、松林和临海步道为特色，适合滨海散步、观景与摄影。",
+        "description_source_url": "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml",
+        "longitude": 120.3279749,
+        "latitude": 36.0548059,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/13184091001",
+        "coordinate_system": "WGS84",
+        "category": "城市公园",
+        "tags": [
+          "滨水",
+          "生态",
+          "城市漫游",
+          "摄影",
+          "休闲"
+        ],
+        "duration_minutes": 60,
+        "aliases": [
+          "青岛鲁迅公园"
+        ],
+        "independence_note": "选用OSM具名公园POI节点；官方2026线路将其与海军博物馆、小青岛及第一浴场分列；不是在库八大关景区内部建筑。"
+      },
+      {
+        "name": "五四广场",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520360.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://www.qingdao.gov.cn/yfqd/",
+            "https://www.qdseaside.cn/mobile/about.asp?id=1",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml",
+            "https://www.openstreetmap.org/node/5303810107",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520360.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/node/5303810107；大范围质心禁用。"
+        },
+        "description": "青岛浮山湾畔的城市广场，因五四运动得名，南北广场设有草坪、喷泉和观海空间。"
+      },
+      {
+        "name": "石老人国家旅游度假区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqtsjd/202009/t20200910_521980.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.qingdao.gov.cn/yfqd/",
+            "https://www.qdseaside.cn/mobile/about.asp?id=1",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqgy/202009/t20200903_520363.shtml",
+            "https://www.qingdao.gov.cn/yfqd/qdwl/cjfw/wyqtsjd/202009/t20200910_521980.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "位于青岛市崂山区南部的滨海度假区，以近海的石老人礁石和海岸景观得名。"
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "city": "烟台市",
+    "province": "山东省",
+    "sources": [
+      "https://whlyj.yantai.gov.cn/art/2025/7/25/art_42223_2904418.html",
+      "https://www.sdqixia.gov.cn/art/2024/10/22/art_100680_2953940.html",
+      "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+      "https://www.yantai.gov.cn/col/col43277/art/2026/art_f966d44363744767940fa23201fa8efd.html"
+    ],
+    "checked_names": [
+      "牟氏庄园",
+      "天崮山",
+      "栖霞市奇石博物馆",
+      "北极星钟表文化博物馆"
+    ],
+    "note": "奇石博物馆与庄园隔路相望，不在庄园内部；坐标仍待独立入口核验。",
+    "candidates": [
+      {
+        "name": "牟氏庄园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.yantai.gov.cn/col/col11767/art/2026/art_a700cd965d5f4040aee2d26e3f20ca2a.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/museum，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://whlyj.yantai.gov.cn/art/2025/7/25/art_42223_2904418.html",
+            "https://www.sdqixia.gov.cn/art/2024/10/22/art_100680_2953940.html",
+            "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+            "https://www.yantai.gov.cn/col/col43277/art/2026/art_f966d44363744767940fa23201fa8efd.html",
+            "https://www.openstreetmap.org/way/1079004041",
+            "https://www.yantai.gov.cn/col/col11767/art/2026/art_a700cd965d5f4040aee2d26e3f20ca2a.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/1079004041；定位候选尚未达入库门槛。"
+        },
+        "description": "栖霞市保存较完整的北方传统庄园建筑群，层叠院落展示胶东民居与民俗文化。"
+      },
+      {
+        "name": "天崮山",
+        "status": "pending_coordinates",
+        "description_source_url": "https://zqt.yantai.gov.cn/col/col52263/art/2026/art_c694d9e35efe5e5e1337ce27f1407de5.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://whlyj.yantai.gov.cn/art/2025/7/25/art_42223_2904418.html",
+            "https://www.sdqixia.gov.cn/art/2024/10/22/art_100680_2953940.html",
+            "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+            "https://www.yantai.gov.cn/col/col43277/art/2026/art_f966d44363744767940fa23201fa8efd.html",
+            "https://zqt.yantai.gov.cn/col/col52263/art/2026/art_c694d9e35efe5e5e1337ce27f1407de5.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "栖霞市的山地景区，地质构造形成奇峰、岩石与峭壁，可体验山地观景。"
+      },
+      {
+        "name": "栖霞市奇石博物馆",
+        "status": "approved",
+        "description_source_url": "https://whlyj.yantai.gov.cn/col/col42216/art/2026/art_2548a9c49ec34913a41f3ec7edd047b9.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "不同渠道复核：官方现址与文博指南具名馆舍地图点一致，GCJ-02反算WGS84；详情见research_round_20261002C。",
+          "source_urls": [
+            "https://whlyj.yantai.gov.cn/art/2025/7/25/art_42223_2904418.html",
+            "https://www.sdqixia.gov.cn/art/2024/10/22/art_100680_2953940.html",
+            "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+            "https://www.yantai.gov.cn/col/col43277/art/2026/art_f966d44363744767940fa23201fa8efd.html",
+            "https://whlyj.yantai.gov.cn/col/col42216/art/2026/art_2548a9c49ec34913a41f3ec7edd047b9.html",
+            "https://www.iwenbo.fun/museum/2675.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "烟台文旅资料确认栖霞市霞光路19号现有地质文化奇石博物馆；文博指南同址具名地图标记经GCJ-02转换WGS84，作为馆舍到达锚点，非实测入口。"
+        },
+        "description": "位于栖霞市霞光路的地质文化博物馆，举办奇石和陨石科普展，并提供研学参观活动。",
+        "longitude": 120.8310884,
+        "latitude": 37.3179438,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/2675.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "自然",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "烟台文旅资料确认栖霞市霞光路19号现有地质文化奇石博物馆；文博指南同址具名地图标记经GCJ-02转换WGS84，作为馆舍到达锚点，非实测入口。",
+        "aliases": [
+          "栖霞市地质文化奇石博物馆",
+          "栖霞奇石博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "独立馆舍的具名公开地图标记与官方现址吻合；GCJ-02反算WGS84，非大景区质心。",
+          "source_urls": [
+            "https://whlyj.yantai.gov.cn/col/col42216/art/2026/art_2548a9c49ec34913a41f3ec7edd047b9.html",
+            "https://www.iwenbo.fun/museum/2675.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "烟台文旅资料确认栖霞市霞光路19号现有地质文化奇石博物馆；文博指南同址具名地图标记经GCJ-02转换WGS84，作为馆舍到达锚点，非实测入口。",
+          "raw_coordinate_evidence_file": "data/city_sweep_20261002/cache_2_iwenbo_roundC.json"
+        }
+      },
+      {
+        "name": "北极星钟表文化博物馆",
+        "status": "approved",
+        "description": "北极星钟表文化博物馆位于烟台滨海景区的近代建筑群中，以钟表文化为主题，适合参观专题展览并结合滨海街区了解城市文化。",
+        "description_source_url": "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+        "longitude": 121.4011216,
+        "latitude": 37.5424395,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1070825363",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM两座相邻具名馆舍合为一个景点，以临海主馆舍建筑锚点定位；2026烟台政府开放活动证实广仁路1-5号，不同于市博物馆和烟台山。",
+        "aliases": [
+          "北极星钟表博物馆"
+        ]
+      }
+    ]
+  }
+]

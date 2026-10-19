@@ -1,0 +1,23 @@
+{
+  "target": 483,
+  "reviewed": 483,
+  "unreviewed": 0,
+  "outcomes": {
+    "approved": 57,
+    "excluded_duplicate": 3,
+    "unresolved": 423
+  },
+  "existing_rows_unchanged": 3177,
+  "database_count": 3250,
+  "newly_inserted": 73,
+  "schema_unchanged": true,
+  "unresolved_missing_description": 159,
+  "unresolved_missing_coordinate": 423,
+  "vector_state": {
+    "database_documents": 3250,
+    "vector_count": 3250,
+    "missing": 0,
+    "stale": 0,
+    "orphans": 0
+  }
+}

@@ -9,6 +9,7 @@ from backend.auth.repository import UserRepository
 from backend.auth.security import decode_access_token
 from backend.config import Settings, get_settings
 from backend.database import get_db
+from backend.security import enforce_user_budget
 
 
 @dataclass(frozen=True, slots=True)
@@ -46,6 +47,7 @@ def get_current_user(
     row = UserRepository(session).get(str(payload["sub"]))
     if row is None or not row.is_active:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="用户不存在或已被禁用")
+    enforce_user_budget(request, row.id, settings)
     return CurrentUser(
         id=row.id,
         username=row.email,

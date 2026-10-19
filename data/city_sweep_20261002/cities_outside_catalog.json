@@ -1,0 +1,113 @@
+[
+  {
+    "province": "台湾省",
+    "city": "新北市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "新北市立十三行博物馆"
+    ],
+    "sources": [
+      "https://www.sshm.ntpc.gov.tw/"
+    ],
+    "note": "官网地址为新北市八里区博物馆路200号，不能归入台北市。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "桃园市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "桃园市立大溪木艺生态博物馆"
+    ],
+    "sources": [
+      "https://wem.tycg.gov.tw/"
+    ],
+    "note": "官网确认桃园大溪馆区；馆区多个建筑不拆成重复景点。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "台中市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "国立台湾美术馆"
+    ],
+    "sources": [
+      "https://www.ntmofa.gov.tw/"
+    ],
+    "note": "官网确认台中市西区五权西路一段2号。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "台南市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "安平古堡",
+      "赤崁楼",
+      "安平树屋",
+      "亿载金城"
+    ],
+    "sources": [
+      "https://historic.tainan.gov.tw/index.php?id=64&index=3&lang=cht&option=module&task=pageinfo"
+    ],
+    "note": "市政府古迹运营资料分别列出地址和售票，不把不同古迹混成台北记录。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "高雄市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "打狗英国领事馆文化园区",
+      "驳二艺术特区"
+    ],
+    "sources": [
+      "https://britishconsulate.kcg.gov.tw/home02.aspx?EXEC=L&ID=%243001&IDK=2",
+      "https://britishconsulate.kcg.gov.tw/home02.aspx?EXEC=L&ID=%240998&IDK=2"
+    ],
+    "note": "馆方确认领事馆园区在高雄鼓山区莲海路20号；驳二为邻近独立艺术特区。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "基隆市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "国立海洋科技博物馆"
+    ],
+    "sources": [
+      "https://www.nmmst.gov.tw/"
+    ],
+    "note": "官网确认基隆市中正区北宁路367号；馆内主题馆和海洋剧场不重复新增。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "新竹市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "新竹市玻璃工艺博物馆"
+    ],
+    "sources": [
+      "https://culture.hccg.gov.tw/ch/home.jsp?id=164&parentpath=0%2C145%2C146",
+      "https://tourism.hccg.gov.tw/chtravel/app/travel/view?id=37&module=travel&serno=6d9e8b7f-3f55-4a4c-8838-b07439fb83e1"
+    ],
+    "note": "馆址在新竹公园内；如果以后同时采集公园需处理父子游览单元。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  },
+  {
+    "province": "台湾省",
+    "city": "嘉义市",
+    "status": "pending_city_record",
+    "checked_names": [
+      "嘉义市立博物馆"
+    ],
+    "sources": [
+      "https://museums.moc.gov.tw/MusData/Detail?museumsId=c730c2e3-322b-4111-87fa-a066aa026b4e",
+      "https://www.tad.gov.tw/m1.aspx?id=9550&sNo=0001016"
+    ],
+    "note": "旅游主管部门确认嘉义市东区忠孝路275-1号，并提供经纬度120.45175/23.487208；先保留来源，未核定城市代码口径不入库。",
+    "reason": "当前数据库无对应城市记录；不得错误挂到台北市。未编造城市adcode，未变更城市表数据或结构。"
+  }
+]

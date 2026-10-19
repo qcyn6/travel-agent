@@ -1,0 +1,301 @@
+[
+  {
+    "id": 11,
+    "city": "天津市",
+    "province": "天津市",
+    "sources": [
+      "https://whly.tj.gov.cn/tjswlzxw/jgbn/whtj/jzwh/zsjz/202302/t20230202_6094589.html"
+    ],
+    "checked_names": [
+      "天津鼓楼",
+      "鼓楼博物馆",
+      "天津古文化街"
+    ],
+    "note": "鼓楼博物馆是独立的重建鼓楼建筑，不是古文化街内部同名子点；现有天津古文化街和博物馆均不同。",
+    "candidates": [
+      {
+        "name": "天津鼓楼博物馆",
+        "status": "approved",
+        "description": "2001年重建的天津鼓楼现作为博物馆开放，展陈天津老城厢历史照片和城市文化专题。",
+        "description_source_url": "https://whly.tj.gov.cn/tjswlzxw/jgbn/whtj/jzwh/zsjz/202302/t20230202_6094589.html",
+        "longitude": 117.1747564,
+        "latitude": 39.1405538,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/11572243659",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "建筑"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "天津文旅官方确认鼓楼内博物馆；OSM具名天津鼓楼 museum 节点即独立馆舍位置，与古文化街范围不同。",
+        "aliases": [
+          "天津鼓楼",
+          "鼓楼博物馆"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "city": "邯郸市",
+    "province": "河北省",
+    "sources": [
+      "https://whly.hebei.gov.cn/c/2018-08-17/557385.html"
+    ],
+    "checked_names": [
+      "赵王城国家考古遗址公园",
+      "赵王城遗址"
+    ],
+    "note": "赵王城不同于现有娲皇宫、广府古城、丛台公园；后续坐标不可取整片遗址质心。",
+    "candidates": [
+      {
+        "name": "赵王城国家考古遗址公园",
+        "status": "pending_coordinates",
+        "description": "依托战国赵国都城遗址的考古遗址公园，保留城垣、夯土建筑基址等遗迹，适合了解赵国城市布局。",
+        "description_source_url": "https://whly.hebei.gov.cn/c/2018-08-17/557385.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://whly.hebei.gov.cn/c/2018-08-17/557385.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "大范围考古遗址公园；已有点位不能证明游客入口或独立到达点，本轮未通过。",
+          "source_urls": [
+            "https://whly.hebei.gov.cn/c/2018-08-17/557385.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "大范围考古遗址公园；已有点位不能证明游客入口或独立到达点，本轮未通过。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "city": "承德市",
+    "province": "河北省",
+    "sources": [
+      "https://lywh.chengde.gov.cn/col/col268/index.html",
+      "https://m.hebeitour.com.cn/c/2022-03-09/508669.html"
+    ],
+    "checked_names": [
+      "双塔山景区"
+    ],
+    "note": "官方等级景区名录将双塔山单列；与在库磬锤峰、塞罕坝及避暑山庄不同。",
+    "candidates": [
+      {
+        "name": "双塔山景区",
+        "status": "pending_coordinates",
+        "description": "承德双滦区的山地景区，以两座并列岩柱及峰顶古塔形成的双塔山景观为特色。",
+        "description_source_url": "https://m.hebeitour.com.cn/c/2022-03-09/508669.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮检索首项位于异地或非目标景点，错匹配已排除；缺可信同城坐标。",
+          "source_urls": [
+            "https://m.hebeitour.com.cn/c/2022-03-09/508669.html",
+            "https://lywh.chengde.gov.cn/col/col268/index.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "错项：双塔梁, 北京市, 中国。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "city": "太原市",
+    "province": "山西省",
+    "sources": [
+      "https://www.tylyhy.cn/gonggongwenhua/1738507295804342273.html"
+    ],
+    "checked_names": [
+      "太原市博物馆"
+    ],
+    "note": "与在库山西博物院、山西考古博物馆和北齐壁画博物馆为不同馆舍。",
+    "candidates": [
+      {
+        "name": "太原市博物馆",
+        "status": "approved",
+        "description": "太原市综合类博物馆，收藏、研究与展示太原地区文物，并以展览和社教活动介绍城市历史文化。",
+        "description_source_url": "https://www.tylyhy.cn/gonggongwenhua/1738507295804342273.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "不同渠道复核：官方现址与文博指南具名馆舍地图点一致，GCJ-02反算WGS84；详情见research_round_20261002C。",
+          "source_urls": [
+            "https://www.tylyhy.cn/gonggongwenhua/1738507295804342273.html",
+            "https://www.openstreetmap.org/way/422861196",
+            "https://www.iwenbo.fun/museum/364.html",
+            "https://www.tylyhy.cn/AAAA/JQ834019201091.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "独立太原市综合博物馆；官方现址广经路13号与文博指南相同。具名TMap点位转换WGS84后落在OSM同名博物馆建筑way/422861196内部，属馆舍锚点非实测入口。"
+        },
+        "longitude": 112.5275379,
+        "latitude": 37.8044143,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/364.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "建筑"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "独立太原市综合博物馆；官方现址广经路13号与文博指南相同。具名TMap点位转换WGS84后落在OSM同名博物馆建筑way/422861196内部，属馆舍锚点非实测入口。",
+        "aliases": [
+          "太原博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "独立馆舍的具名公开地图标记与官方现址吻合；GCJ-02反算WGS84，非大景区质心。",
+          "source_urls": [
+            "https://www.tylyhy.cn/gonggongwenhua/1738507295804342273.html",
+            "https://www.iwenbo.fun/museum/364.html",
+            "https://www.openstreetmap.org/way/422861196",
+            "https://www.tylyhy.cn/AAAA/JQ834019201091.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "独立太原市综合博物馆；官方现址广经路13号与文博指南相同。具名TMap点位转换WGS84后落在OSM同名博物馆建筑way/422861196内部，属馆舍锚点非实测入口。",
+          "raw_coordinate_evidence_file": "data/city_sweep_20261002/cache_2_iwenbo_roundC.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "city": "晋城市",
+    "province": "山西省",
+    "sources": [
+      "https://jcgov.gov.cn/dtxx/jcdt/202409/t20240911_2033056.shtml",
+      "https://www.jcgov.gov.cn/mljc/yzjc/rdtj/202010/t20201011_1222080.shtml"
+    ],
+    "checked_names": [
+      "珏山景区",
+      "青莲寺",
+      "东焦河",
+      "围滩"
+    ],
+    "note": "珏山与皇城相府、王莽岭和司徒小镇不同；青莲寺等已纳入珏山大景区统一经营，避免拆分子景点。",
+    "candidates": [
+      {
+        "name": "珏山景区",
+        "status": "pending_coordinates",
+        "description": "泽州县太行山地景区，以山峰、石刻和历史文化景观见长，可登山观景。",
+        "description_source_url": "https://jcgov.gov.cn/dtxx/jcdt/202409/t20240911_2033056.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://jcgov.gov.cn/dtxx/jcdt/202409/t20240911_2033056.shtml",
+            "https://www.jcgov.gov.cn/mljc/yzjc/rdtj/202010/t20201011_1222080.shtml",
+            "https://www.openstreetmap.org/way/1093426843"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/1093426843；大范围质心禁用。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "city": "忻州市",
+    "province": "山西省",
+    "sources": [
+      "https://www.sxluyashan.cn/Contact.html",
+      "https://wjw.shanxi.gov.cn/xwzx/szyw/202608/t20260803_10189119.shtml"
+    ],
+    "checked_names": [
+      "芦芽山旅游度假区",
+      "马仑草原",
+      "五台山",
+      "雁门关"
+    ],
+    "note": "芦芽山与现有五台山、雁门关独立；马仑草原是芦芽山度假区游玩内容不另拆。",
+    "candidates": [
+      {
+        "name": "芦芽山旅游度假区",
+        "status": "pending_coordinates",
+        "description": "宁武县以山地、森林和高山草甸为主要景观的避暑旅游区，游客服务中心位于东寨镇。",
+        "description_source_url": "https://wjw.shanxi.gov.cn/xwzx/szyw/202608/t20260803_10189119.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wjw.shanxi.gov.cn/xwzx/szyw/202608/t20260803_10189119.shtml",
+            "https://www.sxluyashan.cn/Contact.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "city": "包头市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.baotou.gov.cn/yxbt/yxbt_yzbt/yzbt_mj/202605/t20260521_910948.html"
+    ],
+    "checked_names": [
+      "美岱召景区",
+      "五当召"
+    ],
+    "note": "美岱召为城寺合一的独立景区，与现有五当召不是同一寺院。",
+    "candidates": [
+      {
+        "name": "美岱召景区",
+        "status": "pending_coordinates",
+        "description": "位于包头土默川平原、大青山南麓的明代城寺合一古建筑群，兼有历史建筑与宗教文化参观价值。",
+        "description_source_url": "https://www.baotou.gov.cn/yxbt/yxbt_yzbt/yzbt_mj/202605/t20260521_910948.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/place_of_worship，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.baotou.gov.cn/yxbt/yxbt_yzbt/yzbt_mj/202605/t20260521_910948.html",
+            "https://www.openstreetmap.org/way/532060856"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/532060856；定位候选尚未达入库门槛。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "city": "鄂尔多斯市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.ordos.gov.cn/sq_127930/csmp/lyjp/202407/t20240710_3633900.html"
+    ],
+    "checked_names": [
+      "康巴什旅游区",
+      "响沙湾旅游景区",
+      "成吉思汗陵旅游区"
+    ],
+    "note": "康巴什为以城市景观为载体的独立4A旅游区，和现有响沙湾、成吉思汗陵分开；内部广场公园不拆分。",
+    "candidates": [
+      {
+        "name": "康巴什旅游区",
+        "status": "pending_coordinates",
+        "description": "鄂尔多斯市区的城市景观旅游区，以主题广场、公园、文化建筑和景观湖形成步行游览空间。",
+        "description_source_url": "https://www.ordos.gov.cn/sq_127930/csmp/lyjp/202407/t20240710_3633900.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.ordos.gov.cn/sq_127930/csmp/lyjp/202407/t20240710_3633900.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  }
+]

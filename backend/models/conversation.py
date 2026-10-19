@@ -182,12 +182,25 @@ class ChatMessageRequest(BaseModel):
     # own resource and request model below.
     mode: ConversationMode = "planning"
 
+    @field_validator("message")
+    @classmethod
+    def _validate_message(cls, value: str) -> str:
+        message = value.strip()
+        if not message:
+            raise ValueError("消息不能为空")
+        return message
+
 
 class ConversationCreated(BaseModel):
     id: str
     title: str
     status: ConversationStatus
     requirement: RequirementDraft
+
+
+class PlanningJobState(BaseModel):
+    job_id: str
+    status: Literal["queued", "running", "completed", "failed", "cancelled"]
 
 
 class ConversationSummary(BaseModel):

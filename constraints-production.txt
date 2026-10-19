@@ -1,0 +1,21 @@
+# Tested application/framework versions; security floors also live in pyproject.toml.
+# Resolve platform-specific wheels during the Linux image build.
+chromadb==1.5.9
+fastapi==0.141.1
+httpx==0.28.1
+jieba==0.42.1
+langchain==1.4.0
+langgraph==1.2.11
+langchain-openai==1.6.1
+mcp==1.30.0
+langgraph-checkpoint-sqlite==3.1.1
+pydantic==2.13.5
+pydantic-settings==2.15.0
+pymysql==1.2.0
+redis==7.4.1
+sqlalchemy==2.0.52
+uvicorn==0.52.4
+PyJWT==2.15.1
+urllib3==2.8.0
+oauthlib==4.0.0
+multidict==6.9.1

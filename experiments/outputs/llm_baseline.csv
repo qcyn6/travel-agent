@@ -1,9 +1,0 @@
-﻿case_id,case_title,baseline_id,source,preference_coverage,selected_count,valid_attraction_count,unknown_attraction_count,duplicate_attraction_count,route_minutes,route_segments,estimated_route_ratio,route_unavailable_count,time_window_violations,feasible,elapsed_ms
-hangzhou-1d,杭州 1 天自然摄影,llm_direct,llm,1.0,3,3,0,0,52,2,0.0,0,0,True,1309.736
-beijing-2d,北京 2 天历史文化,llm_direct,llm,1.0,5,5,0,0,51,3,0.0,0,0,True,1741.425
-chengdu-3d,成都 3 天美食休闲,llm_direct,llm,1.0,5,5,0,0,17,2,0.0,0,0,True,1858.849
-yunnan-4d,云南 4 天同省多城市,llm_direct,llm,1.0,10,10,0,0,102,6,0.0,0,0,True,2945.046
-yunnan-7d,云南 7 天同省多城市,llm_direct,llm,1.0,15,15,0,0,150,8,0.0,0,0,True,4876.685
-hangzhou-short-window,杭州短时间窗口,llm_direct,llm,1.0,3,3,0,0,16,2,0.0,0,1,False,1294.106
-hangzhou-route-unavailable,杭州路线不可用降级,llm_direct,llm,1.0,3,3,0,0,16,2,0.0,0,0,True,1107.996
-hangzhou-estimated-route,杭州估算路线降级,llm_direct,llm,1.0,3,3,0,0,16,2,0.0,0,0,True,1322.847

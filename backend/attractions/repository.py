@@ -95,6 +95,22 @@ class AttractionRepository:
         ).first()
         return partial if partial is not None else None
 
+    def find_place_candidates(self, name: str, *, limit: int = 6):
+        """Return candidates, never silently choose one ambiguous chat place."""
+        normalized = name.strip()
+        if not normalized:
+            return []
+        short_city = func.replace(CityRow.name, "市", "")
+        qualified = short_city + AttractionRow.name
+        full_qualified = CityRow.name + AttractionRow.name
+        statement = select(AttractionRow, CityRow).join(CityRow, CityRow.id == AttractionRow.city_id)
+        statement = statement.where(or_(
+            AttractionRow.name.contains(normalized, autoescape=True),
+            qualified.contains(normalized, autoescape=True),
+            full_qualified.contains(normalized, autoescape=True),
+        )).order_by((AttractionRow.name == normalized).desc(), AttractionRow.id).limit(limit)
+        return list(self.session.execute(statement))
+
     def first_located_for_city(self, city_id: int) -> tuple[AttractionRow, CityRow] | None:
         """Return one coordinate-bearing POI as a city weather reference."""
 

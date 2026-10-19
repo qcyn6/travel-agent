@@ -1,0 +1,618 @@
+[
+  {
+    "id": 312,
+    "city": "渭南市",
+    "province": "陕西省",
+    "sources": [
+      "https://sjfw.mct.gov.cn/site/dataservice/culdetails?curId=10&id=35093"
+    ],
+    "checked_names": [
+      "华山风景区",
+      "长空栈道",
+      "千尺幢"
+    ],
+    "note": "华山已有；内部节点不重复增加。待补更广的本市景区来源。",
+    "candidates": []
+  },
+  {
+    "id": 316,
+    "city": "商洛市",
+    "province": "陕西省",
+    "sources": [
+      "https://www.shangluo.gov.cn/info/1124/145231.htm"
+    ],
+    "checked_names": [
+      "柞水溶洞",
+      "牛背梁国家森林公园",
+      "孝义文化体验园",
+      "终南山寨秦岭老屋街区"
+    ],
+    "note": "2025实际旅游活动证明开放景点；不使用未来规划项目。",
+    "candidates": [
+      {
+        "name": "柞水溶洞",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.shangluo.gov.cn/__local/8/C0/D3/14E13EC773DE81CEDA5E84D5034_03CF0019_A983A.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM node/viewpoint，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.shangluo.gov.cn/info/1124/145231.htm",
+            "https://www.openstreetmap.org/node/2968877214",
+            "https://www.shangluo.gov.cn/__local/8/C0/D3/14E13EC773DE81CEDA5E84D5034_03CF0019_A983A.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/node/2968877214；定位候选尚未达入库门槛。"
+        },
+        "description": "柞水县的喀斯特溶洞景区，围绕洞穴地质遗迹设置游步道和游客服务设施。"
+      },
+      {
+        "name": "牛背梁国家森林公园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.shangluo.gov.cn/PDF/zfgb/gongbao2020niandi3qizongdi3qi.pdf",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.shangluo.gov.cn/info/1124/145231.htm",
+            "https://www.shangluo.gov.cn/PDF/zfgb/gongbao2020niandi3qizongdi3qi.pdf"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "秦岭牛背梁一带的国家森林公园，以山地森林生态景观为主要游览内容。"
+      },
+      {
+        "name": "孝义文化体验园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.shangluo.gov.cn/zwdt/2823.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.shangluo.gov.cn/info/1124/145231.htm",
+            "https://www.shangluo.gov.cn/__local/0/2B/B5/98D969C04D8CF729F7C102DE1BB_89E1F2E8_C1314.pdf",
+            "https://www.shangluo.gov.cn/zwdt/2823.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "柞水县的文化体验园，通过解说和故事展示当地孝义传统文化，已面向参观者开放。"
+      },
+      {
+        "name": "终南山寨秦岭老屋街区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.shaanxi.gov.cn/xw/tpxw/202305/t20230508_2285344.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.shangluo.gov.cn/info/1124/145231.htm",
+            "https://www.shaanxi.gov.cn/xw/tpxw/202305/t20230508_2285344.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "柞水县终南山寨中的秦岭老屋街区，以三街九巷、院落和商户形成可步行游览的地方风貌空间。"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "city": "唐山市",
+    "province": "河北省",
+    "sources": [
+      "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+      "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml"
+    ],
+    "checked_names": [
+      "南湖·开滦旅游景区",
+      "清东陵",
+      "河头老街",
+      "多玛乐园",
+      "月岛",
+      "菩提岛",
+      "唐山启新水泥工业博物馆",
+      "青龙山景区",
+      "净觉寺",
+      "滦州古城",
+      "唐山抗震纪念馆",
+      "唐山市科技馆"
+    ],
+    "note": "南湖及清东陵已有；候选不包含景区内部商业设施。",
+    "candidates": [
+      {
+        "name": "河头老街",
+        "status": "pending_coordinates",
+        "description_source_url": "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20250813/1635983.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/432021851",
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20250813/1635983.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/432021851；大范围质心禁用。"
+        },
+        "description": "唐山丰南运河沿岸的旅游休闲街区，由原运河唐人街改造，可观看评剧、皮影、乐亭大鼓等地方演艺并逛特色商铺。"
+      },
+      {
+        "name": "多玛乐园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://www.duomapark.com/?page_id=17580",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.duomapark.com/?page_id=17580"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "唐山曹妃甸的亲子休闲乐园，设有捕鱼互动、水上游玩和湿地观景等体验项目。"
+      },
+      {
+        "name": "月岛",
+        "status": "pending_coordinates",
+        "description_source_url": "https://tsgjlyd.tangshan.gov.cn/gjlyd/xwdt/20251027/1639660.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/islet，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/432817075",
+            "https://tsgjlyd.tangshan.gov.cn/gjlyd/xwdt/20251027/1639660.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/432817075；定位候选尚未达入库门槛。"
+        },
+        "description": "唐山国际旅游岛的海岛休闲景区，以滨海风光、夜游及度假活动为主要体验。"
+      },
+      {
+        "name": "菩提岛",
+        "status": "pending_coordinates",
+        "description_source_url": "https://tsgjlyd.tangshan.gov.cn/gjlyd/xwdt/20251027/1639660.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/520138179",
+            "https://tsgjlyd.tangshan.gov.cn/gjlyd/xwdt/20251027/1639660.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/520138179；大范围质心禁用。"
+        },
+        "description": "唐山国际旅游岛的生态海岛景区，可沿岛漫步，体验海岸自然景观与生态环境。"
+      },
+      {
+        "name": "唐山启新水泥工业博物馆",
+        "status": "approved",
+        "description": "依托启新水泥厂工业遗存改造的博物馆，通过旧厂房、水泥窑系统、生产设备和历史资料展示中国近代水泥工业的发展。参观重点是工业建筑与生产技术历史，并非仍在生产的工厂。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253966.shtml",
+        "longitude": 118.2036137,
+        "latitude": 39.6295877,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/434229185",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "建筑"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "具名博物馆建筑锚点，约83米宽、144米长，周学熙路原厂区；不是古冶区仍在生产的启新水泥公司，也不是南湖开滦景区内部展馆。官方新华东道15号馆区与工业遗存定位相符。",
+        "aliases": [
+          "启新水泥工业博物馆",
+          "启新1889文化创意产业园"
+        ]
+      },
+      {
+        "name": "青龙山景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://whgdhlyj.tangshan.gov.cn/lvyouju/xqkx/20260603/1649895.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/government，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/957138337",
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/xqkx/20260603/1649895.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/957138337；定位候选尚未达入库门槛。"
+        },
+        "description": "滦州的山地景区，以山间观景和自然地貌游览为主要内容。"
+      },
+      {
+        "name": "净觉寺",
+        "status": "approved",
+        "description": "净觉寺位于玉田县蛮子营村，始建于唐代，清代多次重修。寺院坐北朝南，现存山门、殿宇、钟鼓楼、碑楼和配殿等建筑，并保存碑刻、石狮及大钟等文物，可了解唐山古建筑与佛教文化。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/10/16/030257948.shtml",
+        "longitude": 117.9200029,
+        "latitude": 39.8117123,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/518707891",
+        "coordinate_system": "WGS84",
+        "category": "宗教文化",
+        "tags": [
+          "历史文化",
+          "古建",
+          "宗教文化"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "玉田净觉寺"
+        ],
+        "independence_note": "OSM way/518707891为玉田具名净觉寺院落，Photon返回的WGS84代表点落在该小型场地内；不是实测入口。与唐山现有南湖、清东陵、抗震纪念馆等不同址。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "河北省文物局记载净觉寺历史及现存建筑；唐山市文旅局2026景区地址表确认杨家套镇蛮子营村东；OSM具名寺院场地代表点对应。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/518707891",
+            "https://wenwu.hebei.gov.cn/system/2023/10/16/030257948.shtml",
+            "https://photon.komoot.io/api/?q=%E5%87%80%E8%A7%89%E5%AF%BA%20%E7%8E%89%E7%94%B0%20%E5%94%90%E5%B1%B1&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/518707891为具名寺院范围，坐标取Photon返回的WGS84场地代表点；适合作为规划定位锚点，不表示已核实游客入口或现场实测点。"
+        },
+        "description": "玉田县杨家套乡蛮子营村的古寺，保存山门、殿宇、钟鼓楼等清代重修建筑和碑刻，可了解传统建筑营造。",
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "复核官方现址、文物简介和OSM具名寺院场地后，确认该代表点与蛮子营村净觉寺相符；采用场地定位锚点而非声称入口坐标。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/518707891",
+            "https://wenwu.hebei.gov.cn/system/2023/10/16/030257948.shtml",
+            "https://www.iwenbo.fun/heritage/1741.html",
+            "https://photon.komoot.io/api/?q=%E5%87%80%E8%A7%89%E5%AF%BA%20%E7%8E%89%E7%94%B0%20%E5%94%90%E5%B1%B1&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "核实为OSM具名寺院范围内的WGS84代表点，非入口或实测点；公开资料确认寺址位于玉田县蛮子营村。"
+        }
+      },
+      {
+        "name": "滦州古城",
+        "status": "pending_coordinates",
+        "description_source_url": "https://whgdhlyj.tangshan.gov.cn/lvyouju/changyoutangshan/20210415/1161631.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.openstreetmap.org/way/520885270",
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/changyoutangshan/20210415/1161631.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/520885270；大范围质心禁用。"
+        },
+        "description": "滦州的古城风貌街区，重现古城门、老县衙、钟鼓楼等建筑意象，也举办非遗市集和地方演艺。"
+      },
+      {
+        "name": "唐山抗震纪念馆",
+        "status": "approved",
+        "description": "唐山抗震纪念馆以历史照片、实物和多媒体景观展示唐山人民抗震救灾与城市建设的经历，介绍抗震精神及防震减灾知识。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+        "longitude": 118.1743172,
+        "latitude": 39.6230415,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/178943655",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "aliases": [],
+        "independence_note": "OSM纪念碑广场内独立纪念馆建筑锚点约60米宽；数据库未存广场母景点，与南湖开滦景区不同址。"
+      },
+      {
+        "name": "唐山市科技馆",
+        "status": "approved",
+        "description_source_url": "https://www.tskp.org.cn/notice/1/93",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方科协确认当前独立场馆及地址；OSM具名小型馆舍建筑与Photon代表点匹配，WGS84馆舍锚点可用于规划。",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.tskp.org.cn/notice/1/93",
+            "https://www.tskp.org.cn/about/index.aspx?sign=Contact",
+            "https://www.openstreetmap.org/way/518660573",
+            "https://photon.komoot.io/api/?q=%E5%94%90%E5%B1%B1%E7%A7%91%E6%8A%80%E9%A6%86&limit=3"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "唐山市科协现址卫国路14号的独立科技馆；OSM way/518660573为同名tourism=museum且building=yes馆舍轮廓，约100×55米，Photon提供建筑内部WGS84到达锚点，非实测入口，也非南湖大型景区质心。"
+        },
+        "description": "唐山市的公益性科普场馆，设有科学探索、创客、生命健康、环境科技等主题展区，提供互动科普与教育活动。",
+        "longitude": 118.1593014,
+        "latitude": 39.623503,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/518660573",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "研学",
+          "亲子"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "唐山市科协现址卫国路14号的独立科技馆；OSM way/518660573为同名tourism=museum且building=yes馆舍轮廓，约100×55米，Photon提供建筑内部WGS84到达锚点，非实测入口，也非南湖大型景区质心。",
+        "aliases": [
+          "唐山科技馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "馆舍具名小建筑与官方现址交叉核实",
+          "source_urls": [
+            "https://whgdhlyj.tangshan.gov.cn/lvyouju/lvyj_gongzuodongtai/20260612/1650203.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253965.shtml",
+            "https://www.tskp.org.cn/notice/1/93",
+            "https://www.tskp.org.cn/about/index.aspx?sign=Contact",
+            "https://www.openstreetmap.org/way/518660573",
+            "https://photon.komoot.io/api/?q=%E5%94%90%E5%B1%B1%E7%A7%91%E6%8A%80%E9%A6%86&limit=3"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "唐山市科协现址卫国路14号的独立科技馆；OSM way/518660573为同名tourism=museum且building=yes馆舍轮廓，约100×55米，Photon提供建筑内部WGS84到达锚点，非实测入口，也非南湖大型景区质心。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "city": "保定市",
+    "province": "河北省",
+    "sources": [
+      "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf"
+    ],
+    "checked_names": [
+      "野三坡",
+      "白石山",
+      "清西陵",
+      "狼牙山",
+      "易水湖",
+      "北岳庙",
+      "满城汉墓",
+      "古莲花池",
+      "大慈阁",
+      "淮军公所",
+      "竞秀公园"
+    ],
+    "note": "代表性景点官方译名名录核对；鱼谷洞为野三坡子景区不新增。",
+    "candidates": [
+      {
+        "name": "狼牙山风景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://wap.baoding.gov.cn/wap-content-381-502329.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/904365792",
+            "https://wap.baoding.gov.cn/wap-content-381-502329.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/904365792；大范围质心禁用。"
+        },
+        "description": "易县的山地景区，也是狼牙山五勇士事迹的红色文化参访地，设有相关陈列馆。"
+      },
+      {
+        "name": "易水湖景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://sthjj.baoding.gov.cn/article/6590/12.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://sthjj.baoding.gov.cn/article/6590/12.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "description": "易县的湖泊水利风景区，结合库塘、河流和湿地生态景观，适合滨水休闲游览。"
+      },
+      {
+        "name": "北岳庙景区",
+        "status": "approved",
+        "description": "北岳庙始建于北魏，历代作为祭祀北岳的场所，现设北岳庙博物馆。德宁之殿、殿内壁画、碑碣与石雕是主要参观内容，可了解古代祭祀制度、建筑和壁画艺术。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253916.shtml",
+        "longitude": 114.6911157,
+        "latitude": 38.6209772,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/804111303",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "古建",
+          "宗教文化"
+        ],
+        "duration_minutes": 120,
+        "aliases": [
+          "北岳庙",
+          "北岳庙博物馆"
+        ],
+        "independence_note": "OSM way/804111303为曲阳具名北岳庙场地代表点，Photon返回WGS84坐标位于该场地范围内，非实测入口；与保定现有大慈阁、清西陵、白石山和野三坡不同址。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "河北省文物局确认北岳庙博物馆、德宁之殿与现址；OSM具名北岳庙场地的WGS84代表点与曲阳县城北岳路地址相符。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253916.shtml",
+            "https://www.openstreetmap.org/way/804111303",
+            "https://photon.komoot.io/api/?q=%E5%8C%97%E5%B2%B3%E5%BA%99%20%E6%9B%B2%E9%98%B3%20%E4%BF%9D%E5%AE%9A&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "具名北岳庙场地WGS84代表点，非入口或现场实测点；位置与河北省文物局公布的曲阳县北岳路2号相符。"
+        },
+        "description": "曲阳县古北岳祭祀遗址，现为北岳庙博物馆，可参观德宁之殿、古建筑、壁画与碑碣。",
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "最新复核确认坐标是具名北岳庙场地代表点；数据库只将其作为景点定位锚点，不将其描述为入口。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253916.shtml",
+            "https://www.iwenbo.fun/index.php/index/heritage/205.html",
+            "https://www.openstreetmap.org/way/804111303",
+            "https://photon.komoot.io/api/?q=%E5%8C%97%E5%B2%B3%E5%BA%99%20%E6%9B%B2%E9%98%B3%20%E4%BF%9D%E5%AE%9A&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "最新地图结果与官方现址对应；采用具名场地代表点，不声称是游客入口或实测坐标。"
+        }
+      },
+      {
+        "name": "满城汉墓景区",
+        "status": "pending_coordinates",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/09/27/030253929.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/497150032",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253929.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/497150032；大范围质心禁用。"
+        },
+        "description": "保定满城陵山上的西汉中山靖王刘胜及王后窦绾墓葬景区，可了解汉代墓葬遗址与相关文物历史。"
+      },
+      {
+        "name": "古莲花池",
+        "status": "approved",
+        "description": "保定古莲花池始建于金代，是北方古典园林。历经明清扩建，曾作为官署园林、莲池书院和行宫。园内池塘、亭台、轩馆、假山石桥与碑廊相映，可赏古建园林并了解莲池书院历史。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2023/10/16/030257948.shtml",
+        "longitude": 115.4917853,
+        "latitude": 38.8566928,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/240474728",
+        "coordinate_system": "WGS84",
+        "category": "园林",
+        "tags": [
+          "历史文化",
+          "园林",
+          "古建"
+        ],
+        "duration_minutes": 120,
+        "aliases": [
+          "莲池",
+          "古莲花池景区"
+        ],
+        "independence_note": "OSM way/240474728为具名古莲花池园林景区范围，Photon返回WGS84园林代表点，非实测入口；与保定现有大慈阁为不同院落，不是其子景点。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "河北省文物局园林简介确认其历史沿革及现址，OSM具名古莲花池景区场地代表点可用于规划定位；与大慈阁不重叠。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/240474728",
+            "https://wenwu.hebei.gov.cn/system/2023/10/16/030257948.shtml",
+            "https://www.openstreetmap.org/way/240474728",
+            "https://photon.komoot.io/api/?q=%E5%8F%A4%E8%8E%B2%E8%8A%B1%E6%B1%A0%20%E4%BF%9D%E5%AE%9A&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM way/240474728为具名园林景区范围，采用Photon返回的WGS84园林代表点，不将其标为入口或现场实测点。"
+        }
+      },
+      {
+        "name": "大慈阁",
+        "status": "approved",
+        "description": "位于保定老城区的古建筑与佛教寺院，是全国重点文物保护单位，也是当地传统城市景观的代表。可在院落中参观建筑、了解文物保护与老城历史，不把周边商业街作为另一个同名景点。",
+        "description_source_url": "https://www.spp.gov.cn/spp/zdgz/201905/t20190526_419538.shtml",
+        "longitude": 115.4964105,
+        "latitude": 38.8590204,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/240481050",
+        "coordinate_system": "WGS84",
+        "category": "宗教文化",
+        "tags": [
+          "历史文化",
+          "古建",
+          "宗教文化"
+        ],
+        "duration_minutes": 60,
+        "independence_note": "保定莲池区具名小型宗教院落锚点，约53米宽、121米长；与直隶总督署、古莲花池为不同院落，也不在现有野三坡、白石山、清西陵景区内。",
+        "aliases": [
+          "大慈閣",
+          "大慈阁寺"
+        ]
+      },
+      {
+        "name": "淮军公所",
+        "status": "approved",
+        "description": "淮军公所由李鸿章于1888年奏准修建，兼具祭祀、办公和集会功能。现为博物馆，建筑群融合南北风格，设有戏楼及戏曲文化、建筑艺术展览，可了解晚清淮军和保定地方历史。",
+        "description_source_url": "https://wenwu.hebei.gov.cn/system/2024/03/04/030278916.shtml",
+        "longitude": 115.4832757,
+        "latitude": 38.8558745,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1346832612",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "建筑",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "淮军公所博物馆"
+        ],
+        "independence_note": "OSM way/1346832612为具名淮军公所博物馆场地范围，Photon返回WGS84代表点，非实测入口；与保定现有大慈阁属不同建筑群。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "河北省文物局确认淮军公所博物馆的历史、展览与莲池区兴华路现址，OSM具名场地代表点与地址对应；与现有大慈阁不重叠。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/1346832612",
+            "https://wenwu.hebei.gov.cn/system/2024/03/04/030278916.shtml",
+            "https://www.openstreetmap.org/way/1346832612",
+            "https://photon.komoot.io/api/?q=%E6%B7%AE%E5%86%9B%E5%85%AC%E6%89%80%E5%8D%9A%E7%89%A9%E9%A6%86%20%E4%BF%9D%E5%AE%9A&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "具名OSM场地的WGS84代表点与河北省文物局公布的兴华路331号对应，非入口或现场实测点。"
+        },
+        "description": "保定古城中的历史建筑群，现有博物馆参观功能，可观看兼具南北风格的院落与砖木石雕。",
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "最新地图结果与河北省文物局公布的淮军公所博物馆现址对应；采用具名场地定位代表点，不声称是入口。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/1346832612",
+            "https://wenwu.hebei.gov.cn/system/2024/03/04/030278916.shtml",
+            "https://www.openstreetmap.org/way/1346832612",
+            "https://photon.komoot.io/api/?q=%E6%B7%AE%E5%86%9B%E5%85%AC%E6%89%80%E5%8D%9A%E7%89%A9%E9%A6%86%20%E4%BF%9D%E5%AE%9A&limit=5"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "OSM标注为淮军公所博物馆场地，采用WGS84代表点，仅供景点导航定位，不代表核实入口。"
+        }
+      },
+      {
+        "name": "竞秀公园",
+        "status": "pending_coordinates",
+        "description_source_url": "https://wsb.baoding.gov.cn/news/view_3207.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM way/park，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://wsb.baoding.gov.cn/attachment/20241122101318490.pdf",
+            "https://www.openstreetmap.org/way/208007798",
+            "https://wsb.baoding.gov.cn/news/view_3207.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/208007798；定位候选尚未达入库门槛。"
+        },
+        "description": "保定市区的城市公园，设有绿地和游憩空间，并举办菊展等季节性园林活动。"
+      }
+    ]
+  }
+]

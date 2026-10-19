@@ -1,0 +1,162 @@
+[
+  {
+    "id": 355,
+    "city": "伊犁哈萨克自治州",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.yining.gov.cn/yining/c115634/202508/a7a244a7a132475ca56b1dfbe7ac51c8.shtml",
+      "https://www.xjyl.gov.cn/xjylz/c112876/202403/5eff58f506214e27952b24c24eeff9d8.shtml"
+    ],
+    "checked_names": [
+      "伊犁老城喀赞其民俗旅游区",
+      "喀拉峻景区",
+      "那拉提景区"
+    ],
+    "note": "喀赞其位于伊宁市老城，是与现有喀拉峻和那拉提分离的城市街区景区。赛里木湖行政属博州，不纳入伊犁。",
+    "candidates": [
+      {
+        "name": "伊犁老城喀赞其民俗旅游区",
+        "status": "pending_coordinates",
+        "description": "伊宁市的老城民俗旅游街区，以街巷、院落和当地民族生活文化体验为主要游览内容。",
+        "description_source_url": "https://www.xjyl.gov.cn/xjylz/c112876/202403/5eff58f506214e27952b24c24eeff9d8.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮公开OSM地名检索无具名结果；缺可核验游客入口或馆舍WGS84坐标。",
+          "source_urls": [
+            "https://www.xjyl.gov.cn/xjylz/c112876/202403/5eff58f506214e27952b24c24eeff9d8.shtml",
+            "https://www.yining.gov.cn/yining/c115634/202508/a7a244a7a132475ca56b1dfbe7ac51c8.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可用精确坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 359,
+    "city": "阿拉尔市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xczgshsh2023/ngfp/detail_xl/3812.html"
+    ],
+    "checked_names": [
+      "三五九旅屯垦纪念馆",
+      "印象蓝泊湾生态园",
+      "洁丽雅工业旅游园区",
+      "九团八连军垦记忆红色教育基地",
+      "祥龙湖景区",
+      "丝路沙海湾景区"
+    ],
+    "note": "文化和旅游部路线列出多个独立游览点；现有三五九旅屯垦纪念馆、印象蓝泊湾等不重复。优先核查祥龙湖的独立入口。",
+    "candidates": [
+      {
+        "name": "祥龙湖景区",
+        "status": "pending_coordinates",
+        "description": "阿拉尔屯垦记忆旅游线路中的湖泊休闲景区，可与市内军垦文化景点组合游览。",
+        "description_source_url": "https://zhuanti.mct.gov.cn/xczgshsh2023/ngfp/detail_xl/3812.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮公开OSM地名检索无具名结果；缺可核验游客入口或馆舍WGS84坐标。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/xczgshsh2023/ngfp/detail_xl/3812.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可用精确坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 363,
+    "city": "铁门关市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2021-10-09/8169600.shtml"
+    ],
+    "checked_names": [
+      "丝路雄关广场",
+      "将军河",
+      "丝路雄关景区"
+    ],
+    "note": "官方所述丝路雄关广场属现有丝路雄关景区范围；将军河为城市河段，暂不当作独立景点。",
+    "candidates": []
+  },
+  {
+    "id": 367,
+    "city": "胡杨河市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.huyangnet.cn/content/2024-07/04/content_1899069.html",
+      "https://www.huyangnet.cn/content/2023-05/26/content_1781762.html"
+    ],
+    "checked_names": [
+      "胡杨水韵生态旅游风景区",
+      "阿吾斯奇天然牧场边境红色旅游风景区",
+      "戈壁母亲红色旅游教育基地",
+      "玖恒生态园旅游景区"
+    ],
+    "note": "兵团新闻门户列出多个3A级景区；戈壁母亲基地在一二六团，和现有胡杨水韵、胡杨河国家湿地公园分离。",
+    "candidates": [
+      {
+        "name": "戈壁母亲红色旅游教育基地",
+        "status": "pending_coordinates",
+        "description": "一二六团展示兵团屯垦戍边历史的红色文化教育基地，以史料、文物和研学体验呈现军垦生活。",
+        "description_source_url": "https://www.huyangnet.cn/content/2024-07/04/content_1899069.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮公开OSM地名检索无具名结果；缺可核验游客入口或馆舍WGS84坐标。",
+          "source_urls": [
+            "https://www.huyangnet.cn/content/2024-07/04/content_1899069.html",
+            "https://www.huyangnet.cn/content/2023-05/26/content_1781762.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可用精确坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 371,
+    "city": "香港特别行政区",
+    "province": "香港特别行政区",
+    "sources": [
+      "https://www.hkpm.org.hk/sc/visit/plan-your-visit",
+      "https://www.hkpm.org.hk/tc/about/contact-us"
+    ],
+    "checked_names": [
+      "香港故宫文化博物馆",
+      "西九文化区"
+    ],
+    "note": "香港故宫文化博物馆为西九文化区独立馆舍，地址博物馆道8号；与现有西九龙海滨长廊不同，不把整个西九文化区再记为景点。",
+    "candidates": [
+      {
+        "name": "香港故宫文化博物馆",
+        "status": "pending_coordinates",
+        "description": "位于西九文化区的博物馆，展出故宫博物院及其他文化机构的文物与艺术珍藏。",
+        "description_source_url": "https://www.hkpm.org.hk/sc/visit/plan-your-visit",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到OSM具名way（museum），未核实游客入口或可抵达点；暂不采纳其几何中心。",
+          "source_urls": [
+            "https://www.hkpm.org.hk/sc/visit/plan-your-visit",
+            "https://www.hkpm.org.hk/tc/about/contact-us",
+            "https://www.openstreetmap.org/way/640750810"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/640750810；未作为正式坐标。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "官网确认博物馆道8号、地下低层入口及上落客区；OSM为博物馆范围，但未取得入口节点的精确WGS84坐标。",
+          "source_urls": [
+            "https://www.hkpm.org.hk/sc/visit/plan-your-visit",
+            "https://www.hkpm.org.hk/tc/about/contact-us",
+            "https://www.openstreetmap.org/way/640750810"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "官网确认博物馆道8号、地下低层入口及上落客区；OSM为博物馆范围，但未取得入口节点的精确WGS84坐标。"
+        }
+      }
+    ]
+  }
+]

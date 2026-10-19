@@ -1,0 +1,259 @@
+[
+  {
+    "id": 189,
+    "city": "天门市",
+    "province": "湖北省",
+    "sources": [
+      "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/swhhlyj/zfxxgk/fdzdgknr/gysyjs/ly1/202209/t20220906_4295691.shtml"
+    ],
+    "checked_names": [
+      "茶圣故里园",
+      "陆羽故园",
+      "胡家花园"
+    ],
+    "note": "官方茶圣故里园包含陆羽故园和博物馆，后两者不再新增。",
+    "candidates": [
+      {
+        "name": "胡家花园",
+        "status": "approved",
+        "description": "胡家花园位于天门竟陵中街，是清代山西巡抚胡聘之的故居，保留晚清官邸建筑，可参观古建筑并了解地方历史文化。",
+        "description_source_url": "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/swhhlyj/zfxxgk/fdzdgknr/gysyjs/ly1/202209/t20220906_4295691.shtml",
+        "longitude": 113.1606986,
+        "latitude": 30.6490334,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1087510774",
+        "coordinate_system": "WGS84",
+        "category": "历史古迹",
+        "tags": [
+          "历史文化",
+          "建筑",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM天门竟陵街道具名园区约60米宽；与茶圣故里园、陆羽故园不同址；采用小型历史院落建筑群锚点。",
+        "aliases": []
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "city": "湘潭市",
+    "province": "湖南省",
+    "sources": [
+      "https://whhlyt.hunan.gov.cn/whhlyt/news/sxxw/202609/t20260911_34062150.html"
+    ],
+    "checked_names": [
+      "湘潭市博物馆",
+      "毛泽东同志纪念馆",
+      "仰天湖国际休闲旅游度假区"
+    ],
+    "note": "毛泽东纪念馆位于已有韶山旅游区内，避免新增父子重叠。",
+    "candidates": [
+      {
+        "name": "湘潭市博物馆",
+        "status": "approved",
+        "description": "湘潭城市综合性博物馆，馆舍位于岳塘区湖湘东路的公共文化场馆群。馆藏与基本陈列介绍湘潭地方历史、考古文物及湖湘文化，适合通过室内展览了解城市从史前聚落到近现代的发展。",
+        "description_source_url": "https://whhlyt.hunan.gov.cn/whhlyt/news/wlyw/201808/t20180817_5373067.html",
+        "longitude": 112.9381156,
+        "latitude": 27.8374913,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/884257525",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文"],
+        "duration_minutes": 120,
+        "independence_note": "具名场馆建筑锚点，约159米宽、172米长，官方湖湘东路馆址吻合；排除Nominatim误返矿院月湖路无具体名博物馆。党史馆与规划馆不另拆新增；与现有韶山、万楼等不同址。",
+        "aliases": ["湘潭博物馆"]
+      },
+      {
+        "name": "仰天湖国际休闲旅游度假区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://whhlyt.hunan.gov.cn/whhlyt/news/sxxw/202609/t20260911_34062150.html","https://hunan.gov.cn/topic/kjbh/knxhsc/gzjxs02/szdt02/202605/t20260506_33969628.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://whhlyt.hunan.gov.cn/whhlyt/news/sxxw/202609/t20260911_34062150.html"
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "city": "常德市",
+    "province": "湖南省",
+    "sources": [
+      "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419"
+    ],
+    "checked_names": [
+      "常德博物馆",
+      "常德市丁玲纪念馆",
+      "津市市博物馆",
+      "澧县博物馆"
+    ],
+    "note": "2026博物馆名录，与已有四处景区独立。",
+    "candidates": [
+      {
+        "name": "常德博物馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194","https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","https://www.iwenbo.fun/museum/3596.html"],"checked_at":"2026-10-02","coordinate_review_note":"iwenbo馆名为常德博物馆的TMap标记GCJ02(29.03834892,111.69301987)，逆算WGS84(29.041385,111.687432)；页面地址武陵大道282号与2026-08常德市文旅局现馆址一致；非街区或城市中心点。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","description_source_url":"https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194","coordinate_source_url":"https://www.iwenbo.fun/museum/3596.html","coordinate_method":"iwenbo馆名为常德博物馆的TMap标记GCJ02(29.03834892,111.69301987)，逆算WGS84(29.041385,111.687432)；页面地址武陵大道282号与2026-08常德市文旅局现馆址一致；非街区或城市中心点。"},
+        "description": "常德博物馆位于武陵大道南段，设有常德历史基本陈列，以及根艺、民俗、名人、名胜等专题展览。",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194",
+        "longitude": 111.687432,
+        "latitude": 29.041385,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3596.html",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","历史文化","人文"],
+        "duration_minutes": 120,
+        "independence_note": "常德市文旅局现馆名录列武陵大道南段282号；具名馆舍标记对应此址，与在库常德其他景点不重叠。",
+        "aliases": []
+      },
+      {
+        "name": "常德市丁玲纪念馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299","https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","https://www.iwenbo.fun/museum/5394.html"],"checked_at":"2026-10-02","coordinate_review_note":"iwenbo馆名为常德市丁玲纪念馆的TMap标记GCJ02(29.06164194,111.67661011)，逆算WGS84(29.064690,111.671058)；页面标紫菱路1818号、丁玲公园南门内，与2026-08官方现馆址一致；不采用公园质心。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","description_source_url":"https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299","coordinate_source_url":"https://www.iwenbo.fun/museum/5394.html","coordinate_method":"iwenbo馆名为常德市丁玲纪念馆的TMap标记GCJ02(29.06164194,111.67661011)，逆算WGS84(29.064690,111.671058)；页面标紫菱路1818号、丁玲公园南门内，与2026-08官方现馆址一致；不采用公园质心。"},
+        "description": "常德市丁玲纪念馆位于武陵区紫菱路，常设丁玲生平与创作展，通过图片、文献、文物和影像介绍其文学与人生经历。",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299",
+        "longitude": 111.671058,
+        "latitude": 29.06469,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5394.html",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","历史文化","人文"],
+        "duration_minutes": 90,
+        "independence_note": "常德市文旅局将纪念馆单列于紫菱路1818号；坐标是馆名标记而非丁玲公园大范围面中心。",
+        "aliases": ["丁玲纪念馆"]
+      },
+      {
+        "name": "津市市博物馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","https://cdswlgtj.changde.gov.cn/zhdt/zxdt/content_910553","https://www.iwenbo.fun/museum/3598.html"],"checked_at":"2026-10-02","coordinate_review_note":"iwenbo馆名为津市市博物馆的TMap标记GCJ02(29.6014947,111.87648335)，逆算WGS84(29.604285,111.870965)；页面地址孟姜女大道648号与2026-08官方现馆址一致。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","description_source_url":"https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419","coordinate_source_url":"https://www.iwenbo.fun/museum/3598.html","coordinate_method":"iwenbo馆名为津市市博物馆的TMap标记GCJ02(29.6014947,111.87648335)，逆算WGS84(29.604285,111.870965)；页面地址孟姜女大道648号与2026-08官方现馆址一致。"},
+        "description": "津市市博物馆位于孟姜女大道，是面向公众开放的地方文物博物馆，展示和保存津市历史文化资料。",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+        "longitude": 111.870965,
+        "latitude": 29.604285,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3598.html",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","历史文化","人文"],
+        "duration_minutes": 90,
+        "independence_note": "常德市文旅局单列津市市博物馆，孟姜女大道648号；具名馆舍点，与在库津市其他景点不重叠。",
+        "aliases": ["津市博物馆"]
+      },
+      {
+        "name": "澧县博物馆",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "research_round_20261002C": {"outcome":"unresolved","checked_at":"2026-10-02","reason":"2026常德市文旅局名录确认澧阳镇古城路128号；文博指南馆舍页返回服务端错误，尚无可核的具名坐标。","source_urls":["https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419"]},
+        "description": "澧县博物馆位于澧阳镇古城路，是常德市文旅部门登记的免费开放地方文物博物馆。",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419"
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "city": "永州市",
+    "province": "湖南省",
+    "sources": [
+      "https://www.yzcity.gov.cn/wlgtj/whcg/202410/bd9b726d9fdf415c91f28c00a910277c.shtml"
+    ],
+    "checked_names": [
+      "永州市博物馆"
+    ],
+    "note": "馆舍需核实与已有零陵古城空间关系，不用宽泛古城中心点。",
+    "candidates": [
+      {
+        "name": "永州市博物馆",
+        "status": "pending_coordinates",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.yzcity.gov.cn/wlgtj/whcg/202410/bd9b726d9fdf415c91f28c00a910277c.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "research_round_20261002C": {"outcome":"unresolved","checked_at":"2026-10-02","reason":"文博指南具名标记页面地址写南津南路414号，永州市博物馆官网和政府简介现址均为南津南路120号，拒绝旧址或错址坐标。","source_urls":["https://www.iwenbo.fun/museum/3635.html","https://www.yzcity.gov.cn/wlgtj/whcg/202410/bd9b726d9fdf415c91f28c00a910277c.shtml","https://wlgtj.yzcity.gov.cn/wwc/"]},
+        "description": "永州市博物馆位于零陵区南津南路，设有地方历史文化和文物主题展览，也是永州考古研究中心。",
+        "description_source_url": "https://www.yzcity.gov.cn/wlgtj/whcg/202410/bd9b726d9fdf415c91f28c00a910277c.shtml"
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "city": "广州市",
+    "province": "广东省",
+    "sources": [
+      "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html"
+    ],
+    "checked_names": [
+      "华南植物园",
+      "北京路文化旅游区",
+      "石门国家森林公园",
+      "广东环亚美容化妆品博物馆"
+    ],
+    "note": "2026A级名录；北京路含南越王宫展区，不再另增王宫。",
+    "candidates": [
+      {
+        "name": "华南植物园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html","https://www.gz.gov.cn/zlgz/gzly/wzgz/ylgy/content/post_9500440.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html"
+      },
+      {
+        "name": "北京路文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html","https://www.beijinglu.yuexiu.gov.cn/bjl/pc_bjl/gywm_bjl/index.shtml"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html"
+      },
+      {
+        "name": "石门国家森林公园",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html","https://lyylj.gz.gov.cn/stly/gyjq/smgjslgy/jqjj/index.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html"
+      },
+      {
+        "name": "广东环亚美容化妆品博物馆",
+        "status": "approved",
+        "research_round_20261002B": {"outcome":"approved","reason":"第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。","source_urls":["https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html","https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html","https://www.iwenbo.fun/museum/3709.html"],"checked_at":"2026-10-02","coordinate_review_note":"iwenbo馆名为广东环亚美容化妆品博物馆的TMap标记GCJ02(23.1557268,113.4427899)，逆算WGS84(23.158237,113.437298)；页面地址南云一路18号与2026-06广州市A级景区名录一致。"},
+        "research_round_20261002C": {"outcome":"approved","checked_at":"2026-10-02","official_address_source_url":"https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html","description_source_url":"https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html","coordinate_source_url":"https://www.iwenbo.fun/museum/3709.html","coordinate_method":"iwenbo馆名为广东环亚美容化妆品博物馆的TMap标记GCJ02(23.1557268,113.4427899)，逆算WGS84(23.158237,113.437298)；页面地址南云一路18号与2026-06广州市A级景区名录一致。"},
+        "description": "广东环亚美容化妆品博物馆位于广州黄埔区科学城，以中国历代美容化妆、发式、妆具和现代化妆品为展示主题。",
+        "description_source_url": "https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html",
+        "longitude": 113.437298,
+        "latitude": 23.158237,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3709.html",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆","研学","人文"],
+        "duration_minutes": 90,
+        "independence_note": "广州市文旅局2026-06列为黄埔独立3A级景区，广州市科技局确认科普展陈；具名馆舍点，与在库广州其他馆不重叠。",
+        "aliases": []
+      }
+    ]
+  },
+  {
+    "id": 209,
+    "city": "汕头市",
+    "province": "广东省",
+    "sources": [
+      "https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html"
+    ],
+    "checked_names": [
+      "前美古村侨文化旅游区",
+      "莲华乡村旅游区",
+      "蓝水星欢乐世界",
+      "小公园开埠区旅游区"
+    ],
+    "note": "小公园开埠区与已有小公园别名不重复，南澳岛亦不重复。",
+    "candidates": [
+      {
+        "name": "前美古村侨文化旅游区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。","source_urls":["https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html","https://www.shantou.gov.cn/cnst/zdly/lyscjgzfxxgk/cyzl/content/post_1342470.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图有名称相关条目，但本轮尚未证实其是本市该景点的游客入口或小型馆舍锚点；暂不采用。"},
+        "description_source_url": "https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html"
+      },
+      {
+        "name": "莲华乡村旅游区",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html","https://www.shantou.gov.cn/cnst/yxst/cszn/lyzn/jqjd/index.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html"
+      },
+      {
+        "name": "蓝水星欢乐世界",
+        "status": "pending_coordinates_and_description",
+        "research_round_20261002B": {"outcome":"unresolved","reason":"官网/官方文旅来源已核查；公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。","source_urls":["https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html","https://www.shantou.gov.cn/cnst/yxst/cszn/lyzn/jqjd/index.html"],"checked_at":"2026-10-02","coordinate_review_note":"公开地图具名检索未发现可核准的入口或馆舍；不以附近道路、村中心或景区质心替代。"},
+        "description_source_url": "https://www.shantou.gov.cn/cnst/yxst/cszn/content/post_2546255.html"
+      }
+    ]
+  }
+]

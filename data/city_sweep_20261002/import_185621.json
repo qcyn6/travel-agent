@@ -1,0 +1,975 @@
+{
+  "created_at": "2026-10-02T18:56:21.188032",
+  "committed": true,
+  "added": 9,
+  "rows": [
+    {
+      "name": "吉林市明清造船厂遗址博物馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+          "https://xxgk.jlcity.gov.cn/gzbm/gbdydsj_1/xbgkml/202112/t20211229_1009689.html",
+          "https://www.openstreetmap.org/node/13947020014",
+          "https://www.iwenbo.fun/museum/815.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "OSM node/13947020014现标 tourism=museum、name=吉林明清船厂历史陈列（旧馆名），2026-06编辑；与iwenbo具名现名标记GCJ02逆转后相距约2米。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+        "marker_source_url": "https://www.iwenbo.fun/museum/815.html",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/13947020014",
+        "coordinate_method": "OSM node/13947020014现标 tourism=museum、name=吉林明清船厂历史陈列（旧馆名），2026-06编辑；与iwenbo具名现名标记GCJ02逆转后相距约2米。"
+      },
+      "description": "吉林市明清造船厂遗址博物馆位于丰满区阿什哈达摩崖附近，依托明清造船厂遗址展示船厂历史及吉林城的发展。",
+      "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160229_3108027.html",
+      "longitude": 126.6649017,
+      "latitude": 43.7660393,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/13947020014",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "研学"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "吉林省文旅厅确认位于丰满区吉丰东路9公里处，馆舍依托阿什哈达摩崖而建；OSM独立博物馆POI而非摩崖大范围中心，与在库吉林市博物馆景区不同。",
+      "aliases": [
+        "吉林明清船厂历史陈列馆",
+        "吉林明清船厂历史陈列"
+      ],
+      "poi_id": "public_9cde751878b05b2a42c060942970ff91",
+      "city_id": 61,
+      "city": "吉林市",
+      "province": "吉林省",
+      "stored_longitude": 126.67062466786007,
+      "stored_latitude": 43.76835934747249,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "常德博物馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194",
+          "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+          "https://www.iwenbo.fun/museum/3596.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "iwenbo馆名为常德博物馆的TMap标记GCJ02(29.03834892,111.69301987)，逆算WGS84(29.041385,111.687432)；页面地址武陵大道282号与2026-08常德市文旅局现馆址一致；非街区或城市中心点。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3596.html",
+        "coordinate_method": "iwenbo馆名为常德博物馆的TMap标记GCJ02(29.03834892,111.69301987)，逆算WGS84(29.041385,111.687432)；页面地址武陵大道282号与2026-08常德市文旅局现馆址一致；非街区或城市中心点。"
+      },
+      "description": "常德博物馆位于武陵大道南段，设有常德历史基本陈列，以及根艺、民俗、名人、名胜等专题展览。",
+      "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_750194",
+      "longitude": 111.687432,
+      "latitude": 29.041385,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3596.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "常德市文旅局现馆名录列武陵大道南段282号；具名馆舍标记对应此址，与在库常德其他景点不重叠。",
+      "aliases": [],
+      "poi_id": "public_3d400149cfcbaed9ea90198487b67dd8",
+      "city_id": 197,
+      "city": "常德市",
+      "province": "湖南省",
+      "stored_longitude": 111.69301948823559,
+      "stored_latitude": 29.038348880854738,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "常德市丁玲纪念馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299",
+          "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+          "https://www.iwenbo.fun/museum/5394.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "iwenbo馆名为常德市丁玲纪念馆的TMap标记GCJ02(29.06164194,111.67661011)，逆算WGS84(29.064690,111.671058)；页面标紫菱路1818号、丁玲公园南门内，与2026-08官方现馆址一致；不采用公园质心。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5394.html",
+        "coordinate_method": "iwenbo馆名为常德市丁玲纪念馆的TMap标记GCJ02(29.06164194,111.67661011)，逆算WGS84(29.064690,111.671058)；页面标紫菱路1818号、丁玲公园南门内，与2026-08官方现馆址一致；不采用公园质心。"
+      },
+      "description": "常德市丁玲纪念馆位于武陵区紫菱路，常设丁玲生平与创作展，通过图片、文献、文物和影像介绍其文学与人生经历。",
+      "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/whcg/content_749299",
+      "longitude": 111.671058,
+      "latitude": 29.06469,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5394.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "常德市文旅局将纪念馆单列于紫菱路1818号；坐标是馆名标记而非丁玲公园大范围面中心。",
+      "aliases": [
+        "丁玲纪念馆"
+      ],
+      "poi_id": "public_bed742c4a08dadce6578235260c4fe3c",
+      "city_id": 197,
+      "city": "常德市",
+      "province": "湖南省",
+      "stored_longitude": 111.67661051437443,
+      "stored_latitude": 29.061641765749435,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "津市市博物馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+          "https://cdswlgtj.changde.gov.cn/zhdt/zxdt/content_910553",
+          "https://www.iwenbo.fun/museum/3598.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "iwenbo馆名为津市市博物馆的TMap标记GCJ02(29.6014947,111.87648335)，逆算WGS84(29.604285,111.870965)；页面地址孟姜女大道648号与2026-08官方现馆址一致。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+        "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3598.html",
+        "coordinate_method": "iwenbo馆名为津市市博物馆的TMap标记GCJ02(29.6014947,111.87648335)，逆算WGS84(29.604285,111.870965)；页面地址孟姜女大道648号与2026-08官方现馆址一致。"
+      },
+      "description": "津市市博物馆位于孟姜女大道，是面向公众开放的地方文物博物馆，展示和保存津市历史文化资料。",
+      "description_source_url": "https://cdswlgtj.changde.gov.cn/wh/wwdg/bwg/content_119419",
+      "longitude": 111.870965,
+      "latitude": 29.604285,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3598.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "常德市文旅局单列津市市博物馆，孟姜女大道648号；具名馆舍点，与在库津市其他景点不重叠。",
+      "aliases": [
+        "津市博物馆"
+      ],
+      "poi_id": "public_50f36a245393dfd0ff293012ec90e00e",
+      "city_id": 197,
+      "city": "常德市",
+      "province": "湖南省",
+      "stored_longitude": 111.87648351258963,
+      "stored_latitude": 29.60149448268749,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "广东环亚美容化妆品博物馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html",
+          "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html",
+          "https://www.iwenbo.fun/museum/3709.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "iwenbo馆名为广东环亚美容化妆品博物馆的TMap标记GCJ02(23.1557268,113.4427899)，逆算WGS84(23.158237,113.437298)；页面地址南云一路18号与2026-06广州市A级景区名录一致。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://wglj.gz.gov.cn/ggfw/lyl/lydwcx/content/post_10878689.html",
+        "description_source_url": "https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/3709.html",
+        "coordinate_method": "iwenbo馆名为广东环亚美容化妆品博物馆的TMap标记GCJ02(23.1557268,113.4427899)，逆算WGS84(23.158237,113.437298)；页面地址南云一路18号与2026-06广州市A级景区名录一致。"
+      },
+      "description": "广东环亚美容化妆品博物馆位于广州黄埔区科学城，以中国历代美容化妆、发式、妆具和现代化妆品为展示主题。",
+      "description_source_url": "https://kjj.gz.gov.cn/kpzl/kpjd/content/post_8522026.html",
+      "longitude": 113.437298,
+      "latitude": 23.158237,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/3709.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "研学",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "广州市文旅局2026-06列为黄埔独立3A级景区，广州市科技局确认科普展陈；具名馆舍点，与在库广州其他馆不重叠。",
+      "aliases": [],
+      "poi_id": "public_45c828ffb28bf74f8aa3942aa370baa6",
+      "city_id": 205,
+      "city": "广州市",
+      "province": "广东省",
+      "stored_longitude": 113.44279040528477,
+      "stored_latitude": 23.15572687356399,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "定鼎门遗址博物馆",
+      "status": "approved",
+      "description": "在隋唐洛阳城定鼎门遗址原址参观城门遗迹，了解古都城门与相关考古保护展示。",
+      "description_source_url": "https://www.iwenbo.fun/museum/5368.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道核准，详见 research_round_20261002C。",
+        "source_urls": [
+          "https://gongyi.zfcg.henan.gov.cn/henan/content?channelCode=H640101&infoId=1960043",
+          "https://www.iwenbo.fun/museum/5368.html",
+          "https://oss.ly.gov.cn/upload-file/files/20250117/8b8b8b59fef24026a790e4324075a93a.pdf",
+          "https://www.openstreetmap.org/way/387176568"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "文博站原始 TMap.LatLng(34.63123488,112.46668696)，GCJ02；近似转 WGS84 为(34.63228097,112.46047150)，在 OSM way/387176568“定鼎门遗址”城门建筑南侧约56米。OSM bbox=(34.6327886,112.4598288)-(34.6331112,112.461463)，building=yes/historic=city_gate；仅作馆舍附近接近点，非实测门口。洛阳市备案馆址为古城路与龙门大道交叉口西200米。"
+      },
+      "longitude": 112.46668696,
+      "latitude": 34.63123488,
+      "coordinate_system": "GCJ02",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5368.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "古建"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "洛阳市备案馆址为古城路与龙门大道交叉口西200米；文博站具名 marker 位于 OSM 定鼎门遗址馆舍南侧约56米，仅是接近点而非实测入口；独立于应天门。",
+      "aliases": [
+        "洛阳定鼎门遗址博物馆"
+      ],
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+        "source_urls": [
+          "https://gongyi.zfcg.henan.gov.cn/henan/content?channelCode=H640101&infoId=1960043",
+          "https://www.iwenbo.fun/museum/5368.html",
+          "https://oss.ly.gov.cn/upload-file/files/20250117/8b8b8b59fef24026a790e4324075a93a.pdf",
+          "https://www.openstreetmap.org/way/387176568"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "文博站原始 TMap.LatLng(34.63123488,112.46668696)，GCJ02；近似转 WGS84 为(34.63228097,112.46047150)，在 OSM way/387176568“定鼎门遗址”城门建筑南侧约56米。OSM bbox=(34.6327886,112.4598288)-(34.6331112,112.461463)，building=yes/historic=city_gate；仅作馆舍附近接近点，非实测门口。洛阳市备案馆址为古城路与龙门大道交叉口西200米。",
+        "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+      },
+      "poi_id": "public_608779b47fe0f6b9370c2f4e1109e3b5",
+      "city_id": 158,
+      "city": "洛阳市",
+      "province": "河南省",
+      "stored_longitude": 112.46668696,
+      "stored_latitude": 34.63123488,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "庆阳市博物馆",
+      "status": "approved",
+      "description": "西峰区弘化西路的地方综合性博物馆，设有多处常设展厅，展示庆阳地方历史与馆藏文物。",
+      "description_source_url": "https://zgqingyang.gov.cn/departmentmanage/show/384",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道核准，详见 research_round_20261002C。",
+        "source_urls": [
+          "https://zgqingyang.gov.cn/departmentmanage/show/384",
+          "https://www.iwenbo.fun/museum/5084.html",
+          "https://www.openstreetmap.org/way/780169087"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "文博站原始 TMap.LatLng(35.7058634,107.64419317)，GCJ02；近似转 WGS84 为(35.70625993,107.63944916)，落在 OSM way/780169087“庆阳博物馆”馆舍 bbox=(35.7058266,107.6389173)-(35.7064231,107.6398569)，building=yes/tourism=museum。市政府明确现馆西峰区弘化西路4号；文博站正文的庆城县普照寺巷为旧地址，明确拒绝该文字地址，仅采纳经过 OSM/官方现址交叉验证的 marker。非实测入口。"
+      },
+      "longitude": 107.64419317,
+      "latitude": 35.7058634,
+      "coordinate_system": "GCJ02",
+      "coordinate_source_url": "https://www.iwenbo.fun/museum/5084.html",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "市政府现址西峰区弘化西路4号，文博站具名 marker 经GCJ02换算落在OSM小型“庆阳博物馆”馆舍内。拒绝文博站正文庆城县普照寺巷旧址；点位非实测入口。",
+      "aliases": [
+        "庆阳博物馆"
+      ],
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+        "source_urls": [
+          "https://zgqingyang.gov.cn/departmentmanage/show/384",
+          "https://www.iwenbo.fun/museum/5084.html",
+          "https://www.openstreetmap.org/way/780169087"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "文博站原始 TMap.LatLng(35.7058634,107.64419317)，GCJ02；近似转 WGS84 为(35.70625993,107.63944916)，落在 OSM way/780169087“庆阳博物馆”馆舍 bbox=(35.7058266,107.6389173)-(35.7064231,107.6398569)，building=yes/tourism=museum。市政府明确现馆西峰区弘化西路4号；文博站正文的庆城县普照寺巷为旧地址，明确拒绝该文字地址，仅采纳经过 OSM/官方现址交叉验证的 marker。非实测入口。",
+        "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+      },
+      "poi_id": "public_b11d09565ea849221301e7079437a738",
+      "city_id": 326,
+      "city": "庆阳市",
+      "province": "甘肃省",
+      "stored_longitude": 107.64419317,
+      "stored_latitude": 35.7058634,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "和田地区博物馆",
+      "status": "approved",
+      "description": "和田市昆仑路的地区综合性博物馆，通过馆藏文物与专题展览了解和田历史及地方文化。",
+      "description_source_url": "https://www.iwenbo.fun/museum/5329.html",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道核准，详见 research_round_20261002C。",
+        "source_urls": [
+          "https://www.xinjiang.gov.cn/xinjiang/dzdt/202307/af371f5139eb49b7ae19bdbbbcd5afc2.shtml",
+          "https://www.iwenbo.fun/museum/5329.html",
+          "https://www.xjht.gov.cn/xjht/c128263/202507/b91b625ed0a447fe9065fbcbde6712da.shtml",
+          "https://www.xjht.gov.cn/xjht/c128217/202609/2548bc8078074359af041805f7c687ed.shtml",
+          "https://www.openstreetmap.org/node/8917036717"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "采用 OSM node/8917036717，WGS84(37.0921788,79.9253739)，实体标签 name=和田博物馆、tourism=museum、wikipedia=zh:和田地区博物馆，位于昆仑路；不是仅道路带 Wikipedia。政府现址昆仑路8号/昆仑南路8号。排除二环路另一个同名 OSM 节点；此为具名馆舍 POI，非实测入口。文博站 GCJ02 marker (37.0927131,79.92633104) 与该节点有约百米偏差，仅作辅助，不采用。"
+      },
+      "longitude": 79.9253739,
+      "latitude": 37.0921788,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/8917036717",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "政府现址昆仑南路8号；OSM昆仑路具名tourism=museum节点链接zh:和田地区博物馆，排除二环路另一同名节点；此点为馆舍POI非实测入口。",
+      "aliases": [
+        "和田博物馆"
+      ],
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "reason": "官方现址与具名公开地图实体交叉核验通过；坐标用途和偏差已注明。",
+        "source_urls": [
+          "https://www.xinjiang.gov.cn/xinjiang/dzdt/202307/af371f5139eb49b7ae19bdbbbcd5afc2.shtml",
+          "https://www.iwenbo.fun/museum/5329.html",
+          "https://www.xjht.gov.cn/xjht/c128263/202507/b91b625ed0a447fe9065fbcbde6712da.shtml",
+          "https://www.xjht.gov.cn/xjht/c128217/202609/2548bc8078074359af041805f7c687ed.shtml",
+          "https://www.openstreetmap.org/node/8917036717"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "采用 OSM node/8917036717，WGS84(37.0921788,79.9253739)，实体标签 name=和田博物馆、tourism=museum、wikipedia=zh:和田地区博物馆，位于昆仑路；不是仅道路带 Wikipedia。政府现址昆仑路8号/昆仑南路8号。排除二环路另一个同名 OSM 节点；此为具名馆舍 POI，非实测入口。文博站 GCJ02 marker (37.0927131,79.92633104) 与该节点有约百米偏差，仅作辅助，不采用。",
+        "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+      },
+      "poi_id": "public_d8b041de5e4677f5c3e3bea5f2ebd4f1",
+      "city_id": 354,
+      "city": "和田地区",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 79.92729373674314,
+      "stored_latitude": 37.09182739962886,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "吉林省自然博物馆",
+      "status": "approved",
+      "research_round_20261002B": {
+        "outcome": "approved",
+        "reason": "第二渠道具名馆舍标记与政府现馆址核对一致，已取得可追溯WGS84坐标。",
+        "source_urls": [
+          "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html",
+          "https://www.jl.gov.cn/ggzy/zfcg/cggg/202609/t20260918_9716148.html",
+          "https://www.openstreetmap.org/way/700748108",
+          "https://www.iwenbo.fun/museum/797.html"
+        ],
+        "checked_at": "2026-10-02",
+        "coordinate_review_note": "OSM way/700748108具名“自然历史博物馆”tourism=museum的小型馆舍面，中心点与iwenbo具名吉林省自然博物馆标记逆转WGS84后约20米；2026省级采购文件仍确认净月大街2556号。"
+      },
+      "research_round_20261002C": {
+        "outcome": "approved",
+        "checked_at": "2026-10-02",
+        "official_address_source_url": "https://www.jl.gov.cn/ggzy/zfcg/cggg/202609/t20260918_9716148.html",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html",
+        "marker_source_url": "https://www.iwenbo.fun/museum/797.html",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/700748108",
+        "coordinate_method": "OSM way/700748108具名“自然历史博物馆”tourism=museum的小型馆舍面，中心点与iwenbo具名吉林省自然博物馆标记逆转WGS84后约20米；2026省级采购文件仍确认净月大街2556号。"
+      },
+      "description": "吉林省自然博物馆位于长春净月大街，是与东北师范大学自然博物馆一馆两牌的综合性自然历史博物馆，可参观自然与生态主题展览。",
+      "description_source_url": "https://whhlyt.jl.gov.cn/ggfw/whcg/bwg/201602/t20160225_3107936.html",
+      "longitude": 125.4260396,
+      "latitude": 43.8269361,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/700748108",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "自然",
+        "研学"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "官方现馆址净月大街2556号；OSM具名馆舍与文博指南标记互证，不取5.4公顷园区质心；与在库长春其他博物馆不重叠。",
+      "aliases": [
+        "东北师范大学自然博物馆"
+      ],
+      "poi_id": "public_ba9098cddf379b12ab27ddbcbac02575",
+      "city_id": 60,
+      "city": "长春市",
+      "province": "吉林省",
+      "stored_longitude": 125.43267202407299,
+      "stored_latitude": 43.82947147768875,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [
+    {
+      "city": "嘉兴市",
+      "name": "嘉兴博物馆",
+      "reason": "existing name/alias",
+      "existing": "嘉兴博物馆"
+    },
+    {
+      "city": "保山市",
+      "name": "保山市博物馆",
+      "reason": "existing name/alias",
+      "existing": "保山市博物馆"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "独树成林",
+      "reason": "existing name/alias",
+      "existing": "独树成林"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "畹町边关文化园",
+      "reason": "existing name/alias",
+      "existing": "畹町边关文化园"
+    },
+    {
+      "city": "德宏傣族景颇族自治州",
+      "name": "李根源故居",
+      "reason": "existing name/alias",
+      "existing": "李根源故居"
+    },
+    {
+      "city": "宝鸡市",
+      "name": "凤县革命纪念馆景区",
+      "reason": "existing name/alias",
+      "existing": "凤县革命纪念馆景区"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山启新水泥工业博物馆",
+      "reason": "existing name/alias",
+      "existing": "唐山启新水泥工业博物馆"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山抗震纪念馆",
+      "reason": "existing name/alias",
+      "existing": "唐山抗震纪念馆"
+    },
+    {
+      "city": "唐山市",
+      "name": "唐山市科技馆",
+      "reason": "existing name/alias",
+      "existing": "唐山市科技馆"
+    },
+    {
+      "city": "保定市",
+      "name": "大慈阁",
+      "reason": "existing name/alias",
+      "existing": "大慈阁"
+    },
+    {
+      "city": "廊坊市",
+      "name": "梦东方未来世界",
+      "reason": "existing name/alias",
+      "existing": "梦东方未来世界"
+    },
+    {
+      "city": "廊坊市",
+      "name": "大厂民族宫",
+      "reason": "existing name/alias",
+      "existing": "大厂民族宫"
+    },
+    {
+      "city": "吕梁市",
+      "name": "中阳楼",
+      "reason": "existing name/alias",
+      "existing": "中阳楼"
+    },
+    {
+      "city": "赤峰市",
+      "name": "辽代历史文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "辽代历史文化博物馆"
+    },
+    {
+      "city": "赤峰市",
+      "name": "乌兰布统旅游区",
+      "reason": "existing name/alias",
+      "existing": "乌兰布统旅游区"
+    },
+    {
+      "city": "抚顺市",
+      "name": "抚顺平顶山惨案纪念馆",
+      "reason": "existing name/alias",
+      "existing": "抚顺平顶山惨案纪念馆"
+    },
+    {
+      "city": "吉林市",
+      "name": "吉林市文庙博物馆",
+      "reason": "existing name/alias",
+      "existing": "吉林市文庙博物馆"
+    },
+    {
+      "city": "大兴安岭地区",
+      "name": "图强林业博物馆",
+      "reason": "existing name/alias",
+      "existing": "图强林业博物馆"
+    },
+    {
+      "city": "大兴安岭地区",
+      "name": "呼玛博物馆",
+      "reason": "existing name/alias",
+      "existing": "呼玛博物馆"
+    },
+    {
+      "city": "徐州市",
+      "name": "沛县博物馆",
+      "reason": "existing name/alias",
+      "existing": "沛县博物馆"
+    },
+    {
+      "city": "连云港市",
+      "name": "连云港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "连云港市博物馆"
+    },
+    {
+      "city": "镇江市",
+      "name": "上海战役总前委旧址纪念馆",
+      "reason": "existing name/alias",
+      "existing": "上海战役总前委旧址纪念馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "淮海战役总前委旧址纪念馆",
+      "reason": "existing name/alias",
+      "existing": "淮海战役总前委旧址纪念馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "淮北市博物馆",
+      "reason": "existing name/alias",
+      "existing": "淮北市博物馆"
+    },
+    {
+      "city": "淮北市",
+      "name": "南山汉文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "南山汉文化博物馆"
+    },
+    {
+      "city": "亳州市",
+      "name": "南京巷钱庄",
+      "reason": "existing name/alias",
+      "existing": "南京巷钱庄"
+    },
+    {
+      "city": "亳州市",
+      "name": "华祖庵",
+      "reason": "existing name/alias",
+      "existing": "华祖庵"
+    },
+    {
+      "city": "南昌市",
+      "name": "南昌之星摩天轮",
+      "reason": "existing name/alias",
+      "existing": "南昌之星摩天轮"
+    },
+    {
+      "city": "青岛市",
+      "name": "鲁迅公园",
+      "reason": "existing name/alias",
+      "existing": "鲁迅公园"
+    },
+    {
+      "city": "烟台市",
+      "name": "栖霞市奇石博物馆",
+      "reason": "existing name/alias",
+      "existing": "栖霞市奇石博物馆"
+    },
+    {
+      "city": "烟台市",
+      "name": "北极星钟表文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "北极星钟表文化博物馆"
+    },
+    {
+      "city": "开封市",
+      "name": "开封府",
+      "reason": "existing name/alias",
+      "existing": "开封府"
+    },
+    {
+      "city": "许昌市",
+      "name": "许昌市博物馆",
+      "reason": "existing name/alias",
+      "existing": "许昌市博物馆"
+    },
+    {
+      "city": "许昌市",
+      "name": "中原农耕文化博物馆",
+      "reason": "existing name/alias",
+      "existing": "中原农耕文化博物馆"
+    },
+    {
+      "city": "天门市",
+      "name": "胡家花园",
+      "reason": "existing name/alias",
+      "existing": "胡家花园"
+    },
+    {
+      "city": "湘潭市",
+      "name": "湘潭市博物馆",
+      "reason": "existing name/alias",
+      "existing": "湘潭市博物馆"
+    },
+    {
+      "city": "贵港市",
+      "name": "贵港市博物馆",
+      "reason": "existing name/alias",
+      "existing": "贵港市博物馆"
+    },
+    {
+      "city": "自贡市",
+      "name": "自贡市盐业历史博物馆",
+      "reason": "existing name/alias",
+      "existing": "自贡市盐业历史博物馆"
+    },
+    {
+      "city": "兰州市",
+      "name": "甘肃天庆博物馆",
+      "reason": "existing name/alias",
+      "existing": "甘肃天庆博物馆"
+    },
+    {
+      "city": "天水市",
+      "name": "天水民俗博物馆",
+      "reason": "existing name/alias",
+      "existing": "天水民俗博物馆"
+    },
+    {
+      "city": "酒泉市",
+      "name": "酒泉民俗博物馆",
+      "reason": "existing name/alias",
+      "existing": "酒泉民俗博物馆"
+    },
+    {
+      "city": "临夏回族自治州",
+      "name": "临夏州博物馆",
+      "reason": "existing name/alias",
+      "existing": "临夏州博物馆"
+    },
+    {
+      "city": "玉树藏族自治州",
+      "name": "玉树州博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉树州博物馆"
+    },
+    {
+      "city": "吴忠市",
+      "name": "吴忠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "吴忠市博物馆"
+    },
+    {
+      "city": "克拉玛依市",
+      "name": "克拉玛依博物馆",
+      "reason": "existing name/alias",
+      "existing": "克拉玛依博物馆"
+    },
+    {
+      "city": "克拉玛依市",
+      "name": "独库公路博物馆",
+      "reason": "existing name/alias",
+      "existing": "独库公路博物馆"
+    },
+    {
+      "city": "克拉玛依市",
+      "name": "克拉玛依科技馆",
+      "reason": "existing name/alias",
+      "existing": "克拉玛依科技馆"
+    },
+    {
+      "city": "博尔塔拉蒙古自治州",
+      "name": "博尔塔拉蒙古自治州博物馆",
+      "reason": "existing name/alias",
+      "existing": "博尔塔拉蒙古自治州博物馆"
+    },
+    {
+      "city": "喀什地区",
+      "name": "喀什地区博物馆",
+      "reason": "existing name/alias",
+      "existing": "喀什地区博物馆"
+    },
+    {
+      "city": "阿勒泰地区",
+      "name": "阿勒泰地区博物馆",
+      "reason": "existing name/alias",
+      "existing": "阿勒泰地区博物馆"
+    },
+    {
+      "city": "汉中市",
+      "name": "佛坪熊猫谷景区",
+      "reason": "existing name/alias",
+      "existing": "佛坪熊猫谷景区"
+    },
+    {
+      "city": "大庆市",
+      "name": "大庆油田历史陈列馆",
+      "reason": "existing name/alias",
+      "existing": "大庆油田历史陈列馆"
+    },
+    {
+      "city": "蚌埠市",
+      "name": "蚌埠市博物馆",
+      "reason": "existing name/alias",
+      "existing": "蚌埠市博物馆"
+    },
+    {
+      "city": "襄阳市",
+      "name": "襄阳市博物馆",
+      "reason": "existing name/alias",
+      "existing": "襄阳市博物馆"
+    },
+    {
+      "city": "河源市",
+      "name": "河源恐龙博物馆",
+      "reason": "existing name/alias",
+      "existing": "河源恐龙博物馆"
+    },
+    {
+      "city": "玉林市",
+      "name": "容县经略台真武阁",
+      "reason": "existing name/alias",
+      "existing": "容县经略台真武阁"
+    },
+    {
+      "city": "拉萨市",
+      "name": "西藏博物馆",
+      "reason": "existing name/alias",
+      "existing": "西藏博物馆"
+    },
+    {
+      "city": "山南市",
+      "name": "昌珠寺",
+      "reason": "existing name/alias",
+      "existing": "昌珠寺"
+    },
+    {
+      "city": "武威市",
+      "name": "武威市博物馆",
+      "reason": "existing name/alias",
+      "existing": "武威市博物馆"
+    },
+    {
+      "city": "黄南藏族自治州",
+      "name": "隆务寺",
+      "reason": "existing name/alias",
+      "existing": "隆务寺"
+    },
+    {
+      "city": "固原市",
+      "name": "固原博物馆",
+      "reason": "existing name/alias",
+      "existing": "固原博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "北投温泉博物馆",
+      "reason": "existing name/alias",
+      "existing": "北投温泉博物馆"
+    },
+    {
+      "city": "台北市",
+      "name": "台北市立美术馆",
+      "reason": "existing name/alias",
+      "existing": "台北市立美术馆"
+    },
+    {
+      "city": "宁波市",
+      "name": "中国港口博物馆",
+      "reason": "existing name/alias",
+      "existing": "中国港口博物馆"
+    },
+    {
+      "city": "金华市",
+      "name": "诸葛八卦村",
+      "reason": "existing name/alias",
+      "existing": "诸葛八卦村"
+    },
+    {
+      "city": "丽水市",
+      "name": "庆元廊桥博物馆",
+      "reason": "existing name/alias",
+      "existing": "庆元廊桥博物馆"
+    },
+    {
+      "city": "普洱市",
+      "name": "孟连宣抚司署",
+      "reason": "existing name/alias",
+      "existing": "孟连宣抚司署"
+    },
+    {
+      "city": "迪庆藏族自治州",
+      "name": "东竹林寺",
+      "reason": "existing name/alias",
+      "existing": "东竹林寺"
+    },
+    {
+      "city": "天津市",
+      "name": "天津鼓楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "天津鼓楼博物馆"
+    },
+    {
+      "city": "太原市",
+      "name": "太原市博物馆",
+      "reason": "existing name/alias",
+      "existing": "太原市博物馆"
+    },
+    {
+      "city": "大连市",
+      "name": "旅顺日俄监狱旧址博物馆",
+      "reason": "existing name/alias",
+      "existing": "旅顺日俄监狱旧址博物馆"
+    },
+    {
+      "city": "鄂州市",
+      "name": "鄂州市博物馆",
+      "reason": "existing name/alias",
+      "existing": "鄂州市博物馆"
+    },
+    {
+      "city": "长沙市",
+      "name": "湖南省地质博物馆",
+      "reason": "existing name/alias",
+      "existing": "湖南省地质博物馆"
+    },
+    {
+      "city": "阳江市",
+      "name": "广东海上丝绸之路博物馆",
+      "reason": "existing name/alias",
+      "existing": "广东海上丝绸之路博物馆"
+    },
+    {
+      "city": "甘孜藏族自治州",
+      "name": "泸定桥旅游景区",
+      "reason": "existing name/alias",
+      "existing": "泸定桥旅游景区"
+    },
+    {
+      "city": "西宁市",
+      "name": "青海省科学技术馆",
+      "reason": "existing name/alias",
+      "existing": "青海省科学技术馆"
+    },
+    {
+      "city": "银川市",
+      "name": "宁夏博物馆",
+      "reason": "existing name/alias",
+      "existing": "宁夏博物馆"
+    },
+    {
+      "city": "哈密市",
+      "name": "哈密市博物馆",
+      "reason": "existing name/alias",
+      "existing": "哈密市博物馆"
+    },
+    {
+      "city": "玉溪市",
+      "name": "玉溪市博物馆",
+      "reason": "existing name/alias",
+      "existing": "玉溪市博物馆"
+    },
+    {
+      "city": "阿里地区",
+      "name": "古如江寺",
+      "reason": "existing name/alias",
+      "existing": "古如江寺"
+    },
+    {
+      "city": "海东市",
+      "name": "柳湾彩陶博物馆",
+      "reason": "existing name/alias",
+      "existing": "柳湾彩陶博物馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "八路军驻新疆办事处纪念馆",
+      "reason": "existing name/alias",
+      "existing": "八路军驻新疆办事处纪念馆"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "毛泽民故居",
+      "reason": "existing name/alias",
+      "existing": "毛泽民故居"
+    },
+    {
+      "city": "乌鲁木齐市",
+      "name": "中国工农红军西路军总支队纪念馆",
+      "reason": "existing name/alias",
+      "existing": "中国工农红军西路军总支队纪念馆"
+    },
+    {
+      "city": "塔城地区",
+      "name": "红楼博物馆",
+      "reason": "existing name/alias",
+      "existing": "红楼博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "澳门大赛车博物馆",
+      "reason": "existing name/alias",
+      "existing": "澳门大赛车博物馆"
+    },
+    {
+      "city": "澳门特别行政区",
+      "name": "海事博物馆",
+      "reason": "existing name/alias",
+      "existing": "海事博物馆"
+    }
+  ],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

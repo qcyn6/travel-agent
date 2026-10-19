@@ -34,7 +34,7 @@ from backend.attractions.quality import (  # noqa: E402
 from backend.database import init_database, open_session  # noqa: E402
 from backend.database.tables import AttractionRow, CityRow  # noqa: E402
 from backend.tag_vocabulary import canonicalize_tags  # noqa: E402
-from scripts.seed_ai_demo_attractions import estimate_duration  # noqa: E402
+from backend.attractions.heuristics import estimate_duration  # noqa: E402
 
 
 _MANUAL_CATEGORY_OVERRIDES = {

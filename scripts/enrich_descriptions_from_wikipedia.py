@@ -17,7 +17,6 @@ import sys
 from urllib.parse import quote
 
 import requests
-import urllib3
 from sqlalchemy import select
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,7 +29,6 @@ from backend.rag.vector_store import ChromaAttractionIndex  # noqa: E402
 API = "https://zh.wikipedia.org/w/api.php"
 CACHE_PATH = ROOT / "data" / "description_sources" / "wikipedia_cache.json"
 UA = "travel-agent-public-source-audit/1.0"
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def _norm(value: str) -> str:
@@ -117,7 +115,6 @@ def _batch(session: requests.Session, names: list[str]) -> dict[str, dict | None
                 "titles": "|".join(names),
             },
             timeout=15,
-            verify=False,
         ).json()
     except (requests.RequestException, ValueError):
         return {name: None for name in names}

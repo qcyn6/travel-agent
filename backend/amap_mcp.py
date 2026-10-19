@@ -106,26 +106,28 @@ class AmapMcpClient:
         return tool_payload(result, f"高德 MCP 工具 {name}")
 
     def _endpoint_with_key(self) -> str:
-        parsed = urlsplit(self._endpoint)
-        query = parse_qsl(parsed.query, keep_blank_values=True)
-        if not any(name == "key" for name, _ in query):
-            query.append(("key", self._api_key))
-        return urlunsplit(
-            (
-                parsed.scheme,
-                parsed.netloc,
-                parsed.path,
-                urlencode(query),
-                parsed.fragment,
-            )
-        )
+        return endpoint_with_key(self._endpoint, self._api_key)
 
 
-def tool_payload(result, label: str) -> dict[str, object]:
+def endpoint_with_key(endpoint: str, api_key: str) -> str:
+    """Preserve existing query parameters and never duplicate an explicit key."""
+    parsed = urlsplit(endpoint)
+    query = parse_qsl(parsed.query, keep_blank_values=True)
+    if not any(name == "key" for name, _ in query):
+        query.append(("key", api_key))
+    return urlunsplit((parsed.scheme, parsed.netloc, parsed.path, urlencode(query), parsed.fragment))
+
+
+def tool_payload(
+    result,
+    label: str,
+    *,
+    error_type: type[RuntimeError] = AmapMcpAPIError,
+) -> dict[str, object]:
     """Extract the JSON object returned in an MCP ``CallToolResult``."""
 
     if getattr(result, "isError", False):
-        raise AmapMcpAPIError(f"{label}失败")
+        raise error_type(f"{label}失败")
 
     structured = getattr(result, "structuredContent", None)
     if isinstance(structured, Mapping):
@@ -138,7 +140,7 @@ def tool_payload(result, label: str) -> dict[str, object]:
         payload = parse_json(text)
         if isinstance(payload, Mapping):
             return dict(payload)
-    raise AmapMcpAPIError(f"{label}返回格式异常")
+    raise error_type(f"{label}返回格式异常")
 
 
 def parse_json(text: str):
@@ -165,6 +167,7 @@ __all__ = [
     "AmapMcpClient",
     "AmapMcpConfigurationError",
     "AmapMcpError",
+    "endpoint_with_key",
     "parse_json",
     "tool_payload",
 ]

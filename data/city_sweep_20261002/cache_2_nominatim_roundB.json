@@ -1,0 +1,1492 @@
+{
+  "checked_at": "2026-10-02",
+  "coordinate_system": "WGS84",
+  "notes": "First 20 records reconstructed from live search output; remaining 99 preserve returned fields. Search results are not automatically approved coordinates.",
+  "records": [
+    {
+      "key": "review_2_05.json|67|大安嫩江湾旅游区",
+      "query": "大安嫩江湾旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_06.json|71|麒麟山旅游景区",
+      "query": "麒麟山旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "英雄大道, 冠山社区, 冠山管理处, 五联村, 南昌经开区, 新建区, 南昌市, 江西省, 中国",
+          "osm_type": "way",
+          "osm_id": 453210424,
+          "lat": "28.7822445",
+          "lon": "115.8580647",
+          "boundingbox": [
+            "28.7821836",
+            "28.7822852",
+            "115.8531371",
+            "115.8629816"
+          ],
+          "type": "primary"
+        }
+      ]
+    },
+    {
+      "key": "review_2_06.json|75|茅兰沟国家森林公园",
+      "query": "茅兰沟国家森林公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_06.json|79|锦河大峡谷景区",
+      "query": "锦河大峡谷景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_06.json|83|栖霞山风景区",
+      "query": "栖霞山风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_07.json|87|甪直古镇",
+      "query": "甪直古镇",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "甪直古镇, 育才路, 甫南村, 甪直镇, 吴中区, 苏州市, 江苏省, 中国",
+          "osm_type": "way",
+          "osm_id": 807948826,
+          "lat": "31.2718078",
+          "lon": "120.8675297",
+          "boundingbox": [
+            "31.2678323",
+            "31.2755124",
+            "120.8646314",
+            "120.8735426"
+          ],
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "key": "review_2_07.json|91|东台条子泥景区",
+      "query": "东台条子泥景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_07.json|95|三台山国家森林公园",
+      "query": "三台山国家森林公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "三台山国家森林公园, 许庄, 嶂山林场, 宿豫区, 宿迁市, 江苏省, 中国",
+          "osm_type": "way",
+          "osm_id": 1252745358,
+          "lat": "34.0353705",
+          "lon": "118.3292741",
+          "boundingbox": [
+            "34.0353481",
+            "34.0353928",
+            "118.3292549",
+            "118.3292932"
+          ],
+          "type": "bare_rock"
+        }
+      ]
+    },
+    {
+      "key": "review_2_07.json|107|八公山旅游景区",
+      "query": "八公山旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_08.json|111|花亭湖旅游区",
+      "query": "花亭湖旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_08.json|111|五千年文博园",
+      "query": "五千年文博园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_08.json|115|灵璧奇石文化园",
+      "query": "灵璧奇石文化园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "灵璧奇石文化园, 灵璧县, 宿州市, 安徽省, 中国",
+          "osm_type": "way",
+          "osm_id": 363477686,
+          "lat": "33.5303337",
+          "lon": "117.5381219",
+          "boundingbox": [
+            "33.5289802",
+            "33.5335735",
+            "117.5350090",
+            "117.5403367"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_2_08.json|115|灵璧钟馗文化园",
+      "query": "灵璧钟馗文化园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "灵璧钟馗文化园, 凤仪街道, 灵璧县, 宿州市, 安徽省, 中国",
+          "osm_type": "way",
+          "osm_id": 1009930385,
+          "lat": "33.5685393",
+          "lon": "117.5377586",
+          "boundingbox": [
+            "33.5650853",
+            "33.5723623",
+            "117.5339806",
+            "117.5417684"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_2_08.json|119|桃花潭景区",
+      "query": "桃花潭景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_08.json|119|查济景区",
+      "query": "查济景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "吉林省人民检察院, 3777, 南环城路, 明珠街道, 南关区, 长春市, 南关区, 吉林省, 130000, 中国",
+          "osm_type": "way",
+          "osm_id": 300729448,
+          "lat": "43.8177788",
+          "lon": "125.3335777",
+          "boundingbox": [
+            "43.8170846",
+            "43.8181916",
+            "125.3326315",
+            "125.3346147"
+          ],
+          "type": "government"
+        }
+      ]
+    },
+    {
+      "key": "review_2_08.json|123|金铙山景区",
+      "query": "金铙山景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_09.json|127|长汀古城",
+      "query": "长汀古城",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_09.json|131|杨岐山风景名胜区",
+      "query": "杨岐山风景名胜区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_09.json|135|关西围景区",
+      "query": "关西围景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "赣州工业富联（富士康基地）, 下洋田, 太窝乡, 赣州经济技术开发区, 中边村, 南康区, 赣州市, 江西省, 中国",
+          "osm_type": "way",
+          "osm_id": 1188689944,
+          "lat": "25.7750369",
+          "lon": "114.7636059",
+          "boundingbox": [
+            "25.7704220",
+            "25.7779134",
+            "114.7588610",
+            "114.7684258"
+          ],
+          "type": "industrial"
+        }
+      ]
+    },
+    {
+      "key": "review_2_09.json|139|婺源篁岭景区",
+      "query": "婺源篁岭景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_10.json|143|抱犊崮国家森林公园",
+      "query": "抱犊崮国家森林公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "抱犊崮国家森林公园, 山亭区, 枣庄市, 山东省, 中国",
+          "osm_type": "way",
+          "osm_id": 548693254,
+          "lat": "34.9804515",
+          "lon": "117.7185025",
+          "boundingbox": [
+            "34.9553697",
+            "35.0054115",
+            "117.6877080",
+            "117.7424940"
+          ],
+          "type": "wood"
+        }
+      ]
+    },
+    {
+      "key": "review_2_10.json|147|峄山风景区",
+      "query": "峄山风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_10.json|151|沂蒙山龟蒙景区",
+      "query": "沂蒙山龟蒙景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_10.json|151|沂蒙山云蒙景区",
+      "query": "沂蒙山云蒙景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_10.json|155|曹州牡丹园",
+      "query": "曹州牡丹园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "曹州牡丹园, 牡丹街道, 牡丹区, 菏泽市, 山东省, 中国",
+          "osm_type": "way",
+          "osm_id": 384942557,
+          "lat": "35.2809597",
+          "lon": "115.4919189",
+          "boundingbox": [
+            "35.2757099",
+            "35.2869030",
+            "115.4851711",
+            "115.4979837"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_2_11.json|159|画眉谷景区",
+      "query": "画眉谷景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_11.json|163|陈家沟太极拳文化旅游区",
+      "query": "陈家沟太极拳文化旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_11.json|167|函谷关历史文化旅游区",
+      "query": "函谷关历史文化旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "函谷关历史文化旅游区, 函谷关镇, 灵宝市, 三门峡市, 河南省, 中国",
+          "osm_type": "way",
+          "osm_id": 361834389,
+          "lat": "34.6344622",
+          "lon": "110.9218370",
+          "boundingbox": [
+            "34.6242190",
+            "34.6450252",
+            "110.9161275",
+            "110.9287793"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_2_11.json|171|周口关帝庙",
+      "query": "周口关帝庙",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "关帝庙, 文昌大道, 人和街道, 周口市, 川汇区, 周口市, 河南省, 466099, 中国",
+          "osm_type": "way",
+          "osm_id": 544442050,
+          "lat": "33.6335773",
+          "lon": "114.6399093",
+          "boundingbox": [
+            "33.6324264",
+            "33.6340027",
+            "114.6392086",
+            "114.6407007"
+          ],
+          "type": "place_of_worship"
+        }
+      ]
+    },
+    {
+      "key": "review_2_12.json|175|仙岛湖生态旅游景区",
+      "query": "仙岛湖生态旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "先月亭, 两湖隧道（东湖段）, 黄鹂小区, 东湖风景区街道（武昌）, 东湖生态旅游风景区, 武昌区, 武汉市, 湖北省, 430077, 中国",
+          "osm_type": "way",
+          "osm_id": 1486876586,
+          "lat": "30.5547734",
+          "lon": "114.3669175",
+          "boundingbox": [
+            "30.5547268",
+            "30.5548189",
+            "114.3668567",
+            "114.3669783"
+          ],
+          "type": "shelter"
+        }
+      ]
+    },
+    {
+      "key": "review_2_12.json|183|麻城龟峰山景区",
+      "query": "麻城龟峰山景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_12.json|187|沙湖国家湿地公园",
+      "query": "沙湖国家湿地公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_13.json|191|湖南省地质博物馆",
+      "query": "湖南省地质博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "湖南省地质博物馆, 49号, 杉木冲西路, 桂花坪街道, 天心区, 长沙市, 湖南省, 410009, 中国",
+          "osm_type": "way",
+          "osm_id": 492256966,
+          "lat": "28.1111216",
+          "lon": "112.9767069",
+          "boundingbox": [
+            "28.1099701",
+            "28.1117204",
+            "112.9757478",
+            "112.9776673"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_2_13.json|195|绥宁黄桑生态旅游区",
+      "query": "绥宁黄桑生态旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_13.json|199|安化茶马古道风景区",
+      "query": "安化茶马古道风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_13.json|203|波月洞",
+      "query": "波月洞",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_14.json|207|中英街",
+      "query": "中英街",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "中英街 Chung Ying Street, 菜園角 Tsoi Yuen Kok, 沙頭角市中心 Sha Tau Kok Town Centre, 沙头角街道, 盐田区, 深圳市, 广东省, 香港 Hong Kong, 中国",
+          "osm_type": "way",
+          "osm_id": 1553756750,
+          "lat": "22.5468663",
+          "lon": "114.2264884",
+          "boundingbox": [
+            "22.5460373",
+            "22.5478500",
+            "114.2257912",
+            "114.2269194"
+          ],
+          "type": "pedestrian"
+        }
+      ]
+    },
+    {
+      "key": "review_2_14.json|211|上川岛飞沙滩旅游度假区",
+      "query": "上川岛飞沙滩旅游度假区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_14.json|215|南昆山生态旅游区",
+      "query": "南昆山生态旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_15.json|223|凤凰山生态旅游区",
+      "query": "凤凰山生态旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_15.json|227|丹洲景区",
+      "query": "丹洲景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "柳州市映山中学, 65, 景行路, 中南街道, 柳州市, 城中区, 柳州市, 广西壮族自治区, 545000, 中国",
+          "osm_type": "way",
+          "osm_id": 205659722,
+          "lat": "24.3167502",
+          "lon": "109.4043829",
+          "boundingbox": [
+            "24.3163692",
+            "24.3173079",
+            "109.4035526",
+            "109.4052040"
+          ],
+          "type": "school"
+        }
+      ]
+    },
+    {
+      "key": "review_2_15.json|231|十万大山国家森林公园旅游区",
+      "query": "十万大山国家森林公园旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_15.json|235|通灵大峡谷景区",
+      "query": "通灵大峡谷景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "通灵大峡谷, 靖西市, 百色市, 广西壮族自治区, 中国",
+          "osm_type": "node",
+          "osm_id": 2389217525,
+          "lat": "23.0263159",
+          "lon": "106.6484823",
+          "boundingbox": [
+            "23.0163159",
+            "23.0363159",
+            "106.6384823",
+            "106.6584823"
+          ],
+          "type": "locality"
+        }
+      ]
+    },
+    {
+      "key": "review_2_15.json|239|明仕田园",
+      "query": "明仕田园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "明仕田园, G359, 堪圩乡, 大新县, 崇左市, 广西壮族自治区, 中国",
+          "osm_type": "node",
+          "osm_id": 11141089479,
+          "lat": "22.7056464",
+          "lon": "106.9247090",
+          "boundingbox": [
+            "22.7055964",
+            "22.7056964",
+            "106.9246590",
+            "106.9247590"
+          ],
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "key": "review_2_15.json|243|海南两院热带植物园",
+      "query": "海南两院热带植物园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_15.json|247|东山岭景区",
+      "query": "东山岭景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_15.json|251|罗驿古村",
+      "query": "罗驿古村",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_16.json|259|红岩革命纪念馆",
+      "query": "红岩革命纪念馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_16.json|263|泸州老窖景区",
+      "query": "泸州老窖景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_16.json|267|遂宁广德景区",
+      "query": "遂宁广德景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "白石涌, 新村, 宁西街道, 增城区, 广州市, 广东省, 511340, 中国",
+          "osm_type": "way",
+          "osm_id": 1425862925,
+          "lat": "23.1661183",
+          "lon": "113.6405463",
+          "boundingbox": [
+            "23.1656251",
+            "23.1666116",
+            "113.6397594",
+            "113.6413332"
+          ],
+          "type": "stream"
+        }
+      ]
+    },
+    {
+      "key": "review_2_17.json|271|眉山三苏祠博物馆",
+      "query": "眉山三苏祠博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_17.json|275|上里古镇",
+      "query": "上里古镇",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "上里古鎮, 上里镇, 雨城区, 雅安市, 四川省, 中国",
+          "osm_type": "node",
+          "osm_id": 1799747868,
+          "lat": "30.1832925",
+          "lon": "103.0739598",
+          "boundingbox": [
+            "30.1732925",
+            "30.1932925",
+            "103.0639598",
+            "103.0839598"
+          ],
+          "type": "neighbourhood"
+        }
+      ]
+    },
+    {
+      "key": "review_2_17.json|283|四渡赤水纪念馆",
+      "query": "四渡赤水纪念馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_18.json|287|贞丰古城景区",
+      "query": "贞丰古城景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_18.json|304|江孜白居寺",
+      "query": "江孜白居寺",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "དཔལ་འཁོར་ཆོས་སྡེ 白居寺, 白居路, 江孜镇, 江孜县 རྒྱལ་རྩེ་རྫོང།, 日喀则市 གཞིས་ཀ་རྩེ་གྲོང་ཁྱེར།, 西藏自治区 བོད་རང་སྐྱོང་ལྗོངས།, 中国",
+          "osm_type": "way",
+          "osm_id": 1551518741,
+          "lat": "28.9246565",
+          "lon": "89.5949178",
+          "boundingbox": [
+            "28.9238080",
+            "28.9252467",
+            "89.5941487",
+            "89.5960075"
+          ],
+          "type": "place_of_worship"
+        }
+      ]
+    },
+    {
+      "key": "review_2_18.json|308|当惹雍错中象雄旅游景区",
+      "query": "当惹雍错中象雄旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_19.json|323|马蹄石窟群旅游景区",
+      "query": "马蹄石窟群旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_19.json|327|李家龙宫",
+      "query": "李家龙宫",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "李家龙宫, 龙宫步行街, 巩昌镇, 陇西县, 定西市, 甘肃省, 中国",
+          "osm_type": "way",
+          "osm_id": 453722828,
+          "lat": "35.0136513",
+          "lon": "104.6439727",
+          "boundingbox": [
+            "35.0130026",
+            "35.0143096",
+            "104.6430312",
+            "104.6449366"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_2_19.json|335|龙羊峡生态旅游景区",
+      "query": "龙羊峡生态旅游景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_20.json|343|中卫高庙",
+      "query": "中卫高庙",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "西安高铁基础设施段, 经开区, 未央区, 西安市, 陕西省, 中国",
+          "osm_type": "way",
+          "osm_id": 1232613079,
+          "lat": "34.3675021",
+          "lon": "108.9001954",
+          "boundingbox": [
+            "34.3657960",
+            "34.3693170",
+            "108.8957092",
+            "108.9049903"
+          ],
+          "type": "railway"
+        }
+      ]
+    },
+    {
+      "key": "review_2_20.json|351|库车王府",
+      "query": "库车王府",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "库车王府, 林基路街, 热斯坦街道 رەستە كوچا باشقارمىسى, 库车市 كۇچار, 库车市 كۇچار شەھىرى, 阿克苏地区 ئاقسۇ ۋىلايىتى, 新疆维吾尔自治区 شىنجاڭ ئۇيغۇر ئاپتونوم رايونی, 842000, 中国",
+          "osm_type": "way",
+          "osm_id": 595959927,
+          "lat": "41.7174913",
+          "lon": "82.9180401",
+          "boundingbox": [
+            "41.7167908",
+            "41.7183309",
+            "82.9168776",
+            "82.9196740"
+          ],
+          "type": "castle"
+        }
+      ]
+    },
+    {
+      "key": "review_2_21.json|355|伊犁老城喀赞其民俗旅游区",
+      "query": "伊犁老城喀赞其民俗旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_21.json|359|祥龙湖景区",
+      "query": "祥龙湖景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_21.json|367|戈壁母亲红色旅游教育基地",
+      "query": "戈壁母亲红色旅游教育基地",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_21.json|371|香港故宫文化博物馆",
+      "query": "香港故宫文化博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "香港故宮文化博物館 Hong Kong Palace Museum, 8, 博物館道 Museum Drive, 油麻地 Yau Ma Tei, 油尖旺區 Yau Tsim Mong District, 九龍 Kowloon, 香港 Hong Kong, 中国",
+          "osm_type": "way",
+          "osm_id": 640750810,
+          "lat": "22.3016491",
+          "lon": "114.1553984",
+          "boundingbox": [
+            "22.3010513",
+            "22.3022131",
+            "114.1545279",
+            "114.1564900"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|316|柞水溶洞",
+      "query": "柞水溶洞",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "柞水溶洞, 银榕线, 柞水县, 商洛市, 陕西省, 中国",
+          "osm_type": "node",
+          "osm_id": 2968877214,
+          "lat": "33.5672781",
+          "lon": "109.1614967",
+          "boundingbox": [
+            "33.5672281",
+            "33.5673281",
+            "109.1614467",
+            "109.1615467"
+          ],
+          "type": "viewpoint"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|316|牛背梁国家森林公园",
+      "query": "牛背梁国家森林公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|316|孝义文化体验园",
+      "query": "孝义文化体验园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|316|终南山寨秦岭老屋街区",
+      "query": "终南山寨秦岭老屋街区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|13|河头老街",
+      "query": "河头老街",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "河头老街, 66, 胥各庄镇, 丰南区, 唐山市, 河北省, 063000, 中国",
+          "osm_type": "way",
+          "osm_id": 432021851,
+          "lat": "39.5598386",
+          "lon": "118.0685655",
+          "boundingbox": [
+            "39.5561433",
+            "39.5637190",
+            "118.0645273",
+            "118.0735776"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|多玛乐园",
+      "query": "多玛乐园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|13|月岛",
+      "query": "月岛",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "邀月岛, 仁泰里尚德社区, 梁家屯路街道, 路南区, 唐山市, 河北省, 063000, 中国",
+          "osm_type": "way",
+          "osm_id": 432817075,
+          "lat": "39.5796690",
+          "lon": "118.1436777",
+          "boundingbox": [
+            "39.5787075",
+            "39.5806168",
+            "118.1428518",
+            "118.1441528"
+          ],
+          "type": "islet"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|菩提岛",
+      "query": "菩提岛",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "唐山湾国际旅游岛 菩提岛, 乐亭县, 唐山市, 河北省, 中国",
+          "osm_type": "way",
+          "osm_id": 520138179,
+          "lat": "39.1372134",
+          "lon": "118.8241354",
+          "boundingbox": [
+            "39.1217381",
+            "39.1526316",
+            "118.8100978",
+            "118.8390559"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|青龙山景区",
+      "query": "青龙山景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "唐山市丰南区房产管理所, 唐丰南路, 德馨花园社区, 胥各庄镇, 丰南区, 唐山市, 河北省, 063300, 中国",
+          "osm_type": "way",
+          "osm_id": 957138337,
+          "lat": "39.5573734",
+          "lon": "118.1008708",
+          "boundingbox": [
+            "39.5568836",
+            "39.5578567",
+            "118.1001612",
+            "118.1014264"
+          ],
+          "type": "government"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|净觉寺",
+      "query": "净觉寺",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "净觉寺, 马渠线, 渠梁河, 玉田县, 唐山市, 河北省, 中国",
+          "osm_type": "way",
+          "osm_id": 518707891,
+          "lat": "39.8117123",
+          "lon": "117.9200029",
+          "boundingbox": [
+            "39.8109932",
+            "39.8124354",
+            "117.9192353",
+            "117.9207642"
+          ],
+          "type": "place_of_worship"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|滦州古城",
+      "query": "滦州古城",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "滦州古城, 古城街道, 滦州市, 唐山市, 河北省, 中国",
+          "osm_type": "way",
+          "osm_id": 520885270,
+          "lat": "39.7414905",
+          "lon": "118.7513607",
+          "boundingbox": [
+            "39.7398230",
+            "39.7430702",
+            "118.7447273",
+            "118.7579854"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|13|唐山市科技馆",
+      "query": "唐山市科技馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "松山湖实验中学, 科育路, 松山湖, 松山湖园区, 大朗镇, 东莞市, 广东省, 523812, 中国",
+          "osm_type": "way",
+          "osm_id": 707230229,
+          "lat": "22.9362757",
+          "lon": "113.8670301",
+          "boundingbox": [
+            "22.9345547",
+            "22.9377414",
+            "113.8653110",
+            "113.8683660"
+          ],
+          "type": "school"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|17|狼牙山风景区",
+      "query": "狼牙山风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "狼牙山风景区, 易县, 保定市, 河北省, 中国",
+          "osm_type": "way",
+          "osm_id": 904365792,
+          "lat": "39.1308279",
+          "lon": "115.1723503",
+          "boundingbox": [
+            "39.1183703",
+            "39.1431088",
+            "115.1574039",
+            "115.1836628"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|17|易水湖景区",
+      "query": "易水湖景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|17|北岳庙景区",
+      "query": "北岳庙景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_02.json|17|满城汉墓景区",
+      "query": "满城汉墓景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "满城汉墓景区, 满城区, 保定市, 河北省, 072100, 中国",
+          "osm_type": "way",
+          "osm_id": 497150032,
+          "lat": "38.9473026",
+          "lon": "115.2906810",
+          "boundingbox": [
+            "38.9405686",
+            "38.9540693",
+            "115.2840042",
+            "115.2968573"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|17|古莲花池",
+      "query": "古莲花池",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "古莲花池, 永华街道, 莲池区, 保定市, 河北省, 071000, 中国",
+          "osm_type": "way",
+          "osm_id": 240474728,
+          "lat": "38.8566928",
+          "lon": "115.4917853",
+          "boundingbox": [
+            "38.8557256",
+            "38.8575964",
+            "115.4906149",
+            "115.4931760"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|17|淮军公所",
+      "query": "淮军公所",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "淮军公所博物馆, 永华街道, 莲池区, 保定市, 河北省, 071000, 中国",
+          "osm_type": "way",
+          "osm_id": 1346832612,
+          "lat": "38.8558745",
+          "lon": "115.4832757",
+          "boundingbox": [
+            "38.8549677",
+            "38.8568908",
+            "115.4820863",
+            "115.4844512"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_02.json|17|竞秀公园",
+      "query": "竞秀公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "竞秀公园, 东风街道, 竞秀区, 保定市, 河北省, 071000, 中国",
+          "osm_type": "way",
+          "osm_id": 208007798,
+          "lat": "38.8784387",
+          "lon": "115.4598740",
+          "boundingbox": [
+            "38.8771301",
+            "38.8809993",
+            "115.4561300",
+            "115.4621492"
+          ],
+          "type": "park"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|125|龙海白塘湾景区",
+      "query": "龙海白塘湾景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|125|龙海鹭凯生态庄园景区",
+      "query": "龙海鹭凯生态庄园景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|125|龙江岁月旅游度假区",
+      "query": "龙江岁月旅游度假区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|129|凤凰沟",
+      "query": "凤凰沟",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "凤凰沟社区, 黄马乡, 南昌县, 南昌市, 江西省, 中国",
+          "osm_type": "relation",
+          "osm_id": 9090377,
+          "lat": "28.3723426",
+          "lon": "116.0068917",
+          "boundingbox": [
+            "28.3530878",
+            "28.3917754",
+            "115.9797913",
+            "116.0200399"
+          ],
+          "type": "administrative"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|129|溪霞怪石岭生态公园",
+      "query": "溪霞怪石岭生态公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|129|安义古村群",
+      "query": "安义古村群",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|129|李渡元代烧酒作坊遗址",
+      "query": "李渡元代烧酒作坊遗址",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|129|小平小道",
+      "query": "小平小道",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "小平小道, 新城大道, 小平小道社区, 麦山村, 省庄村, 望城镇, 新建区, 南昌市, 江西省, 330063, 中国",
+          "osm_type": "way",
+          "osm_id": 242712193,
+          "lat": "28.6750495",
+          "lon": "115.7937011",
+          "boundingbox": [
+            "28.6745655",
+            "28.6757637",
+            "115.7922384",
+            "115.7951564"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|129|厚田沙漠",
+      "query": "厚田沙漠",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "厚田沙漠, 厚田镇, 红谷滩区, 南昌市, 江西省, 中国",
+          "osm_type": "way",
+          "osm_id": 285907513,
+          "lat": "28.4243576",
+          "lon": "115.8072979",
+          "boundingbox": [
+            "28.4195943",
+            "28.4292415",
+            "115.8026039",
+            "115.8126984"
+          ],
+          "type": "sand"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|141|小青岛",
+      "query": "小青岛",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "小青岛, 八大关街道, 市南区, 青岛市, 山东省, 266001, 中国",
+          "osm_type": "way",
+          "osm_id": 43276162,
+          "lat": "36.0528046",
+          "lon": "120.3187383",
+          "boundingbox": [
+            "36.0518837",
+            "36.0539209",
+            "120.3180589",
+            "120.3194321"
+          ],
+          "type": "islet"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|141|五四广场",
+      "query": "五四广场",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "五四广场, 山东路, 盐城路社区, 湛山街道, 市南区, 青岛市, 山东省, 266001, 中国",
+          "osm_type": "node",
+          "osm_id": 5303810107,
+          "lat": "36.0645710",
+          "lon": "120.3753754",
+          "boundingbox": [
+            "36.0595710",
+            "36.0695710",
+            "120.3703754",
+            "120.3803754"
+          ],
+          "type": "station"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|141|石老人国家旅游度假区",
+      "query": "石老人国家旅游度假区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|145|牟氏庄园",
+      "query": "牟氏庄园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "牟氏庄园, 风情街, 庄园街道, 栖霞市, 烟台市, 山东省, 265300, 中国",
+          "osm_type": "way",
+          "osm_id": 1079004041,
+          "lat": "37.3183299",
+          "lon": "120.8285117",
+          "boundingbox": [
+            "37.3167557",
+            "37.3204908",
+            "120.8254051",
+            "120.8308527"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_0_08.json|145|天崮山",
+      "query": "天崮山",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_0_08.json|145|栖霞市奇石博物馆",
+      "query": "栖霞市奇石博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_01.json|99|诸葛八卦村",
+      "query": "诸葛八卦村",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "诸葛八卦村游客服务中心, 洞合线, 兰溪市, 金华市, 浙江省, 中国",
+          "osm_type": "node",
+          "osm_id": 6136468784,
+          "lat": "29.2475073",
+          "lon": "119.2991101",
+          "type": "information"
+        }
+      ]
+    },
+    {
+      "key": "review_2_01.json|103|庆元廊桥博物馆",
+      "query": "庆元廊桥博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_01.json|290|珠江源风景区",
+      "query": "珠江源风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "珠江源风景区, 沾益区, 曲靖市, 云南省, 中国",
+          "osm_type": "way",
+          "osm_id": 1190793496,
+          "lat": "25.9057445",
+          "lon": "103.9307990",
+          "boundingbox": [
+            "25.8954998",
+            "25.9162006",
+            "103.8972008",
+            "103.9516389"
+          ],
+          "type": "nature_reserve"
+        }
+      ]
+    },
+    {
+      "key": "review_2_02.json|294|孟连宣抚司署",
+      "query": "孟连宣抚司署",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "孟连宣抚司署, 娜允镇, 孟连县, 普洱市, 云南省, 中国",
+          "osm_type": "way",
+          "osm_id": 55211708,
+          "lat": "22.3333895",
+          "lon": "99.5775651",
+          "boundingbox": [
+            "22.3329628",
+            "22.3336823",
+            "99.5772269",
+            "99.5779002"
+          ],
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "key": "review_2_02.json|298|六郎城·仙草秘境景区",
+      "query": "六郎城·仙草秘境景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_02.json|302|东竹林寺",
+      "query": "东竹林寺",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "东竹林寺, 奔子栏镇, 德钦县, 迪庆藏族自治州, 云南省, 中国",
+          "osm_type": "relation",
+          "osm_id": 6195269,
+          "lat": "28.2651538",
+          "lon": "99.2320759",
+          "boundingbox": [
+            "28.2648456",
+            "28.2654657",
+            "99.2318768",
+            "99.2326183"
+          ],
+          "type": "place_of_worship"
+        }
+      ]
+    },
+    {
+      "key": "review_2_02.json|310|玉华宫景区",
+      "query": "玉华宫景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_02.json|314|红石峡生态公园景区",
+      "query": "红石峡生态公园景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_03.json|15|赵王城国家考古遗址公园",
+      "query": "赵王城国家考古遗址公园",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_03.json|19|双塔山景区",
+      "query": "双塔山景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "双塔梁, 北京市, 中国",
+          "osm_type": "way",
+          "osm_id": 162072411,
+          "lat": "40.0610398",
+          "lon": "116.0703380",
+          "type": "path"
+        }
+      ]
+    },
+    {
+      "key": "review_2_03.json|23|太原市博物馆",
+      "query": "太原市博物馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "太原市博物馆, 晋源区, 太原市, 山西省, 中国",
+          "osm_type": "way",
+          "osm_id": 422861196,
+          "lat": "37.8047410",
+          "lon": "112.5271279",
+          "boundingbox": [
+            "37.8038179",
+            "37.8056703",
+            "112.5265085",
+            "112.5282972"
+          ],
+          "type": "museum"
+        }
+      ]
+    },
+    {
+      "key": "review_2_03.json|27|珏山景区",
+      "query": "珏山景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "珏山景区, 泽州县, 晋城市, 山西省, 中国",
+          "osm_type": "way",
+          "osm_id": 1093426843,
+          "lat": "35.4532839",
+          "lon": "113.0017083",
+          "boundingbox": [
+            "35.4308993",
+            "35.4748084",
+            "112.9819367",
+            "113.0171601"
+          ],
+          "type": "nature_reserve"
+        }
+      ]
+    },
+    {
+      "key": "review_2_03.json|31|芦芽山旅游度假区",
+      "query": "芦芽山旅游度假区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_03.json|35|美岱召景区",
+      "query": "美岱召景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "美岱召, 土默特右旗, 包头市, 内蒙古自治区, 中国",
+          "osm_type": "way",
+          "osm_id": 532060856,
+          "lat": "40.6036189",
+          "lon": "110.7038081",
+          "boundingbox": [
+            "40.6028780",
+            "40.6047223",
+            "110.7025674",
+            "110.7048589"
+          ],
+          "type": "place_of_worship"
+        }
+      ]
+    },
+    {
+      "key": "review_2_03.json|39|康巴什旅游区",
+      "query": "康巴什旅游区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_04.json|43|成吉思汗庙景区",
+      "query": "成吉思汗庙景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_04.json|51|青山沟风景区",
+      "query": "青山沟风景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "瑞幸咖啡, 晋中市, 山西省, 中国",
+          "osm_type": "node",
+          "osm_id": 12987663888,
+          "lat": "37.6072112",
+          "lon": "113.7007604",
+          "type": "cafe"
+        }
+      ]
+    },
+    {
+      "key": "review_2_05.json|55|燕州城遗址",
+      "query": "燕州城遗址",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": [
+        {
+          "display_name": "燕州城遗址, 小屯镇, 文圣区, 辽阳市, 辽宁省, 中国",
+          "osm_type": "node",
+          "osm_id": 8642700873,
+          "lat": "41.2979287",
+          "lon": "123.4869532",
+          "type": "ruins"
+        }
+      ]
+    },
+    {
+      "key": "review_2_05.json|59|塔山阻击战纪念馆",
+      "query": "塔山阻击战纪念馆",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    },
+    {
+      "key": "review_2_05.json|63|龙首山·魁星楼景区",
+      "query": "龙首山·魁星楼景区",
+      "source": "Nominatim OSM search; first 20 reconstructed from session output, later 99 exact returned fields",
+      "results": []
+    }
+  ]
+}

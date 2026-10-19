@@ -13,7 +13,6 @@ import type {
   ConversationMode,
   Conversation,
   ConversationSummary,
-  DestinationChoice,
   GeneralConversation,
   PlanningStep,
   RequirementDraft,
@@ -21,170 +20,10 @@ import type {
   SingleChatToolCard,
   SavedTravelPlan,
   TravelPlanResponse,
-  TravelScope,
 } from '../types'
 
-const emptyRequirement = (): RequirementDraft => ({
-  province: null,
-  cities: [],
-  province_preference_confirmed: false,
-  city_preference_confirmed: false,
-  days: null,
-  interests: [],
-  preference_text: null,
-  travel_scope: 'auto',
-  start_date: null,
-  daily_start_time: null,
-  daily_end_time: null,
-  transport_mode: 'auto',
-})
-
-const MAX_SINGLE_CITY_DAYS = 3
-
-function sameList(left: string[], right: string[]) {
-  return left.length === right.length && left.every((value, index) => value === right[index])
-}
-
-function isPlanCompatible(candidate: TravelPlanResponse, conversation: Conversation) {
-  const current = conversation.requirement
-  const saved = candidate.requirement
-  if (current.days === null || saved.days !== current.days) return false
-  if (saved.province !== current.province) return false
-  if (!sameList(saved.cities, current.cities)) return false
-  if (saved.province_preference_confirmed !== current.province_preference_confirmed) return false
-  if (saved.city_preference_confirmed !== current.city_preference_confirmed) return false
-  if (!sameList(saved.interests, current.interests)) return false
-  if (saved.preference_text !== current.preference_text) return false
-  if (saved.start_date !== current.start_date) return false
-  if (!current.daily_start_time || !current.daily_end_time) return false
-  if (saved.daily_start_time !== current.daily_start_time) return false
-  if (saved.daily_end_time !== current.daily_end_time) return false
-  if (saved.travel_scope !== current.travel_scope) return false
-  if (!Array.isArray(candidate.plan?.city_stays)) return false
-  // A cached result from the old single-city branch must not survive a
-  // 4～7-day requirement, even when the requirement fields themselves match.
-  if (current.days > MAX_SINGLE_CITY_DAYS && candidate.plan.city_stays.length < 2) return false
-  return true
-}
-
-function suggestionsFor(next: RequirementDraft, mode: ConversationMode = 'planning'): string[] {
-  if (mode === 'general') {
-    return ['你能做什么？', '介绍一个目的地']
-  }
-  if (!next.province && !next.cities.length && !next.province_preference_confirmed) {
-    return ['北京', '上海', '四川省', '云南省', '浙江省', '你来推荐一个省份']
-  }
-  if (next.days === null) {
-    if (next.travel_scope === 'multi_city') {
-      return ['4天', '5天', '6天', '7天']
-    }
-    return next.travel_scope === 'single_city' || next.cities.length === 1
-      ? ['1天', '2天', '3天']
-      : ['1天', '2天', '3天', '4天', '5天', '6天', '7天']
-  }
-  if (next.travel_scope === 'auto') {
-    return next.days !== null && next.days <= MAX_SINGLE_CITY_DAYS
-      ? ['一个城市深度游', '增加到4天以上游多个城市']
-      : ['同省多城市']
-  }
-  if (next.travel_scope === 'multi_city' && next.days <= MAX_SINGLE_CITY_DAYS) {
-    return ['4天', '5天', '6天', '7天']
-  }
-  if (!next.cities.length && !next.city_preference_confirmed) {
-    return ['没有指定城市，你来推荐']
-  }
-  if (!next.interests.length) {
-    return ['自然风光', '历史文化', '古城', '摄影', '美食', '休闲慢游']
-  }
-  if (!next.preference_text || ['没有额外体验偏好', '没有额外偏好', '无额外偏好', '无特殊偏好'].includes(next.preference_text)) {
-    return [
-      '节奏轻松，不赶时间',
-      '喜欢拍照和沉浸体验',
-      '优先游览代表性景点',
-    ]
-  }
-  if (!next.start_date) return ['明天出发', '后天出发', '下周一出发']
-  if (!next.daily_start_time || !next.daily_end_time) {
-    return ['每天08:00到21:00', '每天09:00到18:00', '每天10:00到20:00']
-  }
-  return ['确认生成计划']
-}
-
-function normalizeMessages(items: ChatMessage[]): ChatMessage[] {
-  return items.map((message) => {
-    if (message.role !== 'assistant') return message
-    return {
-      ...message,
-      content: message.content
-        .replaceAll('查看并确认右侧旅行需求卡', '回复“确认生成计划”')
-        .replaceAll('查看并确认旅行需求', '确认生成计划')
-        .replace(/(?:查看|看看|看)右侧旅行需求卡(?:并确认)?(?:一下)?/g, '回复“确认生成计划”')
-        .replaceAll('出发时间还没确定也没关系，之后补上即可。', '出发日期还需要确定。')
-        .replaceAll('出发时间还没确定也没关系，之后补上即可', '出发日期还需要确定')
-        .replaceAll('景点之间怎么移动？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
-        .replaceAll('景点之间你打算怎么走？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
-        .replaceAll('你打算怎么在景点之间移动？步行、公共交通，还是自驾？', '景点间路线将由地图工具根据实际位置自动推荐。')
-        .replaceAll('景点之间准备怎么出行？请选择公共交通、自驾或步行。', '景点间路线将由地图工具根据实际位置自动推荐。')
-        .replaceAll('景点之间准备怎么移动？请选择景点间公共交通、景点间自驾或景点间步行。到达目的地的飞机、高铁不用填写。', '景点间路线将由地图工具根据实际位置自动推荐。'),
-    }
-  })
-}
-
-function migrateLegacyGeneralRouteCards(conversationId: string, items: ChatMessage[]): ChatMessage[] {
-  const cacheKey = `travel_general_cards_${conversationId}`
-  let cached: unknown
-  try {
-    cached = JSON.parse(sessionStorage.getItem(cacheKey) || '[]')
-  } catch {
-    sessionStorage.removeItem(cacheKey)
-    return items
-  }
-  if (!Array.isArray(cached)) {
-    sessionStorage.removeItem(cacheKey)
-    return items
-  }
-
-  const restored = [...items]
-  const migrations: Promise<void>[] = []
-  for (const entry of cached) {
-    const route = entry?.card?.type === 'route' ? entry.card.route : null
-    if (
-      !Number.isInteger(entry?.index)
-      || entry.index < 0
-      || !route
-      || !['walking', 'transit', 'driving'].includes(route.mode)
-    ) continue
-    const message = restored[entry.index]
-    if (message?.role !== 'assistant') continue
-    if (message.card?.type === 'collection') {
-      const cards = [...message.card.cards]
-      const routeIndex = cards.findIndex((item) => item.type === 'route')
-      if (routeIndex < 0) continue
-      cards[routeIndex] = entry.card as RouteChatCard
-      restored[entry.index] = { ...message, card: { type: 'collection', cards } }
-    } else if (message.card?.type === 'route') {
-      restored[entry.index] = { ...message, card: entry.card as RouteChatCard }
-    } else {
-      continue
-    }
-    const sequenceNumber = message.sequence_number ?? entry.index + 1
-    migrations.push(
-      generalConversationApi
-        .updateMessageCard(conversationId, sequenceNumber, entry.card as RouteChatCard)
-        .then(() => undefined),
-    )
-  }
-
-  if (!migrations.length) {
-    sessionStorage.removeItem(cacheKey)
-  } else {
-    void Promise.all(migrations).then(
-      () => sessionStorage.removeItem(cacheKey),
-      () => undefined,
-    )
-  }
-  return restored
-}
+import { emptyRequirement, isPlanCompatible, suggestionsFor } from './planning/policy'
+import { migrateLegacyGeneralRouteCards, normalizeMessages } from './planning/history'
 
 export const usePlanningStore = defineStore('planning', () => {
   const conversationId = ref('')
@@ -199,7 +38,6 @@ export const usePlanningStore = defineStore('planning', () => {
   const error = ref('')
   const steps = ref<PlanningStep[]>([])
   const plan = ref<TravelPlanResponse | null>(null)
-  const destinationChoice = ref<DestinationChoice | null>(null)
   const conversationLoading = ref(false)
   const conversationCreating = ref(false)
   const conversationDeleting = ref<string | null>(null)
@@ -210,6 +48,12 @@ export const usePlanningStore = defineStore('planning', () => {
   const planningJobId = ref<string | null>(null)
   let planningStartedAt: number | null = null
   let planningTimer: number | null = null
+  let planningNeedsReplay = false
+  let messageController: AbortController | null = null
+
+  function cancelMessage() {
+    if (conversationMode.value === 'general') messageController?.abort()
+  }
 
   function planningStateKey(id: string) {
     return `travel_planning_state_${id}`
@@ -260,6 +104,7 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   function resetPlanningRuntime() {
+    planningNeedsReplay = false
     planningEventCursor.value = 0
     planningJobId.value = null
   }
@@ -307,16 +152,16 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   function applyConversation(conversation: Conversation) {
+    planningNeedsReplay = false
     stopPlanningTimer(true)
     setActiveConversation('planning', conversation.id)
     loadPlanningState(conversation.id)
     requirement.value = conversation.requirement
-    messages.value = normalizeMessages(conversation.messages)
+    messages.value = normalizeMessages(conversation.messages, true)
     suggestions.value = suggestionsFor(conversation.requirement, 'planning')
     stage.value = 'chat'
     steps.value = []
     plan.value = null
-    destinationChoice.value = null
     error.value = ''
   }
 
@@ -333,7 +178,6 @@ export const usePlanningStore = defineStore('planning', () => {
     stage.value = 'chat'
     steps.value = []
     plan.value = null
-    destinationChoice.value = null
     error.value = ''
   }
 
@@ -358,10 +202,7 @@ export const usePlanningStore = defineStore('planning', () => {
             applyGeneralConversation(await generalConversationApi.get(savedId))
           } else {
             const conversation = await conversationApi.get(savedId)
-            applyConversation(conversation)
-            await restorePlan(conversation)
-            if (conversation.status === 'planning') await resumePlanning()
-            else stage.value = 'chat'
+            await restorePlanningConversation(conversation, 'chat')
           }
           await refreshConversations()
           return
@@ -376,10 +217,7 @@ export const usePlanningStore = defineStore('planning', () => {
           applyGeneralConversation(await generalConversationApi.get(latest.id))
         } else {
           const conversation = await conversationApi.get(latest.id)
-          applyConversation(conversation)
-          await restorePlan(conversation)
-          if (conversation.status === 'planning') await resumePlanning()
-          else stage.value = 'chat'
+          await restorePlanningConversation(conversation, 'chat')
         }
         await refreshConversations()
         return
@@ -393,11 +231,11 @@ export const usePlanningStore = defineStore('planning', () => {
     }
   }
 
-  async function restorePlan(conversation: Conversation) {
+  async function restorePlan(conversation: Conversation, options: { preferServer?: boolean } = {}) {
     plan.value = null
     stage.value = 'chat'
     const cached = sessionStorage.getItem(`travel_plan_${conversation.id}`)
-    if (cached) {
+    if (cached && !options.preferServer) {
       try {
         const cachedPlan = JSON.parse(cached) as TravelPlanResponse
         if (isPlanCompatible(cachedPlan, conversation)) {
@@ -428,6 +266,33 @@ export const usePlanningStore = defineStore('planning', () => {
     }
   }
 
+  async function restorePlanningConversation(conversation: Conversation, view: 'chat' | 'plan' = 'plan') {
+    applyConversation(conversation)
+    let state: Awaited<ReturnType<typeof conversationApi.planningState>> = null
+    try {
+      state = await conversationApi.planningState(conversation.id)
+    } catch {
+      // Do not discard valid history or create a new conversation merely
+      // because the read-only task state endpoint is temporarily unavailable.
+      error.value = '暂时无法读取规划任务状态，请稍后刷新。'
+    }
+    const replay = state
+      ? ['queued', 'running'].includes(state.status)
+      : conversation.status === 'planning'
+    if (replay) {
+      // A loaded cursor has no corresponding in-memory progress after a
+      // full reload. Rebuild from committed events, not just
+      // the tail after that cursor. This GET never prepares a new job.
+      planningJobId.value = state?.job_id ?? planningJobId.value
+      planningEventCursor.value = 0
+      persistPlanningState()
+      await resumePlanning()
+      return
+    }
+    await restorePlan(conversation, { preferServer: conversation.status === 'completed' })
+    if (view === 'chat') stage.value = 'chat'
+  }
+
   async function initialize() {
     initializing.value = true
     error.value = ''
@@ -446,9 +311,7 @@ export const usePlanningStore = defineStore('planning', () => {
           applyGeneralConversation(await generalConversationApi.get(saved))
         } else {
           const conversation = await conversationApi.get(saved)
-          applyConversation(conversation)
-          await restorePlan(conversation)
-          if (conversation.status === 'planning') await resumePlanning()
+          await restorePlanningConversation(conversation)
         }
         await refreshConversations()
         initializing.value = false
@@ -484,7 +347,6 @@ export const usePlanningStore = defineStore('planning', () => {
         steps.value = []
         plan.value = null
         sessionStorage.removeItem(`travel_plan_${created.id}`)
-        destinationChoice.value = null
         error.value = ''
       }
       await refreshConversations()
@@ -497,6 +359,8 @@ export const usePlanningStore = defineStore('planning', () => {
     const clean = text.trim()
     if (!clean || sending.value || !conversationId.value) return
     const mode = conversationMode.value
+    const controller = new AbortController()
+    messageController = controller
     sending.value = true
     error.value = ''
     if (mode === 'planning' && conversationId.value && (plan.value || stage.value === 'plan')) {
@@ -504,10 +368,13 @@ export const usePlanningStore = defineStore('planning', () => {
       stage.value = 'chat'
       sessionStorage.removeItem(`travel_plan_${conversationId.value}`)
     }
+    if (mode === 'planning') suggestions.value = []
     messages.value.push({ role: 'user', content: clean })
     messages.value.push({ role: 'assistant', content: '', streaming: true })
     const assistantIndex = messages.value.length - 1
     let renderChain = Promise.resolve()
+    let messageDone = false
+    let pendingCard: ChatMessage['card'] = null
     try {
       const path = mode === 'general'
         ? `/general-conversations/${conversationId.value}/messages`
@@ -519,11 +386,18 @@ export const usePlanningStore = defineStore('planning', () => {
         path,
         body,
         (event, data) => {
+          if (controller.signal.aborted) return
+          if (event === 'message_progress') {
+            const assistant = messages.value[assistantIndex]
+            if (assistant) assistant.progress = String(data.message || '正在查询')
+          }
+          if (event === 'message_done') messageDone = true
+          if (event === 'error') throw new Error(String(data.message || '需求整理失败，请重试。'))
+          if (event === 'message_error') error.value = String(data.message || '本次回复生成失败，请重试。')
           if (mode === 'planning' && event === 'requirement_updated') requirement.value = data
           if (event === 'suggestions') suggestions.value = data.options || []
           if (mode === 'general' && event === 'tool_card') {
-            const assistant = messages.value[assistantIndex]
-            if (assistant) assistant.card = data
+            pendingCard = data
           }
           if (event === 'message_delta') {
             const delta = String(data.text || '')
@@ -533,6 +407,7 @@ export const usePlanningStore = defineStore('planning', () => {
                 new Promise<void>((resolve) => {
                   let index = 0
                   const renderNext = () => {
+                    if (controller.signal.aborted) { resolve(); return }
                     if (index >= delta.length) {
                       resolve()
                       return
@@ -553,20 +428,36 @@ export const usePlanningStore = defineStore('planning', () => {
             )
           }
         },
+        { signal: controller.signal },
       )
       await renderChain
+      if (controller.signal.aborted) throw new DOMException('Stopped', 'AbortError')
+      if (!messageDone) throw new Error('回复连接已中断，请重试。')
+      if (!messages.value[assistantIndex]?.content.trim()) throw new Error('本次未收到有效回复，请重试。')
       const assistant = messages.value[assistantIndex]
       if (assistant) {
         assistant.streaming = false
+        assistant.progress = undefined
+        if (mode === 'general') assistant.card = pendingCard
       }
       await refreshConversations()
     } catch (caught) {
+      // Drain already received chunks before finalizing a partial reply.
+      await renderChain
       const assistant = messages.value[assistantIndex]
       if (assistant) assistant.streaming = false
-      if (assistant && !assistant.content && messages.value.at(-1) === assistant) messages.value.pop()
-      error.value = readableError(caught)
+      if (controller.signal.aborted) {
+        if (assistant) {
+          assistant.content = `${assistant.content.trim()}\n\n已停止生成。`.trim()
+          assistant.progress = undefined
+        }
+        return
+      }
+      if (assistant && !assistant.content.trim() && messages.value.at(-1) === assistant) messages.value.pop()
+      error.value = error.value || readableError(caught)
     } finally {
       sending.value = false
+      if (messageController === controller) messageController = null
     }
   }
 
@@ -588,10 +479,7 @@ export const usePlanningStore = defineStore('planning', () => {
         applyGeneralConversation(await generalConversationApi.get(id))
       } else {
         const conversation = await conversationApi.get(id)
-        applyConversation(conversation)
-        await restorePlan(conversation)
-        if (conversation.status === 'planning') await resumePlanning()
-        else if (view === 'chat') stage.value = 'chat'
+        await restorePlanningConversation(conversation, view)
       }
       await refreshConversations()
     } catch (caught) {
@@ -640,84 +528,79 @@ export const usePlanningStore = defineStore('planning', () => {
       throw blocked
     }
     try {
-      await conversationApi.confirm(conversationId.value)
+      await conversationApi.confirm(conversationId.value, requirement.value)
       await startPlanning()
     } catch (caught) {
+      if (caught instanceof ApiError && [409, 422].includes(caught.status)) {
+        // A date can expire overnight or another page can replace the draft.
+        // Reload the authoritative draft so stale confirmation chips disappear.
+        try {
+          const current = await conversationApi.get(conversationId.value)
+          applyConversation(current)
+        } catch {
+          suggestions.value = []
+        }
+      }
       error.value = readableError(caught)
       throw caught
     }
   }
 
   async function startPlanning() {
-    if (planningRequestActive.value) return
-    planningRequestActive.value = true
-    stage.value = 'planning'
-    error.value = ''
-    steps.value = []
-    plan.value = null
-    destinationChoice.value = null
-    setConversationStatus('planning')
-    startPlanningTimer()
-    try {
-      await streamEvents(
-        `/conversations/${conversationId.value}/plan`,
-        undefined,
-        (event, data, sequence) => handlePlanningEvent(event, data, sequence),
-        {
-          after: planningEventCursor.value,
-          jobId: planningJobId.value,
-          onOpen: ({ jobId }) => {
-            if (jobId && jobId !== planningJobId.value) {
-              planningJobId.value = jobId
-              planningEventCursor.value = 0
-              persistPlanningState()
-            }
-          },
-        },
-      )
-    } catch (caught) {
-      await handlePlanningConnectionError(caught)
-    } finally {
-      stopPlanningTimer()
-      planningRequestActive.value = false
-      // The backend marks the conversation completed before emitting
-      // plan_completed. Refresh after the stream so the sidebar moves the
-      // record into the travel-plan history immediately.
-      await refreshConversations()
-    }
+    return observePlanningRequest('start')
   }
 
   async function resumePlanning() {
-    if (planningRequestActive.value || !conversationId.value) return
+    return observePlanningRequest('resume')
+  }
+
+  async function observePlanningRequest(action: 'start' | 'resume') {
+    if (planningRequestActive.value || (action === 'resume' && !conversationId.value)) return
     planningRequestActive.value = true
+    planningNeedsReplay = false
     stage.value = 'planning'
     error.value = ''
-    steps.value = []
+    if (!planningJobId.value) steps.value = []
     plan.value = null
-    destinationChoice.value = null
     setConversationStatus('planning')
     startPlanningTimer()
+    let receivedTerminal = false
+    const onEvent = (event: string, data: any, sequence?: number) => {
+      handlePlanningEvent(event, data, sequence)
+      if (['plan_completed', 'planning_error'].includes(event)) receivedTerminal = true
+    }
+    const options = {
+      jobId: planningJobId.value,
+      onOpen: ({ jobId }: { jobId: string | null }) => {
+        if (jobId && jobId !== planningJobId.value) {
+          planningJobId.value = jobId
+          planningEventCursor.value = 0
+          steps.value = []
+          persistPlanningState()
+        }
+      },
+    }
     try {
-      await streamGetEvents(
-        `/conversations/${conversationId.value}/plan/events`,
-        planningEventCursor.value,
-        (event, data, sequence) => handlePlanningEvent(event, data, sequence),
-        {
-          jobId: planningJobId.value,
-          onOpen: ({ jobId }) => {
-            if (jobId && jobId !== planningJobId.value) {
-              planningJobId.value = jobId
-              planningEventCursor.value = 0
-              persistPlanningState()
-            }
-          },
-        },
-      )
+      if (action === 'start') {
+        await streamEvents(
+          `/conversations/${conversationId.value}/plan`, undefined, onEvent,
+          { ...options, after: planningEventCursor.value },
+        )
+      } else {
+        await streamGetEvents(
+          `/conversations/${conversationId.value}/plan/events`, planningEventCursor.value,
+          onEvent, options,
+        )
+      }
+      if (!receivedTerminal) {
+        await handlePlanningConnectionError(new ApiError('进度连接已结束，但尚未收到最终结果，请重试恢复进度。', 0))
+      }
     } catch (caught) {
-      await handlePlanningConnectionError(caught)
+      if (!receivedTerminal) await handlePlanningConnectionError(caught)
     } finally {
       stopPlanningTimer()
       planningRequestActive.value = false
+      // Both fresh requests and replay must refresh the completed-plan history.
       await refreshConversations()
     }
   }
@@ -734,10 +617,6 @@ export const usePlanningStore = defineStore('planning', () => {
       setConversationStatus('completed')
       stage.value = 'plan'
     }
-    if (event === 'destination_choice_required') {
-      destinationChoice.value = data
-      setConversationStatus('confirmed')
-    }
     if (event === 'planning_error') {
       error.value = data.message
       setConversationStatus('confirmed')
@@ -746,11 +625,17 @@ export const usePlanningStore = defineStore('planning', () => {
   }
 
   async function handlePlanningConnectionError(caught: unknown) {
+    planningNeedsReplay = true
     try {
       const current = await conversationApi.get(conversationId.value)
       if (current.status === 'completed') {
         applyConversation(current)
-        await restorePlan(current)
+        await restorePlan(current, { preferServer: true })
+        if (!plan.value) {
+          planningNeedsReplay = true
+          stage.value = 'planning'
+          error.value = '任务已完成，但暂时无法读取方案；请重新尝试恢复结果。'
+        } else planningNeedsReplay = false
         return
       }
       if (current.status === 'planning') {
@@ -758,24 +643,13 @@ export const usePlanningStore = defineStore('planning', () => {
         setConversationStatus('planning')
         return
       }
+      planningNeedsReplay = false
     } catch {
       // Fall through to the local error when the status cannot be refreshed.
     }
     error.value = readableError(caught)
     setConversationStatus('confirmed')
     failRunningSteps()
-  }
-
-  async function chooseScope(scope: Exclude<TravelScope, 'auto'>) {
-    try {
-      const conversation = await conversationApi.updateRequirement(conversationId.value, { travel_scope: scope })
-      requirement.value = conversation.requirement
-      await refreshConversations()
-      await conversationApi.confirm(conversationId.value)
-      await startPlanning()
-    } catch (caught) {
-      error.value = readableError(caught)
-    }
   }
 
   function upsertStep(next: PlanningStep) {
@@ -841,13 +715,13 @@ export const usePlanningStore = defineStore('planning', () => {
 
   async function retryPlanning() {
     if (sending.value || conversationLoading.value || planningRequestActive.value) return
-    await startPlanning()
+    if (planningNeedsReplay) await resumePlanning()
+    else await startPlanning()
   }
 
   function backToChat() {
     stopPlanningTimer(true)
     stage.value = 'chat'
-    destinationChoice.value = null
     error.value = ''
   }
 
@@ -883,7 +757,6 @@ export const usePlanningStore = defineStore('planning', () => {
     error,
     steps,
     plan,
-    destinationChoice,
     conversationLoading,
     conversationCreating,
     conversationDeleting,
@@ -894,6 +767,7 @@ export const usePlanningStore = defineStore('planning', () => {
     createConversation,
     setConversationMode,
     sendMessage,
+    cancelMessage,
     updateGeneralCard,
     openConversation,
     deleteConversation,
@@ -902,7 +776,6 @@ export const usePlanningStore = defineStore('planning', () => {
     confirmAndPlan,
     retryPlanning,
     resumePlanning,
-    chooseScope,
     backToChat,
   }
 })

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AdminConversationSummary(BaseModel):
@@ -26,12 +26,14 @@ class GuideDocument(BaseModel):
     filename: str
     title: str
     content: str
+    revision: str
 
 
 class GuideDocumentUpdate(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     content: str
+    expected_revision: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
 
 
 class GuideDocumentCreate(BaseModel):

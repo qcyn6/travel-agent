@@ -1,0 +1,149 @@
+[
+  {
+    "id": 55,
+    "city": "辽阳市",
+    "province": "辽宁省",
+    "sources": [
+      "https://www.ln.gov.cn/web/ywdt/qsgd/ass_2_1/2024122309011713042/index.shtml"
+    ],
+    "checked_names": [
+      "燕州城遗址",
+      "辽阳白塔公园",
+      "广佑寺景区",
+      "辽阳博物馆"
+    ],
+    "note": "广佑寺、辽阳白塔、博物馆已在库；燕州城遗址为另一区域历史遗址，可候选，但未找到可靠入口坐标。",
+    "candidates": [
+      {
+        "name": "燕州城遗址",
+        "status": "pending_coordinates",
+        "description": "辽阳市的古城遗址参观点，可了解当地历史遗迹与城址风貌；开放区域和参观方式以现场公告为准。",
+        "description_source_url": "https://www.ln.gov.cn/web/ywdt/qsgd/ass_2_1/2024122309011713042/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "找到具名OSM node/ruins，但尚不能确认是游客入口或可靠到达点；暂不采用几何中心。",
+          "source_urls": [
+            "https://www.ln.gov.cn/web/ywdt/qsgd/ass_2_1/2024122309011713042/index.shtml",
+            "https://www.openstreetmap.org/node/8642700873"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/node/8642700873；定位候选尚未达入库门槛。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "遗址定位与官方村镇表述尚有偏差，且无明确游客入口，保留未决。",
+          "source_urls": [
+            "https://www.ln.gov.cn/web/ywdt/qsgd/ass_2_1/2024122309011713042/index.shtml",
+            "https://www.openstreetmap.org/node/8642700873"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "遗址定位与官方村镇表述尚有偏差，且无明确游客入口，保留未决。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "city": "葫芦岛市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025101714243445981/index.shtml"
+    ],
+    "checked_names": [
+      "塔山阻击战纪念馆"
+    ],
+    "note": "纪念馆未在现有12条中，与兴城古城、九门口长城和葫芦古镇均不同。",
+    "candidates": [
+      {
+        "name": "塔山阻击战纪念馆",
+        "status": "pending_coordinates",
+        "description": "以塔山阻击战为主题的纪念馆，展陈按迎接决战、鏖战塔山、人民支援等单元讲述战役历史。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025101714243445981/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025101714243445981/index.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "辽宁文旅确认真实馆舍和展陈，但公开资料仅到塔山乡/园区；Photon无具名馆舍实体，未找到精确入口点。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025101714243445981/index.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "辽宁文旅确认真实馆舍和展陈，但公开资料仅到塔山乡/园区；Photon无具名馆舍实体，未找到精确入口点。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "city": "辽源市",
+    "province": "吉林省",
+    "sources": [
+      "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/lys/lys_424352/202507/t20250708_9275972.html"
+    ],
+    "checked_names": [
+      "龙首山·魁星楼",
+      "东北沦陷时期辽源矿工墓陈列馆",
+      "康源谷雪乡"
+    ],
+    "note": "龙首山·魁星楼为独立3A综合公园；与已有福寿宫不是同一景点，魁星楼是公园内部地标不另列。",
+    "candidates": [
+      {
+        "name": "龙首山·魁星楼景区",
+        "status": "pending_coordinates",
+        "description": "辽源市区的山地公园与城市观景地，可登高俯瞰城区，体验魁星楼相关文化。",
+        "description_source_url": "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/lys/lys_424352/202507/t20250708_9275972.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/lys/lys_424352/202507/t20250708_9275972.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "city": "白城市",
+    "province": "吉林省",
+    "sources": [
+      "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/bcs/bcs_424374/202507/t20250710_9277030.html",
+      "https://www.jl.gov.cn/yaowen/202608/t20260806_3655108.html"
+    ],
+    "checked_names": [
+      "大安嫩江湾旅游区",
+      "镇赉环城国家湿地公园",
+      "向海旅游景区",
+      "莫莫格景区",
+      "查干浩特旅游度假区"
+    ],
+    "note": "向海、莫莫格、查干浩特已在库；大安嫩江湾是独立5A旅游区，不拆分内部观景点。",
+    "candidates": [
+      {
+        "name": "大安嫩江湾旅游区",
+        "status": "pending_coordinates",
+        "description": "白城大安市的嫩江湾湿地旅游区，以江湾水景、湿地生态和辽金捺钵文化展示为主要内容。",
+        "description_source_url": "https://www.jl.gov.cn/yaowen/202608/t20260806_3655108.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "本轮OSM在线检索无同城具名精确实体；缺游客入口、馆舍或可靠到达点的WGS84坐标。",
+          "source_urls": [
+            "https://www.jl.gov.cn/yaowen/202608/t20260806_3655108.html",
+            "https://whhlyt.jl.gov.cn/ztzl/jlslyxlhxj/gdxl/bcs/bcs_424374/202507/t20250710_9277030.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "无可采纳OSM实体。"
+        }
+      }
+    ]
+  }
+]

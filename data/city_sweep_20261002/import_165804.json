@@ -1,0 +1,503 @@
+{
+  "created_at": "2026-10-02T16:58:04.008760",
+  "committed": true,
+  "added": 18,
+  "rows": [
+    {
+      "name": "南昌之星摩天轮",
+      "status": "approved",
+      "description": "南昌之星摩天轮位于红谷滩赣江之滨，可登乘俯瞰赣江和一江两岸的城市建筑，结合滨江散步体验城市观光与休闲。",
+      "description_source_url": "https://hgt.nc.gov.cn/hgtqrmzf/hgtfm/202604/64b0ce1e49bd44f4afb01588d607af48.shtml",
+      "longitude": 115.8458347,
+      "latitude": 28.6594029,
+      "coordinate_source_url": "https://www.openstreetmap.org/node/1503937693",
+      "coordinate_system": "WGS84",
+      "category": "主题游乐",
+      "tags": [
+        "主题娱乐",
+        "滨水",
+        "城市漫游",
+        "摄影"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "2026区政府景点介绍与OSM具名摩天轮节点匹配；已有景点未包含此游乐地标，不以整个赣江风光带为父景区重复新增。",
+      "aliases": [
+        "南昌之星"
+      ],
+      "poi_id": "public_4b0126ea6db6acaf8e2184a27b4ed139",
+      "city_id": 129,
+      "city": "南昌市",
+      "province": "江西省",
+      "stored_longitude": 115.85076196273194,
+      "stored_latitude": 28.65607960503694,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "北极星钟表文化博物馆",
+      "status": "approved",
+      "description": "北极星钟表文化博物馆位于烟台滨海景区的近代建筑群中，以钟表文化为主题，适合参观专题展览并结合滨海街区了解城市文化。",
+      "description_source_url": "https://tga.yantai.gov.cn/art/2017/2/13/art_6828_708296.html",
+      "longitude": 121.4011216,
+      "latitude": 37.5424395,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1070825363",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM两座相邻具名馆舍合为一个景点，以临海主馆舍建筑锚点定位；2026烟台政府开放活动证实广仁路1-5号，不同于市博物馆和烟台山。",
+      "aliases": [
+        "北极星钟表博物馆"
+      ],
+      "poi_id": "public_fd2b546ae2a6636afaf1fd35d211cdf8",
+      "city_id": 145,
+      "city": "烟台市",
+      "province": "山东省",
+      "stored_longitude": 121.40639608502721,
+      "stored_latitude": 37.54347327144596,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "许昌市博物馆",
+      "status": "approved",
+      "description": "许昌市博物馆展示本地从史前到明清的历史文化，馆藏汉代画像砖、陶器等文物，可通过展览了解曹魏故都的历史背景。",
+      "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20260114/366a163c-2918-4651-b0cf-018c1ad70a54.html",
+      "longitude": 113.8463757,
+      "latitude": 34.0337095,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/294831863",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "OSM具名馆舍建筑约150米宽，位于许昌新区，与曹魏古城、灞陵桥独立；为馆舍锚点非入口实测。",
+      "aliases": [
+        "许昌博物馆"
+      ],
+      "poi_id": "public_31db2b480e9be161c350b47a8d0bbe50",
+      "city_id": 165,
+      "city": "许昌市",
+      "province": "河南省",
+      "stored_longitude": 113.85226442002936,
+      "stored_latitude": 34.03216113168347,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "中原农耕文化博物馆",
+      "status": "approved",
+      "description": "中原农耕文化博物馆位于许昌学院内，展出传统农耕生产工具、生活器具和民俗物品，介绍中原地区的农耕文明与乡土生活。",
+      "description_source_url": "https://www.xuchang.gov.cn/zjxc/005010/20260114/366a163c-2918-4651-b0cf-018c1ad70a54.html",
+      "longitude": 113.8615077,
+      "latitude": 34.044866,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/644676719",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM许昌市文津路具名农耕博物馆建筑约70米宽，与许昌学院地址相符；不与市博物馆同址；高校内馆参观需遵守校方管理。",
+      "aliases": [
+        "农耕博物馆"
+      ],
+      "poi_id": "public_aeea99d2d66c661a650b1b0e49e6414a",
+      "city_id": 165,
+      "city": "许昌市",
+      "province": "河南省",
+      "stored_longitude": 113.86735679840618,
+      "stored_latitude": 34.04329584769024,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "胡家花园",
+      "status": "approved",
+      "description": "胡家花园位于天门竟陵中街，是清代山西巡抚胡聘之的故居，保留晚清官邸建筑，可参观古建筑并了解地方历史文化。",
+      "description_source_url": "https://www.tianmen.gov.cn/zwgk/bmhxzxxgkml/bm/swhhlyj/zfxxgk/fdzdgknr/gysyjs/ly1/202209/t20220906_4295691.shtml",
+      "longitude": 113.1606986,
+      "latitude": 30.6490334,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1087510774",
+      "coordinate_system": "WGS84",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "建筑",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM天门竟陵街道具名园区约60米宽；与茶圣故里园、陆羽故园不同址；采用小型历史院落建筑群锚点。",
+      "aliases": [],
+      "poi_id": "public_17ed6aba0d852365d93316829ae80076",
+      "city_id": 189,
+      "city": "天门市",
+      "province": "湖北省",
+      "stored_longitude": 113.16672762844081,
+      "stored_latitude": 30.64669319480361,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "自贡市盐业历史博物馆",
+      "status": "approved",
+      "description": "自贡市盐业历史博物馆设于清代西秦会馆，以文物、模型和景观陈列介绍井盐生产、天然气开采及制盐技术的发展，可结合会馆古建筑了解自贡盐业历史。",
+      "description_source_url": "https://www.ndrc.gov.cn/fggz/dqzx/lzydfzxfz/202107/t20210715_1290445_ext.html",
+      "longitude": 104.7685567,
+      "latitude": 29.3517826,
+      "coordinate_source_url": "https://www.openstreetmap.org/way/500311765",
+      "coordinate_system": "WGS84",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM具名馆舍与官方解放路107号一致，馆舍锚点约190米宽；与燊海井、恐龙博物馆不同，西秦会馆与本馆作为同一记录。",
+      "aliases": [
+        "盐业历史博物馆",
+        "西秦会馆"
+      ],
+      "poi_id": "public_761120564b2dd80318c1a17f69f613f4",
+      "city_id": 261,
+      "city": "自贡市",
+      "province": "四川省",
+      "stored_longitude": 104.77125238126787,
+      "stored_latitude": 29.34893924575629,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "大庆油田历史陈列馆",
+      "status": "approved",
+      "description": "设于石油会战时期的旧址院落，展示大庆油田的开发建设历史。",
+      "description_source_url": "https://wlt.hlj.gov.cn/wlt/c114274/202302/c00_31528939.shtml",
+      "longitude": 125.015903,
+      "latitude": 46.6028557,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/10967539105",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "黑龙江文旅资料载明为独立陈列馆；与已存铁人王进喜纪念馆不同址；坐标取OSM具名博物馆节点。",
+      "aliases": [],
+      "poi_id": "public_40def987eb52b5664e487e5854f55ac1",
+      "city_id": 74,
+      "city": "大庆市",
+      "province": "黑龙江省",
+      "stored_longitude": 125.02272119778702,
+      "stored_latitude": 46.604823777530676,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "蚌埠市博物馆",
+      "status": "approved",
+      "description": "蚌埠市博物馆通过历史文物、图文和专题陈列介绍淮河文化及蚌埠城市的发展变迁，是了解当地历史文化的公共文博场所。",
+      "description_source_url": "https://xfw.ft.gov.cn/news/szyw/5320.html",
+      "longitude": 117.380712,
+      "latitude": 32.9144888,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/263922266",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "蚌山区官方入馆资料与OSM具名馆舍建筑一致；不是已存龙子湖、涂山景区子点；定位为馆舍建筑点而非景区质心。",
+      "aliases": [
+        "蚌埠博物馆",
+        "蚌埠市博物院"
+      ],
+      "poi_id": "public_7c0fa1fde888987c64a6f7cb79816f93",
+      "city_id": 106,
+      "city": "蚌埠市",
+      "province": "安徽省",
+      "stored_longitude": 117.38654996152977,
+      "stored_latitude": 32.912775707472,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "河源恐龙博物馆",
+      "status": "approved",
+      "description": "收藏展示河源恐龙蛋、骨骼与足迹化石的专题博物馆。",
+      "description_source_url": "https://www.heyuan.gov.cn/bmjy/hysdfzbgs/tzgg/content/post_551994.html",
+      "longitude": 114.6959263,
+      "latitude": 23.7284582,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/908952822",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "河源官方资料证实专题馆独立运营；OSM以河源恐龙博物馆（中国古动物馆恐龙蛋馆）具名馆舍建筑定位，非大景区中心。",
+      "aliases": [
+        "河源恐龙博物馆(中国古动物馆恐龙蛋馆)"
+      ],
+      "poi_id": "public_f783a53e3e52e3a8ed68b9b99370bf9f",
+      "city_id": 218,
+      "city": "河源市",
+      "province": "广东省",
+      "stored_longitude": 114.70061776153626,
+      "stored_latitude": 23.725804345601947,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "西藏博物馆",
+      "status": "approved",
+      "description": "展示西藏历史、艺术与民俗文物的综合博物馆，提供免费预约参观。",
+      "description_source_url": "https://www.lasa.gov.cn/lasa/jdjs/202609/bcbf08cd42b945a884d4d55dd0fde2c4.shtml",
+      "longitude": 91.0976225,
+      "latitude": 29.6514587,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/node/345356778",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "拉萨市政府将西藏博物馆列为独立预约文博场所；坐标为罗布林卡路附近OSM具名博物馆节点，非罗布林卡景区中心。",
+      "aliases": [],
+      "poi_id": "public_18f75057341f924aee9ea30d840fedf4",
+      "city_id": 303,
+      "city": "拉萨市",
+      "province": "西藏自治区",
+      "stored_longitude": 91.09919078025482,
+      "stored_latitude": 29.64875942605837,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "武威市博物馆",
+      "status": "approved",
+      "description": "馆内以武威地区历史文物展陈为主，可集中了解河西走廊东端的历史文化。",
+      "description_source_url": "https://www.gswbj.gov.cn/a/2024/04/09/20085.html",
+      "longitude": 102.6211538,
+      "latitude": 37.9417812,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/813355539",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "甘肃省文旅资料给出武威市博物馆姑臧路25号并与雷台、西夏等馆分列；OSM为姑臧路具名馆舍建筑，不是武威文庙。",
+      "aliases": [],
+      "poi_id": "public_c24c699136f48a67186913b33751ddef",
+      "city_id": 322,
+      "city": "武威市",
+      "province": "甘肃省",
+      "stored_longitude": 102.62283832678672,
+      "stored_latitude": 37.94204359443881,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "北投温泉博物馆",
+      "status": "approved",
+      "description": "由北投旧公共浴场修复而成，展厅介绍温泉浴场与北投地方文化。",
+      "description_source_url": "https://www.travel.taipei/zh-tw/attraction/details/33",
+      "longitude": 121.5071899,
+      "latitude": 25.1365786,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/256190307",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "台北旅遊網明示北投區中山路2號；OSM具名舊浴場建築帶同一地址，館舍獨立於其他台北景點。",
+      "aliases": [
+        "北投溫泉博物館"
+      ],
+      "poi_id": "public_ddfca1646c8430cd651a87cae7bdcfa5",
+      "city_id": 370,
+      "city": "台北市",
+      "province": "台湾省",
+      "stored_longitude": 121.5071899,
+      "stored_latitude": 25.1365786,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "台北市立美术馆",
+      "status": "approved",
+      "description": "台北中山区的公共美术馆，设有展览、教育与公共服务空间。",
+      "description_source_url": "https://tfam.gov.taipei/cp.aspx?n=3FE94CE28EE2276E",
+      "longitude": 121.5246613,
+      "latitude": 25.0720297,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/relation/11736180",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "館方參觀頁與OSM具名美術館建築地址均為中山北路三段181號；不是故宮博物院或天文館子點。",
+      "aliases": [
+        "臺北市立美術館"
+      ],
+      "poi_id": "public_06c463d0e49a58c7d3b09dc46152ca5e",
+      "city_id": 370,
+      "city": "台北市",
+      "province": "台湾省",
+      "stored_longitude": 121.5246613,
+      "stored_latitude": 25.0720297,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "玉溪市博物馆",
+      "status": "approved",
+      "description": "玉溪市博物馆位于红塔区红塔大道，常设古生物、史前文化、青铜文化、陶瓷、书画及非遗等主题展览，集中展示玉溪的自然与人文历史。",
+      "description_source_url": "https://www.yuxi.gov.cn/yxszfxxgk/jgzn7683/20260610/735260.html",
+      "longitude": 102.534852,
+      "latitude": 24.3494654,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1383956236",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 120,
+      "independence_note": "OSM具名博物馆建筑锚点，非大景区质心；市政府确认红塔大道30号，与在库玉溪其他景点不重合。",
+      "aliases": [
+        "玉溪博物馆"
+      ],
+      "poi_id": "public_51ad3e37c9750eb9042ea6845e985bb8",
+      "city_id": 291,
+      "city": "玉溪市",
+      "province": "云南省",
+      "stored_longitude": 102.53613264795027,
+      "stored_latitude": 24.34642908449717,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "柳湾彩陶博物馆",
+      "status": "approved",
+      "description": "青海柳湾彩陶博物馆位于海东市乐都区高庙镇柳湾村，馆内以柳湾出土彩陶为重点，展示史前陶器和当地考古文化。",
+      "description_source_url": "https://www.qinghai.gov.cn/dmqh/system/2024/01/13/030034792.shtml",
+      "longitude": 102.560995,
+      "latitude": 36.4464604,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/654728556",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 90,
+      "independence_note": "OSM具名博物馆建筑锚点约75米宽；青海省政府确认馆舍位于乐都区高庙镇柳湾村，与现有互助故土园、平安驿不重合。",
+      "aliases": [
+        "青海柳湾彩陶博物馆"
+      ],
+      "poi_id": "public_bb8bd67f6d79914f70493ea2269665bb",
+      "city_id": 332,
+      "city": "海东市",
+      "province": "青海省",
+      "stored_longitude": 102.56262010779056,
+      "stored_latitude": 36.446170136079296,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "八路军驻新疆办事处纪念馆",
+      "status": "approved",
+      "description": "八路军驻新疆办事处纪念馆位于乌鲁木齐市胜利路，展示抗战时期共产党人在新疆开展抗日救亡等活动的历史。",
+      "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202409/dde7a7753cb245cc8c25a593d27494a0.shtml",
+      "longitude": 87.6128476,
+      "latitude": 43.7723522,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/667838864",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "OSM具名小型纪念馆建筑锚点约25米见方；市政府2025年A级景区名录列天山区胜利路392号，与其他红色纪念馆地点不同。",
+      "aliases": [
+        "八路军驻新疆办事处旧址"
+      ],
+      "poi_id": "public_1ddc75d96f9ac9d98f0048e7aef3f1a3",
+      "city_id": 344,
+      "city": "乌鲁木齐市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 87.61569120374027,
+      "stored_latitude": 43.77358419695699,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "毛泽民故居",
+      "status": "approved",
+      "description": "毛泽民故居是乌鲁木齐市对外开放的革命历史纪念场馆，展示与毛泽民在新疆经历有关的史迹。",
+      "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202504/238623b2300447f89cb2dfd5a03b9a72.shtml",
+      "longitude": 87.6203321,
+      "latitude": 43.791232,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/1447825943",
+      "category": "历史古迹",
+      "tags": [
+        "历史文化",
+        "人文",
+        "建筑"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "OSM具名故居建筑锚点，政府文博名录记为民德路29号；与胜利路八路军纪念馆及西后街西路军纪念馆分别位于不同街区。",
+      "aliases": [
+        "毛泽民故居纪念馆",
+        "毛泽民办公室及宿舍旧址"
+      ],
+      "poi_id": "public_8c3257854ef12e1439b84e3ac5cfa7e2",
+      "city_id": 344,
+      "city": "乌鲁木齐市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 87.62318422392572,
+      "stored_latitude": 43.79245973632609,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    },
+    {
+      "name": "中国工农红军西路军总支队纪念馆",
+      "status": "approved",
+      "description": "中国工农红军西路军总支队纪念馆通过历史文物与图片讲述西路军有关的革命历史，位于乌鲁木齐市西后街。",
+      "description_source_url": "https://www.wlmq.gov.cn/wlmqs/c119052/202409/dde7a7753cb245cc8c25a593d27494a0.shtml",
+      "longitude": 87.6268472,
+      "latitude": 43.8011987,
+      "coordinate_system": "WGS84",
+      "coordinate_source_url": "https://www.openstreetmap.org/way/897755543",
+      "category": "博物馆与展馆",
+      "tags": [
+        "博物馆",
+        "历史文化",
+        "人文"
+      ],
+      "duration_minutes": 60,
+      "independence_note": "OSM具名小型纪念场馆锚点约50米宽；乌鲁木齐市政府确认西后街37号并列为独立开放场馆，不是八路军纪念馆或毛泽民故居的子景点。",
+      "aliases": [
+        "西路军总支队纪念馆"
+      ],
+      "poi_id": "public_bbc055a7160c0da30fe4339d8ceb9b3f",
+      "city_id": 344,
+      "city": "乌鲁木齐市",
+      "province": "新疆维吾尔自治区",
+      "stored_longitude": 87.62970860343397,
+      "stored_latitude": 43.80242773672669,
+      "duration_note": "用于规划的估计值，不冒充官方固定游览时长"
+    }
+  ],
+  "skipped": [],
+  "schema_unchanged": true,
+  "preexisting_rows_unchanged": 3126
+}

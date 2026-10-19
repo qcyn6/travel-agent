@@ -35,7 +35,7 @@ from backend.planner.dynamic_scheduler import (
 from backend.planner.runtime import build_travel_workflow
 from backend.planner.graph import TravelPlanningGraph, TravelPlanningGraphState
 from backend.planner.state import PlanningState
-from backend.planner.workflow import DestinationChoiceRequired, TravelPlanningWorkflow
+from backend.planner.workflow import TravelPlanningWorkflow
 
 __all__ = [
     "CityPlanningError",
@@ -62,7 +62,6 @@ __all__ = [
     "haversine_distance_m",
     "DeepSeekCityPlanner",
     "deduplicate_city_plan",
-    "DestinationChoiceRequired",
     "TravelPlanningWorkflow",
     "build_travel_workflow",
     "TravelPlanningGraph",

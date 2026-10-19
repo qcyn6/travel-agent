@@ -37,6 +37,7 @@ class ChromaAttractionIndex:
         self.collection = self.client.get_or_create_collection(
             name=collection_name,
             metadata={"hnsw:space": "cosine"},
+            embedding_function=None,
         )
         self.core_only = core_only
 

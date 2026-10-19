@@ -1,0 +1,687 @@
+[
+  {
+    "id": 2,
+    "city": "绍兴市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.sx.gov.cn/art/2021/2/26/art_1229265334_4107679.html",
+      "https://sxsk.sx.gov.cn/art/2024/8/21/art_1229811755_58722404.html"
+    ],
+    "checked_names": [
+      "柯岩景区",
+      "兰亭景区",
+      "鉴湖旅游度假区",
+      "鲁镇"
+    ],
+    "note": "柯岩景区未在existing，兰亭与鉴湖已有；鲁镇属柯岩内部景点不单列。",
+    "candidates": [
+      {
+        "name": "绍兴柯岩风景区",
+        "status": "pending_coordinates",
+        "description": "依托绍兴柯岩石宕与鉴湖水乡景观，形成融合山石、水乡和鲁镇文化的游览区。",
+        "description_source_url": "https://sxsk.sx.gov.cn/art/2024/8/21/art_1229811755_58722404.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://sxsk.sx.gov.cn/art/2024/8/21/art_1229811755_58722404.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“中国石油”(amenity=fuel, https://www.openstreetmap.org/way/1274808032)，与“绍兴柯岩风景区”不符；拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "city": "湖州市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.huzhou.gov.cn/art/2024/2/22/art_1229213529_59066773.html",
+      "https://hztz.huzhou.gov.cn/gathw/gzdt/20220124/i3118590.html"
+    ],
+    "checked_names": [
+      "新市古镇",
+      "南浔古镇"
+    ],
+    "note": "新市古镇与已有南浔古镇为不同古镇，尚缺可靠入口坐标。",
+    "candidates": [
+      {
+        "name": "新市古镇",
+        "status": "pending_coordinates",
+        "description": "湖州德清的江南水乡古镇，保留古镇街巷与地方人文风貌，适合步行游览。",
+        "description_source_url": "https://hztz.huzhou.gov.cn/gathw/gzdt/20220124/i3118590.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://hztz.huzhou.gov.cn/gathw/gzdt/20220124/i3118590.html",
+            "https://whgdlyj.huzhou.gov.cn/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/1413769762为way tourism=theme_park范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "city": "台州市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.changyudongtian.com/home/gljg/list",
+      "https://tzsz.zjtz.gov.cn/art/2018/12/13/art_1229209654_54440083.html"
+    ],
+    "checked_names": [
+      "长屿硐天风景区",
+      "方山景区",
+      "神仙居景区"
+    ],
+    "note": "长屿硐天未在existing；双门硐等为其子点不另列。",
+    "candidates": [
+      {
+        "name": "长屿硐天风景区",
+        "status": "pending_coordinates",
+        "description": "温岭市古代采石形成的石硐群景区，以石文化景观、硐窟与石壁长廊为特色。",
+        "description_source_url": "https://www.changyudongtian.com/home/gljg/list",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.changyudongtian.com/home/gljg/list"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“长屿硐天风景区 台州市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "city": "丽江市",
+    "province": "云南省",
+    "sources": [
+      "https://mzzj.yn.gov.cn/html/2022/difangdongtai_0321/42345.html",
+      "https://www.ljgc517.com/"
+    ],
+    "checked_names": [
+      "世界记忆遗产纳西东巴古籍文献馆",
+      "黑龙潭公园",
+      "丽江古城"
+    ],
+    "note": "文献馆位于已有黑龙潭景区内，按父子景点重叠原则本轮不新增；丽江古城已有。",
+    "candidates": []
+  },
+  {
+    "id": 293,
+    "city": "昭通市",
+    "province": "云南省",
+    "sources": [
+      "https://mzzj.yn.gov.cn/html/2026/difangdongtai_0611/4064145.html"
+    ],
+    "checked_names": [
+      "黄连河景区",
+      "山海洞景区",
+      "大山包黑颈鹤国家级自然保护区"
+    ],
+    "note": "黄连河与山海洞均未在existing；大山包已存在，先列黄连河待查入口。",
+    "candidates": [
+      {
+        "name": "黄连河景区",
+        "status": "pending_coordinates",
+        "description": "位于昭通大关县，以瀑布群和山水景观为主要游览内容的景区。",
+        "description_source_url": "https://mzzj.yn.gov.cn/html/2026/difangdongtai_0611/4064145.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://mzzj.yn.gov.cn/html/2026/difangdongtai_0611/4064145.html",
+            "https://www.ztrd.gov.cn/article/20220803/n60059_1.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回“中国联通”(shop=telecommunication, https://www.openstreetmap.org/node/3699813201)，与“黄连河景区”不符；拒绝错匹配。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 297,
+    "city": "红河哈尼族彝族自治州",
+    "province": "云南省",
+    "sources": [
+      "https://hhmz.gov.cn/info/5841/389691.htm"
+    ],
+    "checked_names": [
+      "碧色寨景区",
+      "碧色寨火车站",
+      "元阳哈尼梯田景区"
+    ],
+    "note": "碧色寨未在existing；站舍是景区组成部分，不另列。",
+    "candidates": [
+      {
+        "name": "碧色寨景区",
+        "status": "pending_coordinates",
+        "description": "蒙自市的滇越铁路与个碧石铁路历史文化景区，保留老站和近代铁路商贸遗迹。",
+        "description_source_url": "https://hhmz.gov.cn/info/5841/389691.htm",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://hhmz.gov.cn/info/5841/389691.htm"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“碧色寨景区 红河哈尼族彝族自治州”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 301,
+    "city": "怒江傈僳族自治州",
+    "province": "云南省",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/xcszbwg2022/yunnan/detail/1984.html",
+      "https://www.ynxc.gov.cn/uploadfile/s61/2024/0419/20240419094859727.pdf"
+    ],
+    "checked_names": [
+      "老姆登村",
+      "知子罗村",
+      "雾里村",
+      "丙中洛"
+    ],
+    "note": "官方资料将知子罗纳入已存在的老姆登景区；雾里村位于丙中洛游线，与已有丙中洛范围待核，避免先做父子重复。",
+    "candidates": []
+  },
+  {
+    "id": 9,
+    "city": "延安市",
+    "province": "陕西省",
+    "sources": [
+      "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/sx/202208/t20220809_935221.html"
+    ],
+    "checked_names": [
+      "黄河壶口瀑布景区",
+      "黄帝陵",
+      "延安革命纪念地"
+    ],
+    "note": "壶口瀑布为延安宜川与山西吉县跨省景区，existing未列；须后续核准陕西侧游客入口，避免落在山西侧。",
+    "candidates": [
+      {
+        "name": "黄河壶口瀑布景区（陕西侧）",
+        "status": "pending_coordinates",
+        "description": "黄河在延安宜川与山西吉县之间形成的瀑布景观，是跨省共建的国家5A级旅游景区。",
+        "description_source_url": "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/sx/202208/t20220809_935221.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.mct.gov.cn/wlbphone/wlbydd/xxfb/qglb/sx/202208/t20220809_935221.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“黄河壶口瀑布景区（陕西侧） 延安市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 313,
+    "city": "汉中市",
+    "province": "陕西省",
+    "sources": [
+      "https://jhj.hanzhong.gov.cn/hzjhjwz/hzgk/202308/2ea21bc68ca24de28662f73094dcda6a.shtml",
+      "https://www.hanzhong.gov.cn/hzszf/xwzx/shxw/202603/c0ac6e27578745dbb02277810f61ae46.shtml"
+    ],
+    "checked_names": [
+      "佛坪熊猫谷景区",
+      "兴汉胜境",
+      "华阳景区"
+    ],
+    "note": "熊猫谷未在existing；兴汉胜境已有，华阳可后续单独核查。",
+    "candidates": [
+      {
+        "name": "佛坪熊猫谷景区",
+        "status": "approved",
+        "description": "佛坪县秦岭山地景区，沿溪谷和森林游览线路观察山水生态，并通过园区设施了解大熊猫等珍稀野生动物。",
+        "description_source_url": "https://www.fpxmg.com/wap/news.asp?id=440",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "运营方/政府资料确认景点与地址，OSM具名临路景点POI节点可作抵达锚点；排除同城重复。",
+          "source_urls": [
+            "https://jhj.hanzhong.gov.cn/hzjhjwz/hzgk/202308/2ea21bc68ca24de28662f73094dcda6a.shtml",
+            "https://www.fpxmg.com/wap/news.asp?id=440",
+            "https://www.fpxmg.com/",
+            "https://www.openstreetmap.org/node/11107529552"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "运营方确认熊猫谷紧邻108国道、位于佛坪县城北20公里；OSM具名tourism=attraction节点标于G108路侧，可作公路到达锚点，非实测景区闸门；与同城现有景点不同址。"
+        },
+        "longitude": 107.9687686,
+        "latitude": 33.6698518,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/11107529552",
+        "coordinate_system": "WGS84",
+        "category": "生态动植物",
+        "tags": [
+          "自然",
+          "森林",
+          "亲子"
+        ],
+        "duration_minutes": 180,
+        "independence_note": "运营方确认熊猫谷紧邻108国道、位于佛坪县城北20公里；OSM具名tourism=attraction节点标于G108路侧，可作公路到达锚点，非实测景区闸门；与同城现有景点不同址。",
+        "aliases": [
+          "佛坪熊猫谷旅游区",
+          "熊猫谷景区"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "city": "北京市",
+    "province": "北京市",
+    "sources": [
+      "https://www.beijing.gov.cn/renwen/rwzyd/qgzdwwbhdw/fys/202210/t20221028_2846902.html"
+    ],
+    "checked_names": [
+      "法源寺",
+      "故宫博物院"
+    ],
+    "note": "法源寺不在existing，是独立寺院，与已有故宫等无父子重叠。",
+    "candidates": [
+      {
+        "name": "北京法源寺",
+        "status": "pending_coordinates",
+        "description": "位于北京宣武门外教子胡同的古寺，始建于唐代，保留清代古建筑与佛教文化遗存。",
+        "description_source_url": "https://www.beijing.gov.cn/renwen/rwzyd/qgzdwwbhdw/fys/202210/t20221028_2846902.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.beijing.gov.cn/renwen/rwzyd/qgzdwwbhdw/fys/202210/t20221028_2846902.html",
+            "https://wwj.beijing.gov.cn/bjww/wwjzzcslm/1737418/1738081/gzdt53/326045078/index.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim返回北京无关学校/大学，非法源寺，已拒绝。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://www.beijing.gov.cn/renwen/rwzyd/qgzdwwbhdw/fys/202210/t20221028_2846902.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "北京政府确认法源寺存在；第二渠道仍无可核准的游客入口/紧凑馆舍锚点。",
+          "iwenbo_marker_evidence_file": null
+        }
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "city": "秦皇岛市",
+    "province": "河北省",
+    "sources": [
+      "https://www.biluota.com/"
+    ],
+    "checked_names": [
+      "碧螺塔海上酒吧公园",
+      "鸽子窝公园",
+      "老虎石海上公园"
+    ],
+    "note": "碧螺塔独立于已有鸽子窝、老虎石公园；先查入口坐标。",
+    "candidates": [
+      {
+        "name": "碧螺塔海上酒吧公园",
+        "status": "pending_coordinates",
+        "description": "北戴河东端的滨海主题公园，设有海螺形观光塔及滨海休闲空间。",
+        "description_source_url": "https://www.biluota.com/",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.biluota.com/"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/way/117684427为way leisure=park范围对象，非可核实游客入口，拒绝以中心点替代。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "city": "张家口市",
+    "province": "河北省",
+    "sources": [
+      "https://m.hebeitour.com.cn/c/2020-03-17/498202.html",
+      "https://m.hebeitour.com.cn/c/2023-02-27/514912.html"
+    ],
+    "checked_names": [
+      "万全右卫城",
+      "大境门",
+      "张家口堡"
+    ],
+    "note": "万全右卫城在万全区，与已有张家口堡、大境门不同址；其城门城墙不另拆子点。",
+    "candidates": [
+      {
+        "name": "万全右卫城",
+        "status": "pending_coordinates",
+        "description": "明代军事卫所城，仍可辨认城墙及南北城门，适合了解张家口边防史。",
+        "description_source_url": "https://m.hebeitour.com.cn/c/2020-03-17/498202.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://m.hebeitour.com.cn/c/2020-03-17/498202.html",
+            "https://www.hbrd.gov.cn/system/2026/07/03/102200418.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“万全右卫城 张家口市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "city": "衡水市",
+    "province": "河北省",
+    "sources": [
+      "https://m.hebeitour.com.cn/c/2022-09-22/508499.html"
+    ],
+    "checked_names": [
+      "武强年画博物馆",
+      "衡水内画艺术博物馆",
+      "衡水湖旅游景区"
+    ],
+    "note": "武强年画博物馆未在existing；衡水湖已有。",
+    "candidates": [
+      {
+        "name": "武强年画博物馆",
+        "status": "pending_coordinates",
+        "description": "武强县的年画专题馆，收藏明清以来的木版年画，展示绘制、刻版和印刷工艺。",
+        "description_source_url": "https://m.hebeitour.com.cn/c/2022-09-22/508499.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://m.hebeitour.com.cn/c/2022-09-22/508499.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253895.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM relation/9242698 为约160米武强年画博物馆馆区范围，不能确认游客入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://m.hebeitour.com.cn/c/2022-09-22/508499.html",
+            "https://www.iwenbo.fun/museum/356.html",
+            "https://wenwu.hebei.gov.cn/system/2023/09/27/030253895.shtml",
+            "https://www.openstreetmap.org/relation/9242698"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "具名 TMap marker 换算后几乎落在 OSM relation/9242698“武强年画博物馆”约160×220米范围中心；不是已证实入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "city": "长治市",
+    "province": "山西省",
+    "sources": [
+      "https://www.changzhi.gov.cn/ztzl/cjwmwz/shfs/202603/t20260323_3150159.shtml"
+    ],
+    "checked_names": [
+      "通天峡景区",
+      "八泉峡景区"
+    ],
+    "note": "通天峡在平顺县，与已有壶关八泉峡是不同峡谷景区；内部仙人峰等不单列。",
+    "candidates": [
+      {
+        "name": "通天峡景区",
+        "status": "pending_coordinates",
+        "description": "平顺县太行山峡谷景区，结合高山平湖、瀑布泉水和虹梯古关遗存。",
+        "description_source_url": "https://www.changzhi.gov.cn/ztzl/cjwmwz/shfs/202603/t20260323_3150159.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.changzhi.gov.cn/ztzl/cjwmwz/shfs/202603/t20260323_3150159.shtml",
+            "https://sthjj.changzhi.gov.cn/zrfg/201804/t20180427_1214191.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“通天峡景区 长治市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "city": "运城市",
+    "province": "山西省",
+    "sources": [
+      "https://sxszfzgzb.shanxi.gov.cn/zshz/tzdt/202605/t20260506_10115854.shtml",
+      "https://wjw.shanxi.gov.cn/xwzx/szyw/202209/t20220926_7172655.shtml"
+    ],
+    "checked_names": [
+      "永乐宫",
+      "鹳雀楼",
+      "解州关帝庙"
+    ],
+    "note": "永乐宫与已有鹳雀楼、关公故里景区不同址，先核准入口。",
+    "candidates": [
+      {
+        "name": "永乐宫",
+        "status": "pending_coordinates",
+        "description": "芮城县古建与壁画参观地，可观无极殿、纯阳殿及元代壁画。",
+        "description_source_url": "https://wjw.shanxi.gov.cn/xwzx/szyw/202209/t20220926_7172655.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://wjw.shanxi.gov.cn/xwzx/szyw/202209/t20220926_7172655.shtml",
+            "https://www.yuncheng.gov.cn/doc/2020/07/21/71097.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/891146832 为约800米永乐宫宗教建筑群范围，非入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://wjw.shanxi.gov.cn/xwzx/szyw/202209/t20220926_7172655.shtml",
+            "https://www.iwenbo.fun/heritage/94.html",
+            "https://www.openstreetmap.org/way/891146832"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "具名 TMap marker 位于 OSM way/891146832“永乐宫”约800米景区的宽泛中心；不能当入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "city": "呼和浩特市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://gxhzs.nmg.gov.cn/c/2023-06-01/526930.shtml"
+    ],
+    "checked_names": [
+      "昭君博物院",
+      "大召无量寺"
+    ],
+    "note": "昭君博物院未在existing，与大召等独立。",
+    "candidates": [
+      {
+        "name": "昭君博物院",
+        "status": "pending_coordinates",
+        "description": "围绕昭君出塞与古代和亲文化设置展陈的博物院，展示民族交往交流历史。",
+        "description_source_url": "https://gxhzs.nmg.gov.cn/c/2023-06-01/526930.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://gxhzs.nmg.gov.cn/c/2023-06-01/526930.shtml"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM way/1342683602 为约1公里昭君博物院馆区面，另有同名公交站但非入口。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://gxhzs.nmg.gov.cn/c/2023-06-01/526930.shtml",
+            "https://www.iwenbo.fun/museum/515.html",
+            "https://www.openstreetmap.org/way/1342683602"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "具名 TMap marker 位于 OSM way/1342683602“昭君博物院”约1公里景区中心；不能当入口。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "city": "通辽市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.tongliao.gov.cn/zwgk/szf/ldhd/202304/t20230406_538457.html",
+      "https://www.tongliao.gov.cn/zwgk/zfxxgk/zc_13893/qtwj/202307/t20230722_372966.html?slb=true"
+    ],
+    "checked_names": [
+      "珠日河草原旅游区",
+      "大青沟国家4A级旅游景区",
+      "孝庄园文化旅游区"
+    ],
+    "note": "珠日河在科左中旗，不同于已有科左后旗大青沟及孝庄园。",
+    "candidates": [
+      {
+        "name": "珠日河草原旅游区",
+        "status": "pending_coordinates",
+        "description": "通辽科尔沁草原旅游区，也是当地赛马节活动举办地，以草原风光及民族文化体验为主题。",
+        "description_source_url": "https://www.tongliao.gov.cn/zwgk/szf/ldhd/202304/t20230406_538457.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.tongliao.gov.cn/zwgk/szf/ldhd/202304/t20230406_538457.html",
+            "https://wlj.tongliao.gov.cn/ztzl/ggfw/qyml/202302/t20230214_770346.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“珠日河草原旅游区 通辽市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "city": "乌兰察布市",
+    "province": "内蒙古自治区",
+    "sources": [
+      "https://www.nmg.gov.cn/asnmg/asnmg/asnmgxcp/202307/t20230719_2349130.html"
+    ],
+    "checked_names": [
+      "乌兰哈达火山地质公园",
+      "苏木山",
+      "辉腾锡勒草原"
+    ],
+    "note": "乌兰哈达火山地质公园未在existing，具体火山口子点不另列。",
+    "candidates": [
+      {
+        "name": "乌兰哈达火山地质公园",
+        "status": "pending_coordinates",
+        "description": "察哈尔右翼后旗的火山群地质景观，具有多座可观察的火山锥与高原地貌。",
+        "description_source_url": "https://www.nmg.gov.cn/asnmg/asnmg/asnmgxcp/202307/t20230719_2349130.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://www.nmg.gov.cn/asnmg/asnmg/asnmgxcp/202307/t20230719_2349130.html",
+            "https://wlcbzfw.gov.cn/qxdt/info/13457"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "2026-10-02 Nominatim以“乌兰哈达火山地质公园 乌兰察布市”检索返回0项；未取得具名入口/馆舍点位。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "city": "沈阳市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/8513550C7C92487690DFA9858D5046F2/index.shtml",
+      "https://whly.ln.gov.cn/whly/mtjj/2026032409590513466/index.shtml"
+    ],
+    "checked_names": [
+      "中共满洲省委旧址纪念馆",
+      "沈阳九一八历史博物馆",
+      "沈阳博物馆"
+    ],
+    "note": "中共满洲省委旧址纪念馆未在existing，与已有九一八历史博物馆不同址。",
+    "candidates": [
+      {
+        "name": "中共满洲省委旧址纪念馆",
+        "status": "pending_coordinates",
+        "description": "位于沈阳和平区福安巷的近代革命旧址纪念馆，见证东北地区早期革命和抗日斗争历史。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/8513550C7C92487690DFA9858D5046F2/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/8513550C7C92487690DFA9858D5046F2/index.shtml",
+            "https://wlgd.shenyang.gov.cn/rhjsdwlzds/202512/t20251231_4962553.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "Nominatim精确名称+沈阳返回0项。"
+        },
+        "research_round_20261002C": {
+          "outcome": "unresolved",
+          "reason": "第二公开坐标渠道仍不足以支持独立可抵达点入库，保持未决。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/lnww/zdwwbhdw/8513550C7C92487690DFA9858D5046F2/index.shtml",
+            "https://www.iwenbo.fun/museum/688.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "具名 TMap marker 的 Photon 反查只返回皇寺路餐饮/酒吧及太平寺，未对应官方福安巷3号旧址建筑；拒绝错位。",
+          "iwenbo_marker_evidence_file": "evidence_1_iwenbo_20261002C.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "city": "本溪市",
+    "province": "辽宁省",
+    "sources": [
+      "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025121514463940179/index.shtml",
+      "https://whly.ln.gov.cn/whly/mtjj/2026051210431574580/index.shtml"
+    ],
+    "checked_names": [
+      "枫林谷森林公园",
+      "本溪水洞景区",
+      "五女山景区"
+    ],
+    "note": "枫林谷在桓仁县且不在existing，与水洞、五女山不同址；内部红枫顶等不拆分。",
+    "candidates": [
+      {
+        "name": "枫林谷森林公园",
+        "status": "pending_coordinates",
+        "description": "桓仁县山地森林景区，以秋季红叶、森林步道和避暑休闲为特色。",
+        "description_source_url": "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025121514463940179/index.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已再次检索政府、文旅或运营方资料，但未核准具名可抵达入口/小型建筑坐标，暂不入库。",
+          "source_urls": [
+            "https://whly.ln.gov.cn/whly/wlzt/sjly/ajjq/2025121514463940179/index.shtml",
+            "https://www.benxi.gov.cn/ly/lyjq/content_255767"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "OSM具名https://www.openstreetmap.org/node/3426632405为景区内部观景点，不等于游客入口。"
+        }
+      }
+    ]
+  }
+]

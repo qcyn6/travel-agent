@@ -16,12 +16,18 @@ const props = defineProps<{
 const emit = defineEmits<{
   send: [text: string]
   confirm: []
+  cancel: []
   cardUpdated: [index: number, card: RouteChatCard]
 }>()
 
 const input = ref('')
 const inputElement = ref<HTMLTextAreaElement | null>(null)
 const messageList = ref<HTMLElement | null>(null)
+const followBottom = ref(true)
+function onScroll() {
+  const list = messageList.value
+  if (list) followBottom.value = list.scrollHeight - list.scrollTop - list.clientHeight < 80
+}
 const generalInputPlaceholder = '例如：杭州明天天气、杭州东站到西湖怎么走，或者介绍一下云南……'
 const planningInputPlaceholder = '告诉我想去哪里、玩几天、哪天出发，以及你喜欢怎样的旅行……'
 const modePlaceholder = computed(() => props.mode === 'planning' ? planningInputPlaceholder : generalInputPlaceholder)
@@ -88,7 +94,7 @@ watch(
   async () => {
     await nextTick()
     // 流式回复会频繁触发更新，直接定位到底部，避免连续平滑动画造成滚动滞后。
-    messageList.value?.scrollTo({ top: messageList.value.scrollHeight, behavior: 'auto' })
+    if (followBottom.value) messageList.value?.scrollTo({ top: messageList.value.scrollHeight, behavior: 'auto' })
   },
 )
 
@@ -105,7 +111,7 @@ watch(
 
 <template>
   <section class="chat-panel" :class="{ 'chat-panel--empty': empty }">
-    <div v-if="!empty" ref="messageList" class="message-list" aria-live="polite">
+    <div v-if="!empty" ref="messageList" class="message-list" aria-live="polite" @scroll="onScroll">
       <article
         v-for="(message, index) in messages"
         :key="message.id || index"
@@ -115,7 +121,7 @@ watch(
         <div v-if="message.role === 'assistant'" class="avatar">山</div>
         <div class="message-body">
           <div class="message-bubble">
-            <template v-if="message.streaming && !message.content"><span class="streaming-label">正在生成回复</span><span class="typing-dots"><i></i><i></i><i></i></span></template>
+            <template v-if="message.streaming && !message.content"><span class="streaming-label">{{ message.progress || '正在生成回复' }}</span><span class="typing-dots"><i></i><i></i><i></i></span></template>
             <template v-else>{{ message.content }}<span v-if="message.streaming" class="typing-caret"></span></template>
           </div>
           <template v-for="(card, cardIndex) in cardsForMessage(message.card)" :key="`${card.type}-${cardIndex}`">
@@ -164,7 +170,8 @@ watch(
         :aria-label="mode === 'general' ? '输入普通对话内容' : '输入旅行信息'"
         @keydown="onKeydown"
       ></textarea>
-      <button class="send-button" type="button" :disabled="!input.trim() || sending || modeSwitching" @mousedown.prevent @click="submit()" aria-label="发送">
+      <button v-if="sending && mode === 'general'" class="send-button" type="button" @click="emit('cancel')" aria-label="停止生成" title="停止生成">■</button>
+      <button v-else class="send-button" type="button" :disabled="!input.trim() || sending || modeSwitching" @mousedown.prevent @click="submit()" aria-label="发送">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 8-16 8-3-8 3-8Zm3.8 7h7.7L6.8 6.7 7.8 11Zm0 2-1 4.3 8.7-4.3H7.8Z"/></svg>
       </button>
     </div>

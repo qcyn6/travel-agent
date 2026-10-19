@@ -1,0 +1,18 @@
+{
+  "committed": true,
+  "before": {
+    "database_documents": 3250,
+    "vector_count": 3240,
+    "missing": 10,
+    "stale": 0,
+    "orphans": 0
+  },
+  "after": {
+    "database_documents": 3250,
+    "vector_count": 3250,
+    "missing": 0,
+    "stale": 0,
+    "orphans": 0
+  },
+  "schema_unchanged": true
+}

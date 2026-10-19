@@ -1,0 +1,197 @@
+[
+  {
+    "id": 3,
+    "city": "宁波市",
+    "province": "浙江省",
+    "sources": [
+      "https://wglyj.ningbo.gov.cn/module/download/downfile.jsp?classid=0&filename=c7d1d0be71664352b7fda312a6f6e572.pdf"
+    ],
+    "checked_names": [
+      "中国港口博物馆",
+      "天一阁博物院",
+      "宁波博物院",
+      "宁波帮博物馆"
+    ],
+    "note": "中国港口博物馆和宁波帮博物馆均为独立馆舍；宁波帮博物馆与宁波博物院、宁波博物馆不同址不同展陈，已核同城名称无重复。",
+    "candidates": [
+      {
+        "name": "中国港口博物馆",
+        "status": "approved",
+        "description": "宁波港口文化专题博物馆，围绕港口历史、海洋文化与相关科学知识开展展示和教育活动。",
+        "description_source_url": "https://wglyj.ningbo.gov.cn/module/download/downfile.jsp?classid=0&filename=c7d1d0be71664352b7fda312a6f6e572.pdf",
+        "longitude": 121.9058811,
+        "latitude": 29.7587325,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/way/559989176",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "研学"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "宁波文旅资料列为独立博物馆；OSM具名 building=yes 馆舍建筑轮廓定位，非春晓街道或大型景区质心，与宁波博物馆不同。",
+        "aliases": []
+      },
+      {
+        "name": "宁波帮博物馆",
+        "status": "approved",
+        "description": "宁波帮博物馆以明末以来宁波商帮的发展历程为主线，通过综合陈列、专题陈列和临时展览，展示宁波帮的商业实践、乡土情怀与近现代社会影响。",
+        "description_source_url": "https://www.nbmuseum.cn/art/2012/5/25/art_20377_6943.html",
+        "longitude": 121.6237704,
+        "latitude": 29.9211681,
+        "coordinate_source_url": "https://www.openstreetmap.org/relation/20699490",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": ["博物馆", "历史文化", "人文", "研学"],
+        "duration_minutes": 120,
+        "independence_note": "馆方参观指南确认场馆位于镇海区思源路255号、东门对公众开放；OSM relation/20699490为具名宁波帮博物馆场馆范围代表点，不作为入口实测坐标。与现有宁波博物院、宁波博物馆和中国港口博物馆均为不同场馆。",
+        "aliases": [],
+        "research_round_20261017A": {
+          "outcome": "approved",
+          "reason": "馆方介绍与参观指南分别核实展陈主题及公众参观地址；公开地图具名场馆范围可定位；逐项检查宁波市现有景点未发现同名或同址项目。",
+          "source_urls": [
+            "https://www.nbmuseum.cn/art/2012/5/25/art_20377_6943.html",
+            "https://www.nbmuseum.cn/art/2022/6/9/art_20526_5860.html",
+            "https://www.nbmuseum.cn/art/2026/7/1/art_21009_8980.html",
+            "https://www.openstreetmap.org/relation/20699490"
+          ],
+          "checked_at": "2026-10-17",
+          "coordinate_review_note": "WGS84 121.6237704,29.9211681；为具名场馆范围代表点，不声称是博物馆东门入口坐标。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "city": "金华市",
+    "province": "浙江省",
+    "sources": [
+      "https://fad.zj.gov.cn/art/2021/5/24/art_1229498550_58897490.html"
+    ],
+    "checked_names": [
+      "诸葛八卦村"
+    ],
+    "note": "与现有双龙景区、横店影视城、婺州古城不是同一景区。",
+    "candidates": [
+      {
+        "name": "诸葛八卦村",
+        "status": "approved",
+        "description": "兰溪古村落，以诸葛氏后裔聚居和八卦式村落布局闻名，可步行了解古村街巷与传统建筑。",
+        "description_source_url": "https://fad.zj.gov.cn/art/2021/5/24/art_1229498550_58897490.html",
+        "longitude": 119.2991101,
+        "latitude": 29.2475073,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.openstreetmap.org/node/6136468784",
+        "category": "历史文化景区",
+        "tags": [
+          "古镇",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 120,
+        "independence_note": "金华市现有景点不含诸葛八卦村；OSM具名诸葛八卦村游客服务中心节点作为整个古村景区的到达锚点，不把游客中心另建为景点。",
+        "aliases": [
+          "诸葛村",
+          "诸葛八卦村景区"
+        ],
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方资料确认独立真实景点，OSM具名游客服务中心或紧凑建筑锚点可用于规划。",
+          "source_urls": [
+            "https://fad.zj.gov.cn/art/2021/5/24/art_1229498550_58897490.html",
+            "https://www.openstreetmap.org/node/6136468784"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "金华市现有景点不含诸葛八卦村；OSM具名诸葛八卦村游客服务中心节点作为整个古村景区的到达锚点，不把游客中心另建为景点。"
+        }
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "city": "丽水市",
+    "province": "浙江省",
+    "sources": [
+      "https://www.lishui.gov.cn/art/2024/1/2/art_1229439539_57353870.html"
+    ],
+    "checked_names": [
+      "庆元县廊桥博物馆"
+    ],
+    "note": "馆舍位于庆元，与现有云和梯田、缙云仙都、古堰画乡分属不同景点。",
+    "candidates": [
+      {
+        "name": "庆元廊桥博物馆",
+        "status": "approved",
+        "description": "以庆元木拱廊桥及传统营造技艺为主题的博物馆，通过实物资料、模型和展陈介绍当地廊桥文化。",
+        "description_source_url": "https://www.lishui.gov.cn/art/2024/1/2/art_1229439539_57353870.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "不同渠道复核：官方现址与文博指南具名馆舍地图点一致，GCJ-02反算WGS84；详情见research_round_20261002C。",
+          "source_urls": [
+            "https://www.lishui.gov.cn/art/2024/1/2/art_1229439539_57353870.html",
+            "https://www.iwenbo.fun/museum/5436.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "庆元廊桥专题馆为独立场馆；文博指南列石龙街1-1号并嵌入具名TMap场馆标记。GCJ-02坐标迭代转换为WGS84；属馆舍到达锚点，非实测入口。"
+        },
+        "longitude": 119.0569485,
+        "latitude": 27.6230559,
+        "coordinate_system": "WGS84",
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5436.html",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "建筑"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "庆元廊桥专题馆为独立场馆；文博指南列石龙街1-1号并嵌入具名TMap场馆标记。GCJ-02坐标迭代转换为WGS84；属馆舍到达锚点，非实测入口。",
+        "aliases": [
+          "中国庆元廊桥博物馆"
+        ],
+        "research_round_20261002C": {
+          "outcome": "approved",
+          "reason": "独立馆舍的具名公开地图标记与官方现址吻合；GCJ-02反算WGS84，非大景区质心。",
+          "source_urls": [
+            "https://www.lishui.gov.cn/art/2024/1/2/art_1229439539_57353870.html",
+            "https://www.iwenbo.fun/museum/5436.html"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "庆元廊桥专题馆为独立场馆；文博指南列石龙街1-1号并嵌入具名TMap场馆标记。GCJ-02坐标迭代转换为WGS84；属馆舍到达锚点，非实测入口。",
+          "raw_coordinate_evidence_file": "data/city_sweep_20261002/cache_2_iwenbo_roundC.json"
+        }
+      }
+    ]
+  },
+  {
+    "id": 290,
+    "city": "曲靖市",
+    "province": "云南省",
+    "sources": [
+      "https://wcb.yn.gov.cn/html/2026/yewuzhuanlan_0421/3062808.html"
+    ],
+    "checked_names": [
+      "珠江源风景区"
+    ],
+    "note": "珠江源风景区与库中大海草山、凤凰谷、菌子山等不同；仅景区而非整片自然保护区作为候选。",
+    "candidates": [
+      {
+        "name": "珠江源风景区",
+        "status": "pending_coordinates",
+        "description": "位于曲靖沾益区的珠江源头游览区，可认识珠江发源地及周边山地水源景观。",
+        "description_source_url": "https://wcb.yn.gov.cn/html/2026/yewuzhuanlan_0421/3062808.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "仅找到大范围景区/公园边界，缺游客入口或游客中心；不能用质心。",
+          "source_urls": [
+            "https://wcb.yn.gov.cn/html/2026/yewuzhuanlan_0421/3062808.html",
+            "https://www.openstreetmap.org/way/1190793496"
+          ],
+          "checked_at": "2026-10-02",
+          "coordinate_review_note": "https://www.openstreetmap.org/way/1190793496；大范围质心禁用。"
+        }
+      }
+    ]
+  }
+]

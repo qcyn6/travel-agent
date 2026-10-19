@@ -1,0 +1,791 @@
+[
+  {
+    "id": 341,
+    "city": "吴忠市",
+    "province": "宁夏回族自治区",
+    "sources": [
+      "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html"
+    ],
+    "checked_names": [
+      "吴忠市博物馆",
+      "宁夏长城博物馆",
+      "花马池古城"
+    ],
+    "note": "不将黄河大峡谷内部108塔再列新增；各馆入口待核。",
+    "candidates": [
+      {
+        "name": "吴忠市博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "吴忠政府游览资料核准场馆展陈，2026年官方采购地址与公开地图滨河新区两馆一中心位置相符。",
+          "source_urls": [
+            "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+            "https://bkso.baidu.com/item/%E5%90%B4%E5%BF%A0%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A6%86/60801509?fromModule=lemma_inlink",
+            "https://www.wuzhong.gov.cn/xxgk/zfxxgkml/yjsgkqk/bmys/2025/202502/P020250212645079061229.pdf",
+            "https://orpheo.com.cn/company-profile",
+            "https://www.wuzhong.gov.cn/ztzl/zcwdpt/wzswhlytygdj/list_1.html",
+            "https://zh.wikipedia.org/wiki/%E5%9B%BD%E5%AE%B6%E4%B8%89%E7%BA%A7%E5%8D%9A%E7%89%A9%E9%A6%86",
+            "https://fzggw.nx.gov.cn/fzzlhgh/202110/P020211015392020178201.pdf",
+            "https://www.ccgp.gov.cn/cggg/dfgg/gkzb/202604/t20260403_26361840.htm",
+            "https://www.iwenbo.fun/museum/5210.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906936",
+          "coordinate_review_note": "公开网页TMap具名场馆锚点，GCJ02，非现场实测入口；2026年官方地址开元大道两馆一中心与地图位置相符。",
+          "web_search": {
+            "searched_city": "吴忠市",
+            "searched_name": "吴忠市博物馆",
+            "batch_candidates": [
+              "临夏州博物馆",
+              "玉树州博物馆",
+              "吴忠市博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "341|吴忠市博物馆",
+          "additional_coordinate_attempts": []
+        },
+        "description": "吴忠市博物馆位于利通区滨河新区两馆一中心，是地方综合性博物馆。常设展陈包括吴忠溯源、红色吴忠，以历史文物和专题展示介绍地方历史、地域文化及革命历史。适合文博参观和历史研学，展览、预约及开放安排以馆方公告为准。",
+        "longitude": 106.15826547,
+        "latitude": 37.98896088,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5210.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "aliases": [
+          "吴忠博物馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "独立市级馆舍，与现有吴忠景点逐名及内容检查无重复；不把同一文化中心其他建筑或馆内展厅拆成多个景点。"
+      },
+      {
+        "name": "宁夏长城博物馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "已找到盐池县长城关相关公开报道，但水洞沟官网也有同名博物馆资料；需消除同名实体混淆并核准盐池场馆坐标，不把灵武水洞沟馆挂到吴忠。",
+          "source_urls": [
+            "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+            "https://szb.ycfbapp.com/ycwb/pc/att/202509/08/0dd228b1-e1ce-4f00-b8a3-ec144a54eedd.pdf",
+            "https://www.cac.gov.cn/2026-07/23/c_1786897294787131.htm",
+            "https://www.meet99.com/jingdian-yanzhougucheng-141875.html",
+            "https://www.wuzhong.gov.cn/hdjl/myzj/202511/P020251119424100171385.pdf",
+            "https://nx.people.com.cn/n2/2022/0520/c192482-35277605.html",
+            "https://www.wuzhong.gov.cn/zzb/rdhy_67268/202511/P020251119424100171385.pdf",
+            "https://www.shuidonggou.com/mobile/photo/show.php/itemid-20/"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906948",
+          "coordinate_review_note": "本轮名称查询未取得可核准的盐池馆坐标；同名水洞沟馆不得替代。",
+          "web_search": {
+            "searched_city": "吴忠市",
+            "searched_name": "宁夏长城博物馆",
+            "batch_candidates": [
+              "宁夏长城博物馆",
+              "花马池古城",
+              "克拉玛依博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "341|宁夏长城博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "341|宁夏长城博物馆",
+              "error": null,
+              "raw_result_count": 4
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "341|宁夏长城博物馆",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      },
+      {
+        "name": "花马池古城",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.wuzhong.gov.cn/sywz/lyjd/202107/t20210715_2926139.html",
+            "https://zh.wikipedia.org/wiki/%E8%8A%B1%E9%A9%AC%E6%B1%A0%E5%8F%A4%E5%9F%8E%E5%9D%80",
+            "https://zh.wikipedia.org/wiki/%E5%90%B4%E5%BF%A0%E5%B8%82%E5%A2%83%E5%86%85%E7%9A%84%E5%AE%81%E5%A4%8F%E5%9B%9E%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8C%BA%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D%E5%88%97%E8%A1%A8",
+            "https://www.meet99.com/jingdian-yanzhougucheng-141875.html",
+            "https://zh.wikipedia.org/wiki/%E5%AE%81%E5%A4%8F%E5%9B%9E%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8C%BA%E6%96%87%E7%89%A9%E4%BF%9D%E6%8A%A4%E5%8D%95%E4%BD%8D"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906958",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "吴忠市",
+            "searched_name": "花马池古城",
+            "batch_candidates": [
+              "宁夏长城博物馆",
+              "花马池古城",
+              "克拉玛依博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "341|花马池古城",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "341|花马池古城",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 345,
+    "city": "克拉玛依市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml"
+    ],
+    "checked_names": [
+      "克拉玛依博物馆",
+      "独库公路博物馆",
+      "科技馆",
+      "生态休闲健身公园"
+    ],
+    "note": "2026公共文化说明；独库公路博物馆在独山子，与大峡谷不同。",
+    "candidates": [
+      {
+        "name": "克拉玛依博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "2026年9月市政府资料确认现馆准噶尔路22号及石油历史展陈，公开文博地图具名现館点地址一致；拒绝独库公路同名误匹配。",
+          "source_urls": [
+            "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+            "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82%E6%96%87%E5%8D%9A%E9%99%A2",
+            "https://www.klmy.gov.cn/klmys/szfysq/202207/29350c59be7b483a9ccf204b2286fd77/files/%E5%8D%9A%E7%89%A9%E9%A6%86%E5%85%8D%E8%B4%B9%E5%BC%80%E6%94%BE%E5%8F%8A%E5%B1%95%E9%99%88%E6%8F%90%E5%8D%87%E9%A1%B9%E7%9B%AE%E8%AF%84%E4%BB%B7%E6%8A%A5%E5%91%8A%28%E5%BC%A0%E6%A2%A6%E9%9B%A8%29-11.11%E8%B4%A2%E6%94%BF%E8%B4%A8%E6%8E%A7%E7%A8%BF.pdf",
+            "https://www.maigoo.com/citiao/61227.html",
+            "https://zh.wikipedia.org/wiki/%E5%85%8B%E6%8B%89%E7%8E%9B%E4%BE%9D%E5%B8%82",
+            "https://www.xjkunlun.gov.cn/dswx/dszl/111559.htm",
+            "https://www.iwenbo.fun/museum/5273.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906967",
+          "coordinate_review_note": "公开网页TMap现馆具名点标记，GCJ02，位于准噶尔路22号，非实测入口。证据见extra_museum_guides_B_root.json。",
+          "web_search": {
+            "searched_city": "克拉玛依市",
+            "searched_name": "克拉玛依博物馆",
+            "batch_candidates": [
+              "宁夏长城博物馆",
+              "花马池古城",
+              "克拉玛依博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "345|克拉玛依博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "345|克拉玛依博物馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "345|克拉玛依博物馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        },
+        "description": "克拉玛依博物馆位于克拉玛依区准噶尔路22号，又称克拉玛依市文博院。馆内围绕地质背景、石油工业萌芽、艰苦创业及城市发展设置展陈，展示各族石油人建设边疆的历程，适合地方历史参观、工业文化体验和研学。开放、预约及展览以馆方公告为准。",
+        "longitude": 84.90209699,
+        "latitude": 45.60673111,
+        "coordinate_source_url": "https://www.iwenbo.fun/museum/5273.html",
+        "coordinate_system": "GCJ02",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "duration_minutes": 90,
+        "aliases": [
+          "克拉玛依市博物馆",
+          "克拉玛依市文博院",
+          "克拉玛依矿史博物馆"
+        ],
+        "independence_note": "主城区准噶尔路独立文博场馆，与独山子区独库公路博物馆、科技馆不同，不另拆地窖或英雄墙。"
+      },
+      {
+        "name": "独库公路博物馆",
+        "status": "approved",
+        "description": "位于克拉玛依市独山子区独库公路起点附近的专题博物馆。通过历史文献、实物、模型与沙盘展示独库公路的筑路历程、筑路者故事及沿线自然风光；它是室内展馆，不是整条独库公路的游览范围。",
+        "description_source_url": "https://www.klmy.gov.cn/klmys/szyw/202006/1119b3a9476e4e4faf7fefdb6b792fc3.shtml",
+        "longitude": 84.8821036,
+        "latitude": 44.3169448,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1546933736",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "具名博物馆建筑锚点约114米宽、110米长，南环东路与北京路零公里处；独山子区2026开放信息确认北京路乙2-1号。与独山子大峡谷不同址，不把公路沿线其他景点拆作本馆。",
+        "aliases": [
+          "独库公路博物馆景区"
+        ]
+      },
+      {
+        "name": "克拉玛依科技馆",
+        "status": "approved",
+        "description_source_url": "https://www.klmyq.gov.cn/klmyq/ggwhfw/202409/f7aba60486764d8181188f80c35b3de5.shtml",
+        "description": "克拉玛依科技馆位于市文体中心，处于迎宾路以西、世纪大道以南。馆舍建筑以石油地质为设计意象，通过科学探索等主题展陈与互动项目开展科普教育，适合亲子参观和科学研学。具体展项、场次与开放安排以场馆公告为准。",
+        "latitude": 45.5695491,
+        "longitude": 84.8867461,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/879506636",
+        "coordinate_system": "WGS84",
+        "category": "科普场馆",
+        "tags": [
+          "博物馆",
+          "研学",
+          "亲子",
+          "建筑"
+        ],
+        "aliases": [
+          "克拉玛依市科技馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://www.klmyq.gov.cn/klmyq/ggwhfw/202409/f7aba60486764d8181188f80c35b3de5.shtml",
+            "https://www.cacsi.org.cn/site/content/2405.html",
+            "https://www.openstreetmap.org/way/879506636"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906982",
+          "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+          "web_search": {
+            "searched_city": "克拉玛依市",
+            "searched_name": "克拉玛依科技馆",
+            "batch_candidates": [
+              "克拉玛依科技馆",
+              "生态休闲健身公园",
+              "博尔塔拉蒙古自治州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "345|克拉玛依科技馆",
+          "additional_coordinate_attempts": []
+        }
+      },
+      {
+        "name": "生态休闲健身公园",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml",
+            "https://www.klmyq.gov.cn/klmyq/zdjsxm/202311/8a8dc8e6e82746df96c541993ace54c9.shtml",
+            "https://www.klmy.gov.cn/klmys/szyw/202605/2351088cbbfd4b6a8558eb9251958565.shtml",
+            "https://www.sohu.com/a/710498230_121119059",
+            "https://www.klmy.gov.cn/klmys/szyw/202504/a2350cc034254e81b0003e5047aeae83.shtml",
+            "https://www.klmyq.gov.cn/klmyq/qwtl/202302/2a16eee47e4a42fd9ffe09d84ea1d12d/files/529389B609342F0A24E2BA374E9_E39611A3_5AE42.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.906992",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "克拉玛依市",
+            "searched_name": "生态休闲健身公园",
+            "batch_candidates": [
+              "克拉玛依科技馆",
+              "生态休闲健身公园",
+              "博尔塔拉蒙古自治州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "345|生态休闲健身公园",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "345|生态休闲健身公园",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 349,
+    "city": "博尔塔拉蒙古自治州",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml"
+    ],
+    "checked_names": [
+      "博尔塔拉蒙古自治州博物馆"
+    ],
+    "note": "2026馆舍说明明确新址锦绣路9号；不能使用旧址坐标。",
+    "candidates": [
+      {
+        "name": "博尔塔拉蒙古自治州博物馆",
+        "status": "approved",
+        "description_source_url": "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+        "description": "博尔塔拉蒙古自治州博物馆位于博乐市南城区锦绣路9号，是地方综合性博物馆。基本陈列围绕博尔塔拉的民族民俗和历史文物，结合数字化展示介绍当地文化与丝路历史，并举办临时交流展览。适合文博与民族文化研学，开放安排以馆方公告为准。",
+        "latitude": 44.8553194,
+        "longitude": 82.0533997,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/554604783",
+        "coordinate_system": "WGS84",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "民族文化",
+          "研学"
+        ],
+        "aliases": [
+          "博州博物馆"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://www.xjboz.gov.cn/xjboz/c125974/202609/bf16457069de4c048761c0e521daa1c9.shtml",
+            "https://www.xjboz.gov.cn/xjboz/c125981/202508/07cac52c69f44d318882200f8da5cbd9.shtml",
+            "https://bkso.baidu.com/item/%E5%8D%9A%E5%B0%94%E5%A1%94%E6%8B%89%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%B7%9E%E5%8D%9A%E7%89%A9%E9%A6%86/19836055?fromModule=lemma_inlink",
+            "https://www.maigoo.com/citiao/61162.html",
+            "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://www.alsk.gov.cn/__local/9/CB/4E/98BB4F01115C313FAA141442F59_35B2B3D5_42238.pdf",
+            "https://www.openstreetmap.org/way/554604783"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907001",
+          "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+          "web_search": {
+            "searched_city": "博尔塔拉蒙古自治州",
+            "searched_name": "博尔塔拉蒙古自治州博物馆",
+            "batch_candidates": [
+              "克拉玛依科技馆",
+              "生态休闲健身公园",
+              "博尔塔拉蒙古自治州博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "349|博尔塔拉蒙古自治州博物馆",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 353,
+    "city": "喀什地区",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.kashi.gov.cn/ksdqxzgs/c112191/202203/3f541aaa3ba346868dfa97d0b8421d9b.shtml"
+    ],
+    "checked_names": [
+      "喀什地区博物馆"
+    ],
+    "note": "公共机构免费开放名录；城区古城和帕米尔已存不重复。",
+    "candidates": [
+      {
+        "name": "喀什地区博物馆",
+        "status": "approved",
+        "description": "位于喀什市天山西路的地区博物馆，通过馆藏文物、考古成果展示和公共教育活动介绍地域历史文化。可在室内展览中了解喀什与帕米尔地区的文化交流和丝路历史，具体专题展览以馆方当期公告为准。",
+        "description_source_url": "https://czt.xinjiang.gov.cn/xjczt/c115019/202609/7ace564f80a945ba83ae4c1fe6eb114a.shtml",
+        "supporting_source_urls": [
+          "https://www.kashi.gov.cn/ksdqxzgs/c112191/202405/191f8b202b7d4d6ab2ec2be9b7ecad59.shtml",
+          "https://www.kashi.gov.cn/ksdqxzgs/c112191/202203/3f541aaa3ba346868dfa97d0b8421d9b.shtml"
+        ],
+        "longitude": 75.992991,
+        "latitude": 39.4951226,
+        "coordinate_source_url": "https://www.openstreetmap.org/node/8581254417",
+        "coordinate_system": "WGS84",
+        "category": "博物馆与展馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文"
+        ],
+        "duration_minutes": 90,
+        "independence_note": "OSM具名喀什博物舘 museum节点位于天山西路；行政公署2022开放表和2024公示均确认天山西路28号。排除莎车博物馆同区域异地结果，与喀什古城、帕米尔景区不同址。",
+        "aliases": [
+          "喀什博物馆",
+          "喀什博物舘"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 357,
+    "city": "阿勒泰地区",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2025-12-02/8461606.shtml"
+    ],
+    "checked_names": [
+      "将军山国际滑雪度假区",
+      "阿勒泰地区博物馆"
+    ],
+    "note": "公开旅游指南证实市区滑雪场与博物馆；不将喀纳斯内部村落另加。",
+    "candidates": [
+      {
+        "name": "将军山国际滑雪度假区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2025-12-02/8461606.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2025-12-02/8461606.shtml",
+            "https://you.ctrip.com/sight/altaycity2482/5042346.html",
+            "https://scjgj.xinjiang.gov.cn/xjaic/qjxx/202403/0ad2899ad6b64511ad5fdb971677282f.shtml",
+            "https://www.xinjiang.gov.cn/xinjiang/dzdt/202303/d2a6e4472d374cfab7d75b9efffaf6e2.shtml",
+            "https://www.chinaxinjiang.cn/2026/05/18/53d97a7c264e41b4b9aefa3a1092713d.html",
+            "https://www.chinaxinjiang.cn/2026/01/12/d93da1e2fce04acf834cc7733927245f.html",
+            "https://alt-szb.xjmty.com/resfile/2025-12-31/03/altrb2025123103.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907014",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "阿勒泰地区",
+            "searched_name": "将军山国际滑雪度假区",
+            "batch_candidates": [
+              "将军山国际滑雪度假区",
+              "阿勒泰地区博物馆",
+              "五家渠军垦博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "357|将军山国际滑雪度假区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "357|将军山国际滑雪度假区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "阿勒泰地区博物馆",
+        "status": "approved",
+        "description_source_url": "https://wlt.xinjiang.gov.cn/wlt/dzdt/202105/c1ec7480d86f4d758e089bbb0adf8b82.shtml",
+        "description": "阿勒泰地区博物馆是一座收藏、展示和研究地方文物的综合性博物馆，新馆于2021年对外开放。馆藏包括石器、陶器、青铜器、铁器和金器等，适合了解阿勒泰地区历史与人文文化。参观时的展览内容、开放时间和预约要求以馆方最新公告为准。",
+        "latitude": 47.8097456,
+        "longitude": 88.1225241,
+        "coordinate_source_url": "https://www.openstreetmap.org/way/1351505184",
+        "coordinate_system": "WGS84",
+        "category": "博物馆",
+        "tags": [
+          "博物馆",
+          "历史文化",
+          "人文",
+          "研学"
+        ],
+        "aliases": [],
+        "duration_minutes": 90,
+        "independence_note": "与本城市已有景点逐名/别名核对；独立具名馆舍，不拆为展厅、雕塑或同一馆内多个记录。",
+        "research_round_20261002B": {
+          "outcome": "approved",
+          "reason": "官方/馆方资料核实名称、城市和展陈；公开地图具名馆舍或紧凑馆区核准，现有库无同名或别名重复。",
+          "source_urls": [
+            "https://wlt.xinjiang.gov.cn/wlt/dzdt/202105/c1ec7480d86f4d758e089bbb0adf8b82.shtml",
+            "https://api.aiyoutravel.com/location/detail/a9d002850a4d09ffe9c9cc2537fa32f6",
+            "https://zh.wikipedia.org/wiki/%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA%E5%8D%9A%E7%89%A9%E9%A6%86%E5%88%97%E8%A1%A8",
+            "https://www.openstreetmap.org/way/1351505184"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907023",
+          "coordinate_review_note": "采用具名场馆建筑锚点（WGS84），不是现场测量入口；OSM对象原始标签和轮廓见osm_objects_B_root.json。",
+          "web_search": {
+            "searched_city": "阿勒泰地区",
+            "searched_name": "阿勒泰地区博物馆",
+            "batch_candidates": [
+              "将军山国际滑雪度假区",
+              "阿勒泰地区博物馆",
+              "五家渠军垦博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "357|阿勒泰地区博物馆",
+          "additional_coordinate_attempts": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 361,
+    "city": "五家渠市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://zhuanti.mct.gov.cn/csxz2022/xjbt/detail/1606.html"
+    ],
+    "checked_names": [
+      "五家渠军垦博物馆",
+      "青格达湖"
+    ],
+    "note": "青格达湖已有；跨城天池不能归五家渠。",
+    "candidates": [
+      {
+        "name": "五家渠军垦博物馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://zhuanti.mct.gov.cn/csxz2022/xjbt/detail/1606.html",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "2026年兵团官网可确认六师五家渠军垦博物馆现有展陈；查得2013年已迁至新馆，必须核准当前馆址坐标，不能沿用未核实旧馆位置。",
+          "source_urls": [
+            "https://zhuanti.mct.gov.cn/csxz2022/xjbt/detail/1606.html",
+            "https://www.forestry.gov.cn/c/www/gzdt/78713.jhtml",
+            "https://www.xjbt.gov.cn/c/2026-09-07/8502764.shtml",
+            "https://lwtj.shzu.edu.cn/openfile?dbid=72&lwsing=f2e739f5fc8d5066b3c01bf82c149277&objid=52_51_56_49_49"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907031",
+          "coordinate_review_note": "公开地图暂无可采用的当前场馆点；迁馆历史已登记，不使用城市中心或其他师军垦馆坐标。",
+          "web_search": {
+            "searched_city": "五家渠市",
+            "searched_name": "五家渠军垦博物馆",
+            "batch_candidates": [
+              "将军山国际滑雪度假区",
+              "阿勒泰地区博物馆",
+              "五家渠军垦博物馆"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "361|五家渠军垦博物馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "361|五家渠军垦博物馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "361|五家渠军垦博物馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 365,
+    "city": "可克达拉市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2026-08-11/8498559.shtml"
+    ],
+    "checked_names": [
+      "红军团博物馆",
+      "金边博物馆",
+      "可克达拉规划展示馆",
+      "朱雀湖"
+    ],
+    "note": "团场场馆是否属当前城市地界尚待核，先只列城市展示馆；朱雀湖已有。",
+    "candidates": [
+      {
+        "name": "可克达拉规划展示馆",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2026-08-11/8498559.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2026-08-11/8498559.shtml",
+            "https://alt-szb.xjmty.com/resfile/2023-09-20/01/altrb2023092001.pdf"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907039",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "可克达拉市",
+            "searched_name": "可克达拉规划展示馆",
+            "batch_candidates": [
+              "可克达拉规划展示馆",
+              "金沙棘小镇",
+              "巴依木扎旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "365|可克达拉规划展示馆",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "365|可克达拉规划展示馆",
+              "error": null,
+              "raw_result_count": 0
+            },
+            {
+              "file": "museum_guides_B_root.json",
+              "key": "365|可克达拉规划展示馆",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": 369,
+    "city": "白杨市",
+    "province": "新疆维吾尔自治区",
+    "sources": [
+      "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml"
+    ],
+    "checked_names": [
+      "金沙棘小镇",
+      "巴依木扎草原",
+      "芍药谷"
+    ],
+    "note": "2025/2026兵团报道提供真实候选；不使用北京白杨谷和哈密白杨沟误检结果。",
+    "candidates": [
+      {
+        "name": "金沙棘小镇",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+            "https://www.btwmw.net/content/content_1851732.html",
+            "https://oss.baigongbao.com/2021/01/16/BfzfzG4rQE.pdf",
+            "https://www.btwmw.net/content/content_1904781.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907047",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "白杨市",
+            "searched_name": "金沙棘小镇",
+            "batch_candidates": [
+              "可克达拉规划展示馆",
+              "金沙棘小镇",
+              "巴依木扎旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "369|金沙棘小镇",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "369|金沙棘小镇",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "巴依木扎旅游景区",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+            "https://www.btwmw.net/content/content_1851732.html",
+            "https://whhlyt.hunan.gov.cn/whhlyt/news/szyw/201909/t20190912_5483778.html",
+            "https://mt.sohu.com/kindfeed/travel/20250822/32"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907054",
+          "coordinate_review_note": "本轮公开地图按名查询未命中；尚未找到可核准的具名入口/场馆坐标。",
+          "web_search": {
+            "searched_city": "白杨市",
+            "searched_name": "巴依木扎旅游景区",
+            "batch_candidates": [
+              "可克达拉规划展示馆",
+              "金沙棘小镇",
+              "巴依木扎旅游景区"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "369|巴依木扎旅游景区",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "369|巴依木扎旅游景区",
+              "error": null,
+              "raw_result_count": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "芍药谷",
+        "status": "pending_coordinates_and_description",
+        "description_source_url": "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+        "research_round_20261002B": {
+          "outcome": "unresolved",
+          "reason": "公开资料补查已登记；坐标仍缺可靠入口/场馆核准证据，暂不新增入库。",
+          "source_urls": [
+            "https://www.xjbt.gov.cn/c/2025-03-25/8390980.shtml",
+            "https://www.ccqctg.com/web/column/1525156572879376384/web/content_1525156572879376384.html",
+            "https://www.huyangnet.cn/content/2023-05/18/content_1778065.html",
+            "https://www.btzx.com.cn/web/2025/5/5/ARTI1746414710647873.html",
+            "https://zhuanti.mct.gov.cn/xjbt_detail/472.html",
+            "https://bkso.baidu.com/item/%E7%99%BD%E6%9D%A8%E5%B8%82/50450256?fromModule=lemma_inlink",
+            "https://www.huyangnet.cn/content/2025-03/25/content_1965396.html"
+          ],
+          "checked_at": "2026-10-02T18:48:31.907063",
+          "coordinate_review_note": "公开地图返回异地或不相关地点，已拒绝采用。",
+          "web_search": {
+            "searched_city": "白杨市",
+            "searched_name": "芍药谷",
+            "batch_candidates": [
+              "芍药谷"
+            ],
+            "method": "公开网页检索；检索结果仅作证据线索，不据此自动批准坐标"
+          },
+          "coordinate_attempt_file": "coordinates_B_root.json",
+          "coordinate_attempt_key": "369|芍药谷",
+          "additional_coordinate_attempts": [
+            {
+              "file": "photon_B_root.json",
+              "key": "369|芍药谷",
+              "error": null,
+              "raw_result_count": 1
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
